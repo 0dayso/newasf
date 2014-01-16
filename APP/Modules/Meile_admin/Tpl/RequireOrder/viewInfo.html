@@ -1,0 +1,87 @@
+<div class="page">
+    <div class="pageContent pageForm">
+        <div class="pageFormContent" layoutH="58">
+            <table class="list" width="100%">
+                <tr class="row" ><th colspan="3" class="space">详细信息</th></tr>
+                <notempty name="vo['from_city']">
+                        <volist name="vo[route]" id="v">
+                            <tr><td>行程{$key}</td><td>
+                                <span>出发城市：</span>
+                                <span> {$v.from_city}; </span>
+                                <span>到达城市：</span>
+                                <span> {$v.to_city}; </span>
+                                <span>出发日期：</span>
+                                <span> {$v.origin_date}; </span>
+                            </td>
+                            </tr>
+                        </volist>
+
+                    <tr class="row">
+                        <td rowspan="3" width="20%">乘客人数：</td>
+                        <td >成人:{$vo.adult}人 </td>
+                    </tr>
+                    <tr class="row">
+                        <td>儿童（2-12岁）:{$vo.child} 人</td>
+                    </tr>
+                    <tr>
+                        <td>婴儿（2岁以下）: {$vo.baby} 人</td>
+                    </tr>
+                    <tr>
+                        <td >乘客类型：</td><td >{$vo.type}</td >
+                    </tr>
+                    <tr>
+                        <td >舱位等级：</td></td ><td >{$vo.preferred}</td>
+                    </tr>
+
+                </notempty>
+                <tr>
+                    <td>联系人姓名</td>
+                    <td>{$vo.name} <notempty name="vo['member_username']">查看人: {vo.member_username} - {vo.member_name}</notempty></td>
+                </tr>
+                <tr>
+                    <td>手机号码</td>
+                    <td>{$vo.phone}</td>
+                </tr>
+                <tr>
+                     <td>Email</td>
+                    <td>{$vo.email}</td>
+                </tr>
+                <tr>
+                    <td>电话：</td>
+                    <td>{$vo.telephone}</td>
+                </tr>
+                <tr>
+                    <td>QQ：</td>
+                    <td>{$vo.qq}</td>
+                </tr>
+                <notempty name="vo['content']">
+                    <tr>
+                        <td>需求内容：</td>
+                        <td>{$vo.content}</td>
+                    </tr>
+                </notempty>
+                <tr>
+                    <td>状态</td>
+                    <td>{$vo.status_name}  <notempty name="vo['user_name']">  客服: {$vo.user_name}</notempty></td>
+                </tr>
+                <tr>
+                    <td>添加时间：</td>
+                    <td>{$vo.time}</td>
+                </tr>
+                <tr>
+                    <td>认领时间：</td>
+                    <td>{$vo.update_date}</td>
+                </tr>
+                <tr>
+                    <td>来路</td>
+                    <td>{$vo.source}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="formBar">
+            <ul>
+                <li><div class="button"><div class="buttonContent"><button type="button" class="close">关闭</button></div></div></li>
+            </ul>
+        </div>
+    </div>
+</div>

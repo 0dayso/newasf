@@ -1,0 +1,10 @@
+    <h2 class="titbk"><span class="left">客户评价</span><span class="right"><a>客户满意度：</a><label>99.6%</label></span></h2>
+    <ul class="conbk">
+        <foreach name="evaluat" item="v">
+        <li>
+            <span class="title"><a class="spr3 assgd"></a><div><label>{$v.name|msubstr=###,0,8} 点评了</label><a href="{:U('airline/pl/','from='.$v['from_iata'].'&to='.$v['to_iata'])}" target="_blank" class="travel">{$v.from_city}→{$v.to_city}</a></div></span>
+            <span class="intro">{$v.contents}</span>
+        </li>
+        </foreach>
+
+    </ul>

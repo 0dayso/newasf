@@ -1,0 +1,57 @@
+<include file="public:header" />
+
+    <link rel="stylesheet" href="__PUBLIC__/css/member.css" type="text/css" />
+    <script type="text/javascript" src="__PUBLIC__/js/member.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/layer/layer.min.js"></script>
+    <script src="__PUBLIC__/admin/Js/jquery.form.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/modify.js"></script>
+    <div class="member">
+    	<!--会员中心导航-->
+    	<include file="public:left" />
+        
+		<div class="right" id="memberR">
+        	<h1 class="nav_tit">更换手机号</h1>
+            <div id="replacephone" class="scbox">
+            	<form action="" method="post">
+            	<div class="hint">更换账号后，您的爱尚飞账户登录名将自动更新为新手机号</div>
+                <ul>
+                	<li><span>手机号码：</span><input name="phone" type="text" id="phone" required ></li>
+                    <li class="code"><span>短信验证码：</span><input name="auth_str" type="text" id="verify" required ><a class="fsa" id="fsan">发送认证码短信</a></li>
+                    <li><span>&nbsp;</span><b id="fslb"></b></li>
+				</ul>
+				<div class="sub"><input class="bt99" type="submit" value="确定" /><a href="{:U('/Member/Setting/securitycenter')}">返回</a></div>
+                </form>
+            </div>
+			
+      </div>
+    </div>
+    <script type="text/javascript">
+    var a=document.getElementById("fsan");
+	     a.onclick=function(e){
+		if(a.className!="fsa"){return;}
+		var t=60;
+		$.post("{:U('/Member/Setting/replacephone')}","send=1",function(data){
+			if(data){
+                msg("发送成功",0,'correct');
+			}else{
+                msg('由于网络故障 发送失败！ 请稍后再试！');
+					window.location.reload()
+					}
+			 })
+    a.className="active";
+	changeHtml(a,t);
+	
+	return false;
+	}
+	var changeHtml=function(o,t){
+		o.innerHTML="重发验证码短信("+(--t)+")";
+		var timer=setTimeout(function(){
+			if(t==0){o.className="fsa";o.innerHTML="重发验证码短信";clearTimeout(timer);document.getElementById('fslb').innerHTML='一分钟内没有收到校验码?';return;}
+			changeHtml(o,t);
+			},1000);
+			}
+    /*xmlhttp*/
+	function CreateAjax() { if (window.XMLHttpRequest) { return new XMLHttpRequest(); } else if (window.ActiveXObject) { try { return new ActiveXObject("Msxml2.XMLHTTP"); } catch (e) { try { return new ActiveXObject("Microsoft.XMLHTTP"); } catch (e) { alert("Sorry,你的机子缺少AJAX组件。"); return false; } } } }
+</script>
+    
+<include file="public:footer" />

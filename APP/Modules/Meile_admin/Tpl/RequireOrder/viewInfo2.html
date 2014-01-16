@@ -1,0 +1,87 @@
+<style>
+    @charset "utf-8";
+        /* 国际航班机票需求单 */
+
+        /*公共设置*/
+    .title1,.title2{color:#666;}
+    .title1 em,.title2 em{color: #F00;margin-right: 5px;font-style: normal;}
+    .title2{width:85px;text-align:right;}
+    .m_auto{height: auto;width: 658px;margin: 15px auto 0 auto;}
+    #dem_form,#hc_xinxi,#lxr_xinxi{color: #333;}
+    #hc_xinxi,#lxr_xinxi,#df_list{border: 1px solid #b5dff5;margin-bottom:10px;}
+    #hc_xinxi h3,#lxr_xinxi h3{border-bottom:1px solid #b5dff5;background-color:#e5f3ff;padding-left:15px;font-weight:bold;color:#0066cc;line-height:32px;font-size:14px;}
+    #hc_xinxi ul,#hc_xinxi dd,#lxr_xinxi dd{height:26px;margin-bottom:15px;}
+    #hc_xinxi dd span,#lxr_xinxi dd span{float:left;line-height:26px;}
+    #hc_xinxi input.text,#hc_xinxi input.text2,#hc_xinxi span.no input,.lxrxx,#lxr_xinxi input{color:#999999;height:24px;border:1px solid #bcbcbc;line-height:24px\9;vertical-align:middle;}
+
+        /*航程信息*/
+    #hc_xinxi li{float: left;margin-right:10px;}
+    #hc_xinxi li input.text{padding:0 26px 0px 3px;width:95px;}
+    #hc_xinxi li input.text2{padding:0 26px 0px 3px;width:75px;}
+    #hc_xinxi li input.city{background:url(../images/chaxun_city.gif) no-repeat 100px center;}
+    #hc_xinxi li input.date{background:url(../images/chaxun_date.gif) no-repeat 80px center;}
+    #hc_xinxi li a{line-height: 26px;color:#0066cc;}
+    #hc_xinxi li a:hover{color:#ff6600;}
+    #hc_xinxi li a em{font-family: Arial, Helvetica, sans-serif;font-style: normal;margin-right:3px;}
+
+        /*添加航程*/
+    #hc_xinxi h4{line-height:26px;background:url(../images/dem_form_add.gif) no-repeat 12px center;width:300px;padding-left:40px;border:1px dashed #8dc1dc;cursor:pointer;margin:15px 0;}
+    #hc_xinxi dd span input{margin:0 5px;}
+    #hc_xinxi dd span.no{margin-right: 24px;}
+    #hc_xinxi dd span.no input,.lxrxx{padding-left:3px;display:inline;}
+    #hc_xinxi dd span.no input{width:58px;}
+    .lxrxx{width: 100px;}
+
+        /*联系人信息*/
+    #lxr_xinxi dd{ display:block;}
+    #lxr_xinxi input{padding-left:3px;display:inline;margin:0 5px;}
+    #lxr_xinxi input.w50{width:50px;}
+    #lxr_xinxi input.w60{width:60px;}
+    #lxr_xinxi dt input{width:99px;height:32px;background:url(../images/bt99.gif) no-repeat;color:#fff;/*line-height:32px;text-align:center;display:inline-block;*/margin:0 0 15px 90px;cursor:pointer;border-width:0px;}
+
+        /*需求提交列表*/
+    #df_list{background-color:#e5f3ff;}
+    #df_list dl{width:218px;height:50px;padding:10px 0;margin:0 auto;}
+    #df_list dl.bor{border-bottom:1px dashed #b8e1f6;}
+    #df_list dl span{float:left;padding-left:5px;}
+    #df_list dl label{color:#0066cc;margin-right:8px;}
+    #df_list dt,#df_list dd{float:left;width:218px;line-height:25px;}
+    </style>
+        <div id="hc_xinxi">
+<div class="m_auto">
+    <notempty name="vo['from_city']">
+        <ul>
+        <volist name="vo[route]" id="v">
+            <li>
+                <span>出发城市{$key}：</span>
+                <span> {$v.from_city}</span>
+            </li>
+            <li>
+                <span>到达城市1：</span><span> {$v.to_city}</span>
+            </li>
+            <li>
+                <span>出发日期1：</span><span> {$v.origin_date}</span>
+            </li>
+        </volist>
+        </ul>
+    </notempty>
+
+    <dl>
+        <dd>
+            <span >乘客人数：</span>
+            <span class="no">成人:{$vo.adult}人 </span>
+            <span class="no">儿童（2-12岁）:{$vo.child} 人</span>
+            <span class="no">婴儿（2岁以下）: {$vo.baby} 人</span>
+        </dd>
+        <dd>
+            <span >乘客类型：</span>{$vo.type}
+        </dd>
+        <dd>
+            <span >舱位等级：</span>{$vo.grade}
+        </dd>
+        <dd>
+            <span>首选航空公司：{$vo.preferred}</span>
+        </dd>
+    </dl>
+</div>
+</div>

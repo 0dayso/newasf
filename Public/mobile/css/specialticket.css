@@ -1,0 +1,44 @@
+@charset "utf-8";
+/*公用*/
+.cont_box{padding:10px;}
+.white_bg{background-color:#FFF;}
+
+/*轮换广告*/
+#ad{padding:4px 0;position:relative;}
+#ad img{width:100%;border:0;}
+#ad #adlist li{display:none;}
+#ad #adlist .on{display:block;}
+#ad #slidebar{position:absolute;left:49%;bottom:8px;}
+#ad #slidebar li{font-size:10px;display:inline-block;color:#5d5d5d;cursor:pointer;padding:0 2px;}
+#ad #slidebar li.select{color:#e0e0e0;}
+
+#query_city{height:120px;padding-bottom:10px;font-family:"微软雅黑";}
+#query_city .cont_box{height:60px;}
+#query_city dl{width:48%;}
+#query_city dt{height:24px;line-height:24px;padding-left:8px;color:#666;}
+#query_city dd{height:36px;}
+#query_city dd select,#query_city dd option{height:30px!important;line-height:30px!important;width:100%!important;padding:3px 0;}
+
+/*列表*/
+#block{background-color:#f2f1f0;padding:10px 10px 50px 10px;}
+#block h2{padding-right:40px;text-align:center;font-size:18px;height:40px;line-height:40px;color:#2690d8;display:block;}
+#block .icon a{display:block;width:40px;height:40px;overflow:hidden;line-height:200px;}
+h4 .icon-up{background:url(../images/icon.png) no-repeat 0px -380px;}
+h4 .icon-down{background:url(../images/icon.png) no-repeat 0px -422px;}
+.collapsible h4{background:#cbe4f6!important;}
+.collapsible h4 a{font-size:16px;color:#2690d8!important;}
+.collapsible ul{background-color:#FFF;}
+#choiceness .collapsible ul{display:block!important;}
+.collapsible li{padding:12px 15px;border-bottom:1px solid #e7e5e5;}
+.collapsible div{line-height:30px;}
+.collapsible li span{display:inline-block;padding-left:22px;background:url(../images/icon.png) no-repeat -10px -340px;}
+.collapsible li em{font-style:normal;padding-right:18px;}
+.collapsible li strong{padding-left:22px;color:#ff8400;}
+.collapsible li a{display:block;float:right;width:75px;height:30px;text-align:center;color:#FFF;background-color:#3598db;cursor:pointer;}
+
+
+/*底部导航*/
+#footer_list{width:100%;height:39px;position:fixed;left:0;bottom:0;z-index:150;}
+#footer_list li{float:left;width:50%;}
+#footer_list a{display:block;height:39px;line-height:39px;font-size:16px;font-weight:bold;text-align:center;color:#FFF;background-color:#67b1e4;}
+#footer_list a.fl_on{background-color:#ff980f;}

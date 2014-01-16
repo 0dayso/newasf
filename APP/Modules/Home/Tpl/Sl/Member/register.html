@@ -1,0 +1,102 @@
+<include file="Public:header"/>
+<link rel="stylesheet" href="__PUBLIC__/css/register.css" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/js/register.js"></script>
+<script type="text/javascript" >
+		var checkname = "{:U('Common/CheckName')}/";
+		var checkphone = "{:U('Common/CheckPhone')}/";
+		var checkverify = "{:U('Common/CheckVerify')}/";
+</script>
+<div id="cont">
+  <div class="wd960 mt10 bgWhite">
+    <h1 class="h1_tit_nav">你当前所在位置：<a href="/" class="sy">首页</a> > <a class="cur">会员注册</a></h1>
+    <div class="left mt10" id="registerL">
+      <h2>请填写以下信息（"<a class="red">*</a>"为必填项）<span>成功注册会员即可获赠<strong>50元代金券</strong>及<strong>1000积分</strong></span></h2>
+      <form action="{:U('Member/register')}" name="form" method="post" id="reg_form">
+        <ul>
+          <li val="1"><span><a class="red">*</a>用户名：</span>
+            <input type="text" class="text" name="username" id="reg_id" value="6~20位字符，数字，字母组合" style="color:#666;" />
+            <label class="pro"></label>
+          </li>
+          <li val="1"><span><a class="red">*</a>密码：</span>
+            <input type="text" class="text" name="password" id="reg_ps" value="6~18位字符，数字，字母组合" style="color:#666;" />
+            <label class="pro"></label>
+          </li>
+          <li val="1"><span><a class="red">*</a>确认密码：</span>
+            <input type="password" class="text" name="rp_password" id="reg_rps" />
+            <label class="pro"></label>
+          </li>
+          <li val="1"><span><a class="red">*</a>手机号：</span>
+            <input type="text" class="text" name="mobile" id="reg_ph" />
+            <label class="pro"></label>
+          </li>
+          <li val="1"><span><a class="red">*</a>验证码：</span>
+            <input type="text" class="text code" name="verify_code" id="reg_ver" />
+            <img src="{:U('/Common/verify_code')}?w=78&h=28&n=4&t=3"  title="点击刷新" onclick="javascript:this.src=this.src.indexOf('&ss=')!=-1?this.src.substring(0,this.src.indexOf('&ss=')+3)+new Date().getTime():this.src+'&ss='+new Date().getTime()" alt="verification_code" class="code_img" />
+            <label class="pro"></label>
+          </li>
+          <li><a class="qiehuan" id="qiehuan_qb">填写全部信息</a><a class="red xinxi">（建议填写全部信息以享受更完善的会员服务）</a></li>
+          <ul id="qb_ul">
+            <li><span>姓名：</span>
+              <input type="text" class="text" name="name" />
+            </li>
+            <li><span>称谓：</span>
+              <select name="sex" class="sex">
+                <option value="0">先生</option>
+                <option value="1">女士</option>
+              </select>
+            </li>
+            <li><span>联系电话：</span>
+              <input type="text" class="text" name="telePhone" />
+            </li>
+            <li><span>所在地：</span>
+              <select name="province" class="province" id="province_sel">
+                <option value="">- -</option>
+              </select>
+              <select name="city" class="city" id="city_sel">
+                <option value="">- -</option>
+              </select>
+            </li>
+            <li><span>联系地址：</span>
+              <input type="text" class="text" name="address" />
+            </li>
+            <li><span>电子邮箱：</span>
+              <input type="text" class="text" name="email" />
+            </li>
+            <li><span>邮政编码：</span>
+              <input type="text" class="text" name="zip_code" />
+              <input type="hidden" name="act" value="register">
+            </li>
+          </ul>
+          <li class="clear"><span>&nbsp;</span>
+            <input type="checkbox" checked="checked" class="check" id="reg_check" />
+            <label class="info">我已同意并阅读《<a href="javascript:;" target="_blank" class="service" id="readService">爱尚飞用户服务协议</a>》</label>
+          </li>
+          <li><span>&nbsp;</span>
+            <input type="submit" value="同意协议并注册" class="submit" id="reg_sub" />
+          </li>
+        </ul>
+      </form>
+    </div>
+    <div class="right mt10" id="registerR">
+      <h2>注册成为爱尚飞机票网会员后，您可以: </h2>
+      <ul>
+        <li>
+          <label class="lb0"></label>
+          <a>获赠50元代金券、成功预订及评价送积分（可兑换丰厚礼品）等超值厚礼</a></li>
+        <li>
+          <label class="lb1"></label>
+          <a>实时查询、预订全球763个城市的国际机票，享受优质的24小时在线服务</a></li>
+        <li>
+          <label class="lb2"></label>
+          <a>享受由专业顾问为您提供的一对一国际差旅顾问服务及一站式解决方案</a></li>
+        <li>
+          <label class="lb3"></label>
+          <a>享受包括代金券、行程提醒、优选座位、活动特权、生日大礼包等多项尊贵会员特权</a></li>
+      </ul>
+    </div>
+  </div>
+
+  
+</div>
+<include file="public:footer" />
+</body></html>

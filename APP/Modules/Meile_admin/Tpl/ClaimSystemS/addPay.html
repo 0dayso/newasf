@@ -1,0 +1,107 @@
+<script type="text/javascript">
+    $(function(){
+        $('.selection').change(function(){
+            var val=$(this).val();
+            if(val==1){
+                $('.ream').show();
+                $('.net').hide();
+                $('.net input').val('');
+                $('.net input').removeClass('required');
+                $('.ream input').addClass('required');
+            }else if(val==2){
+                $('.ream').hide();
+                $('.net').show();
+                $('.net input').addClass('required');
+                $('.ream input').val('');
+                $('.ream input').removeClass('required');
+            }else if(val==3){
+                $('.ream').hide();
+                $('.net').hide();
+                $('.net input').val('').removeClass('required');
+                $('.ream input').val('').removeClass('required');
+            }
+        })
+    })
+</script>
+<div class="page">
+    <div class="pageContent">
+        <form method="post" action="__URL__/addPay/navTabId/__MODULE__-applyPay/boob_id/{$_REQUEST['book_id']}/" class="pageForm required-validate" onsubmit="return validateCallback(this,dialogAjaxDone)">
+            <div class="pageFormContent" layoutH="58">
+                <div class="unit">
+                    <label>申请人：</label>
+                    <input type="text" name="apply_name" class="required" lookup="org.name" size="12"  readonly="readonly" class="textInput readonly" value='{$vo.apply_name}'>
+                    <a class="btnLook" href="__GROUP__/User/userData" lookupGroup="org" width="650" height="300" title="查找带回">查找带回</a>
+                </div>
+                <div class="unit">
+                    <label>所属部门:</label>
+                    <select name="department_id"  lookup="org.department_id">{$vo.departmentOption.option}</select>
+                    <input type="hidden" class name="department"  lookup="org.department_id"/>
+                </div>
+                <div class="unit">
+                    <label>类型：</label>
+                    <label>
+                        <input type="radio" class="selection required" checked name="type" value="1"/>
+                        转帐汇款
+                    </label>
+                    <label>
+                        <input type="radio" class="selection required"  name="type" value="2" />
+                        网上支付
+                    </label>
+                    <label>
+                        <input type="radio" class="selection required"  name="type" value="3" />
+                        现金支付
+                    </label>
+
+                </div>
+                <div class="unit">
+                    <label>金额：</label>
+                    <input type="text" class="required number" placeholder ="申请支付金额"  name="apply_amount" >
+                </div>
+                <div class="ream">
+                    <div class="unit">
+                        <label>开户支行：</label>
+                        <input type="text" class="required"  name="apply_bank" />
+                    </div>
+                    <div class="unit">
+                        <label>收款人：</label>
+                        <input type="text" class="required"  name="account_name" />
+                    </div>
+                    <div class="unit">
+                        <label>汇款账号：</label>
+                        <input type="text" class="required"  size="40"  name="bank_account" >
+                    </div>
+                </div>
+                <div class="net" style="display: none">
+                    <div class="unit">
+                        <label>网址：</label>
+                        <input type="text" class="" size="60"  placeholder ="请填写支付网址"  name="web_url" />
+                    </div>
+                    <div class="unit">
+                        <label>账号：</label>
+                        <input type="text" class="" placeholder ="请填写账号"  name="web_account" />
+                    </div>
+                    <div class="unit">
+                        <label>密码：</label>
+                        <input type="text"  class="" placeholder ="请填写密码"  name="web_password" />
+                    </div>
+                </div>
+                <div class="unit">
+                    <label>备注：</label>
+                    <textarea  class="editor"  name="apply_remark"  tools="'Cut,Copy,FontSize,Bold,FontColor,Align,Img,Source,Link" op="tools:'Cut,Copy,FontSize,Bold,FontColor,Align,Img,Source,Link',skin:'default',forcePtag:false,localUrlTest:/{$Think.server.SERVER_NAME|str_replace='.','\\.',###}/i,remoteImgSaveUrl:'saveremoteimg.php'" upImgUrl="__GROUP__/Upload/contentImage" upImgExt="jpg,jpeg,gif,png"
+                               placeholder="支持"  editor="{:uniqid()}" cols="60" rows="10" >{$info.apply_remark}</textarea>
+                </div>
+            </div>
+
+            <div class="formBar">
+                <ul>
+                    <li>
+                        <input type="hidden" name="book_id" value="{$_REQUEST['book_id']}">
+                        <div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+                    <li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+                </ul>
+            </div>
+        </form>
+
+    </div>
+</div>
+

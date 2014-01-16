@@ -1,0 +1,89 @@
+<style type="text/css">
+#left_of{position: absolute;overflow:hidden;width:180px;height:330px;top:180px;left:0px;color:#055191;}
+#left_of a{color:#055191;}
+#left_of .of_body{width:119px;height:315px;padding:16px 13px 0 15px;background:url(__PUBLIC__/images/of_body.gif);background-repeat:no-repeat;float:left;}
+#left_of .clear{clear: both;}
+#left_of input,#left_of textarea{margin-bottom: 9px;color: #666;width: 109px;border-width: 0px;float: left;}
+#left_of input{height: 26px;line-height: 26px;padding: 0 5px;}
+#left_of textarea{height: 117px;margin-top:1px;line-height: 20px;padding:5px;}
+#left_of #of_bt{cursor:pointer;line-height:26px;font-weight:bold;color:#FFF;width:95px;margin:0 auto;background:url(__PUBLIC__/images/of_bt.gif); clear:left; text-align:center}
+#left_of .demand{margin-top:20px;text-align:right;}
+#left_of .demand a{color:#0066cc;}
+#left_of .of_xw{cursor:pointer;width:32px;height:196px;background:url(__PUBLIC__/images/of_xw.gif);background-repeat:no-repeat;float:left;margin-top:10px;position:relative;}
+#left_of .status_ion{position:absolute;top:10px;left:10px;width:8px;height:13px;background:url(__PUBLIC__/images/of_status_ion.gif);background-repeat:no-repeat;background-position:0px;}
+</style>
+<script type='text/javascript'>
+ $(function(){
+	 $(window).scroll(function(){
+		 var ofTop = $(this).scrollTop() + 170 + 'px';
+		 $("#left_of").css('top',ofTop);
+		 });
+		 
+	 $(".of_xw").toggle(
+	 function(){
+		 $("#left_of").animate({left: "-147px"}, 1000 );
+		 $("#left_of .status_ion").animate({backgroundPosition: "-8px"}, 10 );
+		 },
+	 function(){
+		 $("#left_of").animate({left: "0px"}, 1000 );
+		 $("#left_of .status_ion").animate({backgroundPosition: "0px"}, 10 );
+         });
+	 
+	 inp_val('#of_user','您的姓名');
+	 inp_val('#of_phone','您的手机号');
+	 inp_val('#of_qq','您的QQ号');
+	 inp_val('#of_demand','您的订票需求,例如:9月17日,北京到洛杉矶,往返 限30个字符以内');
+	 function inp_val(id,txt){
+		 $(id).focus(function(){
+			 if($(this).val()==txt){
+				 $(this).val("");
+				 }
+			 }).blur(function(){
+				 if($(this).val()==""){
+				 $(this).val(txt);
+				 }
+				 });
+		 }
+	 
+	 $("#of_bt").click(function(){
+		 var user=$("#of_user").val(),phone=$("#of_phone").val(),qq=$("#of_qq").val(),content=$("#of_demand").val(),re=/^(1[0-9]{10})$/;
+		 var url="{:U('/iflight/sidebar')}";
+		 var txt="您的订票需求,例如:9月17日,北京到洛杉矶,往返 限30个字符以内";
+		 if(user=="您的姓名"||user.length<2){alert("请输入正确的姓名");return false;}
+		 else if(!re.test(phone)){alert("请输入正确的手机号");return false;}
+		 else if(qq=="您的QQ号"||qq.length<5){alert("请输入正确的QQ号");return false;}
+		 else if(content==txt){alert("请输入您的订票需求");return false;}
+		 else if(content.length>50){alert("订票需求限50个字符以内");return false;}
+		 else{
+			 $.post(url,{name:user,phone:phone,qq:qq,content:content},function(data){
+                 if(data.status==1){
+                     alert(data.info);
+                     $("#left_of").animate({left: "-147px"}, 1000 );
+                     $("#left_of .status_ion").animate({backgroundPosition: "-8px"}, 10 );
+                 }else{
+                     alert(data.info);
+                 }
+
+
+				 },'json');
+			 }
+		 });
+			 
+	 });
+</script>
+
+<div id="left_of">
+<div class="of_body">
+<form action="" method="post">
+    <input name="of_user" type="text" id="of_user" value="您的姓名" />
+    <input name="of_phone" type="text" id="of_phone" value="您的手机号" />
+    <input name="of_qq" type="text" id="of_qq" value="您的QQ号" />
+    <textarea name="of_demand" id="of_demand" >您的订票需求,例如:9月17日,北京到洛杉矶,往返 限30个字符以内</textarea>
+    <div class="clear">
+    <div id="of_bt">提交需求</div>
+    </div>
+</form>
+<div class="demand"><a href="{:U('/iflight/demand')}">提交详细需求</a></div>
+</div>
+<div class="of_xw"><div class="status_ion"></div></div>
+</div>

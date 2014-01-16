@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{$title} - {:C('WEB_NAME')}</title>
+<link href="__PUBLIC__/mobile/css/global.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/mobile/css/flightlist.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div id="page"><include file="Public:header" />
+  <div id="content">
+    <h1 id="topnav"><span class="left icon"><a href="{:U('/Flight')}" class="icon-returnclose">返回</a></span>广州-芝加哥<span class="right icon"><a href="{:U('/')}" class="icon-home">首页</a></span><span class="right icon"><a href="tel:4006085188" class="icon-tel">电话</a></span></h1>
+    <!-- queryFlight -->
+    <div id="query_flight" departcity="" backcity="">
+    <dl id="query_date">
+      <dd date="2013-11-4">11月04</dd>
+      <dt date="2013-11-5">2013年11月05</dt>
+      <dd date="2013-11-6">11月06</dd>
+    </dl>
+    <ul id="order_by">
+    <li class="tab_on"><a>时间</a></li>
+    <li><a>价格</a></li>
+    </ul>
+    <ul id="list">
+    <li>
+    <dl>
+    <dt>去程：</dt>
+    <dd class="material">
+    <span class="t">12:25-12:25</span>
+    <span>单程票价<strong>￥3650</strong>起</span>
+    <span class="t">约14小时</span>
+    <span>油<em>￥0</em>起 税<em>￥2686</em>起 > 9张</span>
+    </dd>
+    <dd class="turn">
+    <div class="airport"><span>首都机场</span><span class="turn_icon">首尔</span><span>奥黑机场</span></div>
+    <div class="airline"><span>大航航空KE854<em>经济舱</em></span><span>大航航空KE854<em>经济舱</em></span></div>
+    </dd>
+    </dl>
+    <div class="details">返程详情</div>
+    <dl>
+    <dt>返程：</dt>
+    <dd class="material">
+    <span class="t">12:25-12:25</span>
+    <span>单程票价<strong>￥3650</strong>起</span>
+    <span class="t">约14小时</span>
+    <span>油<em>￥0</em>起 税<em>￥2686</em>起 > 9张</span>
+    </dd>
+    <dd class="donot_turn">
+    <div class="airport"><span>首都机场</span><span>奥黑机场</span></div>
+    <div class="airline"><span>大航航空KE854<em>经济舱</em></span></div>
+    </dd>
+    </dl>
+    </li>
+    
+    <li>
+    <dl>
+    <dd class="material">
+    <span class="t">12:25-12:25</span>
+    <span>单程票价<strong>￥3650</strong>起</span>
+    <span class="t">约14小时</span>
+    <span>油<em>￥0</em>起 税<em>￥2686</em>起 > 9张</span>
+    </dd>
+    <dd class="turn">
+    <div class="airport"><span>首都机场</span><span class="turn_icon">首尔</span><span>奥黑机场</span></div>
+    <div class="airline"><span>大航航空KE854<em>经济舱</em></span><span>大航航空KE854<em>经济舱</em></span></div>
+    </dd>
+    </dl>
+    </li>
+    <li>
+    <dl>
+    <dd class="material">
+    <span class="t">12:25-12:25</span>
+    <span>单程票价<strong>￥3650</strong>起</span>
+    <span class="t">约14小时</span>
+    <span>油<em>￥0</em>起 税<em>￥2686</em>起 > 9张</span>
+    </dd>
+    <dd class="turn">
+    <div class="airport"><span>首都机场</span><span class="turn_icon">首尔</span><span>奥黑机场</span></div>
+    <div class="airline"><span>大航航空KE854<em>经济舱</em></span><span>大航航空KE854<em>经济舱</em></span></div>
+    </dd>
+    </dl>
+    </li>
+    
+    </ul>
+    </div>
+    <!-- queryFlight End-->
+    
+  </div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/mobile/js/jquery-1.9.1.min.js"></script> 
+<script type="text/javascript">
+</script>
+<include file="Public:kf" />
+</body>
+</html>

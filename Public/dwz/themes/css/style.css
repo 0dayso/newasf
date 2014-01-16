@@ -1,0 +1,21 @@
+/*style  自定义css*/
+.pageContent .bg {
+    color: #3399FF;
+}
+.pageContent td.ed {
+    color: red;
+}
+.pageContent .selected .bg {
+/*    background: #7cc5e5; */
+}
+#tips { position: absolute; padding: 5px; line-height: 16px; background: #333; color: #fff; -moz-border-radius: 4px; -webkit-border-radius: 4px; -webkit-box-shadow: 1px 1px 2px #333; -moz-box-shadow: 1px 1px 2px #333; box-shadow: 1px 1px 2px #333; z-index: 5; top: -100px; }
+#tips,
+#tips p { max-width: 180px; }
+#tips em { display: block; margin-right: 5px; color: #f36; font-size: 10px; overflow: hidden; white-space: nowrap; -o-text-overflow: ellipsis; text-overflow: ellipsis; }
+.btn { display: inline-block; position: relative; height: 26px; margin: 0 5px; background: url(css/button.png) right -30px no-repeat; white-space: nowrap; }
+.btn span { float: left; height: 26px; background: url(css/button.png) left 0 no-repeat; position: relative; left: -5px; line-height: 25px; color: #333; }
+.btn button { float: left; overflow: visible; padding: 0 10px 0 15px; color: #000; background: none; outline: none; border: 0 none; overflow: visible; }
+/* IE7 */
+*+ html #side #choice .list li { height: 22px; background-position: -50px 10px; }
+*+ html .side-cmtli li { margin-bottom: 9px; }
+*+ html #tips { border-color:  #000; border-width: 0 1px 1px 0; }

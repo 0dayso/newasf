@@ -1,0 +1,32 @@
+<include file="Public:header" />
+<link rel="stylesheet" href="__PUBLIC__/css/userCenter.css" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/js/modify.js"></script>
+    <div id="cont">
+        <div class="wd960 mt10 bgWhite">
+        	<h1 class="h1_tit_nav">你当前所在位置：<a href="/" class="sy">首页</a> > <a class="cur">会员中心</a></h1>
+            <include file='left' />
+            <div class="left mt10" id="mydate">
+                <include file="top_kf" />
+                <div class="top_nav_hr"><span>我的资料</span></div> 
+               	<div class="top_nav_qh">
+               		<ul>
+                        <li><a href="{:U('/member/information')}" >个人资料</a></li>
+                        <li><a href="{:U('/member/editpwd')}" class="active">修改密码</a></li>
+                   	</ul>
+               	</div>
+               	<div class="bd">
+                	<form action="" name="form" method="post">
+                  	<ul>
+                    	<div class="ts1" >&nbsp;</div>
+                        <li><label class="tt"> 当前密码：</label><input name="oldpssword" type="password"  class="text" /></li>
+                        <li><label class="tt"> 新密码：</label><input name="password" type="password"  class="text" /></li>
+                        <li><label class="tt"> 确认新密码：</label><input name="re_password" type="password"  class="text" /></li>
+                        <li><label class="tt"></label><input class="bt" type="submit" value="确认无误，提交" /></li>
+                  	</ul>
+                    </form>
+              	</div>
+          	</div>
+        </div>
+    </div>
+
+<include file="Public:footer" />

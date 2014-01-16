@@ -1,0 +1,133 @@
+<include file="Public:header" />
+<link rel="stylesheet" href="__PUBLIC__/css/userCenter.css" type="text/css" />
+    <script type="text/javascript" src="__PUBLIC__/js/orderPay.js"></script>
+
+    <div id="cont">
+        <div class="wd960 mt10 bgWhite">
+        	<h1 class="h1_tit_nav">你当前所在位置：<a href="/" class="sy">首页</a> > <a href="userCenter.html" class="sy">会员中心</a> > <a class="cur">订单支付</a></h1>
+            <include file="left" />
+
+            <div class="left mt10" id="mdsc">
+            <include file="top_kf" />
+            <div class="top_nav_hr"><span>财务管理</span></div>
+                <div class="top_nav_qh">
+               		<ul>
+                   		<li><a href="onlinePay.html" class="active">在线支付</a></li>
+                        <li><a href="transRecode.html">交易记录</a></li>
+                   	</ul>
+               	</div>
+                <div id="o_details">
+                    <h5>您的订单已经审核通过，我们建议您尽快付款，延迟未付款系统会自动取消订单，且航空公司很可能会随时取消您的舱位。</h5>
+                    <div>
+                        <foreach name="list" item="info">
+                            <ul>
+                                <li><span class="left">订单ID号：</span><span class="right">{$info.order_id}</span><span class="ycan"><a href="javascript:;">隐藏订单详情</a></span></li>
+                                <li>
+                                    <span class="left">航班行程：</span>
+                                <span class="right">
+                                     <volist name="info['references']['OriginDestinationOption']" id="v">
+                                    <span style="color:#06c; font-weight:bold;">
+                                        <if condition="$i eq 1">去程<else/>返程</if></span><a>{$v.from}→{$v.to}</a><a >日期：{$v.FlightSegment.0.DepartureDateTime}</a><br/>
+                                         <div class="detail">
+                                             <volist name="v['FlightSegment']" id="vv">
+                                                 <dl>
+                                                     <dd class="dd0">
+                                            	<span class="sp0"><img src="__PUBLIC__/airline/{$vv.MarketingAirline}.jpg" alt="tb" />
+                                                    <label class="hk">{$vv.MarketingAirline}</label><!--经济--></span>
+                                                         <span class="sp1"><label class="tm">{$vv.FromCity}</label></span>
+                                                         <span class="sp2">{$vv.FromAirport}<label class="hk"></label></span>
+                                                     </dd>
+
+                                                     <dd>
+                                                         <span class="sp0"><label class="jx">{$vv.FlightNumber}</label></span>
+                                                         <span class="sp1"><label class="tm">{$vv.ArrivalDateTime}</label></span>
+                                                         <span class="sp2">{$vv.ToAirport}</span>
+                                                     </dd>
+                                                     <dd>
+                                                         <!--	<span class="sp0"><label class="jx">机型：321</label></span> -->
+                                                     </dd>
+                                                 </dl>
+                                                 <if condition="$i eq 1"><h6><span><!--<img src="images/zc_ddd.gif" alt="zz">-->{$vv.ToAirport}</span></h6></if>
+                                             </volist>
+                                         </div>
+                                     </volist>
+
+                                    <span class="zk"><a href="javascript:;">展开航程↓</a></span>
+                                </span>
+                                </li>
+                                <li>
+                                    <span class="left">乘客信息：</span>
+                                <span class="right">
+                                    <volist name="info['travelerinfo']" id="vo">
+                                    <span><label>{$vo.type_name}</label><a>{$vo.title} {$vo.lastName} {$vo.firstName}</a><a class="hz">证件号</a><a>{$vo.idNumber}</a></span><br/>
+
+                                    </volist>
+                                    <span>请仔细核对姓名证件信息，一旦成功出票，将不得更改登机人姓名，如有误您可以进行<a href="#">修改</a>并重新下单</span><br/>
+                                </span>
+                                </li>
+                                <li class="end">
+                                    <span class="left">应付金额：</span>
+                                    <span class="right"><label style="color:#f60;">{$info.price}</label> 元(机票价格实时变动，建议您尽快付款，如有疑问请咨询爱尚飞客服热线：400-608-5188)</span>
+                                </li>
+                            </ul>
+                        </foreach>
+                        <p class="fkje"><span>合计应付金额：<label>{$total_price}</label>元</span></p>
+                	</div>
+                </div>
+                <div id="pay_list_zf">
+                    <h2><a href="javascript:;" class="active" val="0">财付通</a><a href="javascript:;" val="1">易宝支付</a></h2>
+                    <div>
+                        <form action="__ROOT__/pay/index.php" name="form0" class="form0" method="post">
+                            <table class="tb0">
+                                <tr><td class="td0">收款方：</td><td class="tit">广州美乐商务服务有限公司</td></tr>
+                                <tr><td class="td0">订单编号：</td><td>{$out_trade_no}<input type="hidden" name="order_no" maxlength="50" size="18" readonly="readonly" value="{$out_trade_no}" /></td></tr>
+                                <tr><td class="td0">付款项目：</td><td>机票预定<input type="hidden"  class="text" name="product_name" value="机票预定"/><input type="hidden" name="order_id_arr" value="{$order_id_arr}"></td></tr>
+                                <tr><td class="td0">付款金额：</td>
+                                    <td class="je">{$total_price}<input type="hidden" class="text"  name="order_price" value="{$total_price}"/></td>
+                                </tr>
+                                <tr style="display: none"><td class="td0">支付方式：</td><td class="zf">
+                                    <input type="radio" name="trade_mode" checked="checked" value="1" /><label>及时到账</label></td></tr>
+                                <tr><td class="td0 td00">简要说明：</td><td><textarea name="remarkexplain"></textarea><span class="sp0">请填写您订单的简要说明（30字以内）</span></td></tr>
+                                <tr><td class="td0">&nbsp;</td><td> <input name="submit" type="image" src="__PUBLIC__/images/pay_next.gif" alt="使用财付通安全支付" width="103" height="27"></td></tr>
+                            </table>
+                        </form>
+
+                        <form action="" name="form1" class="form1">
+                            <table class="tb1">
+                                <input type="hidden" name="order_id_arr" value="order_id_arr">
+                                <tr><td class="td0">消费金额<label class="red">*</label></td><td><input type="text" class="text" name="money" /></td></tr>
+                                <tr><td class="td0">商品名称</td><td><input type="text" class="text" name="name" /></td></tr>
+                                <tr><td class="td0">证件类型<label class="red">*</label></td><td><select name="pa_CredType"><option value="IDCARD">身份证</option><option value="OFFICERPASS">军官证</option><option value="HM_VISITORPASS">澳居民往来内地通行证</option><option value="T_VISITORPASS">台湾居民来往大陆通行证</option></select></td></tr>
+                                <tr><td class="td0">证件号码<label class="red">*</label></td><td class="je"><input type="text" class="text" name="menber" /></td></tr>
+                                <tr><td class="td0">发卡行<label class="red">*</label></td><td>
+                                	<select name="pd_FrpId">
+                                        <option value="BOCOCREDIT">交通银行</option>
+                                        <option value="ECITICCREDIT">中信银行</option>
+                                        <option value="ICBCCREDIT">工商银行</option>
+                                        <option value="BOCCREDIT">中国银行</option>
+                                        <option value="CIBCREDIT">兴业银行</option>
+                                        <option value="CCBCREDIT">建设银行</option>
+                                        <option value="PINGANCREDIT">平安银行</option>
+                                        <option value="CMBCHINACREDIT">招商银行</option>
+                                        <option value="ABCCREDIT">中国农业银行</option>
+                                        <option value="CMBCCREDIT">中国民生银行</option>
+                                        <option value="GDBCREDIT">广发银行</option>
+                                        <option value="BCCBCREDIT">北京银行</option>
+                                        <option value="BOSHCREDIT">上海银行</option>
+                                	</select>
+                                </td></tr>
+                                <tr><td class="td0">手机号<label class="red">*</label></td><td><input type="text" class="text" name="phone" /></td></tr>
+                                <tr><td class="td0">消费者姓名<label class="red">*</label></td><td><input type="text" class="text" name="xingming" /></td></tr>
+                                <tr><td class="td0">支付卡号<label class="red">*</label></td><td><input type="text" class="text" name="kahao" /></td></tr>
+                                <tr><td class="td0">信用卡有效期(年)<label class="red">*</label></td><td class="je"><input type="text" class="text" name="credit_year" /><label>有效期截止年份，必须在2007-2099年之间，比如2015</label></td></tr>
+                                <tr><td class="td0">信用卡有效期(月)<label class="red">*</label></td><td class="je"><input type="text" class="text" name="credit_month" /><label>有效期截止月份，必须为1-12之间，比如9</label></td></tr>
+                                <tr><td class="td0">CVV<label class="red">*</label></td><td class="je"><input type="text" class="text" name="credit_cvv" /><label>信用卡背面的3或4位CVV码</label></td></tr>
+                                <tr><td class="td0">&nbsp;</td><td><input type="submit" value="提交表单" class="button submit" /></td></tr>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
+     	</div>
+    </div>
+<include file="Public:footer" />

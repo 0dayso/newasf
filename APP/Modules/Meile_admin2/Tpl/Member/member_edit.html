@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="__PUBLIC__/css/main.css" type="text/css" />
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/layer/layer.min.js"></script>
+    <script src="__PUBLIC__/admin/Js/jquery.form.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/modify.js"></script>
+</head>
+
+<body>
+<style>
+    #qr_ul_info li {
+        line-height: 30px;
+        height: 30px;
+        padding: 5px 0px;
+        float: left;
+    }
+    #qr_ul_info li input.text {width:158px}
+</style>
+<script type="text/javascript">
+    $(function(){
+        var index = parent.layer.getFrameIndex();
+        $('.close').click(function(){
+            parent.layer.close(index);
+        });
+
+        $('.del_img').click(function(){
+            $.get('','act=del_img&id={$info.id}',function(data){
+                layer.load(1,0,0);
+                if(data){
+                    $('.img').hide();
+                }
+            })
+        })
+
+        $('.submits').click(function(){
+            parent.layer.confirm('确定提交吗?', function(){
+                $('form').ajaxSubmit({
+                    url:$('form').attr('action'),
+                    type:"POST",
+                    success:function(data) {
+                        if(data && (typeof data)=='string'){
+                            var data = eval("(" + data + ")");
+                        };
+                        $('#msg').val(data.info);
+                        parent.layer.msg(data.info,2,data.status);
+                        if(data.status==1){
+                            parent.layer.close(index);
+                        }
+                    }
+                });
+                layer.close(index);
+            });
+        })
+
+    });
+</script>
+<input type="hidden" id="msg" value="1"/>
+<form action="" class="fh_form" method="post">
+    <ul id="qr_ul_info">
+        <li>
+            <span>帐号:</span><input type="text"  value="{$info['username']}" class="text" disabled="true" />
+            <label class="pro"></label>
+        </li>
+        <li>
+            <span>姓名:</span><input type="text"  value="{$info['name']}" class="text" name="name" />
+            <label class="pro"></label>
+        </li>
+        <li>
+            <span>手机:</span><input type="text"  value="{$info['mobile']}" class="text"disabled="true" />
+            <label class="pro"></label>
+        </li>
+        <li>
+            <span>性别:</span>
+            <select name="sex" class="sex">
+                <option value="0">先生</option>
+                <option value="1"  selected="selected">女士</option>
+            </select>
+            <label class="pro"></label>
+        </li>
+        <li>
+            <span>电话:</span><input type="text"  value="{$info['telephone']}" class="text" name="telephone" />
+            <label class="pro"></label>
+        </li>
+        <li>
+            <span>电子邮件:</span><input type="text"  value="{$info['email']}" class="text" name="email" />
+            <label class="pro"></label>
+        </li>
+        <li>
+            <span>邮编:</span><input type="text"  value="{$info['zip_code']}" class="text" name="zip_code" />
+            <label class="pro"></label>
+        </li>
+        <li>
+            <span>最后登陆ip:</span><input type="text"  value="{$info['last_login_ip']}" class="text" disabled="true" />
+            <label class="pro"></label>
+        </li>
+        <li>
+            <span>登陆次数:</span><input type="text"  value="{$info['login_count']}" class="text" disabled="true" />
+            <label class="pro"></label>
+        </li>
+        <li>
+            <span>创建时间:</span><input type="text"  value="{$info['create_time']}" class="text" disabled="true" />
+            <label class="pro"></label>
+        </li>
+        <li>
+            <span>推荐人id:</span><input type="text" disabled="true" value="{$info['referee_id']}" class="text"  />
+        </li>
+        <li>
+            <span>会员积分:</span><input type="text"  value="{$info['points']}" class="text" disabled="true" />
+            <label class="pro"></label>
+        </li>
+        <li  id="addcodePCT" val="{$info.province},{$info.city}">
+            <span>所在地:</span>
+            <select name="province" value="{$info['province']}"  class="province" id="province_sel">
+                <option value="">- -</option>
+            </select>
+            <select name="city"  value="{$info['city']}" class="city" id="city_sel">
+                <option value="">- -</option>
+            </select>
+            <label class="pro"></label>
+        </li>
+        <li>
+            <span>详细地址:</span><input type="text" style="width:300px" value="{$info['address']}" class="text" name="address" />
+            <label class="pro"></label>
+        </li>
+        <li>
+            <span>会员返利:</span><input type="text"  value="{$info['rebate']}" class="text" disabled="true" />
+            <label class="pro"></label>
+        </li>
+        <li>
+            <span>专职客服:</span><input type="text"  value="{$info['user']['name']}" class="text" name="user_name" />
+            <label class="pro"></label>
+        </li>
+
+        <li style="clear: both"><span>&nbsp;</span>
+            <input name="id" type="hidden" value="{$info.id}"/>
+            <input style="height: 30px;padding: 5px;background: #FC9C03" type="button" class=" submits" value="确认提交" />
+            <input  style="height: 30px;padding: 5px;margin-left:20px;background: #cccccc"type="button"  class="close" value="取消">
+        </li>
+    </ul>
+</form>
+</body>
+</html>

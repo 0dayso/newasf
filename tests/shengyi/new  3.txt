@@ -1,0 +1,36 @@
+   <abbreviation>zhangyue()</abbreviation>
+    <address>(联系地址)</address>
+    <answer>223344(问题答案)</answer>
+    <areOpen>1(是否公开 1公开 0不公开 默认为1)</areOpen>
+    <availablePoints>1250(可用积分)</availablePoints>
+    <companyAddress>2(公司地址)</companyAddress>
+    <companyFax>2(公司传真)</companyFax>
+    <companyPhone>2(公司电话)</companyPhone>
+    <dateOfBirth>1989-09-12(出生日期)</dateOfBirth>
+    <documentType>NI(证件类型)</documentType>
+    <earnPoints>1590(累积积分)</earnPoints>
+    <email>yymusical@qq.com(EMAIL)</email>
+    <fax>(传真)</fax>
+    <gender>M(性别 M男 F女)</gender>
+    <homePhone>0710-2222222(家庭电话)</homePhone>
+    <identificationNumbers>420683198909120337(证件号码)</identificationNumbers>
+    <interests>(兴趣爱好)</interests>
+    <memberId>110507150326161026(会员ID)</memberId>
+    <memberLevels>1007203(会员等级)</memberLevels>
+    <memberNumber>MUSIC(会员卡号)</memberNumber>
+    <memberSource>1(会员来源 1网上注册 2后台管理人员创建 3呼叫中心创建 4自动导入 5其他方式)</memberSource>
+    <memberType>P(会员类型 P代表个人会员 E代表企业会员)</memberType>
+    <name>zhangyue(姓名)</name>
+    <phone>18607175122(手机)</phone>
+    <post>2(职务 会员手工录入)</post>
+    <question>您小学班主任的名字是(密码问题)</question>
+<registrationName>music(会员注册名)</registrationName>
+<password><password/>
+    <respectiveDistricts>273(所属地区 会员手工录)</respectiveDistricts>
+    <respectiveProvinces>02014(所属省份、国家 会员手工录)</respectiveProvinces>
+    <resultCode>1(反馈结果，1成功，其它见反馈状态说明)</resultCode>
+    <totalSpendPoints>0(累计消费额)</totalSpendPoints>
+    <userSignature>相信自己一切皆有可能(用户签名)</userSignature>
+    <website>(网址)</website>
+    <workUnit>2(工作单位)</workUnit>
+    <zipCode>441200(邮政编码)</zipCode>

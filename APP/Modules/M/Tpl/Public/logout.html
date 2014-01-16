@@ -1,0 +1,44 @@
+  <div id="logout">
+    <h2>提示信息</h2>
+    <p>您将退出本次登录，是否确定？</p>
+    <div>
+    <span id="cancel"><a>点错了</a></span>
+    <span id="out"><a href="{:U('/member/out')}">确认退出</a></span>
+    </div>
+  </div>
+<style type="text/css">
+/*退出登录*/
+#logout{width:280px;height:150px;background-color:#f4f4f4;text-align:center;font-size:14px;position:absolute;display:none;top:120px;}
+#logout a{color:#3598db;}
+#logout h2{line-height:36px;font-size:18px;background-color:#3598db;}
+#logout p{color:#333333;line-height:50px;}
+#logout h2,#logout span{color:#FFF;}
+#logout div{padding-top:10px;}
+#logout span{width:92px;height:30px;line-height:30px;display:inline-block;cursor:pointer;}
+#logout #cancel{margin-right:15px;}
+#logout #cancel a,#logout #out a{width:92px;height:30px;line-height:30px;color:#FFF;display:block;cursor:pointer;}
+#logout #cancel a{background-color:#b0b0b0;}
+#logout #out a,#logout span#cancel a:hover{background-color:#67b1e4;}
+</style>
+<script type="text/javascript">
+$(function(){
+	var left=($(window).width()-280)/2 +'px';
+	$('#logout').css({left:left});
+	//改变窗口的大小
+	$(window).resize(function() {
+        var left=($(this).width()-280)/2 +'px';
+		$('#logout').css({left:left});
+    });
+	//卷轴
+	$(window).scroll(function(){
+        var top=($(this).scrollTop()+($(this).height()-150)/2) +'px';
+        $('#logout').css({top:top});
+		});
+	$('#exit').click(function(){
+		$('#logout').show();
+		});
+	$('#cancel').click(function(){
+		$('#logout').hide();
+		});
+	});
+</script>

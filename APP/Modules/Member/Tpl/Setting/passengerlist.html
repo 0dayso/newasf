@@ -1,0 +1,161 @@
+<include file="public:header" />
+
+    <link rel="stylesheet" href="__PUBLIC__/css/member.css" type="text/css" />
+    <script type="text/javascript" src="__PUBLIC__/js/member.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/layer/layer.min.js"></script>
+    <script src="__PUBLIC__/admin/Js/jquery.form.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/modify.js"></script>
+    <div class="member">
+    	<!--会员中心导航-->
+    	<include file="public:left" />
+        
+	  	<div class="right" id="memberR">
+        	<h1 class="nav_tit">常用旅客<div id="passengeract"><input name="search" type="text" class="search" value placeholder="旅客中文名/英文名" /><a class="quer">查询</a><a class="add" href="{:U('/Member/Setting/passenger')}">新增</a><a class="return" href="{:U('/Member/Setting/passengerlist')}">返回</a></div></h1>
+            <div id="list_con" class="addrbox">
+            	<div id="passengerlist">
+                	<table width="788" border="0" align="center" cellpadding="0" cellspacing="0">
+						<tr class="tit">
+                        	<td class="first"><input type="checkbox" class="checkbox"/>全选</td>
+                            <td>姓名</td>
+                            <td>手机/电话</td>
+                            <td>证件类型</td>
+                            <td>证件号码</td>
+                            <td>国籍</td>
+                            <td>性别</td>
+                            <td>操作</td>
+						</tr>
+                        <tr  gid="">
+                        	<td class="first"><input type="checkbox" /></td>
+                            <td>李雯</td>
+                            <td>136****0000</td>
+                            <td>护照</td>
+                            <td> 440105*******6213X</td>
+                            <td>中国大陆</td>
+                            <td>女</td>
+                            <td><span class="preferred"><em>首选旅客</em></span> <a class="edit" href="{:U('/Member/Setting/passenger')}?id=1">编辑</a> <a class="del">删除</a></td>
+						</tr>
+                        <tr  gid="">
+                        	<td class="first"><input type="checkbox" /></td>
+                            <td>李雯</td>
+                            <td>136****0000</td>
+                            <td>护照</td>
+                            <td> 440105*******6213X</td>
+                            <td>中国大陆</td>
+                            <td>女</td>
+                            <td><span class="preferred">设为首选</span> <a class="edit" href="{:U('/Member/Setting/passenger')}?id=1">编辑</a> <a class="del">删除</a></td>
+						</tr>
+					</table>
+				  <div class="bot"><input type="checkbox" class="checkbox all"/>全选 <a class="alldel">删除</a></div>
+            	</div>
+            </div>
+            
+        </div>
+    </div>
+    <script type="text/javascript">
+    	$(function(){
+			//查询
+			$('#passengeract .quer').click(function(){
+				var act="quer";//设置类型为查询
+				var cont=$(this).prev().val();
+				if(cont != ""){
+					$.getJSON("{:U('/Member/Setting/passengerlist')}",{cont:cont,act:act},function(){
+						if(data.status==1){
+							var url="{:U('/Member/Setting/passenger')}",dataList=data.list;html='';
+							html += '<tr class="tit"><td class="first"><input type="checkbox" class="checkbox"/>全选</td><td>姓名</td><td>手机/电话</td><td>证件类型</td><td>证件号码</td><td>国籍</td<td>性别</td><td>操作</td></tr>';
+							$.each(dataList,function(i,item){
+								html += '<tr  gid="'+item.id+'">';
+                        		html += '<td class="first"><input type="checkbox" /></td>';
+                            	html += '<td>'+item.name+'</td>';
+                            	html += '<td>136****0000</td>';
+                            	html += '<td>'+item+'</td>';
+                            	html += '<td>'+item+'</td>';
+                            	html += '<td>'+item+'</td>';
+                            	html += '<td>'+item+'</td>';
+                            	html += '<td><span class="preferred">设为首选</span> <a class="edit" href="'+url+'?id='+item.id+'">编辑</a> <a class="del">删除</a></td>';					
+							});
+							$('#passengerlist table').html(html);
+							$('#passengeract .add').hide();
+							$('#passengeract .return').show();
+						}else{
+							alert(data.info);
+							}
+						});
+					}else{
+						alert("输入查询内容！");
+						}
+				});
+			
+			//常用旅客 全选功能
+			$("#passengerlist .checkbox").change(function(){
+				if(this.checked){
+					$("#passengerlist input:checkbox").each(function(){this.checked="checked";});
+					}else{
+						$("#passengerlist input:checkbox").each(function(){this.checked="";});
+                    }
+                });
+				
+			//常用旅客 当某旅客取消选择时，取消全选
+			$("#passengerlist input:checkbox").change(function(){
+				if($(this).hasClass('checkbox') != true){$('#passengerlist .checkbox').removeAttr('checked');}
+				});
+			
+			//设为首选
+			$("#passengerlist .preferred").bind("click",function(){
+				var act="preferred";//设置类型:设为首选
+				var tr=$(this).parent().parent();//获取当前行的Tr
+				var gid=tr.attr("gid");//获取它的gid
+				passengerlistAjax(gid,act,function(t){
+					if(t==true){
+						$("#passengerlist .preferred").html('设为首选');
+						tr.find('.preferred').html('<em>首选旅客</em>');
+						}else if(t==false){
+							alert("操作失败！");
+							}
+						});
+				});
+			
+			//单个把旅客删除
+			$("#passengerlist .del").bind("click",function(){
+				var act="del";//设置类型为删除
+				var tr=$(this).parent().parent();//获取当前行的Tr
+				var gid=tr.attr("gid");//获取它的gid
+				passengerlistAjax(gid,act,function(t){if(t==true){tr.remove();}else if(t==false){alert("操作失败！");}});
+				});
+				
+			//多选的把旅客删除
+			$("#passengerlist .alldel").bind("click",function(){
+				var act="del";//设置类型为删除
+				var table = $(this).parent().prev();
+				var gid = new Array();
+				table.find('tr').each(function(i){
+					if(i>0 && $(this).find("td").eq(0).children("input").attr("checked")){
+						gid.push($(this).attr('gid'));
+					}
+					});
+				if(gid.length<=0){
+					alert("请选择旅客再删除！");
+					}else{
+						passengerlistAjax(gid,act,function(t){
+							if(t==true){
+								table.find('tr').each(function(i){
+									if(i>0 && $(this).find("td").eq(0).children("input").attr("checked")){$(this).remove();}
+									});
+								}else if(t==false){alert("操作失败！");}
+							});
+						}
+				});
+			//常用旅客的AJAX
+			function passengerlistAjax(gid,act,fn){
+				$.getJSON("{:U('/Member/Setting/passengerlist')}",{id:gid,act:act},function(data){
+					if(data.status==1){
+						fn(true);
+						}else{
+							fn(false);
+							}
+					});	
+				}
+				
+			});
+    </script>
+    
+<include file="public:footer" />

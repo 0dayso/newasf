@@ -1,0 +1,115 @@
+<include file="public:header" />
+<!--<script type="text/javascript" src="/newasf/Public/js/index.js"></script>!-->
+
+<link rel="stylesheet" href="__PUBLIC__/css/interticket.css" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/js/chaxun.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/hotcitypop/popcitylist.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" language="javascript" src="__PUBLIC__/js/hotcitypop/searchconditions.js"></script>
+<script type="text/javascript" language="javascript" src="__PUBLIC__/js/hotcitypop/paramfarmat.js"></script>
+    <div id="cont">
+        <div class="wd1000 mt10 interTic">
+        	<h1 class="h1_tit_nav">你当前所在位置：<a href="{:U('/')}" class="sy">首页</a> > <a class="cur">国际机票</a></h1>
+			<div class="left" id="interTicL" style="overflow:visible;">
+				<div id="jp_chaxun">
+					<h2><label>国际机票查询</label></h2>
+					<h3 class="mt10 right">
+						<a href="javascript:;" class="active">1.机票查询</a>
+						<a href="javascript:;">2.选择航班</a>
+						<a href="javascript:;">3.预订机票</a>
+						<a href="javascript:;">4.核对信息</a>
+						<a href="javascript:;">5.完成</a>
+					</h3>
+					<h4 class="clear"></h4>
+					<form action="http://flights.aishangfei.net" name="form" id="chaxun_form" autocomplete="off"  onSubmit="searChAagin();return false;">
+						<ul id="xingcheng_ul">
+							<li id="radio_sel">
+								<span>查询类型：</span>
+                                <input type="radio" name="journey" value="2"/><label>单程</label>
+                                <input type="radio" name="journey"  value="1" checked="checked" /><label>往返</label>
+                                <input type="radio" name="journey"  value="3"/><label>多程</label>
+							</li>
+							<li class="left">
+								<span>出发城市</span>
+								<input type="text" class="text city" name="origincode" value="城市名"/>
+							</li>
+							<li>
+								<span>到达城市</span>
+								<input type="text" class="text city" name="desinationcode" value="城市名"/>
+							</li>
+							<li class="left">
+								<span>出发日期</span>
+								<input type="text" class="text date" name="originDate" id="originDate" value="出发时间" />
+							</li>
+							<li >
+								<span>返回日期</span>
+								<input type="text" class="text date"  name="returnDate" id="returnDate" value="返回时间" />
+							</li>
+						</ul>
+                        <input type="submit" value="搜索" class="right spr3 submit" />
+					</form>
+				</div>
+
+                <div id="iflightAd">
+                <ul>
+                  <li><a href="{:U('zt/sdyd2013')}" target="_blank"><img src="__PUBLIC__/images/Zt/sdyd2013/ad.jpg" /></a></li>
+                  <li><a href="{:U('zt/njcg')}" target="_blank"><img src="__PUBLIC__/images/Zt/njcg/ad.jpg" /></a></li>
+                </ul>
+                <ol>
+                  <li><a href="javascript:;" class="active">1</a></li>
+                  <li><a href="javascript:;">2</a></li>
+                </ol>
+                </div>
+                
+				<include file="public:special" />
+                
+                <!--航空公司特惠-->
+                <include file="public:preferential" />
+                
+			</div>
+			<div class="right" id="interTicR">
+            <!--<div id="renzheng_lan_s">
+                	<ul>
+                    	<li><label class="lb0"></label><span><a class="a0" href="{:U('/about/qualifications#guoji')}" target="_blank">100%国际航协认证</a><a class="a1">国际航协一类代理，第一手价格，最便宜有保证</a></span></li>
+                        <li><label class="lb1"></label><span><a class="a0" href="{:U('/about/qualifications#minhang')}" target="_blank">100%中航协认证</a><a class="a1">爱尚飞国际机票网100%获得中国航空运输协会资格认证</a></span></li>
+                    </ul>
+                </div>-->
+             <div id="renzheng_lan_s">
+                	<ul>
+                    	<li><label class="lb0"></label><span>100%国际航协认证,<br/>第一手真实价格</span></li>
+                        <li><label class="lb1"></label><span>100%中国航协认证,<br/>资质保证，订票无忧</span></li>
+                    </ul>
+                </div>
+				<div id="hot_recom">
+					<h2>热门推荐</h2>
+					<ul>
+                        <volist name="push['list']" id="vo">
+                        <li><label></label>
+                            <a href='{:U("/News/info/$vo[id]","","html")}'>{$vo.title}</a>
+                           <if condition="$vo[is_push] neq 0"> <span class="hot"></span></if>
+                        </li>
+                        </volist>
+                        <li><label></label><a href="{:U('/pages/guandao','','html')}" target="_blank">6个精选城市享受美联航商务头等舱往返专享价</a></li>
+                        <li><label></label><a href="{:U('/pages/HaiHang','','html')}" target="_blank">全新北京往返芝加哥直飞航线9月启航</a></li>
+					</ul>
+				</div>
+                
+                <include file="Public:gallery" /> <!--百宝箱-->
+                
+				<div id="ser_com" class="mt10">
+					<h2></h2>
+					<ul>
+						<li><label class="lb0"></label><a>注册会员，首次成功订票即返50元</a></li>
+						<li><label class="lb1"></label><a>专业顾问一对一全方位贴心服务</a></li>
+						<li><label class="lb2"></label><a>实时提供特价及廉价航空机票信息</a></li>
+						<li><label class="lb3"></label><a>5分钟，完成实时查询预订全过程</a></li>
+						<li><label class="lb4"></label><a>保证网络订单响应速度少于15分钟</a></li>
+						<li><label class="lb5"></label><a>下单成功，即获得真实有效占位</a></li>
+						<li><label class="lb6"></label><a>承诺24小时内，出具电子客票</a></li>
+						<li><label class="lb7"></label><a>100%支持，客票航空公司验真</a></li>
+					</ul>
+				</div>
+			</div>
+        </div>
+    </div>
+  <include file="public:footer" />

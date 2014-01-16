@@ -1,0 +1,107 @@
+<php>$title="积分商城管理-后台管理";$currentNav ='积分商城管理 > 产品列表';</php>
+<include file="Public:header" />
+<script type="text/javascript">
+    function searchs(p){
+        var  datas=$('#search').serialize();
+        $.getJSON("{:U('Jifen/index')}?ss=1&p="+p, datas,function(data){
+            if(data.list){
+                var str='';
+                $.each(data.list, function(i,item){
+                    str+='<tr align="center" id="'+item.id+'">';
+                    str+='<td align="left">'+item.title+'</td>';
+                    str+='<td>'+item.cidName+'</td>';
+                    str+='<td>'+item.jifen+'</td>';
+                    str+='<td>'+item.status+'</td>';
+                    var dtime= new Date(item.create_time*1000);
+                    str+='<td>'+dtime.getFullYear()+'-'+(dtime.getMonth()+1)+'-'+dtime.getDate()+'</td>';
+                    str+='<td>'+item.aidName+'</td>';
+                    str+='<td>[ <a href="edit?id='+item.id+'">编辑 </a> ]';
+                    str+='[ <a link="del?id='+item.id+'" href="javascript:void(0)" name="'+item.title+'" class="del">删除 </a> ]</td>';
+                    str+=' </tr>';
+                });
+                $('#datalist').html(str);
+                $('#page').html(data.page);
+            }else{
+                $('#datalist').html('');
+                $('#page').html('');
+            }
+        })
+
+
+    }
+    function page(u,p){
+        searchs(p);
+    }
+</script>
+<div class="mainBody">
+    <include file="Public:left" />
+    <div id="Right">
+        <div class="Item hr">
+            <form method="" class="form" id="search">
+            <div class="current">商品列表</div>
+            <tr>
+                <td><select onchange="searchs()" name="where[cid]">
+                    <option value="" >--所有分类--</option>
+                    <volist name="category" id="vo">
+                        <option value="{$vo.cid}">{$vo.fullname}</option>
+                    </volist>
+                    </select>
+                </td>
+                <td><select onchange="searchs()" name="where[status]">
+                    <option value="" >---所有状态---</option>
+                    <option value="1"  selected="selected">--启用状态--</option>
+                    <option value="0" >--禁用状态--</option>
+                </select>
+                </td>
+                <td><button type="button" onclick="$('select').val('');searchs()" class="button">清除</button></td>
+                <td><input type="text" class="input" name="search" class="search"><button type="button" class="button" onclick="searchs()">搜索</button></td>
+            <tr>
+                </form>
+        </div>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab">
+            <thead>
+            <tr>
+                <td>标题</td>
+                <td>所在分类</td>
+                <td>积分(爱钻)</td>
+                <td>状态</td>
+                <td>发布时间</td>
+                <td>发布人</td>
+                <td width="150">操作</td>
+            </tr>
+            </thead>
+            <tbody id="datalist">
+            <volist name="list" id="vo">
+                <tr align="center" id="{$vo.id}">
+                    <td align="left">{$vo.title}</td>
+                    <td>{$vo.cidName}</td>
+                    <td>{$vo.jifen}{$vo.type_name}</td>
+                    <td>{$vo.status}</td>
+                    <td>{$vo.create_time|date="Y-m-d H:i:s",###}</td>
+                    <td>{$vo.user.name}</td>
+                    <td>[ <a href="__URL__/edit?id={$vo.id}">编辑 </a> ] [ <a link="{:U('jifen/del/',array('id'=>$vo['id']))}" href="javascript:void(0)" name="{$vo.title}" class="del">删除 </a> ]</td>
+                </tr>
+            </volist>
+            </tbody>
+            <tr><td colspan='7' align="center" id="page">{$page}</td></tr>
+        </table>
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<include file="Public:footer" />
+<script type="text/javascript">
+    $(function(){
+        $(".del").on('click',function(){
+            var delLink=$(this).attr("link");
+            popup.confirm('你真的打算删除【<b>'+$(this).attr("name")+'</b>】吗?','温馨提示',function(action){
+                if(action == 'ok'){
+                    top.window.location.href=delLink;
+                }
+            });
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

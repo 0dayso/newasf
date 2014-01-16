@@ -1,0 +1,69 @@
+<include file="public:header" />
+<link rel="stylesheet" href="__PUBLIC__/css/interticket.css" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/js/chaxun.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/hotcitypop/popcitylist.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" language="javascript" src="__PUBLIC__/js/hotcitypop/searchconditions.js"></script>
+<script type="text/javascript" language="javascript" src="__PUBLIC__/js/hotcitypop/paramfarmat.js"></script>
+<style type="text/css">
+#verify_ad img{width:700px;}
+#verify{margin-top:10px;}
+#verify a{color:#3366cc;}
+#verify h2{padding-left:25px;font-size:14px;color:#333333;line-height:35px;}
+#verify h2 strong{color:#ff6600;}
+#verify h2 a{font-size:14px;}
+#verify h2 em{font-style:normal;font-size:12px;color:#666666;}
+#verify dl{border:1px solid #b7e0f5;background-color:#f6fbff;padding:20px;width:658px;height:240px;background:url(__PUBLIC__/images/verify_bg.gif) no-repeat right bottom;}
+#verify dt,#verify dd{height:32px;float:left;padding:10px 0px;}
+#verify dt{width:168px;text-align:right;line-height:32px;font-size:14px;}
+#verify dd{width:480px;font-size:12px;color:#666666;}
+#verify dd .txt,#verify dd .code{padding:0 4px;height:30px;line-height:30px;border:1px solid #bcbcbc;margin-right:5px;color:#666666;}
+#verify dd .txt{width:220px;}
+#verify dd .code{width:80px;float:left;}
+#verify dd .sub{width:99px;height:32px;color:#FFF;text-align:center;background:url(__PUBLIC__/images/bt99.gif) no-repeat;border:none;cursor:pointer;}
+</style>
+    <div id="cont">
+        <div class="wd1000 mt10 interTic">
+        	<h1 class="h1_tit_nav">你当前所在位置：<a href="{:U('/')}" class="sy">首页</a> > <a class="cur">国际机票验证</a></h1>
+			<div class="left" id="interTicL">
+			<div id="verify_ad"><img src="__PUBLIC__/images/verify_ad.gif" /></div>
+            <div id="verify">
+            <h2><strong>验真方式：</strong>通过中国航信 <a rel="nofollow" href="http://www.travelsky.com/" target="_blank">信天游机票验真</a> 网站<em>（航局授权机票验真官方网站）</em></h2>
+            <form action="http://www.travelsky.com/newsky/ValidateEticketAction.do?method=validateEtLogin" method="get">
+            <dl>
+            <dt>电子票号/行程单号：</dt>
+            <dd><input type="text" class="txt" name="eticketNoORIn" required /><a href="{:U('/help/members#help_ul3-6')}" target="_blank">忘记了票号？</a></dd>
+            <dt>旅客姓名：</dt>
+            <dd><input type="text" class="txt" name="passengerName" required placeholder="请输入订票时填写的旅客姓名" />例如姓名：张三，输入：ZHANG/SAN</dd>
+            <dt>验证码：</dt>
+            <dd><input type="text" class="code" name="randCode" required /><img style="float:left" onclick="this.src=this.src+ '?ts='+ (new Date()).getTime();" title="点击重新获取验证码" src="http://www.travelsky.com/newsky/servlet/CallYanServlet?title=home"></dd>
+            <dt></dt>
+            <dd><input type="hidden" name="method" value="validateEtLogin"><input type="submit" value="立即验真" class="sub"></dd>
+            </dl>
+            </form>
+            </div>
+			</div>
+			<div class="right" id="interTicR">
+            <div id="renzheng_lan_s">
+                	<ul>
+                    	<li><label class="lb0"></label><span>100%国际航协认证,<br/>第一手真实价格</span></li>
+                        <li><label class="lb1"></label><span>100%中国航协认证,<br/>资质保证，订票无忧</span></li>
+                    </ul>
+                </div>
+				<div id="ser_com" class="mt10">
+					<h2></h2>
+					<ul>
+						<li><label class="lb0"></label><a>注册会员，首次成功订票即返50元</a></li>
+						<li><label class="lb1"></label><a>专业顾问一对一全方位贴心服务</a></li>
+						<li><label class="lb2"></label><a>实时提供特价及廉价航空机票信息</a></li>
+						<li><label class="lb3"></label><a>5分钟，完成实时查询预订全过程</a></li>
+						<li><label class="lb4"></label><a>保证网络订单响应速度少于15分钟</a></li>
+						<li><label class="lb5"></label><a>下单成功，即获得真实有效占位</a></li>
+						<li><label class="lb6"></label><a>承诺24小时内，出具电子客票</a></li>
+						<li><label class="lb7"></label><a>100%支持，客票航空公司验真</a></li>
+					</ul>
+				</div>
+			</div>
+        </div>
+    </div>
+  <include file="public:footer" />

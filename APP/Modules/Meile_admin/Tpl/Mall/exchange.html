@@ -1,0 +1,116 @@
+<form id="pagerForm" action="__URL__/payOrder" method="post">
+    <input type="hidden" name="pageNum" value="{$_REQUEST['pageNum']|default=1}"/>
+    <input type="hidden" name="numPerPage" value="{$numPerPage}"/>
+    <input type="hidden" name="so" value="{$_REQUEST.so}" />
+    <input type="hidden" name="_order" value="{$_REQUEST._order}"/>
+    <input type="hidden" name="_sort" value="{$_REQUEST['_sort']|default='1'}"/>
+    <input type="hidden" name="listRows" value="{$_REQUEST['listRows']}"/>
+    <input type="hidden" name="so_date1" value="{$_REQUEST.so_date1}" />
+    <input type="hidden" name="so_date2" value="{$_REQUEST.so_date2}" />
+
+    <volist name="map" id="m">
+        <input type="hidden" name="{$key}" value="{$_REQUEST[$key]}"/>
+    </volist>
+</form>
+
+<div class="pageHeader">
+    <form rel="pagerForm" onsubmit="return navTabSearch(this);" action="__URL__/payOrder" method="post">
+        <div class="searchBar">
+            <ul class="searchContent">
+                <li>
+                    <label>搜索：</label>
+                    <input type="text" name="so" value="{$_REQUEST.so}"/>
+                </li>
+                <li>
+                    <label>状态：</label>
+                    <select class="combox" name="status">
+                        <option value="">请选择</option>
+                        <option value="0" <eq name="_REQUEST.status" value="0">selected=selected</eq>>未支付</option>
+                        <option value="1" <eq name="_REQUEST.status" value="1">selected=selected</eq>>已支付</option>
+                    </select>
+                </li>
+                <li>
+                    <label>日期：</label>
+                    <input type="text" class="date textInput valid"  name="so_date1" value="{$_REQUEST.so_date1}">
+                    <a class="inputDateButton" href="javascript:;">选择</a> &nbsp;&nbsp;-
+                </li>
+                <li>
+                    <input type="text" class="date textInput valid"  name="so_date2" value="{$_REQUEST.so_date2}">
+                    <a class="inputDateButton" href="javascript:;">选择</a>
+                </li>
+            </ul>
+            <div class="subBar">
+                <ul>
+                    <li><div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div></li>
+                </ul>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+			<li><a class="add" href="__URL__/add" target="dialog" rel="add" mask="true" width="810" height="400" ><span>新增</span></a></li>
+			<li><a class="delete" href="__URL__/foreverdelete/id/{sid_user}/navTabId/__MODULE__" target="ajaxTodo" title="你确定要删除吗？" warn="请选择用户" ><span>删除</span></a></li>
+			<li><a class="edit" href="__URL__/edit/id/{sid_user}" target="navTab" rel="edit" mask="true" warn="请选择用户"><span>编辑</span></a></li>
+			<li class="line">line</li>
+			<li><a class="icon" href="__URL__/password/id/{sid_user}" target="dialog" mask="true" warn="请选择用户"><span>修改密码</span></a></li>
+            <li><a class="edit" href="__URL__/setRole/id/{sid_user}/navTabId/__MODULE__" target="dialog" mast="true" warn="请选择用户"><span>设置权限</span></a></li>
+        </ul>
+	</div>
+
+	<table class="table" width="100%" layoutH="115">
+		<thead>
+		<tr>
+            <th width="50">ID</th>
+			<th width="150" orderField="id" <if condition="$_REQUEST._order eq 'id'">class="{$_REQUEST._sort}"</if>>编号</th>
+			<th width="100" orderField="member_id" <if condition="$_REQUEST._order eq 'member_id'">class="{$_REQUEST._sort}"</if>>会员名</th>
+            <th width="100">手机</th>
+			<th width="100" orderField="order_price" <if condition="$_REQUEST._order eq 'order_price'">class="{$_REQUEST._sort}"</if>是>类型</th>
+			<th width="80" orderField="create_time" <if condition="$_REQUEST._order eq 'create_time'">class="{$_REQUEST._sort}"</if>>创建时间</th>
+            <th width="80" orderField="update_time" <if condition="$_REQUEST._order eq 'update_time'">class="{$_REQUEST._sort}"</if>>更新时间</th>
+			<th width="80" orderField="status" <if condition="$_REQUEST._order eq 'status'">class="{$_REQUEST._sort}"</if>>状态</th>
+            <th width="80">操作</th>
+		</tr>
+		</thead>
+		<tbody>
+		<volist id="vo" name="list">
+			<tr target="sid_user" rel="{$vo['id']}">
+                <td>{$vo['id']}</td>
+				<td>{$vo['order_num']}</td>
+                <td><a title="{$vo['member_id']}">{$vo.member.username}</a></td>
+
+				<td>{$vo.member.mobile}</td>
+                <td>{$vo.type2}</td>
+
+				<td>{$vo['create_time']|date="Y-m-d",###}</td>
+				<td>{$vo['update_time']|date="Y-m-d H:i:s",###}</td>
+
+                <td>{$vo['status_name']}</td>
+                <td>
+                    <a href="__URL__/exchangeView/id/{$vo.id}" target="dialog" rel="view">查看</a>
+                    <a href="__URL__/exchangeEdit/id/{$vo.id}" target="dialog" rel="edit">处理</a>
+                </td>
+			</tr>
+		</volist>
+		</tbody>
+	</table>
+
+	<div class="panelBar">
+        <div class="pages">
+            <span>显示</span>
+            <select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
+                <option value="10" <eq name="numPerPage" value="10">selected=selected</eq>>10</option>
+                <option value="20" <eq name="numPerPage" value="20">selected=selected</eq>>20</option>
+                <option value="30" <eq name="numPerPage" value="35">selected=selected</eq>>30</option>
+                <option value="50" <eq name="numPerPage" value="50">selected=selected</eq>>50</option>
+            </select>
+            <span>共{$totalCount}条</span>
+        </div>
+		<div class="pagination" targetType="navTab" totalCount="{$totalCount}" numPerPage="{$numPerPage}" pageNumShown="10" currentPage="{$currentPage}"></div>
+	</div>
+
+</div>
+
+

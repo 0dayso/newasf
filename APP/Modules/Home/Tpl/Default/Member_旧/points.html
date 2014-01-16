@@ -1,0 +1,69 @@
+<include file="Public:header" />
+<link rel="stylesheet" href="__PUBLIC__/css/userCenter.css" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/js/modify.js"></script>
+
+<div id="cont">
+    <div class="wd960 mt10 bgWhite">
+        <h1 class="h1_tit_nav">你当前所在位置：<a href="{:U('/')}" class="sy">首页</a> > <a href="{:U('/member')}" class="sy">会员中心</a> > <a class="cur">我的积分</a></h1>
+        <include file='left' />
+        <div class="left mt10" id="mdsc">
+            <include file="top_kf" />
+            <div class="top_nav_hr">
+                <span>我的积分</span>
+                <label class="pointsinfo">
+                    总积分：{$points_hj|default=0}
+                    &nbsp;消费积分：{$points_xf|default=0}
+                    &nbsp;剩余积分：{$points_sy|default=0}
+                </label>
+            </div> 
+            <div class="top_nav_qh">
+                <ul>
+                    <li><a href="{:U('/member/points')}"   <?php if(!$_GET['type'])  echo 'class="active"' ?>  >积分明细</a></li>
+                    <li><a href="{:U('/member/points','type=1')}"  <?php if($_GET['type']==1) echo 'class="active"' ?> >已消费积分</a></li>
+                </ul>
+
+            </div>
+            <div class="prosc">
+                <table width="100%" cellpadding="2">
+                    <?php if(!$_GET['type']): ?>
+                    <tr class="thbg">
+                        <td width="50%"><strong>奖励(消费)积分渠道</strong></td>
+                        <td width="15%"><strong>积分</strong></td>
+                        <td width="15%"><strong>最新累计积分</strong></td>
+                        <td width="20%"><strong>生效时间</strong></td>
+                    </tr>
+                    <?php else: ?>
+                    <tr class="thbg">
+                        <td width="56%"><strong>积分消费渠道</strong></td>
+                        <td width="20%"><strong>消费积分</strong></td>
+                        <td width="24%"><strong>消费时间</strong></td>
+                    </tr>
+                    <?php endif; ?>
+
+
+                    <foreach name="mypoints" item="v">
+                    <tr>
+                        <td>{$v.description}</td>
+                        <td><?php if($v['type']==0) echo "+";  else echo "-"; ?>{$v.points}</td>
+
+                        <?php if(!$_GET['type']): ?>
+                        <td>{$v.last_points}</td>
+                        <?php endif;?>
+
+                        <td>{$v.create_time|date="Y-m-d H:i:s",###}</td>
+                    </tr>
+                    </foreach>
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+               <p class="pagingBar"><span class="cur"> {$page}</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+<include file="Public:footer" />

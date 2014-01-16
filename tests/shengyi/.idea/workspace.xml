@@ -1,0 +1,664 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" readonly="true" id="e4c8d5d7-694d-4a45-b92c-2e610f846fb7" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/B2CMember.php" afterPath="$PROJECT_DIR$/B2CMember.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asmsBase.class.php" afterPath="$PROJECT_DIR$/asmsBase.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/common.php" afterPath="$PROJECT_DIR$/common/common.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/config.php" afterPath="$PROJECT_DIR$/common/config.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/cookie.txt" afterPath="$PROJECT_DIR$/common/cookie.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/member.class.php" afterPath="$PROJECT_DIR$/member.class.php" />
+    </list>
+    <ignored path="shengyi.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DaemonCodeAnalyzer">
+    <disable_hints />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="shengyi" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="B2CMember.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/B2CMember.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="31" column="17" selection-start="675" selection-end="693" vertical-scroll-proportion="-16.75" vertical-offset="120" max-vertical-offset="6232">
+              <folding>
+                <marker date="1386902917944" expanded="true" signature="810:2507" placeholder="..." />
+                <marker date="1386902917944" expanded="true" signature="2589:2671" placeholder="..." />
+                <marker date="1386902917944" expanded="true" signature="3080:3197" placeholder="..." />
+                <marker date="1386902917944" expanded="false" signature="3148:3160" placeholder="..." />
+                <marker date="1386902917944" expanded="true" signature="3215:3239" placeholder="..." />
+                <marker date="1386902917944" expanded="true" signature="3257:3509" placeholder="..." />
+                <marker date="1386902917944" expanded="false" signature="3326:3338" placeholder="..." />
+                <marker date="1386902917944" expanded="false" signature="3446:3458" placeholder="..." />
+                <marker date="1386902917944" expanded="true" signature="3513:3537" placeholder="..." />
+                <marker date="1386902917944" expanded="true" signature="3541:4593" placeholder="..." />
+                <marker date="1386902917944" expanded="true" signature="3541:4340" placeholder="..." />
+                <marker date="1386902917944" expanded="true" signature="3541:4333" placeholder="..." />
+                <marker date="1386902917944" expanded="true" signature="3541:4328" placeholder="..." />
+                <marker date="1386902917944" expanded="true" signature="3590:4269" placeholder="..." />
+                <marker date="1386902917944" expanded="true" signature="3590:4269" placeholder="..." />
+                <marker date="1386902917944" expanded="true" signature="3607:3631" placeholder="..." />
+                <marker date="1386902917944" expanded="true" signature="3635:3753" placeholder="..." />
+                <marker date="1386902917944" expanded="false" signature="3704:3716" placeholder="..." />
+                <marker date="1386902917944" expanded="true" signature="3757:3781" placeholder="..." />
+                <marker date="1386902917944" expanded="true" signature="3785:4269" placeholder="..." />
+                <marker date="1386902917944" expanded="false" signature="3870:3882" placeholder="..." />
+                <marker date="1386902917944" expanded="true" signature="3938:4269" placeholder="..." />
+                <marker date="1386902917944" expanded="true" signature="3955:3979" placeholder="..." />
+                <marker date="1386902917944" expanded="true" signature="3983:4101" placeholder="..." />
+                <marker date="1386902917944" expanded="false" signature="4052:4064" placeholder="..." />
+                <marker date="1386902917944" expanded="true" signature="4105:4131" placeholder="..." />
+                <marker date="1386902917944" expanded="true" signature="4135:4269" placeholder="..." />
+                <marker date="1386902917944" expanded="false" signature="4205:4217" placeholder="..." />
+                <marker date="1386902917944" expanded="true" signature="4273:4593" placeholder="..." />
+                <marker date="1386902917944" expanded="true" signature="4273:4340" placeholder="..." />
+                <marker date="1386902917944" expanded="true" signature="4273:4333" placeholder="..." />
+                <marker date="1386902917944" expanded="true" signature="4273:4328" placeholder="..." />
+                <marker date="1386902917944" expanded="true" signature="4290:4314" placeholder="..." />
+                <marker date="1386902917944" expanded="true" signature="4290:4314" placeholder="..." />
+                <marker date="1386902917944" expanded="true" signature="4318:4364" placeholder="..." />
+                <marker date="1386902917944" expanded="true" signature="4318:4340" placeholder="..." />
+                <marker date="1386902917944" expanded="true" signature="4318:4333" placeholder="..." />
+                <marker date="1386902917944" expanded="true" signature="4318:4328" placeholder="..." />
+                <marker date="1386902917944" expanded="true" signature="4368:4392" placeholder="..." />
+                <marker date="1386902917944" expanded="true" signature="4368:4392" placeholder="..." />
+                <marker date="1386902917944" expanded="true" signature="4396:4476" placeholder="..." />
+                <marker date="1386902917944" expanded="true" signature="5322:6908" placeholder="..." />
+                <marker date="1386902917944" expanded="true" signature="11658:11726" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="member.class.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/member.class.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="257" column="35" selection-start="10452" selection-end="10452" vertical-scroll-proportion="-0.01183432" vertical-offset="4889" max-vertical-offset="5966">
+              <folding>
+                <marker date="1386930829716" expanded="true" signature="253:1950" placeholder="..." />
+                <marker date="1386930829716" expanded="true" signature="2044:2126" placeholder="..." />
+                <marker date="1386930829716" expanded="true" signature="2651:2768" placeholder="..." />
+                <marker date="1386930829716" expanded="false" signature="2719:2731" placeholder="..." />
+                <marker date="1386930829716" expanded="true" signature="2786:2810" placeholder="..." />
+                <marker date="1386930829716" expanded="true" signature="2828:3080" placeholder="..." />
+                <marker date="1386930829716" expanded="false" signature="2897:2909" placeholder="..." />
+                <marker date="1386930829716" expanded="false" signature="3017:3029" placeholder="..." />
+                <marker date="1386930829716" expanded="true" signature="3084:3108" placeholder="..." />
+                <marker date="1386930829716" expanded="true" signature="3112:4164" placeholder="..." />
+                <marker date="1386930829716" expanded="true" signature="3161:3840" placeholder="..." />
+                <marker date="1386930829716" expanded="true" signature="3178:3202" placeholder="..." />
+                <marker date="1386930829716" expanded="true" signature="3206:3324" placeholder="..." />
+                <marker date="1386930829716" expanded="false" signature="3275:3287" placeholder="..." />
+                <marker date="1386930829716" expanded="true" signature="3328:3352" placeholder="..." />
+                <marker date="1386930829716" expanded="true" signature="3356:3840" placeholder="..." />
+                <marker date="1386930829716" expanded="false" signature="3441:3453" placeholder="..." />
+                <marker date="1386930829716" expanded="true" signature="3509:3840" placeholder="..." />
+                <marker date="1386930829716" expanded="true" signature="3526:3550" placeholder="..." />
+                <marker date="1386930829716" expanded="true" signature="3554:3672" placeholder="..." />
+                <marker date="1386930829716" expanded="false" signature="3623:3635" placeholder="..." />
+                <marker date="1386930829716" expanded="true" signature="3676:3702" placeholder="..." />
+                <marker date="1386930829716" expanded="true" signature="3706:3840" placeholder="..." />
+                <marker date="1386930829716" expanded="false" signature="3776:3788" placeholder="..." />
+                <marker date="1386930829716" expanded="true" signature="3844:4164" placeholder="..." />
+                <marker date="1386930829716" expanded="true" signature="3861:3885" placeholder="..." />
+                <marker date="1386930829716" expanded="true" signature="3889:3935" placeholder="..." />
+                <marker date="1386930829716" expanded="true" signature="3939:3963" placeholder="..." />
+                <marker date="1386930829716" expanded="true" signature="3967:4047" placeholder="..." />
+                <marker date="1386930829716" expanded="true" signature="4984:6570" placeholder="..." />
+                <marker date="1386930829716" expanded="true" signature="11763:11831" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="common.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/common/common.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="25" column="23" selection-start="500" selection-end="524" vertical-scroll-proportion="0.0" vertical-offset="475" max-vertical-offset="760">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="asmsBase.class.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/asmsBase.class.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="10" column="31" selection-start="241" selection-end="241" vertical-scroll-proportion="-6.357143" vertical-offset="12" max-vertical-offset="532">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="global.func.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/common/global.func.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1" column="0" selection-start="6" selection-end="2890" vertical-scroll-proportion="0.0" vertical-offset="19" max-vertical-offset="2052">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="user.class.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/user.class.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="28" column="37" selection-start="1137" selection-end="1175" vertical-scroll-proportion="0.0" vertical-offset="228" max-vertical-offset="1900">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Member.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Member.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1" column="27" selection-start="33" selection-end="33" vertical-scroll-proportion="-0.6785714" vertical-offset="0" max-vertical-offset="266">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6" column="44" selection-start="110" selection-end="158" vertical-scroll-proportion="-4.071429" vertical-offset="0" max-vertical-offset="304">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/common/config.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="19" column="4" selection-start="452" selection-end="538" vertical-scroll-proportion="0.0" vertical-offset="361" max-vertical-offset="608">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="cookie.txt" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/common/cookie.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="5" column="0" selection-start="219" selection-end="219" vertical-scroll-proportion="0.0" vertical-offset="95" max-vertical-offset="209">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="false" />
+    </FindUsagesManager>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="changedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/Member.php" />
+        <option value="$PROJECT_DIR$/common/config.php" />
+        <option value="$PROJECT_DIR$/asmsBase.class.php" />
+        <option value="$PROJECT_DIR$/B2CMember.php" />
+        <option value="$PROJECT_DIR$/user.class.php" />
+        <option value="$PROJECT_DIR$/common/common.php" />
+        <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/member.class.php" />
+      </list>
+    </option>
+  </component>
+  <component name="PhpDebugGeneral" xdebug_show_addresses="true" hide_empty_superglobals="false" />
+  <component name="PhpServers">
+    <option name="servers">
+      <server host="cocalhost" name="PhpStorm" />
+      <server host="localhost" name="localhost" use_path_mappings="true">
+        <path_mappings>
+          <path_mapping local_path="$PROJECT_DIR$" remote_path="G:\www\newasf\tests\shengyi" />
+        </path_mappings>
+      </server>
+    </option>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="php5.4.16" />
+  <component name="PhpXdebugProxy" ide_key="PhpStorm" host="localhost" port="80" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="754" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectReloadState">
+    <option name="STATE" value="0" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="shengyi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="shengyi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="shengyi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="shengyi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="shengyi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="common" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="recentsLimit" value="5" />
+    <property name="options.lastSelected" value="Configurable.PHP.Debug" />
+    <property name="restartRequiresConfirmation" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../.." />
+    <property name="FullScreen" value="false" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
+  </component>
+  <component name="RunManager" selected="PHP Script.index.php">
+    <configuration default="false" name="B2CMember.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/B2CMember.php">
+      <RunnerSettings RunnerId="PhpRunner" />
+      <RunnerSettings RunnerId="PhpScriptDebugRunner" />
+      <ConfigurationWrapper RunnerId="PhpRunner" />
+      <ConfigurationWrapper RunnerId="PhpScriptDebugRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="common.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/common/common.php">
+      <RunnerSettings RunnerId="PhpRunner" />
+      <RunnerSettings RunnerId="PhpScriptDebugRunner" />
+      <ConfigurationWrapper RunnerId="PhpRunner" />
+      <ConfigurationWrapper RunnerId="PhpScriptDebugRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="B2CMember.php" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true" temporary="true" uri="http://localhost:63342/shengyi/B2CMember.php">
+      <RunnerSettings RunnerId="JavascriptDebugRunner" />
+      <ConfigurationWrapper RunnerId="JavascriptDebugRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Member.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/Member.php">
+      <RunnerSettings RunnerId="PhpRunner" />
+      <RunnerSettings RunnerId="PhpScriptDebugRunner" />
+      <ConfigurationWrapper RunnerId="PhpRunner" />
+      <ConfigurationWrapper RunnerId="PhpScriptDebugRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="index.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/index.php">
+      <RunnerSettings RunnerId="PhpRunner" />
+      <RunnerSettings RunnerId="PhpScriptDebugRunner" />
+      <ConfigurationWrapper RunnerId="PhpRunner" />
+      <ConfigurationWrapper RunnerId="PhpScriptDebugRunner" />
+      <method />
+    </configuration>
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpBuiltInWebServerConfigurationType" factoryName="PHP Built-in Web Server">
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpWebAppRunConfigurationType" factoryName="PHP Web Application" browser="CHROME" server_name="PhpStorm">
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpHttpRequestRunConfigurationType" factoryName="PHP HTTP Request" server_name="localhost">
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpRemoteDebugRunConfigurationType" factoryName="PHP Remote Debug" server_name="PhpStorm">
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
+      <method />
+    </configuration>
+    <configuration default="true" type="AppEnginePhpConfigurationType" factoryName="App Engine for PHP">
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
+      <method />
+    </configuration>
+    <configuration default="true" type="com.intellij.persistence.run.ConsoleRunConfigurationType" factoryName="Query Language Console">
+      <option name="VM_PARAMETERS" value="" />
+      <option name="USER_CFG_CLASS" />
+      <option name="CONTEXT_PROVIDER" />
+      <method />
+    </configuration>
+    <list size="5">
+      <item index="0" class="java.lang.String" itemvalue="PHP Script.B2CMember.php" />
+      <item index="1" class="java.lang.String" itemvalue="PHP Script.common.php" />
+      <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.B2CMember.php" />
+      <item index="3" class="java.lang.String" itemvalue="PHP Script.Member.php" />
+      <item index="4" class="java.lang.String" itemvalue="PHP Script.index.php" />
+    </list>
+    <recent_temporary>
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="PHP Script.index.php" />
+        <item index="1" class="java.lang.String" itemvalue="PHP Script.Member.php" />
+        <item index="2" class="java.lang.String" itemvalue="PHP Script.B2CMember.php" />
+        <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.B2CMember.php" />
+        <item index="4" class="java.lang.String" itemvalue="PHP Script.common.php" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="true" SSL_PROTOCOLS="all">
+    <option name="USER" value="" />
+    <option name="PASSWORD" value="" />
+    <option name="mySSHConnectionTimeout" value="30000" />
+    <option name="mySSHReadTimeout" value="30000" />
+    <option name="LAST_MERGED_REVISION" />
+    <option name="MERGE_DRY_RUN" value="false" />
+    <option name="MERGE_DIFF_USE_ANCESTRY" value="true" />
+    <option name="UPDATE_LOCK_ON_DEMAND" value="false" />
+    <option name="IGNORE_SPACES_IN_MERGE" value="false" />
+    <option name="CHECK_NESTED_FOR_QUICK_MERGE" value="false" />
+    <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
+    <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
+    <option name="FORCE_UPDATE" value="false" />
+    <option name="IGNORE_EXTERNALS" value="false" />
+    <configuration useDefault="false">C:\Users\Administrator.A1CKZA67NFTVIU6\AppData\Roaming\Subversion</configuration>
+    <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
+    <supportedVersion>125</supportedVersion>
+  </component>
+  <component name="SvnFileUrlMappingImpl">
+    <option name="myMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="G:\www\newasf\tests\shengyi" />
+          <option name="myCopyRoot" value="G:\www\newasf\tests\shengyi" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+    <option name="myMoreRealMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="G:\www\newasf\tests\shengyi" />
+          <option name="myCopyRoot" value="G:\www\newasf\tests\shengyi" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e4c8d5d7-694d-4a45-b92c-2e610f846fb7" name="Default" comment="" />
+      <created>1386560353642</created>
+      <updated>1386560353642</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2810606" sideWeight="0.5226891" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.47731093" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35462186" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="myTodoPanelSettings">
+      <TodoPanelSettings />
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
+      <option name="time" value="9" />
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/nusoap/lib/class.soap_server.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="34" selection-start="379" selection-end="379" vertical-scroll-proportion="-6.107143" vertical-offset="114" max-vertical-offset="21508" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nusoap/lib/nusoap.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8140" column="32" selection-start="289273" selection-end="289273" vertical-scroll-proportion="-10.012345" vertical-offset="153184" max-vertical-offset="154261" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nusoap/lib/nusoapmime.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="12" selection-start="1243" selection-end="1255" vertical-scroll-proportion="-3.392857" vertical-offset="0" max-vertical-offset="8949" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nusoap/lib/class.wsdlcache.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="124.17857" vertical-offset="3477" max-vertical-offset="3971" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nusoap/lib/class.nusoap_base.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="73" column="45" selection-start="2413" selection-end="2424" vertical-scroll-proportion="315.8302" vertical-offset="18126" max-vertical-offset="19019" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nusoap/lib/class.soap_parser.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="27" selection-start="378" selection-end="378" vertical-scroll-proportion="-0.47567567" vertical-offset="411" max-vertical-offset="12312" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/global.func.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="0" selection-start="6" selection-end="2890" vertical-scroll-proportion="0.0" vertical-offset="19" max-vertical-offset="2052">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/cookie.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="0" selection-start="219" selection-end="219" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="209">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="4" selection-start="452" selection-end="538" vertical-scroll-proportion="0.0" vertical-offset="361" max-vertical-offset="608">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/common.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="23" selection-start="500" selection-end="524" vertical-scroll-proportion="0.0" vertical-offset="475" max-vertical-offset="760">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/user.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="37" selection-start="1137" selection-end="1175" vertical-scroll-proportion="0.0" vertical-offset="228" max-vertical-offset="1900">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/B2CMember.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="17" selection-start="675" selection-end="693" vertical-scroll-proportion="-16.75" vertical-offset="120" max-vertical-offset="6232">
+          <folding>
+            <marker date="1386902917944" expanded="true" signature="810:2507" placeholder="..." />
+            <marker date="1386902917944" expanded="true" signature="2589:2671" placeholder="..." />
+            <marker date="1386902917944" expanded="true" signature="3080:3197" placeholder="..." />
+            <marker date="1386902917944" expanded="false" signature="3148:3160" placeholder="..." />
+            <marker date="1386902917944" expanded="true" signature="3215:3239" placeholder="..." />
+            <marker date="1386902917944" expanded="true" signature="3257:3509" placeholder="..." />
+            <marker date="1386902917944" expanded="false" signature="3326:3338" placeholder="..." />
+            <marker date="1386902917944" expanded="false" signature="3446:3458" placeholder="..." />
+            <marker date="1386902917944" expanded="true" signature="3513:3537" placeholder="..." />
+            <marker date="1386902917944" expanded="true" signature="3541:4593" placeholder="..." />
+            <marker date="1386902917944" expanded="true" signature="3541:4340" placeholder="..." />
+            <marker date="1386902917944" expanded="true" signature="3541:4333" placeholder="..." />
+            <marker date="1386902917944" expanded="true" signature="3541:4328" placeholder="..." />
+            <marker date="1386902917944" expanded="true" signature="3590:4269" placeholder="..." />
+            <marker date="1386902917944" expanded="true" signature="3590:4269" placeholder="..." />
+            <marker date="1386902917944" expanded="true" signature="3607:3631" placeholder="..." />
+            <marker date="1386902917944" expanded="true" signature="3635:3753" placeholder="..." />
+            <marker date="1386902917944" expanded="false" signature="3704:3716" placeholder="..." />
+            <marker date="1386902917944" expanded="true" signature="3757:3781" placeholder="..." />
+            <marker date="1386902917944" expanded="true" signature="3785:4269" placeholder="..." />
+            <marker date="1386902917944" expanded="false" signature="3870:3882" placeholder="..." />
+            <marker date="1386902917944" expanded="true" signature="3938:4269" placeholder="..." />
+            <marker date="1386902917944" expanded="true" signature="3955:3979" placeholder="..." />
+            <marker date="1386902917944" expanded="true" signature="3983:4101" placeholder="..." />
+            <marker date="1386902917944" expanded="false" signature="4052:4064" placeholder="..." />
+            <marker date="1386902917944" expanded="true" signature="4105:4131" placeholder="..." />
+            <marker date="1386902917944" expanded="true" signature="4135:4269" placeholder="..." />
+            <marker date="1386902917944" expanded="false" signature="4205:4217" placeholder="..." />
+            <marker date="1386902917944" expanded="true" signature="4273:4593" placeholder="..." />
+            <marker date="1386902917944" expanded="true" signature="4273:4340" placeholder="..." />
+            <marker date="1386902917944" expanded="true" signature="4273:4333" placeholder="..." />
+            <marker date="1386902917944" expanded="true" signature="4273:4328" placeholder="..." />
+            <marker date="1386902917944" expanded="true" signature="4290:4314" placeholder="..." />
+            <marker date="1386902917944" expanded="true" signature="4290:4314" placeholder="..." />
+            <marker date="1386902917944" expanded="true" signature="4318:4364" placeholder="..." />
+            <marker date="1386902917944" expanded="true" signature="4318:4340" placeholder="..." />
+            <marker date="1386902917944" expanded="true" signature="4318:4333" placeholder="..." />
+            <marker date="1386902917944" expanded="true" signature="4318:4328" placeholder="..." />
+            <marker date="1386902917944" expanded="true" signature="4368:4392" placeholder="..." />
+            <marker date="1386902917944" expanded="true" signature="4368:4392" placeholder="..." />
+            <marker date="1386902917944" expanded="true" signature="4396:4476" placeholder="..." />
+            <marker date="1386902917944" expanded="true" signature="5322:6908" placeholder="..." />
+            <marker date="1386902917944" expanded="true" signature="11658:11726" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="44" selection-start="110" selection-end="158" vertical-scroll-proportion="-4.071429" vertical-offset="0" max-vertical-offset="304">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Member.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="27" selection-start="33" selection-end="33" vertical-scroll-proportion="-0.6785714" vertical-offset="0" max-vertical-offset="266">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asmsBase.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="31" selection-start="241" selection-end="241" vertical-scroll-proportion="-6.357143" vertical-offset="12" max-vertical-offset="532">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/member.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="257" column="35" selection-start="10452" selection-end="10452" vertical-scroll-proportion="-0.01183432" vertical-offset="4889" max-vertical-offset="5966">
+          <folding>
+            <marker date="1386930829716" expanded="true" signature="253:1950" placeholder="..." />
+            <marker date="1386930829716" expanded="true" signature="2044:2126" placeholder="..." />
+            <marker date="1386930829716" expanded="true" signature="2651:2768" placeholder="..." />
+            <marker date="1386930829716" expanded="false" signature="2719:2731" placeholder="..." />
+            <marker date="1386930829716" expanded="true" signature="2786:2810" placeholder="..." />
+            <marker date="1386930829716" expanded="true" signature="2828:3080" placeholder="..." />
+            <marker date="1386930829716" expanded="false" signature="2897:2909" placeholder="..." />
+            <marker date="1386930829716" expanded="false" signature="3017:3029" placeholder="..." />
+            <marker date="1386930829716" expanded="true" signature="3084:3108" placeholder="..." />
+            <marker date="1386930829716" expanded="true" signature="3112:4164" placeholder="..." />
+            <marker date="1386930829716" expanded="true" signature="3161:3840" placeholder="..." />
+            <marker date="1386930829716" expanded="true" signature="3178:3202" placeholder="..." />
+            <marker date="1386930829716" expanded="true" signature="3206:3324" placeholder="..." />
+            <marker date="1386930829716" expanded="false" signature="3275:3287" placeholder="..." />
+            <marker date="1386930829716" expanded="true" signature="3328:3352" placeholder="..." />
+            <marker date="1386930829716" expanded="true" signature="3356:3840" placeholder="..." />
+            <marker date="1386930829716" expanded="false" signature="3441:3453" placeholder="..." />
+            <marker date="1386930829716" expanded="true" signature="3509:3840" placeholder="..." />
+            <marker date="1386930829716" expanded="true" signature="3526:3550" placeholder="..." />
+            <marker date="1386930829716" expanded="true" signature="3554:3672" placeholder="..." />
+            <marker date="1386930829716" expanded="false" signature="3623:3635" placeholder="..." />
+            <marker date="1386930829716" expanded="true" signature="3676:3702" placeholder="..." />
+            <marker date="1386930829716" expanded="true" signature="3706:3840" placeholder="..." />
+            <marker date="1386930829716" expanded="false" signature="3776:3788" placeholder="..." />
+            <marker date="1386930829716" expanded="true" signature="3844:4164" placeholder="..." />
+            <marker date="1386930829716" expanded="true" signature="3861:3885" placeholder="..." />
+            <marker date="1386930829716" expanded="true" signature="3889:3935" placeholder="..." />
+            <marker date="1386930829716" expanded="true" signature="3939:3963" placeholder="..." />
+            <marker date="1386930829716" expanded="true" signature="3967:4047" placeholder="..." />
+            <marker date="1386930829716" expanded="true" signature="4984:6570" placeholder="..." />
+            <marker date="1386930829716" expanded="true" signature="11763:11831" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
+

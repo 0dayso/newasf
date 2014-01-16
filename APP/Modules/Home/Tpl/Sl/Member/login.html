@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>会员登录 - {:C('WEBNAME')}</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/main.css" type="text/css" />
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript">
+    $(function(){
+		var user = $("#userName"),pass = $("#passWord"),verify_code = $("input[name='verify_code']").eq(0);
+		user.focus(function(){
+			if($(this).val() == "用户名/手机"){
+			   $(this).val("");
+		}}).blur(function(){
+			if($(this).val() == ""){
+			   $(this).val("用户名/手机");
+		}});
+		
+		$(".sub").click(function(){
+			if(user.val() == "用户名/手机"){
+				alert("登录名不能为空");
+				return false;
+			}else if(pass.val() == ""){
+				alert("密码不能为空");
+				return false;
+			}else if(verify_code.val() == ""){
+				alert("验证码不能为空");
+				return false;
+			}else{
+				return true;
+				}
+			});
+			
+		});
+    </script>
+</head>
+<body>
+	<include file="public:top_nav" />
+    <div id="cont">
+        <div class="wd960 login" id="hy_login">
+        	<h1 class="h1_tit_nav">你当前所在位置：<a href="{:U('/')}" class="sy">首页</a> > <a class="cur">会员登录</a></h1>
+            <div class="left img"><img src="__PUBLIC__/images/login_left.gif" alt="login" /></div>
+            <div class="right logDIV">
+            	<h2 class="tit">会员登录</h2>
+                <form action="" method="post" name="form_login">
+                    <table>
+                        <tr><td>登录名：</td>
+						<td><input name="name" type="text" class="text" value="用户名/手机" id="userName"/></td><td></td></tr>
+                        <tr><td>密&nbsp;&nbsp;码：</td>
+						<td><input type="password" name="password" class="text" id="passWord"/></td>
+						<td><a href="{:U('/member/getPassword')}" target="_blank" class="wjma">忘记密码？</a></td></tr>
+
+						<tr><td>验证码：</td>
+						<td><input type="text" name="verify_code" class="text" style="width:60px;float:left"/>
+						<img style="margin-left:10px;float:left" onclick="this.src=this.src+ '?ts='+ (new Date()).getTime();" title="点击重新获取验证码" src="{:U('Common/verify_code')}"></td><td></td>
+                        </tr>
+
+                        <tr class="zd">
+						<td></td>
+						<td><input type="checkbox" checked="checked" name="check" /><label>两周内自动登录</label></td>
+						<td></td>
+						</tr>
+                        <tr><td><input type="hidden"  name="act" value="login"/></td><td><input type="submit" value="登录" class="sub"/></td><td></td></tr>
+                        <tr><td></td><td>还不是爱尚飞会员？<a href="{:U('Member/register')}" target="_blank" class="ljzc">立即注册</a></td><td></td></tr>
+                    </table>
+            	</form>
+            </div>
+        </div>
+    </div>
+   <include file="public:footer" />

@@ -1,0 +1,125 @@
+<include file="Public:header" />
+<link rel="stylesheet" href="__PUBLIC__/css/mall.css" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/js/mall.js"></script>
+	<notempty name="_GET[_URL_][1]">
+        <div id="mall_nav"><span>您当前所处的位置：</span>
+            <a href="{:U('/jifen')}">积fun商城</a>     
+            <foreach name="path" item="v">
+                > <a href="{:U('/jifen/lists','cid='.$v[cid])}" class="cur">{$v.name}</a>
+            </foreach>        
+        </div>
+	</notempty>
+    <div id="mall">
+    	<div class="mall_l">
+        	<!--全部礼品分类-->
+        	<div id="classify_list">
+            	<h2>全部礼品分类</h2>
+                <div id="allproduct">
+                	<ul>
+                		<li class="c1"><a class="p1" href="{:U('/jifen/lists/','cid=55')}">积fun礼品</a></li>
+                    	<li class="c2"><a class="p2" href="{:U('/jifen/lists/','cid=56')}">爱钻礼品</a></li>
+                	</ul>
+                    <div class="ap_list">
+                        <volist name="clist" id="num1">       
+                            <if condition="$num1.cid eq 55">       
+                               <volist name="num1._child" id="num2">
+                                 <dl>  
+                                      <dt><a href="{:U('jifen/lists','cid='.$num2['cid'])}">{$num2.name}</a></dt>
+                                      <dd>
+                                          <volist name="num2._child" id="num3">
+                                             |<a href="{:U('jifen/lists','cid='.$num3['cid'])}">{$num3.name}</a>
+                                          </volist>
+                                      </dd>
+                                  </dl> 
+                                </volist>            
+                            </if>           
+                        </volist>                        
+                    </div><!---end ap_list-->                    
+                    <div class="ap_list">
+                        <volist name="clist" id="num1">       
+                            <if condition="$num1.cid eq 56">       
+                               <volist name="num1._child" id="num2">
+                                 <dl>  
+                                      <dt><a href="{:U('jifen/lists','cid='.$num2['cid'])}">{$num2.name}</a></dt>
+                                      <dd>
+                                          <volist name="num2._child" id="num3">
+                                             |<a href="{:U('jifen/lists','cid='.$num3['cid'])}">{$num3.name}</a>
+                                          </volist>
+                                      </dd>
+                                  </dl> 
+                                </volist>            
+                            </if>           
+                        </volist>
+                    </div><!---end ap_list-->  
+                </div><!---end allproduct-->                
+            </div><!---end classify_list-->  
+            <!--商城公告-->
+            <div id="announcement">
+            	<h2>商城公告</h2>
+                <ul>
+                	<li><a href="#">2013积fun过期公告</a></li>
+                    <li><a href="#">产品满意度及改进建议</a></li>
+                    <li><a href="#">产品满意度及改进建议</a></li>
+                </ul>
+            </div>
+            <!--商城小助手-->
+            <div class="m_box">
+            	<h2>商城小助手</h2>
+                <if condition="$Think.session.username eq ''">   
+               		 <ul id="assistant">
+                        <li><a href="#" class="a1">我的积fen</a></li>
+                        <li><a href="#" class="a2">我的爱钻</a></li>
+                        <li><a href="#" class="a3">我的购物车</a></li>
+                        <li><a href="#" class="a4">兑换帮助</a></li>
+                    </ul>  
+                <else/>
+                     <dl id="ass_login">
+                        <dt class="a5"><strong>我的积fun：</strong><span><em>{$jfpoints}</em>分</span><a href="#">详细》</a></dt>
+                        <dt class="a6"><strong>我的爱钻：</strong><span><b></b><em>X{$azpoints}</em></span><a href="#">详细》</a></dt>
+                        <dd class="a7"><a href="#">我的购物车</a></dd>
+                        <dd class="a8"><a href="#">兑换帮助</a></dd>
+                    </dl>
+                </if>
+            </div>
+            
+           <!--积fun兑换排行榜-->
+            <div class="m_box">
+              <h2>积fun兑换排行榜</h2>
+              <ul class="exchange_list" id="jf_list">
+                <volist name="jifen" id="vo">
+           			<li  class="<if condition='$i eq 5'>nobor</if>">
+                   	  <div class="exch_tit">
+                        	<span>{$i}</span>
+                            <h3><a  href="{:U('jifen/info','id='.$vo['id'])}" title="{$vo.title}">{$vo.title|msubstr=0,21}</a></h3>
+							<p>所需积fun：<em>{$vo.jifen}</em></p>
+                      </div>
+                        <div class="exch_pro <if condition='$i eq 1'>on</if>">
+                           <a href="{:U('jifen/info','id='.$vo['id'])}">
+                              <img src="__PUBLIC__/uploads/mall/s_{$vo.img}" title="{$vo.title}"/>
+                            </a>
+                        </div>
+                    </li> 
+                </volist>
+              </ul>
+            </div>             
+            <!---爱钻兑换排行榜--> 
+            <div class="m_box">
+            	<h2>爱钻兑换排行榜</h2>
+                <ul class="exchange_list" id="aj_list">
+           		 <volist name="aizuan" id="vo">
+           			<li  class="<if condition='$i eq 5'>nobor</if>">
+                   	  <div class="exch_tit">
+                        	<span>{$i}</span>
+                            <h3><a  href="{:U('jifen/info','id='.$vo['id'])}" title="{$vo.title}">{$vo.title|msubstr=0,21}</a></h3>
+							<p>所需爱钻：<b>x{$vo.jifen}</b></p>
+                      </div>
+                        <div class="exch_pro <if condition='$i eq 1'>on</if>">
+                           <a href="{:U('jifen/info','id='.$vo['id'])}">
+                              <img src="__PUBLIC__/uploads/mall/s_{$vo.img}" title="{$vo.title}"/>
+                            </a>
+                        </div>
+                    </li> 
+                </volist>
+              </ul>
+            </div><!---爱钻兑换排行榜 END--->            
+        </div>

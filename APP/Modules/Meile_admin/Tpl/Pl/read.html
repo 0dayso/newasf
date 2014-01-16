@@ -1,0 +1,58 @@
+<style type="text/css">
+    .pageFormContent p{width: 300px}
+</style>
+<div class="pageContent">
+    <form method="post" action="__URL__/update/navTabId/__MODULE__" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone)">
+        <input type="hidden" name="user_id" value="<?php echo $_SESSION[C('USER_AUTH_KEY')] ?>"/>
+        <input type="hidden" name="id" value="{$vo.id}" />
+        <div class="pageFormContent" layoutH="58">
+            <!--
+            <div class="unit">
+                <label>重置密码：</label>
+                <input type="text" name="resetPwd" > <INPUT type="button" value="重置密码" onclick="resetPwd()" class="submit" style="height:25px">
+            </div>
+            -->
+            <div class="unit">
+                <label>标题</label><label>{$vo.username}</label>
+            </div>
+            <div class="unit">
+                <label>内容</label><label>{$vo.contents}</label>
+            </div>
+            <div class="unit">
+                <label>截图</label>
+                <label>
+                    <notempty name="vo.jietu">
+                    <a target="_blank" href="__PUBLIC__/uploads{$vo.jietu}" >
+                    <img src="__PUBLIC__/uploads{$vo.jietu}" sytle="max-height: 100px;"></a>
+                    </notempty>
+                </label>
+            </div>
+            <div class="unit">
+                <label>类型</label><label>{$vo.type_name}</label>
+            </div>
+            <div class="unit">
+                <label>发布时间</label><label>{$vo.time}</label>
+            </div>
+            <div class="unit">
+                <label>用户</label><label>{$vo.member_name}</label>
+            </div>
+            <div class="unit">
+                <label>电话</label><label>{$vo.mobile}</label>
+            </div>
+            <div class="unit">
+                <label>邮箱</label><label>{$vo.email}</label>
+            </div>
+            <div class="unit">
+                <label>用户ip</label><label>{$vo.ip}</label>
+            </div>
+
+        </div>
+        <div class="formBar">
+            <ul>
+                <li><div class="button"><div class="buttonContent"><button type="button" class="close">Cancel</button></div></div></li>
+            </ul>
+        </div>
+    </form>
+
+</div>
+

@@ -1,0 +1,30 @@
+.hotcity_list_d *{font-size:12px;}
+.hotcity_list_d a{ text-decoration:none;color:#333;}
+.hotcity_list_d a:hover{ text-decoration:none;color:#3795D2;}
+.hotcity_list_d ul{ margin:0px; padding:0px; list-style-type:none;}
+.hotcity_list_d h2{ margin:0px; padding:0px;}
+.hotcity_list_d{margin:0 auto; height:auto; width:330px; border:1px solid #bbbbbb; padding:2px;z-index:100000;position:absolute;top:0px;left:0px;background:#FFF;overflow:hidden;}
+.hotcity_list_d .hotcity_menu{height:28px; background:#f1f1f1; overflow:hidden; text-align:left; padding-left:6px;}
+.hotcity_list_d .hotcity_menu h2{width:62px;float:left; text-align:center; height:25px; line-height:25px; margin-top:4px; margin-right:3px;}
+.hotcity_list_d .hotcity_menu h2 b{display:block;font-size:12px;font-weight:bold;color:#666666;text-decoration:none; background:#f1f1f1; border:1px solid #f1f1f1;cursor:pointer;}
+.hotcity_list_d .mr2{width:50px;}
+.hotcity_list_d .hotcity_menu .on b{height:25px;line-height:25px; text-decoration:none;display:block; font-size:12px; background:#FFF; color:#003;border:1px solid #999;}
+.hotcity_list_d ul li{ float:left; width:64px; text-align:center; height:25px; line-height:25px;}
+/*选项卡style*/
+.hotcity_list_d .paytabbox2{ margin-top:10px;} 
+.hotcity_list_d .tagMenu2{height:22px; line-height:22px; position:relative; border-bottom:1px solid #999} 
+.hotcity_list_d .tagMenu2 ul{position:absolute; left:6px; bottom:-1px; height:21px;} 
+.hotcity_list_d ul.paytabmenu2 li{ float:left;margin:0px;padding:0px;width:53px;} 
+.hotcity_list_d ul.paytabmenu2 li a{float:left;text-align:center;width:42px;height:19px;line-height:19px;}
+.hotcity_list_d ul.paytabmenu2 li a:hover{border:1px solid #999;}
+.hotcity_list_d ul.paytabmenu2 li.cur2 a{border:1px solid #999;background:#f1f1f1;} 
+.hotcity_list_d .paytabcontent2{ padding:5px; clear:both; width:100%;} 
+.hotcity_list_d .lay2{display:none;}
+.hotcity_list_d .lay2 a{ cursor:pointer;}
+.hotcity_list_d .printtip{height:25px; line-height:25px; border-bottom:1px dashed #CCC; text-indent:12px; color:#666; margin-bottom:5px;}
+.hotcity_list_sel{margin:0 auto; max-height:212px;_height:expression(this.clientHeight>212?"212px":"auto");border:1px solid #bbbbbb; padding:2px;z-index:100001;position:absolute;top:0px;left:0px;background:#FFF;overflow:auto;display:none;}
+.hotcity_list_sel li{border-bottom: 1px solid #ccc;line-height: 30px;}
+.hotcity_list_sel li.end{border:0;}
+.hotcity_list_sel li a{padding: 0px 2px;color: #666;display:block;}
+.hotcity_list_sel li a.hover{color:#469;background-color:#C5F8FC;}
+

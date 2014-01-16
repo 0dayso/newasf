@@ -1,0 +1,54 @@
+<php>$title="短信配置-系统设置"</php>
+<include file="Public:header" />
+        <div class="mainBody"> <include file="Public:left" />
+            <div id="Right">
+                <div class="contentArea">
+                    <div class="Item hr">
+                        <div class="current">短信配置</div>
+                    </div>
+                    <form action="{:U('setting/updateConfig')}" method="post">
+                        <tr><td>{:selectMobileNum()}</td></tr>
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table1">
+                            <tr>
+                                <th width="120">短信接口帐号 SN：</th>
+                                <td><input name="SMS_SN" type="text" class="input" size="40" value="{:C('SMS_SN')}" /></td>
+                            </tr>
+                            <tr>
+                                <th>短信接口密码：</th>
+                                <td><input class="input" name="SMS_PWD" type="text" size="40" value="{:C('SMS_PWD')}" /></td>
+                            </tr>
+                            <tr>
+                                <th>短信内容签名：</th>
+                                <td><input class="input" name="SMS_SIGN" type="text" size="40" value="{:C('SMS_SIGN')}" /></td>
+                            </tr>
+
+                            <tr>
+                                <th>接收测试短信手机：</th>
+                                <td><input class="input" name="SMS_TEST" id="testSms" type="text" size="40" value="{:C('SMS_TEST')}" /> （只有填写了接收手机号才能测试配置是否成功）</td>
+                            </tr>
+                        </table>
+                    </form>
+                    <div class="commonBtnArea" >
+                        <button class="btn submit">提交</button>
+                        <button class="btn test">测试配置是否成功</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+<include file="Public:footer" />
+<script type="text/javascript">
+    $(".submit").click(function(){
+        commonAjaxSubmit();
+    });
+    $(".test").click(function(){
+        if($.trim($("#testSms").val())==''){
+            popup.alert("没有填写接收测手机号，无法发送测试短信");
+            return;
+        }
+        commonAjaxSubmit('{:U("setting/testSmsConfig")}');
+    });
+</script>
+</body>
+</html>

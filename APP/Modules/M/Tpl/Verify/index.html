@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>机票验真-爱尚飞手机网</title>
+<link href="__PUBLIC__/mobile/css/global.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+#topnav{padding-right:42px;}
+#import{padding:10px 10px 0 10px;margin-bottom:10px;height:230px;background:#fff url(__PUBLIC__/mobile/images/verify_bg.gif) no-repeat right bottom;}
+#import span{margin-bottom:10px;display:block;}
+.box p{padding-bottom:10px;}
+.box p em{font-size:14px;color:#ff6600;}
+.box p a{font-style:normal;color:#2690d8;padding:0 5px;text-decoration:none;}
+</style>
+</head>
+
+<body>
+<div id="page">
+  <div id="content">
+    <h1 id="topnav"><span class="left icon"><a href="{:U('/')}" class="icon-home">首页</a></span>机票验真</h1>
+    <div class="box">
+      <form action="http://www.travelsky.com/newsky/ValidateEticketAction.do?method=validateEtLogin" method="get">
+        <div id="import">
+        <p><em>验真方式:</em>通过中国航信<a href="http://www.travelsky.com/" target="_blank">信天游机票验真</a>网站<br/>(航局授权机票验真官方网站)</p>
+          <span><input name="eticketNoORIn" type="text" id="eticketNoORIn" required placeholder="电子票号/行程单号(必填)" class="txt"></span>
+          <span><input name="passengerName" type="text" id="passengerName" required placeholder="旅客姓名 例：张三，输入：ZHANGSAN(必填)" class="txt"></span>
+          <span><input type="hidden" name="method" value="validateEtLogin"><input name="randCode" type="text" id="randCode" maxlength="4" required class="code"><img style="float:left;height:27px;border:1px solid #f2f1f0;" onclick="this.src=this.src+ '?ts='+ (new Date()).getTime();" title="点击重新获取验证码" src="http://www.travelsky.com/newsky/servlet/CallYanServlet?title=home"></span>
+        </div>
+        <input type="submit" value="立即验真" class="sub" id="sub">
+      </form>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/mobile/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+</script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<php>$title="其它管理-后台管理";$currentNav ='其它管理 > 投诉建议列表';</php>
+<include file="Public:header" />
+<script type="text/javascript">
+    function searchs(p){
+        var  datas=$('#search').serialize();
+        $.getJSON("?&p="+p, datas,function(data){
+            if(data.list){
+                var str='';
+                $.each(data.list, function(i,item){
+                    str+=' <tr align="center" id="'+item.id+'">';
+                    str+='  <td align="center">'+item.id+'</td>';
+                    str+=' <td><a href="javascript:;" onclick="getinfo('+item.id+')" title="'+item.title+'">'+item.title+'</a></td>';
+                    str+=' <td ><a href="javascript:;" onclick="getinfo('+item.id+')" title="'+item.contents+'">'+item.contents_sub+'</a></td>';
+                    str+='  <td>'+item.type_name+'</td>';
+                    str+='  <td>'+item.time+'</td>';
+                    str+=' <td>'+item.member_name+'</td>';
+                    str+='  <td> [ <a href="javascript:;;" onclick="getinfo('+item.id+')">查看 </a> ][ <a link="" href="javascript:void(0)" name="'+item.title+'" class="del">删除 </a> ]</td>';
+                    str+='  </tr>';
+                });
+                $('#datalist').html(str);
+                $('#page').html(data.page);
+            }else{
+                $('#datalist').html('');
+                $('#page').html('');
+            }
+        })
+
+
+    }
+    function page(u,p){
+        searchs(p);
+    }
+
+    function getinfo(id){
+        var url="?id="+id;
+        $.layer({
+            type : 2,
+            area: ['500px','280'],
+            border : [3, 0.3, '#666', true],
+            shadeClose:true,
+            iframe: {src: url}
+        });
+    }
+    </script>
+            <div class="mainBody">
+                <include file="Public:left" />
+                <div id="Right">
+                    <div class="Item hr">
+                        <div class="current">投诉建议列表</div>
+                    </div>
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab">
+                        <thead>
+                            <tr>
+                                <td width="5%">ID</td>
+                                <td  width="20%">标题</td>
+                                <td  width="25%">内容</td>
+                                <td  width="10%">类型</td>
+                                <td  width="15%">发布时间</td>
+                                <td  width="10%">用户</td>
+                                <td width="150">操作</td>
+                            </tr>
+                        </thead>
+                        <tbody id="datalist">
+                        <volist name="list" id="vo">
+                            <tr align="center" id="{$vo.id}">
+                                <td align="center">{$vo.id}</td>
+                                <td><a  href="javascript:;" onclick="getinfo({$vo.id})" title="{$vo.title}">{$vo.title}</a></td>
+                                <td><a   href="javascript:;" onclick="getinfo({$vo.id})" title="{$vo.contents}">{$vo.contents_sub}</a></td>
+                                <td>{$vo.type_name}</td>
+                                <td>{$vo.time}</td>
+                                <td>{$vo.member_name}</td>
+                                <td> [ <a href="javascript:;" onclick="getinfo({$vo.id})">查看 </a> ][ <a link="" href="javascript:void(0)" name="{$vo.title}" class="del">删除 </a> ]</td>
+                            </tr>
+                        </volist>
+                        </tbody>
+                        <tr><td colspan='7' align="center" id="page">{$page}</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="clear"></div>
+        <include file="Public:footer" />
+        <script type="text/javascript">
+            $(function(){
+                $(".del").click(function(){
+                    var delLink=$(this).attr("link");
+                    popup.confirm('你真的打算删除【<b>'+$(this).attr("name")+'</b>】吗?','温馨提示',function(action){
+                        if(action == 'ok'){
+                            top.window.location.href=delLink;
+                        }
+                    });
+                    return false;
+                });
+            });
+        </script>
+    </body>
+</html>

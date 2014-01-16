@@ -1,0 +1,54 @@
+<div class="page">
+	<div class="pageContent">
+
+	<form method="post" action="__URL__/editClaim/navTabId/__MODULE__-claimList" class="pageForm required-validate" onsubmit="return validateCallback(this,dialogAjaxDone)">
+		<div class="pageFormContent" layoutH="58">
+		<!-- 	<div class="unit">
+			<label>请选择分类：</label>
+			<select name="class_id" id="test" class="required combox">
+				<option value="">请选择</option>
+				<volist name="cate" id="vocate">
+					<option value="{$key}">{$vocate}</option>
+				</volist>
+			</select>
+		</div> -->
+            <div class="unit">
+                <label>订单号：</label>
+                <input type="text"   name="order_id" value="{$vo.order_id}">
+            </div>
+            <div class="unit">
+                <label>汇款人：</label>
+                <input type="text" class="required"  name="claim_remitter" value="{$vo.claim_remitter}">
+            </div>
+            <div class="unit">
+                <label>认帐人：</label>
+                <input type="text" class="required"  name="claim_name" value="{$vo.claim_name}">
+            </div>
+            <div class="unit">
+                <label>所属部门:</label>
+                <select name="department_id" >{$vo.departmentOption.option}</select>
+            </div>
+            <div class="unit">
+                <label>出票日期：</label>
+                <input type="text" class="required date textInput valid"  name="ticket_date" value="{:date('Y-m-d')}">
+                <a class="inputDateButton" href="javascript:;">选择</a>
+            </div>
+          <div class="unit">
+			<label>备注：</label>
+            <textarea name="claim_remark" editor="{:uniqid()}" cols="50" rows="6">{$vo.claim_remark}</textarea>
+          </div>
+		</div>
+
+		<div class="formBar">
+			<ul>
+				<li>
+                    <input type="hidden" name="id" value="{$vo.id}">
+                    <div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+	
+	</div>
+</div>
+

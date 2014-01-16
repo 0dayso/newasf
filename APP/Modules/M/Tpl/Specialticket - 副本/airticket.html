@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{$title} - {:C('WEB_NAME')}</title>
+<link href="__PUBLIC__/mobile/css/global.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+#block{background-color:#cbe4f6;padding:10px 10px 15px 10px;}
+#block h2{padding-right:40px;text-align:center;font-size:18px;height:40px;line-height:40px;color:#2690d8;display:block;}
+#block .icon a{display:block;width:40px;height:40px;overflow:hidden;line-height:200px;}
+.collapsible ul{background-color:#FFF;}
+.collapsible li{padding:12px 15px;border-bottom:1px solid #e7e5e5;}
+.collapsible div{line-height:30px;}
+.collapsible li span{display:inline-block;padding-left:22px;background:url(__PUBLIC__/mobile/images/icon.png) no-repeat -10px -340px;}
+.collapsible li em{font-style:normal;padding-right:18px;}
+.collapsible li strong{padding-left:22px;color:#ff8400;}
+.collapsible li a{display:block;float:right;width:75px;height:30px;text-align:center;color:#FFF;background-color:#3598db;cursor:pointer;}
+</style>
+</head>
+
+<body>
+<div id="page">
+  <div id="content">
+    <h1 id="topnav"><span class="left icon"><a href="{:U('/Specialticket')}" class="icon-returnclose">返回</a></span>{$from_name}出发<span class="right icon"><a href="tel:4006085188" class="icon-tel">电话</a></span></h1>
+    <div id="block">
+      <div class="collapsible-set">
+         <volist name="list" id="zvo">
+         <div class="collapsible">
+         <h4><a>{$zvo.zhou}<span class="icon-down">展开</span></a></h4>
+         <ul>
+              <volist name="zvo.child" id="fvo">
+              <li>
+              <div>{$fvo.from_city}<span>{$fvo.to_city}</span></div>
+              <div><em>{$fvo.time}截止</em>{$fvo.air}</div>
+              <div>往返<strong>￥{$fvo.price}</strong>
+                  <empty name="userinfo">
+                      <a href="javascript:open_kf()">预订</a>
+                      <else/>
+                      <a href="tel:{$userinfo.user.public_mobile}">咨询我的顾问</a>
+                  </empty>
+              </div>
+              </li>
+              </volist>
+         </ul>
+        </div>
+       </volist>
+      </div>
+    </div>
+  </div>
+  <include file="Public:footer" />
+</div>
+<script type="text/javascript" src="__PUBLIC__/mobile/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('.collapsible h4').click(function(){
+		var i=$(this).parent().index();
+		$('.collapsible ul').each(function(index,element){
+			if($(this).siblings().find('span').attr('class')=='icon-up'){
+               $(this).hide().siblings().find('span').removeClass('icon-up').addClass('icon-down');
+			}else if($(this).siblings().find('span').attr('class')=='icon-down'&&index==i){
+			   $(this).show().siblings().find('span').removeClass('icon-down').addClass('icon-up');
+			}
+			});
+		});
+	});
+</script>
+</body>
+</html>

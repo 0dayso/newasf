@@ -1,0 +1,224 @@
+@charset "utf-8";
+/* 旧的国际机票查询CSS */
+#ticket_Query .covr_c{border-top:1px solid #2cadee;margin:0 1px;height:0px;}
+#ticket_Query .cont_c{background-color:#2cadee;overflow:hidden;}
+#ticket_Query .cont_c_b{border:1px solid #61baf0;margin:0 1px;background-color:#3298e7;overflow:hidden;}
+#ticket_Query .htop{background-position:0px -125px;width:266px;height:40px;}
+#ticket_Query .chaxun{margin:0px 4px 4px 4px;background:#fff url(../images/chaxun_bg_r.gif) repeat-x 0 0;}
+#ticket_Query form{padding:0px;margin:0px;overflow:hidden;;}
+#ticket_Query ul{padding:10px 7px;}
+#ticket_Query ul ul{margin:0px;padding:0px;}
+#ticket_Query ul li{height:38px;line-height:38px;overflow:hidden;}
+#ticket_Query input.text{padding:0 26px 0px 3px;width:145px;color:#999999;height:23px;border:1px solid #bcbcbc;line-height:23px\9;vertical-align:middle;}
+#ticket_Query ul li.submit{margin-top:10px;}
+#ticket_Query input.city{background:url(../images/chaxun_city.gif) no-repeat 150px center;}
+#ticket_Query input.date{background:url(../images/chaxun_date.gif) no-repeat 150px center;}
+#ticket_Query ul li span{color:#333px;font-weight:bold;font-size:13px;vertical-align:middle;padding-right:5px;}
+#ticket_Query p{padding:0px;margin:0px;}
+#ticket_Query p.dot{margin-left:7px;background:url(../images/dot_bt.gif) no-repeat 0 bottom;width:242px;height:1px;}
+#ticket_Query p.tishi{height:30px;line-height:30px;text-align:center;width:100%;color:#666;overflow:hidden;}
+#ticket_Query input.sub{border:0px;color:#fff;background-position:-88px -13px;width:119px;height:32px;font-weight:bold;font-size:15px;letter-spacing:3px;cursor:pointer;}
+#ticket_Query input.sub:hover{color:#ecc;}
+#ticket_Query p.tishi a{color:#0066cc;}
+#ticket_Query p.tishi a:hover{color:#999;}
+
+/*
+#gonggao_lan{background:#fff url(../images/gonggao.gif) no-repeat 0 0;width:679px;height:25px;line-height:25px;}
+#gonggao_lan span{color:#333;float:left;}
+#gonggao_lan .span0{margin-left:110px;background:url(../images/hot_r.gif) no-repeat right center;padding-right:30px;}
+#gonggao_lan .span1{margin-left:30px;}
+#gonggao_lan span a{color:#333;}
+#gonggao_lan span a:hover{color:#F60;}
+*/
+
+#slideDiv{margin-bottom:5px;height:286px;overflow:hidden;width:679px;position:relative;}
+#slideDiv ul{width:2716px;display:block;}
+#slideDiv ul li{float:left;}
+#slideDiv ol{position:absolute;top:250px;right:0px;}
+#slideDiv ol li{float:left;}
+#slideDiv ol li a{float:left;background-color:#eee;width:20px;height:20px;line-height:20px;margin-right:3px;text-align:center;color:#666666;}
+#slideDiv ol li a.active,#slideDiv ol li a:hover{background-color:#ff6600;color:#fff;}
+
+
+
+#order_query{margin-top:10px;margin-bottom:10px;}
+#order_query span.right a{margin-right:20px;color:red;}
+#order_query span.right a:hover{color:#e136e7;}
+#order_query ul{height:54px;}
+#order_query ul li{margin-top:13px;margin-left:50px;}
+#order_query input.text{width:450px;height:22px;line-height:22px\9;border:1px solid #bcbcbc;padding-left:3px;float:left;}
+#order_query a.sub{background-position:-121px 0;width:66px;height:24px;margin-left:5px;float:left;line-height:24px;text-align:center;color:#fff;}
+#order_query a.sub:hover{color:#dcdffc;}
+
+
+
+
+/*新首页的CSS*/
+h1,h2,h3,h4,h5,h6{color:#333;font-family:"微软雅黑";}
+.wd980{width:980px;margin:0 auto;} 
+.relative{position:relative;overflow:visible;z-index:1000;}
+
+/*首页的机票查询盒子*/
+#index_ticket_query{position:absolute;top:0;left:0;width:270px;background-color:#FFF;z-index:1000;box-shadow:0px 2px 20px -5px black;}
+#index_ticket_query h2{height:40px;line-height:40px;padding-left:40px;background:#ff9c00 url(../images/itq_t_bg.png) no-repeat;font-size:18px;font-weight:bold;color:#FFF;}
+#index_ticket_query h2 strong{font-size:22px;}
+#index_ticket_query .chaxun{margin:0px 4px 4px 4px;z-index:1000;}
+#index_ticket_query form{padding:0px;margin:0px;overflow:hidden;}
+#index_ticket_query ul{padding:7px 10px;}
+#index_ticket_query ul ul{margin:0px;padding:0px;}
+#index_ticket_query ul li{height:36px;line-height:36px;overflow:hidden;}
+#index_ticket_query input.text{padding:0 26px 0px 3px;width:145px;color:#999999;height:23px;border:1px solid #bcbcbc;line-height:23px\9;vertical-align:middle;}
+#index_ticket_query ul li.submit{margin-top:5px;}
+#index_ticket_query input.city{background:url(../images/chaxun_city.gif) no-repeat 150px center;}
+#index_ticket_query input.date{background:url(../images/chaxun_date.gif) no-repeat 150px center;}
+#index_ticket_query ul li span{color:#333px;font-weight:bold;font-size:13px;vertical-align:middle;padding-right:5px;}
+#index_ticket_query p{padding:0px;margin:0px;}
+#index_ticket_query p.tishi{display:block;width:240px;margin:0 auto;height:30px;line-height:30px;text-align:center;color:#666;overflow:hidden; border-top:1px dashed #ccc;}
+#index_ticket_query input.sub{border:0px;color:#fff;background-position:-88px -13px;width:119px;height:32px;font-weight:bold;font-size:15px;letter-spacing:3px;cursor:pointer;}
+#index_ticket_query input.sub:hover{color:#ecc;}
+#index_ticket_query p.tishi a{color:#0066cc;}
+#index_ticket_query p.tishi a:hover{color:#999;}
+
+/*首页全屏广告*/
+#index_slide_ad,#index_slide_ad li,#index_slide_ad li a{width:100%;height:293px;overflow:hidden;}
+#index_slide_ad{background:url(../images/fsad4.jpg) no-repeat center top;position:relative;}
+#index_slide_ad li{display:none;background:no-repeat center top;}
+#index_slide_ad li a{display:block;}
+#slide_ad_nav{position:absolute;height:5px;bottom:5px;right:0;z-index:100;display:none;}
+#slide_ad_nav a{display:inline-block;width:21px;height:5px;line-height:70px;overflow:hidden;background:#333;margin-right:4px;cursor:pointer;}
+#slide_ad_nav a:hover,#slide_ad_nav a.active{background:#ff6600;}
+
+/*首页认识&保证*/
+#renzheng_lan{height:120px;margin-top:10px;color:#666;}
+#renzheng_lan h2{padding-left:10px;line-height:30px;font-size:16px;font-weight:bold;border-bottom:2px solid #1679dd;}
+#renzheng_lan ul{height:86px;padding-left:3px;border-left:1px solid #cde6fd;border-bottom:1px solid #cde6f6; background:#f6fbff;}
+#renzheng_lan ul li{float:left;width:210px;height:86px;padding-left:33px;display:inline;border-right:1px solid #cde6f6;}
+#renzheng_lan ul li span{float:left;width:120px;margin-left:15px;line-height:17px;margin-top:28px;}
+#renzheng_lan ul li label{background:url(../images/renzheng_spr.gif) no-repeat;float:left;}
+#renzheng_lan .lb0 label{background-position:-50px 0px;;width:57px;height:38px;margin-top:22px;}
+#renzheng_lan .lb1 label{background-position:0px 0px;;width:50px;height:42px;margin-top:22px;}
+#renzheng_lan .lb2 label{background-position:-107px 0px;;width:47px;height:47px;margin-top:20px;}
+#renzheng_lan .lb3 label{background-position:-154px 0px;;width:47px;height:47px;margin-top:20px;}
+
+/*首页左右块状*/
+#cont{background:none!important;}
+#cont .contMain{min-height:500px;overflow:hidden;padding-bottom:10px;}
+#cont .contMain .contlt{width:700px;margin-right:10px;overflow:hidden;}
+#cont .contMain .contrt{width:270px;overflow:hidden;}
+
+/*RIGHT BOX*/
+.box_r{border:1px solid #d0e8fd;margin-top:10px;}
+.box_r h2{height:34px;line-height:34px;padding-left:10px;font-size:16px;font-weight:bold;background:#f6fbff;border-bottom:1px solid #d0e8fd;}
+.box_r h2 strong{color:#ff6600;/*font-weight:normal;*/}
+
+/*首页右边栏 查找*/
+#find_flight{padding:5px 10px;}
+#find_flight li{line-height:24px;}
+#find_flight span,#find_flight a,#find_flight strong{margin-right:8px;}
+#find_flight span{color:#666;}
+#find_flight a{color:#1679dd;display:inline-block;width:90px;}
+#find_flight strong{color:#ff6600;}
+#find_flight em{color:#999;font-style:normal;}
+
+/*首页右边栏 十大优势*/
+#service {height:166px;overflow:hidden;}
+#service li{padding:13px 8px 34px 14px;float:left;}
+#service li a{float:left;width:31px;height:31px;}
+#service li a label{top:38px;left:2px;color:#666666;width:auto;height:auto;cursor:pointer;position:relative;}
+#service li a:hover label{color:#ff7920;}
+#service li a.a0{background-position:0 0;}
+#service li a.a0:hover{background-position:0 -31px;}
+#service li a.a1{background-position:-51px 0;}
+#service li a.a1:hover{background-position:-51px -31px;}
+#service li a.a2{background-position:-106px 0;}
+#service li a.a2:hover{background-position:-106px -31px;}
+#service li a.a3{background-position:-156px 0;}
+#service li a.a3:hover{background-position:-156px -31px;}
+#service li a.a4{background-position:-209px 0;}
+#service li a.a4:hover{background-position:-209px -31px;}
+#service li a.a5{background-position:0 -62px;}
+#service li a.a5:hover{background-position:0 -93px;}
+#service li a.a6{background-position:-51px -62px;}
+#service li a.a6:hover{background-position:-51px -93px;}
+#service li a.a7{background-position:-106px -62px;}
+#service li a.a7:hover{background-position:-106px -93px;}
+#service li a.a8{background-position:-156px -62px;}
+#service li a.a8:hover{background-position:-156px -93px;}
+#service li a.a9{background-position:-205px -62px;}
+#service li a.a9:hover{background-position:-205px -93px;}
+
+/*首页右边栏广告图*/
+#web_link a{display:block;margin-top:10px;}
+#web_link a img{width:270px;}
+
+/*首页右边栏 机票工具箱*/
+#chest_link a{color:#1679dd;}
+#chest_link a:hover{color:#F60;}
+#chest_link dl{height:80px;padding:11px 11px 5px 11px;}
+#chest_link dd{float:left;padding:1px;}
+#chest_link dd a{width:80px;height:24px;line-height:24px;text-align:center;padding-top:56px;background:#eef8ff url(../images/chest_link_bg.png) no-repeat;display:block;}
+#chest_link dd a:hover{background:#cbe5fd url(../images/chest_link_bg.png) no-repeat;color:#1679dd;}
+#chest_link dd.a0 a{background-position:0 0;}
+#chest_link dd.a1 a{background-position:-80px 0;}
+#chest_link dd.a2 a{background-position:-160px 0;}
+#chest_link ul{padding-bottom:11px;}
+#chest_link li{width:100px;margin-top:6px;margin-left:25px;float:left;height:25px;line-height:25px;display:inline;}
+#chest_link li label{width:20px;height:19px;float:left;background:url(../images/s_small_tb.gif) no-repeat;}
+#chest_link li label.a0{background-position:0 -281px;}
+#chest_link li label.a1{background-position:-20px -281px;margin-left:2px;margin-top:1px;}
+#chest_link li label.a2{background-position:-40px -281px;}
+#chest_link li label.a3{background-position:-60px -281px;}
+#chest_link li label.a4{background-position:-80px -281px;margin-left:-1px;}
+#chest_link li label.a5{background-position:-100px -281px;}
+#chest_link li a{float:left;margin-left:10px;cursor:pointer;}
+
+/*首页右边栏 客户评价*/
+#index_evaluate_list{margin-bottom:10px;}
+#page_nav{padding:10px 15px 0 15px;height:14px;text-align:right;color:#666;font-family:Arial;}
+#page_nav em{color:#ff6600;font-style:normal;}
+#page_nav dl{float:right;}
+#page_nav dl,#page_nav dt,#page_nav dd{display:inline-block;color:#9a9a9a;}
+#page_nav dl{width:29px;height:12px;margin-left:5px;border:1px solid #d8d8d8;font-family:"宋体";}
+#page_nav dt,#page_nav dd{float:left;width:14px;line-height:12px;text-align:center;cursor:pointer;}
+#page_nav dt{border-right:1px solid #d8d8d8;}
+#index_evaluate_list h2 a{color:#1679dd;}
+#index_evaluate_list h2 label{color:#F60;font-size:18px;font-weight:bold;margin-left:5px;vertical-align:middle;}
+#index_evaluate_list h2 .right{padding-right:10px;}
+#index_evaluate_list ul{width:268px;padding:10px 0;display:none;}
+#index_evaluate_list ul.active{display:block;}
+#index_evaluate_list ul li{border-bottom:1px dashed #cde6fe;clear:both;padding:10px 0;margin:0 15px;}
+#index_evaluate_list ul li span.title{padding:0px 0px 10px 4px;}
+#index_evaluate_list ul li span.title div{float:left;width:200px;}
+#index_evaluate_list ul li span.title label{color:#333;margin-right:10px}
+#index_evaluate_list ul li span.title a.travel{color:#0066cc;font-weight:bold;float:none;line-height:18px;}
+#index_evaluate_list ul li span.title a.travel:hover{color:#ff6600;}
+#index_evaluate_list ul li span.intro{line-height:20px;color:#666666;overflow:hidden;padding-left:4px;clear:both;width:98%;display:block;padding-top:5px;;}
+#index_evaluate_list ul li span a.assgd{width:28px;height:16px;background-position:-35px 0;margin-right:10px;float:left;}
+
+/*LEFT BOX*/
+.box_l{border:1px solid #d0e8fd;border-top:2px solid #1679dd!important;margin-top:10px;}
+.box_l h2{height:34px;line-height:34px;padding-left:10px;font-size:16px;font-weight:bold;background:#f6fbff;border-bottom:1px solid #d0e8fd;}
+
+
+/*首页左边栏 会员活动精选(Member Activities)&新鲜事(fangle)*/
+#mem_act,#mem_act li,#fangle{float:left;}
+#mem_act{width:447px;height:333px;}
+#mem_act ul{padding:15px 0 0 15px;}
+#mem_act li{width:200px;height:120px;padding:0 15px 15px 0;}
+#fangle{width:253px;height:323px;margin-top:10px;background:url(../images/fangle_bg.gif) no-repeat;}
+#fangle dl{padding:0 12px;}
+#fangle dt{height:36px;line-height:36px;color:#ff6604;font-size:16px;font-family:"微软雅黑";}
+#fangle dd{line-height:23px;padding:4px 0 4px 20px;border-bottom:1px dashed #dbdbdd;color:#666; background:url(../images/fangle_icon.gif) no-repeat 0px 5px;position:relative;}
+#fangle dd span{color:#333;padding-right:5px;}
+#fangle dd a{color:#1679dd;padding:0 5px;}
+#fangle dd a:hover{color:#ff6600;}
+#fangle dd em{position:absolute;font-style:normal;color:#999;bottom:4px;right:0;}
+
+
+/*首页底部*/
+#cont .infobt{width:978px;border:1px solid #cfe7fd;height:144px;margin-bottom:10px;}
+#cont .infobt dl{float:left;width:230px;line-height:24px;margin-top:14px;text-align:center; background:url(../images/infobt_dl_bg.gif) no-repeat right center;}
+#cont .infobt dl dt{color:#333;font-size:14px;font-weight:bold;font-family:"微软雅黑";}
+#cont .infobt dl dd a{color:#333;}
+#cont .infobt dl dd a:hover{color:#0066cc;}
+#cont .infobt div{float:left;width:285px;height:144px;background:url(../images/infobt_tel.gif) no-repeat center center;}

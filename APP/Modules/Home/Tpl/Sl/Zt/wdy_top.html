@@ -1,0 +1,19 @@
+<div id="lgog_nav" class="m">
+    <div id="logo" class="left"><a href="{:U('/')}" target="_blank"><img src="__PUBLIC__/images/Zt/wdy/logo.png"></a></div>
+
+
+    <if condition="$userinfo">
+
+				<span class="right">您好,
+				<a title="进入会员中心" href="{:U('/Member/index')}"><if condition="$userinfo['name']">{$userinfo.name}<else/>{$userinfo.username}</if></a>
+					普通会员  <a href="{:U('/member/out')}">退出</a>
+				</span>
+
+        <else/>
+        <ul id="h_nav" class="right">
+            <li class="bor_r"><a href="{:U('/member/login')}" target="_blank">登录</a></li>
+            <li><a href="{:U('/member/register')}" target="_blank">注册</a></li>
+        </ul></span>
+    </if>
+
+</div>

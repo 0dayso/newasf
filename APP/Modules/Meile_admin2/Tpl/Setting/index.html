@@ -1,0 +1,41 @@
+<php>$title="站点配置-系统设置"</php>
+<include file="Public:header" />
+        <div class="mainBody">
+            <include file="Public:left" />
+            <div id="Right">
+                <div class="contentArea">
+                    <div class="Item hr">
+                        <div class="current">站点配置</div>
+                    </div>
+                    <form action="{:U('setting/updateConfig')}" method="post">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table1">
+                            <tr>
+                                <th width="120">站点名称：</th>
+                                <td><input name="WEB_NAME" type="text" class="input" size="40" value="{:C('WEB_NAME')}" /></td>
+                            </tr>
+                            <tr>
+                                <th>网站关键字：</th>
+                                <td><input class="input" name="WEB_KEYWORD" type="text" size="40" value="{:C('WEB_KEYWORD')}" /></td>
+                            </tr>
+                            <tr>
+                                <th>网站简介：</th>
+                                <td><textarea name="WEB_DESCRIPTION" cols="100" rows="3">{:C('WEB_DESCRIPTION')}</textarea></td>
+                            </tr>
+                        </table>
+                    </form>
+                    <div class="commonBtnArea" >
+                        <button class="btn submit">提交</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+<include file="Public:footer" />
+<script type="text/javascript">
+    $(".submit").click(function(){
+        commonAjaxSubmit();
+    });
+</script>
+</body>
+</html>

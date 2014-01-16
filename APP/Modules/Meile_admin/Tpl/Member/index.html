@@ -1,0 +1,86 @@
+<include file="Public:pagerForm" />
+<div class="pageHeader">
+    <form rel="pagerForm" onsubmit="return navTabSearch(this);" action="__URL__" method="post">
+        <div class="searchBar">
+            <ul class="searchContent">
+                <li>
+                    <label>搜索：</label>
+                    <input type="text" name="so" value="{$_REQUEST.so}" placeholder ="搜索帐号、姓名、手机"/>
+                </li>
+                <li>
+                    <label>注册日期：</label>
+                    <input type="text" size="10"  class="date textInput valid"  name="so_date1" value="{$_REQUEST.so_date1}">
+                    <a class="inputDateButton" href="javascript:;">选择</a> &nbsp;&nbsp;-
+                </li>
+                <li>
+                    <input type="text" size="10"  class="date textInput valid"  name="so_date2" value="{$_REQUEST.so_date2}">
+                    <a class="inputDateButton" href="javascript:;">选择</a>
+                </li>
+            </ul>
+            <div class="subBar">
+                <ul>
+                    <li><div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div></li>
+                </ul>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="pageContent">
+    <div class="panelBar">
+        <ul class="toolBar">
+            <li><a class="add" href="__URL__/add" target="dialog"  rel="add" mask="true"><span>新增</span></a></li>
+            <li><a class="delete" href="__URL__/foreverdelete/id/{sid_user}/navTabId/__MODULE__-index" target="ajaxTodo" title="你确定要删除吗？" warn="请选择用户"><span>删除</span></a></li>
+            <li><a class="edit" href="__URL__/edit/id/{sid_user}" target="dialog" width="650" mask="true" warn="请选择"><span>编辑</span></a></li>
+             <li><a class="edit" href="__URL__/points/id/{sid_user}" target="dialog" mask="true" warn="请选择"><span>积分管理</span></a></li>
+            <li class="line">line</li>
+            <li><a class="icon" href="__URL__/password/id/{sid_user}" target="dialog" mask="true" warn="请选择用户"><span>修改密码</span></a></li>
+        </ul>
+    </div>
+
+    <table class="table" width="100%" layoutH="115">
+        <thead>
+        <tr>
+            <th width="50">编号</th>
+            <th width="100" orderField="username" <if condition="$_REQUEST._order eq 'username'">class="{$_REQUEST._sort}"</if>>用户名</th>
+            <th width="100" orderField="name" <if condition="$_REQUEST._order eq 'name'">class="{$_REQUEST._sort}"</if>>昵称</th>
+            <th width="90" orderField="mobile" <if condition="$_REQUEST._order eq 'mobile'">class="{$_REQUEST._sort}"</if>>手机</th>
+            <th width="100" orderField="email" <if condition="$_REQUEST._order eq 'email'">class="{$_REQUEST._sort}"</if>>Email</th>
+            <th width="60" orderField="create_time" <if condition="$_REQUEST._order eq 'create_time'">class="{$_REQUEST._sort}"</if>是>添加时间</th>
+            <th width="120" orderField="last_login_time" <if condition="$_REQUEST._order eq 'last_login_time'">class="{$_REQUEST._sort}"</if>>上次登录</th>
+            <th width="50" orderField="login_count" <if condition="$_REQUEST._order eq 'login_count'">class="{$_REQUEST._sort}"</if>>登录次数</th>
+            <th width="80" orderField="status" <if condition="$_REQUEST._order eq 'status'">class="{$_REQUEST._sort}"</if>>状态</th>
+            <th width="120" orderField="status" <if condition="$_REQUEST._order eq 'user_name'">class="{$_REQUEST._sort}"</if>>专属顾问</th>
+
+            <th width="25">来路</th>
+            <th width="80">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <volist id="vo" name="list">
+            <tr target="sid_user" rel="{$vo['id']}">
+                <td>{$vo['id']}</td>
+                <td>{$vo['username']}</td>
+                <td>{$vo['name']}</td>
+                <td>{$vo.mobile}</td>
+                <td>{$vo['email']}</td>
+                <td>{$vo['create_time']|date="Y-m-d",###}</td>
+                <td>{$vo['last_login_time']|date="Y-m-d H:i",###}</td>
+                <td>{$vo['login_count']}</td>
+                <td>{$vo['status']}</td>
+                <td>{$vo.user.name}</td>
+                <td>{$vo.source}</td>
+                <td><a href="__URL__/edit/id/{$vo.id}" target="dialog" rel="edit" width="650">[编辑]</a></td>
+            </tr>
+        </volist>
+        </tbody>
+    </table>
+
+    <div class="panelBar">
+        <div class="pages">
+            <span>共{$totalCount}条</span>
+        </div>
+        <div class="pagination" targetType="navTab" totalCount="{$totalCount}" numPerPage="{$numPerPage}"  pageNumShown="10" currentPage="{$currentPage}"></div>
+    </div>
+
+</div>

@@ -1,0 +1,220 @@
+<include file="Public:header" />
+<script type="text/javascript" src="__PUBLIC__/js/index.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/css/index.css" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/js/flightquery.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/css/interticket.css" type="text/css" />
+<style type="text/css">
+#ticket_Query{margin-bottom:10px;}
+#fquery{height:auto}
+</style>
+    <div id="cont">
+        <div class="wd1000 mt10 bgWhite">
+        	<h1 class="h1_tit_nav">你当前所在位置：<a href="/" class="sy">首页</a> > <a class="cur">国际航线</a></h1>
+            <div class="left mt10 ml10" id="evaluate_alt">
+                <div id="fquery">
+                    <h2><label>国际机票查询</label></h2>
+
+                    <div id="load">
+                        <h3>正在为您实时搜索：</h3>
+                        <p class="f_txt">从<strong>{$city.from}</strong>到<strong>{$city.to}</strong>的 航班</p>
+                        <div><img src="__PUBLIC__/images/f_loading.gif" width="180" height="8" /><span></span></div>
+                    </div>
+
+                    <div id="consultancy">
+                        <div class="warn">温馨提示，您的查询请求已被接收，爱尚飞国际机票网正在为您转接专业旅行顾问，为您提供一对一专业国际机票预订服务！
+                        </div>
+                        <div id="cons_select">
+                            <label><input type="radio" name="cons" value="1" checked="checked"/>咨询专业顾问<span><b>5</b>秒</span></label>
+                            <label><input type="radio" name="cons" value="2" />快速提交联系方式<em>（我们将以最快速度与您联系）</em></label>
+                        </div>
+                        <div id="fquery_form">
+                            <form action="{:U('/iflight/sidebar')}" method="post" id="flightquery_form">
+                                <ul>
+                                    <li id="radio_sel2">
+                                        <input type="radio" name="journey"  value="1" checked="checked" /><label>&nbsp;往返&nbsp;&nbsp;</label>
+                                        <input type="radio" name="journey" value="2"/><label>&nbsp;单程&nbsp;</label>
+                                    </li>
+                                    <li>
+                                        <input type="text" class="text city" name="from_city"  value="{$_GET['origin_name']}" state="1"/>
+                                    </li>
+                                    <li>
+                                        <input type="text" class="text city" name="to_city"  value="{$_GET['desination_name']}" state="1"/>
+                                    </li>
+                                    <li>
+                                        <input type="text" class="text date" name="origin_date" id="originDate2"  value="{$_GET['originDate']}" state="1" />
+                                    </li>
+                                    <li>
+                                        <input type="text" class="text date" name="return_date" id="returnDate2"  value="{$_GET['returnDate']}"  state="1"/>
+                                    </li>
+                                    <li>
+                                        <input type="text" class="text" name="name" id="name" required value="您的姓名"/>
+                                    </li>
+                                    <li>
+                                        <input type="text" class="text" name="phone" id="phone" maxlength="11" required value="您的手机号" />
+                                    </li>
+                                    <li class="submit">
+                                        <input type="submit" value="立即提交" />
+                                    </li>
+                                </ul>
+                                <a href="{:U('/iflight/demand')}" target="_blank">提交详细需求</a>
+                            </form>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="mt10 pjlb">
+                	<h2 class="h0">看看<label class="cs">{$city.from}</label>到<label class="cs">{$city.to}</label>机票的评价</h2>
+                    <dl class="myd">
+                    	<dd class="d0"><span class="sp0">{$pl[hao]/$count*100|round=###}%</span><span class="sp1">客户满意度</span></dd>
+                        <dd class="d1">
+                        	<span>
+                            	<a class="a0">好评：<label>{$pl.hao}</label>人</a>
+                                <a class="a1">占比：{$pl[hao]/$count*100|round=###}%</a>
+                                <a class="a2">顾问服务：</a>
+                                <label class="kfpj"><a class="a{$server*2|round=###}"></a></label>
+                                <a class="a4">{$server}</a>
+                            </span>
+                            <span>
+                            	<a class="a0">中评：<label>{$pl.zhong}</label>人</a>
+                                <a class="a1">占比：{$pl[zhong]/$count*100|round=###}%</a>
+                                <a class="a2">出票速度：</a>
+                                <label class="kfpj"><a class="a{$server*2|round=###}"></a></label>
+                                <a class="a4">{$speed}</a>
+                            </span>
+                            <span>
+                            	<a class="a0">差评：<label>{$pl.cha}</label>人</a>
+                                <a class="a1">占比：{$pl[cha]/$count*100|round=###}%</a>
+                                <a class="a2">机票价格：</a>
+                                <label class="kfpj"><a class="a{$server*2|round=###}"></a></label>
+                                <a class="a4">{$price}</a>
+                            </span>
+                        </dd>
+                        <dd class="d2">
+                        	<span>我已成功预订</span>
+                            <span><a class="button"<if condition="$userinfo['name']">href="{:U('/Adviser')}/{$userinfo.user.id}/review" <else /> href="{:U('/member/login')}"</if> target="_blank" class="pj">立即评价</a></span>
+                        </dd>
+                    </dl>
+                    <ul><!--这里列十个li-->
+                        <foreach name="list" item="v">
+                            <li>
+                        	<span class="rec"><a class="tb"></a><a>{$v.name}</a>
+                                <a href="{:U('airline/pl/','from='.$v['from_iata'].'&to='.$v['to_iata'])}" class="re">{$v.from_city}→{$v.to_city}</a><a class="tm">{$v.create_time|date="Y-m-d",###}</a></span>
+                            <span class='pj'><label>总体评价：</label>
+                                <label class="kfpj" title="很好">
+                                    <label class="lb{$v['total']}"></label>
+                                </label>
+                                <label>客服<a>
+                                    <?php if($v['server'] > 4 ){
+                                    echo '很好';
+                                    }elseif($v['server'] > 3){
+                                    echo '较好';
+                                    }elseif($v['server'] > 2){
+                                    echo '一般';
+                                    }elseif($v['server'] > 1){
+                                    echo '较差';
+                                    }elseif($v['server'] == 1){
+                                    echo '很差';
+                                    }
+                                    ?>
+                                </a>
+                                </label>
+
+                                <label>出票
+                                    <a>
+                                        <?php if($v['speed'] > 4 ){
+                                        echo '很快';
+                                        }elseif($v['speed'] > 3){
+                                        echo '比较快';
+                                        }elseif($v['speed'] > 2){
+                                        echo '一般';
+                                        }elseif($v['speed'] > 1){
+                                        echo '比较慢';
+                                        }elseif($v['speed'] == 1){
+                                        echo '非常慢';
+                                        }
+                                        ?>
+                                    </a>
+
+                                </label><label>价格<a>
+                                    <?php if($v['price'] > 4 ){
+                                    echo '很实惠';
+                                    }elseif($v['price'] > 3){
+                                    echo '较实惠';
+                                    }elseif($v['price'] > 2){
+                                    echo '一般';
+                                    }elseif($v['price'] > 1){
+                                    echo '较高';
+                                    }elseif($v['price'] == 1){
+                                    echo '很高';
+                                    }
+                                    ?>
+
+                                </a></label></span>
+                                <span class="ct">{$v.contents}</span>
+                            </li>
+                        </foreach>
+                    </ul>
+                    <p class="pagingBar">
+                    	<span class="cur">
+                    		{$page}
+                        </span>
+
+                    </p>
+                </div>
+            </div>
+
+            <div class="right mr10 mt10">
+                <div id="ticket_Query">
+                    <div class="covr_c"></div>
+                    <div class="cont_c">
+                        <div class="cont_c_b">
+                            <h1 class="spr htop"></h1>
+                            <include file="Public:searchform" />
+                        </div>
+                    </div>
+                    <div class="covr_c"></div>
+                </div>
+
+                <div class="evaluate_ad" id="advisor_list">
+                    <if condition="$userinfo">
+                        <h4>我的专职客服顾问</h4>
+                        <ul>
+                            <li>
+                            <span class="wd span0">
+                                <span class="imgs"><img src="__PUBLIC__/uploads/{$userinfo.user.avatar}" alt="jy" /></span>
+                                <span class="infos">
+                                    <a class="name" style="display:inline;">{$userinfo.user.name}</a>
+                                    <a target="_blank" style="display:inline;" href="http://wpa.qq.com/msgrd?v=3&uin={$userinfo.user.qq|trim}&site=qq&menu=yes"><img src="http://wpa.qq.com/pa?p=2:{$userinfo.user.qq|trim}:47" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
+                                    <a>手机号码：<label>{$userinfo.user.public_mobile}</label></a>
+                                    <a>电话号码：<label>{$userinfo.user.telephone}</label></a>
+                                </span>
+                                <span class="kfpj"><label>服务评价：</label><label class="kfpj" title="五颗星"><a class="a10"></a></label><label class="aa"><a href="{:U('/Adviser/review')}_{$userinfo.user.id}">查看所有评价</a></label></span>
+                            </span>
+                            </li>
+                        </ul>
+                     <else/>
+                  <!-- <h3><span class="left"><a href="javascript:;" class="active">广州</a><label>|</label><a href="javascript:;">上海</a><label>|</label><a href="javascript:;">北京</a><label>|</label><a href="javascript:;">深圳</a></span></h3> -->
+                        <div class="titbk"><span class="left">专业商旅顾问推荐</span></div>
+                    <ul>
+                        <foreach name="kf_list" item="v">
+                        <li>
+                            <span class="wd span0">
+                                <span class="imgs"><img src="__PUBLIC__/uploads<if condition="$v[avatar]">{$v[avatar]}<else/>/avatar/default.gif</if>" alt="jy" /></span>
+                                <span class="infos">
+                                    <a class="name" style="display:inline;">{$v.name}</a>
+                                    <a target="_blank" style="display:inline;" href="http://wpa.qq.com/msgrd?v=3&uin={$v.qq|trim}&site=qq&menu=yes"><img src="http://wpa.qq.com/pa?p=2:{$v.qq|trim}:47" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
+                                    <a>手机号码：<label>{$v.public_mobile}</label></a>
+                                    <a>电话号码：<label>{$v.telephone}</label></a>
+                                </span>
+                                <span class="kfpj"><label>服务评价：</label><label class="kfpj" title="五颗星"><a class="a<?php echo round($userver[$v['id']]*2); ?>"></a></label><label class="aa"><a href="{:U('/Adviser/review')}_{$v.id}">查看所有评价</a></label></span>
+                            </span>
+                        </li>
+                        </foreach>
+                    </ul>
+                    </if>
+                </div>
+        	</div>
+        </div>
+    </div>
+<include file="Public:footer" />

@@ -1,0 +1,77 @@
+<include file="public:header" />
+<style type="text/css">#kfivtwin{display:none!important;/*隐藏53客服*/}</style>
+<script>
+	function zoom0(e){
+		createimg(e,"zoom0");
+	}
+	function zoom1(e){
+		createimg(e,"zoom1");
+	}
+	function createimg(e,s){
+		if(document.getElementById("p_"+s)){return;}
+		var e = e || window.event;
+		var x = e.clientX;
+		var y = e.clientY;
+		var img=document.createElement("img");
+		img.src="__PUBLIC__/pages/toubu/"+s+".jpg";
+		img.id="p_"+s;
+		img.style.cssText="position:absolute;z-index:1000000;border:8px solid #d5d5d5;background-color:#678;padding:1px;top:"+(getScr_xx("scrollTop")+y-212)+"px;left:"+(x-300)+"px;width:600px;height:424px;";
+		img.onmouseout=function(){this.parentNode.removeChild(this);}
+		document.body.appendChild(img);	
+	}
+	var position=function(o){
+		var a = o.offsetLeft, b = o.offsetTop, c = o.offsetParent;
+		try {
+			while (c.tagName != "BODY") { a += c.offsetLeft; b += c.offsetTop; c = c.offsetParent; }
+		} catch (e) { } return { left: a, top: b };	
+	}
+	var userAgent_xx = navigator.userAgent.toLowerCase();
+	var browser_xx = {
+		version: (userAgent_xx.match(/.+(?:rv|it|ra|ie)[\/: ]([\d.]+)/) || [])[1],
+		safari: /webkit/.test(userAgent_xx),
+		opera: /opera/.test(userAgent_xx),
+		msie: /msie/.test(userAgent_xx) && !/opera/.test(userAgent_xx),
+		mozilla: /mozilla/.test(userAgent_xx) && !/(compatible|webkit)/.test(userAgent_xx)
+	};
+	var getScr_xx = function (t) {
+		var d;
+		if (typeof document.compatMode != 'undefined' && document.compatMode != 'BackCompat') { d = eval("document.documentElement." + t); }
+		else if (typeof document.body != 'undefined') d = eval("document.body." + t);
+		else d = 0;
+		if (t == "scrollTop" || t == "scrollLeft") {
+			if (browser_xx.safari) d = eval("document.body." + t);
+		}
+		return d;
+	}									
+</script>
+<div id="cont">
+	<div  style="width:960px;margin:0px auto;">
+		<div class="ll" id="step"><img src="__PUBLIC__/pages/toubu/ml_ten_01.gif" width="960" height="367" alt="爱尚飞10大理由" title="爱尚飞10大理由" >
+	</div>
+	<div class="ll" id="step1"><img src="__PUBLIC__/pages/toubu/ml_ten_02.gif" width="960" height="332" alt="爱尚飞10大理由" title="爱尚飞10大理由" >
+	</div>
+	<div class="ll" id="step2"><img src="__PUBLIC__/pages/toubu/ml_ten_03.gif" width="960" height="314" alt="爱尚飞10大理由" title="爱尚飞10大理由" >
+	</div>
+	<div class="ll" id="step3"><img src="__PUBLIC__/pages/toubu/ml_ten_04.gif" width="960" height="316" alt="爱尚飞10大理由" title="爱尚飞10大理由" >
+	</div>
+	<div class="ll" id="step4"><img src="__PUBLIC__/pages/toubu/ml_ten_05.gif" width="960" height="317" alt="爱尚飞10大理由" title="爱尚飞10大理由" >
+	</div>
+	<div class="ll" id="step5"><img src="__PUBLIC__/pages/toubu/ml_ten_06.gif" width="960" height="313" alt="爱尚飞10大理由" title="爱尚飞10大理由" >
+	</div>
+	<div class="ll" id="step6"><img src="__PUBLIC__/pages/toubu/ml_ten_07.gif" width="960" height="316" alt="爱尚飞10大理由" title="爱尚飞10大理由"  usemap="#planetmap">
+	</div>
+	<div class="ll" id="step7"><img src="__PUBLIC__/pages/toubu/ml_ten_08.gif" width="960" height="315" alt="爱尚飞10大理由" title="爱尚飞10大理由" >
+	</div>
+	<div class="ll" id="step8"><img src="__PUBLIC__/pages/toubu/ml_ten_09.gif" width="960" height="319" alt="爱尚飞10大理由" title="爱尚飞10大理由" >
+	</div>
+	<div class="ll" id="step9"><img src="__PUBLIC__/pages/toubu/ml_ten_10.gif" width="960" height="314" alt="爱尚飞10大理由" title="爱尚飞10大理由" >
+	</div>
+	<div class="ll" id="step10"><img src="__PUBLIC__/pages/toubu/ml_ten_11.gif" width="960" height="310" alt="爱尚飞10大理由" title="爱尚飞10大理由" >
+	</div>
+		<map name="planetmap">
+		  <area shape="rect" coords="244,55,513,244" onmouseover="zoom0(event)" href="#"/>
+		  <area shape="rect" coords="583,55,855,244" onmouseover="zoom1(event)"  href="#"/>
+		</map>
+	</div>
+</div>
+<include file="public:footer" />

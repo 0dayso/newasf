@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{$title}-爱尚飞手机网</title>
+<link href="__PUBLIC__/mobile/css/global.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+#topnav .icon{width:80px;}
+.box h2{padding-right:42px;}
+#import{padding:10px 10px 0 10px;margin-bottom:10px;height:80px;}
+#import span{margin-bottom:10px;display:block;}
+</style>
+</head>
+
+<body>
+<div id="page">
+  <div id="content">
+    <h1 id="topnav"><span class="left icon"><a href="{:U('/')}" class="icon-home">首页</a></span>我的爱尚飞<span class="right" id="exit">退出登录</span></h1>
+    <div class="box">
+      <form action="" method="post">
+        <h2><span class="left icon"><a href="{:U('/Member')}" class="icon-return">返回</a></span>修改密码</h2>
+        <div id="import">
+          <span><input name="password" type="password" id="password" maxlength="18" required placeholder="请输入新密码" class="txt"></span>
+          <span><input name="re_password" type="password" id="password2" maxlength="18" required placeholder="再次输入新密码" class="txt"></span>
+        </div>
+        <input type="submit" value="确认无误，提交" class="sub">
+      </form>
+    </div>
+  </div>
+</div>
+<include file="Public:CommonJs" />
+<script type="text/javascript">
+$(function(){
+	//提交表单
+	$('form').submit(function(){
+		if(!(verify('#password','密码',18,/^[A-Za-z0-9]{6,18}$/))){
+			return false;
+			}else if($('#password').val()!==$('#password2').val()){
+				msg("两次输入的密码不相同！");
+				return false;
+				}else{
+					$.post(url,$('#password').val(),function(data){
+						if(data.status==1){
+							msg("修改成功！",0,'correct');
+							window.location.href="{:U('/Member')}";
+							}else{
+								msg(data.info);
+                            }
+							},'json');
+					}
+                     return false;
+		});
+});
+//表单验证
+function verify(id,name,maxlength,expression){
+	var value=$(id).val(),content="";
+	/*alert(expr);*/
+	if(expression!=""){
+		content=value==""?name+"不能为空！":value.length>maxlength?name+"内容超出限制！":(!expression.test(value))?name+"输入不正确！":"";
+		}else{
+			content=value==""?name+"不能为空！":value.length>maxlength?name+"内容超出限制！":"";
+			}
+	if(content!=""){return msg(content);}else{return true;}
+	}
+</script>
+</body>
+</html>

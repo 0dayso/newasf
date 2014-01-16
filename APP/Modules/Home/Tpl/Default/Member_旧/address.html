@@ -1,0 +1,79 @@
+<include file="Public:header" />
+<link rel="stylesheet" href="__PUBLIC__/css/userCenter.css" type="text/css" />
+<script type="text/javascript">
+    function address_edit(id){
+        var url="{:U('/Member/address','act=edit')}"+"?id="+id;
+        $.layer({
+            type : 2,
+            title:'修改',
+            area: ['600px','400'],
+            border : [3, 0.3, '#666', true],
+            shadeClose:true,
+            iframe:{src: url},
+            close : function(index){
+                location.reload();
+                layer.close(index);
+            },
+            end : function(){
+                location.reload();
+            }
+        });
+    }
+</script>
+
+<div id="cont">
+    <div class="wd960 mt10 bgWhite">
+        <h1 class="h1_tit_nav">你当前所在位置：<a href="{:U('/')}" class="sy">首页</a> > <a href="{:U('/member')}" class="sy">会员中心</a> > <a class="cur">地址管理</a></h1>
+        <include file='left' />
+        <div class="left mt10" id="mdsc">
+            <include file="top_kf" />
+            <div class="top_nav_hr">
+                <span>地址管理</span>
+            </div> 
+            <div class="top_nav_qh">
+                <ul>
+                    <li><a href="{:U('/member/address')}"   class="active"  >收货地址</a></li>
+                    <li><a href="{:U('/member/address','act=add')}"  >添加地址</a></li>
+                </ul>
+
+            </div>
+            <div class="prosc">
+                <table width="100%" cellpadding="2">
+                    <tr class="thbg">
+                        <td width="15%"><strong>收件人</strong></td>
+                        <td width="20%"><strong>所在地</strong></td>
+                        <td width="30%"><strong>祥细地址</strong></td>
+                        <td width="10%"><strong>邮编</strong></td>
+                        <td width="15%"><strong>电话</strong></td>
+                        <td width="18%"><strong>操作</strong></td>
+                    </tr>
+
+                    <foreach name="list" item="v">
+                    <tr>
+                        <td>{$v.name}</td>
+                        <td>{$v.province}-{$v.city}</td>
+
+                        <td>{$v.address}</td>
+                        <td>{$v.zip_code}</td>
+                        <td>{$v.mobile}</td>
+                        <td><a href="javascript:;" onclick="address_edit('{$v.id}')">修改</a> | <a href="{:U('/Member/address','act=del&id='.$v['id'])}">删除</a></td>
+
+                    </tr>
+                    </foreach>
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+
+               <p class="pagingBar"><span class="cur"> {$page}</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+<include file="Public:footer" />

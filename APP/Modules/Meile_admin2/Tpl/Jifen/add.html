@@ -1,0 +1,119 @@
+<php>$title="添加、编辑产品-后台管理";$currentNav ='商城管理 > 添加编辑产品';</php>
+<include file="Public:header" />
+            <div class="mainBody">
+                <include file="Public:left" />
+                <div id="Right">
+                    <div class="Item hr">
+                        <div class="current">添加编辑产品</div>
+                    </div>
+                    <form  method="post" name="form" enctype="multipart/form-data">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table1">
+                            <tr>
+                                <th width="100">标题：</th>
+                                <td><input id="title" type="text" class="input" size="60" name="info[title]" value="{$info.title}"/> <a href="javascript:void(0)" id="checkNewsTitle">检测是否重复</a></td>
+                            </tr>
+
+                            <tr>
+                                <th width="100">发布状态：</th>
+                                <td><label><input type="radio" name="info[status]" value="0" <if condition="$info.status eq 0"> checked="checked"</if> /> 审核状态</label> &nbsp; <label><input type="radio" name="info[status]" value="1" checked="checked"/> 已发布状态</label> </td>
+                            </tr>
+                            <tr>
+                                 <th>税换类型</th>
+                                <td class="sh_type">
+                                    积分税换:<input type="radio" name="info[type]" data="55" checked value="0">&nbsp;&nbsp;
+                                    爱钻税换:<input type="radio" name="info[type]" data="56" value="1" <if condition="$info['type'] eq 1">checked</if> >
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>所属分类：</th>
+                                <td>
+                                    <select name="info[cid]" class="cat_select">
+                                            <option selected="selected">请选择类型</option>
+                                    </select></td>
+                            </tr>
+
+                            <tr>
+                                <th>产品数量：</th>
+                                <td><input type="text" class="input" name="info[amount]" value="{$info.amount}" /></td>
+                            </tr>
+
+                            <tr>
+                                <th>已兑换数：</th>
+                                <td><input type="text" class="input" name="info[sales]" value="{$info.sales}" /></td>
+                            </tr>
+
+                            <tr>
+                                <th>所需积分(钻)：</th>
+                                <td><input type="text" class="input" name="info[jifen]" value="{$info.sales}" /></td>
+                            </tr>
+
+                            <tr>
+                                <th>图片：</th>
+                                <td><input type="file" class="input" size="60" name="img" value="" />{$info.img} </td>
+                            </tr>
+                            <tr>
+                                <th>描述：</th>
+                                <td><textarea class="input" style="height: 60px; width: 600px;" name="info[description]">{$info.description}</textarea></td>
+                            </tr>
+
+                            <tr>
+                                <th>详细内容：</th>
+                                <td><textarea id="content" class="input" style="height: 300px; width: 100%;" name="info[content]">{$info.content}</textarea></td>
+                            </tr>
+                        </table>
+                        <input type="hidden" name="info[id]" value="{$info.id}" />
+                    </form>
+                    <div class="commonBtnArea" >
+                        <button class="btn submit">提交</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <include file="Public:footer" />
+        <js href="__PUBLIC__/admin/kindeditor/kindeditor.js"/>
+        <js href="__PUBLIC__/admin/kindeditor/lang/zh_CN.js"/>
+        <script type="text/javascript">
+
+            $(function(){
+                function get_cat_select(cid){
+                    $('.cat_select').html('<option >加载中...</option>');
+                    var info_cid="{$info['cid']}"?"{$info['cid']}":'';
+                        var cat_val=cid;
+                        $.getJSON('','cid='+cat_val,function(data){
+                            var html;
+                            $.each(data.info,function(i,vo){
+                                if(vo.cid==info_cid){
+                                    html += '<option value="'+vo.cid+'" selected="selected">'+vo.fullname+'</option>';
+                                }else{
+                                    html += '<option value="'+vo.cid+'">'+vo.fullname+'</option>';
+                                }
+                            });
+                            $('.cat_select').html(html);
+                        });
+                }
+
+                $('.sh_type input').change(function(){
+                    get_cat_select($(this).attr('data'));
+                });
+                var cid=$('.sh_type input:checked').attr('data');
+                get_cat_select('55');
+
+                var  content ;
+                KindEditor.ready(function(K) {
+                    content = K.create('#content');
+                });
+                $("#checkNewsTitle").click(function(){
+                    $.getJSON("__URL__/checkNewsTitle", { title:$("#title").val(),id:"{$info.id}"}, function(json){
+                        $("#checkNewsTitle").css("color",json.status==1?"#0f0":"#f00").html(json.info);
+                    });
+                });
+                $(".submit").click(function(){
+                    content.sync();
+                    commonAjaxSubmit();
+                    return false;
+                });
+            });
+        </script>
+    </body>
+</html>

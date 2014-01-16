@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>我的订票需求-爱尚飞手机网</title>
+<link href="__PUBLIC__/mobile/css/global.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+#topnav{padding-right:42px;}
+#import{padding:10px 10px 0 10px;margin-bottom:10px;height:208px;}
+#import span{margin-bottom:10px;display:block;}
+#import textarea{height:120px;}
+.box p{padding:10px;}
+</style>
+</head>
+
+<body>
+<div id="page">
+  <div id="content">
+    <h1 id="topnav"><span class="left icon"><a href="{:U('/')}" class="icon-home">首页</a></span>快速下单</h1>
+    <div class="box">
+      <form action="" method="post">
+        <div id="import">
+          <span><input name="name" type="text" id="name" maxlength="20" required placeholder="您的姓名" class="txt" value="{$userinfo.name}"></span>
+          <span><input name="phone" type="text" id="phone" maxlength="11" required placeholder="您的手机号" class="txt" value="{$userinfo.mobile}"></span>
+          <span><textarea name="content" id="demand" maxlength="60" required placeholder="您的订票需求,例如:9月17日,北京到洛杉矶,往返限30个字符以内"></textarea></span>
+        </div>
+        <input type="submit" value="完成" class="sub" id="sub">
+      </form>
+      <p>我们将尽快与您联系，敬请留意。（为避免影响您的休息，我们会在9:00-21:00联系您）</p>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/mobile/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	//提交表单
+	$('form').submit(function(){
+		var url="{:U('/Mydemand/index')}";
+		if(!(verify('#name','姓名',20,''))){
+			return false;
+			}else if(!(verify('#phone','手机',11,/^(1(([35][0-9])|(47)|[8][01236789]))\d{8}$/))){
+				return false;
+				}else if(!(verify('#demand','需求',60,''))){
+					return false;
+					}else{
+						$.post(url,$(this).serialize(),function(data){
+                            if(data.status==1){
+                                alert(data.info);
+                                location.href=data.url;
+                            }else{
+                                alert(data.info);
+                            }
+							},'json');
+					}
+                     return false;
+		});
+});
+
+function verify(id,name,maxlength,expression){
+	var value=$(id).val(),content="";
+	/*alert(expr);*/
+	if(expression!=""){
+		content=value==""?name+"不能为空！":value.length>maxlength?name+"内容超出限制！":(!expression.test(value))?name+"输入不正确！":"";
+		}else{
+			content=value==""?name+"不能为空！":value.length>maxlength?name+"内容超出限制！":"";
+			}
+	if(content!=""){return alert(content);}else{return true;}
+	}
+</script>
+<include file="Public:kf" />
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>会员注册-爱尚飞手机网</title>
+<link href="__PUBLIC__/mobile/css/global.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+#topnav{padding-right:42px;}
+.box h2{padding-right:42px;}
+#import{padding:10px 10px 0 10px;margin-bottom:10px;height:160px;}
+#import span{margin-bottom:10px;display:block;}
+</style>
+</head>
+
+<body>
+<div id="page">
+  <div id="content">
+    <h1 id="topnav"><span class="left icon"><a href="{:U('/')}" class="icon-home">首页</a></span>我的爱尚飞</h1>
+    <div class="box">
+      <form action="" method="post">
+        <h2><span class="left icon"><a href="{:U('/Member/login')}" class="icon-return">返回</a></span>免费注册</h2>
+        <div id="import">
+          <span><input name="name" type="text" id="name" maxlength="20" required placeholder="请输入用户名(6-20位数字或字母组合字符)" class="txt"></span>
+          <span><input name="phone" type="text" id="phone" maxlength="11" required placeholder="请输入您的手机号码" class="txt"></span>
+          <span><input name="password" type="password" id="password" class="txt" maxlength="18" required placeholder="密码(6-18位数字或字母组合字符)"></span>
+          <span><input name="password2" type="password" id="password2" class="txt" maxlength="18" required placeholder="重复密码"></span>
+            <input name="act" type="hidden" value="register" />
+        </div>
+        <input type="submit" value="确认提交" class="sub">
+      </form>
+    </div>
+  </div>
+</div>
+<include file="Public:CommonJs" />
+<script type="text/javascript">
+$(function(){
+	//提交表单
+	$('form').submit(function(){
+		var url="{:U('/Member/register')}";
+		if(!(verify('#name','用户名',20,/^[A-Za-z0-9]{6,20}$/))){
+			return false;
+			}else if(!(verify('#phone','手机',11,/^(1(([35][0-9])|(47)|[8][01236789]))\d{8}$/))){
+				return false;
+				}else if(!(verify('#password','密码',18,/^[A-Za-z0-9]{6,18}$/))){
+				    return false;
+				    }else if($('#password').val()!==$('#password2').val()){
+						alert("两次输入的密码不相同！");
+				        return false;
+				        }else{
+							$.post(url,$(this).serialize(),function(data){
+                            if(data.status==1){
+                                location.href=data.url;
+                            }else{
+                                msg(data.info);
+                            }
+							},'json');
+					}
+                     return false;
+		});
+});
+
+//表单验证
+function verify(id,name,maxlength,expression){
+	var value=$(id).val(),content="";
+	/*alert(expr);*/
+	if(expression!=""){
+		content=value==""?name+"不能为空！":value.length>maxlength?name+"内容超出限制！":(!expression.test(value))?name+"输入不正确！":"";
+		}else{
+			content=value==""?name+"不能为空！":value.length>maxlength?name+"内容超出限制！":"";
+			}
+	if(content!=""){return alert(content);}else{return true;}
+	}
+</script>
+</body>
+</html>

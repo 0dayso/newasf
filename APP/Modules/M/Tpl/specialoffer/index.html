@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{$title} - {:C('WEB_NAME')}</title>
+<link href="__PUBLIC__/mobile/css/global.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+#ad{padding-top:5px;position:relative;}
+#ad img{width:100%;border:0;}
+#ad #adlist li{display:none;}
+#ad #adlist .on{display:block;}
+#ad #slidebar{position:absolute;left:49%;bottom:8px;}
+#ad #slidebar li{font-size:10px;display:inline-block;color:#5d5d5d;cursor:pointer;padding:0 2px;}
+#ad #slidebar li.select{color:#e0e0e0;}
+#block{padding-top:5px;}
+.collapsible h6{background-color:#cbe4f6!important;border-bottom: 1px solid #fff!important;}
+.collapsible ul{background-color:#FFF;}
+.collapsible li{border-bottom:1px solid #e7e5e5;}
+.collapsible li a{display:block;font-size:14px;color:#404040;cursor:pointer;background:url(__PUBLIC__/mobile/images/title_bg.png) no-repeat;}
+.collapsible li a strong{font-size:18px;color:#ff8400;}
+.collapsible .speA li a{padding:0 45px 0 15px;height:46px;line-height:46px;background-position:right -122px;}
+.collapsible .speA li a strong{float:right;}
+.collapsible .speB li{padding:10px 0 10px 15px;}
+.collapsible .speB li a{padding-right:45px;height:48px;line-height:24px;background-position:right -114px;}
+.collapsible .speB li a b{float:left;width:48px;height:48px;margin-right:15px;}
+</style>
+</head>
+
+<body>
+<div id="page">
+  <div id="content">
+    <h1 id="topnav"><span class="left icon"><a href="{:U('/')}" class="icon-home">首页</a></span>特惠活动<span class="right icon"><a href="tel:4006085188" class="icon-tel">电话</a></span></h1>
+    
+    <div id="ad">
+    <ul id="adlist">
+    <li class="on"><a href="{:U('/specialoffer/dijialaixi')}"><img src="__PUBLIC__/mobile/images/ad06.gif" width="100%"></a></li>
+    <li><a href="{:U('/specialoffer/chaoditejia')}"><img src="__PUBLIC__/mobile/images/ad04.gif" width="100%"></a></li>
+    <li><a href="{:U('/specialoffer/thtjbjbm')}"><img src="__PUBLIC__/mobile/images/ad05.gif" width="100%"></a></li>
+    </ul>
+    <ul id="slidebar">
+    <li class="select">●</li>
+    <li>●</li>
+    <li>●</li>
+    </ul>
+    </div>
+    
+    <div id="block">
+      <div class="collapsible-set">
+
+         <div class="collapsible">
+         <h6><a>主题活动<span class="icon-down">展开</span></a></h6>
+         <ul class="speA" style="display:block">
+              <li><a href="{:U('/specialoffer/dijialaixi')}">一线城市往返欧洲低价来袭<strong>￥3130起</strong></a></li>
+              <li><a href="{:U('/specialoffer/chaoditejia')}">二线城市出发超低特价大放送<strong>￥850起</strong></a></li>
+              <li><a href="{:U('/specialoffer/thtjbjbm')}">特惠推荐-北京往返北美<strong>￥4630起</strong></a></li>
+         </ul>
+        </div>
+        
+        <div class="collapsible">
+         <h6><a>品牌特惠<span class="icon-down">展开</span></a></h6>
+         <!--<ul class="speB">
+            <li><a href=""><b></b>爱尚飞携手斯里兰卡航空带您玩转马尔大夫<br/>广州往返<strong>￥2050</strong></a></li>
+            <li><a href=""><b></b>爱尚飞携手斯里兰卡航空带您玩转马尔大夫<br/>广州往返<strong>￥2050</strong></a></li>
+         </ul>-->
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <include file="Public:footer" />
+</div>
+<script type="text/javascript" src="__PUBLIC__/mobile/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	
+	//初始化变量index为0，用于保存索引
+	var index = 0;
+	//初始化变量len为为图片列表的数量
+	var len = $('#adlist li').size();
+	
+	//setInterval()方法
+	setInterval(function(){
+		showPics(index);                   
+		index++;
+		if(index == len){index = 0;};
+		},4000);
+		
+	//showPics()设置图片和滑块的显示和隐藏
+	function showPics(index){
+		$('#adlist li').eq(index).addClass('on').siblings('li').removeClass('on');
+		$('#slidebar li').eq(index).addClass('select').siblings('li').removeClass('select');
+		};
+	
+	//当鼠标进入滑块,调用showPics()函数
+	$('#slidebar li').mouseenter(function(){
+		index = $(this).index();
+		showPics(index);
+		});
+
+
+	$('.collapsible h6').click(function(){
+		var i=$(this).parent().index();
+		$('.collapsible ul').each(function(index,element){
+			if($(this).siblings().find('span').attr('class')=='icon-up'){
+               $(this).hide().siblings().find('span').removeClass('icon-up').addClass('icon-down');
+			}else if($(this).siblings().find('span').attr('class')=='icon-down'&&index==i){
+			   $(this).show().siblings().find('span').removeClass('icon-down').addClass('icon-up');
+			}
+			});
+		});
+	});
+</script>
+<include file="Public:kf" />
+</body>
+</html>

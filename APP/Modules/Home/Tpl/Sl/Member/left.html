@@ -1,0 +1,37 @@
+<div class="left mt10" id="userCenterL">
+    <h2><a href="{:U('/member')}">会员中心首页</a></h2>
+    <dl>
+        <dt>我的订单</dt>
+        <dd><a href="{:U('/Member/booking','status=pending')}">待处理订单</a></dd>
+        <dd><a href="{:U('/Member/booking','status=process')}">已处理订单</a></dd>
+        <dd><a href="{:U('/Member/booking','status=cancel')}">已取消订单</a></dd>
+    </dl>
+    <dl>
+        <dt>我的积分</dt>
+        <dd><a href="{:U('/member/points')}">积分明细</a></dd>
+        <dd><a href="{:U('/member/points','type=1')}">已消费积分</a></dd>
+    </dl>
+   <dl>
+        <dt>我的礼品</dt>
+        <dd><a href="{:U('/Member/liPin/collect')}">我的收藏</a></dd>
+        <dd><a href="{:U('/Member/liPin/cart')}">我的购物车</a></dd>
+        <dd><a href="{:U('/Member/liPin/exchange')}">已兑换礼品</a></dd>
+    </dl>
+
+    <dl>
+        <dt>财务管理</dt>
+        <dd><a href="{:U('/Member/onlinePay')}" class="red">在线支付</a></dd>
+        <dd><a href="{:U('/Member/transRecode')}">交易记录</a></dd>
+    </dl>
+    <dl>
+        <dt>我的资料</dt>
+        <dd><a href="{:U('/Member/information')}">资料修改</a></dd>
+        <dd><a href="{:U('/Member/editPwd')}">修改密码</a></dd>
+        <dd><a href="{:U('/Member/address')}">收货地址</a></dd>
+    </dl>
+    <dl>
+        <dt>信息反馈</dt>
+        <dd><a href="{:U('/Adviser')}/{$userinfo.user.id}/review" class="red">服务评价</a></dd>
+        <dd><a href="{:U('/complaint')}">投诉建议</a></dd>
+    </dl>
+</div>

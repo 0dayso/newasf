@@ -1,0 +1,75 @@
+<include file="Public:header" />
+        <style>
+            #search .submit{padding: 4px; background: #ccc};
+         </style>
+<script>
+    function edit(id){
+        var urls="?act=edit&id="+id;
+        $.layer({
+            type : 2,
+            title:'修改',
+            area: ['600px','500'],
+            offset : ['50%' , '50%'],
+            border : [3, 0.3, '#666', true],
+            shadeClose:true,
+            iframe:{src: urls},
+            close : function(index){
+                layer.close(index);
+            },
+            end : function(){
+                searchs(url);
+            }
+        });
+    }
+</script>
+            <div class="mainBody">
+                <include file="Public:left" />
+                <div id="Right">
+                    <div class="Item hr">
+                        <form method="" class="form" id="search">
+                            <div class="current">网站注册会员管理</div>
+                            <input type="text" class="input" name="search" value="{$_GET['search']}" class="search"><button type="submit" class="submit">搜索</button>
+                        </form>
+                        <div class="fr"><a href="{:U('exportExcel')}">导出用户</a></div>
+                    </div>
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab">
+                        <thead>
+                        <tr>
+                            <td>ID</td>
+                            <td>账号</td>
+                            <td>姓名</td>
+                            <td>手机</td>
+                            <td>QQ</td>
+                            <td>Email</td>
+                            <td>专属顾问</td>
+                            <td>开通时间</td>
+                         <!--   <td>最后登陆</td> -->
+                            <td width="100">操作</td>
+                        </tr>
+                        </thead>
+                        <tbody id="datalist">
+                        <volist name="list" id="vo">
+                            <tr align="center" aid="{$vo.id}">
+                                <td>{$vo.id}</td>
+                                <td>{$vo.username}</td>
+                                <td>{$vo.name}</td>
+                                <td>{$vo.mobile}</td>
+                                <td>{$vo.qq}</td>
+                                <td>{$vo.email}</td>
+                                <td>{$vo.user.name}</td>
+
+                                <td>{$vo.create_time|date='Y-m-d',###}</td>
+                                <!--   <td><empty name="vo['last_login_time']">{$vo.create_time|date='Y-m-d',###}<else />{$vo.last_login_time|date='Y-m-d ',###}</empty></td> -->
+                                 <td>[<a href="#">查看</a>] [ <a  href="javascript:;" onclick="edit({$vo['id']})" >编辑</a> ]</td>
+                             </tr>
+                         </volist>
+                         </tbody>
+                         <tr><td colspan='7' align="center" id="page">{$page}</td></tr>
+                     </table>
+                 </div>
+             </div>
+         </div>
+         <div class="clear"></div>
+         <include file="Public:footer" />
+     </body>
+ </html>

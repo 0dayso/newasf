@@ -1,0 +1,69 @@
+<div class="page">
+	<div class="pageContent">
+
+	<form method="post" action="__URL__/insert/navTabId/__MODULE__-index" class="pageForm required-validate" onsubmit="return validateCallback(this,dialogAjaxDone)">
+		<div class="pageFormContent" layoutH="58">
+            <input type="hidden" name="member_id" value="0">        
+            <div class="unit">
+                <label>用户名：</label>
+                <input type="text" class="required" size="60" name="name" value="{$vo.name}">
+            </div>
+            <div class="unit">
+                <label>客服id：</label>
+                <input type="text" name="user_id" class="required" lookup="org.id" size="12"  readonly="readonly" class="textInput readonly" value='{$vo.user_id}'>
+                    <a class="btnLook" href="__GROUP__/User/userData" lookupGroup="org" width="650" height="300" title="查找带回">查找带回</a>
+            </div>
+            <input type="hidden" name="order_id" value="0">
+            <div class="unit">
+                <label>出发城市：</label>
+                <input type="text" class="required" size="60" name="from_city" lookup="org1.name" readonly="readonly" class="textInput readonly" value="{$vo.from_city}">
+                <input type="hidden" name="from_iata" class="required" lookup="org1.iata" size="12"  readonly="readonly" class="textInput readonly" value='{$vo.iata}'>
+                    <a class="btnLook" href="__GROUP__/City/cityData" lookupGroup="org1" width="650" height="300" title="查找带回">查找带回</a>
+            </div>
+            <div class="unit">
+                <label>目的城市：</label>
+                <input type="text" class="required" size="60" name="to_city" lookup="org2.name" readonly="readonly" class="textInput readonly" value="{$vo.to_city}">
+                <input type="hidden" name="to_iata" class="required" lookup="org2.iata" size="12"  readonly="readonly" class="textInput readonly" value='{$vo.iata}'>
+                    <a class="btnLook" href="__GROUP__/City/cityData" lookupGroup="org2" width="650" height="300" title="查找带回">查找带回</a>
+            </div>
+            <div class="unit">
+                <label>总体评价：</label>
+                <input type="text" class="required" size="60" name="total" value="{$vo.total}">
+            </div>
+            <div class="unit">
+                <label>顾问服务：</label>
+                <input type="text" class="required" size="60" name="server" value="{$vo.server}">
+            </div>
+            <div class="unit">
+                <label>出票速度：</label>
+                <input type="text" class="required" size="60" name="speed" value="{$vo.speed}">
+            </div>
+            <div class="unit">
+                <label>机票价格：</label>
+                <input type="text" class="required" size="60" name="price" value="{$vo.price}">
+            </div>
+            
+            
+            <div class="unit">
+                <label>评论内容：</label>
+                <textarea id="content" class="editor"  cols="92" rows="20" name="contents">{$vo.contents}</textarea>
+            </div>
+  
+                    <input type="hidden" name="status" value="1">
+                    <div class="unit">
+                <label width="100">发布时间：</label>
+                <input type="text"  class="input"  name="create_time" value="{:date('Y-m-d H:i:s',time())}" />
+            </div>
+        </div>
+
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+	
+	</div>
+</div>
+

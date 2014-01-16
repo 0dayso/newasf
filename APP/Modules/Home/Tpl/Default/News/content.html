@@ -1,0 +1,20 @@
+<include file="Public:header" />
+    <div id="cont">
+        <div class="wd960 mt10 bgWhite about_asf">
+        	<div class="h1_tit_nav">你当前所在位置：<a href="/" class="sy">首页</a>
+                <foreach name="path" item="v">
+                    > <a href="{:U('news/'.$v[alias])}" class="cur">{$v.name}</a>
+                </foreach>
+                <a>>{$info.title}</a>
+            </div>
+            <include file="About:left" />
+            <div class="list_right_gy" id="news_dt">
+            	<h1 class="tit">{$info.title}</h1>
+                <div class=info>{$info.published}</div>
+            	<div class="content">
+                    {$info.content}
+                </div>
+            </div>
+        </div>
+    </div>
+<include file="Public:footer" />

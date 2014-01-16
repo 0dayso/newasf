@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>意见反馈-爱尚飞手机网</title>
+<link href="__PUBLIC__/mobile/css/global.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+#topnav{padding-right:42px;}
+#import{padding:10px 10px 0 10px;margin-bottom:10px;color:#666666;height:410px;}
+#import span{margin-bottom:10px;display:block;}
+#import textarea{height:192px;}
+.box p{padding:10px;}
+</style>
+</head>
+
+<body>
+<div id="page">
+  <div id="content">
+    <h1 id="topnav"><span class="left icon"><a href="{:U('/')}" class="icon-home">首页</a></span>意见反馈</h1>
+    <div class="box">
+      <form action="" method="post">
+        <div id="import">
+          <span>欢迎向我们提出您的投诉或建议</span>
+          <span><input name="type" type="radio" value="1" checked="checked">&nbsp;投诉&nbsp;&nbsp;&nbsp;&nbsp;<input name="type" type="radio" value="2">&nbsp;建议</span>
+          <span><input name="title" type="text" id="title" maxlength="30" required placeholder="标题（必填）" class="txt"></span>
+          <span><textarea name="contents" id="describe" maxlength="200" required placeholder="请输入描述内容,限200字符以内(必填)"></textarea></span>
+          <span><input name="email" type="text" id="email"  placeholder="联系邮箱(必填)" class="txt"></span>
+          <span><input name="mobile" type="text" id="phone" placeholder="联系电话" class="txt"></span>
+          <input type="submit" value="提交" class="sub">
+        </div>
+      </form>
+    </div>
+  </div>
+  <include file="Public:footer" />
+</div>
+<script type="text/javascript" src="__PUBLIC__/mobile/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	//提交表单
+	$('form').submit(function(){
+		var url="{:U('/Complaint/index')}";
+		if(!(verify('#title','标题',30,''))){
+			return false;
+			}else if(!(verify('#describe','描述',200,''))){
+				return false;
+				}else if(!(verify('#email','邮箱',100,/^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/))){
+					return false;
+					}else{
+						$.post(url,$(this).serialize(),function(data){
+                            if(data.status==1){
+                                alert("订票需求提交完成！");
+                            }else{
+                                alert(data.info);
+                            }
+							},'json');
+					}
+                     return false;
+		});
+});
+
+function verify(id,name,maxlength,expression){
+	var value=$(id).val(),content="";
+	/*alert(expr);*/
+	if(expression!=""){
+		content=value==""?name+"不能为空！":value.length>maxlength?name+"内容超出限制！":(!expression.test(value))?name+"输入不正确！":"";
+		}else{
+			content=value==""?name+"不能为空！":value.length>maxlength?name+"内容超出限制！":"";
+			}
+	if(content!=""){return alert(content);}else{return true;}
+	}
+</script>
+<include file="Public:kf" />
+</body>
+</html>

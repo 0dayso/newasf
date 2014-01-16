@@ -1,0 +1,101 @@
+@charset "utf-8";
+/* CSS Document */
+#act{width:100%;background-color:#770101;position:relative; padding-bottom:50px;}
+.top{height:40px;width:100%;background:url(../images/img/top_bg.png) repeat-x;z-index:200;position:absolute;top:0;left:0;}
+.ad,#box{margin:0 auto;}
+.ad{width:1100px;height:330px;}
+#box{height: auto;width:960px;}
+#box h3{background-image:url(../images/img/h3_bg.png);height:40px;font-size:18px;line-height:40px;font-weight:bold;padding-left:20px;}
+#box .bottom{background-image:url(../images/img/bottom_bg.png);height:15px;}
+#box,#box #list{overflow: visible;}
+#box #list{padding-bottom:30px;background-color:#fff7df;position:relative;}
+#box #list #select{position:absolute;left:-70px;top:0px;width:70px;height:344px;}
+#box #list #select li{float:right;line-height:38px;height:38px;margin-bottom:5px;}
+#box #list #select a{color:#FFF;display:block;border-top-left-radius:5px;border-bottom-left-radius:5px;-moz-border-top-left-radius:5px;-moz-border-bottom-left-radius:5px;padding-left:5px; font-size:16px;font-weight:bold;}
+#box #list #select a:hover,#box #list #select li.on a{background-color:#fff7df!important;}
+#box #list #select .c1,#box #list #select .c3,#box #list #select .c5,#box #list #select .c7{width:60px;}
+#box #list #select .c0{width: 62px;}
+#box #list #select .c2,#box #list #select .c4,#box #list #select .c6{width:70px;}
+#box #list #select .c0 a{background-color:#f16101;}
+#box #list #select .c1 a{background-color:#3796c8;}
+#box #list #select .c2 a{background-color:#7c3abf;}
+#box #list #select .c3 a{background-color:#e42884;}
+#box #list #select .c4 a{background-color:#cb0000;}
+#box #list #select .c5 a{background-color:#ef7000;}
+#box #list #select .c6 a{background-color:#b38a30;}
+#box #list #select .c7 a{background-color:#869b40;}
+#box #list #select .c0 a:hover,#box #list #select .c0.on a{color:#f16101;}
+#box #list #select .c1 a:hover,#box #list #select .c1.on a{color:#3796c8;}
+#box #list #select .c2 a:hover,#box #list #select .c2.on a{color:#7c3abf;}
+#box #list #select .c3 a:hover,#box #list #select .c3.on a{color:#e42884;}
+#box #list #select .c4 a:hover,#box #list #select .c4.on a{color:#cb0000;}
+#box #list #select .c5 a:hover,#box #list #select .c5.on a{color:#ef7000;}
+#box #list #select .c6 a:hover,#box #list #select .c6.on a{color:#b38a30;}
+#box #list #select .c7 a:hover,#box #list #select .c7.on a{color:#869b40;}
+#box #list #block{width:944px;padding:16px 0 0 16px;}
+#box #list #block ul{display:none;}
+#box #list #block ul.on{display:block;}
+#box #list #block li{float:left;height:175px;width:220px;margin:0 16px 16px 0;position:relative;cursor:pointer;}
+#box #list #block li .aside{padding:0 14px;width:192px;height:175px;background:url(../images/img/fltbg.gif) 0 0 no-repeat; position:absolute;z-index:26;}
+#box #list #block li .aside h4{margin:0;padding:1px 0 0 0;font-size:26px;font-family:Microsoft YaHei;font-weight:normal;height:40px;line-height:40px;}
+#box #list #block li .aside p.p1{height:41px;line-height:41px;color:#fff;overflow:hidden}
+#box #list #block li .aside p.p1 span{ float:left; margin-right:2px; font-size:40px; font-family:Arial; word-wrap:break-word; word-break:break-all}
+#box #list #block li .aside p.p1 span.sp1{ padding-top:2px; *padding-top:4px; width:20px; height:39px; *height:37px; line-height:16px; font-size:16px; font-family:Microsoft YaHei}
+#box #list #block li .aside p.p1 span.sp2{ margin-right:0; padding-top:2px; width:10px; height:39px; line-height:18px; font-size:16px; font-family:Microsoft YaHei}
+#box #list #block li .aside p.p1 em{ float:left; width:12px; font-size:12px; line-height:53px; font-style:normal; font-family:Microsoft YaHei}
+#box #list #block li .aside p.p2{ height:26px; line-height:26px; font-size:16px; font-family:Microsoft YaHei}
+#box #list #block li .aside p.p3{ font-size:12px; height:42px; line-height:14px; color:#858585}
+#box #list #block li .aside p.hs{ padding:4px 16px 0 0; *padding-top:5px; text-align:right; width:177px; font-size:12px}
+#box #list #block li .aside p.hs span{ display:inline-block; padding-left:18px; height:16px; line-height:16px}
+
+/*航空的logo*/
+#box #list #block li .aside p.guohang span{ background:url(../images/img/guohang.gif) 0 0 no-repeat}
+#box #list #block li .aside p.alianqiu span{ background:url(../images/img/alianqiu.gif) 0 0 no-repeat}
+#box #list #block li .aside p.aodaliya span{ background:url(../images/img/aodaliya.gif) 0 0 no-repeat}
+#box #list #block li .aside p.dahan span{ background:url(../images/img/dahan.gif) 0 0 no-repeat}
+#box #list #block li .aside p.damei span{ background:url(../images/img/damei.gif) 0 0 no-repeat}
+#box #list #block li .aside p.aomen1 span{ background:url(../images/img/aomen1.gif) 0 0 no-repeat}
+#box #list #block li .aside p.xiamen span{padding-left:40px;background:url(../images/img/xiamen.gif) 0 0 no-repeat}
+#box #list #block li .aside p.taiguohangkong span{ background:url(../images/img/taiguohangkong.gif) 0 0 no-repeat}
+#box #list #block li .aside p.dongfang span{ background:url(../images/img/dongfang.gif) 0 0 no-repeat}
+#box #list #block li .aside p.riben span{padding-left:30px;background:url(../images/img/riben.gif) 0 0 no-repeat}
+#box #list #block li .aside p.yingguo span{padding-left:40px;background:url(../images/img/yingguo.gif) 0 0 no-repeat}
+#box #list #block li .aside p.faguohangkong span{padding-left:25px;background:url(../images/img/faguohangkong.gif) 0 0 no-repeat}
+#box #list #block li .aside p.fenlan span{padding-left:65px; background:url(../images/img/fenlan.gif) 0 0 no-repeat}
+#box #list #block li .aside p.helanhuangjia span{background:url(../images/img/helanhuangjia.gif) 0 0 no-repeat}
+#box #list #block li .aside p.eluosi span{padding-left:30px; background:url(../images/img/eluosi.gif) 0 0 no-repeat}
+#box #list #block li .aside p.hansha span{background:url(../images/img/hansha.gif) 0 0 no-repeat}
+#box #list #block li .aside p.ruishi span{background:url(../images/img/ruishi.gif) 0 0 no-repeat}
+#box #list #block li .aside p.hatihade span{padding-left:25px; background:url(../images/img/hatihade.gif) 0 0 no-repeat}
+#box #list #block li .aside p.aa span{padding-left:20px;  background:url(../images/img/aa.gif) 0 0 no-repeat}
+#box #list #block li .aside p.sichuanhangkong span{ background:url(../images/img/sichuanhangkong.gif) 0 0 no-repeat}
+#box #list #block li .aside p.faguohanggkong span{ padding-left:24px; background:url(http://pages.ctrip.com/commerce/flightSource/airlineImg/faguohanggkong.gif) 0 0 no-repeat}
+#box #list #block li .aside p.feilvbin span{ padding-left:30px; background:url(../images/img/feilvbin.gif) 0 0 no-repeat}
+#box #list #block li .aside p.guohangg span{ background:url(../images/img/guohangg.gif) 0 0 no-repeat}
+#box #list #block li .aside p.guotai span{ padding-left:28px; background:url(../images/img/guotai.gif) 0 0 no-repeat}
+#box #list #block li .aside p.hanya span{ background:url(../images/img/hanya.gif) 0 0 no-repeat}
+#box #list #block li .aside p.jixiang span{ background:url(../images/img/jixiang.gif) 0 0 no-repeat}
+#box #list #block li .aside p.malaixiya span{padding-left:20px;  background:url(../images/img/malaixiya.gif) 0 0 no-repeat}
+#box #list #block li .aside p.maoliqiusi span{ padding-left:61px; background:url(../images/img/maoliqiusi.gif) 0 0 no-repeat}
+#box #list #block li .aside p.nanhang span{ padding-left:27px; background:url(../images/img/nanhang.gif) 0 0 no-repeat}
+#box #list #block li .aside p.quanrikong span{padding-left:64px; background:url(../images/img/quanrikong.gif) 0 0 no-repeat}
+#box #list #block li .aside p.shanghang span{padding-left:25px; background:url(../images/img/shanghang.gif) 0 0 no-repeat}
+#box #list #block li .aside p.sichuanhangkong span{ background:url(../images/img/sichuanhangkong.gif) 0 0 no-repeat}
+#box #list #block li .aside p.sililanka span{padding-left:24px; background:url(../images/img/sililanka.gif) 0 0 no-repeat}
+#box #list #block li .aside p.tuerqi span{ background:url(../images/img/tuerqi.gif) 0 0 no-repeat}
+#box #list #block li .aside p.hainan span{ background:url(../images/img/hainan.gif) 0 0 no-repeat}
+#box #list #block li .aside p.xianggangkuaiyun span{padding-left:25px; background:url(../images/img/xianggangkuaiyun.gif) 0 0 no-repeat}
+#box #list #block li .aside p.wenlaihangkong span{padding-left:25px; background:url(../images/img/wenlaihangkong.gif) 0 0 no-repeat}
+#box #list #block li .aside p.xianggang span{ background:url(../images/img/xianggang.gif) 0 0 no-repeat}
+#box #list #block li .aside p.xinjiapo span{ background:url(../images/img/xinjiapo.gif) 0 0 no-repeat}
+#box #list #block li .aside p.yinniyinghang span{ padding-left:30px; background:url(../images/img/yinniyinghang.gif) 0 0 no-repeat}
+#box #list #block li .aside p.meiguohangg span{padding-left:20px;  background:url(../images/img/aa.gif) 0 0 no-repeat}
+#box #list #block li .aside p.ganglong span{padding-left:19px;  background:url(../images/img/ganglonghangkong.gif) 0 0 no-repeat}
+#box #list #block li .aside p.meiguolianhe span{padding-left:19px;  background:url(../images/img/meiguolianhe.gif) 0 0 no-repeat}
+.aside p.aisaiebiya span{ background:url(../images/img/aisaiebiya.gif) 0 0 no-repeat}
+
+/*bside的CSS*/
+#box #list #block li .bside{ padding:0 25px; width:170px; height:175px; font-size:12px; line-height:18px; color:#fff; background-color: #F93;; position:absolute; z-index:27; display:none}
+#box #list #block li .bside p{ display:table-cell; height:1.14em; font-size:166px; vertical-align:middle}
+#box #list #block li .bside p span{ display:inline-block; font-size:12px; font-style:normal; vertical-align:middle}
+#box #list #block li .bside p em{ display:inline-block; padding-left:20px; width:157px; font-size:24px; line-height:60px; font-family:Microsoft YaHei; font-style:normal; background:url(images/fltarr.gif) 120px 20px  no-repeat;}

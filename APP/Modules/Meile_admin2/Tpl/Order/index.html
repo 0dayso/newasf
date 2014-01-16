@@ -1,0 +1,117 @@
+<php>$title="订单i管理-后台管理";$currentNav ='订单管理 >订单列表';</php>
+<include file="Public:header" />
+<script type="text/javascript">
+    function searchs(p){
+        var  datas=$('#search').serialize();
+        $.getJSON("?ss=1&p="+p, datas,function(data){
+            if(data.list){
+                var str='';
+                $.each(data.list, function(i,item){
+                    str+='<tr align="center" id="'+item.id+'">';
+                    str+='<td>'+item.order_id+'</td>';
+                    str+='<td>'+item.member_name+'</td>';
+                    str+='<td>'+item.from_city+' → '+item.to_city+'</td>';
+                    str+='<td>'+item.price+'</td>';
+                    str+='<td>'+item.order_datetime+'</td>';
+                    str+='<td>'+item.order_status+'</td>';
+                    str+='<td>[ <a href="javascript:;" onclick="edit('+item.id+')">编辑 </a> ]</td>';
+                    str+=' </tr>';
+                });
+                $('#datalist').html(str);
+                $('#page').html(data.page);
+            }else{
+                $('#datalist').html('');
+                $('#page').html('');
+            }
+        })
+
+
+    }
+    function page(u,p){
+        searchs(p);
+    }
+
+    function edit(id){
+        var urls="{:U('Order/orderEdie')}?act=edit&id="+id;
+        $.layer({
+            type : 2,
+            title:'修改',
+            area: ['500px','380'],
+            border : [3, 0.3, '#666', true],
+            shadeClose:true,
+            iframe:{src: urls},
+            close : function(index){
+                layer.close(index);
+            },
+            end : function(){
+                searchs(url);
+            }
+        });
+    }
+</script>
+            <div class="mainBody">
+                <include file="Public:left" />
+                <div id="Right">
+                    <div class="Item hr">
+                        <form method="" class="form" id="search">
+                            <div class="current">订单列表</div>
+                            <tr>
+                                <td><select onchange="searchs()" name="where[order_status]">
+                                    <option value="" >---所有状态---</option>
+                                    <option value="0"  selected="selected">--待处理--</option>
+                                    <option value="1" >--已处理--</option>
+                                    <option value="-1" >--已取消--</option>
+                                </select>
+                                </td>
+                                <td><button type="button" onclick="$('select').val('');searchs()" class="button">清除</button></td>
+                                <td><input type="text" class="input" name="search" class="search"><button type="button" class="button" onclick="searchs()">搜索</button></td>
+                            <tr>
+                        </form>
+                    </div>
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab">
+                        <thead>
+                            <tr>
+                                <td width="15%"><strong>订单ID</strong></td>
+                                <td width="10%"><strong>会员</strong></td>
+                                <td width="20%"><strong>航班行程</strong></td>
+                                <td width="10%"><strong>价格</strong></td>
+                                <td width="18%"><strong>下单时间</strong></td>
+                                <td width="16%"><strong>订单状态</strong></td>
+                                <td width="15%"><strong>操作</strong></td>
+                            </tr>
+                        </thead>
+                        <tbody id="datalist">
+                        <volist name="list" id="v">
+                            <tr align="center" id="{$v.id}">
+                                <td>{$v.order_id}</td>
+                                <td>{$v.member_name}</td>
+                                <td>{$v.from_city} → {$v.to_city}</td>
+                                <td>￥{$v.price}</td>
+                                <td>{$v.order_datetime}</td>
+                                <td>{$v.order_status}</td>
+                                <td>[ <a href="javascript:;" onclick="edit({$v.id})">编辑 </a> ]</td>
+                            </tr>
+                        </volist>
+                        </tbody>
+                        <tr><td colspan='7' align="center" id="page">{$page}</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <include file="Public:footer" />
+        <script type="text/javascript">
+            $(function(){
+                $(".del").click(function(){
+                    var delLink=$(this).attr("link");
+                    popup.confirm('你真的打算删除【<b>'+$(this).attr("name")+'</b>】吗?','温馨提示',function(action){
+                        if(action == 'ok'){
+                            top.window.location.href=delLink;
+                        }
+                    });
+                    return false;
+                });
+            });
+        </script>
+    </body>
+</html>

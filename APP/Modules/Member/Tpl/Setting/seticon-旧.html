@@ -1,0 +1,62 @@
+<include file="public:header" />
+    <link rel="stylesheet" href="__PUBLIC__/css/member.css" type="text/css" />
+    <script type="text/javascript" src="__PUBLIC__/js/member.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/layer/layer.min.js"></script>
+    <script src="__PUBLIC__/admin/Js/jquery.form.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/modify.js"></script>
+    <div class="member">
+    	<!--会员中心导航-->
+    	<include file="public:left" />
+        
+		<div class="right" id="memberR">
+        	<h1 class="nav_tit">设置头像</h1>
+				<div id="seticon">
+                	<div>
+						<div id="icon"><img src="__PUBLIC__/images/member/icon.gif" /></div>
+                    	<div class="uploading">
+							<p>仅支持<em>jpg,gif,png</em>格式图片，且文件小于2M。</p>
+							
+							<form enctype="multipart/form-data" method="post" action="{:U('/Member/setting/seticon')}">
+                        	<input class="up" name="upImg" type="file" /><input class="sub" type="submit" value="上传" /><span class="message"></span>
+							</form>
+                      	<p>成功设置头像赠送<em>500</em>积fun</p>
+                		</div>
+                    </div>
+                	<a href="{:U('/Member/Setting/myinfo')}">返回</a>
+            	</div>
+        </div>
+    </div>
+    
+    <script type="text/javascript">
+    	$(function(){
+			$('#seticon .sub').click(function(){
+				if($('#seticon .up').val()!=""){
+					$("#seticon .message").html('上传中...');
+					var data = new FormData();
+					date.append('upImg',$('#seticon .up').val());
+					//发送数据
+					$.ajax({
+						url:'',
+						type:'POST',
+						data:data,
+						cache: false,
+						contentType: false,        //不可缺参数
+						processData: false,        //不可缺参数
+						success:function(data){
+							if(data.status==1){
+								$('#icon img').attr('src',data.imgsrc);
+								$("#seticon .message").html('上传成功！');
+								}else{
+									$("#seticon .message").html(data.info);
+									}
+							}
+						});
+					}else{
+						return false;
+						alert('请选择图片！');
+						}
+				});
+			});
+    </script>
+    
+<include file="public:footer" />

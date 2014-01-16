@@ -1,0 +1,90 @@
+﻿.td{ border:1px solid #d3eaef; border-collapse:inherit; border-spacing:1px; box-shadow:0 0 8px rgba(0,0,0,.2);}
+.td1{ border:1px solid #d3eaef; border-collapse:inherit; border-spacing:1px; box-shadow:0 0 8px rgba(0,0,0,.2); background:#FDC336	}
+ #divChooseYear
+ {
+	width:65px;
+	border: solid 1px  #E6E6E6;
+    position: absolute; 
+    display: none;
+}
+.day_title
+{
+	border-bottom:1px solid #F3F3F3;
+	color:Black;
+	line-height:30px;
+	margin:30px 0;
+	margin-top:0;
+	
+}
+
+.day 
+{	
+	padding-right: 5px;	
+	padding-left: 5px;	
+	padding-bottom: 5px;	
+	margin: 0px;	
+	font: bold 14px arial, helvetica, sans-serif;	
+	vertical-align: bottom;	
+	color: #000000;	
+	padding-top: 5px;	
+	text-align: center;
+}
+.FullDay
+{
+	width:86px;
+	height:86px;
+	padding:0;
+		border:5px solid #DADADA;
+
+}
+.NotDay
+{
+	width:84px;
+	height:84px;
+	padding:0;
+		border:5px solid #DADADA;
+
+}
+
+.FullDay a
+{
+	display:none;
+	margin:2px;
+	margin-left:3px;
+	
+}
+.NotDay a
+{
+	display:none;
+	margin:2px;
+	margin-left:3px;
+}
+.qmbubble { border: 1px solid rgb(200, 200, 200); position: absolute; z-index: 12; box-shadow: 0px 0px 5px rgba(0,0,0,0.25); background-color: rgb(255, 255, 255); width: 150px; }
+.Thumb 
+{	
+	z-index: 1;	
+    position:absolute;
+    margin:0;
+    border: #fff 1px solid;
+}
+.today{color:#000;background-color:Silver;border-color:#7E7262;height:86px;width:86px;}
+A.date {display:block;}
+A.date:link { color: #6b9f1f;text-decoration: underline;-moz-outline: none;}
+a.np { color:Black;text-decoration:underline;}
+a.np:visited { color:#6B9F1F;background-color:#fff;text-decoration:underline;}
+a.np:hover { color:#fff;background-color:#6B9F1F;text-decoration:none;}
+
+.WhiteDate { background-color:White; PADDING-LEFT: 4px;	Z-INDEX: 3;	FONT: bold 18px  Georgia;	COLOR: #666;	PADDING-TOP: 0px;	POSITION: absolute} 
+.RedDate {background-color:White; PADDING-LEFT: 4px;	Z-INDEX: 3;	FONT: bold 18px Georgia;	COLOR: #FF2A55;	PADDING-TOP: 0px;	POSITION: absolute} 
+.BlackDate {background-color:White; PADDING-LEFT: 5px;	Z-INDEX: 2;	FONT: bold 18px Georgia; 	COLOR: #000;	PADDING-TOP: 1px;	POSITION: absolute}
+
+.spacePopup a { padding: 0px; margin: 0px; color: #444; cursor: pointer; }
+.spacePopup a:link { color: #444; text-decoration: none; }
+.spacePopup { border: #ddd 10px solid; overflow: hidden; position: absolute; font-size: 12px; font-family: Tahoma,Verdana,sans-serif, simsun; color: #333; }
+.spacePopupContent { border: #999 1px solid; padding: 6px; background: #fff; overflow: hidden; zoom: 1; height:100%; }
+.canbutton { border-color: #d8dfea #0e1f5b #0e1f5b #d8dfea; background: #666; padding: 3px 15px; font-size: 12px; cursor: pointer; color: #fff; line-height: 16px; height: 24px; text-align: center; float: right; }
+* + HTML .canbutton { padding: 3px 6px; }
+#spanDate { color: #6B9F1F; font-weight:bold;float:left;}
+.clear{	clear:both;}
+.center{ azimuth:center; margin:10px 0 0 0;}
+.fontclass{margin:25px 2px 0 0;}

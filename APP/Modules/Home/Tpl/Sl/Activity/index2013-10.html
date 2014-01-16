@@ -1,0 +1,183 @@
+<include file="public:header" />
+<script src="__PUBLIC__/activity/images/FancyZoomHTML.js" type="text/javascript"></script>
+<script src="__PUBLIC__/activity/images/FancyZoom.js" type="text/javascript"></script>
+<script src="__PUBLIC__/activity/images/s2t.js" type="text/javascript"></script>
+<link href="__PUBLIC__/activity/images/style.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+#placeLayer {
+	position: absolute;
+	/*left:200px;
+        top:81px;*/
+	width: 483px;
+	height: 194px;
+	z-index: 9999;
+	background-color: #FFFFFF;
+	display: none;
+}
+div, form, ul, li, table {
+	overflow: visible;
+}
+</style>
+<script type="text/javascript">
+    function showMe()
+    {
+        document.getElementById("placeLayer").style.left=event.x+"px";
+        document.getElementById("placeLayer").style.top=event.y+"px";
+        document.getElementById("placeLayer").style.display="block";
+    }
+    function closeMe()
+    {
+        document.getElementById("placeLayer").style.display="none";
+    }
+</script>
+
+<body onLoad="setupZoom(); ">
+<script type="text/javascript">
+    //<![CDATA[
+    var theForm = document.forms['Form1'];
+    if (!theForm) {
+        theForm = document.Form1;
+    }
+    function __doPostBack(eventTarget, eventArgument) {
+        if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+            theForm.__EVENTTARGET.value = eventTarget;
+            theForm.__EVENTARGUMENT.value = eventArgument;
+            theForm.submit();
+        }
+    }
+    //]]>
+</script>
+<div class="box" style="background-image:url('__PUBLIC__/images/bg_cont.gif');repart-x;">
+  <div style="background:url(__PUBLIC__/activity/images/chuntian.jpg);width:960px;margin:0 auto;">
+    <div class="headerR"> <a id="StranLink" title=""></a>
+      <div id="top_divMember"></div>
+    </div>
+    
+    <!--头部end-->
+    <div id="placeLayer" style="border: 1px solid rgb(200, 200, 200);height: auto ;width: auto; box-shadow: 0px 0px 5px rgba(0,0,0,0.25); background-color: rgb(255, 255, 255);left: 387px; top: 500px; display: none;"><span id="txtProfile">
+    </span></div>
+    <div align="center" class="bgimg">
+      <table id="calendar" cellspacing="0" cellpadding="2" title="日历" border="0" style="border-width:0px;border-style:Inset;border-collapse:collapse;">
+        <tr>
+          <td colspan="7" style="background-color:Transparent;border-width:0px;"><table class="day_title" cellspacing="0" border="0" style="font-weight:bold;width:100%;border-collapse:collapse;">
+              <tr>
+                <td style="width:15%;"></td>
+                <td align="center" style="width:70%;">2013年10月</td>
+                <td style="width:15%;"></td>
+              </tr>
+            </table></td>
+        </tr>
+        <tr>
+          <th class="day" align="center" abbr="星期日" scope="col" style="height:10px;">星期日</th>
+          <th class="day" align="center" abbr="星期一" scope="col" style="height:10px;">星期一</th>
+          <th class="day" align="center" abbr="星期二" scope="col" style="height:10px;">星期二</th>
+          <th class="day" align="center" abbr="星期三" scope="col" style="height:10px;">星期三</th>
+          <th class="day" align="center" abbr="星期四" scope="col" style="height:10px;">星期四</th>
+          <th class="day" align="center" abbr="星期五" scope="col" style="height:10px;">星期五</th>
+          <th class="day" align="center" abbr="星期六" scope="col" style="height:10px;">星期六</th>
+        </tr>
+        <tr>
+          <td align="left" valign="top" style="border-color:#DADADA;height:86px;width:100px;"></td>
+          <td align="left" valign="top" style="border-color:#DADADA;height:86px;width:100px;"></td>
+          <td class="NotDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','5022')" style="color:Black" title="10月1日">1</a>
+            <DIV class="WhiteDate">1</DIV>
+            <div class='fontclass'><font color='black' style='font-weight:bold;'>中国国庆日</font></div></td>
+          <td class="NotDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','5023')" style="color:Black" title="10月2日">2</a><a href='__PUBLIC__/activity/images/201303250350361063.jpg' class=date><IMG class="Thumb" src="__PUBLIC__/activity/images/201303250350361063.jpg" width="96" height="80" /></A>
+          <DIV class="WhiteDate">2</DIV></td>
+          <td class="NotDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','5024')" style="color:Black" title="10月3日">3</a>
+            <DIV class="WhiteDate">3</DIV>
+            <div class='fontclass'><font color='black' style='font-weight:bold;'>德国国庆日</font></div></td>
+          <td class="NotDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','5025')" style="color:Black" title="10月4日">4</a><a href='__PUBLIC__/activity/images/201303250424486873.jpg' class=date><IMG class="Thumb" src="__PUBLIC__/activity/images/201303250424486873.jpg" width="96" height="80" /></A>
+          <DIV class="WhiteDate">4</DIV></td>
+          <td class="NotDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','5026')" style="color:Black" title="10月5日">5</a>
+            <DIV class="WhiteDate">5</DIV>
+            <div class='fontclass'><font color='black' style='font-weight:bold;'>澳门国际音乐节</font></div></td>
+        </tr>
+        <tr>
+          <td class="FullDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','5027')" style="color:Black" title="10月6日">6</a>
+            <DIV class="WhiteDate">6</DIV></td>
+          <td class="FullDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','5028')" style="color:Black" title="10月7日">7</a>
+            <DIV class="WhiteDate">7</DIV></td>
+          <td class="NotDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','5029')" style="color:Black" title="10月8日">8</a><a href='__PUBLIC__/activity/images/201303270404408598.jpg' class=date><IMG class="Thumb" src="__PUBLIC__/activity/images/201303270404408598.jpg" width="96" height="80" /></A>
+          <DIV class="WhiteDate">8</DIV></td>
+          <td class="NotDay" align="left" valign="top" onMouseOver="javascript:showMe();document.getElementById('txtProfile').innerHTML='&lt;p>德国法兰克福书展&lt;/p>&lt;p>10月9日至10月13日&lt;/p>';" onMouseOut="javascript:closeMe();" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','5030')" style="color:Black" title="10月9日">9</a>
+            <DIV class="WhiteDate">9</DIV>
+            <div class='fontclass'><font color='black' style='font-weight:bold;'>德国法兰克福书展</font></div></td>
+          <td class="NotDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','5031')" style="color:Black" title="10月10日">10</a>
+            <DIV class="WhiteDate">10</DIV>
+            <div class='fontclass'><font color='black' style='font-weight:bold;'>台湾国庆日</font></div></td>
+          <td class="NotDay" align="left" valign="top" onMouseOver="javascript:showMe();document.getElementById('txtProfile').innerHTML='&lt;p>澳洲墨尔本国际艺术节&lt;/p>&lt;p>10月11日至10月27日&lt;/p>&lt;p>&lt;br />&lt;/p>&lt;p>日本冲绳那霸祭&lt;/p>&lt;p>10月11日至10月13日&lt;/p>&lt;p>三天的祭典内会有大型嘉年华会、市集、技艺及幡旗巡游；另有被列为世界纪录的那霸大拔河，寓意祈福消灾。&lt;/p>';" onMouseOut="javascript:closeMe();" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','5032')" style="color:Black" title="10月11日">11</a>
+            <DIV class="WhiteDate">11</DIV>
+            <div class='fontclass'><font color='black' style='font-weight:bold;'>澳洲墨尔本国际艺术节</font></div></td>
+          <td class="NotDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','5033')" style="color:Black" title="10月12日">12</a>
+            <DIV class="WhiteDate">12</DIV>
+            <div class='fontclass'><font color='black' style='font-weight:bold;'>西班牙国庆日</font></div></td>
+        </tr>
+        <tr>
+          <td class="FullDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','5034')" style="color:Black" title="10月13日">13</a>
+            <DIV class="WhiteDate">13</DIV></td>
+          <td class="FullDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','5035')" style="color:Black" title="10月14日">14</a>
+            <DIV class="WhiteDate">14</DIV></td>
+          <td class="NotDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','5036')" style="color:Black" title="10月15日">15</a><a href='__PUBLIC__/activity/images/201303250422484763.jpg' class=date><IMG class="Thumb" src="__PUBLIC__/activity/images/201303250422484763.jpg" width="96" height="80" /></A>
+          <DIV class="WhiteDate">15</DIV></td>
+          <td class="NotDay" align="left" valign="top" onMouseOver="javascript:showMe();document.getElementById('txtProfile').innerHTML='&lt;p>10月16日至10月18日&lt;/p>&lt;p>标志着雨季的结束及捕鱼季的来临，民众会在湄公河上赛龙船，祭月和放河灯，到处张灯结彩，喜气洋洋。&lt;/p>';" onMouseOut="javascript:closeMe();" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','5037')" style="color:Black" title="10月16日">16</a>
+            <DIV class="WhiteDate">16</DIV>
+            <div class='fontclass'><font color='black' style='font-weight:bold;'>柬埔寨送水节</font></div></td>
+          <td class="FullDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','5038')" style="color:Black" title="10月17日">17</a>
+            <DIV class="WhiteDate">17</DIV></td>
+          <td class="FullDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','5039')" style="color:Black" title="10月18日">18</a>
+            <DIV class="WhiteDate">18</DIV></td>
+          <td class="NotDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','5040')" style="color:Black" title="10月19日">19</a><a href='__PUBLIC__/activity/images/201303250425427043.jpg' class=date><IMG class="Thumb" src="__PUBLIC__/activity/images/201303250425427043.jpg" width="96" height="80" /></A>
+          <DIV class="WhiteDate">19</DIV></td>
+        </tr>
+        <tr>
+          <td class="FullDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','5041')" style="color:Black" title="10月20日">20</a>
+            <DIV class="WhiteDate">20</DIV></td>
+          <td class="NotDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','5042')" style="color:Black" title="10月21日">21</a><a href='__PUBLIC__/activity/images/201303250420114613.jpg' class=date><IMG class="Thumb" src="__PUBLIC__/activity/images/201303250420114613.jpg" width="96" height="80" /></A>
+          <DIV class="WhiteDate">21</DIV></td>
+          <td class="NotDay" align="left" valign="top" onMouseOver="javascript:showMe();document.getElementById('txtProfile').innerHTML='&lt;p>时代祭里会有超过2000位穿着不同年代历史服饰的队伍，上演长达2公里的游行，带出京&lt;a href=&quot;http://www.bangbangwx.com&quot; target=&quot;_blank&quot; >斗罗大陆&lt;/a>都从前的生活与风俗，盛大热闹。&lt;/p>';" onMouseOut="javascript:closeMe();" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','5043')" style="color:Black" title="10月22日">22</a>
+            <DIV class="WhiteDate">22</DIV>
+            <div class='fontclass'><font color='black' style='font-weight:bold;'>日本京都时代祭</font></div></td>
+          <td class="FullDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','5044')" style="color:Black" title="10月23日">23</a>
+            <DIV class="WhiteDate">23</DIV></td>
+          <td class="NotDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','5045')" style="color:Black" title="10月24日">24</a><a href='__PUBLIC__/activity/images/201303250421371063.jpg' class=date><IMG class="Thumb" src="__PUBLIC__/activity/images/201303250421371063.jpg" width="96" height="80" /></A>
+          <DIV class="WhiteDate">24</DIV></td>
+          <td class="NotDay" align="left" valign="top" onMouseOver="javascript:showMe();document.getElementById('txtProfile').innerHTML='&lt;p>10月25日至10月27日&lt;/p>&lt;p>是澳门土生葡人的特色节庆，有葡语国家的手工艺市集、歌舞表演、传统游戏及葡国食物等，活动多姿多彩。&lt;/p>';" onMouseOut="javascript:closeMe();" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','5046')" style="color:Black" title="10月25日">25</a>
+            <DIV class="WhiteDate">25</DIV>
+            <div class='fontclass'><font color='black' style='font-weight:bold;'>澳门葡韵嘉年华</font></div></td>
+          <td class="FullDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','5047')" style="color:Black" title="10月26日">26</a>
+            <DIV class="WhiteDate">26</DIV></td>
+        </tr>
+        <tr>
+          <td class="FullDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','5048')" style="color:Black" title="10月27日">27</a>
+            <DIV class="WhiteDate">27</DIV></td>
+          <td class="FullDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','5049')" style="color:Black" title="10月28日">28</a>
+            <DIV class="WhiteDate">28</DIV></td>
+          <td class="NotDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','5050')" style="color:Black" title="10月29日">29</a>
+            <DIV class="WhiteDate">29</DIV>
+            <div class='fontclass'><font color='black' style='font-weight:bold;'>韩国韩文节</font></div></td>
+          <td class="NotDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','5051')" style="color:Black" title="10月30日">30</a><a href='__PUBLIC__/activity/images/201303250438067043.jpg' class=date><IMG class="Thumb" src="__PUBLIC__/activity/images/201303250438067043.jpg" width="96" height="80" /></A>
+          <DIV class="WhiteDate">30</DIV></td>
+          <td class="NotDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','5052')" style="color:Black" title="10月31日">31</a>
+            <DIV class="WhiteDate">31</DIV>
+            <div class='fontclass'><font color='black' style='font-weight:bold;'>万圣节</font></div></td>
+          <td align="left" valign="top" style="border-color:#DADADA;height:86px;width:100px;"></td>
+          <td align="left" valign="top" style="border-color:#DADADA;height:86px;width:100px;"></td>
+        </tr>
+        <tr>
+          <td align="left" valign="top" style="border-color:#DADADA;height:86px;width:100px;"></td>
+          <td align="left" valign="top" style="border-color:#DADADA;height:86px;width:100px;"></td>
+          <td align="left" valign="top" style="border-color:#DADADA;height:86px;width:100px;"></td>
+          <td align="left" valign="top" style="border-color:#DADADA;height:86px;width:100px;"></td>
+          <td align="left" valign="top" style="border-color:#DADADA;height:86px;width:100px;"></td>
+          <td align="left" valign="top" style="border-color:#DADADA;height:86px;width:100px;"></td>
+          <td align="left" valign="top" style="border-color:#DADADA;height:86px;width:100px;"></td>
+        </tr>
+      </table>
+    </div>
+    <!--底部start--> 
+    
+  </div>
+</div>
+<!--底部end--> 
+<include file="public:footer" />

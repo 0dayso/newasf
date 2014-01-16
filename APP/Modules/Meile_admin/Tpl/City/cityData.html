@@ -1,0 +1,77 @@
+<form id="pagerForm" action="__URL__/cityData" method="post">
+    <input type="hidden" name="pageNum" value="{$_REQUEST['pageNum']|default=1}"/>
+    <input type="hidden" name="numPerPage" value="{$numPerPage}"/>
+    <input type="hidden" name="so" value="{$_REQUEST.so}" />
+    <input type="hidden" name="_order" value="{$_REQUEST._order}"/>
+    <input type="hidden" name="_sort" value="{$_REQUEST['_sort']|default='1'}"/>
+    <input type="hidden" name="listRows" value="{$_REQUEST['listRows']}"/>
+    <input type="hidden" name="my_id" value="{$_REQUEST['my_id']}"/>
+
+    <volist name="map" id="m">
+        <input type="hidden" name="{$key}" value="{$_REQUEST[$key]}"/>
+    </volist>
+</form>
+
+<div class="pageHeader">
+    <form rel="pagerForm" onsubmit="return dialogSearch(this);" action="__URL__/cityData" method="post">
+        <div class="searchBar">
+            <ul class="searchContent">
+                <li>
+                    <label>搜索：</label>
+                    <input type="text" name="so" value="{$_REQUEST.so}"/>
+                </li>
+
+                
+            </ul>
+            <div class="subBar">
+                <ul>
+                    <li><div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div></li>
+                </ul>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="pageContent">
+
+    <table class="table" width="100%" layoutH="85">
+        <thead>
+        <tr>
+            <th orderfield="id" <if condition="$_REQUEST._order eq 'id'">class="{$_REQUEST._sort}"</if>>编号</th>
+            <th orderfield="name" <if condition="$_REQUEST._order eq 'name'">class="{$_REQUEST._sort}"</if>>名称</th>
+            <th orderfield="iata" <if condition="$_REQUEST._order eq 'iata'">class="{$_REQUEST._sort}"</if>>别称</th>           
+            <th width="80">查找带回</th>
+        </tr>
+        </thead>
+        <tbody>
+        <volist id="vo" name="list">
+            <tr target="sid_user" rel="{$vo['id']}">
+                <td>{$vo['id']}</td>
+                <td>{$vo['name']}</td>
+                <td>{$vo['iata']}</td>
+                <td>
+                    <a class="btnSelect" href="javascript:$.bringBack({ id:'{$vo.id}', name:'{$vo.name}', iata:'{$vo.iata}'})" title="查找带回">选择</a>
+                </td>
+            </tr>
+        </volist>
+        </tbody>
+    </table>
+
+    <div class="panelBar">
+        <div class="pages">
+            <span>显示</span>
+            <select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
+                <option value="10" <eq name="numPerPage" value="10">selected=selected</eq>>10</option>
+                <option value="20" <eq name="numPerPage" value="20">selected=selected</eq>>20</option>
+                <option value="30" <eq name="numPerPage" value="35">selected=selected</eq>>30</option>
+                <option value="50" <eq name="numPerPage" value="50">selected=selected</eq>>50</option>
+            </select>
+            <span>共{$totalCount}条</span>
+        </div>
+        <div class="pagination" targetType="dialog" totalCount="{$totalCount}" numPerPage="{$numPerPage}" pageNumShown="10" currentPage="{$currentPage}"></div>
+    </div>
+
+</div>
+
+
+

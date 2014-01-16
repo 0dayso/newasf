@@ -1,0 +1,138 @@
+<div class="pageContent">
+	<form method="post" action="__URL__/orderList" class="pageForm" onsubmit="return navTabSearch(this);">
+	<input type="hidden" name="gj_so" value="1">
+		<div class="pageFormContent" layoutH="58">
+			<div class="unit">
+				<label>预订日始</label>
+		        <input type="text" style="width: 85px" name="ksrq" class="date" value="2013-10-01">
+			</div>
+			<div class="unit">  	
+		        <label>预订日止</label>
+		        <input type="text" style="width: 85px" name="jsrq" class="date" value="{:date('Y-m-d')}">
+		 	</div>
+            <div class="unit">
+                <label>会员帐号</label>
+                <input type="text" name="hyzcm" class="input1" style="width:95px" value="">
+            </div>
+			<div class="unit">
+		 		<label>联系电话</label>
+		        <input type="text" name="nxdh" class="input1" style="width:95px" value="">
+			</div>
+			<div class="unit">                  
+		 		<label>乘机人</label>
+					<input type="text" name="cjr" class="input1 UpperCase" style="width: 50px" value="">
+					<label for="nxr">
+		      			<input type="checkbox" id="nxr" name="nxr" value="1" checked title="勾选表示同时模糊匹配订单联系人，支持联系人首拼">
+		      		</label>
+		      		<input type="hidden" name="flag" id="flag" value="">
+			</div>
+			<div class="unit">
+		        <label>P&nbsp;N&nbsp;R</label>
+	            	<input type="text" name="pnr" class="input1 UpperCase" style="width: 75px" maxlength="6" value="">     
+			</div>
+			<div class="unit">					
+		        <label>国内/国际</label>
+					<input type="radio" name="pnr_hcglgj" value="1" >国内
+					<input type="radio" name="pnr_hcglgj" value="0" checked>国际
+			</div>	
+			<div class="unit">
+	        	<label>日期条件</label>
+	           		<select name="checkdate" class="input1" style="width:85px" onchange="changeDate()">
+	               	 			<option value="2">预订日期</option>
+	                 				<option value="3">起飞日期</option>
+			                   	<option value="1">调度日期</option>
+			                   	<option value="4">配送日期</option>
+	               	</select>  
+			</div>
+			<div class="unit">
+	            <label>订票员</label>
+	            	<input type="text" id="usermc" name="usermc" class="input1" style="width:75px" value="">
+	   				<input type="hidden" name="userid" id="userid" value="">  
+			</div>	
+			<div class="unit">
+				<label>客户类型 </label>
+		            	<select id="zkfx" name="zkfx" class="input1" style="width:85px"><option value="">==请选择==</option><option value="0">自有</option><option value="1">分销</option><option value="3">外入</option></select>
+			</div>
+			<div class="unit">
+	            <label>订单状态</label>
+
+		          	<select name="ddzt" style="width:55px" class="input1">
+			            <option value="">全部</option>
+			            <option value="0">申请中</option>
+			            	<option value="1">已订座</option>
+			            	<option value="2">已调度</option>
+			            	<option value="5">部分出票</option>
+			            	<option value="3">已出票</option>
+			            	<option value="4">配送中</option>
+			            	<option value="7">客户消</option>
+			            	<option value="8">已取消</option>
+			            	<option value="9">完成</option>
+			            	</select>
+		          	<select name="sfqrtx" style="width:35px" class="input1" title="紧急程度">
+			            <option value="">全</option>
+			            <option value="0">普</option>
+			            <option value="1">急</option>                    
+			            <option value="2">特</option>
+			            <option value="9">新</option>
+		          	</select>
+			</div>	
+			<div class="unit">
+			
+		        <label>航&nbsp;&nbsp;程</label>
+		          	<input type="text" name="shc" class="input1 UpperCase" style="width:75px" value="" >
+			</div>
+			<div class="unit">
+		        <label>航班号</label>
+		          	<input type="text" name="hbh" title="只允许输入航班号或航空公司进行查询" class="input1 UpperCase" style="width:75px" value="">
+		     </div>
+			<div class="unit">
+				<label>付款状态</label> 
+					<select name="zf_fkf" style="width:85px" class="input1" title="付款状态">
+						<option value="">请选择</option>
+		                <option value="0">未付</option>
+		                <option value="1">已付</option>                    
+		                <option value="2">部付</option>
+	              	</select>
+			</div>
+			<div class="unit">
+	            <label>大&nbsp;编&nbsp;码</label>
+	              	<input type="text" id="hkgs_pnr" name="hkgs_pnr" class="input1" style="width:85px" value="">
+			</div>
+			<div class="unit">
+			
+	            <label>订单来源</label>
+					<select name="ddfrom" style="width:95px" class="inputred"> 
+			        	<option value="">==全部==</option> 
+				    	<option value="1001101">ASMS黑屏预订</option>
+			        	<option value="1001102">ASMS黑屏导入</option>
+			        	<option value="1001103">ASMS白屏预订</option>
+			        	<option value="1001104">ASMS手工订单</option>
+			        	<option value="1001105">分销黑屏预订</option>
+			        	<option value="1001106">分销黑屏导入</option>
+			        	<option value="1001107">分销白屏预订</option>
+			        	<option value="1001108">分销手工订单</option>
+			        	<option value="1001109">差旅平台预订</option>
+			        	<option value="1001110">安卓终端预订</option>
+			        	<option value="1001111">苹果终端预订</option>
+			        	<option value="1001112">网站预订</option>
+			        	<option value="1001113">WAP预订</option>
+			        	<option value="1001114">网店导单</option>
+			        	<option value="1001115">系统生成</option>
+			        	<option value="1001116">直K预订</option>
+			        	<option value="1001117">ASMS追位订单</option>
+			        	<option value="1001119">平台快捷出票</option>
+			        	</select>
+			</div>
+			<div class="unit">
+				<label>票&nbsp;&nbsp;号</label>
+	              	<input type="text" id="tkno" name="tkno" class="input1" style="width:75px" value="">
+			</div>
+		</div>
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">开始检索</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="reset">清空重输</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+</div>

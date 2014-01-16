@@ -1,0 +1,211 @@
+<include file="public:header" />
+<link rel="stylesheet" href="__PUBLIC__/css/interticket.css" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/js/chaxun.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/hotcitypop/popcitylist.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" language="javascript" src="__PUBLIC__/js/hotcitypop/searchconditions.js"></script>
+<script type="text/javascript" language="javascript" src="__PUBLIC__/js/hotcitypop/paramfarmat.js"></script>
+    <div id="cont">
+        <div class="wd1000 mt10 interTic">
+        	<h1 class="h1_tit_nav">你当前所在位置：<a href="{:U('/')}" class="sy">首页</a> > <a class="cur">国际机票</a></h1>
+			<div class="left" id="interTicL" style="overflow:visible;">
+				<div id="jp_chaxun">
+					<h2><label>国际机票查询</label></h2>
+					<h3 class="mt10 right">
+						<a href="javascript:;" class="active">1.机票查询</a>
+						<a href="javascript:;">2.选择航班</a>
+						<a href="javascript:;">3.预订机票</a>
+						<a href="javascript:;">4.核对信息</a>
+						<a href="javascript:;">5.完成</a>
+					</h3>
+					<h4 class="clear"></h4>
+					<form action="http://flights.aishangfei.net" name="form" id="chaxun_form" autocomplete="off"  onSubmit="searChAagin();return false;">
+						<ul id="xingcheng_ul">
+							<li id="radio_sel">
+								<span>查询类型：</span>
+                                <input type="radio" name="journey" value="2"/><label>单程</label>
+                                <input type="radio" name="journey"  value="1" checked="checked" /><label>往返</label>
+                                <input type="radio" name="journey"  value="3"/><label>多程</label>
+							</li>
+							<li class="left">
+								<span>出发城市</span>
+								<input type="text" class="text city" name="origincode" value="城市名"/>
+							</li>
+							<li>
+								<span>到达城市</span>
+								<input type="text" class="text city" name="desinationcode" value="城市名"/>
+							</li>
+							<li class="left">
+								<span>出发日期</span>
+								<input type="text" class="text date" name="originDate" id="originDate" value="出发时间" />
+							</li>
+							<li >
+								<span>返回日期</span>
+								<input type="text" class="text date"  name="returnDate" id="returnDate" value="返回时间" />
+							</li>
+						</ul>
+                        <input type="submit" value="搜索" class="right spr3 submit" />
+					</form>
+				</div>
+				<div class="mt10"><a href="{:U('zt/gqcf')}" target="_blank"><img src="__PUBLIC__/images/act_101.jpg" alt="gangda" /><!--<img src="__PUBLIC__/images/link_web_gangda.gif" alt="gangda" />--></a></div>
+                
+                <!--南方航空特价机票-->
+                <div id="saleprice">
+                <h2 class="titbk"><a class=""></a>南方航空特价机票</h2>
+                <div class="box">
+                <div class="lists">
+                <h3>飞往美洲</h3>
+                <ul class="mar60">
+                <li><span class="span0"><a>北京</a><a class="Single"></a><a>罗马</a></span><span class="span1"><a>单程</a><a class="jg">￥4100</a></span><span class="span2"><a class="spr3" href="javascript:;" onclick="open_kf()" >查看</a></span></li>
+                <li><span class="span0"><a>北京</a><a class="Single"></a><a>罗马</a></span><span class="span1"><a>单程</a><a class="jg">￥4100</a></span><span class="span2"><a class="spr3" href="javascript:;" onclick="open_kf()" >查看</a></span></li>
+                <li><span class="span0"><a>北京</a><a class="Single"></a><a>罗马</a></span><span class="span1"><a>单程</a><a class="jg">￥4100</a></span><span class="span2"><a class="spr3" href="javascript:;" onclick="open_kf()" >查看</a></span></li>
+                </ul>
+                <ul>
+                <li><span class="span0"><a>北京</a><a class="roundtrip"></a><a>罗马</a></span><span class="span1"><a>往返</a><a class="jg">￥4100</a></span><span class="span2"><a class="spr3" href="javascript:;" onclick="open_kf()" >查看</a></span></li>
+                <li><span class="span0"><a>北京</a><a class="roundtrip"></a><a>罗马</a></span><span class="span1"><a>往返</a><a class="jg">￥4100</a></span><span class="span2"><a class="spr3" href="javascript:;" onclick="open_kf()" >查看</a></span></li>
+                <li><span class="span0"><a>北京</a><a class="roundtrip"></a><a>罗马</a></span><span class="span1"><a>往返</a><a class="jg">￥4100</a></span><span class="span2"><a class="spr3" href="javascript:;" onclick="open_kf()" >查看</a></span></li>
+                </ul>
+                </div>
+                <div class="lists">
+                <h3>飞往欧洲</h3>
+                <ul class="mar60">
+                <li><span class="span0"><a>北京</a><a class="Single"></a><a>罗马</a></span><span class="span1"><a>单程</a><a class="jg">￥4100</a></span><span class="span2"><a class="spr3" href="javascript:;" onclick="open_kf()" >查看</a></span></li>
+                <li><span class="span0"><a>北京</a><a class="Single"></a><a>罗马</a></span><span class="span1"><a>单程</a><a class="jg">￥4100</a></span><span class="span2"><a class="spr3" href="javascript:;" onclick="open_kf()" >查看</a></span></li>
+                <li><span class="span0"><a>北京</a><a class="Single"></a><a>罗马</a></span><span class="span1"><a>单程</a><a class="jg">￥4100</a></span><span class="span2"><a class="spr3" href="javascript:;" onclick="open_kf()" >查看</a></span></li>
+                </ul>
+                <ul>
+                <li><span class="span0"><a>北京</a><a class="roundtrip"></a><a>罗马</a></span><span class="span1"><a>往返</a><a class="jg">￥4100</a></span><span class="span2"><a class="spr3" href="javascript:;" onclick="open_kf()" >查看</a></span></li>
+                <li><span class="span0"><a>北京</a><a class="roundtrip"></a><a>罗马</a></span><span class="span1"><a>往返</a><a class="jg">￥4100</a></span><span class="span2"><a class="spr3" href="javascript:;" onclick="open_kf()" >查看</a></span></li>
+                <li><span class="span0"><a>北京</a><a class="roundtrip"></a><a>罗马</a></span><span class="span1"><a>往返</a><a class="jg">￥4100</a></span><span class="span2"><a class="spr3" href="javascript:;" onclick="open_kf()" >查看</a></span></li>
+                </ul>
+                </div>
+                <div class="lists">
+                <h3>飞往大洋洲</h3>
+                <ul class="mar60">
+                <li><span class="span0"><a>北京</a><a class="Single"></a><a>罗马</a></span><span class="span1"><a>单程</a><a class="jg">￥4100</a></span><span class="span2"><a class="spr3" href="javascript:;" onclick="open_kf()" >查看</a></span></li>
+                <li><span class="span0"><a>北京</a><a class="Single"></a><a>罗马</a></span><span class="span1"><a>单程</a><a class="jg">￥4100</a></span><span class="span2"><a class="spr3" href="javascript:;" onclick="open_kf()" >查看</a></span></li>
+                <li><span class="span0"><a>北京</a><a class="Single"></a><a>罗马</a></span><span class="span1"><a>单程</a><a class="jg">￥4100</a></span><span class="span2"><a class="spr3" href="javascript:;" onclick="open_kf()" >查看</a></span></li>
+                </ul>
+                <ul>
+                <li><span class="span0"><a>北京</a><a class="roundtrip"></a><a>罗马</a></span><span class="span1"><a>往返</a><a class="jg">￥4100</a></span><span class="span2"><a class="spr3" href="javascript:;" onclick="open_kf()" >查看</a></span></li>
+                <li><span class="span0"><a>北京</a><a class="roundtrip"></a><a>罗马</a></span><span class="span1"><a>往返</a><a class="jg">￥4100</a></span><span class="span2"><a class="spr3" href="javascript:;" onclick="open_kf()" >查看</a></span></li>
+                <li><span class="span0"><a>北京</a><a class="roundtrip"></a><a>罗马</a></span><span class="span1"><a>往返</a><a class="jg">￥4100</a></span><span class="span2"><a class="spr3" href="javascript:;" onclick="open_kf()" >查看</a></span></li>
+                </ul>
+                </div>
+                <div class="lists">
+                <h3>其他</h3>
+                <ul class="mar60">
+                <li><span class="span0"><a>北京</a><a class="Single"></a><a>罗马</a></span><span class="span1"><a>单程</a><a class="jg">￥4100</a></span><span class="span2"><a class="spr3" href="javascript:;" onclick="open_kf()" >查看</a></span></li>
+                <li><span class="span0"><a>北京</a><a class="Single"></a><a>罗马</a></span><span class="span1"><a>单程</a><a class="jg">￥4100</a></span><span class="span2"><a class="spr3" href="javascript:;" onclick="open_kf()" >查看</a></span></li>
+                <li><span class="span0"><a>北京</a><a class="Single"></a><a>罗马</a></span><span class="span1"><a>单程</a><a class="jg">￥4100</a></span><span class="span2"><a class="spr3" href="javascript:;" onclick="open_kf()" >查看</a></span></li>
+                </ul>
+                <ul>
+                <li><span class="span0"><a>北京</a><a class="roundtrip"></a><a>罗马</a></span><span class="span1"><a>往返</a><a class="jg">￥4100</a></span><span class="span2"><a class="spr3" href="javascript:;" onclick="open_kf()" >查看</a></span></li>
+                <li><span class="span0"><a>北京</a><a class="roundtrip"></a><a>罗马</a></span><span class="span1"><a>往返</a><a class="jg">￥4100</a></span><span class="span2"><a class="spr3" href="javascript:;" onclick="open_kf()" >查看</a></span></li>
+                <li><span class="span0"><a>北京</a><a class="roundtrip"></a><a>罗马</a></span><span class="span1"><a>往返</a><a class="jg">￥4100</a></span><span class="span2"><a class="spr3" href="javascript:;" onclick="open_kf()" >查看</a></span></li>
+                </ul>
+                </div>
+                </div>
+                </div>
+                
+            <div id="introduce">
+            <h2>南方航空简介</h2>
+            <div class="box">
+            <p><img src="__PUBLIC__/images/airline_logo01.jpg"/>&nbsp;&nbsp;&nbsp;&nbsp;中国南方航空股份有限公司（简称南航），是国内运输航班最多、航线网络最密集、年客运量最大的航空公司。公司坚持“安全第一”的核心价值观，公司标志是以天蓝色垂直尾翼镶抽象化的红色木棉花。南航先后联合重组、控股参股多家国内航空公司，是首家加入国际航空联盟的中国内地航空公司。南航与中国国际航空股份有限公司和中国东方航空股份有限公司合称中国三大航空集团。</p>
+            </div>
+            </div>
+            
+            <div id="mien">
+            <h2>南方航空简介</h2>
+            <div class="box">
+            <div class="left"><span id="previous"></span></div>
+            <div class="right"><span id="next"></span></div>
+            <ul>
+            <li id="a" no="0">
+            <img src="" width="435" height="245" style="background-color: #33CCFF" class="on"/>
+            <img src="" width="435" height="245" style="background-color: #3366FF" />
+            <img src="" width="435" height="245" style="background-color: #FF0000" />
+            </li>
+            <li id="b"></li>
+            <li id="c"></li>
+            </ul>
+            </div>
+            </div>
+            
+			</div>
+			<div class="right" id="interTicR">
+            <div id="renzheng_lan_s">
+                	<ul>
+                    	<li><label class="lb0"></label><span>100%国际航协认证,第一手真实价格</span></li>
+                        <li><label class="lb1"></label><span>100%中国航协认证,资质保证，订票无忧</span></li>
+                    </ul>
+                </div>
+				
+                <div class="info_lists">
+                <h2>南方航空公司资讯</h2>
+                <ul>
+                <li><a href="#">中泰拟出台免签旅行 推动中泰机</a></li>
+                <li><a href="#">中泰拟出台免签旅行 推动中泰机</a></li>
+                <li><a href="#">中泰拟出台免签旅行 推动中泰机</a></li>
+                <li><a href="#">中泰拟出台免签旅行 推动中泰机</a></li>
+                <li><a href="#">中泰拟出台免签旅行 推动中泰机</a></li>
+                <li><a href="#">中泰拟出台免签旅行 推动中泰机</a></li>
+                <li><a href="#">中泰拟出台免签旅行 推动中泰机</a></li>
+                </ul>
+                </div>
+                
+                <div class="mt10"><a href="{:U('zt/lxs')}" target="_blank"><img src="__PUBLIC__/images/Zt/lxs/zt_lxs.jpg"></a></div>
+                
+                <div class="info_lists">
+                <h2>其它航空公司特惠</h2>
+                <ul id="company">
+                <li><a href="#">美国联合航空</a></li>
+                <li><a href="#">美国联合航空</a></li>
+                <li><a href="#">美国联合航空</a></li>
+                <li><a href="#">美国联合航空</a></li>
+                <li><a href="#">美国联合航空</a></li>
+                <li><a href="#">美国联合航空</a></li>
+                <li><a href="#">美国联合航空</a></li>
+                <li><a href="#">美国联合航空</a></li>
+                <li><a href="#">美国联合航空</a></li>
+                <li><a href="#">美国联合航空</a></li>
+                <li><a href="#">美国联合航空</a></li>
+                <li><a href="#">美国联合航空</a></li>
+                <li><a href="#">美国联合航空</a></li>
+                <li><a href="#">美国联合航空</a></li>
+                <li><a href="#">美国联合航空</a></li>
+                <li><a href="#">美国联合航空</a></li>
+                <li><a href="#">美国联合航空</a></li>
+                <li><a href="#">美国联合航空</a></li>
+                </ul>
+                </div>
+                
+			</div>
+        </div>
+    </div>
+  <include file="public:footer" />
+<script type="text/javascript">
+ $(function(){
+     var len=$('#a img').length;
+     $('#next').click(function(){
+		 var i=parseInt($('#a').attr('no'))+1;
+		 if(i==len){
+			 $('#a').attr('no',0);
+			 $('#a img').eq(0).addClass('on').siblings().removeClass('on');
+			 }else{
+				 $('#a').attr('no',i);
+				 $('#a img').eq(i).addClass('on').siblings().removeClass('on');
+				 }
+		 });
+	 $('#previous').click(function(){
+		 var i=parseInt($('#a').attr('no'))-1;
+		 if(i<0){
+			 $('#a').attr('no',len-1);
+			 $('#a img').eq(len-1).addClass('on').siblings().removeClass('on');
+			 }else{
+				 $('#a').attr('no',i);
+				 $('#a img').eq(i).addClass('on').siblings().removeClass('on');
+				 }
+		 });
+	 }); 
+</script>

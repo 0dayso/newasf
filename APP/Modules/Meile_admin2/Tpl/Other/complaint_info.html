@@ -1,0 +1,38 @@
+<style>
+    .tab {
+        margin: 15px 0;
+        border-width: 1px;
+        border-style: solid;
+        border-color: #ddd #ddd #fff #fff;
+        text-shadow: 0 1px 0 #FFFFFF;
+        border-collapse: separate;
+</style>
+<table width="100%" border="1" cellspacing="0" cellpadding="0">
+    <tr>
+        <td>标题</td><td>{$info.title}</td>
+    </tr>
+    <tr>
+        <td>内容</td><td>{$info.contents}</td>
+    </tr>
+    <tr>
+         <td>截图</td><td><a target="_blank" href="__PUBLIC__/uploads{$info.jietu}" ><img src="__PUBLIC__/uploads{$info.jietu}" sytle="max-height: 100px;"></a></td>
+    </tr>
+    <tr>
+        <td>类型</td><td>{$info.type_name}</td>
+    </tr>
+    <tr>
+        <td>发布时间</td><td>{$info.time}</td>
+    </tr>
+    <tr>
+        <td>用户</td><td>{$info.member_name}</td>
+    </tr>
+    <tr>
+        <td>电话</td><td>{$info.mobile}</td>
+    </tr>
+    <tr>
+        <td>邮箱</td><td>{$info.email}</td>
+    </tr>
+    <tr>
+        <td>用户ip</td><td>{$info.ip}</td>
+    </tr>
+</table>

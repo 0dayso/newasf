@@ -1,0 +1,120 @@
+<php>$title="添加管理员-权限管理"</php>
+<include file="Public:header" />
+
+        <div class="mainBody"> <include file="Public:left" />
+            <div id="Right">
+                <div class="contentArea">
+                    <div class="Item hr">
+                        <div class="current">添加管理员</div>
+                    </div>
+                    <form action=""  method="post" name="form" enctype="multipart/form-data">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table1">
+                            <tr>
+
+                                <th>账号：</th>
+                                <td><input class="input" name="username" type="text" size="40" value="{$info.username}" /></td>
+                                <td rowspan="3"><img src="__PUBLIC__/uploads/{$info.avatar}" style="width:80px;height: 80px"/></td>
+                            </tr>
+                            <tr>
+                                <th>姓名：</th>
+                                <td><input class="input" name="name" type="text" size="40" value="{$info.name}" /></td>
+                            </tr>
+                            <tr>
+                                <th>性别：</th>
+                                <td><select name="sex" class="sex"><option value="0">先生</option><option value="1" <?php if($info['sex']==1) echo "selected='selected'"; ?>>女士</option></select></td>
+                            </tr>
+                            <tr>
+                                <th>头像：</th>
+                                <td><input class="input" name="avatar" type="file" size="40" value="" />{$info.avatar}</td>
+                            </tr>
+                            <tr>
+                                <th>密码：</th>
+                                <td><input class="input" name="password" type="password" size="40" value="" /></td>
+                            </tr>
+                            <tr>
+                                <th>公司手机号：</th>
+                                <td><input class="input" name="public_mobile" type="text" size="40" value="{$info.public_mobile}" /></td>
+                            </tr>
+                            <tr>
+                                <th>私人手机号：</th>
+                                <td><input class="input" name="private_mobile" type="text" size="40" value="{$info.private_mobile}" /></td>
+                            </tr>
+                            <tr>
+                                <th>电话：</th>
+                                <td><input class="input" name="telephone" type="text" size="40" value="{$info.telephone}" /></td>
+                            </tr>
+                            <tr>
+                                <th>QQ号：</th>
+                                <td><input class="input" name="qq" type="text" size="40" value="{$info.qq}" /></td>
+                            </tr>
+                            <tr>
+                                <th>MSN：</th>
+                                <td><input class="input" name="msn" type="text" size="40" value="{$info.msn}" /></td>
+                            </tr>
+                            <tr>
+                                <th width="120">邮件地址：</th>
+                                <td><input <if condition="ACTION_NAME eq 'editAdmin'"> disabled="disabled"</if> name="email" type="text" class="input" size="40" value="{$info.email}" /></td>
+                            </tr>
+                            <tr>
+                                <th>skype：</th>
+                                <td><input class="input" name="skype" type="text" size="40" value="{$info.skype}" /></td>
+                            </tr>
+                            <tr>
+                                  <th>入职日期：</th>
+                                  <notempty name="info['entry_time']">
+                                      <td><input class="input" name="entry_time" type="text" size="20" value="{$info.entry_time|date='Y-m-d',###}" />(格式：2013-08-08)</td>
+                                  <else />
+                                      <td><input class="input" name="entry_time" type="text" size="20" value="{:date('Y-m-d')}" />(格式：2013-08-08)</td>
+                                  </notempty>
+                            </tr>
+
+                            <tr>
+                                <th>状态：</th>
+                                <td>
+                                    <select name="status" style="width: 80px;">
+                                        <if condition="$info.status eq 1 ">
+                                            <option value="1" selected>启用</option>
+                                            <option value="0" >禁用</option>
+                                            <else/>
+                                            <option value="1" >启用</option>
+                                            <option value="0" <notempty name="$info">selected</notempty>>禁用</option>
+                                        </if>
+                                    </select>
+                                    如果禁用了将无法登陆本系统</td>
+                            </tr>
+                            <tr>
+                                <th>所属公司</th>
+                                <td>
+                                    <select name="company_id" >{$info.companyOption.option}</select>
+                                    &nbsp;&nbsp;&nbsp所属部门:<select name="department_id" >{$info.departmentOption.option}</select>
+                                    &nbsp;&nbsp;&nbsp;所属职位:<select name="position_id" >{$info.positionOption.option}</select>
+
+                                <td>
+                            </tr>
+                            <tr>
+                                <th>个人签名:</th>
+                                <td><input class="input" type="text" size="40" name="signature" value="{$info.signature}"/></td>
+                            </tr>
+                            <tr>
+                                <th>个人简介：</th>
+                                <td><textarea name="profile" rows="5" cols="57">{$info.profile}</textarea></td>
+                            </tr>
+                        </table>
+                        <input type="hidden" name="id" value="{$info.id}"/>
+                    </form>
+                    <div class="commonBtnArea">
+                        <button class="btn submit">提交</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+<include file="Public:footer" />
+<script type="text/javascript">
+    $(".submit").click(function(){
+            commonAjaxSubmit();
+    });
+</script>
+</body>
+</html>

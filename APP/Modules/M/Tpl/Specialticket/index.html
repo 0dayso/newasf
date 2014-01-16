@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{$title} - {:C('WEB_NAME')}</title>
+<link href="__PUBLIC__/mobile/css/global.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/mobile/css/specialticket.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div id="page">
+  <div id="content">
+    <h1 id="topnav"><span class="left icon"><a href="{:U('/')}" class="icon-home">首页</a></span>特价国际机票<span class="right icon"><a href="tel:4006085188" class="icon-tel">电话</a></span></h1>
+    <div id="ad">
+    <ul id="adlist">
+    <li class="on"><a href="tel:4006085188"><img src="__PUBLIC__/mobile/images/ad001.jpg" width="100%"></a></li>
+    <li><a href="tel:4006085188"><img src="__PUBLIC__/mobile/images/ad002.jpg" width="100%"></a></li>
+    <li><a href="tel:4006085188"><img src="__PUBLIC__/mobile/images/ad003.jpg" width="100%"></a></li>
+    </ul>
+    <ul id="slidebar">
+    <li class="select">●</li>
+    <li>●</li>
+    <li>●</li>
+    </ul>
+    </div>
+    
+	<div id="block">
+    	<!--选择城市-->
+        <div id="query_city">
+        	<form action="{:U('/Specialticket/airticket')}" method="get">
+        	<div class="cont_box white_bg">
+            	<dl class="left">
+                	<dt>出发城市</dt>
+                    <dd>
+                    	<select name="from">
+                      		<option value="广州">广州</option>
+                            <option value="北京">北京</option>
+                            <option value="上海">上海</option>
+                            <option value="香港">香港</option>
+                            <option value="其他城市出发">其他城市出发</option>
+                  		</select>
+					</dd>
+                </dl>
+                <dl class="right">
+                	<dt>到达城市</dt>
+                    <dd>
+                    	<select name="state">
+                      		<option value="美洲">美洲</option>
+                            <option value="欧洲">欧洲</option>
+                            <option value="亚洲">亚洲</option>
+                            <option value="大洋洲">大洋洲</option>
+                            <option value="非洲及中东">非洲及中东</option>
+                            <option value="留学生">留学生</option>
+                  		</select>
+                    </dd>
+                </dl>
+            </div>
+            <div class="cont_box"><input type="submit" value="查询" class="sub" id="sub"></div>
+            </form>
+        </div>
+        
+        <!--特价机票精选-->
+		<div class="collapsible-set" id="choiceness">
+			<div class="collapsible">
+				<h4><a>特价机票精选</a></h4>
+				<ul>
+                     <volist name="list" id="vo">
+                    <li>
+                        <div>{$vo.from_city}<span>{$vo.to_city}</span></div>
+                        <div><em>{$vo.time}截止</em>{$vo.air}</div>
+                        <div>往返<strong>￥{$vo.price}</strong><a href="javascript:open_kf()">预订</a></div>
+                    </li>
+                    </volist>
+                </ul>
+            </div>
+      </div>
+    </div>
+    
+  </div>
+  
+	<ul id="footer_list">
+		<li><a href="{:U('/Flight')}">国际机票预订</a></li>
+		<li><a href="{:U('/Specialticket')}" class="fl_on">特价国际机票</a></li>
+	</ul>
+    
+</div>
+<script type="text/javascript" src="__PUBLIC__/mobile/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	
+	//初始化变量index为0，用于保存索引
+	var index = 0;
+	//初始化变量len为为图片列表的数量
+	var len = $('#adlist li').size();
+	
+	//setInterval()方法
+	setInterval(function(){
+		showPics(index);                   
+		index++;
+		if(index == len){index = 0;};
+		},4000);
+		
+	//showPics()设置图片和滑块的显示和隐藏
+	function showPics(index){
+		$('#adlist li').eq(index).addClass('on').siblings('li').removeClass('on');
+		$('#slidebar li').eq(index).addClass('select').siblings('li').removeClass('select');
+		};
+	
+	//当鼠标进入滑块,调用showPics()函数
+	$('#slidebar li').mouseenter(function(){
+		index = $(this).index();
+		showPics(index);
+		});
+		
+	});
+</script>
+<include file="Public:kf" />
+</body>
+</html>

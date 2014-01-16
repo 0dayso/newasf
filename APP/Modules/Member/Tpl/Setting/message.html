@@ -1,0 +1,123 @@
+<include file="public:header" />
+
+    <link rel="stylesheet" href="__PUBLIC__/css/member.css" type="text/css" />
+    <script type="text/javascript" src="__PUBLIC__/js/member.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/layer/layer.min.js"></script>
+    <script src="__PUBLIC__/admin/Js/jquery.form.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/modify.js"></script>
+    <div class="member">
+    	<!--会员中心导航-->
+    	<include file="public:left" />
+        
+		<div class="right" id="memberR">
+        	<h1 class="nav_tit">站内信</h1>
+			<div id="list_box">
+            	<div id="list_nav"><a class="active">站内信列表</a><a>站内信设置</a></div>
+                <div id="list_con">
+                	<div class="list_block on" id="meslist">
+                    	<table width="788" border="0" align="center" cellspacing="0" cellpadding="0">
+							<tr class="tit">
+								<td class="first"><input type="checkbox" class="checkbox all" />全选</td>
+								<td>主题</td>
+								<td>类型</td>
+								<td>发送时间</td>
+								<td>操作</td>
+							</tr>
+                          	<tr gid="">
+								<td class="first"><input type="checkbox" /></td>
+								<td class="blue"><a href="#">您在2013.6.15日订购的XX到XX的国际机票已经成功，请进行评价。<em>NEW!</em></a></td>
+								<td>国际机票预订</td>
+								<td>2013-6-15 20:38:16</td>
+								<td><a class="delmes">删除</a></td>
+							</tr>
+                            <tr gid="">
+								<td class="first"><input type="checkbox" /></td>
+								<td class="blue"><a href="#">您在2013.6.15日订购的XX到XX的国际机票已经成功，请进行评价。<em>NEW!</em></a></td>
+								<td>国际机票预订</td>
+								<td>2013-6-15 20:38:16</td>
+								<td><a class="delmes">删除</a></td>
+							</tr>
+						</table>
+                        <div class="mes_bot"><input type="checkbox" class="checkbox all" />全选 <a class="alldel">删除</a></div>
+                    </div> 
+                                      
+                    <div class="list_block" id="messet">
+                    	<dl>
+                        	<dt>站内信设置：</dt>
+                            <dd><input name="" type="checkbox" value="" checked="checked"/>会员基础服务（注册/登录、修改密码、验证、升降级等）</dd>
+                            <dd><input name="" type="checkbox" value="" checked="checked"/>会员特权（赠送兑换类除外）</dd>
+                            <dd><input name="" type="checkbox" value="" checked="checked"/>机票预订通知（待付款、已付款、已出票、已取消）</dd>
+                            <dd><input name="" type="checkbox" value="" checked="checked"/>现金券赠送/消费</dd>
+                            <dd><input name="" type="checkbox" value="" checked="checked"/>礼品兑换</dd>
+                            <dd><input name="" type="checkbox" value="" checked="checked"/>积fun赠送</dd>
+                            <dd><input name="" type="checkbox" value="" checked="checked"/>爱钻赠送</dd>
+                        </dl>
+                        <input class="bt99" type="submit" value="保存">
+                    </div>
+                    
+              </div>
+        </div>
+        </div>
+    </div>
+    
+    <script type="text/javascript">
+    	$(function(){
+			//站内信 全选功能
+			$("#meslist .checkbox").change(function(){
+				if(this.checked){
+					$("#meslist input:checkbox").each(function(){this.checked="checked";});
+					}else{
+						$("#meslist input:checkbox").each(function(){this.checked="";});
+                    }
+                });
+				
+			//站内信 当某信息取消选择时，取消全选
+			$("#meslist input:checkbox").change(function(){
+				if($(this).hasClass('checkbox') != true){$('#meslist .checkbox').removeAttr('checked');}
+				});
+			
+			//单个把信息删除
+			$("#meslist .delmes").bind("click",function(){
+				var act="del";//设置类型为删除
+				var tr=$(this).parent().parent();//获取当前行的Tr
+				var gid=tr.attr("gid");//获取它的gid
+				mesAjax(gid,act,function(t){if(t==true){tr.remove();}else if(t==false){alert("操作失败！");}});
+				});
+				
+			//多选的把信息删除
+			$("#meslist .alldel").bind("click",function(){
+				var act="del";//设置类型为删除
+				var table = $(this).parent().prev();
+				var gid = new Array();
+				table.find('tr').each(function(i){
+					if(i>0 && $(this).find("td").eq(0).children("input").attr("checked")){
+						gid.push($(this).attr('gid'));
+					}
+					});
+				if(gid.length<=0){
+					alert("请选择信息再删除！");
+					}else{
+						mesAjax(gid,act,function(t){
+							if(t==true){
+								table.find('tr').each(function(i){
+									if(i>0 && $(this).find("td").eq(0).children("input").attr("checked")){$(this).remove();}
+									});
+								}else if(t==false){alert("操作失败！");}
+							});
+						}
+				});
+			//站内信的AJAX
+			function mesAjax(gid,act,fn){
+				$.getJSON("{:U('/Member/Setting/message')}",{id:gid,act:act},function(data){
+					if(data.status==1){
+						fn(true);
+						}else{
+							fn(false);
+							}
+					});	
+				}
+				
+			});
+    </script>
+    
+<include file="public:footer" />

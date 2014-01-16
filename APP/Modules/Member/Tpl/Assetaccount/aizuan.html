@@ -1,0 +1,166 @@
+<include file="public:header" />
+
+    <link rel="stylesheet" href="__PUBLIC__/css/member.css" type="text/css" />
+    <script type="text/javascript" src="__PUBLIC__/js/member.js"></script>
+    <div class="member">
+    	<!--会员中心导航-->
+    	<include file="public:left" />
+        
+        <!--现金卷-->
+      <div class="right" id="memberR">
+        	<h1 class="nav_tit">我的爱钻</h1>
+            <div class="top_tit">累计爱钻：<span class="aizuan">x{$totle}</span>　　　共<strong class="csp16">{$totle}</strong>枚<span class="instructions"><a href="#" class="cBlue">如何使用？</a></span><span class="right"><a href="#" class="cBlue">查看可兑换好礼</a></span></div>
+            <div id="list_box">
+            	<div id="list_nav"><a class="active">爱钻明细</a><a>兑换记录</a></div>
+                <div id="list_con">
+                	<div class="list_block on" id="detail">
+                    	<table width="788" border="0" align="center" cellpadding="0" cellspacing="0">
+							<tr class="tit" style="font-size:12px;">
+								<td class="first">获取日期</td>
+								<td>爱钻来源</td>
+								<td>爱钻数</td>
+								<td>过期日期</td>
+							</tr>
+							<volist name="list" id="vo">
+								<tr style="font-size:12px;">
+									<td class="first">{$vo.create_time|date="Y-m-d",###}</td>
+									<td class="blue">{$vo.description}</td>
+									<td><span class="aizuan">x{$vo.points}</span></td>
+									<td><?php $time=date('Y',$vo['create_time']);echo $time+1;?>年12月31日</td>
+								</tr>
+                           </volist>
+						</table>
+                         <div class="page" totlePage="{$totlePage}" page="1">
+                            <span class="next ajax"></span>
+                            <span class="page_num"><em>{$page}</em>/{$totlePage}页</span>
+                            <span class="prev ajax"></span>
+                        </div>	
+                    </div><!--end 爱钻明细-->
+                    
+					<!---兑换记录--->
+                    <div class="list_block" id='exchange'>
+                    	<table width="788" border="0" align="center" cellpadding="0" cellspacing="0" style="font-size:12px;">
+  							<tr class="tit">
+								<td class="first">礼品订单号</td>
+								<td>礼品名称</td>
+								<td>兑换爱钻</td>
+								<td>数量</td>
+								<td>爱钻小计</td>
+    							<td>兑换日期</td>
+    							<td>订单状态</td>
+  							</tr>                          
+                             <volist name="exchange" id="vo">                              
+                                <tr class="h50">
+                                    <td class="first">{$vo.order_num}</td>                                                                 
+                                    <td class="blue">
+                                       <a href="{:U('jifen/info','id='.$vo['id'])}" title="{$vo.title}">
+                                        <img src="__PUBLIC__/uploads/mall/m_{$vo.img}" widht="40px" height="40px">
+                                        {$vo.title|msubstr=0,25}
+                                        </a>
+                                     </td>
+                                    <td ><span class="aizuan">x{$vo.jifen}</span></td>
+                                    <td>{$vo.num}</td>
+                                    <td><span class="aizuan">x<?php echo $vo['jifen']*$vo['num']?></span></td>
+                                    <td>{$vo.create_time}</td>
+                                    <td class="blue">{$vo.status}</td>
+                                </tr>
+                            </volist>
+						</table>
+                        <div class="page" totlePage="{$totlePage}" page="1">
+                            <span class="next ajax"></span>
+                            <span class="page_num"><em>{$page1}</em>/{$totlePage1}页</span>
+                            <span class="prev ajax"></span>
+                        </div>	
+                  </div>                    
+              </div>
+        </div><!--list_block-->        
+        </div>
+    </div>
+ 
+ <script type="text/javascript">
+	$(function(){
+		//积Fun明细 AJAX分页
+		$('#detail .ajax').click(function(){
+			var totlePage=$(this).parent().attr('totlePage'),page=$(this).parent().attr('Page'),i=$(this).index();
+			if(i==0){	
+				page=parseInt(page)+1;					
+				if(page>totlePage){page=totlePage;}
+				}else if(i==2){
+					page=parseInt(page)-1;
+					if(page<=0){page=1;}
+					}
+			detail_ajax(totlePage,page);
+			});
+		//AJAX分页函数
+		function detail_ajax(totlePage,page){
+			$.getJSON("{:U('/Member/Assetaccount/aizuan/')}",{type:'detail',p:page},function(data){
+				if(data.status==1){
+					var dataList=data.list,html='<tr class="tit"><td class="first">获取日期</td><td>积Fun来源</td><td>积Fun数</td><td>过期日期</td></tr>';
+					$.each(dataList,function(i,item){
+						html += '<tr >';
+						html += '<td class="first">'+ item.create_time+'</td>';
+						html += '<td class="blue">'+ item.description +'</td>';
+						html += '<td class="price">'+ item.points +'</td>';
+						html += '<td>'+item.time+'年12月31日'+'</td>';
+						html += '</tr>';
+						});
+					$('#detail table').html(html);
+					$('#detail .page').attr('page',page);
+					$('#detail .page_num em').html(page);
+					}else{
+						alert(data.info);
+						}
+				});
+			}
+			
+		//兑换记录 AJAX分页
+		$('#exchange .ajax').click(function(){
+			var totlePage=$(this).parent().attr('totlePage'),page=$(this).parent().attr('Page'),i=$(this).index();
+			if(i==0){	
+				page=parseInt(page)+1;					
+				if(page>totlePage){page=totlePage;}
+				}else if(i==2){
+					page=parseInt(page)-1;
+					if(page<=0){page=1;}
+					}
+			exchange_ajax(totlePage,page);
+			});
+		//AJAX分页函数
+		function exchange_ajax(totlePage,page){
+			$.getJSON("{:U('/Member/Assetaccount/aizuan/')}",{type:'exchange',p:page},function(data){
+				if(data.status==1){
+					var dataList=data.exchange,html='<tr class="tit"><td class="first">礼品订单号</td><td>礼品名称</td><td>兑换爱钻</td><td>数量</td><td>爱钻小计</td><td>兑换日期</td><td>订单状态</td></tr>';
+					$.each(dataList,function(i,item){
+						html += '<tr class="h50">';
+                        html += '<td class="first">'+ item.order_num +'</td>';
+                        html += '<td class="blue">';
+						var url="{:U('jifen/info')}";
+                        html += '<a href="'+url+'?id='+item.id+'" title="'+ item.title +'">';
+                        html += '<img src="__PUBLIC__/uploads/mall/m_'+ item.img +'" widht="40px" height="40px">';
+						html += item.title;
+                        html += '</a>';
+                        html += '</td>';
+                        html += '<td>';
+						html +='<span class="aizuan">'+'x'+item.jifen+'</span>';
+						html +='</td>';
+						 html += '<td>'+ item.num +'</td>';
+                        html += '<td>';                        
+						html +='<span class="aizuan">'+'x'+(item.jifen)*(item.num)+'</span>';
+						html +='</td>';
+                        html += '<td>'+ item.create_time +'</td>';
+                        html += '<td class="blue">'+ item.status +'</td>';
+                        html += '</tr>';						
+						});
+					$('#exchange table').html(html);
+					$('#exchange .page').attr('page',page);
+					$('#exchange .page_num em').html(page);
+					}else{
+						alert(data.info);
+						}
+				});
+			}
+			
+		});
+</script>
+
+<include file="public:footer" />

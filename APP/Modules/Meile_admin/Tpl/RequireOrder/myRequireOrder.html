@@ -1,0 +1,106 @@
+<form id="pagerForm" action="__URL__/myRequireOrder" method="post">
+    <input type="hidden" name="pageNum" value="{$_REQUEST['pageNum']|default=1}"/>
+    <input type="hidden" name="numPerPage" value="{$numPerPage}"/>
+    <input type="hidden" name="so" value="{$_REQUEST.so}" />
+    <input type="hidden" name="_order" value="{$_REQUEST._order}"/>
+    <input type="hidden" name="_sort" value="{$_REQUEST['_sort']|default='1'}"/>
+    <input type="hidden" name="listRows" value="{$_REQUEST['listRows']}"/>
+    <input type="hidden" name="my_id" value="{$_REQUEST['my_id']}"/>
+
+    <volist name="map" id="m">
+        <input type="hidden" name="{$key}" value="{$_REQUEST[$key]}"/>
+    </volist>
+
+</form>
+
+<div class="pageHeader">
+    <form rel="pagerForm" onsubmit="return dialogSearch(this);" action="__URL__/myRequireOrder" method="post">
+        <div class="searchBar">
+
+                <a class='button <if condition="$_REQUEST[my_id] eq 0 or $_REQUEST[my_id] eq 1">buttonActive</if>' href="__URL__/myRequireOrder/my_id/1" target="dialog" width="620" height="360" rel="requireOrderInfo"><span>我的</span></a>
+                <a class='button <if condition="$_REQUEST[my_id] eq 2">buttonActive</if>' href="__URL__/myRequireOrder/my_id/2" target="dialog" width="620" height="360" rel="requireOrderInfo"><span>所有的</span></a>
+
+            <ul class="searchContent">
+                <li>
+                    <label>搜索：</label>
+                    <input type="text" name="so" value="{$_REQUEST.so}"/>
+                </li>
+
+            </ul>
+            <div class="subBar">
+                <ul>
+                    <li><div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div></li>
+                </ul>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="pageContent">
+    <div class="panelBar">
+        <ul class="toolBar">
+            <li>
+                <notempty name="new">
+                    <a class="add" href="__URL__/getNews/id/{$new.id}"  callback="afreshRequireOrderInfo" target="ajaxTodo" >
+                        <span>有新的须求信息 (点击 获取)</span></a>
+                    <else/>
+                        <span>暂无新的须求信息</span>
+                </notempty>
+            </li>
+        </ul>
+    </div>
+
+    <table class="table" width="100%" layoutH="115">
+        <thead>
+        <tr>
+            <th width="30" orderField="id" <if condition="$_REQUEST._order eq 'id'">class="{$_REQUEST._sort}"</if>>编号</th>
+            <th   orderField="name" <if condition="$_REQUEST._order eq 'name'">class="{$_REQUEST._sort}"</if>>姓名</th>
+            <th   orderField="phone" <if condition="$_REQUEST._order eq 'phone'">class="{$_REQUEST._sort}"</if>>手机</th>
+            <th  orderField="from_city" <if condition="$_REQUEST._order eq 'from_city'">class="{$_REQUEST._sort}"</if>>出发城市</th>
+            <th   orderField="create_time" <if condition="$_REQUEST._order eq 'create_time'">class="{$_REQUEST._sort}"</if>>添加时间</th>
+            <th orderField="domain" <if condition="$_REQUEST._order eq 'domain'">class="{$_REQUEST._sort}"</if>>来源</th>
+            <th orderField="update_time" <if condition="$_REQUEST._order eq 'update_time'">class="{$_REQUEST._sort}"</if>>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <volist id="vo" name="list">
+            <tr target="sid_user" rel="{$vo['id']}" class="<if condition='$vo.status eq 0'>bold</if>">
+                <td>{$vo['id']}</td>
+                <td>{$vo['name']}</td>
+                <td>{$vo['phone']}</td>
+                <td class="tips">
+                    <notempty name="vo['from_city']">
+                        <a title='<volist name="vo[route]" id="v">{$v.from_city}-{$v.to_city} - {$v.origin_date}<br/></volist>'>{$vo.from_city}</a>
+                    </notempty></td>
+                <td>{$vo['create_time']|date="m-d H:s",###}</td>
+                <td>{$vo.domain}</td>
+
+                <td><if condition="$vo['user_id'] eq $uid">
+                    <a class="view" href="__URL__/myViewInfo/id/{$vo.id}" target="dialog"  >
+                    <span>查看详情</span></a><else/>
+                    <if condition="$vo['user_id'] gt 1">
+                    <a href="#" title="认领时间：{$vo.update_date}">客服:{$vo.user_username}({$vo.user_name})</a>
+                    </if>
+                </if></td>
+            </tr>
+        </volist>
+        </tbody>
+    </table>
+
+    <div class="panelBar">
+        <div class="pages">
+            <span>显示</span>
+            <select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
+                <option value="10" <eq name="numPerPage" value="10">selected=selected</eq>>10</option>
+                <option value="20" <eq name="numPerPage" value="20">selected=selected</eq>>20</option>
+                <option value="30" <eq name="numPerPage" value="35">selected=selected</eq>>30</option>
+                <option value="50" <eq name="numPerPage" value="50">selected=selected</eq>>50</option>
+            </select>
+            <span>共{$totalCount}条</span>
+        </div>
+        <div class="pagination" targetType="dialog" totalCount="{$totalCount}" numPerPage="{$numPerPage}" pageNumShown="8" currentPage="{$currentPage}"></div>
+    </div>
+
+</div>
+
+

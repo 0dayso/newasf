@@ -1,0 +1,61 @@
+<div class="left mb10" id="memberL">
+	<h2>我的爱尚飞</h2>
+    <dl>
+    	<dt><a class="a0"><span class="up"></span>订票中心</a></dt>
+      	<dd>
+        	<ul>
+                <li><a href="{:U('/Member/booking')}?status=pending">待支付订单（{$common.pending_count}）</a></li>
+        		<li><a href="{:U('/Member/booking')}?status=process">已付款订单（{$common.process_count}）</a></li>
+        		<li class="no_bg"><a href="{:U('/Member/booking')}?status=cancel">已取消订单（{$common.cancel_count}）</a></li>
+            </ul>
+      	</dd>
+    </dl>
+    <dl>
+    	<dt><a class="a1"><span class="up"></span>资产账户</a></dt>
+      	<dd>
+        	<ul>
+        		<li><a href="{:U('/Member/Assetaccount/cashcoupon')}">现金券</a></li>
+        		<li><a href="{:U('/Member/Assetaccount/integral')}">我的积Fun</a></li>
+        		<li><a href="{:U('/Member/Assetaccount/aizuan')}">我的爱钻</a></li>
+        		<li class="no_bg"><a href="{:U('/Member/Assetaccount/gift')}">我的礼品</a></li>
+            </ul>
+      	</dd>
+    </dl>
+    <dl>
+    	<dt><a class="a2"><span class="up"></span>个人设置</a></dt>
+      	<dd>
+        	<ul>
+        		<li><a href="{:U('/Member/Setting/myinfo')}">我的信息</a></li>
+        		<!--<li><a href="#">会员等级</a></li>-->
+                <li><a href="{:U('/Member/Setting/securitycenter')}">安全中心</a></li>
+                <li><a href="{:U('/Member/Setting/passengerlist')}">常用旅客</a></li>
+        		<li><a href="{:U('/Member/Setting/address')}">邮寄地址</a></li>
+        		<li class="no_bg"><a href="{:U('/Member/Setting/message')}">站内信（{$common.message_count}）</a></li>
+            </ul>
+      	</dd>
+    </dl>
+    <dl>
+    	<dt><a class="a3"><span class="up"></span>应用中心</a></dt>
+      	<dd>
+        	<ul>
+        		<li><a href="#">机票工具箱</a></li>
+        		<li><a href="{:U('/Member/Appcenter/fun')}">好友fun享</a></li>
+                <li class="no_bg"><a href="{:U('/Member/Appcenter/fun')}">好友fun享</a></li>
+            </ul>
+      	</dd>
+    </dl>
+</div>
+<script type="text/javascript">
+	$(function(){
+		$('#memberL dt').click(function(){
+			var span=$(this).find('span');
+			if(span.hasClass('up')){
+				span.removeClass('up').addClass('down')
+				$(this).next().hide();
+				}else if(span.hasClass('down')){
+					span.removeClass('down').addClass('up')
+					$(this).next().show();
+					}
+			});
+		});
+</script>

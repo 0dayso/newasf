@@ -1,0 +1,98 @@
+@charset "utf-8";
+/*查询列表页*/
+#query_flight{color:#333333;height:auto;}
+#query_date{height:40px;line-height:40px;}
+#query_date dd,#query_date dt{float:left;font-size:14px;text-align:center;cursor:pointer;}
+#query_date dt{width:60%;}
+#query_date dd{width:20%;}
+
+/*排序*/
+#order_by li{float:left;width:50%;height:44px;font-size:16px;font-weight:bold;}
+#order_by li a{display:block;color:#FFF;text-align:center;line-height:44px;background:#67b1e4 url(../images/flightlist.png) no-repeat center 0px;cursor:pointer;}
+#order_by li a:hover,#order_by li.tab_on a{color:#ff840f;background-color:#FFF; background-position:center -44px;}
+
+/*航班列表*/
+#list{background-color:#FFF;display:block;clear:both;}
+#list li{border-bottom:1px solid #e7e5e5;padding:0 10px;}
+#list dt{height:32px;line-height:32px;font-size:16px;font-weight:bold;}
+#list dd{display:block;padding-bottom:10px;}
+#list .material{padding-top:10px;}
+#list .material span{display:inline-block;width:49%;line-height:24px;}
+#list .material span.t{color:#2690d8;}
+#list .material strong{font-size:16px;}
+#list .material strong,#list .material em{color:#ff840f;font-style:normal;padding:0 4px;}
+#list .details{margin:10px 0;height:28px;line-height:28px;width:90px;padding-right:6px;color:#FFF;font-size:14px;text-align:center;background:#ff840f url(../images/flightlist.png) no-repeat right -228px;cursor:pointer;}
+#list .airport,#list .airline{float:left;display:block;}
+#list .airport span,#list .airline span{height:24px;line-height:24px;display:block;}
+#list .airline{padding-left:25px;}
+#list .airline em{padding-left:15px;color:#666;font-style:normal;}
+#list .turn{height:72px;background:url(../images/flightlist.png) no-repeat right -280px;cursor:pointer;}
+#list .turn .airline{background:url(../images/flightlist.png) no-repeat 0 -80px;height:72px;}
+#list .turn .airline span{padding:6px 0;}
+#list .turn .turn_icon{padding-left:20px;background:url(../images/flightlist.png) no-repeat 0 -252px;}
+#list .donot_turn{height:48px;background:url(../images/flightlist.png) no-repeat right -290px;cursor:pointer;}
+#list .donot_turn .airline{background:url(../images/flightlist.png) no-repeat 0 -152px;height:48px;}
+#list .donot_turn .airline span{padding:12px 0;}
+
+
+/*订单填写*/
+.login{padding:8px 10px 0 10px;height:28px;line-height:28px;}
+.login a{display:block;width:82px;text-align:center;font-size:14px;color:#FFF;background-color:#ff840f;}
+#booking_info{height:auto;padding:10px;color:#333;}
+#booking_info .mileage,#booking_info p{height:38px;line-height:38px;color:#666;}
+#booking_info .mileage{text-align:center;font-size:13px;}
+#booking_info .ticket_price{height:42px;line-height:42px;text-align:center;padding-left:10px;}
+#booking_info .ticket_price span{color:#ff840f;padding-right:10px;}
+.flight_info{background-color:#FFF;}
+.flight_info dt{height:31px;line-height:31px;color:#FFF;}
+.flight_info dt .left,#boarding dt .left{width:99px;background:url(../images/bookinginfo.png) no-repeat;text-align:center;font-size:16px;}
+.flight_info dt .right{width:135px;padding-left:25px;font-size:12px;}
+.flight_info dt .right em{font-size:14px;font-style:normal;padding:0 8px;}
+.flight_info dt .trip{background:url(../images/bookinginfo.png) no-repeat -100px 0;}
+.flight_info dt .goback{background:url(../images/bookinginfo.png) no-repeat -260px 0;}
+.flight_info h5{height:60px;padding-left:10px;font-weight:normal;}
+.flight_info h5 span{display:block;line-height:30px;}
+.flight_info h5 span.f_logo{padding-left:35px;background:url(../images/f_logo.png) no-repeat;}
+.flight_info h5 span.f0{background-position:0 0;/*航空公司LOGO*/}
+.flight_info ul{height:140px;}
+.flight_info li{float:left;width:35%;height:110px;padding:15px 0;display:block;}
+.flight_info li.f_icon{width:30%;background:url(../images/bookinginfo_bg.png) no-repeat center 0;}
+.flight_info li span{text-align:center;display:block;}
+.flight_info li .addr{font-size:18px;font-weight:bold;line-height:32px;}
+.flight_info li .time{font-size:16px;font-weight:bold;line-height:32px;}
+.flight_info li .date,.flight_info li .site{color:#666;line-height:22px;}
+.flight_info .turn{height:25px;line-height:25px;background:url(../images/bookinginfo_bg.png) repeat-x center -140px;text-align:center;}
+.flight_info .turn span{background-color:#FFF;color:#2690d8;padding:0 3px;}
+#flight_details,#distribution{height:41px;line-height:41px;background:#FFF url(../images/flightlist.png) no-repeat right -295px;cursor:pointer;}
+#flight_details{text-align:center;color:#666;}
+#boarding{margin-bottom:10px;}
+#boarding dt,#boarding dd{background-color:#FFF;}
+#boarding dt,#insurance,#payment{height:41px;line-height:41px;}
+#boarding dt.mb9{margin-bottom:9px;}
+#boarding dt .left{height:31px;line-height:31px;color:#fff;}
+#boarding dt .right{width:80px;padding-right:35px;text-align:right;font-size:14px;background:url(../images/flight_bg.png) no-repeat right -108px;cursor:pointer;}
+#boarding dd{padding:9px 0;height:75px;border-top:1px solid #f2f1f0;}
+#boarding dd div,#boarding dd ul{float:left;height:75px;}
+#boarding dd div{width:15%;line-height:75px;text-align:center;cursor:pointer;}
+#boarding dd div.bi_del{background:url(../images/bi_del.png) no-repeat center center;}
+#boarding dd div.bi_edit{color:#2690d8;}
+#boarding dd ul{width:70%;}
+#boarding dd ul li{height:25px;line-height:25px;}
+#boarding dd ul li span{width:55px;margin-right:15px;display:inline-block;}
+.h80{height:80px;}
+.import{padding:10px 10px 0 10px;margin-bottom:10px;background-color:#fff;}
+.import span{margin-bottom:10px;display:block;}
+#insurance{padding:0 10px;background-color:#FFF;margin-bottom:10px;}
+#insurance .left,#distribution .left{font-size:14px;}
+#insurance input{margin-right:5px;}
+#insurance span{color:#ff840f;margin-right:10px;}
+#insurance a{color:#2690d8;cursor:pointer;}
+#distribution{padding:0 45px 0 10px;}
+#distribution .right{color:#ff840f;}
+
+#payment{padding-left:20px;font-size:14px;font-weight:bold;background-color:#ffba2f;color:#fff;cursor:pointer;}
+#payment span{font-size:18px;}
+#payment .right{width:40%;font-size:16px;background-color:#ff840f;text-align:center;}
+
+
+

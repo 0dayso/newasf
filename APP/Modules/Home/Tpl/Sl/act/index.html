@@ -1,0 +1,1192 @@
+<include file="public:header" />
+<link rel="stylesheet" href="__PUBLIC__/css/act.css" type="text/css" />
+<div id="act">
+<div class="top"></div>
+<div class="ad"><img src="__PUBLIC__/images/img/ad.jpg"></div>
+<script type="text/javascript" >
+$(function(){
+	//IE6
+	//轮换的JS效果
+	$('#select li').click(function(){
+		var index = $(this).index();
+		showBlock(index);
+		});
+	function showBlock(index){
+		$('#select li').eq(index).addClass('on').siblings('li').removeClass('on');
+		$('#block ul').eq(index).addClass('on').siblings('ul').removeClass('on');
+		};
+	//预订的JS效果
+	$('#block li').mouseover(function(){
+		$(this).children('.bside').css('display','block');
+		}).mouseout(function(){
+			$(this).children('.bside').css('display','none');
+		}).click(function(){
+			open_kf();
+		});
+		
+	});
+</script>
+<div id="box">
+<h3>选择您的目的地 ></h3>
+<div id="list">
+<ul id="select">
+<li class="c0 on"><a href="javascript:">港澳台</a></li>
+<li class="c1"><a href="javascript:">东南亚</a></li>
+<li class="c2"><a href="javascript:">韩国</a></li>
+<li class="c3"><a href="javascript:">日本</a></li>
+<li class="c4"><a href="javascript:">欧洲</a></li>
+<li class="c5"><a href="javascript:">澳洲</a></li>
+<li class="c6"><a href="javascript:">美洲</a></li>
+<li class="c7"><a href="javascript:">其他</a></li>
+</ul>
+<div id="block">
+<ul class="on">
+<li>
+  <div class="aside">
+    <h4>澳门</h4>
+    <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>500</span><em>起</em></p>
+    <p class="p2">从宁波</p>
+    <p class="p3"><strong>旅行有效期</strong><br />
+      2013-8-25至2013-10-31</p>
+    <p class="hs aomen1"><span>澳门航空</span></p>
+  </div>
+  <div class="bside">
+    <p> <span> <strong>出票有效期</strong>：提前60天出票，截止至2013-9-1<br />
+      <strong>备注</strong>：停留有效期：2天-7天 <em>立即预订</em> </span> </p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>澳门</h4>
+    <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>700</span><em>起</em></p>
+    <p class="p2">从成都</p>
+    <p class="p3"><strong>旅行有效期</strong><br />
+      2013-8-25至2013-10-31</p>
+    <p class="hs aomen1"><span>澳门航空</span></p>
+  </div>
+  <div class="bside">
+    <p> <span> <strong>出票有效期</strong>：截止至2013-10-1<br />
+      <strong>备注</strong>：停留有效期：2天-7天 <em>立即预订</em> </span> </p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>香港</h4>
+    <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>690</span><em>起</em></p>
+    <p class="p2">从晋江</p>
+    <p class="p3"><strong>旅行有效期</strong><br />
+      2013-7-8至2013-10-26</p>
+    <p class="hs xiamen"><span>厦门航空</span></p>
+  </div>
+  <div class="bside">
+    <p> <span> <strong>出票有效期</strong>：提前21天出票，截止至2013-10-5<br />
+      <strong>备注</strong>：停留有效期：0-14天 <em>立即预订</em> </span> </p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>香港</h4>
+    <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>780</span><em>起</em></p>
+    <p class="p2">从西安</p>
+    <p class="p3"><strong>旅行有效期</strong><br />
+      2013-8-31至2013-9-26，2013-10-4至2014-1-23</p>
+    <p class="hs dongfang"><span>东航</span></p>
+  </div>
+  <div class="bside">
+    <p> <span> <strong>出票有效期</strong>：提前45天出票，截止至2013-12-9<br />
+      <strong>备注</strong>：停留有效期：3天-1个月 <em>立即预订</em> </span> </p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>香港</h4>
+    <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>960</span><em>起</em></p>
+    <p class="p2">从杭州</p>
+    <p class="p3"><strong>旅行有效期</strong><br />
+      2013-8-24至2013-9-28</p>
+    <p class="hs xianggang"><span>香港航空</span></p>
+  </div>
+  <div class="bside">
+    <p> <span> <strong>出票有效期</strong>：提前21天出票，截止至2013-9-7<br />
+      <strong>备注</strong>：停留有效期：2天-14天，去程不适用周五出发，不适用HX1595/HX1596代码共享航班 <em>立即预订</em> </span> </p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>台北</h4>
+    <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>760</span><em>起</em></p>
+    <p class="p2">从广州</p>
+    <p class="p3"><strong>旅行有效期</strong><br />
+      2013-7-11至2013-12-31</p>
+    <p class="hs hainan"><span>海南航空</span></p>
+  </div>
+  <div class="bside">
+    <p> <span> <strong>出票有效期</strong>：提前30天出票，截止至2013-12-1<br />
+      <strong>备注</strong>：停留有效期：0-1个月 <em>立即预订</em> </span> </p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>台北</h4>
+    <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>1,240</span><em>起</em></p>
+    <p class="p2">从武汉</p>
+    <p class="p3"><strong>旅行有效期</strong><br />
+      2013-6-28至2013-9-27，2013-10-3至2013-12-31</p>
+    <p class="hs guohang"><span>国泰航空</span></p>
+  </div>
+  <div class="bside">
+    <p> <span> <strong>出票有效期</strong>：截止至2013-12-31<br />
+      <strong>备注</strong>：停留有效期：2天-1个月 <em>立即预订</em> </span> </p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>香港</h4>
+    <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>1,400</span><em>起</em></p>
+    <p class="p2">从成都</p>
+    <p class="p3"><strong>旅行有效期</strong><br />
+      2013-9-16至2013-10-31</p>
+    <p class="hs sichuanhangkong"><span>四川航空</span></p>
+  </div>
+  <div class="bside">
+    <p> <span> <strong>出票有效期</strong>：截止至2013-10-31<br />
+      <strong>备注</strong>：停留有效期：0-15天 <em>立即预订</em> </span> </p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>香港</h4>
+    <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>1,810</span><em>起</em></p>
+    <p class="p2">从北京</p>
+    <p class="p3"><strong>旅行有效期</strong><br />
+      2013-10-6至2013-10-31</p>
+    <p class="hs xianggang"><span>香港航空</span></p>
+  </div>
+  <div class="bside">
+    <p> <span> <strong>出票有效期</strong>：提前21天出票，截止至2013-10-10<br />
+      <strong>备注</strong>：停留有效期：2天-14天 <em>立即预订</em> </span> </p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>台北</h4>
+    <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>2,450</span><em>起</em></p>
+    <p class="p2">从北京</p>
+    <p class="p3"><strong>旅行有效期</strong><br />
+      2013-7-1至2013-9-30</p>
+    <p class="hs guohang"><span>国航</span></p>
+  </div>
+  <div class="bside">
+    <p> <span> <strong>出票有效期</strong>：提前7天出票，截止至2013-9-23<br />
+      <strong>备注</strong>：停留有效期：3天-14天 <em>立即预订</em> </span> </p>
+  </div>
+</li>
+</ul>
+
+<ul>
+  <li>
+    <div class="aside">
+      <h4>新加坡</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>800</span><em>起</em></p>
+      <p class="p2">从广州</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-5-1至2013-9-22，2013-10-4至2013-12-31</p>
+      <p class="hs xinjiapo"><span>新加坡航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：提前30天出票，截止至2013-12-1<br />
+        <strong>备注</strong>：停留有效期：2天-30天，去程限乘坐SQ853航班 <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>曼谷</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>1,210</span><em>起</em></p>
+      <p class="p2">从广州</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-6-16至2013-9-27，2013-10-3至2013-10-26</p>
+      <p class="hs nanhang"><span>南航</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-10-26<br />
+        <strong>备注</strong>：停留有效期：0-45天 <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>新加坡</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>1,480</span><em>起</em></p>
+      <p class="p2">从杭州</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-9-1至2013-9-28</p>
+      <p class="hs guotai"><span>国泰航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-9-28<br />
+        <strong>备注</strong>：停留有效期：2天-14天（香港转机） <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>曼谷</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>1610</span><em>起</em></p>
+      <p class="p2">从成都</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-8-20至2013-9-20</p>
+      <p class="hs taiguohangkong"><span>泰国航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-9-20<br />
+        <strong>备注</strong>：停留有效期：0-14天 <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>新加坡</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>2080</span><em>起</em></p>
+      <p class="p2">从成都</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-7-6至2013-9-30</p>
+      <p class="hs guohang"><span>国航</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-9-30<br />
+        <strong>备注</strong>：停留有效期：0-1个月 <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>普吉岛</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>2,000</span><em>起</em></p>
+      <p class="p2">从成都</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-7-1至2013-12-30</p>
+      <p class="hs sichuanhangkong"><span>四川航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-12-30<br />
+        <strong>备注</strong>：停留有效期：0-1个月 <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>曼谷</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>2,030</span><em>起</em></p>
+      <p class="p2">从北京</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-2-12至2013-9-27</p>
+      <p class="hs taiguohangkong"><span>泰国航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-9-27<br />
+        <strong>备注</strong>：停留有效期：0-14天 <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>普吉岛</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>2,410</span><em>起</em></p>
+      <p class="p2">从广州</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-8-18至2013-9-25，2013-10-4至2013-10-26</p>
+      <p class="hs nanhang"><span>南航</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-10-26<br />
+        <strong>备注</strong>：停留有效期：3天-45天 <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>新加坡</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>4,740</span><em>起</em></p>
+      <p class="p2">从上海</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-9-23至2013-10-3</p>
+      <p class="hs xinjiapo"><span>新加坡航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-10-3<br />
+        <strong>备注</strong>：停留有效期：0-14天 <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>吉隆坡</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>2,130</span><em>起</em></p>
+      <p class="p2">从广州</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-7-4至2013-9-30，2013-10-6至2013-12-3</p>
+      <p class="hs malaixiya"><span>马来西亚航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：提前14天出票，截止至2013-11-19<br />
+        <strong>备注</strong>：停留有效期：0-1个月 <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>哥打京那巴鲁</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>2,110</span><em>起</em></p>
+      <p class="p2">从广州</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-8-24至2013-9-24，2013-10-7至2013-10-31</p>
+      <p class="hs malaixiya"><span>马来西亚航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-9-11<br />
+        <strong>备注</strong>：停留有效期：0-14天（吉隆坡转机） <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>兰卡威</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>2,110</span><em>起</em></p>
+      <p class="p2">从广州</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-8-24至2013-9-24，2013-10-7至2013-10-31</p>
+      <p class="hs malaixiya"><span>马来西亚航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-9-11<br />
+        <strong>备注</strong>：停留有效期：0-14天（吉隆坡转机） <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>槟城</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>2,110</span><em>起</em></p>
+      <p class="p2">从广州</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-8-24至2013-9-24，2013-10-7至2013-10-31</p>
+      <p class="hs malaixiya"><span>马来西亚航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-9-11<br />
+        <strong>备注</strong>：停留有效期：0-14天（吉隆坡转机） <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>新山</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>2,110</span><em>起</em></p>
+      <p class="p2">从广州</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-8-24至2013-9-24，2013-10-7至2013-10-31</p>
+      <p class="hs malaixiya"><span>马来西亚航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-9-11<br />
+        <strong>备注</strong>：停留有效期：0-14天（吉隆坡转机） <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>泗务</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>2,110</span><em>起</em></p>
+      <p class="p2">从广州</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-8-24至2013-9-24，2013-10-7至2013-10-31</p>
+      <p class="hs malaixiya"><span>马来西亚航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-9-11<br />
+        <strong>备注</strong>：停留有效期：0-14天（吉隆坡转机） <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>古晋</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>2,110</span><em>起</em></p>
+      <p class="p2">从广州</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-8-24至2013-9-24，2013-10-7至2013-10-31</p>
+      <p class="hs malaixiya"><span>马来西亚航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-9-11<br />
+        <strong>备注</strong>：停留有效期：0-14天（吉隆坡转机） <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+</ul>
+
+<ul>
+  <li>
+    <div class="aside">
+      <h4>首尔</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>930</span><em>起</em></p>
+      <p class="p2">从上海</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-9-1至2013-12-31</p>
+      <p class="hs dongfang"><span>东航</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-12-31<br />
+        <strong>备注</strong>：停留有效期：0-1个月 <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>首尔</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>1,300</span><em>起</em></p>
+      <p class="p2">从北京</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-8-18至2013-12-31</p>
+      <p class="hs guohang"><span>国航</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：提前21天出票，截止至2013-12-10<br />
+        <strong>备注</strong>：停留有效期：0-1个月 <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>济州岛</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>2,040</span><em>起</em></p>
+      <p class="p2">从成都</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-9-1至2013-12-31</p>
+      <p class="hs dongfang"><span>东航</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-12-17<br />
+        <strong>备注</strong>：停留有效期：2天-1个月（经停上海） <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>首尔 </h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>2,060</span><em>起</em></p>
+      <p class="p2">从杭州</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-6-17至2013-12-31</p>
+      <p class="hs guohang"><span>国航</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-12-31<br />
+        <strong>备注</strong>：停留有效期：0-6个月 <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>首尔 </h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>2,300</span><em>起</em></p>
+      <p class="p2">从广州</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-8-21至2013-10-26</p>
+      <p class="hs nanhang"><span>南航</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：提前14天出票，截止至2013-10-9<br />
+        <strong>备注</strong>：停留有效期：0-2个月 <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>首尔 </h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>2,500</span><em>起</em></p>
+      <p class="p2">从成都</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-3-15至2013-12-30</p>
+      <p class="hs sichuanhangkong"><span>四川航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-12-30<br />
+        <strong>备注</strong>：停留有效期：0-3个月 <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>釜山</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>2,680</span><em>起</em></p>
+      <p class="p2">从广州</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-8-18至2013-9-26，2013-10-3至2013-10-31</p>
+      <p class="hs hanya"><span>韩亚航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：提前14天出票，截止至2013-10-17<br />
+        <strong>备注</strong>：停留有效期：0-3个月 <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+</ul>
+
+<ul>
+  <li>
+    <div class="aside">
+      <h4>东京</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>2,610</span><em>起</em></p>
+      <p class="p2">从广州</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-6-15至2013-9-25，2013-10-3至2013-12-31</p>
+      <p class="hs riben"><span>日本航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：提前35天出票，截止至2013-11-26<br />
+        <strong>备注</strong>：停留有效期：3天-14天 <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>名古屋</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>2,780</span><em>起</em></p>
+      <p class="p2">从成都</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-7-1至2013-9-27</p>
+      <p class="hs guohang"><span>国航</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-9-27<br />
+        <strong>备注</strong>：停留有效期：0-1个月（经停上海） <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>东京</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>2,700</span><em>起</em></p>
+      <p class="p2">从杭州</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-10-3至2014-1-27</p>
+      <p class="hs quanrikong"><span>全日空航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：提前35天出票，截止至2013-12-23<br />
+        <strong>备注</strong>：停留有效期：3天-14天 <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>福冈</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>2,700</span><em>起</em></p>
+      <p class="p2">从北京</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-9-1至2013-9-27</p>
+      <p class="hs guohang"><span>国航</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：提前21天出票，截止至2013-9-6<br />
+        <strong>备注</strong>：停留有效期：0-1个月 <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>东京</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>2,970</span><em>起</em></p>
+      <p class="p2">从北京</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-9-1至2013-9-27</p>
+      <p class="hs guohang"><span>国航</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：提前21天出票，截止至2013-9-6<br />
+        <strong>备注</strong>：停留有效期：0-1个月 <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>大阪</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>3,000</span><em>起</em></p>
+      <p class="p2">从北京</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-9-1至2013-9-27</p>
+      <p class="hs guohang"><span>国航</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：提前21天出票，截止至2013-9-6<br />
+        <strong>备注</strong>：停留有效期：0-1个月 <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>名古屋</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>3,000</span><em>起</em></p>
+      <p class="p2">从北京</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-9-1至2013-9-27</p>
+      <p class="hs guohang"><span>国航</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：提前21天出票，截止至2013-9-6<br />
+        <strong>备注</strong>：停留有效期：0-1个月 <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+</ul>
+
+<ul>
+  <li>
+    <div class="aside">
+      <h4>伦敦</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>2,280</span><em>起</em></p>
+      <p class="p2">从成都</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-9-23至2014-3-31</p>
+      <p class="hs yingguo"><span>英国航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2014-3-31<br />
+        <strong>备注</strong>：停留有效期：3天-60天 <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>布拉格</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>3,350</span><em>起</em></p>
+      <p class="p2">从北京</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-7-15至2013-12-31</p>
+      <p class="hs faguohangkong"><span>法国航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-12-31<br />
+        <strong>备注</strong>：停留有效期：6天（或过周日）-3个月（巴黎转机） <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>罗马</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>3,880</span><em>起</em></p>
+      <p class="p2">从北京</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-7-10至2013-12-31</p>
+      <p class="hs fenlan"><span>芬兰航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：提前7天出票，截止至2013-12-24<br />
+        <strong>备注</strong>：停留有效期：5天-1个月（赫尔辛基转机） <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>巴黎</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>2,830</span><em>起</em></p>
+      <p class="p2">从上海</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-6-25至2014-7-31</p>
+      <p class="hs eluosi"><span>俄罗斯航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2014-5-31<br />
+        <strong>备注</strong>：停留有效期：2天（或过周日）-175天（莫斯科转机） <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>巴塞罗那</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>3,300</span><em>起</em></p>
+      <p class="p2">从上海</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-6-25至2014-7-31</p>
+      <p class="hs eluosi"><span>俄罗斯航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2014-5-31<br />
+        <strong>备注</strong>：停留有效期：2天（或过周日）-175天（莫斯科转机） <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>马德里</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>3,350</span><em>起</em></p>
+      <p class="p2">从上海</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-6-19至2013-12-30</p>
+      <p class="hs faguohangkong"><span>法国航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-12-30<br />
+        <strong>备注</strong>：停留有效期：6天（或过周日）-3个月（巴黎转机） <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>米兰</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>3,350</span><em>起</em></p>
+      <p class="p2">从上海</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-6-19至2013-12-30</p>
+      <p class="hs helanhuangjia"><span>荷兰皇家航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-12-30<br />
+        <strong>备注</strong>：停留有效期：6天（或过周日）-3个月（阿姆斯特丹转机） <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>布拉格</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>3,950</span><em>起</em></p>
+      <p class="p2">从上海</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-6-19至2013-10-31</p>
+      <p class="hs hansha"><span>汉莎航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：提前3天出票，截止至2013-10-28<br />
+        <strong>备注</strong>：停留有效期：6天（或过周日）-12个月（法兰克福或慕尼黑转机） <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>日内瓦</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>4,200</span><em>起</em></p>
+      <p class="p2">从上海</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-6-19至2013-12-30</p>
+      <p class="hs ruishi"><span>瑞士航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-12-30<br />
+        <strong>备注</strong>：停留有效期：6天（或过周日）-12个（苏黎世转机） <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>汉堡</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>4,700</span><em>起</em></p>
+      <p class="p2">从上海</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-6-18至2013-10-31</p>
+      <p class="hs hansha"><span>汉莎航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-10-31<br />
+        <strong>备注</strong>：停留有效期：6天（或过周日）-12个月（法兰克福或慕尼黑转机） <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>威尼斯</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>4,850</span><em>起</em></p>
+      <p class="p2">从上海</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-6-19至2013-10-2</p>
+      <p class="hs faguohangkong"><span>法国航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-10-2<br />
+        <strong>备注</strong>：停留有效期：6天（或过周日）-12个月（巴黎转机） <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>日内瓦</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>4,900</span><em>起</em></p>
+      <p class="p2">从上海</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-5-27至2013-12-30</p>
+      <p class="hs tuerqi"><span>土耳其航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-12-30<br />
+        <strong>备注</strong>：停留有效期：3天（或过周日）-12个月（伊斯坦布尔转机） <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>罗马</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>4,980</span><em>起</em></p>
+      <p class="p2">从上海</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-7-10至2013-12-30</p>
+      <p class="hs fenlan"><span>芬兰航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-12-30<br />
+        <strong>备注</strong>：停留有效期：5天-3个月（赫尔辛基转机） <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>伊斯坦布尔</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>5,100</span><em>起</em></p>
+      <p class="p2">从上海</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-6-3至2013-12-30</p>
+      <p class="hs tuerqi"><span>土耳其航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-12-30<br />
+        <strong>备注</strong>：停留有效期：3天（或过周日）-6个月 <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>巴黎</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>4,000</span><em>起</em></p>
+      <p class="p2">从成都</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-6-18至2013-12-31</p>
+      <p class="hs hatihade"><span>阿提哈德航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-12-31<br />
+        <strong>备注</strong>：停留有效期：3天-6个月（阿布扎比转机） <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>米兰</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>4,000</span><em>起</em></p>
+      <p class="p2">从成都</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-6-18至2013-12-31</p>
+      <p class="hs hatihade"><span>阿提哈德航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-12-31<br />
+        <strong>备注</strong>：停留有效期：3天-6个月（阿布扎比转机） <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>伦敦</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>5,660</span><em>起</em></p>
+      <p class="p2">从广州</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-6-16至2013-10-26</p>
+      <p class="hs nanhang"><span>南航</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-10-26<br />
+        <strong>备注</strong>：停留有效期：6天-12个月 <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>巴黎</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>6,210</span><em>起</em></p>
+      <p class="p2">从广州</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-6-14至2013-10-2</p>
+      <p class="hs nanhang"><span>南航</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-10-2<br />
+        <strong>备注</strong>：停留有效期：6天-12个月 <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+</ul>
+
+<ul>
+  <li>
+    <div class="aside">
+      <h4>墨尔本</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>2,300</span><em>起</em></p>
+      <p class="p2">从成都</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-9-1至2013-10-15</p>
+      <p class="hs sichuanhangkong"><span>四川航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-10-15<br />
+        <strong>备注</strong>：停留有效期：0-2个月 <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>悉尼</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>3,010</span><em>起</em></p>
+      <p class="p2">从广州</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-8-5至2013-9-21</p>
+      <p class="hs nanhang"><span>南航</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：提前14天出票，截止至2013-9-7<br />
+        <strong>备注</strong>：停留有效期：5天-3个月 <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>悉尼</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>2,720</span><em>起</em></p>
+      <p class="p2">从杭州</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-8-20至2013-9-28</p>
+      <p class="hs guotai"><span>国泰航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：提前28天出票，截止至2013-8-31<br />
+        <strong>备注</strong>：停留有效期：2天-6个月（香港转机） <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>悉尼</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>3,800</span><em>起</em></p>
+      <p class="p2">从香港</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-8-4至2013-12-19，2013-12-27至2013-12-31</p>
+      <p class="hs guotai"><span>国泰航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-8-31<br />
+        <strong>备注</strong>：停留有效期：0-3个月 <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>悉尼</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>4,120</span><em>起</em></p>
+      <p class="p2">从上海</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-8-12至2013-9-20</p>
+      <p class="hs dongfang"><span>东航</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-9-20<br />
+        <strong>备注</strong>：停留有效期：5天-12个月 <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+</ul>
+
+<ul>
+  <li>
+    <div class="aside">
+      <h4>旧金山</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>5,600</span><em>起</em></p>
+      <p class="p2">从成都</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-9-1至2013-9-28</p>
+      <p class="hs ganglong"><span>港龙航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-9-28<br />
+        <strong>备注</strong>：停留有效期：0-3个月（香港转机） <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>纽约</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>5,450</span><em>起</em></p>
+      <p class="p2">从北京</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-9-9至2013-9-25</p>
+      <p class="hs meiguolianhe"><span>美国联合航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-9-25<br />
+        <strong>备注</strong>：停留有效期：1个月-6个月，去程和回程仅限周一至周四 <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>旧金山</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>4,930</span><em>起</em></p>
+      <p class="p2">从北京</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-9-9至2013-9-25</p>
+      <p class="hs meiguolianhe"><span>美国联合航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-9-25<br />
+        <strong>备注</strong>：停留有效期：1个月-6个月，去程和回程仅限周一至周四 <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>洛杉矶</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>4,850</span><em>起</em></p>
+      <p class="p2">从广州</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-8-26至2013-10-1</p>
+      <p class="hs nanhang"><span>南航</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：提前7天出票，截止至2013-9-24<br />
+        <strong>备注</strong>：停留有效期：5天-6个月 <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>旧金山</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>4,090</span><em>起</em></p>
+      <p class="p2">从香港</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-9-7至2013-12-11，2013-12-23至2013-12-31</p>
+      <p class="hs guotai"><span>国泰航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-8-31<br />
+        <strong>备注</strong>：停留有效期：2天-15天 <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>旧金山</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>4,600</span><em>起</em></p>
+      <p class="p2">从上海</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-9-11至2013-9-30</p>
+      <p class="hs meiguolianhe"><span>美国联合航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-8-31<br />
+        <strong>备注</strong>：停留有效期：5天-3个月 <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>温哥华</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>4,980</span><em>起</em></p>
+      <p class="p2">从香港</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-9-7至2013-12-11，2013-12-23至2013-12-31 </p>
+      <p class="hs guotai"><span>国泰航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-8-31<br />
+        <strong>备注</strong>：停留有效期：2天-1个月 <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>纽约</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>5,240</span><em>起</em></p>
+      <p class="p2">从香港</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-9-7至2013-12-11，2013-12-23至2013-12-31</p>
+      <p class="hs guotai"><span>国泰航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-8-31<br />
+        <strong>备注</strong>：停留有效期：0-1个月 <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>芝加哥</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>5,240</span><em>起</em></p>
+      <p class="p2">从香港</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-9-7至2013-12-11，2013-12-23至2013-12-31</p>
+      <p class="hs guotai"><span>国泰航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-8-31<br />
+        <strong>备注</strong>：停留有效期：0-1个月 <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>洛杉矶</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>5,850</span><em>起</em></p>
+      <p class="p2">从上海</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-9-11至2013-10-31</p>
+      <p class="hs dongfang"><span>东航</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-10-31<br />
+        <strong>备注</strong>：停留有效期：5天-6个月 <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>芝加哥</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>7,080</span><em>起</em></p>
+      <p class="p2">从上海</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-9-11至2013-9-25</p>
+      <p class="hs aa"><span>美国航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-9-25<br />
+        <strong>备注</strong>：停留有效期：0-2个月，来回程仅限周一至周四 <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+</ul>
+
+<ul>
+  <li>
+    <div class="aside">
+      <h4>暹粒</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>1,750</span><em>起</em></p>
+      <p class="p2">从广州</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-6-16至2013-10-26</p>
+      <p class="hs nanhang"><span>南航</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-10-26<br />
+        <strong>备注</strong>：停留有效期：0-45天 <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>巴厘岛</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>2,680</span><em>起</em></p>
+      <p class="p2">从广州</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-7-4至2013-9-30，2013-10-6至2013-12-31</p>
+      <p class="hs malaixiya"><span>马来西亚航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：提前14天出票，截止至2013-12-17<br />
+        <strong>备注</strong>：停留有效期：0-1个月（吉隆坡转机） <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>巴厘岛</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>2,710</span><em>起</em></p>
+      <p class="p2">从香港</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-8-24至2013-10-31</p>
+      <p class="hs xianggang"><span>香港航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：提前21天出票，截止至2013-10-10<br />
+        <strong>备注</strong>：停留有效期：2天-14天 <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>迪拜</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>3,270</span><em>起</em></p>
+      <p class="p2">从成都</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-7-3至2013-12-26</p>
+      <p class="hs nanhang"><span>南航</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-12-26<br />
+        <strong>备注</strong>：停留有效期：5天-3个月（广州转机） <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>马埃岛</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>3,550</span><em>起</em></p>
+      <p class="p2">从香港</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-7-10至2013-12-31</p>
+      <p class="hs aisaiebiya"><span>埃塞俄比亚航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-12-31<br />
+        <strong>备注</strong>：停留有效期：0-12个月 <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+  <li>
+    <div class="aside">
+      <h4>萨那</h4>
+      <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>5,240</span><em>起</em></p>
+      <p class="p2">从上海</p>
+      <p class="p3"><strong>旅行有效期</strong><br />
+        2013-6-25至2013-12-30</p>
+      <p class="hs hatihade"><span>阿提哈德航空</span></p>
+    </div>
+    <div class="bside">
+      <p> <span> <strong>出票有效期</strong>：截止至2013-12-30<br />
+        <strong>备注</strong>：停留有效期：3天-6个月（阿布扎比转机） <em>立即预订</em> </span> </p>
+    </div>
+  </li>
+</ul>
+
+</div>
+</div>
+<div class="bottom"></div>
+</div>
+</div>
+<include file="public:footer" />

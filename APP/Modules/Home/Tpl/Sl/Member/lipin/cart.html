@@ -1,0 +1,121 @@
+<include file="Public:header" />
+<link rel="stylesheet" href="__PUBLIC__/css/userCenter.css" type="text/css" />
+        <style>
+            .prosc a.a0{background:url(__PUBLIC__/images/reduce.jpg) no-repeat;width:11px;margin:6px 6px 0 12px; height:11px; float:left;}
+            .prosc a.a1{background:url(__PUBLIC__/images/add.jpg) no-repeat; width:11px; height:11px;margin:6px 0 0 6px;float:left;}
+        </style>
+        <script type="text/javascript">
+            $(function(){
+                $("a.a0").bind("click",function(){
+                    var value = Number($(this).next().val());
+                    if(value>=2) $(this).next().val(--value);
+                    price_xj($(this),value);
+
+                });
+                $("a.a1").bind("click",function(){
+                    var value = Number($(this).prev().val());
+                        $(this).prev().val(++value);
+                    price_xj($(this),value);
+                });
+
+                $(".prosc .tx").bind("keyup",function(){
+                    if(isNaN($(this).val()) || $(this).val()<0)
+                        $(this).val(1);
+                    price_xj($(this),$(this).val());
+                })
+                $(".checkbox").change(function(){
+                    if(this.checked){
+                        $("input:checkbox").each(function(){this.checked="checked";});
+                        price_js();
+                    }else{
+                        $("input:checkbox").each(function(){this.checked="";});
+                        $("#total").html(0);
+                    }
+                });
+                function price_xj(obj,value){
+                    var dj = obj.parent("td").prev().html().replace(/(\d+)\D/,"$1");
+                    obj.parent("td").next("td").children("span").html((dj*value));
+                    price_js();
+                }
+                function price_js(){
+                    var money=0;
+                    $("#orderOnlinePay tr").each(function(i){
+                        if(i>0 && $(this).find("td").eq(0).children("input").attr("checked")){
+                            money=money+Number($(this).find("td").eq(5).children("span").html());
+                        }
+                    });
+                    $("#total").html(money);
+                }
+
+                $("#orderOnlinePay tr").each(function(i){
+                    if(i>0){
+                        $(this).find("input:checkbox").change(function(){
+                            price_js();
+                        });
+                    }
+                });
+            })
+         </script>
+    <div id="cont">
+        <div class="wd960 mt10 bgWhite">
+        	<h1 class="h1_tit_nav">你当前所在位置：<a href="/" class="sy">首页</a> > <a href="userCenter.html" class="sy">会员中心</a> > <a class="cur">我的购物车</a></h1>
+            <include file='left' />
+            <div class="left mt10" id="mdsc">
+                <include file="top_kf" />
+               	<div class="top_nav_qh">
+               		<ul>
+                   		<li><a href="collect">我的收藏</a></li>
+                        <li><a href="cart" class="active">我的购物车</a></li>
+                        <li><a href="exchange">已兑换的礼品</a></li>
+                   	</ul>
+               	</div>
+            	
+               	<div class="prosc">
+                    <form  action="{:U('/Member/lipin')}/confirm" method="">
+                    <table width="100%" cellpadding="2" id="orderOnlinePay">
+                        <tr class="thbg">
+                            <td width="10%" align="left"><input name="" type="checkbox" checked="checked" class="checkbox" value="" /><strong>全选</strong></td>
+                            <td width="40%" align="center" colspan="2"><strong>礼品名称:</strong></td>
+                            <td width="12%" align="center"><strong>所需积分</strong></td>
+                            <td width="13%" align="center"><strong>数量</strong></td>
+                            <td width="10%" align="center"><strong>小计</strong></td>
+                            <td width="15%" align="center"></td>
+                        </tr>
+
+                        <foreach name="list" item="v">
+                        <tr>
+                            <td align="left" ><input name="id[{$v.mall_id}]" type="checkbox" checked="checked"  /></td>
+                            <td align="center"  bgcolor="#FFFDEE">
+                               <img style="float:left" src="__PUBLIC__/uploads/mall/s_{$v.img}"  width="50" height="50" />
+                            </td>
+                            <td align="center" >
+                            <a href="{:U('/jifen/info','id='.$v['mall_id'])}" title="{$v.title}">{$v.title|msubstr=###,0,30}</a></td>
+                            <td align="center" >{$v.jifen}分</td>
+                            <td align="center"  >
+                                <a class="a0"></a>
+                                <input type="text" value="{$v.num}"  name="num[{$v.mall_id}]" class="tx"/>
+                                <a class="a1"></a>
+                              </td>
+                            <td align="center" bgcolor="#FFFDEE"><span style="color:#f00">{$v['jifen']*$v['num']}</span>分</td>
+                            <td  class="cr"  align="center" bgcolor="#FFFDEE"><a href="collect/?act=add&id={$v.mall_id}&del={$v.id}">移入收藏夹</a><br/><a href="cart/?act=del&id={$v.id}">删除</a></td>
+                        </tr>
+                         </foreach>
+
+
+                        <tr class="thbg">
+                        <if condition="empty($list)">
+                            <td colspan="7" align="right">您的购物车还没有物品 <a href="{:U('/Jifen')}">去商城转转吧</a></td>
+                        <else/>
+                            <td colspan="6" align="right">总共所需积分:<span id="total" style="color:#f00;font-weight:bold; font-size:14px;">{$total}</span>分</td>
+                            <td align="center"><input name="" type="submit" class="ljdh"  value="" /></td>
+                        </if>
+                        </tr>
+                    </table>
+            	</div>
+         	</div>
+        </div>
+    </div>
+
+
+<include file="Public:footer" />
+<link rel="stylesheet" href="__PUBLIC__/css/userCenter.css" type="text/css" />

@@ -1,0 +1,161 @@
+ <div id="footer">
+    	<div class="wd960">
+            <div id="ft_link">
+                <ul>
+                    <li><a href="{:U('/about')}" target="_blank">关于爱尚飞</a> |</li>
+                    <li><a href="{:U('/Adviser')}" target="_blank">专业顾问</a> |</li>
+                    <li><a href="{:U('/about/service')}" target="_blank">会员服务</a> |</li>
+                    <li><a href="{:U('/about/privacy')}" target="_blank">隐私保护</a> |</li>
+                    <li><a href="{:U('/about/job')}" target="_blank">人才招聘</a> |</li>
+                    <li><a href="http://www.cata.org.cn/clientWeb/frm_Single_Search.aspx?name=%u5E7F%u5DDE%u7F8E%u4E50%u5546%u52A1%u670D%u52A1%u6709%u9650%u516C%u53F8&type=agentname&leixing=&chengshi=&chengqu=" target="_blank">中国航空运输协会</a> |</li>
+                    <li><a href="__PUBLIC__/images/zz_08.jpg" target="_blank">企业营业执照</a> |</li>
+                    <li><a href="__PUBLIC__/images/ylzg.jpg" target="_blank">民航客运一类代理</a></li>
+                </ul>
+            </div>
+            <?php
+            //设置备案号
+            if($_SERVER['HTTP_HOST']=='www.aishangfei.cn'){
+                $bah="粤ICP备11009654号-7";
+            }elseif($_SERVER['HTTP_HOST']=='www.aishangfei.org'){
+                $bah="粤ICP备11009654号-9";
+            }else{
+                $bah="粤ICP备11009654号-21";
+            }
+            ?>
+            <div id="ft_copyright">Copyright © 2009-2013 爱尚飞国际机票网 广州美乐商务服务有限公司. All Rights Reserved
+                <img src="__PUBLIC__/images/ft_icp.jpg" alt="icp" />
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">{$bah}</a>
+            </div>
+            <div id="ft_icons">
+                <a class="a0" href="#" target="_blank"></a>
+                <a class="a1" href="#" target="_blank"></a>
+                <a class="a2" href="#" target="_blank"></a>
+                <a class="a3" href="http://trust.360.cn/search.php" target="_blank"></a>
+                <a class="a4" href="#" target="_blank"></a>
+                <a class="a5" href="http://www.gzaic.gov.cn/GZCX/WebUI/credit/qiyeInfo.htm#" target="_blank"></a>
+                <a class="a6" href="http://net.china.com.cn/index.htm" target="_blank"></a>
+                <a class="a7" href="http://www.cyberpolice.cn/wfjb/" target="_blank"></a>
+            </div>
+
+
+        <div style="display:none;">
+                <script type="text/javascript">
+        var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fd4cf44a2f93f50230dbcc266a1e41306' type='text/javascript'%3E%3C/script%3E"));
+            </script>
+
+        </div>
+     <script type="text/javascript">
+         var _gaq = _gaq || [];
+         _gaq.push(['_setAccount', 'UA-35556838-1']);
+         _gaq.push(['_setDomainName', 'aishangfei.net']);
+         _gaq.push(['_setLocalRemoteServerMode']);
+         _gaq.push(['_trackPageview']);
+
+         (function() {
+             var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+             ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+         })();
+     </script>
+     <!-- Google Code for &#20877;&#33829;&#38144;&#26631;&#35760; -->
+     <!-- Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. For instructions on adding this tag and more information on the above requirements, read the setup guide: google.com/ads/remarketingsetup -->
+
+     <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script>
+     <noscript>
+         <div style="display:inline;">
+             <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/990797250/?value=0&amp;label=-y_RCK7_9gMQwru52AM&amp;guid=ON&amp;script=0"/>
+         </div>
+     </noscript>
+
+
+     <div style="display:none">
+         <script language="javascript" type="text/javascript" src="http://js.users.51.la/5149478.js"></script>
+         <noscript>
+             <a href="http://www.51.la/?5149478" target="_blank"><img alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/5149478.asp" style="border:none" /></a>
+         </noscript>
+
+     </div>
+
+           <?php
+	        	if($_SERVER['HTTP_HOST']=='www.aishangfei.cn'){
+	       ?>
+            <script language="javascript" type="text/javascript" src="http://js.users.51.la/15783772.js"></script>
+            <noscript><a href="http://www.51.la/?15783772" target="_blank"><img alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/15783772.asp" style="border:none" /></a></noscript>
+                <?php if(MODULE_NAME != "Jifen" && MODULE_NAME != "Member"){ ?>
+                   <script type='text/javascript' src='http://chat.53kf.com/kf.php?arg=yunai&style=1'></script>
+                <?php } ?>
+            <?php }else{
+                if($userinfo){ ?>
+                  <script type="text/javascript" src="{:U('api/kf/leftKf')}"></script>
+                <?php  }elseif(MODULE_NAME != "Jifen" && MODULE_NAME != "Member" ){ ?>
+                   <script language="JavaScript" src="{:U('/iflight/sidebar')}"></script>
+                        <?php  if(MODULE_NAME == 'Zt'){ ?>
+                              <script id="kf53" language="JavaScript" src ="http://chat.53kf.com/kf.php?arg=meile10&style=2"></script>
+                        <?php }else{ ?>
+                         <script id="kf53" language="JavaScript" src ="http://chat.53kf.com/kf.php?arg=meile10&style=1"></script>
+                        <?php } ?>
+                <?php  }elseif(ACTION_NAME == 'register'|| ACTION_NAME == 'login'){ ?>
+                      <script id="kf53" language="JavaScript" src ="http://chat.53kf.com/kf.php?arg=meile10&style=2"></script>
+                <?php } ?>
+            <?php }?>
+
+     <script type="text/javascript">
+         /* <![CDATA[ */
+         var google_conversion_id = 990797250;
+         var google_conversion_label = "-y_RCK7_9gMQwru52AM";
+         var google_custom_params = window.google_tag_params;
+         var google_remarketing_only = true;
+         /* ]]> */
+     </script>
+    	</div>        
+	</div>
+
+     <script type="text/javascript">
+         var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+         document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F9bb60244498ccc09dd9a81c6428d1e9f' type='text/javascript'%3E%3C/script%3E"));
+     </script>
+
+ <!-- WPA Button Begin 统计分析代码-->
+ <script charset="utf-8" type="text/javascript" src="http://wpa.b.qq.com/cgi/wpa.php?key=XzkzODAwOTkwMl85Njg2NV80MDA2MDg1MTg4Xw"></script>
+ <!-- WPA Button End -->
+
+ <script type="text/javascript">
+     $(function(){
+         kfurl="http://www17.53kf.com/webCompany.php?"+$("#ivt_script").attr("src").match(/arg=.*/gim);
+     });
+ </script>
+
+ <?php if(!$userinfo && MODULE_NAME != "Jifen" && MODULE_NAME != "Member"): ?>
+	<!--在线查询和QQ咨询-->
+    <div id="line_query_qq">
+    	<dl>
+       	  <dt><span>关闭</span></dt>
+          <dd class="kf"><a href="javascript:;" onclick="open_kf()">在线查询</a></dd>
+          <dd><span><script charset="utf-8" type="text/javascript" src="http://wpa.b.qq.com/cgi/wpa.php?key=XzkzODAwOTkwMl85Njg3Ml80MDA2MDg1MTg4Xw"></script></span></dd>
+        </dl>
+    </div>
+  <?php endif; ?>
+
+    <style type="text/css">
+    #line_query_qq{width:140px;height:248px;background:url(__PUBLIC__/images/line_query_qq.gif) no-repeat;position:absolute;top:170px;right:0;}
+	#line_query_qq dt{height:18px;}
+	#line_query_qq dt span{float:right;width:18px;height:18px;line-height:60px;cursor:pointer;overflow:hidden;}
+	#line_query_qq dd{height:115px;}
+	#line_query_qq dd.kf a{width:140px;height:115px;line-height:300px;display:block;overflow:hidden;}
+	#line_query_qq dd span{display:block;margin-top:80px;height:22px;text-align:center;}
+    </style>
+    <script type="text/javascript">
+	$(function(){
+		$(window).scroll(function(){
+			var top=$(this).scrollTop()+170+'px';
+			$('#line_query_qq').css('top',top);
+			});
+		$('#line_query_qq span').click(function(){
+			$('#line_query_qq').hide();
+			});
+	});
+    </script>
+ 
+</body>
+</html>

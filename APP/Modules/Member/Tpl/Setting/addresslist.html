@@ -1,0 +1,111 @@
+<include file="public:header" />
+
+    <link rel="stylesheet" href="__PUBLIC__/css/member.css" type="text/css" />
+    <script type="text/javascript" src="__PUBLIC__/js/member.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/layer/layer.min.js"></script>
+    <script src="__PUBLIC__/admin/Js/jquery.form.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/modify.js"></script>
+    <div class="member">
+    	<!--会员中心导航-->
+    	<include file="public:left" />
+        
+	  	<div class="right" id="memberR">
+        	<h1 class="nav_tit">邮寄地址<div class="right"><a href="#"><img src="__PUBLIC__/images/member/add_news_address.gif" /></a></div></h1>
+            <div id="list_con" class="addrbox">
+            	<div id="addresslist">
+                	<table width="788" border="0" cellspacing="0" cellpadding="0">
+						<tr class="tit">
+                        	<td class="first"><input type="checkbox" class="checkbox"/>全选</td>
+                            <td>所在地</td>
+                            <td>联系地址</td>
+                            <td>收货人</td>
+                            <td>手机号</td>
+                            <td>电话号码</td>
+                            <td>操作</td>
+						</tr>
+                        <tr  gid="">
+                        	<td class="first"><input type="checkbox" /></td>
+                            <td>广东省 广州市</td>
+                            <td>白云区机场路棠景街6-8号寓景大厦8楼全层</td>
+                            <td>张三</td>
+                            <td>13600000000</td>
+                            <td>02088888888</td>
+                            <td><a href="#">查看</a>  <a class="del">删除</a></td>
+						</tr>
+                        <tr  gid="">
+                        	<td class="first"><input type="checkbox" /></td>
+                            <td>广东省 广州市</td>
+                            <td>白云区机场路棠景街6-8号寓景大厦8楼全层</td>
+                            <td>张三</td>
+                            <td>13600000000</td>
+                            <td>02088888888</td>
+                            <td><a href="#">查看</a>  <a class="del">删除</a></td>
+						</tr>
+					</table>
+					<div class="bot"><input type="checkbox" class="checkbox all"/>全选 <a class="alldel">删除</a></div>
+            	</div>
+            </div>
+            
+        </div>
+    </div>
+    <script type="text/javascript">
+    	$(function(){
+			//邮寄地址 全选功能
+			$("#addresslist .checkbox").change(function(){
+				if(this.checked){
+					$("#addresslist input:checkbox").each(function(){this.checked="checked";});
+					}else{
+						$("#addresslist input:checkbox").each(function(){this.checked="";});
+                    }
+                });
+				
+			//邮寄地址 当某地址取消选择时，取消全选
+			$("#addresslist input:checkbox").change(function(){
+				if($(this).hasClass('checkbox') != true){$('#addresslist .checkbox').removeAttr('checked');}
+				});
+			
+			//单个把地址删除
+			$("#addresslist .del").bind("click",function(){
+				var act="del";//设置类型为删除
+				var tr=$(this).parent().parent();//获取当前行的Tr
+				var gid=tr.attr("gid");//获取它的gid
+				addresslistAjax(gid,act,function(t){if(t==true){tr.remove();}else if(t==false){alert("操作失败！");}});
+				});
+				
+			//多选的把地址删除
+			$("#addresslist .alldel").bind("click",function(){
+				var act="del";//设置类型为删除
+				var table = $(this).parent().prev();
+				var gid = new Array();
+				table.find('tr').each(function(i){
+					if(i>0 && $(this).find("td").eq(0).children("input").attr("checked")){
+						gid.push($(this).attr('gid'));
+					}
+					});
+				if(gid.length<=0){
+					alert("请选择地址再删除！");
+					}else{
+						addresslistAjax(gid,act,function(t){
+							if(t==true){
+								table.find('tr').each(function(i){
+									if(i>0 && $(this).find("td").eq(0).children("input").attr("checked")){$(this).remove();}
+									});
+								}else if(t==false){alert("操作失败！");}
+							});
+						}
+				});
+			//邮寄地址的AJAX
+			function addresslistAjax(gid,act,fn){
+				$.getJSON("{:U('/Member/Setting/addresslist')}",{id:gid,act:act},function(data){
+					if(data.status==1){
+						fn(true);
+						}else{
+							fn(false);
+							}
+					});	
+				}
+				
+			});
+    </script>
+    
+<include file="public:footer" />

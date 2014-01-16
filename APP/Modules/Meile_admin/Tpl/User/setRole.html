@@ -1,0 +1,53 @@
+
+<div class="pageContent">
+
+
+	<form method="post" action="__URL__/setRole/navTabId/__MODULE__" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone)">
+		<input type="hidden" name="user_id" value="<?php echo $_SESSION[C('USER_AUTH_KEY')] ?>"/>
+		<input type="hidden" name="id" value="{$vo.id}" />
+		<div class="pageFormContent" layoutH="58">
+					
+			<!-- 
+			<div class="unit">
+				<label>重置密码：</label>
+				<input type="text" name="resetPwd" > <INPUT type="button" value="重置密码" onclick="resetPwd()" class="submit" style="height:25px">
+			</div>
+			-->
+			
+			<div class="unit">
+				<label>用户名：</label>
+				<input type="text"  disabled="disabled" name="username"  value="{$vo.username}">
+			</div>
+			
+			<div class="unit">
+				<label>昵称：</label>
+				<input type="text"  disabled="disabled" name="name" value="{$vo.name}">
+			</div>
+			
+			<div class="unit">
+				<label>状态：</label>
+				<select class="small bLeft"  name="status">
+					<option <eq name="vo.status" value="1" >selected</eq> value="1">启用</option>
+					<option <eq name="vo.status" value="0" >selected</eq> value="0">禁用</option>
+				</select>
+			</div>
+
+            <div class="unit">
+                <label>权限组：</label>
+                <volist name="role" id="v">
+                <label><input type="checkbox" name="gid[]"  value="{$v.id}" <notempty name="v['checked']">checked</notempty>>{$v.name}</label>
+                 </volist>
+            </div>
+
+			
+		</div>
+		<div class="formBar">
+			<ul>
+				<li><input type="hidden" name="uid"  value="{$Think.get.id}" /><div class="buttonActive"><div class="buttonContent"><button type="submit">Submit</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">Cancel</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+	
+</div>
+

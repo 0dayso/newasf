@@ -1,0 +1,10 @@
+<script type="text/javascript" src="__PUBLIC__/mobile/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/mobile/js/msg.js"></script>
+<script type="text/javascript">
+    $('#exit').click(function(){
+       msg('您将退出本次登录，是否确定？',1,'query',"out()");
+    });
+    function out(){
+        location.href="{:U('/member/out')}";
+    }
+</script>

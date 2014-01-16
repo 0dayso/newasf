@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{$title}-爱尚飞手机网</title>
+<link href="__PUBLIC__/mobile/css/global.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+#topnav .icon{width:80px;}
+.box h2{padding-right:42px;}
+#order{padding:10px;color:#666;}
+#order p{background-color:#FFF;line-height:50px;text-align:center;}
+#tab a{display:inline-block;width:25%;margin-right:10px;background-color:#67b1e4;text-align:center;color:#FFF;line-height:30px; cursor:pointer;}
+#tab a:hover,#tab a.on{background-color:#FFF;color:#ff8400;}
+.list{background-color:#FFF;padding:10px;border-bottom:1px solid #e7e5e5;}
+.list li{line-height:26px;}
+.list li span{color:#333;}
+.list li em{font-style:normal;color:#F00;}
+.list li a{color:#2690d8;}
+</style>
+</head>
+
+<body>
+<div id="page">
+  <div id="content">
+    <h1 id="topnav"><span class="left icon"><a href="{:U('/')}" class="icon-home">首页</a></span>我的爱尚飞<span class="right" id="exit">退出登录</span></h1>
+    <div class="box">
+        <h2><span class="left icon"><a href="{:U('/Member')}" class="icon-return">返回</a></span>我的订单</h2>
+    </div>
+    <div id="order">
+    <div id="tab">
+    <a <if condition="I('status')=='pending'">class="on"</if> status="pending">待处理订单</a>
+    <a <if condition="I('status')=='process'">class="on"</if> status="process">已支付订单</a>
+    <a <if condition="I('status')=='cancel'">class="on"</if> status="cancel">已取消订单</a>
+    </div>
+    <div id="order_list" <if condition="I('status')=='pending'">status="pending"</if><if condition="I('status')=='process'">status="process"</if><if condition="I('status')=='cancel'">status="cancel"</if> page="1">
+     <empty name="list"><p>您还没有国际机票订单哦，赶快去下单吧！</p></empty>
+     <volist name="list" id="vo">
+     <ul class="list">
+     <li><span>订单 ID ：</span>{$vo.order_id}</li>
+     <li><span>航班行程：</span>{$vo.from_city}-{$vo.to_city}&nbsp;&nbsp;{$vo.lineType}</li>
+     <li><span>价　　格：</span><em>{$vo.price}</em></li>
+     <li><span>下单时间：</span>{$vo.order_datetime}</li>
+     <li><span>订单状态：</span>{$vo.status}&nbsp;&nbsp;<span>操作：</span><a href="{:U('Member/onlinePay','id='.$v[id])}">立即付款</a></li>
+     </ul>
+     </volist>
+    </div>
+    </div>
+    <div id="loading"><img src="__PUBLIC__/mobile/images/loading.gif"></div>
+    <div id="reminder"></div>
+  </div>
+</div>
+<include file="Public:CommonJs" />
+<script type="text/javascript">
+$(function(){
+	//点击地区刷新顾问
+	$('#tab a').click(function(){
+		var status=$(this).attr('status'),page=1,addto=0;//status为订单状态;page为页数;addto为1是追加数据,0为更迭数据
+		$('#result').hide();
+		$(this).addClass('on').siblings().removeClass('on');
+		$('#order_list').attr({status:status,page:page});
+		ajax_list(status,page,addto);
+		});
+	//自动刷新内容
+	$(window).scroll(function(){
+		//被卷去的高度
+		var scrollTop=$(this).scrollTop();
+		//可视区域高度
+		var viewHeight=$(window).height();
+		//页面高度
+		var pageHeight=$('body').height();
+		if((scrollTop+viewHeight)>=(pageHeight)){
+			var status=$('#order_list').attr('status');//订单状态,待付款'pending',已支付'process',已取消'cancel'
+			var page=parseInt($('#order_list').attr('page'))+1,addto=1;//page为页数;addto为1是追加数据,0为更迭数据
+			ajax_list(status,page,addto);//调用AJAX的函数
+			$('#order_list').attr('page',page);//更新分页数
+			}
+		});
+	});
+//AJAX函数
+function ajax_list(status,page,addto){
+	$('#loading').show();//显示加载中
+	$('#reminder').hide();
+	$.getJSON("{:U('/Member/booking')}",{status:status,p:page},function(data){
+		if(data.status==1){
+			var html='',list=data.list;
+            if(list){
+			$.each(list,function(i,item){
+				html +='<ul class="list">';
+				html +='<li><span>订单 ID ：</span>'+ item.order_id +'</li>';
+				html +='<li><span>航班行程：</span>'+ item.from_city +'-'+ item.to_city +'&nbsp;&nbsp;'+item.lineType+'</li>';
+				html +='<li><span>价　　格：</span><em>'+ item.price +'</em></li>';
+				html +='<li><span>下单时间：</span>'+ item.order_datetime+ '</li>';
+				html +='<li><span>订单状态：</span>'+ item.status +'&nbsp;&nbsp;<span>操作：</span>';
+				if(item.order_status==0 || item.order_status==1){
+					html +='<a href="__URL__/onlinePay/id/'+item.id+'">立即付款</a>';
+					}else{
+						html +='<a>无</a>';
+					}
+				html +='</li></ul>';
+				if(addto==0){
+					$('#loading').hide();
+				    $('#order_list').html(html);
+				}else{
+				    $('#loading').hide();
+				    $('#order_list').append(html);
+				    }
+				});
+            }else{
+                $('#loading').hide();
+                $('#order_list').html('<p>无</p>');
+            }
+		}else{
+				$('#loading').hide();
+				$('#reminder').show().text(data.info);
+				}
+		});
+	}
+</script>
+</body>
+</html>

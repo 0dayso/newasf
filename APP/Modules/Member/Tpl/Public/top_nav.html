@@ -1,0 +1,57 @@
+<script type="text/javascript">
+    var BaseInfo = {
+        'path':"{:U('/')}"
+    };
+
+    function open_kf(){
+    <?php if($userinfo): ?>
+        window.open('http://wpa.qq.com/msgrd?v=3&uin={$userinfo.user.qq|trim}&site=qq&menu=yes');
+    <?php else: ?>
+        setIsinvited();hz6d_cus_web_msg_open();
+    <?php endif;?>
+    }
+</script>
+<div id="hd_top">
+        <div class="wd960">
+			<if condition="$userinfo">
+
+				<span class="left">您好,
+				<a title="进入会员中心" href="{:U('/Member/index')}"><if condition="$userinfo['name']">{$userinfo.name}<else/>{$userinfo.username}</if></a>
+					普通会员  <a href="{:U('/member/common/out')}">退出</a>
+				</span>
+
+			<else/>
+				<span class="left">您好，欢迎光临爱尚飞国际机票网<a href="{:U('/member/login')}">登录</a><a href="{:U('/member/register')}">注册</a></span>
+			</if>
+            <span class="right">
+             <if condition="$userinfo">
+                 <a id="myAisf_w" href="{:U('/member')}">我的爱尚飞</a>
+                 <ul id="myAisf_u">
+                     <li><a href="{:U('/member/booking')}">我的订单</a></li>
+                     <li><a href="{:U('/member/information')}">个人资料</a></li>
+                     <li><a  target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={$userinfo.user.qq|trim}&site=qq&menu=yes">咨询我的顾问</a></li>
+                     <li><a href="{:U('/member/editpwd')}">修改密码</a></li>
+                 </ul>
+                 <a id="myAisf_t"></a>
+             </if>
+                <a class="spr gz"></a><a href="http://e.weibo.com/aishangfei2012?ref=http%3A%2F%2Fweibo.com%2Fu%2F2014524587%3Fwvr%3D5%26" class="ml0" target="_blank">关注我们</a><a class="spr wx"></a><a href="javascript:;" class="ml0" id="weixin_me">微信我们</a><a href="{:U('/iflight/verify')}" class="ts">机票验真</a><a href="{:U('/help')}" class="bz">帮助中心</a><a class="spr dh"></a></span>
+        </div>
+    </div>
+    <div id="hd_logo">
+        <div class="wd960">
+            <a href="{:U('/')}" class="left"><img src="__PUBLIC__/images/logo.gif" alt="logo" class="logo" /></a>
+            <div class="left" style="padding:8px 0 0 125px;" ><a href="{:U('/zt/cathaypacific_sales2')}" target="_blank"><img src="__PUBLIC__/images/Zt/cathaypacific_sales2/ad_578_80.jpg" alt="国泰航空公司" /></a></div>
+        </div>
+    </div>
+    <div id="hd_nav">
+        <div class="wd960">
+            <ul class="nav">
+                <li><a href="{:U('/')}">首页</a></li>
+                <li><a <?php if(MODULE_NAME=='Iflight') echo "class='active'"; ?> href="{:U('/iflight')}">国际机票</a></li>
+                <li><a <?php if(MODULE_NAME=='About' and ACTION_NAME=='service') echo "class='active'"; ?> href="{:U('/about/service')}">会员服务</a></li>
+                <li><a <?php if(MODULE_NAME=='Jifen') echo "class='active'"; ?> href="{:U('/jifen')}">积分商城</a></li>
+                <li><a <?php if(MODULE_NAME=='Adviser') echo "class='active'"; ?> href="<if condition="$userinfo">{:U('/Adviser/review')}_{$userinfo.user.id}<else/>{:U('/adviser')}</if>">专业顾问</a></li>
+                <li><a <?php if(MODULE_NAME=='Activity') echo "class='active'"; ?> href="{:U('/activity')}" class="new">活动频道<span><img src="__PUBLIC__/images/top_nav_new.gif" alt="new"/></span></a></li>
+            </ul>
+        </div>
+	</div>

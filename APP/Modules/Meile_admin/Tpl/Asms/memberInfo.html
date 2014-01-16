@@ -1,0 +1,30 @@
+<script>
+    $(function(){
+        $(".readonly").change(function(){
+            alert(1);
+            $('.avatarImg').src="__PUBLIC__/uploads/"+$(this).attr('src');
+        })
+    })
+ </script>
+<div class="pageContent">
+	<form method="post" action="__URL__/memberInfo/navTabId/__MODULE__" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone)">
+		<input type="hidden" name="user_id" value="<?php echo $_SESSION[C('USER_AUTH_KEY')] ?>"/>
+		<input type="hidden" name="id" value="{$vo.id}" />
+		<div class="pageFormContent" layoutH="58">
+			<volist name="info" id="vo">
+			<p>
+				<label>{$key}：</label>
+				<input type="text" class="required"   name="{$key}" value="{$vo}">
+			</p>
+			</volist>
+			
+		</div>
+		<div class="formBar">
+			<ul>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">Cancel</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+	
+</div>
+

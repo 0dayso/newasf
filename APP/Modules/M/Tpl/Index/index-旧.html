@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>爱尚飞手机网</title>
+<link href="__PUBLIC__/mobile/css/global.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+#ad{padding-bottom:4px;position:relative;}
+#ad img{width:100%;border:0;}
+#ad #adlist li{display:none;}
+#ad #adlist .on{display:block;}
+#ad #slidebar{position:absolute;left:48%;bottom:8px;}
+#ad #slidebar li{font-size:10px;display:inline-block;color:#5d5d5d;cursor:pointer;padding:0 2px;}
+#ad #slidebar li.select{color:#e0e0e0;}
+#colorblock{padding-left:4px;}
+#colorblock li{width:50%;float:left;position:relative;}
+#colorblock a{display:block;margin-right:4px;}
+#colorblock .a{background-color:#58b5e1;height:176px;margin-bottom:4px;}
+#colorblock .a h3{text-shadow:1px 1px 1px #3093d4;}
+#colorblock .b,#colorblock .c,#colorblock .d,#colorblock .e{height:86px;margin-bottom:4px;}
+#colorblock .b{background-color:#42c6cd;}
+#colorblock .b h3{text-shadow:1px 1px 1px #00bbc5;}
+#colorblock .c{background-color:#c066a6;}
+#colorblock .c h3{text-shadow:1px 1px 1px #a53f81;}
+#colorblock .d{background-color:#fcc954;}
+#colorblock .d h3{text-shadow:1px 1px 1px #fdb030;}
+#colorblock .e{background-color:#fa6567;}
+#colorblock .e h3{text-shadow:1px 1px 1px #f74448;}
+#colorblock h3{color:#FFF;font-size:16px;z-index:100;line-height:24px;position:absolute;left:15px;top:15px;}
+#colorblock span{position:absolute;right:15px;bottom:10px;}
+</style>
+</head>
+
+<body>
+<div id="page">
+  <include file="Public:header" />
+  <div id="content">
+    <div id="ad">
+    <ul id="adlist">
+    <li class="on"><a href="javascript:;" onclick="open_kf()"><img src="__PUBLIC__/mobile/images/ad01.jpg" width="100%"></a></li>
+    <li><a href="javascript:;" onclick="open_kf()"><img src="__PUBLIC__/mobile/images/ad02.jpg" width="100%"></a></li>
+    <li><a href="javascript:;" onclick="open_kf()"><img src="__PUBLIC__/mobile/images/ad03.jpg" width="100%"></a></li>
+    </ul>
+    <ul id="slidebar">
+    <li class="select">●</li>
+    <li>●</li>
+    <li>●</li>
+    </ul>
+    </div>
+    <ul id="colorblock">
+    <li><a href="{:U('/Specialticket')}" class="a"><h3>特价<br/>国际机票</h3><span><img src="__PUBLIC__/mobile/images/icon01.png"></span></a></li>
+    <li><a href="{:U('/Member')}" class="b"><h3>我的<br/>爱尚飞</h3><span><img src="__PUBLIC__/mobile/images/icon02.png"></span></a></li>
+    <li><a href="{:U('/Mydemand')}" class="c"><h3>我的<br/>订票需求</h3><span><img src="__PUBLIC__/mobile/images/icon03.png"></span></a></li>
+    <li><a href="<if condition="$userinfo">{:U('/Adviser/review','id='.$userinfo[user][id])}<else/>{:U('/adviser')}</if>" class="d"><h3>专业<br/>旅行顾问</h3><span><img src="__PUBLIC__/mobile/images/icon04.png"></span></a></li>
+    <li><a href="{:U('/About/service')}" class="e"><h3>我们的<br/>服务</h3><span><img src="__PUBLIC__/mobile/images/icon05.png"></span></a></li>
+    </ul>
+  </div>
+    <script type="text/javascript" src="__PUBLIC__/mobile/js/jquery-1.9.1.min.js"></script>
+  <include file="Public:footer" />
+</div>
+<script type="text/javascript" src="__PUBLIC__/mobile/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	
+	//初始化变量index为0，用于保存索引
+	var index = 0;
+	//初始化变量len为为图片列表的数量
+	var len = $('#adlist li').size();
+	
+	//setInterval()方法
+	setInterval(function(){
+		showPics(index);                   
+		index++;
+		if(index == len){index = 0;};
+		},4000);
+		
+	//showPics()设置图片和滑块的显示和隐藏
+	function showPics(index){
+		$('#adlist li').eq(index).addClass('on').siblings('li').removeClass('on');
+		$('#slidebar li').eq(index).addClass('select').siblings('li').removeClass('select');
+		};
+	
+	//当鼠标进入滑块,调用showPics()函数
+	$('#slidebar li').mouseenter(function(){
+		index = $(this).index();
+		showPics(index);
+		});
+		
+	});
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{$title} - {:C('WEB_NAME')}</title>
+<link href="__PUBLIC__/mobile/css/global.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/mobile/css/specialticket.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div id="page">
+  <div id="content">
+    <h1 id="topnav"><span class="left icon"><a href="{:U('/Specialticket')}" class="icon-returnclose">返回</a></span>{$from_name}出发<span class="right icon"><a href="tel:4006085188" class="icon-tel">电话</a></span></h1>
+    <div id="block">
+      <div class="collapsible-set">
+         <volist name="list" id="zvo">
+         <div class="collapsible">
+         <h4><a>{$zvo.zhou}<span class="icon-down">展开</span></a></h4>
+         <ul <if condition="$zvo['zhou'] eq $_GET['state']">style="display: block;"</if>>
+              <volist name="zvo.child" id="fvo">
+              <li>
+              <div>{$fvo.from_city}<span>{$fvo.to_city}</span></div>
+              <div><em>{$fvo.time}截止</em>{$fvo.air}</div>
+              <div>往返<strong>￥{$fvo.price}</strong>
+                  <empty name="userinfo">
+                      <a href="javascript:open_kf()">预订</a>
+                      <else/>
+                      <a href="tel:{$userinfo.user.public_mobile}">咨询我的顾问</a>
+                  </empty>
+              </div>
+              </li>
+              </volist>
+         </ul>
+        </div>
+       </volist>
+      </div>
+    </div>
+  </div>
+	<ul id="footer_list">
+		<li><a href="{:U('/Flight')}">国际机票预订</a></li>
+		<li><a href="{:U('/Specialticket')}" class="fl_on">特价国际机票</a></li>
+	</ul>
+</div>
+<script type="text/javascript" src="__PUBLIC__/mobile/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('.collapsible h4').click(function(){
+		var i=$(this).parent().index();
+		$('.collapsible ul').each(function(index,element){
+			if($(this).siblings().find('span').attr('class')=='icon-up'){
+               $(this).hide().siblings().find('span').removeClass('icon-up').addClass('icon-down');
+			}else if($(this).siblings().find('span').attr('class')=='icon-down'&&index==i){
+			   $(this).show().siblings().find('span').removeClass('icon-down').addClass('icon-up');
+			}
+			});
+		});
+	});
+</script>
+<include file="Public:kf" />
+</body>
+</html>

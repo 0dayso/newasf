@@ -1,0 +1,44 @@
+<div class="page">
+    <div class="pageContent">
+
+        <form method="post" action="__URL__/insert/navTabId/__MODULE__-category" class="pageForm required-validate" onsubmit="return validateCallback(this,dialogAjaxDone)">
+            <div class="pageFormContent" layoutH="58">
+                <div class="unit">
+                    <label>上级分类：</label>
+                    <input type="hidden" name="act" value="{$Think.get.act}" />
+                    <eq name="Think.get.act" value="edit">
+                        <input type="hidden" name="data[cid]" value="{$vo.cid}" />
+                    </eq>
+                    <select name="data[pid]">
+                        <option value="0">顶级分类</option>
+                        <volist name="list" id="vol">
+                            <if condition="$vol[cid] eq $vo[pid]">
+                                <option value="{$vol.cid}" selected="selected">{$vol.fullname}</option>
+                                <else/>
+                                <option value="{$vol.cid}">{$vol.fullname}</option>
+                            </if>
+                        </volist>
+                    </select>
+                </div>
+
+                <div class="unit">
+                    <label>分类名称</label>
+                    <input placeholder="你要添加的分类名称" id="newName" class="input" type="text" name="data[name]" value="{$vo.name}" />
+                </div>
+                <div class="unit">
+                    <label>分类别名</label>
+                    <input placeholder="分类英文名称"  class="input" type="text" name="data[alias]" value="{$vo.alias}" />
+                </div>
+            </div>
+
+            <div class="formBar">
+                <ul>
+                    <li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+                    <li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+                </ul>
+            </div>
+        </form>
+
+    </div>
+</div>
+

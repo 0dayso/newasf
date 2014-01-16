@@ -1,0 +1,141 @@
+<include file="public:header" />
+
+    <link rel="stylesheet" href="__PUBLIC__/css/member.css" type="text/css" />
+    <script type="text/javascript" src="__PUBLIC__/js/member.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery.zclip.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+        function changeToShortUrl(longUrl){
+            switchlinkXHR=$.getJSON('https://api.weibo.com/2/short_url/shorten.json?callback=?',{'source':1321169129,'url_long':longUrl},function(result){
+                if(result.data.urls.length>0){
+                    shortUrlOrig=result.data.urls[0].url_short;
+                    shortUrl=shortUrlOrig.replace(/^(http:\/\/)/,'');
+                    $('#fun_link').attr('link',shortUrl);
+                }
+            });
+        };
+        changeToShortUrl($('#fun_link').attr('data-url'));
+
+		$('a#copy_fun_link').zclip({
+			path:'__PUBLIC__/js/ZeroClipboard.swf',
+			copy:$('#fun_link').text()
+			});
+		$('#change_fun_link').click(function(){
+			var text=$(this).attr('text');
+			var cont=$(this).text();
+			var linkText=$('#fun_link').attr('link');
+			var linkCont=$('#fun_link').text();
+			if(linkText!=""){
+				$(this).attr('text',cont);
+				$(this).text(text);
+				$('#fun_link').attr('link',linkCont);
+				$('#fun_link').text(linkText);
+
+				$('a#copy_fun_link').zclip({
+					path:'__PUBLIC__/js/ZeroClipboard.swf',
+					copy:$('#fun_link').text()
+					});
+				}else{
+					alert("正在为您请求短链接!");
+					}
+			
+			});
+		$('#fun_box dd .mail').focus(function(){
+			if($(this).val()=="好友的邮箱地址"){
+				$(this).val('');
+				}
+			}).blur(function(){
+				if($(this).val()==""){
+					$(this).val('好友的邮箱地址');
+					}
+				});
+		});
+</script>
+    <div class="member">
+    	<!--会员中心导航-->
+    	<include file="public:left" />
+		<div class="right" id="memberR">
+        	<h1 class="nav_tit">好友fun享</h1>
+            <div id="fun">
+            	<div class="fun_ad"><a href="#" target="_blank"><img src="__PUBLIC__/images/member/fun_ad.gif" /></a></div>
+            	<div id="fun_box">
+                	<div class="link"><a href="#" target="_blank">fun享好礼介绍》</a></div>
+                	<div id="list_nav"><a class="active">链接邀请</a><a>邮件邀请</a></div>
+                    <div id="list_con">
+                    	<div class="list_block on">
+                        	<div id="fun_link" link="" data-url="{$funUrl}">我注册了爱尚飞国际机票网，感觉很专业，服务很好，价格也很实惠，强烈推荐你注册啊！{$funUrl}</div>
+                            <div><a id="copy_fun_link">复制链接</a><a id="change_fun_link" text="切换为长链接">切换为短链接</a></div>
+                        </div>
+                        <div class="list_block">
+                        	<p>好网站，一起分享，输入好友邮箱，分享国际旅行乐趣，还有机会一起获得丰盛好礼哦！</p>
+                            <dl>
+                            	<dt>方式1：输入好友邮箱地址，爱尚飞帮您发送<em>（一次只能发送一位好友）</em></dt>
+                              	<dd>
+                               	  <form action="" method="post">
+                                        <input type="hidden" name="act" value="sendMail">
+                                		<input type="text" class="mail" name="mail" value="好友的邮箱地址" />
+                                      <input name="verify_code" type="text" class="code" />
+                                      <img onclick="this.src=this.src+ '?ts='+ (new Date()).getTime();" title="点击重新获取验证码" src="/svn/newasf/common/verify_code"><input type="submit" class="send" value="免费发送" />
+                                	</form>
+                              	</dd>
+                            </dl>
+                            <dl>
+                           	  	<dt>方式2：自己登录邮箱发送<em>（一次可发送多位好友）</em></dt>
+                                <dd><a class="a0" href="#">用QQ邮箱邀请</a> <a class="a1" href="#">用163邮箱邀请</a> <a class="a2" href="#">用gmail邮箱邀请</a></dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div><!--TAB-->
+                
+                <div id="share">
+                	<h2>发给QQ好友或QQ空间，更容易邀请到好友哦~</h2>
+                	<div class="bdsharebuttonbox">
+                    	<a href="#" class="fun_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+                    	<a href="#" class="fun_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+                    	<a href="#" class="fun_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+                    	<a href="#" class="fun_sqq" data-cmd="sqq" title="QQ好友"></a>
+					</div>
+                </div>
+				<script type="text/javascript">
+					window._bd_share_config={
+						"common":{
+							"bdSnsKey":{},
+							"bdText":"我注册了爱尚飞国际机票网，感觉很专业，服务很好，价格也很实惠，强烈推荐你注册啊！{$funUrl}",
+							"bdUrl":"{$funUrl}",
+							"bdPic":"http://www.aishangfei.com/Public/images/logo.gif",
+							"bdStyle":"0",
+							"bdSize":"16"
+							},
+						"share":{},
+						"image":{"viewList":["qzone","tsina","tqq","renren","t163"],"viewText":"分享到：","viewSize":"16"}
+						};
+						with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=86835285.js?cdnversion='+~(-new Date()/36e5)];
+				</script><!--分享-->
+                
+                <div class="class_list"> 
+                	<h2><a href="{:U('mall')}">更多好礼》</a><span></span>fun享好礼</h2>
+                    <ul>
+                        <volist name="fun_list" id="vo">
+                        <li>
+                        	<a href="/svn/newasf/jifen/info/id/{$vo.id}">
+                            	<img src="/svn/newasf/Public/uploads/mall/m_{$vo.img}" title="{$vo.title}">
+                            	<h3>{$vo.title}</h3>
+                            	<p>爱钻：<b>{$vo.jifen}</b></p>
+                            </a>
+						</li>
+                         </volist>
+                    </ul>                     
+                </div><!--fun享好礼-->
+                <dl class="introduce">
+                	<dt>细则介绍:</dt>
+                    <dd>1.凡爱尚飞国际机票网会员,均可邀请好友注册爱尚飞国际机票,每成功介绍一个好友注册可获赠500积分,积分可兑换丰厚礼品；</dd>
+                    <dd>2.有购票记录并顺利出行的会员，每成功推荐一位好友注册，且被推荐的新顾客成功购票，该会员便可获得一枚“爱钻”奖励；介绍的好友<br/>  　越多，获得“爱钻”机会越多；</dd>
+                    <dd>3.获得的“爱钻”显示在会员账户中，会员可直接在爱尚飞积分商城兑换丰盛好礼；</dd>
+                    <dd>4.“爱钻”可累积使用，累积越多“爱钻”可兑换越高价值的好礼；</dd>
+                </dl>
+                
+            </div>
+        </div>
+    </div>
+    
+<include file="public:footer" />

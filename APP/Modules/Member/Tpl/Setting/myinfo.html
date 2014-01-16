@@ -1,0 +1,71 @@
+<include file="public:header" />
+
+    <link rel="stylesheet" href="__PUBLIC__/css/member.css" type="text/css" />
+    <script type="text/javascript" src="__PUBLIC__/js/member.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/layer/layer.min.js"></script>
+    <script src="__PUBLIC__/admin/Js/jquery.form.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/modify.js"></script>
+    <div class="member">
+    	<!--会员中心导航-->
+    	<include file="public:left" />
+        
+		<div class="right" id="memberR">
+        	<h1 class="nav_tit">我的信息</h1>
+            <div id="myinfo">
+            	<form action="myinfo.php" method="post">
+                	<div class="info">
+                    	<ul>
+                        	<li><span>用户名：</span>
+								{$userInfo.username}
+							</li>
+                            <li><span>手机：</span>
+								{$userInfo.mobile}<a href="#">修改</a>
+							</li>
+                            <li><span>邮箱：</span>
+								<input type="text"  value="{$userInfo.email}" class="text" name="mail" /><em>添加电子邮箱并通过验证奖励<b>500</b>积fun</em>{$userInfo.email}<a href="{:U('/Member/Setting/replacemailbox')}">修改</a>
+							</li>
+                            <li><span>姓名：</span>
+								<input type="text"  value="{$userInfo.name}" class="text" name="name" />
+								<em>请输入真实姓名,不得超过10个汉字或20个英文字母</em>
+							</li>
+							<li><span>昵称：</span>
+								<input type="text"  value="" class="text" name="nickname" />
+								<em>4-30个字符,可由中英文字母、数字、“-”、“-”组成</em>
+							</li> 
+                            <li><span>性别：</span>																
+								<input name="sex" type="radio" value="1" <if condition="$userInfo['sex'] eq 1">checked</if> />男								
+								<input name="sex" type="radio" value="0" <if condition="$userInfo['sex'] eq 0">checked</if> />女
+							</li>								
+                            <li><span>生日：</span>
+								<select name="year" id="idYear" on="{$birthday[0]}"><option value="0">请选择年份</option></select>
+								<select name="month" id="idMonth"  on="{$birthday[1]}"><option value="0">请选择月份</option></select>
+								<select name="day" id="idDay" on="{$birthday[2]}"><option value="0">请选择日期</option></select></li>
+                            <li><span>职业：</span>
+								<select name=""><option value="0">请选择职业</option></select>
+							</li>
+                        	<li id="addcodePCT" val="{$userInfo.province},{$userInfo.city}"><span>常用出发城市：</span>
+								<select name="province" value="{$userInfo['province']}"  class="province" id="province_sel"><option value="">- -</option></select>省
+								<select name="city"  value="{$userInfo['city']}" class="city" id="city_sel"><option value="">- -</option></select>市
+							</li>                        	
+                        </ul>
+                        <div class="right">
+                        	<a href="{:U('/Member/Setting/seticon')}"><div id="icon"><img src="__PUBLIC__/images/member/icon.gif" /></div>设置头像</a>
+                        </div>
+                    </div>
+                  	<ul id="hint">
+						<li class="on"><span>温馨提示:</span>
+                        <p>爱尚飞国际机票网承诺不公开您的个人信息，建议您完善以上信息，以便于我们为您量身<br>订制个性化服务，为您提供更优质的旅行体验；完善生日信息更可以免费获得生日大礼包哦！</p>
+                        </li>
+					</ul>
+                    <input class="sub" name="" type="submit" value="提交" />
+                </form>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    	$(function(){
+			optionDate("#idYear","#idMonth","#idDay");
+			});
+    </script>
+    
+<include file="public:footer" />

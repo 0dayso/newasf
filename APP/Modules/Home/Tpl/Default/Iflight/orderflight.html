@@ -1,0 +1,167 @@
+<include file="public:header" />
+<link rel="stylesheet" href="__PUBLIC__/css/interticket.css" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/js/hotcitypop/popcitylist.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" language="javascript" src="__PUBLIC__/js/hotcitypop/searchconditions.js"></script>
+<script type="text/javascript" language="javascript" src="__PUBLIC__/js/hotcitypop/paramfarmat.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/chaxun.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#ordfli_form").find("li .city").each(function(i){
+		$(this).click(function(){
+            textInputDIs($(this));
+			if(i==0){popCityList($(this)[0]);}
+			if(i==1){popCityList($(this)[0],"guowai");}
+		});
+	});
+	$("#ordfli_form").find("li .date").each(function(i){
+		$(this).click(function(){
+            textInputDIs($(this));
+			if(i==0){WdatePicker({minDate:'%y-%M-%d',doubleCalendar:true});}
+			if(i==1){WdatePicker({minDate:'%y-%M-{%d+1}',doubleCalendar:true});}
+		});
+	});
+        function textInputDIs(dom){
+            if(dom.attr("state")!="1"){
+                dom.css("color","#333");
+                dom.val("");
+                dom.attr("state","1");
+            }
+        }
+	$("#radio_sel2 input").each(function(i){
+		var ul=$(this).parent().parent();
+		$(this).click(function(){
+			var li=ul.find("li");
+				if(i==1){
+					li.eq(4).hide();
+				}
+				if(i==0){
+					li.eq(4).show();
+				}
+		});
+		});
+	
+	//查询提交
+	$("#orderflight_form").submit(function(e){
+        var state=0;
+		$(this).find("input.text").each(function(i){
+            if($(this).parent().css("display")==="none") return true;
+			if($(this).val()==""){
+				alert('请输入城市和日期');
+				state=1;
+				return false;
+			}else if($(this).val()=="期望的折扣或价格"){
+				alert('请输入您期望的折扣或价格');
+				state=1;
+				return false; 
+				}else if($(this).val()=="您的姓名"){
+				alert('请输入正确的姓名');
+				state=1;
+				return false; 
+				}else if($(this).val()=="您的手机号"){
+					alert('请输入正确的手机！');
+					state=1;
+					return false; 
+					}
+		});
+        if(state==1) return false;
+	});
+	hint('#price','期望的折扣或价格');
+	hint('#name','您的姓名');
+	hint('#phone','您的手机号');
+	});
+	
+function hint(id,value){
+	$(id).focus(function(){
+                if($(this).val()==value){
+                     $(this).val('');
+                }
+        }).blur(function(){
+                if($(this).val()==''){
+                      $(this).val(value);
+               }
+        });
+}
+</script>
+<style type="text/css">
+#ordfli{border:1px solid #b5e2f7;}
+#ordfli h2{height:32px;line-height:32px;background-color:#f6fbff;padding-left:15px;font-size:14px;color:#0069d1;border-bottom:1px solid #b5e2f7;}
+#radio_sel2{text-align:center;}
+#ordfli h2 span{float:right;padding-right:20px;color:#fe6700}
+#ordfli_form{width:500px;margin:50px auto;}
+#ordfli_form form{padding:0px;margin:0px;overflow:hidden;}
+#ordfli_form span{display:inline-block;width:200px;text-align:right;}
+#ordfli_form ul li{height:38px;line-height:38px;overflow:hidden;}
+#ordfli_form input.text{padding:0 26px 0px 5px;width:175px;color:#999999;height:30px;border:1px solid #d3d3d3;line-height:30px\9;vertical-align:middle;}
+#ordfli_form ul li.submit{height:50px!important;text-align:center;margin-top:15px;}
+#ordfli_form ul li.submit input{width:119px;height:32px;background:url(__PUBLIC__/images/bt119.gif) no-repeat;color:#FFF;border:none; cursor:pointer;}
+#ordfli_form input.city{background:url(__PUBLIC__/images/chaxun_city.gif) no-repeat 180px center;}
+#ordfli_form input.date{background:url(__PUBLIC__/images/chaxun_date.gif) no-repeat 180px center;}
+</style>
+    <div id="cont">
+        <div class="wd1000 mt10 interTic">
+        	<h1 class="h1_tit_nav">你当前所在位置：<a href="{:U('/')}" class="sy">首页</a> > <a class="cur">特价国际机票预约</a></h1>
+			<div class="left" id="interTicL">
+            <div id="ordfli">
+            	<h2>预约特价国际机票<span>仅需轻松预约，特惠低价机票不要错过!</span></h2>
+              <div id="ordfli_form">
+                 <form action="{:U('/iflight/sidebar')}" method="post" id="orderflight_form">
+                 <ul>
+            <li id="radio_sel2">
+                <input type="radio" name="journey"  value="1" checked="checked" /><label>&nbsp;往返&nbsp;&nbsp;</label>
+                <input type="radio" name="journey" value="2"/><label>&nbsp;单程&nbsp;</label>
+            </li>
+            <li>
+                <span>出发城市：</span><input type="text" class="text city" name="from_city"  value="{$_GET['origin_name']}" state="1"/>
+            </li>
+            <li>
+                <span>目的城市：</span><input type="text" class="text city" name="to_city"  value="{$_GET['desination_name']}" state="1"/>
+            </li>
+            <li>
+                <span>出发日期：</span><input type="text" class="text date" name="origin_date" id="originDate2"  value="{$_GET['originDate']}" state="1" />
+            </li>
+            <li>
+                <span>回程日期：</span><input type="text" class="text date" name="return_date" id="returnDate2"  value="{$_GET['returnDate']}"  state="1"/>
+            </li>
+            <li>
+                <span>期望的折扣或价格（不含税)：</span><input type="text" class="text" name="price" id="price" required value="期望的折扣或价格"/>
+            </li>
+            <li>
+                <span>您的姓名（必填）：</span><input type="text" class="text" name="name" id="name" required value="您的姓名"/>
+            </li>
+            <li>
+                <span>您的手机号（必填）：</span><input type="text" class="text" name="phone" id="phone" maxlength="11" required value="您的手机号" />
+            </li>
+            <li class="submit">
+                <input type="submit" value="提交预约" />
+            </li>
+        </ul>
+                 </form>
+                 </div>
+            </div>
+            
+			</div>
+			<div class="right" id="interTicR">
+            <div id="renzheng_lan_s">
+                	<ul>
+                    	<li><label class="lb0"></label><span>100%国际航协认证,第一手真实价格</span></li>
+                        <li><label class="lb1"></label><span>100%中国航协认证,资质保证，订票无忧</span></li>
+                    </ul>
+                </div>
+				<div id="ser_com" class="mt10">
+					<h2></h2>
+					<ul>
+						<li><label class="lb0"></label><a>注册会员，首次成功订票即返50元</a></li>
+						<li><label class="lb1"></label><a>专业顾问一对一全方位贴心服务</a></li>
+						<li><label class="lb2"></label><a>实时提供特价及廉价航空机票信息</a></li>
+						<li><label class="lb3"></label><a>5分钟，完成实时查询预订全过程</a></li>
+						<li><label class="lb4"></label><a>保证网络订单响应速度少于15分钟</a></li>
+						<li><label class="lb5"></label><a>下单成功，即获得真实有效占位</a></li>
+						<li><label class="lb6"></label><a>承诺24小时内，出具电子客票</a></li>
+						<li><label class="lb7"></label><a>100%支持，客票航空公司验真</a></li>
+					</ul>
+				</div>
+			</div>
+        </div>
+    </div>
+  <include file="public:footer" />

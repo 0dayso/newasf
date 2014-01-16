@@ -1,0 +1,174 @@
+.interTic{background-color:#fff;padding-bottom:10px;}
+#interTicL{width:700px;margin-left:10px;margin-top:10px;}
+#interTicL700{width:700px;margin-left:10px;margin-top:10px;}
+#interTicR{width:270px;margin-right:10px;margin-top:10px;}
+
+/*LEFT BOX*/
+.box_l{border:1px solid #d0e8fd;border-top:2px solid #1679dd!important;margin-top:10px;}
+.box_l h2{height:34px;line-height:34px;padding-left:10px;font-size:16px;font-weight:bold;background:#f6fbff;border-bottom:1px solid #d0e8fd;}
+
+#hot_recom{height:199px;border:1px solid #b4dff5;background-color:#fff;margin-top:10px;}
+#hot_recom h2{height:29px;color:#000;font-size:13px;font-weight:bold;line-height:29px;border-bottom:1px solid #b4dff5;padding-left:10px;background-color:#e5f3ff;}
+#hot_recom ul{padding:5px;}
+#hot_recom ul li{background:url(../images/ul_dot_1.gif) repeat-x 0 bottom;height:31px;line-height:31px;vertical-align:middle;}
+#hot_recom ul li label{background:url(../images/li_dot.gif) no-repeat 0 0;width:3px;height:3px;margin-right:6px;float:left;margin-top:14px;}
+#hot_recom ul li a{color:#0066cc;width:190px;overflow:hidden;float:left;}
+#hot_recom ul li a:hover{color:#ff6600;}
+#hot_recom ul li span.hot{background:url(../images/hot_r.gif) no-repeat 0 0;float:right;width:24px;height:8px;margin-top:10px;}
+
+/*横幅广告*/
+#iflightAd{margin-top:10px;height:93px;overflow:hidden;width:700px;position:relative;}
+#iflightAd ul{width:1400px;display:block;}
+#iflightAd ul li{float:left;}
+#iflightAd ul li img{width:700px;height:93px;}
+#iflightAd ol{position:absolute;top:70px;right:0px;}
+#iflightAd ol li{float:left;}
+#iflightAd ol li a{float:left;background-color:#eee;width:20px;height:20px;line-height:20px;margin-right:3px;text-align:center;color:#666666;}
+#iflightAd ol li a.active,#slideDiv ol li a:hover{background-color:#ff6600;color:#fff;}
+
+/*公司资讯&其它航空公司特惠*/
+.info_lists{border:1px solid #b4dff5;margin-top:10px;}
+.info_lists h2{height:29px;line-height:29px;font-size:13px;font-weight:bold;border-bottom:1px solid #b4dff5;padding-left:10px;background-color:#e5f3ff;}
+.info_lists ul{padding:5px;}
+.info_lists ul li{background:url(../images/preferential_bg.gif) no-repeat -10px -30px;padding-left:20px;height:30px;line-height:30px;border-bottom:1px dashed #cde6fe;}
+.info_lists ul#company li{float:left;width:94px;}
+.info_lists ul li a{color:#0066cc;width:190px;overflow:hidden;float:left;}
+.info_lists ul li a:hover{color:#ff6600;}
+
+/*国际旅行百宝箱*/
+#chest_link{margin:10px 0;}
+#chest_link .titbk{height:29px;color:#000;font-size:13px;line-height:29px;border:1px solid #b4dff5;padding-left:10px;}
+#chest_link dl{height:80px;padding:11px 10px 5px 10px;border-left:1px solid #B4DFF5;border-right:1px solid #B4DFF5;}
+#chest_link dd{float:left;padding:1px;}
+#chest_link dd a{width:80px;height:24px;line-height:24px;text-align:center;padding-top:56px;background:#eef8ff url(../images/chest_link_bg.png) no-repeat;display:block;color:#1679dd;}
+#chest_link dd a:hover{background:#cbe5fd url(../images/chest_link_bg.png) no-repeat;}
+#chest_link dd.a0 a{background-position:-5px 0;}
+#chest_link dd.a1 a{background-position:-85px 0;}
+#chest_link dd.a2 a{background-position:-165px 0;}
+#chest_link ul{height:97px;}
+#chest_link ul li{width:100px;margin-top:6px;margin-left:25px;float:left;height:25px;line-height:25px;display:inline;}
+#chest_link ul li label{width:20px;height:19px;float:left;background:url(../images/s_small_tb.gif) no-repeat;}
+#chest_link ul li label.a0{background-position:0 -281px;}
+#chest_link ul li label.a1{background-position:-20px -281px;margin-left:2px;margin-top:1px;}
+#chest_link ul li label.a2{background-position:-40px -281px;}
+#chest_link ul li label.a3{background-position:-60px -281px;}
+#chest_link ul li label.a4{background-position:-80px -281px;margin-left:-1px;}
+#chest_link ul li label.a5{background-position:-100px -281px;}
+#chest_link ul li a{float:left;margin-left:10px;color:#666666;cursor:pointer;}
+#chest_link ul li a:hover{color:#F60;}
+
+/*航空公司特惠*/
+/*#preferential{margin-top:10px;}
+#preferential h2 a,#preferential .type_txt li{background:url(../images/preferential_bg.gif) no-repeat;}
+#preferential h2 a{float:left;width:35px;height:27px;background-position:right 0;display:block;}
+#preferential .pre_box{padding:14px 0;border:1px solid #b4dff5;border-top:0px;height:260px;}
+#preferential .type_img{padding:0 2px;}
+#preferential .type_img li{float:left;width:190px;height:150px;padding:0 19px;}
+#preferential .type_img img,#preferential .type_img span{display:block;border:none;}
+#preferential .type_img span{padding:0 12px;line-height:26px;font-weight:bold;color:#333333;background-color:#f6fbff;}
+#preferential .type_img a{color:#0069d1;font-weight:bold;}
+#preferential .type_img strong{color:#ff6600;}
+#preferential .type_txt{margin-top:20px;}
+#preferential .type_txt li{float:left;height:30px;line-height:30px;width:250px;padding:0 64px 0 30px;background-position:0 -30px;}
+#preferential .type_txt span{float:left;width:90px;display:block;}
+#preferential .type_txt a{float:left;width:100px;color:#0069d1;display:block;}
+#preferential .type_txt strong{float:left;width:60px;color:#ff6600;display:block;}
+#preferential .type_img li{padding:0 19px!important;}
+#preferential .type_txt li{padding:0 54px 0 30px!important;}
+*/
+
+/*航空公司专栏*/
+.box{padding:14px;border:1px solid #b4dff5;border-top:0px;height:auto;}
+#saleprice{margin-top:10px;}
+#saleprice .box{height:528px;}
+#saleprice h2 a{background:url(../images/saleprice_logo.gif) no-repeat;}
+#saleprice h2 a{float:left;width:40px;height:27px;;display:block;margin-left:10px;}
+#saleprice h2 a.l1{background-position:right 0px;}
+#saleprice h2 a.l2{background-position:right -30px;}
+#saleprice .lists{padding-bottom:10px;border-bottom:1px dashed #cde6fe;}
+#saleprice .lists h3{font-size:16px;font-weight:bold;line-height:30px;margin-top:5px;}
+#saleprice .lists ul{float:left;width:300px;}
+#saleprice .lists ul.mar60{margin-right:60px;}
+#saleprice .lists ul li{height:25px;line-height:25px;margin-top:5px;}
+#saleprice .lists span,#saleprice .lists a{float:left;display:inline-block;}
+#saleprice .lists .span0{width:130px;}
+#saleprice .lists .span0 a{color:#0069d1;}
+#saleprice .lists .span0 a.Single,#saleprice .s_list .span0 a.roundtrip{background:url(../images/preferential_bg.gif) no-repeat;width:30px;height:25px;}
+#saleprice .lists .span0 a.Single{background-position:center -63px;}
+#saleprice .lists .span0 a.roundtrip{background-position:center -93px;}
+#saleprice .lists .span1{width:120px;}
+#saleprice .lists .span1 a.jg{color:#ff6600;padding-left:20px;font-size:14px;font-weight:bold;}
+#saleprice .lists .span2{width:50px;}
+#saleprice .lists .span2 a{background-position:-63px 0px;width:50px;height:19px;text-align:center;color:#fff;line-height:19px;cursor:pointer;margin-top:3px;}
+
+/*南方航空简介*/
+#introduce{margin-top:10px;}
+#introduce h2{height:29px;line-height:29px;padding-left:10px; border:1px solid #bae2f6;color:#FFF;background-color:#37a9ff;font-size:14px;font-weight:bold;}
+#introduce p{line-height:24px;color:#666666;}
+#introduce img{float:right;border:1px solid #dddddd;margin-left:15px;}
+
+/*南方航空简介*/
+#mien{margin-top:10px;}
+#mien h2{height:29px;line-height:29px;padding-left:10px; border:1px solid #bae2f6;background-color:#e5f3ff;font-size:14px;font-weight:bold;}
+#mien .left,#mien .right{width:18px;height:36px;padding:125px 41px;}
+#mien span{width:18px;height:36px;cursor:pointer;background:url(../images/mien_bg.gif) no-repeat;display:block;}
+#mien .left span{background-position:0 0;}
+#mien .right span{background-position:0 -36px;}
+#mien ul{position:relative;width:460px;height:280px;margin-top:6px;}
+#mien li{width:435px;height:245px;padding:4px;border:1px solid #dcdcdc;position:absolute;background-color:#FFF;}
+#mien li img{width:435px;height:245px;display:none;}
+#mien li img.on{display:block;}
+#mien li#a{top:0px;left:0px;z-index:300;}
+#mien li#b{top:5px;left:5px;z-index:200;}
+#mien li#c{top:10px;left:10px;z-index:100;}
+
+/*国际机票查询*/
+#fquery_l{width:270px;margin-left:10px;margin-top:10px;}
+#fquery_r{width:700px;margin-right:10px;margin-top:10px;}
+/*#renzheng_lan_s{margin-top:10px;}
+#renzheng_lan_s ul li{padding-left:35px!important;}*/
+
+#fquery{/*background:#fff url(../images/jp_chaxun_bg.gif) no-repeat 0 0;*/border:1px solid #b4dff5;padding-bottom:60px;}
+#fquery h2{height:33px;border-bottom:1px solid #b4dff5;color:#ff6600;line-height:33px;font-size:14px;font-weight:bold;}
+#fquery h2 label{padding-left:18px;}
+#fquery #load{padding-top:60px;text-align:center;}
+#fquery #load h3,#fquery #load p{height:32px;line-height:32px;}
+#fquery #load h3{font-size:16px;font-weight:bold;}
+#fquery #load p.f_txt{font-size:14px;}
+#fquery #load p strong{padding:0 5px;}
+#fquery #load span{padding-left:10px;}
+
+#fquery #consultancy{display:none;}
+#fquery #consultancy .warn{width:548px;margin:40px auto 20px auto;padding:15px 30px 15px 100px;line-height:24px; background:#f6f6f6 url(../images/f_smiling.jpg) no-repeat 20px 12px;;color:#333;}
+#fquery #consultancy #cons_select{width:350px;padding-left:30px;}
+#fquery #consultancy #cons_select label{display:block;font-size:16px;font-weight:bold;line-height:35px;}
+#fquery #consultancy #cons_select label input{margin-right:5px;}
+#fquery #consultancy #cons_select label b{padding:0 5px;color:#F00;}
+#fquery #consultancy #cons_select label em{font-size:12px;font-style:normal;font-weight:normal;color:#eb900e;}
+
+#fquery_form{width:300px;padding-left:60px;display:none;}
+#fquery_form form{padding:0px;margin:0px;overflow:hidden;}
+#fquery_form ul li{height:38px;line-height:38px;overflow:hidden;}
+#fquery_form input.text{padding:0 26px 0px 5px;width:175px;color:#999999;height:30px;border:1px solid #d3d3d3;line-height:30px\9;vertical-align:middle;}
+#fquery_form ul li.submit{height:50px !important;}
+#fquery_form ul li.submit input{width:119px;height:32px;margin:10px 0 10px 80px;;background:url(../images/bt119.gif) no-repeat;color:#FFF;border:none;}
+#fquery_form input.city{background:url(../images/chaxun_city.gif) no-repeat 180px center;}
+#fquery_form input.date{background:url(../images/chaxun_date.gif) no-repeat 180px center;}
+#fquery_form ul li span{color:#333px;font-weight:bold;font-size:13px;vertical-align:middle;padding-right:5px;}
+#fquery_form a{width:210px;line-height:36px;display:block; border-top:1px solid #cacaca;color:#1479df;text-align:right;}
+.fquery_tip{padding:20px 0px 10px 30px;}
+.fquery_tip p{line-height:30px;font-size:14px;font-weight:bold;color:#666;}
+.fquery_tip em{font-size:12px;font-weight:normal;font-style:normal;}
+.fquery_tip span{color:#ff8a00;font-size:24px;font-family:Arial,Helvetica,sans-serif;}
+
+/*首页认识&保证*/
+#renzheng{width:676px;height:120px;padding:10px;color:#666;}
+#renzheng h2{padding-left:10px;line-height:30px;font-size:16px;font-weight:bold;border-bottom:2px solid #1679dd;color:#1679dd;}
+#renzheng ul{height:86px;padding-left:3px;border-left:1px solid #cde6fd;border-bottom:1px solid #cde6f6; background:#f6fbff;}
+#renzheng ul li{float:left;width:147px;height:86px;padding-left:20px;display:inline;border-right:1px solid #cde6f6;}
+#renzheng ul li span{float:left;width:70px;margin-left:12px;line-height:17px;margin-top:20px;}
+#renzheng ul li label{background:url(../images/renzheng_spr.gif) no-repeat;float:left;}
+#renzheng .lb0 label{background-position:-50px 0px;;width:57px;height:38px;margin-top:22px;}
+#renzheng .lb1 label{background-position:0px 0px;;width:50px;height:42px;margin-top:22px;}
+#renzheng .lb2 label{background-position:-107px 0px;;width:47px;height:47px;margin-top:20px;}
+#renzheng .lb3 label{background-position:-200px 0px;;width:47px;height:47px;margin-top:20px;}

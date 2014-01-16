@@ -1,0 +1,96 @@
+<include file="Public:header" />
+<link rel="stylesheet" href="__PUBLIC__/css/userCenter.css" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/js/orderPay.js"></script>
+    <div id="cont">
+        <div class="wd960 mt10 bgWhite">
+        	<h1 class="h1_tit_nav">你当前所在位置：<a href="{:U('/')}" class="sy">首页</a> > <a href="{:U('/Member')}" class="sy">会员中心</a> > <a class="cur">在线支付</a></h1>
+            <include file="left" />
+            <div class="left mt10" id="mdsc">
+                <include file="top_kf" />
+                <div class="top_nav_hr"><span>财务管理</span></div>  
+               	<div class="top_nav_qh">
+               		<ul>
+                        <li><a href="{:U('Member/onlinePay')}" class="active">在线支付</a></li>
+                        <li><a href="{:U('Member/transRecode')}" >交易记录</a></li>
+                   	</ul>
+               	</div>
+                <form action="{:U('Member/orderPay')}" method="post">
+                <div class="prosc">
+                    <table width="100%" cellpadding="2" id="orderOnlinePay">
+                    	<tr class="thbg">
+                        	<td width="10%"><strong><input type="checkbox" id="checkQxfk"/>全选</strong></td>
+                            <td width="20%"><strong>订单ID</strong></td>
+                            <td width="22%"><strong>航班行程</strong></td>
+                            <td width="10%"><strong>价格</strong></td>
+                            <td width="18%"><strong>下单时间</strong></td>
+                            <td width="10%"><strong>订单状态</strong></td>
+                            <td width="12%"><strong>操作</strong></td>
+                      	</tr>
+                        <foreach name="list" item="v">
+                        <tr>
+                        	<td><input type="checkbox" name="id[]" value="{$v.id}"/></td>
+                        	<td>{$v.order_id}</td>
+                            <td>{$v.from_city}→{$v.to_city}</td>
+                            <td>{$v.price}</td>
+                            <td>{$v.order_datetime}</td>
+                            <td>{$v.status}</td>
+                            <td><a class="button" href="{:U('Member/booking','details='.$v[id])}">查看</a></td>
+                    	</tr>
+                            </foreach>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+
+                    </table>
+                    <p class="pagingBar"><span class="cur"> {$page}</span></p>
+				</div>
+
+                <div class="fklm"><span><a>应付金额：<label id="moneyFK">0</label>元</a>
+                    <a class="button fk" href="javascript:;" id="PayQuk">立即付款</a></span></div>
+                </form>
+                <script>
+					//<![CDATA[
+					$("#checkQxfk").change(function(){
+						if(this.checked){
+							$("#orderOnlinePay input:checkbox").each(function(){this.checked="checked";});
+							var money=0;
+							$("#orderOnlinePay tr").each(function(i){
+								if(i>0){money=money+Number($(this).find("td").eq(3).html());}
+							});
+							$("#moneyFK").html(money);
+						}else{
+							$("#orderOnlinePay input:checkbox").each(function(){this.checked="";});
+							$("#moneyFK").html(0);
+						}
+					});
+					$("#orderOnlinePay tr").each(function(i){
+						if(i>0){
+							var $this=$(this);
+							$(this).find("input:checkbox").change(function(){
+								if(this.checked){
+									$("#moneyFK").html(Number($("#moneyFK").html())+Number($this.find("td").eq(3).html()));
+								}else{
+									$("#moneyFK").html(Number($("#moneyFK").html())-Number($this.find("td").eq(3).html()));
+								}
+							});
+						}
+					});
+					$("#PayQuk").click(function(){
+						if(Number($("#moneyFK").html()<=0)){alert("至少选择一个订单才能付款！");return false;}
+						
+						$("form").submit();
+					});
+					//]]>
+				</script>
+         	</div>
+        </div>
+    </div>
+
+
+<include file="Public:footer" />

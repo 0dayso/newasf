@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{$title} - {:C('WEB_NAME')}</title>
+<link href="__PUBLIC__/mobile/css/global.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+#ad{padding:4px 0;position:relative;}
+#ad img{width:100%;border:0;}
+#ad #adlist li{display:none;}
+#ad #adlist .on{display:block;}
+#ad #slidebar{position:absolute;left:49%;bottom:8px;}
+#ad #slidebar li{font-size:10px;display:inline-block;color:#5d5d5d;cursor:pointer;padding:0 2px;}
+#ad #slidebar li.select{color:#e0e0e0;}
+#navlist li{height:38px;line-height:38px; border-top:1px solid #FFF; background-color:#cbe4f6;}
+#navlist li a{display:block;font-size:16px;font-weight:bold;color:#2690d8;padding:0 30px 0 15px;background:url(__PUBLIC__/mobile/images/icon.png) no-repeat right -200px;}
+</style>
+</head>
+
+<body>
+<div id="page">
+  <div id="content">
+    <h1 id="topnav"><span class="left icon"><a href="{:U('/')}" class="icon-home">首页</a></span>特价国际机票<span class="right icon"><a href="tel:4006085188" class="icon-tel">电话</a></span></h1>
+    <div id="ad">
+    <ul id="adlist">
+    <li class="on"><a href="tel:4006085188"><img src="__PUBLIC__/mobile/images/ad001.jpg" width="100%"></a></li>
+    <li><a href="tel:4006085188"><img src="__PUBLIC__/mobile/images/ad002.jpg" width="100%"></a></li>
+    <li><a href="tel:4006085188"><img src="__PUBLIC__/mobile/images/ad003.jpg" width="100%"></a></li>
+    </ul>
+    <ul id="slidebar">
+    <li class="select">●</li>
+    <li>●</li>
+    <li>●</li>
+    </ul>
+    </div>
+    <ul id="navlist">
+        <li><a href="{:U('/Specialticket/airticket','from=gz')}">广州出发</a></li>
+        <li><a href="{:U('/Specialticket/airticket','from=bj')}">北京出发</a></li>
+        <li><a href="{:U('/Specialticket/airticket','from=sh')}">上海出发</a></li>
+       <!-- <li><a href="{:U('/Specialticket/airticket','from=sz')}">深圳出发</a></li> -->
+        <li><a href="{:U('/Specialticket/airticket','from=xg')}">香港出发</a></li>
+    </ul>
+  </div>
+  <include file="Public:footer" />
+</div>
+<script type="text/javascript" src="__PUBLIC__/mobile/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	
+	//初始化变量index为0，用于保存索引
+	var index = 0;
+	//初始化变量len为为图片列表的数量
+	var len = $('#adlist li').size();
+	
+	//setInterval()方法
+	setInterval(function(){
+		showPics(index);                   
+		index++;
+		if(index == len){index = 0;};
+		},4000);
+		
+	//showPics()设置图片和滑块的显示和隐藏
+	function showPics(index){
+		$('#adlist li').eq(index).addClass('on').siblings('li').removeClass('on');
+		$('#slidebar li').eq(index).addClass('select').siblings('li').removeClass('select');
+		};
+	
+	//当鼠标进入滑块,调用showPics()函数
+	$('#slidebar li').mouseenter(function(){
+		index = $(this).index();
+		showPics(index);
+		});
+		
+	});
+</script>
+</body>
+</html>

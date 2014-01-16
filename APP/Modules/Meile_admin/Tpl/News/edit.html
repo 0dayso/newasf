@@ -1,0 +1,80 @@
+<div class="page">
+	<div class="pageContent">
+
+	<form method="post" action="__URL__/update/navTabId/__MODULE__-index" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone)">
+		<input type="hidden" name="id" value="{$vo.id}" >
+		<div class="pageFormContent" layoutH="58">
+            <div class="unit">
+                <label>标题：</label>
+                <input type="text" class="required" size="60" name="title" id="title" value="{$vo.title}">
+            </div>
+            <div class="unit">
+                <label>文章发布状态：</label>
+                <input type="radio" name="status" value="0" <if condition="$vo.status eq 0"> checked="checked"</if> /> 文章审核状态 &nbsp; <input type="radio" name="status" value="1" <if condition="$vo.status eq 1"> checked="checked"</if> /> 文章已发布状态
+            </div>
+            <div class="unit">
+                <label>文章属性：</label>
+                <select name="is_push">
+                    <option value="0" >--推荐级别--</option>
+                    <option value="1" <if condition="$vo['is_push'] eq 1">selected</if>>--1级推荐--</option>
+                    <option value="2"<if condition="$vo['is_push'] eq 2">selected</if> >--2级推荐--</option>
+                    <option value="3" <if condition="$vo['is_push'] eq 3">selected</if>>--3级推荐--</option>
+                    <option value="4" <if condition="$vo['is_push'] eq 4">selected</if>>--4级推荐--</option>
+                    <option value="5" <if condition="$vo['is_push'] eq 5">selected</if>>--5级推荐--</option>
+                </select>
+
+                <select name="is_top">
+                    <option value="0">--置顶级别--</option>
+                    <option value="1" <if condition="$vo['is_top'] eq 1">selected</if>>--1级置顶--</option>
+                    <option value="2" <if condition="$vo['is_top'] eq 2">selected</if>>--2级置顶--</option>
+                    <option value="3" <if condition="$vo['is_top'] eq 3">selected</if>>--3级置顶--</option>
+                    <option value="4" <if condition="$vo['is_top'] eq 4">selected</if>>--4级置顶--</option>
+                    <option value="5" <if condition="$vo['is_top'] eq 5">selected</if>>--5级置顶--</option>
+                </select>
+
+            </div>
+            <div class="unit">
+                <label width="100">发布时间：</label>
+                <input type="text"  class="input"  name="published" <empty name="vo['published']">value="{:date('Y-m-d H:i:s',time())}"<else /> value="{$vo[published]|date='Y-m-d H:i:s',###}"</empty> />
+            </div>
+            <div class="unit">
+                <label>文章所属分类：</label>
+                <select name="cid">
+                    <volist name="list" id="vol">
+                        <if condition="$vol[cid] eq $vo[cid]">
+                            <option value="{$vol.cid}" selected="selected">{$vol.fullname}</option>
+                            <else/>
+                            <option value="{$vol.cid}">{$vol.fullname}</option>
+                        </if>
+                    </volist>
+                </select>
+            </div>
+            <div class="unit">
+                <label>文章关键词：</label>
+                <input type="text" class="input" size="80" name="keywords"  value="{$vo.keywords}" alt="多关键词间用半角逗号（,）分开，可用于做文章关联阅读条件" />
+                <span class="info"></span>
+            </div>
+            <div class="unit">
+                <label>文章描述：</label>
+                <textarea class="alt" cols="100" rows="3" name="description" alt="用于SEO 如果不填写则系统自动截取文章前200个字符" >{$vo.description}</textarea>
+                <span class="info"></span>
+            </div>
+            <div class="unit">
+                <label>文章内容：</label>
+                <textarea id="content" class="editor"  cols="100" rows="20" name="content">{$vo.content}</textarea>
+            </div>
+        </div>
+
+		</div>
+
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+	
+	</div>
+</div>
+

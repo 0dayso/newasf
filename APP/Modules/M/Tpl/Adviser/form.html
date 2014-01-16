@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{$title}-爱尚飞手机网</title>
+<link href="__PUBLIC__/mobile/css/global.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+#topnav {padding-right: 42px;}
+.box h2{padding-right:42px;}
+.box p{padding:10px 0;}
+.box span{display:block;margin-bottom:10px;}
+.box textarea{height:240px;}
+</style>
+</head>
+
+<body>
+<div id="page">
+  <div id="content">
+    <h1 id="topnav"><span class="left icon"><a href="{:U('/')}" class="icon-home">首页</a></span>专业旅行顾问</h1>
+    <div class="box">
+      <h2><span class="left icon"><a href="{:U('/Adviser/review')}" class="icon-return">返回</a></span>服务评价</h2>
+      <form action="" method="post">
+        <div class="pad10">
+          <p>请对旅行顾问XXX为您提供的 北京-洛杉矶 国际机票预订服务进行评价（评价生效后可获赠<em>500</em>积分）</p>
+          <span>
+          <label><em>*</em>总体评价：</label>
+          <select name="pj">
+            <option value="1">1</option>
+            <option value="2">2</option>
+          </select>
+          </span>
+          <span>
+          <label><em>*</em>顾问服务：</label>
+          <select name="service">
+            <option value="很好" checked>很好</option>
+            <option value="好">好</option>
+            <option value="一般">一般</option>
+            <option value="差">差</option>
+            <option value="很差">很差</option>
+          </select>
+          </span>
+          <span>
+          <label><em>*</em>出票速度：</label>
+          <select name="speed">
+            <option value="很快" checked>很快</option>
+            <option value="快">快</option>
+            <option value="一般">一般</option>
+            <option value="慢">慢</option>
+            <option value="很慢">很慢</option>
+          </select>
+          </span>
+          <span>
+          <label><em>*</em>机票价格：</label>
+          <select name="price">
+            <option value="很优惠" checked>很优惠</option>
+            <option value="优惠">优惠</option>
+            <option value="一般">一般</option>
+            <option value="贵">贵</option>
+            <option value="很贵">很贵</option>
+          </select>
+          </span>
+          <textarea name="contents" id="contents">请输入评价内容,限50个字符以内</textarea>
+        </div>
+        <input type="submit" value="提交评价" class="sub">
+      </form>
+      </div>
+    </div>
+  </div>
+  <include file="Public:footer" />
+  </div>
+<include file="Public:kf" />
+</body>
+</html>

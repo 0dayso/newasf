@@ -1,0 +1,34 @@
+<div class="left list_left_gy">
+<style type="text/css">#kfivtwin{display:none!important;/*隐藏53客服*/}</style>
+	<h2></h2>
+	<ul>
+		<?php if(in_array(ACTION_NAME,array('index','intro'))): ?>
+		<li><a href="{:U('/about')}" class="active">公司介绍</a></li>
+		<ul>
+			<li><a href="{:U('/about/intro')}" <?php if($_GET['view']=='') echo "class='active'";?>>美乐简介</a></li>
+			<li><a href="{:U('/about/intro','view=brand')}" <?php if($_GET['view']=='brand') echo "class='active'";?>>品牌故事</a></li>
+			<li><a href="{:U('/about/intro','view=style')}" <?php if($_GET['view']=='style') echo "class='active'";?>>员工风采</a></li>
+		</ul>
+		<?php else: ?>
+			<li><a href="{:U('/about')}">公司介绍</a></li>
+		<?php endif; ?>
+
+		<li><a href="{:U('/about/qualifications')}" <?php if(ACTION_NAME=='qualifications') echo "class='active'"; ?>>公司资质</a></li>
+	<!--<li><a href="{:U('/about/honour')}" <?php if(ACTION_NAME=='honour') echo "class='active'"; ?>>公司荣誉</a></li>-->
+		<li><a href="{:U('/about/events')}" <?php if(ACTION_NAME=='events') echo "class='active'"; ?>>发展历程</a></li>
+		<li><a href="{:U('/about/partner')}" <?php if(ACTION_NAME=='partner') echo "class='active'"; ?>>合作伙伴</a></li>
+		<?php if(MODULE_NAME == 'News'): ?>
+		<li><a href="{:U('/news/company')}" class="active">最新动态</a></li>
+		<ul>
+			<li><a href="{:U('/news/company')}" <?php if($_GET['alias']=='company') echo "class='active'"; ?>>公司新闻</a></li>
+			<li><a href="{:U('/news/media')}" <?php if($_GET['alias']=='media') echo "class='active'"; ?> >媒体新闻</a></li>
+         </ul>
+		 <?php else: ?>
+		 
+		 <li><a href="{:U('/news/company')}">最新动态</a></li>		 
+		 
+		 <?php endif;?>
+		<li><a href="{:U('/about/job')}" <?php if(ACTION_NAME=='job') echo "class='active'"; ?>>人才招聘</a></li>
+		<li><a href="{:U('/about/contact')}" <?php if(ACTION_NAME=='contact') echo "class='active'"; ?>>联系我们</a></li>
+	</ul>
+</div>

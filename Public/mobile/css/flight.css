@@ -1,0 +1,113 @@
+@charset "utf-8";
+/*国际机票查询预订*/
+#flight_query,.cont_box{padding:10px;}
+.white_bg{background-color:#FFF;}
+#flight_tab{height:29px;}
+#flight_tab dt,#flight_tab dd{float:left;width:49%;background-color:#67b1e4;color:#FFF;height:29px;line-height:29px;font-size:14px;text-align:center;cursor:pointer;}
+#flight_tab dt{margin-right:2%;}
+#flight_tab .tab_on{background-color:#FFF;color:#ff840f;}
+#flight_cont{height:175px;}
+#flight_cont dl,#flight_cont .wid49{width:49%!important;display:block!important;}
+#flight_cont dt,#flight_cont h3{padding-left:10px;height:32px;line-height:32px;color:#666;font-weight:normal;}
+#flight_cont dd,#flight_cont span{background:#f2f1f0 url(../images/title_bg.png) no-repeat;color:#333;cursor:pointer;}
+#flight_cont dd{padding-left:10px;height:37px;line-height:37px;background-position:right -126px;font-size:14px;font-weight:bold;margin-bottom:10px;}
+/*日期*/
+#flight_cont #set_date div{width:100%;}
+#flight_cont #set_date .right{display:none;}
+#flight_cont span{padding:5px 10px;height:48px;background-position:right -115px;font-size:14px;display:block;}
+#flight_cont em,#flight_cont strong{display:block;height:24px;line-height:24px;}
+#flight_cont em{font-style:normal;color:#ff840f;}
+/*底部导航*/
+#footer_list{width:100%;height:39px;position:fixed;left:0;bottom:0;z-index:150;}
+#footer_list li{float:left;width:50%;}
+#footer_list a{display:block;height:39px;line-height:39px;font-size:16px;font-weight:bold;text-align:center;color:#FFF;background-color:#67b1e4;}
+#footer_list a.fl_on{background-color:#ff980f;}
+
+/*通用头部*/
+.header{display:block;width:100%;position:fixed;top:0;left:0;background-color:#FFF;z-index:400;}
+.header .lgog{padding:4px;}
+
+/*选择航班城市*/
+#city_list_box{width:100%;height:auto;z-index:200;background-color:#f2f1f0;position:absolute;top:0;left:0;color:#666;display:none;}
+#close_city_list,.city_list li{cursor:pointer;}
+#city_search{padding:10px;background-color:#cbe4f6;height:37px;margin-top:85px;}
+#city_search div{padding-left:30px;background:#FFF url(../images/flight_bg.png) no-repeat 0 0;position:relative;}
+#city_search input{width:100%;height:37px;line-height:normal;color:#666;}
+#empty_search{width:16px;height:16px;display:none;background:url(../images/flight_bg.png) no-repeat 0px -82px;cursor:pointer; position:absolute;top:10px;right:10px;z-index:200;}
+#city_tab{height:36px;background-color: #cbe4f6}
+#city_tab li{float:left;width:49%;height:36px;line-height:36px;font-size:16px;font-weight:bold;background-color:#67b1e4;color:#404040;text-align:center;cursor:pointer;}
+#city_tab .tab_on{background-color:#FFF;color:#404040;}
+
+.collapsible-set{display:none;}
+.city_on{display:block!important;}
+.collapsible{border-bottom:1px solid #e7e5e5;}
+.city_list li{height:42px;line-height:42px;padding-left:20px;font-size:14px;background-color:#cbe4f6;border-bottom:1px solid #96caee;}
+.city_list li.designate{background:#cbe4f6 url(../images/flight_bg.png) no-repeat right -37px;}
+
+/*搜索相关结果*/
+#associate{width:100%;height:auto;display:none;}
+#associate li{height:42px;line-height:42px;padding-left:20px;font-size:14px;background-color:#FFF;border-bottom:1px solid #e7e5e5;cursor:pointer;}
+#associate div{height:42px;line-height:42px;font-size:14px;background-color:#FFF;border-bottom:1px solid #e7e5e5;text-align:center;}
+
+
+/*日期列表*/
+#date_list_box{width:100%;height:auto;z-index:200;background-color:#f2f1f0;position:absolute;top:0;left:0;color:#666;display:none;}
+#close_date_list{cursor:pointer;}
+#date_week{height:35px;background-color:#eee;}
+#date_week li:first-child,#week_list li:last-child{width:15%;}
+#date_week li{float:left;line-height:35px;width:14%;font-size:14px;text-align:center;}
+/*月份*/
+#date_list{margin-top:95px;}
+#date_list em,#date_list i{font-style: normal;}
+.month{padding-top:25px;display: block;height:auto;clear:both;}
+.month .month_name{height:40px;line-height:40px;text-align:center;background-color:#FFF;font-size:14px;}
+.month .day_list{background-color:#FFF;}
+.month .day_list li:nth-child(7n),.month .day_list li:nth-child(7n+1){width:15%;}
+.month .day_list li{float:left;width:14%;height:50px;line-height:50px;padding:4px 0;text-align:center;}
+.month .day_future{background-color:#FFF;}/*日期*/
+.month .day_pass{background-color:#f2f1f0;}/*已过的日期*/
+.month .have_txt em{display:block;line-height:25px;}
+.month .have_txt i{display:block;line-height:25px;}
+.month .valid{cursor:pointer;}
+.month .festival em,.month .festival i{color:#3598db;}/*节日*/
+.month .selected_start,.month .selected_back{background-color:#3598db;color:#FFF;}/*出发日期&返程日期*/
+.month .selected_start em,.month .selected_back em{display:block;line-height:25px;color:#FFF!important;}
+.month .selected_start i,.month .selected_back i{display:block;line-height:25px;color:#FFF!important;}
+
+/*国际机票查询弹窗*/
+#flight_query_box{width:100%;height:auto;z-index:100;position:absolute;top:125px;left:0;color:#333;display:none;}
+#flight_query_box .white_bg{padding:10px 10px 200px 10px;}
+#close_flight_query{cursor:pointer;}
+#load{text-align:center;}
+#load h3,#load .query_city strong{font-size:16px;line-height:32px;}
+#load p{line-height:24px;}
+#load p em{font-style:normal;}
+#load h3{margin-top:10px;}
+#load #query_city{font-size:14px;margin-bottom:10px;}
+#load #query_city strong{color:#ff840f;padding:0 3px;display:inline-block;}
+#consultancy{display:none;}
+#consultancy .warn{padding:10px;line-height:24px;background:#f2f1f0;}
+#consultancy .warn strong{font-size:14px;color:#ff840f;}
+#consultancy #cons_select{width:250px;margin:0 auto;}
+#consultancy #cons_select label{display:block;font-size:14px;font-weight:bold;line-height:35px;}
+#consultancy #cons_select label input{margin-right:5px;}
+#consultancy #cons_select label b{padding:0 5px;color:#F00;}
+#consultancy #cons_select label em{display:block;font-size:10px;font-style:normal;font-weight:normal;color:#eb900e;line-height:14px;padding-left:10px;}
+#fquery_form{width:220px;margin:0 auto;display:none;}
+#fquery_form form{padding:0px;margin:0px;overflow:hidden;}
+#fquery_form ul li{height:38px;line-height:38px;overflow:hidden;}
+#fquery_form ul li.submit{height:50px !important;}
+#fquery_form ul li.submit input{float:right;width:119px;height:32px;margin-top:10px;background:url(../images/bt119.gif) no-repeat;color:#FFF;border:none;}
+#fquery_form ul li span{color:#333px;font-weight:bold;font-size:13px;vertical-align:middle;padding-right:5px;}
+
+#counseling{font-size:14px;line-height:28px;text-align:center;padding:15px 0;}
+#counseling a{width:28px;height:28px;padding:0 10px;display:inline-block;background:url(../images/counseling.gif) no-repeat center center;}
+#commitment h2{height:30px;line-height:30px;background:#67b1e4;font-size:14px;color:#fff;text-indent:1em;}
+#commitment li{float:left;display:block;width:50%;height:86px;}
+#commitment li.c0 div,#commitment li.c2 div{padding-right:3px;padding-bottom:6px;}
+#commitment li.c1 div,#commitment li.c3 div{padding-left:3px;padding-bottom:6px;}
+#commitment li span{display:block;padding:16px 12px 16px 70px;height:48px;line-height:16px;background:#f2f1f0 url(../images/commitment.gif) no-repeat;}
+#commitment li.c0 span{background-position:0 0;}
+#commitment li.c1 span{background-position:0 -80px;}
+#commitment li.c2 span{background-position:0 -160px;}
+#commitment li.c3 span{background-position:0 -240px;}

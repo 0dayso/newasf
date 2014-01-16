@@ -1,0 +1,49 @@
+<include file="Public:header" />
+<link rel="stylesheet" href="__PUBLIC__/css/userCenter.css" type="text/css" />
+    <div id="cont">
+        <div class="wd960 mt10 bgWhite">
+        	<h1 class="h1_tit_nav">你当前所在位置：<a href="/" class="sy">首页</a> > <a class="cur">会员中心</a></h1>
+            <include file='left' />
+            <div class="left mt10" id="mdsc">
+                <include file="top_kf" />
+                <div class="top_nav_hr"><span>我的订单</span></div> 
+               	<div class="top_nav_qh">
+               		<ul>
+                   		<li><a href="{:U('/Member/booking','status=pending')}"  <if condition="I('status')=='pending'">class="active"</if>>待处理订单</a></li>
+                        <li><a href="{:U('/Member/booking','status=process')}"  <if condition="I('status')=='process'">class="active"</if>>已处理订单</a></li>
+                        <li><a href="{:U('/Member/booking','status=cancel')}" <if condition="I('status')=='cancel'">class="active"</if>>已取消订单</a></li>
+                   	</ul>
+               	</div>
+                <div class="prosc">
+                    <table width="100%" cellpadding="2">
+                      <tr class="thbg">
+                        <td width="15%"><strong>订单ID</strong></td>
+                        <td width="22%"><strong>航班行程</strong></td>
+                        <td width="10%"><strong>价格</strong></td>
+                        <td width="18%"><strong>下单时间</strong></td>
+                        <td width="10%"><strong>订单状态</strong></td>
+                        <td width="15%"><strong>操作</strong></td>
+                      </tr>
+                     <foreach name="list" item="v">
+                     <tr>
+                        <td>{$v.order_id}</td>
+                        <td>{$v.from_city} → {$v.to_city}</td>
+                        <td>￥{$v.price}</td>
+                        <td>{$v.order_datetime}</td>
+                        <td>{$v.status}</td>
+                        <td><a href="{:U('Member/booking','details='.$v[id])}">查看</a>
+                            <if condition="$v['order_status'] eq 0 or $v['order_status'] eq 1"> | <a href="{:U('Member/booking','act=cancel&id='.$v[id])}">取消</a></if>
+                            <if condition="$v['order_status'] eq 1"> | <a href="{:U('Member/onlinePay','id='.$v[id])}">付款</a></if>
+                        </td>
+                      </tr>
+                     </foreach>
+                    </table>
+                    <p class="pagingBar"><span class="cur"> {$page}</span></p>
+					<div class="notice"><span style="color:#f00">温馨提示:</span> 因系统每日处理的数据量较大,部分刚提交的订单可能会略有延迟(一分钟以内)才能显示,为此给您带来的不便请见谅!</div>
+				</div>
+         	</div>
+        </div>
+    </div>
+
+
+<include file="Public:footer" />

@@ -1,0 +1,91 @@
+<form id="pagerForm" action="__URL__/applyBook" method="post">
+    <input type="hidden" name="pageNum" value="{$_REQUEST['pageNum']|default=1}"/>
+    <input type="hidden" name="numPerPage" value="{$numPerPage}"/>
+    <input type="hidden" name="so" value="{$_REQUEST.so}" />
+    <input type="hidden" name="_order" value="{$_REQUEST._order}"/>
+    <input type="hidden" name="_sort" value="{$_REQUEST['_sort']|default='1'}"/>
+    <input type="hidden" name="listRows" value="{$_REQUEST['listRows']}"/>
+    <input type="hidden" name="type" value="1"/>
+
+    <volist name="map" id="m">
+        <input type="hidden" name="{$key}" value="{$_REQUEST[$key]}"/>
+    </volist>
+
+</form>
+
+<div class="pageHeader">
+	<form rel="pagerForm" onsubmit="return navTabSearch(this);" action="__URL__" method="post">
+	<div class="searchBar">
+		<ul class="searchContent">
+			<li>
+                <label>帐本名：</label>
+                <input type="text" name="name" value=""/>
+			</li>
+		</ul>
+		<div class="subBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div></li>
+			</ul>
+		</div>
+	</div>
+	</form>
+</div>
+
+<div class="pageContent">
+	<div class="panelBar">
+			<span class="lh22 mgl_20">点击帐本名进入帐本详细列表页 再录入申请信息</span>
+	</div>
+
+    <table class="table" width="100%" layoutH="115">
+		<thead>
+		<tr>
+            <th width="60" orderField="id" <if condition="$_REQUEST._order eq 'id'">class="{$_REQUEST._sort}"</if>>编号</th>
+			<th width="100" orderField="name" <if condition="$_REQUEST._order eq 'name'">class="{$_REQUEST._sort}"</if>>帐本名</th>
+            <th width="100" orderField="company_id" <if condition="$_REQUEST._order eq 'company_id'">class="{$_REQUEST._sort}"</if>>所属公司</th>
+			<th orderField="user_id" <if condition="$_REQUEST._order eq 'user_id'">class="{$_REQUEST._sort}"</if>>创建人</th>
+            <th orderField="remark" <if condition="$_REQUEST._order eq 'remark'">class="{$_REQUEST._sort}"</if>>备注</th>
+			<th orderField="create_time" <if condition="$_REQUEST._order eq 'create_time'">class="{$_REQUEST._sort}"</if>>创建时间</th>
+			<th width="100" orderField="update_time" <if condition="$_REQUEST._order eq 'update_time'">class="{$_REQUEST._sort}"</if>>更新时间</th>
+			<th width="80" orderField="status" <if condition="$_REQUEST._order eq 'status'">class="{$_REQUEST._sort}"</if>>状态</th>
+
+
+            <th width="80" >操作</th>
+		</tr>
+		</thead>
+		<tbody>
+		<volist id="vo" name="list">
+			<tr target="sid_user" rel="{$vo['id']}">
+				<td>{$vo['id']}</td>
+				<td><b><a href="__URL__/applyPay/book_id/{$vo['id']}/" target="navTab" rel="__MODULE__-applyBook">{$vo['name']}</a></b></td>
+                <td>{$vo.company.name}</td>
+                <td>{$vo['username']}</td>
+				<td>{$vo['remark']}</td>
+                <td>{$vo['create_time']|date="Y-m-d",###}</td>
+                <td><empty name="$vo['update_time']">{$vo['create_time']|date="Y-m-d",###}<else/>{$vo['update_time']|date="Y-m-d",###}</empty></td>
+                <td>
+
+                </td>
+                <td>
+
+                    <notempty name="vo['record']">
+                        <a href="__URL__/applyPay/book_id/{$vo['id']}/" target="navTab" rel="__MODULE__-applyPay">申请</a>
+                        <else/>
+                    <a href="__URL__/applyPay/book_id/{$vo['id']}/" target="navTab" rel="__MODULE__-applyPay">查看</a>
+                    </notempty>
+
+                </td>
+			</tr>
+		</volist>
+		</tbody>
+	</table>
+
+    <div class="panelBar">
+        <div class="pages">
+            <span>共{$totalCount}条</span>
+        </div>
+        <div class="pagination" targetType="navTab" totalCount="{$totalCount}" numPerPage="{$numPerPage}"  pageNumShown="10" currentPage="{$currentPage}"></div>
+    </div>
+
+</div>
+
+

@@ -1,0 +1,524 @@
+<include file="public:header" />
+    <link rel="stylesheet" href="__PUBLIC__/css/member.css" type="text/css" />
+    <script type="text/javascript" src="__PUBLIC__/js/member.js"></script>
+    <div class="member">
+    	<!--会员中心导航-->
+    	<include file="public:left" />        
+        <!--现金卷-->
+      <div class="right" id="memberR">
+        	<h1 class="nav_tit">我的礼品</h1>
+            <div id="list_box">
+            	<div id="list_nav"><a class="active">我的收藏</a><a>我的购物车</a><a>已兑换礼品</a></div>
+                <div id="list_con">
+                	<div class="list_block on">
+                    	<div id="gift_list">
+                        	<div id="gift_list_nav"><a class="active">所有礼品</a>|<a>积Fun礼品</a>|<a>爱钻礼品</a></div>
+                            <div class="gift_list_block gift_on" id="allgift">
+                            	<ul>
+                       				<volist name="mycollect" id="vo">
+                                         <li>
+                                            <a href="{:U('jifen/info','id='.$vo['mall_id'])}">
+                                            	<img src="__PUBLIC__/uploads/mall/m_{$vo.img}" title="{$vo.title}">                                           		<h3>{$vo.title}</h3>
+                                            </a> 
+                                             <p>{$vo.jifen}</p>
+                                        </li>                                    
+                                    </volist>	
+								</ul>
+                                 <div class="page" totlePage="{$allPage}" page="1">
+                                    <span class="next ajax"></span>
+                                    <span class="page_num"><em>{$nowpage}</em>/{$allPage}页</span>
+                                    <span class="prev ajax"></span>
+                                </div>
+                            </div><!--我的收藏-所有礼品-->
+                            
+                            <div class="gift_list_block" id="jfgift">
+                            	<ul>
+                                	<volist name="jifensc" id="vo">
+                                        <li>
+                                            <a href="{:U('jifen/info','id='.$vo['mall_id'])}"><img src="__PUBLIC__/uploads/mall/m_{$vo.img}" title="{$vo.title}">                                           	<h3>{$vo.title}</h3></a> 
+                                           <p>积fen：<em>{$vo.jifen}</em></p>
+                                        </li>
+									</volist>
+								</ul>
+                                <div class="page" totlePage="{$jfPage}" page="1">
+                                    <span class="next ajax"></span>
+                                    <span class="page_num"><em>{$nowpagejf}</em>/{$jfPage}页</span>
+                                    <span class="prev ajax"></span>
+                                </div>
+                            </div><!--我的收藏-积Fun礼品-->
+                            
+                            <div class="gift_list_block" id="azgift">
+                            	<ul>
+                                	<volist name="aizuansc" id="vo">
+                                        <li>
+                                            <a href="{:U('jifen/info','id='.$vo['mall_id'])}"><img src="__PUBLIC__/uploads/mall/m_{$vo.img}" title="{$vo.title}">                                           	<h3>{$vo.title}</h3></a> 
+                                            <p>爱钻：<b>x{$vo.jifen}</b></p>
+                                        </li>
+                                    </volist>                         
+								</ul>
+                               <div class="page" totlePage="{$azPage}" page="1">
+                                    <span class="next ajax"></span>
+                                    <span class="page_num"><em>{$nowpageaz}</em>/{$azPage}页</span>
+                                    <span class="prev ajax"></span>
+                                </div>
+                            </div><!--我的收藏-爱钻礼品-->                            
+                        </div>
+                    </div>
+                    
+                    <div class="list_block"><!--购买车-->
+                    	<div id="cart">
+                        	<div id="cart_nav"><a class="active">积Fun礼品</a>|<a>爱钻礼品</a></div>
+                            <div class="cart_block cart_on" id="cart_fun"> 
+                            	<form action="" method="get">
+                            	<table width="788" border="0" cellspacing="0" cellpadding="0" id="cart_fun_table">
+									<tr class="tit">
+										<td width="148" class="first"><input type="checkbox" class="checkbox" checked="checked"/>全选</td>
+										<td width="240">礼品名称</td>
+                                        <td width="80">兑换积Fun</td>
+										<td width="125">数量</td>
+                                        <td width="80">积Fun小计</td>
+										<td width="115">操作</td>
+									</tr>
+                                    <volist name='CartJifen' id='vo'>
+                                    <tr class="clist" gid="{$vo.id}">
+									  	<td class="first"><input type="checkbox" checked="checked"/>{$vo.order_num}</td>
+									  	<td class="blue"><a href="{:U('jifen/info','id='.$vo['id'])}"><img src="__PUBLIC__/uploads/mall/m_{$vo.img}" widht="40px" height="40px">{$vo.title}</a></td>
+                                      	<td class="price">{$vo.jifen}</td>
+									  	<td class="quantity"><a class="reduce"></a><input type="text" value="{$vo.num}" class="tx"><a class="add"></a></td>
+                                      	<td class="price">{$vo['jifen']*$vo['num']}</td>
+										<td class="operation"><a class="move_favo">移入收藏夹</a><br/><a class="del_gift">删除</a></td>
+									</tr>
+                                    </volist>                              
+								</table>
+                              <div class="cart_bot"><input type="checkbox" class="checkbox all" checked="checked"/>全选 <a class="all_del_gift">删除</a> <a class="del_invalid">清除失效礼品</a> <a class="all_move_favo">批量移入收藏夹</a><span class="right">合计所需积Fun：<b class="total">{$totlejf}</b><input type="submit" class="exchange" value=""></span></div>
+                              </form>
+                          </div><!--积Fun礼品-->
+                          
+                          <div class="cart_block" id="cart_aizuan">
+                         	 <form action="" method="get">
+                            	<table width="788" border="0" cellspacing="0" cellpadding="0">
+									<tr class="tit">
+										<td width="148" class="first"><input type="checkbox" class="checkbox" checked="checked"/>全选</td>
+										<td width="240">礼品名称</td>
+                                        <td width="80">兑换积Fun</td>
+										<td width="125">数量</td>
+                                        <td width="80">积Fun小计</td>
+										<td width="115">操作</td>
+									</tr>
+                                    <volist name='CartAizuan' id='vo'>
+                                    <tr class="clist" gid="{$vo.id}">
+									  	<td class="first"><input type="checkbox" checked="checked"/>{$vo.order_num}</td>
+									  	<td class="blue"><a href="{:U('jifen/info','id='.$vo['id'])}"><img src="__PUBLIC__/uploads/mall/m_{$vo.img}" widht="40px" height="40px">{$vo.title}</a></td>
+                                      	<td class="price"><span>x<em>{$vo.jifen}</em></span></td>
+									  	<td class="quantity"><a class="reduce"></a><input type="text" value="{$vo.num}" class="tx"><a class="add"></a></td>
+                                      	<td class="price"><span>x<em>{$vo['jifen']*$vo['num']}</em></span></td>
+										<td class="operation"><a class="move_favo">移入收藏夹</a><br/><a class="del_gift">删除</a></td>
+									</tr>
+                                    </volist>                                      
+								</table>
+                              <div class="cart_bot"><input type="checkbox" class="checkbox all" checked="checked"/>全选 <a class="all_del_gift">删除</a> <a class="del_invalid">清除失效礼品</a> <a class="all_move_favo">批量移入收藏夹</a><span class="right">合计所需爱钻：<b class="total">{$totleaz}</b><input type="submit" class="exchange" value=""></span></div>
+                         	</form>
+                          </div><!--爱钻礼品-->
+                        </div>
+					</div><!--购买车end-->
+                    
+                   <div class="list_block">
+                    	<div id="exchange">
+                        	<div id="exch_nav"><a class="active">积Fun礼品</a>|<a>爱钻礼品</a></div>
+                            <div class="exch_block exch_on">
+                            	<table width="788" border="0" align="center" cellpadding="0" cellspacing="0">
+  									<tr class="tit">
+										<td class="first">礼品订单号</td>
+										<td>礼品名称</td>
+										<td>兑换积Fun</td>
+										<td>数量</td>
+										<td>积Fun小计</td>
+    									<td>兑换时间</td>
+    									<td>礼品状态</td>
+  									</tr>                                
+                                    <volist name="exchange1" id="vo">                              
+                                    <tr class="h50">
+                                        <td class="first">{$vo.order_num}</td>                                                                  
+                                        <td class="blue">
+                                           <a href="{:U('jifen/info','id='.$vo['mall_id'])}" title="{$vo.title}">
+                                            <img src="__PUBLIC__/uploads/mall/m_{$vo.img}" widht="40px" height="40px">
+                                            {$vo.title|msubstr=0,25}
+                                            </a>
+                                         </td>
+                                        <td><span style="color:rgb(229, 103, 0)">{$vo.jifen}</span></td>
+                                        <td>{$vo.num}</td>
+                                        <td><span style="color:rgb(229, 103, 0)"><?php echo $vo['jifen']*$vo['num']?></span></td>                                
+                                        <td>{$vo.create_time|date="Y-m-d",###}</td>
+                                        <td class="blue"><if condition="$vo.status eq 0">未发货<elseif condition="$vo.status eq 1" />已发货<else/>已完成</if> </td>
+                                    </tr>
+                                   </volist>                               
+                               </table>
+                            </div><!--积Fun礼品-->
+                            <div class="exch_block">
+                            	<table width="788" border="0" align="center" cellpadding="0" cellspacing="0">
+  									<tr class="tit">
+										<td class="first">礼品订单号</td>
+										<td>礼品名称</td>
+										<td>兑换爱钻</td>
+										<td>数量</td>
+										<td>爱钻小计</td>
+    									<td>兑换时间</td>
+    									<td>礼品状态</td>
+  									</tr>
+                                      <volist name="exchange2" id="vo">                              
+                                        <tr class="h50">
+                                            <td class="first">{$vo.order_num}</td>                                                                 
+                                            <td class="blue">
+                                               <a href="{:U('jifen/info','id='.$vo['mall_id'])}" title="{$vo.title}">
+                                                <img src="__PUBLIC__/uploads/mall/m_{$vo.img}" widht="40px" height="40px">
+                                                {$vo.title|msubstr=0,25}
+                                                </a>
+                                             </td>
+                                            <td><span class="aizuan">x{$vo.jifen}</span></td>
+                                            <td>{$vo.num}</td>
+                                            <td><span class="aizuan">x<?php echo $vo['jifen']*$vo['num']?></span></td>                                       
+                                            <td>{$vo.create_time|date="Y-m-d",###}</td>
+                                            <td class="blue"><if condition="$vo.status eq 0">未发货<elseif condition="$vo.status eq 1" />已发货<else/>已完成</if> </td>
+                                        </tr>
+                                    </volist>                          
+								</table>
+                            </div><!--爱钻礼品-->
+						</div>
+					</div><!--已兑换礼品-->
+                    
+              </div>
+        </div><!--list_block-->
+        
+        </div>
+    </div>
+    
+    <script type="text/javascript">
+    	$(function(){
+			//购物车-积Fun礼品 数量减少
+			$("#cart_fun .reduce").bind("click",function(){
+					var value = Number($(this).next().val());
+                    if(value>=2) $(this).next().val(--value);
+                    fun_price_xj($(this),value);
+                });
+			//购物车-积Fun礼品 数量增加
+			$("#cart_fun .add").bind("click",function(){
+                    var value = Number($(this).prev().val());
+                        $(this).prev().val(++value);
+                    fun_price_xj($(this),value);
+                });
+			$("#cart_fun .tx").bind("keyup",function(){
+                    if(isNaN($(this).val()) || $(this).val()<0){$(this).val(1);}
+                    fun_price_xj($(this),$(this).val());
+                })
+			//购物车-积Fun礼品 全选功能
+			$("#cart_fun .checkbox").change(function(){
+				if(this.checked){
+					$("#cart_fun input:checkbox").each(function(){this.checked="checked";});
+                    fun_price_js();
+					}else{
+						$("#cart_fun input:checkbox").each(function(){this.checked="";});
+                        $("#cart_fun .total").html(0);
+                    }
+                });
+			//购物车-积Fun礼品 当某个产品取消选择时，取消全选
+			$("#cart_fun input:checkbox").change(function(){
+				if($(this).hasClass('checkbox') != true){$('#cart_fun .checkbox').removeAttr('checked');}
+				fun_price_js();
+				});
+			//购物车-积Fun礼品 小计
+			function fun_price_xj(obj,value){
+				var dj = obj.parent("td").prev().html().replace(/(\d+)\D/,"$1");
+				obj.parent("td").next("td").html((dj*value));
+				fun_price_js();
+			}
+			//购物车-积Fun礼品 合计
+			function fun_price_js(){
+				var money=0;
+				$("#cart_fun tr").each(function(i){
+					if(i>0 && $(this).find("td").eq(0).children("input").attr("checked")){
+						money=money+Number($(this).find("td").eq(4).html());
+					}
+				});
+				$("#cart_fun .total").html(money);
+			}
+			
+			//购物车-爱钻礼品 数量减少
+			$("#cart_aizuan .reduce").bind("click",function(){
+					var value = Number($(this).next().val());
+                    if(value>=2) $(this).next().val(--value);
+                    aizuan_price_xj($(this),value);
+                });
+			//购物车-爱钻礼品 数量增加
+			$("#cart_aizuan .add").bind("click",function(){
+                    var value = Number($(this).prev().val());
+                        $(this).prev().val(++value);
+                    aizuan_price_xj($(this),value);
+                });
+			$("#cart_aizuan .tx").bind("keyup",function(){
+                    if(isNaN($(this).val()) || $(this).val()<0){$(this).val(1);}
+                    aizuan_price_xj($(this),$(this).val());
+                })
+			//购物车-爱钻礼品 全选功能
+			$("#cart_aizuan .checkbox").change(function(){
+				if(this.checked){
+					$("#cart_aizuan input:checkbox").each(function(){this.checked="checked";});
+                    aizuan_price_js();
+					}else{
+						$("#cart_aizuan input:checkbox").each(function(){this.checked="";});
+                        $("#cart_aizuan .total").html(0);
+                    }
+                });
+			//购物车-爱钻礼品 当某个产品取消选择时，取消全选
+			$("#cart_aizuan input:checkbox").change(function(){
+				if($(this).hasClass('checkbox') != true){$('#cart_aizuan .checkbox').removeAttr('checked');}
+				aizuan_price_js();
+				});
+			//购物车-爱钻礼品 小计
+			function aizuan_price_xj(obj,value){
+				var dj = obj.parent("td").prev().find("em").html().replace(/(\d+)\D/,"$1");
+				obj.parent("td").next("td").find("em").html((dj*value));
+				aizuan_price_js();
+			}
+			//购物车-积Fun礼品 合计
+			function aizuan_price_js(){
+				var money=0;
+				$("#cart_aizuan tr").each(function(i){
+					if(i>0 && $(this).find("td").eq(0).children("input").attr("checked")){
+						money=money+Number($(this).find("td").eq(4).find("em").html());
+					}
+				});
+				$("#cart_aizuan .total").html(money);
+			}
+			
+			//单个把购物车礼品移入收藏夹
+			$("#cart .move_favo").bind("click",function(){
+				var act="move";//设置类型为移入收藏夹
+				var tr=$(this).parent().parent();//获取当前行的Tr
+				var gid=tr.attr("gid");//获取它的gid
+				cartAjax(gid,act,function(t){if(t==true){tr.remove();}else if(t==false){alert("操作失败！");}});
+				});
+			//多选的把购物车礼品移入收藏
+			$("#cart .all_move_favo").bind("click",function(){
+				var act="move";//设置类型为移入收藏
+				var table = $(this).parent().prev();
+				var gid = new Array();
+				table.find('tr').each(function(i){
+					if(i>0 && $(this).find("td").eq(0).children("input").attr("checked")){
+						gid.push($(this).attr('gid'));
+					}
+					});
+				if(gid.length<=0){
+					alert("请选择礼品再移入收藏夹！");
+					}else{
+						cartAjax(gid,act,function(t){
+							if(t==true){
+								table.find('tr').each(function(i){
+									if(i>0 && $(this).find("td").eq(0).children("input").attr("checked")){$(this).remove();}
+									});
+								}else if(t==false){alert("操作失败！");}
+							});
+						}
+				});
+			//单个把购物车礼品删除
+			$("#cart .del_gift").bind("click",function(){
+				var act="del";//设置类型为删除
+				var tr=$(this).parent().parent();//获取当前行的Tr
+				var gid=tr.attr("gid");//获取它的gid
+				cartAjax(gid,act,function(t){if(t==true){tr.remove();}else if(t==false){alert("操作失败！");}});
+				});
+			//多选的把购物车礼品删除
+			$("#cart .all_del_gift").bind("click",function(){
+				var act="del";//设置类型为删除
+				var table = $(this).parent().prev();
+				var gid = new Array();
+				table.find('tr').each(function(i){
+					if(i>0 && $(this).find("td").eq(0).children("input").attr("checked")){
+						gid.push($(this).attr('gid'));
+					}
+					});
+				if(gid.length<=0){
+					alert("请选择礼品再删除！");
+					}else{
+						cartAjax(gid,act,function(t){
+							if(t==true){
+								table.find('tr').each(function(i){
+									if(i>0 && $(this).find("td").eq(0).children("input").attr("checked")){$(this).remove();}
+									});
+								}else if(t==false){alert("操作失败！");}
+							});
+						}
+				});
+			//购物车的AJAX
+			function cartAjax(gid,act,fn){
+				$.getJSON("{:U('/Member/Assetaccount/gift/')}",{id:gid,act:act},function(data){
+					if(data.status==1){
+						fn(true);
+						}else{
+							fn(false);
+							}
+					});
+						
+				}
+				
+			//清除失效礼品
+			$("#cart .del_invalid").bind("click",function(){
+				var act="invalid";//设置类型为删除
+				var table = $(this).parent().prev();
+				var gid = new Array();
+				table.find('tr').each(function(i){
+					if(i>0 && $(this).find("td").eq(0).children("input").attr("checked")){
+						gid.push($(this).attr('gid'));
+						}
+					});
+				if(gid.length<=0){
+					alert("请选择礼品！");
+					}else{
+						$.getJSON("{:U('/Member/Assetaccount/gift/')}",{id:gid,act:act},function(data){
+							if(data.status==1){
+								var return_gid=data.gid;
+								$.each(return_gid,function(i,item){
+									table.find('tr').each(function(){
+										if($(this).attr('gid')==item.id){
+											$(this).remove();
+											}
+										});
+									});
+								}else{
+									alert(data.info);
+								}
+						});
+					}
+				
+				if(gid.length<=0){
+					alert("请选择礼品再删除！");
+					}else{
+						if(cartAjax(gid,type) == true){
+							table.find('tr').each(function(i){
+								if(i>0 && $(this).find("td").eq(0).children("input").attr("checked")){
+								$(this).remove();
+								}
+							});
+							}
+						}
+				});
+		});
+  </script>
+  <script type="text/javascript">
+	$(function(){
+		//我的收藏-所有礼品 AJAX分页
+		$('#allgift .ajax').click(function(){
+			var totlePage=$(this).parent().attr('totlePage'),page=$(this).parent().attr('page'),i=$(this).index();			
+			if(i==0){	
+				page=parseInt(page)+1;					
+				if(page>totlePage){page=totlePage;}
+				}else if(i==2){
+					page=parseInt(page)-1;
+					if(page<=0){page=1;}
+					}
+			allgift_ajax(totlePage,page);
+			});
+		//AJAX分页函数
+		function allgift_ajax(totlePage,page){
+			$.getJSON("{:U('/Member/Assetaccount/gift/')}",{type:'allgift',p:page},function(data){
+				if(data.status==1){
+					var dataList=data.list;html='';
+					$.each(dataList,function(i,item){
+						html += '<li>';
+						var url="{:U('jifen/info')}";
+                        html += '<a href="'+url+'?id='+item.id+'" >';
+                        html += '<img src="__PUBLIC__/uploads/mall/m_'+ item.img +'" title="'+ item.title +'">';
+						html += '<h3>'+item.title+'</h3>';
+						html += '<p>';
+						html +=  item.jifen;
+						html += '</p>';
+                        html += '</a>';
+						html += '</li>';
+						});
+					$('#allgift ul').html(html);
+					$('#allgift .page').attr('page',page);
+					$('#allgift .page_num em').html(page);
+					}else{
+						alert(data.info);
+						}
+				});
+			}
+			
+			//我的收藏-积分礼品 AJAX分页
+		$('#jfgift .ajax').click(function(){
+			var totlePage=$(this).parent().attr('totlePage'),page=$(this).parent().attr('page'),i=$(this).index();
+			if(i==0){	
+				page=parseInt(page)+1;					
+				if(page>totlePage){page=totlePage;}
+				}else if(i==2){
+					page=parseInt(page)-1;
+					if(page<=0){page=1;}
+					}
+			jfgift_ajax(totlePage,page);
+			});
+		//AJAX分页函数
+		function jfgift_ajax(totlePage,page){
+			$.getJSON("{:U('/Member/Assetaccount/gift/')}",{type:'jfgift',p:page},function(data){
+				if(data.status==1){
+					var dataList=data.list;html='';
+					$.each(dataList,function(i,item){						
+						html += '<li>';
+						var url="{:U('jifen/info')}";
+                        html += '<a href="'+url+'?id='+item.id+'" >';
+                        html += '<img src="__PUBLIC__/uploads/mall/m_'+ item.img +'" title="'+ item.title +'">';
+						html += '<h3>'+item.title+'</h3>';
+						html += '<p>';
+						html += '所需积fun：'+'<em>'+item.jifen+'</em>';
+						html += '</p>';
+                        html += '</a>';
+						html += '</li>';					
+						});
+					$('#jfgift ul').html(html);
+					$('#jfgift .page').attr('page',page);
+					$('#jfgift .page_num em').html(page);
+					}else{
+						alert(data.info);
+						}
+				});
+			}
+		
+		//我的收藏-爱钻礼品 AJAX分页
+		$('#azgift .ajax').click(function(){
+			var totlePage=$(this).parent().attr('totlePage'),page=$(this).parent().attr('page'),i=$(this).index();
+			if(i==0){	
+				page=parseInt(page)+1;					
+				if(page>totlePage){page=totlePage;}
+				}else if(i==2){
+					page=parseInt(page)-1;
+					if(page<=0){page=1;}
+					}
+			azgift_ajax(totlePage,page);
+			});
+		//AJAX分页函数
+		function azgift_ajax(totlePage,page){
+			$.getJSON("{:U('/Member/Assetaccount/gift/')}",{type:'azgift',p:page},function(data){
+				if(data.status==1){
+					var dataList=data.list;html='';
+					$.each(dataList,function(i,item){						
+						html += '<li>';
+						var url="{:U('jifen/info')}";
+                        html += '<a href="'+url+'?id='+item.id+'" >';
+                        html += '<img src="__PUBLIC__/uploads/mall/m_'+ item.img +'" title="'+ item.title +'">';
+						html += '<h3>'+item.title+'</h3>';
+						html += '<p>';
+						html += '所需爱钻：'+'<b>'+'x'+item.jifen+'</b>';
+						html += '</p>';
+                        html += '</a>';
+						html += '</li>';					
+						});
+					$('#azgift ul').html(html);
+					$('#azgift .page').attr('page',page);
+					$('#azgift .page_num em').html(page);
+					}else{
+						alert(data.info);
+						}
+				});
+			}
+		
+		});
+</script> 
+<include file="public:footer" />

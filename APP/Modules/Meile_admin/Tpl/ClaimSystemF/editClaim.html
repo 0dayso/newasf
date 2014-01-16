@@ -1,0 +1,55 @@
+<div class="page">
+	<div class="pageContent">
+
+	<form method="post" action="__URL__/editClaim/navTabId/__MODULE__-claimList" class="pageForm required-validate" onsubmit="return validateCallback(this,dialogAjaxDone)">
+		<div class="pageFormContent" layoutH="58">
+		<!-- 	<div class="unit">
+			<label>请选择分类：</label>
+			<select name="class_id" id="test" class="required combox">
+				<option value="">请选择</option>
+				<volist name="cate" id="vocate">
+					<option value="{$key}">{$vocate}</option>
+				</volist>
+			</select>
+		</div> -->
+			<div class="unit">
+				<label>到账日期：</label>
+				<input type="text" class="required date textInput valid"  name="arrival_date" value="{$vo.arrival_date|date='Y-m-d',###}">
+                <a class="inputDateButton" href="javascript:;">选择</a>
+			</div>
+            <div class="unit">
+                <label>银行：</label>
+                <input type="text" class="required"  name="bank" value="{$vo.bank}">
+            </div>
+            <div class="unit">
+                <label>到账金额：</label>
+                <input type="text" class="required number"  name="arrival_amount" value="{$vo.arrival_amount}">
+            </div>
+            <div class="unit">
+                <label>手续费：</label>
+                <input type="text" class="number"  name="poundage" value="{$vo.poundage}">
+            </div>
+            <div class="unit">
+                <label>汇款人名字：</label>
+                <input type="text" class=""  name="remitter" value="{$vo.remitter}" >
+            </div>
+          <div class="unit">
+			<label>备注：</label>
+            <textarea name="audit_remark" editor="{:uniqid()}" cols="50" rows="6">{$vo.audit_remark}</textarea>
+          </div>
+		</div>
+		
+		<div class="formBar">
+			<ul>
+				<li>
+                    <input type="hidden" name="id" value="{$vo.id}">
+                    <input type="hidden" name="book_id" value="{$vo.book_id}">
+                    <div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+	
+	</div>
+</div>
+

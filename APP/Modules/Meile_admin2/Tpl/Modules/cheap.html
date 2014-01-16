@@ -1,0 +1,134 @@
+<php>$title="特价机票管理-后台管理";$currentNav ='特价机票管理 > 特价机票列表';</php>
+<include file="Public:header" />
+<script type="text/javascript">
+    var zhou='';
+    var img_path='__PUBLIC__/uploads/cheap/';
+    var url='';
+    function searchs(urls){
+        var  datas=$('#search').serialize();
+             url = urls?urls:"{:U('Modules/cheap')}?ss=1&"+datas;
+        $.getJSON(url,function(data){
+            if(data){
+                var html='';
+                $.each(data, function(i,vo){
+                    html +='<tr align="center" id="'+vo.id+'">';
+                    html +=' <td align="left">'+vo.id+'</td>';
+                    html +=' <td>'+vo.zhou+'</td>';
+                    html +='  <td>'+vo.from_city+'</td>';
+                    html +=' <td>'+vo.to_city+'</td>';
+                    html +=' <td>'+vo.time_name+'</td>';
+                    html +=' <td>'+vo.air+'</td>';
+                    html +=' <td>'+vo.price+'</td>';
+                    if(vo.img){
+                        html +='<td><a href="'+img_path+vo.img+'" target="_blank">查看图片</a></td>';
+                    }else{
+                        html +='<td><a href="javascript:;" onclick="edit('+vo.id+')">添加图片</a></td>';
+                    }
+                    html +=' <td>'+vo.update_time+'</td>';
+                    html +=' <td>[ <a  href="javascript:;" onclick="edit('+vo.id+')">编辑 </a> ]' +
+                            ' [ <a link="?act=del&id'+vo.id+'" href="javascript:void(0)" name="'+vo.title+'" class="del">删除 </a> ]</td>';
+                    html +='</tr>';
+                });
+                $('#datalist').html(html);
+                $('#page').html(data.page);
+            }else{
+                $('#datalist').html('');
+                $('#page').html('');
+            }
+        })
+
+    }
+    function page(u,p){
+        searchs(p);
+    }
+    function gettj(dq){
+        var send=encodeURI('dq='+dq);
+        url="{:U('Modules/cheap')}?"+send;
+        searchs(url);
+    }
+    function edit(id){
+        var urls="?act=edit&id="+id;
+        $.layer({
+            type : 2,
+            title:'修改',
+            area: ['500px','380'],
+            border : [3, 0.3, '#666', true],
+            shadeClose:true,
+            iframe:{src: urls},
+            close : function(index){
+                layer.close(index);
+            },
+            end : function(){
+                searchs(url);
+            }
+        });
+    }
+</script>
+            <div class="mainBody">
+                <include file="Public:left" />
+                <div id="Right">
+                    <div class="Item hr">
+                        <form method="" class="form" id="search">
+                        <div class="current">特价机票列表</div>
+                        <foreach name="zhou" key="k" item="v">
+                            <a style="margin-left:10px" href="javascript:;" onclick="gettj('{$v.zhou}',this)" <if condition="$k==4">class="active"</if>>{$v.zhou}</a>
+                        </foreach>
+                            <input type="text" class="input" name="search" class="search"><button type="button" class="button" onclick="searchs()">搜索</button>
+                        </form>
+                    </div>
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab">
+                        <thead>
+                            <tr>
+                                <td>id</td>
+                                <td>州</td>
+                                <td>出发城市</td>
+                                <td>到达城市</td>
+                                <td>截止日期</td>
+                                <td>航空公司</td>
+                                <td>价格</td>
+                                <td>广告图</td>
+                                <td>更新时间</td>
+                                <td width="150">操作</td>
+                            </tr>
+                        </thead>
+                        <tbody id="datalist">
+                        <volist name="list" id="vo">
+                            <tr align="center" id="{$vo.id}">
+                                <td align="left">{$vo.id}</td>
+                                <td>{$vo.zhou}</td>
+                                <td>{$vo.from_city}</td>
+                                <td>{$vo.to_city}</td>
+                                <td>{$vo.time_name}</td>
+                                <td>{$vo.air}</td>
+                                <td>{$vo.price}</td>
+                                <td><empty name="vo.img">
+                                    <a href="javascript:;" onclick="edit({$vo.id})">添加图片</a>
+                                    <else/>
+                                    <a href="__PUBLIC__/uploads/cheap/{$vo.img}" target="_blank">查看图片</a></empty>
+                                </td>
+                                <td>{$vo.update_time}</td>
+                                <td>[ <a href="javascript:;" onclick="edit({$vo.id})">编辑 </a> ] [ <a link="{:U('Modules/cheap/del/',array('id'=>$vo['id']))}" href="javascript:void(0)" name="{$vo.title}" class="del">删除 </a> ]</td>
+                            </tr>
+                        </volist>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <include file="Public:footer" />
+        <script type="text/javascript">
+            $(function(){
+                $(".del").click(function(){
+                    var delLink=$(this).attr("link");
+                    popup.confirm('你真的打算删除【<b>'+$(this).attr("name")+'</b>】吗?','温馨提示',function(action){
+                        if(action == 'ok'){
+                            top.window.location.href=delLink;
+                        }
+                    });
+                    return false;
+                });
+            });
+        </script>
+    </body>
+</html>

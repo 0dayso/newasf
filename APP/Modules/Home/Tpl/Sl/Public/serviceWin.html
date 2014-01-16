@@ -1,0 +1,31 @@
+<?php if(!$userinfo){ ?>
+	<div id="serviceWin">
+    	<div id="sw">
+    		<div id="sw_close"><img src="__PUBLIC__/Theme/Sl/images/sl_sw_close.jpg" /></div>
+        	<div id="sw_open"><img src="__PUBLIC__/Theme/Sl/images/sl_sw_open.jpg" /></div>
+        </div>
+    </div>
+    <style type="text/css">
+    #serviceWin{width:400px;height:240px;position:absolute;top:240px;z-index:10000;}
+	#serviceWin #sw{width:400px;height:240px;background:url(__PUBLIC__/Theme/Sl/images/sl_sw_bg.gif) no-repeat;position:relative;}
+	#serviceWin #sw_close{width:24px;height:25px;position:absolute;top:5px;right:7px;cursor:pointer;}
+	#serviceWin #sw_open{width:134px;height:31px;position:absolute;top:141px;right:26px;cursor:pointer;}
+    </style>
+    <script type="text/javascript">
+	var left=($(window).width()-400)/2 +'px'
+	$('#serviceWin').css({'left':left});
+    $(function(){
+		$(window).scroll(function(){
+			var top=$(this).scrollTop()+240+'px';
+			$('#serviceWin').css('top',top);
+			});
+		$('#sw_open').click(function(){
+			open_kf();
+			$('#serviceWin').hide();
+			});
+		$('#sw_close').click(function(){
+			$('#serviceWin').hide();
+			});
+		});
+    </script>
+<?php } ?>

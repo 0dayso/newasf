@@ -1,0 +1,147 @@
+<include file="public:header" />
+    <link rel="stylesheet" href="__PUBLIC__/css/member.css" type="text/css" />
+    <script type="text/javascript" src="__PUBLIC__/js/member.js"></script>
+    <div class="member">
+    	<!--会员中心导航-->
+    	<include file="public:left" />        
+        <!--现金卷-->
+      <div class="right" id="memberR">
+        	<h1 class="nav_tit">现金券</h1>
+            <div class="top_tit">现金券余额：<strong class="csp16">{$overage}</strong>元<span class="right"><a href="#" class="cBlue">如何使用？</a></span></div>
+            <div id="list_box">
+            	<div id="list_nav"><a class="active">使用记录</a><a>发放记录</a></div>
+                <div id="list_con">
+                	<div class="list_block on" id="exchange">
+                    	<table width="788" border="0" align="center" cellpadding="0" cellspacing="0">
+							<tr class="tit">
+								<td class="first">订单ID</td>
+								<td>使用日期</td>
+								<td>航班行程</td>
+								<td>使用金额</td>
+								<td>状态</td>
+							</tr>
+                            <volist name="exchange" id="vo">
+                                <tr>
+                                    <td class="first">{$vo.ddbh}</td>
+                                    <td>{$vo.update_time}</td>
+                                    <td class="blue">{$vo.hc_n}　{$vo.lx_n}</td>
+                                    <td class="price">￥{$vo.xjj}</td>
+                                    <td class="blue">{$vo.ddzt_n}</td>
+                                </tr>
+                            </volist>
+						</table>
+                        <div class="page" totlePage="{$totlePage1}" page="1">
+                            <span class="next ajax"></span>
+                            <span class="page_num"><em>{$page1}</em>/{$totlePage1}页</span>
+                            <span class="prev ajax"></span>
+                        </div>
+                    </div>                    
+                    <div class="list_block" id='detail'>
+                    	<table width="788" border="0" align="center" cellpadding="0" cellspacing="0">
+							<tr class="tit">
+                                <td class="first">发放日期</td>
+								<td>发放金额</td>
+								<td>获取方式</td>
+								<td>过期日期</td>
+							</tr>
+                            <volist name="list" id="vo">
+                                <tr>
+                                    <td class="first">{$vo.create_time}</td>
+                                    <td class="price">￥{$vo.points}</td>
+                                    <td class="blue">{$vo.description}</td>
+                                   <td><?php $time=strtotime($vo['create_time']);$time=date('Y',$time);echo ($time+1).'年12月31日';?></td>
+                                </tr>
+                          	</volist>
+						</table>
+                          <div class="page" totlePage="{$totlePage}" page="1">
+                            <span class="next ajax"></span>
+                            <span class="page_num"><em>{$page}</em>/{$totlePage}页</span>
+                            <span class="prev ajax"></span>
+                        </div>
+                  </div>
+                    
+              </div>
+        </div><!--list_block-->
+        
+        <div id="manual">
+        	<h2>现金券使用指南</h2>
+            <img src="__PUBLIC__/images/member/manual.gif" />
+        </div>
+        
+        </div>
+    </div>
+    
+<script type="text/javascript">
+	$(function(){
+		//使用记录 AJAX分页
+		$('#exchange .ajax').click(function(){
+			var totlePage=$(this).parent().attr('totlePage'),page=$(this).parent().attr('Page'),i=$(this).index();
+			if(i==0){	
+				page=parseInt(page)+1;					
+				if(page>totlePage){page=totlePage;}
+				}else if(i==2){
+					page=parseInt(page)-1;
+					if(page<=0){page=1;}
+					}
+			exchange_ajax(totlePage,page);
+			});
+		//AJAX分页函数
+		function exchange_ajax(totlePage,page){
+			$.getJSON("{:U('/Member/Assetaccount/cashcoupon/')}",{type:'exchange',p:page},function(data){
+				if(data.status==1){
+					var dataList=data.exchange,html='<tr class="tit"><td class="first">订单ID</td><td>使用日期</td><td>航班行程</td><td>使用金额</td><td>状态</td></tr>';
+					$.each(dataList,function(i,item){
+						html += '<tr>';
+					    html += '<td class="first">'+ item.ddbh +'</td>';
+					    html += '<td>'+ item.update_time +'</td>';
+						html += '<td class="blue">'+item.hc_n+'&nbsp;&nbsp;'+item.lx_n+'</td>';						
+                        html += '<td class="price">'+'￥'+item.xjj +'</td>';
+						html += '<td class="blue">'+ item.ddzt_n +'</td>';
+						html += '</tr>';
+						});
+					$('#exchange table').html(html);
+					$('#exchange .page').attr('page',page);
+					$('#exchange .page_num em').html(page);
+					}else{
+						alert(data.info);
+						}
+				});
+			}
+			
+			//发放记录 AJAX分页
+		$('#detail .ajax').click(function(){
+			var totlePage=$(this).parent().attr('totlePage'),page=$(this).parent().attr('Page'),i=$(this).index();
+			if(i==0){	
+				page=parseInt(page)+1;					
+				if(page>totlePage){page=totlePage;}
+				}else if(i==2){
+					page=parseInt(page)-1;
+					if(page<=0){page=1;}
+					}
+			detail_ajax(totlePage,page);
+			});
+		//AJAX分页函数
+		function detail_ajax(totlePage,page){
+			$.getJSON("{:U('/Member/Assetaccount/cashcoupon/')}",{type:'detail',p:page},function(data){
+				if(data.status==1){
+					var dataList=data.list,html='<tr class="tit"><td class="first">发放日期</td><td>发放金额</td><td>获取方式</td><td>过期日期</td></tr>';
+					$.each(dataList,function(i,item){
+						html += '<tr >';
+						html += '<td class="first">'+ item.create_time+'</td>';
+						html += '<td class="price">'+'￥'+item.points +'</td>';
+						html += '<td class="blue">'+ item.description +'</td>';						
+						html += '<td>'+item.time+'年12月31日'+'</td>';
+						html += '</tr>';
+						});
+					$('#detail table').html(html);
+					$('#detail .page').attr('page',page);
+					$('#detail .page_num em').html(page);
+					}else{
+						alert(data.info);
+						}
+				});
+			}
+			
+		});
+</script>  
+<include file="public:footer" />

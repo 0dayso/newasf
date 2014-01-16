@@ -1,0 +1,23 @@
+<style type="text/css">
+    #mobile_icon_div{display:none!important;}
+</style>
+<script type="text/javascript">
+    function open_kf(){
+    <?php if($userinfo): ?>
+        //   window.open('tel:{$userinfo.user.public_mobile}');
+        location.href='tel:{$userinfo.user.public_mobile}';
+    <?php else: ?>
+      //  location.href='tel:400-608-5188';
+     //   window.open('http://m.53kf.com/70697090/54/1');
+        var kf_url=$("#mobile_icon_div").attr("href")?$("#mobile_icon_div").attr("href"):"http://m.53kf.com/70697090/54/1";
+        location.href=kf_url;
+    <?php endif;?>
+    }
+</script>
+<div style="display: none">
+    <script type='text/javascript' src='http://tb.53kf.com/kf.php?arg=meile10&style=4'></script>
+    <script language="javascript" type="text/javascript" src="http://js.users.51.la/16456049.js"></script>
+
+    <noscript><a href="http://www.51.la/?16456049" target="_blank"><img alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/16456049.asp" style="border:none" /></a></noscript>
+    <script type="text/javascript"> var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://"); document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fb34ac2f7a7a86840e907d7d5b3adcbc8' type='text/javascript'%3E%3C/script%3E")) </script>
+</div>

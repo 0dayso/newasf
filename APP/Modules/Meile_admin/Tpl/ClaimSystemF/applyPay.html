@@ -1,0 +1,150 @@
+<form id="pagerForm" action="__URL__/applyPay" method="post">
+    <input type="hidden" name="pageNum" value="{$_REQUEST['pageNum']|default=1}"/>
+    <input type="hidden" name="numPerPage" value="{$numPerPage}"/>
+    <input type="hidden" name="_order" value="{$_REQUEST._order}"/>
+    <input type="hidden" name="_sort" value="{$_REQUEST['_sort']|default='1'}"/>
+    <input type="hidden" name="listRows" value="{$_REQUEST['listRows']}"/>
+    <input type="hidden" name="book_id" value="{$_REQUEST.book_id}" />
+    <input type="hidden" name="so" value="{$_REQUEST.so}" />
+    <input type="hidden" name="so_date1" value="{$_REQUEST.so_date1}" />
+    <input type="hidden" name="so_date2" value="{$_REQUEST.so_date2}" />
+    <volist name="map" id="m">
+        <input type="hidden" name="{$key}" value="{$_REQUEST[$key]}"/>
+    </volist>
+
+</form>
+
+<div class="pageHeader">
+    <form rel="pagerForm" onsubmit="return navTabSearch(this);" action="__URL__/applyPay" method="post">
+        <div class="searchBar">
+            <ul class="searchContent">
+                <li>
+                    <label>搜索：</label>
+                    <input type="text" name="so" value="{$_REQUEST.so}"/>
+                </li>
+                <li>
+                    <label>类型：</label>
+                    <select class="combox" name="type">
+                        <option value="">请选择</option>
+                        <option value="1" <eq name="_REQUEST.type" value="1">selected=selected</eq>>转帐汇款</option>
+                        <option value="2" <eq name="_REQUEST.type" value="2">selected=selected</eq>>网上支付</option>
+                        <option value="3" <eq name="_REQUEST.type" value="3">selected=selected</eq>>现金支付</option>
+                    </select>
+                </li>
+                <li>
+                    <label>状态：</label>
+                    <select class="combox" name="status">
+                        <option value="">请选择</option>
+                        <option value="0" <eq name="_REQUEST.status" value="0">selected=selected</eq>>未处理</option>
+                        <option value="1" <eq name="_REQUEST.status" value="1">selected=selected</eq>>处理中</option>
+                        <option value="2" <eq name="_REQUEST.status" value="2">selected=selected</eq>>待复核</option>
+                        <option value="3" <eq name="_REQUEST.status" value="3">selected=selected</eq>>已完成</option>
+                        <option value="4" <eq name="_REQUEST.status" value="4">selected=selected</eq>>复核未通过</option>
+
+                    </select>
+                </li>
+                <li>
+                    <label>到账日期：</label>
+                    <input type="text" class="date textInput valid" size="8" name="so_date1" value="{$_REQUEST.so_date1}"><a class="inputDateButton" href="javascript:;">选择</a> &nbsp;&nbsp;-
+                </li>
+                <li>
+                    <input type="text" class="date textInput valid" size="8" name="so_date2" value="{$_REQUEST.so_date2}">
+                    <a class="inputDateButton" href="javascript:;">选择</a>
+                </li>
+            </ul>
+            <div class="subBar">
+                <ul>
+                    <li>                        
+                        <div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="pageContent">
+    <div class="panelBar">
+        <ul class="toolBar">
+            <if condition="auth_check()">
+            <li><a class="edit " href="__URL__/editPay/id/{sid_user}" target="dialog" mask="true" height="350" width="680" warn="请选择要编辑的行"><span>编辑</span></a></li>
+            <li class="line">line</li>
+            </if>
+            <li><a class="icon" href="__URL__/readPay/id/{sid_user}" height="450" width="650" target="dialog" mask="true" warn="请选择"><span>查看详细</span></a></li>
+        </ul>
+        <span class="lh22 mgl_20">帐本名：{$bookInfo['name']}     |       备注：{$bookInfo['remark']}</span>
+    </div>
+
+    <table class="table" width="101%" layoutH="115">
+        <thead>
+        <tr>
+            <th width="35" orderField="id" <if condition="$_REQUEST._order eq 'id'">class="{$_REQUEST._sort}"</if>>编号</th>
+            <th width="100" orderField="create_time" <if condition="$_REQUEST._order eq 'create_time'">class="{$_REQUEST._sort}"</if>>发布时间</th>
+            <th width="60" orderField="type" <if condition="$_REQUEST._order eq 'type'">class="{$_REQUEST._sort}"</if>>类型</th>
+            <th width="70" orderField="apply_amount" <if condition="$_REQUEST._order eq 'amount'">class="{$_REQUEST._sort}"</if>>金额</th>
+            <th width="80" orderField="account_name" <if condition="$_REQUEST._order eq 'account_name'">class="{$_REQUEST._sort}"</if>>收款人</th>
+
+            <th width="60" orderField="apply_name" <if condition="$_REQUEST._order eq 'apply_name'">class="{$_REQUEST._sort}"</if>>申请人</th>
+            <th width="60" orderField="department" <if condition="$_REQUEST._order eq 'department'">class="{$_REQUEST._sort}"</if>>部门</th>
+            <th width="80">备注</th>
+            <th width="50" orderField="status" <if condition="$_REQUEST._order eq 'status'">class="{$_REQUEST._sort}"</if>>状态</th>
+
+            <th width="80" orderField="payment_time" <if condition="$_REQUEST._order eq 'payment_time'">class="{$_REQUEST._sort}"</if>>付款日期</th>
+            <th width="80" orderField="pocket_amount" <if condition="$_REQUEST._order eq 'pocket_amount'">class="{$_REQUEST._sort}"</if>>实付金额</th>
+            <th width="80" orderField="payment_uid" <if condition="$_REQUEST._order eq 'payment_uid'">class="{$_REQUEST._sort}"</if>>经手人</th>
+            <th width="80" orderField="payment_remark" <if condition="$_REQUEST._order eq 'payment_remark'">class="{$_REQUEST._sort}"</if>>财务备注</th>
+            <th width="100" >操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <volist id="vo" name="list">
+            <tr target="sid_user" rel="{$vo['id']}">
+                <td class="tips">
+                    <a title="创建人：{$vo.create_username} <br/> 创建时间：{$vo.create_time|date='Y-m-d H:i:s',###} <notempty name='vo[update_uid]'><br/>更新：{$vo.update_time|date='Y-m-d',###} </notempty>">{$vo['id']}</a>
+                </td>
+                <td>{$vo.create_time|date="Y-m-d H:i",###}</td>
+                <td>{$vo.type_name}</td>
+                <td>{$vo['apply_amount']}</td>
+                <td>{$vo['account_name']}</td>
+                <td>{$vo['apply_name']}</td>
+                <td>{$vo.department_name}</td>
+                <td class="tips"><a href="javascript:;" title="{$vo['apply_remark']|strip_tags=###}">{$vo['apply_remark']|strip_tags=###|msubstr=###,0,8}</a></td>
+                <td>{$vo['status_name']}</td>
+                <td class='bg'>
+                    <notempty name="vo['payment_date']">{$vo['payment_date']}</notempty>
+                </td>
+                <td class='bg'><notempty name="vo['pocket_amount']">{$vo['pocket_amount']}</notempty></td>
+                <td class='bg'>{$vo['payment_name']}</td>
+                <td class='bg tips'><a href="javascript:;" title="{$vo['payment_remark']|strip_tags=###}">{$vo['payment_remark']|strip_tags=###|msubstr=###,0,8}</a></td>
+                 <td>
+                     <if condition="$vo.status eq 0" > <a href="__URL__/auditPay/id/{$vo.id}" target="dialog" height="450" width="680" >[审核处理]</a></if>
+                     <if condition="$vo.status eq 1 and $vo.payment_uid eq getUid()" >
+                         <a href="__URL__/auditPay/id/{$vo.id}navTabId/__MODULE__-applyPa" callback target="dialog" height="450" width="680" >[继续处理]</a> <a href="__URL__/auditPay/id/{$vo.id}/cancel/1/navTabId/__MODULE__-applyPay" target="ajaxTodo" title="确定取消吗？" callback >[取消]</a>
+                     </if>
+                     <if condition="$vo.status neq 1">
+                         <a href="__URL__/readPay/id/{$vo.id}/navTabId/__MODULE__-applyPay" target="dialog" height="450" width="650" >[查看]</a>
+                     </if>
+                     <if condition="$vo.status eq 2 and auth_check('reviewPay')">
+                         <a href="__URL__/reviewPay/id/{$vo.id}/navTabId/__MODULE__-applyPay" target="dialog" height="450" width="650" >[复核]</a>
+                     </if>
+               </td>
+            </tr>
+        </volist>
+        </tbody>
+    </table>
+
+    <div class="panelBar">
+        <div class="pages">
+            <span>显示</span>
+            <select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
+                <option value="10" <eq name="numPerPage" value="10">selected=selected</eq>>10</option>
+                <option value="20" <eq name="numPerPage" value="20">selected=selected</eq>>20</option>
+                <option value="50" <eq name="numPerPage" value="50">selected=selected</eq>>50</option>
+                <option value="100" <eq name="numPerPage" value="100">selected=selected</eq>>100</option>
+            </select>
+            <span>共{$totalCount}条</span>  <span class="mgl_10">  页：{$currentPage}/{$totalPages}</span>
+            <span class="mgl_10">当前页(申请金额)：{$amount}/{$totalAmount}</span>
+        </div>
+        <div class="pagination" targetType="navTab" totalCount="{$totalCount}" numPerPage="{$numPerPage}" pageNumShown="10" currentPage="{$currentPage}"></div>
+    </div>
+
+</div>

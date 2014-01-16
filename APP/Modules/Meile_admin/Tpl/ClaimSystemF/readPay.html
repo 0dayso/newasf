@@ -1,0 +1,131 @@
+<script type="text/javascript">
+    $(function(){
+        $.each(  $(".remark img"), function(i,n){
+            var src_val=$(n).attr('src').replace('t_','');
+            $(n).wrap("<a href="+src_val+" rel='lightbox' title='点击查看原图'></a>");
+        });
+    })
+</script>
+<div class="page">
+    <div class="pageContent">
+            <div class="pageFormContent" layoutH="58">
+                <fieldset>
+                    <legend>申请信息</legend>
+                    <div class="unit">
+                        <label>申请时间：</label>
+                        <label>{$vo.create_time|date='Y-m-d H:i:s',###}</label>
+                    </div>
+                    <div class="unit">
+                        <label>申请人：</label>
+                        <label>{$vo.apply_name}</label>
+                    </div>
+                    <div class="unit">
+                        <label>创建人：</label>
+                        <label>{$vo.create_username}</label>
+                    </div>
+                    <div class="unit">
+                        <label>所属部门:</label>
+                        <label>{$vo.department_name}</label>
+                    </div>
+                    <div class="unit">
+                        <label>类型：</label>
+                        <label>{$vo.type_name}</label>
+                    </div>
+                    <div class="unit">
+                        <label>金额：</label>
+                        <label>{$vo.apply_amount}</label>
+                    </div>
+                    <if condition="$vo['type'] eq 1">
+                        <div class="ream">
+                            <div class="unit">
+                                <label>开户支行：</label>
+                                <label>{$vo.apply_bank}</label>
+                            </div>
+                            <div class="unit">
+                                <label>收款人：</label>
+                                <label>{$vo.account_name}</label>
+                            </div>
+                            <div class="unit">
+                                <label>汇款账号：</label>
+                                <label>{$vo.bank_account}</label>
+                            </div>
+                        </div>
+                        <else/>
+                        <div class="net">
+                            <div class="unit">
+                                <label>网址：</label>
+                                <label>{$vo.web_url}</label>
+                            </div>
+                            <div class="unit">
+                                <label>账号：</label>
+                                <label>{$vo.web_account}</label>
+                            </div>
+                            <div class="unit">
+                                <label>密码：</label>
+                                <label>{$vo.web_password}</label>
+                            </div>
+                        </div>
+                    </if>
+                    <div class="unit remark">
+                        <label>备注：</label>
+                        <label>{$vo.apply_remark}</label>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>财务审核信息</legend>
+                    <div class="unit">
+                        <label>财务审核人：</label>
+                        <label>{$vo.payment_name}</label>
+                    </div>
+                    <div class="unit">
+                        <label>付款日期：</label>
+                        <label>{$vo.payment_date}</label>
+                    </div>
+                    <div class="unit">
+                        <label>实付金额：</label>
+                        <label>{$vo.pocket_amount}</label>
+                    </div>
+                    <div class="unit remark">
+                        <label>备注：</label>
+                        <label>{$vo.payment_remark}</label>
+                    </div>
+                </fieldset>
+
+                <if condition="$vo.status  gt 2">
+                    <fieldset>
+                        <legend>财务复核</legend>
+                        <div class="unit">
+                            <label>复核时间</label>
+                            <label>
+                                {$vo.review_time|date='Y-m-d H:i:s',###}
+                            </label>
+                        </div>
+                        <div class="unit">
+                            <label>财务复核人</label>
+                            <label>
+                                {$vo.review_username}
+                            </label>
+                        </div>
+                        <div class="unit">
+                            <label>复核通过否</label>
+                            <label>
+                                {$vo.status_name}
+                            </label>
+                        </div>
+                        <div class="unit">
+                            <label>备注：</label>
+                            <label>{$vo.review_remark}</label>
+                        </div>
+                    </fieldset>
+                </if>
+            </div>
+
+            <div class="formBar">
+                <ul>
+                    <li><div class="button"><div class="buttonContent"><button type="button" class="close">关闭</button></div></div></li>
+                </ul>
+            </div>
+    </div>
+</div>
+

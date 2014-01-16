@@ -1,0 +1,124 @@
+<script type="text/javascript">
+    $(function(){
+        $.each(  $(".remark img"), function(i,n){
+            var src_val=$(n).attr('src').replace('t_','');
+            $(n).wrap("<a href="+src_val+" rel='lightbox' title='点击查看原图'></a>");
+        });
+    })
+</script>
+<div class="page">
+    <div class="pageContent">
+        <form method="post" action="__URL__/reviewPay/navTabId/__MODULE__-applyPay" class="pageForm required-validate" onsubmit="return validateCallback(this,dialogAjaxDone)">
+            <div class="pageFormContent" layoutH="58">
+                <fieldset>
+                    <legend>申请信息</legend>
+                    <div class="unit">
+                        <label>申请人：</label>
+                        <input type="text" class="required"  name="apply_name" value="{$vo.apply_name}" />
+                    </div>
+                    <div class="unit">
+                        <label>所属部门:</label>
+                        <select name="department_id" >{$vo.departmentOption.option}</select>
+                    </div>
+                    <div class="unit">
+                        <label>类型：</label>
+                        <label> {$vo.type_name} </label>
+                    </div>
+                    <div class="unit">
+                        <label>金额：</label>
+                        <input type="text" class="required"  name="apply_amount" placeholder ="申请支付金额"  value="{$vo.apply_amount}">
+                    </div>
+                    <if condition="$vo['type'] eq 1">
+                        <div class="unit">
+                            <label>开户支行：</label>
+                            <input type="text" class="required"  name="apply_bank" value="{$vo.apply_bank}" />
+                        </div>
+                        <div class="unit">
+                            <label>收款人：</label>
+                            <input type="text" class="required"  name="account_name" value="{$vo.account_name}"/>
+                        </div>
+                        <div class="unit">
+                            <label>汇款账号：</label>
+                            <input type="text" class="required"  name="bank_account" value="{$vo.bank_account}">
+                        </div>
+                    </if>
+                    <if condition="$vo['type'] eq 2">
+                        <div class="unit">
+                            <label>网址：</label>
+                            <input type="text" class=""  name="web_url" value="{$vo.web_url}" />
+                        </div>
+                        <div class="unit">
+                            <label>账号：</label>
+                            <input type="text" class=""  name="web_account"  value="{$vo.web_account}"/>
+                        </div>
+                        <div class="unit">
+                            <label>密码：</label>
+                            <input type="text"  class=""  name="web_password" value="{$vo.web_password}" />
+                        </div>
+                    </if>
+                    <div class="unit">
+                        <label>备注：</label>
+                        <textarea  class="editor"  name="apply_remark" class="editor" tools="mini"
+                                   op="tools:'Cut,Copy,FontSize,Bold,FontColor,Align,Img,Source,Link',skin:'default',forcePtag:false"
+                                   upImgUrl="__GROUP__/Upload/contentImage" upImgExt="jpg,jpeg,gif,png"
+                                   editor="{:uniqid()}" cols="60" rows="10" >{$vo.apply_remark}</textarea>
+                    </div>
+
+                </fieldset>
+
+                <fieldset>
+                    <legend>财务审核信息</legend>
+                    <div class="unit">
+                        <label>付款日期：</label>
+                        <input type="text" class="required date textInput readonly valid"  datefmt="yyyy-MM-dd HH:mm" name="payment_date" value="{$vo.payment_date}">
+                    </div>
+                    <div class="unit">
+                        <label>实付金额：</label>
+                        <input type="text"  class="required number"  name="pocket_amount" value="{$vo.pocket_amount}" />
+                    </div>
+                    <div class="unit">
+                        <label>备注：</label>
+                        <textarea  class="editor"  name="payment_remark" class="editor" tools="mini"
+                                   op="tools:'Cut,Copy,FontSize,Bold,FontColor,Align,Img,Source,Link',skin:'default',forcePtag:false"
+                                   upImgUrl="__GROUP__/Upload/contentImage" upImgExt="jpg,jpeg,gif,png"
+                                   editor="{:uniqid()}" cols="60" rows="10" >{$vo.payment_remark}</textarea>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>财务复核</legend>
+                    <div class="unit">
+                        <label>复核通过否</label>
+                        <label>
+                            <input type="radio" class=" required"  name="status" value="3" />
+                            复核通过
+                        </label>
+                        <label>
+                            <input type="radio" class=" required"  name="status" value="4" />
+                            复核不通过
+                        </label>
+                    </div>
+                    <div class="unit">
+                        <label>备注：</label>
+                        <textarea  class="editor"  name="review_remark" class="editor" tools="mini"
+                                   op="tools:'Cut,Copy,FontSize,Bold,FontColor,Align,Img,Source,Link',skin:'default',forcePtag:false"
+                                   upImgUrl="__GROUP__/Upload/contentImage" upImgExt="jpg,jpeg,gif,png"
+                                   editor="{:uniqid()}" cols="60" rows="10" >{$vo.review_remark}</textarea>
+                    </div>
+                </fieldset>
+
+            </div>
+
+            <div class="formBar">
+                <ul>
+                    <li>
+                        <input type="hidden" name="id" value="{$vo.id}">
+                        <div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+                    <li><div class="button"><div class="buttonContent"><button type="button" callback="dialogAjax" class="close">取消</button></div></div></li>
+                </ul>
+            </div>
+        </form>
+
+    </div>
+</div>
+

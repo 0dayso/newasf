@@ -1,0 +1,473 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{$title} - {:C('WEB_NAME')}</title>
+<link href="__PUBLIC__/mobile/css/global.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+#ad{padding-top:5px;position:relative;}
+#ad img{width:100%;border:0;}
+#ad #adlist li{display:none;}
+#ad #adlist .on{display:block;}
+#ad #slidebar{position:absolute;left:49%;bottom:8px;}
+#ad #slidebar li{font-size:10px;display:inline-block;color:#5d5d5d;cursor:pointer;padding:0 2px;}
+#ad #slidebar li.select{color:#e0e0e0;}
+#block{padding-top:5px;}
+.collapsible h6{background-color:#cbe4f6!important;border-bottom: 1px solid #fff!important;}
+.collapsible ul{background-color:#FFF;}
+.collapsible li{padding:12px 15px;border-bottom:1px solid #e7e5e5;}
+.collapsible div{line-height:30px;}
+.collapsible li span{display:inline-block;padding-left:22px;background:url(__PUBLIC__/mobile/images/icon.png) no-repeat -10px -340px;}
+.collapsible li em{font-style:normal;padding-right:18px;}
+.collapsible li strong{padding-left:22px;color:#ff8400;}
+.collapsible li a{display:block;float:right;width:75px;height:30px;text-align:center;color:#FFF;background-color:#3598db;cursor:pointer;}
+</style>
+</head>
+
+<body>
+<div id="page">
+  <div id="content">
+    <h1 id="topnav"><span class="left icon"><a href="{:U('/specialoffer')}" class="icon-returnclose">返回</a></span>圣诞元旦出国购物度假<span class="right icon"><a href="tel:4006085188" class="icon-tel">电话</a></span></h1>
+    
+    <div id="ad">
+    <ul id="adlist">
+    <li class="on"><a href="tel:4006085188"><img src="__PUBLIC__/mobile/images/ad01.jpg" width="100%"></a></li>
+    <!--<li><a href="javascript:;" onclick="open_kf()"><img src="__PUBLIC__/mobile/images/ad02.jpg" width="100%"></a></li>
+    <li><a href="javascript:;" onclick="open_kf()"><img src="__PUBLIC__/mobile/images/ad03.jpg" width="100%"></a></li>-->
+    </ul>
+    <!--<ul id="slidebar">
+    <li class="select">●</li>
+    <li>●</li>
+    <li>●</li>
+    </ul>-->
+    </div>
+    
+    <div id="block">
+      <div class="collapsible-set">
+
+         <div class="collapsible">
+         <h6><a>欧洲<span class="icon-down">展开</span></a></h6>
+         <ul>
+              <li>
+              <div>广州<span>莫斯科</span></div>
+              <div><em>2013-12-31截止</em>中国国航</div>
+              <div>往返<strong>￥1450</strong>
+                  <empty name="userinfo">
+                      <a href="javascript:open_kf()">预订</a>
+                      <else/>
+                      <a href="tel:{$userinfo.user.public_mobile}">咨询我的顾问</a>
+                  </empty>
+              </div>
+              </li>
+              <li>
+              <div>广州<span>米兰</span></div>
+              <div><em>2013-12-31截止</em>中国国航</div>
+              <div>往返<strong>￥2660</strong>
+                  <empty name="userinfo">
+                      <a href="javascript:open_kf()">预订</a>
+                      <else/>
+                      <a href="tel:{$userinfo.user.public_mobile}">咨询我的顾问</a>
+                  </empty>
+              </div>
+              </li>
+              <li>
+              <div>广州<span>伦敦</span></div>
+              <div><em>2013-12-31截止</em>中国国航</div>
+              <div>往返<strong>￥2710</strong>
+                  <empty name="userinfo">
+                      <a href="javascript:open_kf()">预订</a>
+                      <else/>
+                      <a href="tel:{$userinfo.user.public_mobile}">咨询我的顾问</a>
+                  </empty>
+              </div>
+              </li>
+              <li>
+              <div>广州<span>慕尼黑</span></div>
+              <div><em>2013-12-31截止</em>中国国航</div>
+              <div>往返<strong>￥2830</strong>
+                  <empty name="userinfo">
+                      <a href="javascript:open_kf()">预订</a>
+                      <else/>
+                      <a href="tel:{$userinfo.user.public_mobile}">咨询我的顾问</a>
+                  </empty>
+              </div>
+              </li>
+              <li>
+              <div>香港<span>法兰克福</span></div>
+              <div><em>2013-12-31截止</em>中华航空</div>
+              <div>往返<strong>￥2050</strong>
+                  <empty name="userinfo">
+                      <a href="javascript:open_kf()">预订</a>
+                      <else/>
+                      <a href="tel:{$userinfo.user.public_mobile}">咨询我的顾问</a>
+                  </empty>
+              </div>
+              </li>
+              <li>
+              <div>香港<span>罗马</span></div>
+              <div><em>2013-12-31截止</em>国泰航空</div>
+              <div>往返<strong>￥2050</strong>
+                  <empty name="userinfo">
+                      <a href="javascript:open_kf()">预订</a>
+                      <else/>
+                      <a href="tel:{$userinfo.user.public_mobile}">咨询我的顾问</a>
+                  </empty>
+              </div>
+              </li>
+              <li>
+              <div>广州<span>日内瓦</span></div>
+              <div><em>2013-12-31截止</em>中国国航</div>
+              <div>往返<strong>￥3070</strong>
+                  <empty name="userinfo">
+                      <a href="javascript:open_kf()">预订</a>
+                      <else/>
+                      <a href="tel:{$userinfo.user.public_mobile}">咨询我的顾问</a>
+                  </empty>
+              </div>
+              </li>
+              <li>
+              <div>香港<span>维也纳</span></div>
+              <div><em>2013-12-31截止</em>中华航空</div>
+              <div>往返<strong>￥2630</strong>
+                  <empty name="userinfo">
+                      <a href="javascript:open_kf()">预订</a>
+                      <else/>
+                      <a href="tel:{$userinfo.user.public_mobile}">咨询我的顾问</a>
+                  </empty>
+              </div>
+              </li>
+              <li>
+              <div>广州<span>斯德哥尔摩</span></div>
+              <div><em>2013-12-31截止</em>中国国航</div>
+              <div>往返<strong>￥3340</strong>
+                  <empty name="userinfo">
+                      <a href="javascript:open_kf()">预订</a>
+                      <else/>
+                      <a href="tel:{$userinfo.user.public_mobile}">咨询我的顾问</a>
+                  </empty>
+              </div>
+              </li>
+              <li>
+              <div>广州<span>巴黎</span></div>
+              <div><em>2013-12-31截止</em>中国国航</div>
+              <div>往返<strong>￥2440</strong>
+                  <empty name="userinfo">
+                      <a href="javascript:open_kf()">预订</a>
+                      <else/>
+                      <a href="tel:{$userinfo.user.public_mobile}">咨询我的顾问</a>
+                  </empty>
+              </div>
+              </li>
+              <li>
+              <div>广州<span>雅典</span></div>
+              <div><em>2013-12-31截止</em>中国国航</div>
+              <div>往返<strong>￥4100</strong>
+                  <empty name="userinfo">
+                      <a href="javascript:open_kf()">预订</a>
+                      <else/>
+                      <a href="tel:{$userinfo.user.public_mobile}">咨询我的顾问</a>
+                  </empty>
+              </div>
+              </li>
+              <li>
+              <div>香港<span>阿姆斯特丹</span></div>
+              <div><em>2013-12-31截止</em>中华航空</div>
+              <div>往返<strong>￥2830</strong>
+                  <empty name="userinfo">
+                      <a href="javascript:open_kf()">预订</a>
+                      <else/>
+                      <a href="tel:{$userinfo.user.public_mobile}">咨询我的顾问</a>
+                  </empty>
+              </div>
+              </li>
+         </ul>
+        </div>
+        
+        <div class="collapsible">
+         <h6><a>北美<span class="icon-down">展开</span></a></h6>
+         <ul>
+              <li>
+              <div>广州<span>洛杉矶</span></div>
+              <div><em>2013-11-30截止</em>中国国航</div>
+              <div>往返<strong>￥2350</strong>
+                  <empty name="userinfo">
+                      <a href="javascript:open_kf()">预订</a>
+                      <else/>
+                      <a href="tel:{$userinfo.user.public_mobile}">咨询我的顾问</a>
+                  </empty>
+              </div>
+              </li>
+              <li>
+              <div>广州<span>温哥华</span></div>
+              <div><em>2013-11-30截止</em>中国国航</div>
+              <div>往返<strong>￥2440</strong>
+                  <empty name="userinfo">
+                      <a href="javascript:open_kf()">预订</a>
+                      <else/>
+                      <a href="tel:{$userinfo.user.public_mobile}">咨询我的顾问</a>
+                  </empty>
+              </div>
+              </li>
+              <li>
+              <div>广州<span>旧金山</span></div>
+              <div><em>2013-12-31截止</em>中国国航</div>
+              <div>往返<strong>￥2620</strong>
+                  <empty name="userinfo">
+                      <a href="javascript:open_kf()">预订</a>
+                      <else/>
+                      <a href="tel:{$userinfo.user.public_mobile}">咨询我的顾问</a>
+                  </empty>
+              </div>
+              </li>
+              <li>
+              <div>广州<span>多伦多</span></div>
+              <div><em>2013-12-31截止</em>中国国航</div>
+              <div>往返<strong>￥4080</strong>
+                  <empty name="userinfo">
+                      <a href="javascript:open_kf()">预订</a>
+                      <else/>
+                      <a href="tel:{$userinfo.user.public_mobile}">咨询我的顾问</a>
+                  </empty>
+              </div>
+              </li>
+              <li>
+              <div>香港<span>温哥华</span></div>
+              <div><em>2013-12-31截止</em>中华航空</div>
+              <div>往返<strong>￥4640</strong>
+                  <empty name="userinfo">
+                      <a href="javascript:open_kf()">预订</a>
+                      <else/>
+                      <a href="tel:{$userinfo.user.public_mobile}">咨询我的顾问</a>
+                  </empty>
+              </div>
+              </li>
+              <li>
+              <div>香港<span>旧金山</span></div>
+              <div><em>2013-12-31截止</em>中华航空</div>
+              <div>往返<strong>￥4640</strong>
+                  <empty name="userinfo">
+                      <a href="javascript:open_kf()">预订</a>
+                      <else/>
+                      <a href="tel:{$userinfo.user.public_mobile}">咨询我的顾问</a>
+                  </empty>
+              </div>
+              </li>
+              <li>
+              <div>香港<span>洛杉矶</span></div>
+              <div><em>2013-12-31截止</em>中华航空</div>
+              <div>往返<strong>￥4030</strong>
+                  <empty name="userinfo">
+                      <a href="javascript:open_kf()">预订</a>
+                      <else/>
+                      <a href="tel:{$userinfo.user.public_mobile}">咨询我的顾问</a>
+                  </empty>
+              </div>
+              </li>
+              <li>
+              <div>香港<span>多伦多</span></div>
+              <div><em>2013-12-31截止</em>中华航空</div>
+              <div>往返<strong>￥4270</strong>
+                  <empty name="userinfo">
+                      <a href="javascript:open_kf()">预订</a>
+                      <else/>
+                      <a href="tel:{$userinfo.user.public_mobile}">咨询我的顾问</a>
+                  </empty>
+              </div>
+              </li>
+         </ul>
+        </div>
+        
+        <div class="collapsible">
+         <h6><a>澳大利亚<span class="icon-down">展开</span></a></h6>
+         <ul>
+              <li>
+              <div>香港<span>布里斯班</span></div>
+              <div><em>2013-11-30截止</em>中华航空</div>
+              <div>往返<strong>￥3280</strong>
+                  <empty name="userinfo">
+                      <a href="javascript:open_kf()">预订</a>
+                      <else/>
+                      <a href="tel:{$userinfo.user.public_mobile}">咨询我的顾问</a>
+                  </empty>
+              </div>
+              </li>
+              <li>
+              <div>香港<span>悉尼</span></div>
+              <div><em>2013-11-30截止</em>中华航空</div>
+              <div>往返<strong>￥3280</strong>
+                  <empty name="userinfo">
+                      <a href="javascript:open_kf()">预订</a>
+                      <else/>
+                      <a href="tel:{$userinfo.user.public_mobile}">咨询我的顾问</a>
+                  </empty>
+              </div>
+              </li>
+              <li>
+              <div>上海<span>悉尼</span></div>
+              <div><em>2010-9-8截止</em>澳洲航空</div>
+              <div>往返<strong>￥3380</strong>
+                  <empty name="userinfo">
+                      <a href="javascript:open_kf()">预订</a>
+                      <else/>
+                      <a href="tel:{$userinfo.user.public_mobile}">咨询我的顾问</a>
+                  </empty>
+              </div>
+              </li>
+              <li>
+              <div>上海<span>墨尔本</span></div>
+              <div><em>2010-9-8截止</em>澳洲航空</div>
+              <div>往返<strong>￥3380</strong>
+                  <empty name="userinfo">
+                      <a href="javascript:open_kf()">预订</a>
+                      <else/>
+                      <a href="tel:{$userinfo.user.public_mobile}">咨询我的顾问</a>
+                  </empty>
+              </div>
+              </li>
+         </ul>
+        </div>
+        
+        <div class="collapsible">
+         <h6><a>亚洲<span class="icon-down">展开</span></a></h6>
+         <ul>
+              <li>
+              <div>香港<span>名古屋</span></div>
+              <div><em>2013-12-31截止</em>中华航空</div>
+              <div>往返<strong>￥1840</strong>
+                  <empty name="userinfo">
+                      <a href="javascript:open_kf()">预订</a>
+                      <else/>
+                      <a href="tel:{$userinfo.user.public_mobile}">咨询我的顾问</a>
+                  </empty>
+              </div>
+              </li>
+              <li>
+              <div>香港<span>东京</span></div>
+              <div><em>2013-12-31截止</em>中华航空</div>
+              <div>往返<strong>￥2420</strong>
+                  <empty name="userinfo">
+                      <a href="javascript:open_kf()">预订</a>
+                      <else/>
+                      <a href="tel:{$userinfo.user.public_mobile}">咨询我的顾问</a>
+                  </empty>
+              </div>
+              </li>
+              <li>
+              <div>香港<span>釜山</span></div>
+              <div><em>2013-12-31截止</em>中华航空</div>
+              <div>往返<strong>￥1620</strong>
+                  <empty name="userinfo">
+                      <a href="javascript:open_kf()">预订</a>
+                      <else/>
+                      <a href="tel:{$userinfo.user.public_mobile}">咨询我的顾问</a>
+                  </empty>
+              </div>
+              </li>
+              <li>
+              <div>香港<span>首尔</span></div>
+              <div><em>2013-12-31截止</em>中国国航</div>
+              <div>往返<strong>￥1620</strong>
+                  <empty name="userinfo">
+                      <a href="javascript:open_kf()">预订</a>
+                      <else/>
+                      <a href="tel:{$userinfo.user.public_mobile}">咨询我的顾问</a>
+                  </empty>
+              </div>
+              </li>
+              <li>
+              <div>香港<span>雅加达</span></div>
+              <div><em>2013-12-31截止</em>国泰航空</div>
+              <div>往返<strong>￥1080</strong>
+                  <empty name="userinfo">
+                      <a href="javascript:open_kf()">预订</a>
+                      <else/>
+                      <a href="tel:{$userinfo.user.public_mobile}">咨询我的顾问</a>
+                  </empty>
+              </div>
+              </li>
+              <li>
+              <div>香港<span>巴厘岛</span></div>
+              <div><em>2013-11-30截止</em>香港航空</div>
+              <div>往返<strong>￥2860</strong>
+                  <empty name="userinfo">
+                      <a href="javascript:open_kf()">预订</a>
+                      <else/>
+                      <a href="tel:{$userinfo.user.public_mobile}">咨询我的顾问</a>
+                  </empty>
+              </div>
+              </li>
+              <li>
+              <div>香港<span>曼谷</span></div>
+              <div><em>2013-11-30截止</em>香港航空</div>
+              <div>往返<strong>￥1110</strong>
+                  <empty name="userinfo">
+                      <a href="javascript:open_kf()">预订</a>
+                      <else/>
+                      <a href="tel:{$userinfo.user.public_mobile}">咨询我的顾问</a>
+                  </empty>
+              </div>
+              </li>
+              <li>
+              <div>香港<span>冲绳</span></div>
+              <div><em>2013-11-30截止</em>香港航空</div>
+              <div>往返<strong>￥1780</strong>
+                  <empty name="userinfo">
+                      <a href="javascript:open_kf()">预订</a>
+                      <else/>
+                      <a href="tel:{$userinfo.user.public_mobile}">咨询我的顾问</a>
+                  </empty>
+              </div>
+              </li>
+         </ul>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <include file="Public:footer" />
+</div>
+<script type="text/javascript" src="__PUBLIC__/mobile/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	
+/*	//初始化变量index为0，用于保存索引
+	var index = 0;
+	//初始化变量len为为图片列表的数量
+	var len = $('#adlist li').size();
+	
+	//setInterval()方法
+	setInterval(function(){
+		showPics(index);                   
+		index++;
+		if(index == len){index = 0;};
+		},4000);
+		
+	//showPics()设置图片和滑块的显示和隐藏
+	function showPics(index){
+		$('#adlist li').eq(index).addClass('on').siblings('li').removeClass('on');
+		$('#slidebar li').eq(index).addClass('select').siblings('li').removeClass('select');
+		};
+	
+	//当鼠标进入滑块,调用showPics()函数
+	$('#slidebar li').mouseenter(function(){
+		index = $(this).index();
+		showPics(index);
+		});*/
+
+
+	$('.collapsible h6').click(function(){
+		var i=$(this).parent().index();
+		$('.collapsible ul').each(function(index,element){
+			if($(this).siblings().find('span').attr('class')=='icon-up'){
+               $(this).hide().siblings().find('span').removeClass('icon-up').addClass('icon-down');
+			}else if($(this).siblings().find('span').attr('class')=='icon-down'&&index==i){
+			   $(this).show().siblings().find('span').removeClass('icon-down').addClass('icon-up');
+			}
+			});
+		});
+	});
+</script>
+<include file="Public:kf" />
+</body>
+</html>

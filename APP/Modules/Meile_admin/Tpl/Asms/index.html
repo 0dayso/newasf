@@ -1,0 +1,140 @@
+<form id="pagerForm" action="__URL__" method="post">
+    <input type="hidden" name="pageNum" value="{$_REQUEST['pageNum']|default=1}"/>
+    <input type="hidden" name="numPerPage" value="{$numPerPage}"/>
+    <input type="hidden" name="so" value="{$_REQUEST.so}" />
+    <input type="hidden" name="_order" value="{$_REQUEST._order}"/>
+    <input type="hidden" name="_sort" value="{$_REQUEST['_sort']|default='1'}"/>
+    <input type="hidden" name="listRows" value="{$_REQUEST['listRows']}"/>
+
+    <volist name="map" id="m">
+        <input type="hidden" name="{$key}" value="{$_REQUEST[$key]}"/>
+    </volist>
+
+</form>
+
+<div class="pageHeader">
+    <form rel="pagerForm" onsubmit="return navTabSearch(this);" action="__URL__" method="post">
+        <div class="searchBar">
+            <ul class="searchContent">
+                <li>
+                    <label>搜索：</label>
+                    <input type="text" name="so" value="{$_REQUEST.so}"/>
+                </li>
+
+                <li>
+                    <label>状态：</label>
+                    <select class="combox" name="status">
+                        <option value="">请选择</option>
+                        <option value="0" <eq name="_REQUEST.status" value="0">selected=selected</eq>>禁用</option>
+                        <option value="1" <eq name="_REQUEST.status" value="1">selected=selected</eq>>启用</option>
+                    </select>
+                </li>
+                <li>
+                    <label>显示状态：</label>
+                    <select class="combox" name="view">
+                        <option value="">请选择</option>
+                        <option value="0" <eq name="_REQUEST.view" value="0">selected=selected</eq>>不显示</option>
+                        <option value="1" <eq name="_REQUEST.view" value="1">selected=selected</eq>>显示</option>
+                    </select>
+                </li>
+                <li>
+                    <label>所属公司：</label>
+                    <select class="combox" name="company_id">
+                        {$info.companyOption.option}
+                    </select>
+                </li>
+                <li>
+                    <label>所属部门：</label>
+                    <select class="combox" name="department_id">
+                        {$info.departmentOption.option}
+                    </select>
+                </li>
+                <li>
+                    <label>所属职位：</label>
+                    <select class="combox" name="position_id">
+                        {$info.positionOption.option}
+                    </select>
+                </li>
+            </ul>
+            <div class="subBar">
+                <ul>
+                    <li><div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div></li>
+                </ul>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+			<li><a class="edit" href="__URL__/updateAllUser/navTabId/__MODULE__"  target="ajaxTodo" title="你确定要更新全部吗？" ><span>更新全部</span></a></li>
+			<li><a class="edit" href="__URL__/updateAutoMatchAll/navTabId/__MODULE__" target="ajaxTodo" title="你确定要全部重新自动匹配吗？"><span>自动匹配</span></a></li>
+		    </ul>
+	</div>
+
+	<table class="table" width="100%" layoutH="115">
+		<thead>
+		<tr>
+			<th width="100" orderField="ywyid" <if condition="$_REQUEST._order eq 'ywyid'">class="{$_REQUEST._sort}"</if>>用户名</th>
+			<th orderField="name" <if condition="$_REQUEST._order eq 'name'">class="{$_REQUEST._sort}"</if>>姓名</th>
+            <th width="100" orderField="phone" <if condition="$_REQUEST._order eq 'phone'">class="{$_REQUEST._sort}"</if>>手机</th>
+			<th orderField="email" <if condition="$_REQUEST._order eq 'email'">class="{$_REQUEST._sort}"</if>>Email</th>
+
+            <th width="80" orderField="qxjb" <if condition="$_REQUEST._order eq 'qxjb'">class="{$_REQUEST._sort}"</if>>权限</th>
+            <th width="80" orderField="yhlx" <if condition="$_REQUEST._order eq 'yhlx'">class="{$_REQUEST._sort}"</if>>用户类型</th>
+            <th width="80" orderField="department" <if condition="$_REQUEST._order eq 'department'">class="{$_REQUEST._sort}"</if>>所属营业部</th>
+            <th width="80" orderField="company" <if condition="$_REQUEST._order eq 'company'">class="{$_REQUEST._sort}"</if>>所属公司</th>
+			<th width="100" orderField="create_date" <if condition="$_REQUEST._order eq 'create_date'">class="{$_REQUEST._sort}"</if>是>添加日期</th>
+
+            <th width="80">关联id</th>
+            <th width="80">关联用户名</th>
+            <th width="80">姓名</th>
+
+            <th width="120" orderField="update_time" <if condition="$_REQUEST._order eq 'update_time'">class="{$_REQUEST._sort}"</if>>更新时间</th>
+
+			<th width="80" orderField="status" <if condition="$_REQUEST._order eq 'status'">class="{$_REQUEST._sort}"</if>>状态</th>
+            <th width="80">操作</th>
+		</tr>
+		</thead>
+		<tbody>
+		<volist id="vo" name="list">
+			<tr target="sid_user" rel="{$vo['id']}">
+				<td>{$vo['ywyid']}</td>
+				<td>{$vo['name']}</td>
+                <td>{$vo.phone}</td>
+				<td>{$vo['email']}</td>
+                <td>{$vo['qxjb']}</td>
+                <td>{$vo.yhlx}</td>
+                <td>{$vo.department}</td>
+                <td>{$vo.company}</td>
+				<td>{$vo['create_date']}</td>
+                <td>{$vo.user.id}</td>
+                <td>{$vo.user.username}</td>
+                <td>{$vo.user.name}</td>
+				<td>{$vo['update_time']|date="Y-m-d H:i:s",###}</td>
+
+                <td>{$vo['status']|getStatus}</td>
+                <td><a href="__URL__/updateUser/ywyid/{$vo['ywyid']}/navTabId/__MODULE__" target="ajaxTodo" rel="edit">更新</a> <a href="__URL__/updateAutoMatch/ywyid/{$vo['ywyid']}/navTabId/__MODULE__" target="ajaxTodo" rel="edit">更新匹配</a></td>
+			</tr>
+		</volist>
+		</tbody>
+	</table>
+
+	<div class="panelBar">
+        <div class="pages">
+            <span>显示</span>
+            <select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
+                <option value="10" <eq name="numPerPage" value="10">selected=selected</eq>>10</option>
+                <option value="20" <eq name="numPerPage" value="20">selected=selected</eq>>20</option>
+                <option value="30" <eq name="numPerPage" value="35">selected=selected</eq>>30</option>
+                <option value="50" <eq name="numPerPage" value="50">selected=selected</eq>>50</option>
+            </select>
+            <span>共{$totalCount}条</span>
+        </div>
+		<div class="pagination" targetType="navTab" totalCount="{$totalCount}" numPerPage="{$numPerPage}" pageNumShown="10" currentPage="{$currentPage}"></div>
+	</div>
+
+</div>
+
+

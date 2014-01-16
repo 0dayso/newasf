@@ -1,0 +1,97 @@
+<form id="pagerForm" action="__URL__" method="post">
+    <input type="hidden" name="pageNum" value="{$_REQUEST['pageNum']|default=1}"/>
+    <input type="hidden" name="numPerPage" value="{$numPerPage}"/>
+    <input type="hidden" name="so" value="{$_REQUEST.so}" />
+    <input type="hidden" name="_order" value="{$_REQUEST._order}"/>
+    <input type="hidden" name="_sort" value="{$_REQUEST['_sort']|default='1'}"/>
+    <input type="hidden" name="listRows" value="{$_REQUEST['listRows']}"/>
+
+    <volist name="map" id="m">
+        <input type="hidden" name="{$key}" value="{$_REQUEST[$key]}"/>
+    </volist>
+
+</form>
+
+<div class="pageHeader">
+	<form rel="pagerForm" onsubmit="return navTabSearch(this);" action="__URL__" method="post">
+	<div class="searchBar">
+		<ul class="searchContent">
+			<li>
+				<label>搜索：</label>
+				<input type="text" name="so" value="{$_REQUEST.so}"/>
+			</li>
+
+
+		</ul>
+		<div class="subBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div></li>
+			</ul>
+		</div>
+	</div>
+	</form>
+</div>
+
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+			<li><a class="add" href="__URL__/add" target="navTab" rel="__MODULE__/add"><span>新增视频</span></a></li>
+			<li><a class="delete" href="__URL__/foreverdelete/id/{sid_user}/navTabId/__MODULE__" target="ajaxTodo" title="你确定要删除吗？" warn="请选择用户"><span>删除</span></a></li>
+			<li><a class="edit" href="__URL__/edit/id/{sid_user}" target="dialog" rel="edit" ><span>编辑</span></a></li>
+			<li class="line">line</li>
+
+        </ul>
+	</div>
+
+	<table class="table" width="100%" layoutH="115">
+		<thead>
+		<tr>
+			<th width="30" orderField="id" <if condition="$_REQUEST._order eq 'id'">class="{$_REQUEST._sort}"</if>>编号</th>
+			<th width="80" orderField="title" <if condition="$_REQUEST._order eq 'title'">class="{$_REQUEST._sort}"</if>>标题</th>
+            <th width="80" orderField="groups" <if condition="$_REQUEST._order eq 'groups'">class="{$_REQUEST._sort}"</if>>组名</th>
+            <th width="80" orderField="team" <if condition="$_REQUEST._order eq 'team'">class="{$_REQUEST._sort}"</if>>团体</th>
+			<th width="50"orderField="thumbnail" <if condition="$_REQUEST._order eq 'thumbnail'">class="{$_REQUEST._sort}"</if>>缩略图</th>
+            <th width="100" orderField="video_url" <if condition="$_REQUEST._order eq 'video_url'">class="{$_REQUEST._sort}"</if>>视频地址</th>
+            <th width="40" orderField="view_num" <if condition="$_REQUEST._order eq 'view_num'">class="{$_REQUEST._sort}"</if>>观看次数</th>
+            <th width="60" orderField="down_url" <if condition="$_REQUEST._order eq 'down_url'">class="{$_REQUEST._sort}"</if>>下载地址</th>
+			<th width="40" orderField="down_num" <if condition="$_REQUEST._order eq 'down_num'">class="{$_REQUEST._sort}"</if>>下载次数</th>
+			<th width="100" orderField="create_time" <if condition="$_REQUEST._order eq 'create_time'">class="{$_REQUEST._sort}"</if>>添加时间</th>
+            <th width="80">操作</th>
+		</tr>
+		</thead>
+		<tbody>
+		<volist id="vo" name="list">
+			<tr target="sid_user" rel="{$vo['id']}">
+				<td>{$vo['id']}</td>
+				<td>{$vo['title']}</td>
+                <td>{$vo.groups}</td>
+                <td>{$vo.team}</td>
+				<td><notempty name="vo[thumbnail]"><a target="_blank" href="__PUBLIC__/uploads/video/{$vo.thumbnail}">查看</a></notempty></td>
+				<td>{:htmlspecialchars($vo['video_url'])}</td>
+                <td>{$vo['view_num']}</td>
+                <td><notempty name="vo[down_url]"><a  target="_blank" href="{$vo.down_url}">查看</a></notempty></td>
+                <td>{$vo.down_num}</td>
+				<td>{$vo['create_time']|date="Y-m-d H:i:s",###}</td>
+                <td><a class="view" href="__URL__/edit/id/{$vo.id}" target="dialog" rel="edit"  width="800"  height="460"><span>编辑</span></a></td>
+			</tr>
+		</volist>
+		</tbody>
+	</table>
+
+	<div class="panelBar">
+        <div class="pages">
+            <span>显示</span>
+            <select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
+                <option value="10" <eq name="numPerPage" value="10">selected=selected</eq>>10</option>
+                <option value="20" <eq name="numPerPage" value="20">selected=selected</eq>>20</option>
+                <option value="30" <eq name="numPerPage" value="35">selected=selected</eq>>30</option>
+                <option value="50" <eq name="numPerPage" value="50">selected=selected</eq>>50</option>
+            </select>
+            <span>共{$totalCount}条</span>
+        </div>
+		<div class="pagination" targetType="navTab" totalCount="{$totalCount}" numPerPage="{$numPerPage}" pageNumShown="10" currentPage="{$currentPage}"></div>
+	</div>
+
+</div>
+
+

@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{$title}-爱尚飞手机网</title>
+<link href="__PUBLIC__/mobile/css/global.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+#topnav {padding-right: 42px;}
+.box h2{padding-right:42px;}
+#adviser_list{background-color:#FFF;}
+#adviser_list li{border-bottom:1px solid #e7e5e5;padding:16px;}
+#adviser_list li .avatar,#adviser_list li .infos,#adviser_list li .star a{display:inline-block;}
+#adviser_list li .avatar img{width:82px;height:82px;}
+#adviser_list li .infos{padding-left:15px;}
+#adviser_list li .infos a.name{color:#ff6600;font-weight:bold;line-height:24px}
+#adviser_list li .infos div{display:block;line-height:32px;color:#666;}
+#adviser_list li .infos div a{display:inline-block;}
+#adviser_list li .kfpj,#adviser_list li .pj{width:100%;display:block;color:#666;line-height:25px;}
+#adviser_list li .star a{margin-right:5px;background:url(__PUBLIC__/mobile/images/pingjia_dj.gif) no-repeat 0px 0px;width:59px;height:11px;}
+#adviser_list li .star a.a10{background-position:0 0px}
+#adviser_list li .star a.a9{background-position:0 -20px}
+#adviser_list li .star a.a8{background-position:0 -40px}
+#adviser_list li .star a.a7{background-position:0 -60px}
+#adviser_list li .star a.a6{background-position:0 -80px}
+#adviser_list li .star a.a5{background-position:0 -100px}
+#adviser_list li .star a.a4{background-position:0 -120px}
+#adviser_list li .star a.a3{background-position:0 -140px}
+#adviser_list li .star a.a2{background-position:0 -160px}
+#adviser_list li .star a.a1{background-position:0 -180px}
+#adviser_list li .star a.a0{background-position:0 -200px}
+#adviser_list li .kfpj .aa a{color:#06C;padding-left:10px;width:100px;}
+#adviser_list li .pj span{line-height:16px;height:16px;padding:4px 0 4px 20px;background:url(__PUBLIC__/mobile/images/pj.gif) no-repeat 0px 0px;display:inline-block;}
+#adviser_list li .pj .hp{background-position:0 4px;}
+#adviser_list li .pj .zp{background-position:0 -16px;}
+#adviser_list li .pj .cp{background-position:0 -36px;}
+#review_list{background-color:#FFF;color:#333;}
+#review_list dt{padding-left:18px;border-bottom:1px solid #e7e5e5;line-height:34px;}
+#review_list dd{border-bottom:1px solid #e7e5e5;padding:10px 18px;}
+#review_list dd div{line-height:24px;width:100%;}
+#review_list dd div.rec span{display:inline-block;line-height:16px;padding:4px 10px 4px 0;}
+#review_list dd div.rec .td{height:16px;width:28px;background:url(__PUBLIC__/mobile/images/pj2.gif) no-repeat 0px 8px;}
+#review_list dd div.rec a{color:#2690d8;}
+#review_list dd .ztpj{background-color:#f7f7f7;display:inline-block;padding-left:5px;width:140px;}
+#review_list dd .ztpj a{display:inline-block;background:url(__PUBLIC__/mobile/images/evaluate_pf.gif) no-repeat -1px -2px;width:64px;height:12px;margin-top:6px;}
+#review_list dd .ztpj .lb0{background-position:-1px -2px;}
+#review_list dd .ztpj .lb1{background-position:-1px -17px;}
+#review_list dd .ztpj .lb2{background-position:-1px -32px;}
+#review_list dd .ztpj .lb3{background-position:-1px -47px;}
+#review_list dd .ztpj .lb4{background-position:-1px -62px;}
+#review_list dd .ztpj .lb5{background-position:-1px -77px;}
+</style>
+</head>
+
+<body>
+<div id="page">
+  <div id="content">
+    <h1 id="topnav"><span class="left icon"><a href="{:U('/')}" class="icon-home">首页</a></span>专业旅行顾问</h1>
+    <div class="box">
+      <h2><span class="left icon"><a href="{:U('/Adviser')}" class="icon-return">返回</a></span>{$user.name}</h2>
+      <ul id="adviser_list">
+        <li> <span class="avatar"><img src="__PUBLIC__/uploads/{$user.avatar}"></span>
+            <span class="infos">
+                <a href="/m/Adviser/review/id/{$user.id}" class="name">{$user.name}</a>
+          <div>QQ：
+            <label>{$user.qq}</label>
+          </div>
+          <div>手机号码：
+            <label><a  href="tel:{$user.public_mobile}">{$user.public_mobile}</a></label>
+          </div>
+          <div>电话号码：
+            <label><a  href="tel:{$user.telephone}">{$user.telephone}</a></label>
+          </div>
+          </span> <span class="kfpj">
+          <label>服务评价：</label>
+          <label class="star" title="五颗星"><a class="a{$server*2|round=###}"></a>{$server}</label>
+          </span> <span class="pj"> <span class="hp">好评（{$pl.hao}）</span> <span class="zp">中评（{$pl.zhong}）</span> <span class="cp">差评（{$pl.cha}）</span> </span> </li>
+      </ul>
+      <div class="block_link"><a href="{:U('/Adviser/form/','id='.$user['id'])}">我已订票成功，立即评价</a></div>
+      <dl id="review_list" adviser="{$user.id}" page="1">
+      <dt>{$user.name}的客户评价：</dt>
+      
+      <volist name="list" id="v">
+          <dd>
+          <div class="rec">
+          <span class="td"></span>
+          <span class="name">{$v.name}</span>
+          <span><a href="#">{$v.from_city}→{$v.to_city}</a></span>
+          </div>
+          <div>{$v.contents}</div>
+          <div><span class="ztpj">总体评价：<a class="lb{$v['total']}"></a></span><span class="right">{$v.time}</span></div>
+          </dd>
+      </volist>
+      </dl>
+      <div id="loading"><img src="__PUBLIC__/mobile/images/loading.gif"></div>
+      <div id="reminder"></div>
+      </div>
+    </div>
+  </div>
+  <include file="Public:footer" />
+  </div>
+<script type="text/javascript" src="__PUBLIC__/mobile/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	//自动刷新内容
+	$(window).scroll(function(){
+		//被卷去的高度
+		var scrollTop=$(this).scrollTop();
+		//可视区域高度
+		var viewHeight=$(window).height();
+		//页面高度
+		var pageHeight=$('body').height();
+		if((scrollTop+viewHeight)>=(pageHeight)){
+			var adviser=$('#review_list').attr('adviser');//company为地区代码
+			var page=parseInt($('#review_list').attr('page'))+1;//page为页数
+			ajax_list(adviser,page);//调用AJAX的函数
+			$('#review_list').attr('page',page);//更新分页数
+			}
+		});
+	});
+//AJAX函数
+function ajax_list(adviser,page){
+	$('#loading').show();//显示加载中
+	$('#reminder').hide();
+	$.getJSON("{:U('/Adviser/review')}",{id:adviser,p:page},function(data){
+		if(data.status==1){
+			var html='',list=data.list,airlineUrl="{:U('/airline/pl/')}";
+			$.each(list,function(i,item){
+				html +='<dd>';
+				html +='<div class="rec">';
+				html +='<span class="td"></span>';
+				html +='<span class="name">'+ item.name +'</span>';
+				html +='<span><a href="'+ airlineUrl + 'from/'+ item.from_iata +'to/'+ item.to_iata +'">'+ item.from_city +'→'+ item.to_city +'</a></span>';
+				html +='</div>';
+				html +='<div>'+ item.contents +'</div>';
+				html +='<div>';
+				html +='<span class="ztpj">总体评价：<a class="lb'+ item.total +'"></a></span>';
+				html +='<span class="right">'+ item.time +'</span>';
+				html +='</div>';
+				html +='</dd>';
+				$('#loading').hide();
+				$('#review_list').append(html);
+				});
+			}else{
+				$('#loading').hide();
+				$('#reminder').show().text(data.info);
+				}
+		});
+	}
+</script>
+<include file="Public:kf" />
+</body>
+</html>

@@ -1,0 +1,90 @@
+<script  src="__PUBLIC__/dwz/js/modify.js"></script>
+<style type="text/css">
+    .pageFormContent p{width: 300px}
+</style>
+<div class="pageContent">
+    <form method="post" action="__URL__/update/navTabId/__MODULE__-index" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone)">
+        <input type="hidden" name="user_id" value="<?php echo $_SESSION[C('USER_AUTH_KEY')] ?>"/>
+        <input type="hidden" name="id" value="{$vo.id}" />
+        <div class="pageFormContent" layoutH="58">
+            <!--
+            <div class="unit">
+                <label>重置密码：</label>
+                <input type="text" name="resetPwd" > <INPUT type="button" value="重置密码" onclick="resetPwd()" class="submit" style="height:25px">
+            </div>
+            -->
+            <p>
+                <label>帐号:</label>
+                <input type="text"  value="{$vo['username']}" class="text" disabled="true" />
+            </p>
+            <p>
+                <label>姓名:</label><input type="text"  value="{$vo['name']}" class="text" name="name" />
+            </p>
+            <p>
+                <label>手机:</label><input type="text"  value="{$vo['mobile']}" class="text"disabled="true" />
+            </p>
+            <p>
+                <label>性别:</label>
+                <select name="sex" class="sex">
+                    <option value="0" selected="selected">先生</option>
+                    <option value="1"  <if condition="$vo.sex eq 1">selected="selected"</if>>女士</option>
+                </select>
+            </p>
+            <p>
+                <label>电话:</label><input type="text"  value="{$vo['telephone']}" class="text" name="telephone" />
+            </p>
+            <p>
+                <label>电子邮件:</label><input type="text"  value="{$vo['email']}" class="text" name="email" />
+            </p>
+            <p>
+                <label>邮编:</label><input type="text"  value="{$vo['zip_code']}" class="text" name="zip_code" />
+            </p>
+            <p>
+                <label>最后登陆ip:</label><input type="text"  value="{$vo['last_login_ip']}" class="text" disabled="true" />
+            </p>
+            <p>
+                <label>登陆次数:</label><input type="text"  value="{$vo['login_count']}" class="text" disabled="true" />
+            </p>
+            <p>
+                <label>创建时间:</label><input type="text"  value="{$vo['create_time']|date='Y-m-d H:s',###}" class="text" disabled="true" />
+            </p>
+            <p>
+                <label>推荐人id:</label><input type="text" disabled="true" value="{$vo['referee_id']}" class="text"  />
+            </p>
+            <p>
+                <label>会员积分:</label><input type="text"  value="{$vo['points']}" class="text" disabled="true" />
+            </p>
+            <p  id="addcodePCT" val="{$vo.province},{$vo.city}">
+                <label>所在地:</label>
+                <select name="province" value="{$vo['province']}"  class="province" id="province_sel">
+                    <option value="">- -</option>
+                </select>
+                <select name="city"  value="{$vo['city']}" class="city" id="city_sel">
+                    <option value="">- -</option>
+                </select>
+            </p>
+            <div class="unit">
+                <label>详细地址:</label>
+                <input type="text" size="38" value="{$vo['address']}" class="text" name="address" />
+            </div>
+            <p>
+                <label>会员返利:</label><input type="text"  value="{$vo['rebate']}" class="text" disabled="true" />
+            </p>
+            <p>
+                <label>专职客服:</label>
+                <input type="text"  value="{$vo['user']['name']}" class="text"  lookup="org.name"  readonly="readonly" name="user_name" />
+                <a class="btnLook" href="__GROUP__/User/userData" lookupGroup="org" width="650" height="300" title="查找带回">查找带回</a>
+                <input type="hidden"  value="{$vo['user']['id']}" class="text" lookup="org.id"  readonly="readonly" name="user_id" />
+            </p>
+
+        </div>
+        <div class="formBar">
+            <ul>
+                <li><div class="buttonActive"><div class="buttonContent"><button type="submit">Submit</button></div></div></li>
+                <li><div class="button"><div class="buttonContent"><button type="button" class="close">Cancel</button></div></div></li>
+            </ul>
+        </div>
+    </form>
+
+</div>
+

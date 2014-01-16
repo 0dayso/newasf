@@ -1,0 +1,183 @@
+<include file="public:header" />
+
+    <link rel="stylesheet" href="__PUBLIC__/css/member.css" type="text/css" />
+    <script type="text/javascript" src="__PUBLIC__/js/member.js"></script>
+    <div class="member">
+    	<!--会员中心导航-->
+    	<include file="public:left" />
+        
+		<div class="right" id="memberR">
+        	<h1 class="nav_tit">订票中心</h1>
+            <div id="list_box">
+            	<div id="list_nav"><a class="active">在线支付</a><a>交易记录</a></div>
+                <div id="list_con">
+                	<div id="order" class="list_block on">
+                    	<div class="pay_hint">您的订单已经审核通过，我们建议您尽快付款，延迟未付款系统会自动取消订单，且航空公司很可能会随时取消您的舱位。</div>
+                        <!--订单在线支付（单一）-->
+                        <if condition="$pay_count lt 2">
+                        <volist name="pay_list" id="vo" mod="m">
+                    	<dl>
+                    		<dd><strong>订单ID号：</strong>{$vo.ddbh}</dd>
+                   	  		<dd class="journey">
+                        		<strong>航班行程：</strong>
+                            	<ul>
+                                    <volist name="vo.hd_info" id="vv">
+                            		<li><span class="j0">{$i}</span><span class="j1">{$vv.hbh}</span><span class="j2">{$vv.hd_cityname}→{$vv.hd_ddcityname}</span><span class="j3">起飞时间：{$vv.cfsj}</span><span class="j3">到达时间：{$vv.ddsj}</span></li>
+                            	    </volist>
+                                </ul>
+                        	</dd>
+							<dd><strong style=" float: left; ">乘客信息：</strong>
+                                <volist name="vo.cjr_info" id="vv">
+                                <li><span>{$vv.lx}</span> <span>{$vv.cjr_cjrxm}</span><span>{$vv.cjr_zjhm}</span></li>
+                                </volist>
+                            </dd>
+                            <dd><strong>应付金额：</strong><b>{$vo.xj}</b>元</dd>
+							<dd class="cope"><em>温馨提示：</em>机票价格实时变动，建议您尽快付款，如有疑问请联系您的专职旅行顾问或致电400-608-5188。</dd>
+						</dl>
+                        </volist>
+                        <else />
+                        <!--订单在线支付（多个订单）-->
+                        <volist name="pay_list" id="vo" mod="m">
+                        <dl>
+                    		<dd><strong>订单ID号：</strong>{$vo.ddbh}<div class="hide">隐藏订单详情</div></dd>
+                   	  		<dd class="journey">
+                        		<strong>航班行程：</strong>
+                            	<ul>
+                                    <volist name="vo.hd_info" id="vv">
+                            		<li><span class="j0">{$i}</span><span class="j1">{$vo.hbh}</span><span class="j2">{$vv.hd_cityname}→{$vv.hd_ddcityname}</span><span class="j3">起飞时间：{$vv.cfsj}</span><span class="j3">到达时间：{$vv.ddsj}</span></li>
+                                    </volist>
+                                </ul>
+                        	</dd>
+							<dd><strong style=" float: left; ">乘客信息：</strong>
+                                <volist name="vo.cjr_info" id="vv">
+                                    <li><span>{$vv.lx}</span> <span>{$vv.cjr_cjrxm}</span><span>{$vv.cjr_zjhm}</span></li>
+                                </volist>
+                            </dd>
+                            <eq name="count" value="i">
+                                <dd><strong>应付金额：</strong><b>{$vo.xj}</b>元</dd>
+                                <dd class="cope"><em>温馨提示：</em>机票价格实时变动，建议您尽快付款，如有疑问请联系您的专职旅行顾问或致电400-608-5188。</dd>
+                                <else />
+                                <dd class="parting"><strong>应付金额：</strong><b>{$vo.xj}</b>元</dd>
+                            </eq>
+
+						</dl>
+                        </volist>
+                        </if>
+
+                        <div class="total">合计应付金额：<b>{$pay_total_price}</b></div>
+                        <div id="online_pay">
+                        	<div id="pay_nav"><a class="active">财付通</a><a>易宝支付</a></div>
+                            <div id="pay_con">
+                            	<div class="pay_block on">
+                                	<form action="{:U('/Member/Pay/tenPay')}" method="post" >
+                                	<ul>
+                                    	<li><span>收款方：</span>广州美乐商务服务有限公司</li>
+                                        <li><span>订单支付编号：</span>{$order_pay_id}</li>
+                                        <li><span>付款项目：</span>机票预订-在线支付</li>
+                                        <li><span>付款金额：</span>{$pay_total_price}元</li>
+
+                                        <li><span class="left">简要说明：</span>
+                                            <textarea name="remarkexplain" cols="" rows=""></textarea>
+                                        </li>
+                                        <input type="hidden" name="route" value="{$route}">
+                                        <input name="order_no" type="hidden"  value="{$order_pay_id}"/>
+                                        <input name="product_name" type="hidden"  value="机票预订-在线支付"/>
+                                        <input name="order_price" type="hidden"  value="{$pay_total_price}">
+                                        <input name="trade_mode" type="hidden" value="1" />
+                                        <input type="hidden" name="order_id_arr" value="{$order_id_arr}">
+
+
+                                        <li><span>&nbsp;</span>&nbsp;请填写您订单的简要说明（30字以内）</li>
+                                        <li><span>&nbsp;</span><input type="submit" class="pay_next" value="下一步" /></li>
+                                    </ul>
+                                    </form>
+                                </div>
+                                <div class="pay_block">
+                                	<form action="" method="post">
+                                    <div class="required"><em>*</em> 为必填项。</div>
+                                	<ul>
+                                    	<li><span>消费金额<em>*</em></span><input name="" type="text" class="txt" /></li>
+                                        <li><span>商品名称&nbsp;</span><input name="" type="text" class="txt" /></li>
+                                        <li><span>证件类型<em>*</em></span><select name=""><option value="身份证">身份证</option></select></li>
+                                        <li><span>证件号码<em>*</em></span><input name="" type="text" class="txt" /></li>
+                                        <li><span>发卡行<em>*</em></span><select name=""><option value="交通银行">交通银行</option></select></li>
+                                        <li><span>手机号<em>*</em></span><input name="" type="text" class="txt" /></li>
+                                        <li><span>消费者姓名<em>*</em></span><input name="" type="text" class="txt" /></li>
+                                        <li><span>支付卡号<em>*</em></span><input name="" type="text" class="txt" /></li>
+                                      <li><span>信用卡有效期(年)<em>*</em></span><input name="" type="text" class="txt" />有效期截止年份，必须在2007-2099年之间，比如2015</li>
+                                        <li><span>信用卡有效期(月)<em>*</em></span><input name="" type="text" class="txt" />有效期截止月份，必须为1-12之间，比如9</li>
+                                        <li><span>CVV<em>*</em></span><input name="" type="text" class="txt" />信用卡背面的3或4位CVV码</li>
+                                        <li><span>&nbsp;</span><input type="submit" class="pay_sub" value="提交表单" /></li>
+                                    </ul>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+          			</div><!--国际机票订单&支付-->
+                    
+                    <div class="list_block">
+                    <table width="788" border="0" align="center" cellpadding="0" cellspacing="0">
+						<tr class="tit">
+							<td class="first">支付ID号</td>
+                            <td>航班行程</td>
+                            <td>交易金额</td>
+                            <td>备注</td>
+                            <td>交易时间</td>
+                            <td>订单状态</td>
+                            <td>操作</td>
+						</tr>
+                        <volist name="list" id="vo">
+                        <tr>
+                            <td class="first">{$vo.id}</td>
+                            <td class="link alignL"><a href="#" title="{$vo.route}">{$vo['route']|msubstr=###,0,10}</a></td>
+                            <td class="price">￥{$vo.order_price}</td>
+                            <td class="price" title="{$vo.remark}">{$vo['remark']|msubstr=###,0,10}</td>
+                            <td>{$vo.create_time}</td>
+						  <td class="blue">{$vo.status_name}</td>
+                            <td class="link">
+                                <eq name="vo.status" value="0">
+                                    <a href="{$vo.payUrl}" title="去支付" >支付</a>
+                                </eq>
+                                <a href="#">查看</a>
+                            </td>
+						</tr>
+                        </volist>
+					</table>
+                    <div class="page"><span class="next">下一页</span><span class="page_num"><em>1</em>/1页</span><span class="prev">上一页</span></div>
+                    </div>
+				</div>
+        	</div><!--list_block-->
+            
+            <div id="order_but" style="padding-left:100px;"><a href="#" class="back">返回订单列表</a></div>
+        
+        </div>
+    </div>
+    <script type="text/javascript">
+    	$(function(){
+			$('#list_nav a').click(function(){
+				if($(this).index()==0){
+					$('#order_but').show();
+					}else{
+						$('#order_but').hide();
+						}
+				});
+			
+			$('.hide').click(function(){
+				if($(this).hasClass('hi')){
+					$(this).removeClass('hi').parent().siblings().show();
+					}else{
+						$(this).addClass('hi').parent().siblings().hide();
+						}
+				
+				});
+			
+			$('#pay_nav a').click(function(){
+				var i=$(this).index();
+				$(this).addClass('active').siblings().removeClass('active');
+				$('#pay_con .pay_block').eq(i).addClass('on').siblings().removeClass('on');
+				});
+			
+			});
+    </script>
+    
+<include file="public:footer" />

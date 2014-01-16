@@ -1,0 +1,21 @@
+<include file="Public:header" />
+    <div id="cont">
+        <div class="wd960 mt10 bgWhite about_asf">
+        	<h1 class="h1_tit_nav">你当前所在位置：<a href="/" class="sy">首页</a> > <a class="cur">公司新闻</a></h1>
+            <include file="About:left" />
+            <div class="list_right_gy" id="news_dt">
+            	<h2 class="tit">公司新闻</h2>
+            	<ul><!--这里列出10条-->
+                    <volist name="list" id="vo">
+                    <li><a href='{:U("News/company/$vo[id]")}' class="lt">{$vo.title}</a><a>{$vo.published|date='Y-m-d',###}</a></li>
+                     </volist>
+                </ul>
+                <p class="pagingBar">
+                    	<span class="cur">
+                    		{$page}
+                        </span>
+                </p>
+            </div>
+        </div>
+    </div>
+<include file="Public:footer" />

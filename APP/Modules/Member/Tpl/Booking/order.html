@@ -1,0 +1,57 @@
+<include file="public:header" />
+
+    <link rel="stylesheet" href="__PUBLIC__/css/member.css" type="text/css" />
+    <script type="text/javascript" src="__PUBLIC__/js/member.js"></script>
+    <div class="member">
+    	<!--会员中心导航-->
+    	<include file="public:left" />
+        
+		<div class="right" id="memberR">
+       	  <div id="order">
+            	<div class="services"><span>您好的专职客服：</span><img src="__PUBLIC__/uploads/avatar/douss.jpg" class="icon" /><strong>{$userInfo['user']['name']}</strong>电话：{$userInfo['user']['public_mobile']}<a style="display: inline;" target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin={$userInfo['user']['qq']}&amp;site=qq&amp;menu=yes"><img src="http://wpa.qq.com/pa?p=2:{$userInfo['user']['qq']}:47" alt="点击这里给我发消息" title="点击这里给我发消息"></a></div>
+                <div class="details">
+                	<h2>国际机票订单详情</h2>
+                    <dl>
+                    	<dd><strong>订单ID号：</strong>{$info.ddbh} [<a>{$info.ddzt_n}</a>]</dd>
+                   	  	<dd class="journey">
+                        	<strong>航班行程：</strong>
+                            <ul>
+                                <volist name="info.hd_info" id="vo">
+                            	<li><span class="j0">{$i}</span><span class="j1">{$vo.hbh}</span><span class="j2">{$vo.hc}</span><span class="j3">起飞时间：{$vo.cfsj}</span><span class="j3">到达时间：{$vo.ddsj}</span></li>
+                             <!--   <li><span class="j0">去程</span><span class="j1">{$vo.hbh}</span><span class="j2">北京→台北</span><span class="j3">日期：2013-12-31</span></li> -->
+                                </volist>
+                            </ul>
+                        </dd>
+						<dd><strong>机票类型：</strong>直接出票</dd>
+						<dd><strong>票面价格：</strong><b>{$info.xsj}</b></dd>
+						<dd><strong>现金券使用：</strong><b>0</b></dd>
+						<dd class="cope">
+							<div><strong>应付金额：</strong><b>{$info.xj}</b> <span>（票价<b>{$info.xsj}</b>+税费<b>{$info.sf}</b>+机建<b>{$info.jj}</b>+保险现金券<b>0</b>）</span> </div>
+                    		<div><em>温馨提示：</em>机票价格实时变动，建议您尽快付款，如有疑问请联系您的专职旅行顾问或致电400-608-5188。</div>
+						</dd>
+						<dd><strong>下单时间：</strong>{$info.dprq}</dd>
+						<dd><strong>出票时间：</strong>{$info.cpsj}</dd>
+                        <dt class="client_info">
+                        	<strong>乘客信息：</strong>{$info.lx1}成人/{$info.lx2}儿童
+                        	<div class="info_list">
+                            	<h3><span>姓名</span><span>乘客类型</span><span>票价类型</span><span>票价</span><span>机建/参考税</span><span>现金券</span><span>结算价</span></h3>
+                                <ul>
+                                    <volist name="info.cjr_info" id="vo">
+                                	<li><span>{$vo.cjr_cjrxm}</span><span>{$vo.lx}</span><span>直接出票</span><span><b>{$vo.cjr_cgj}</b></span><span><b>{$vo.cjr_jsf}/{$vo.cjr_tax}</b></span><span><b>0</b></span><span><b>{$vo.cjr_fpj_hj}</b></span></li>
+                                    </volist>
+                                </ul>
+                            </div>
+                        <strong>联系人信息： </strong>{$info.nklxr}  {$info.lxdh}
+                        </dt>
+                    </dl>
+                </div><!--国际机票订单详情-->
+                <div id="order_but">
+                    <notempty name="is_pending">
+                        <a href="{:U('/Member/booking/onlinepay/ddbh/'.$info['ddbh'])}" class="pay">立即付款</a>
+                    </notempty>
+                    <a href="#" class="print">打印订单</a> <a href="#" class="back">返回订单列表</a></div>
+          </div>
+        </div>
+    </div>
+    
+<include file="public:footer" />

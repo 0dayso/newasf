@@ -1,0 +1,119 @@
+<script>
+    $(function(){
+        $(".readonly").change(function(){
+            alert(1);
+            $('.avatarImg').src="__PUBLIC__/uploads/"+$(this).attr('src');
+        })
+    })
+ </script>
+<div class="pageContent">
+	<form method="post" action="__URL__/update/navTabId/__MODULE__" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone)">
+		<input type="hidden" name="user_id" value="<?php echo $_SESSION[C('USER_AUTH_KEY')] ?>"/>
+		<input type="hidden" name="id" value="{$vo.id}" />
+		<div class="pageFormContent" layoutH="58">
+					
+			<!-- 
+			<div class="unit">
+				<label>重置密码：</label>
+				<input type="text" name="resetPwd" > <INPUT type="button" value="重置密码" onclick="resetPwd()" class="submit" style="height:25px">
+			</div>
+			-->
+			<div><img class="avatarImg" src="__PUBLIC__/uploads/{$vo.avatar}" lookup="img.fileName" alt='头像' width="120" style="float:right"/></div>
+			<p>
+				<label>用户名：</label>
+				<input type="text" class="required"   name="username" value="{$vo.username}">
+			</p>
+			<p>
+                <label>胜意帐号：</label>
+                <input type="text" class=""   maxlength="20" name="asms_user_id" value="{$vo.asms_user_id}" />(业务必填)
+            </p>
+			<p>
+				<label>昵称：</label>
+				<input type="text" class="required" name="name" value="{$vo.name}">
+			</p>
+            <p>
+                <label>性别：</label>
+                <select name="sex" class="sex"><option value="0">先生</option><option value="1" selected='selected'>女士</option></select>
+            </p>
+            <p>
+                <label>头像：</label>
+                <input type="text" name="avatar" lookup="img.fileName" size="12"  readonly="readonly" class="textInput readonly" value='{$vo.avatar}'>
+                <a class="btnAttach" href="__URL__/upload" lookupGroup="img" width="560" height="300" title="查找带回">查找带回</a>
+            </p>
+            <p>
+                <label>公司手机号：</label>
+                <input class="input" name="public_mobile" type="text" size="30" value="{$vo.public_mobile}" />
+            </p>
+            <p>
+                <label>私人手机号：</label>
+                <input class="input" name="private_mobile" type="text" size="30" value="{$vo.private_mobile}" />
+            </p>
+            <p>
+                <label>电话：</label>
+                <input class="input" name="telephone" type="text" size="30" value="{$vo.telephone}" />
+            </p>
+            <p>
+                <label>QQ号：</label>
+                <input class="input" name="qq" type="text" size="30" value="{$vo.qq}" />
+            </p>
+            <p>
+                <label>MSN：</label>
+                <input class="input" name="msn" type="text" size="30" value="{$vo.msn}" />
+            </p>
+            <p>
+                <label>skype：</label>
+                <input class="input" name="skype" type="text" size="30" value="{$vo.skype}" />
+            </p>
+            <p>
+                <label>入职日期：</label>
+                <input class="date textInput valid" name="enpy_time" type="text"   value="{$vo.enpy_time}" />                 </p>
+            <p>
+
+            <div class="unit">
+                <label>前台显示：</label>
+                  <input type="radio"   name="view" <eq name="vo.view" value="1" >checked</eq> value="1">启用
+                  <input type="radio" name="view"  <eq name="vo.view" value="0" >checked</eq> value="0">禁用
+            </div>
+
+            <div class="unit">
+                <label>所属公司：</label>
+                <select name="company_id" >{$vo.companyOption.option}</select>
+
+            </div>
+            <div class="unit">
+                <label>所属部门:</label>
+                <select name="department_id" >{$vo.departmentOption.option}</select>
+
+            </div>
+            <div class="unit">
+                <label>所属职位：</label>
+                <select name="position_id" >{$vo.positionOption.option}</select>
+            </div>
+            <div class="unit">
+                <label>状态：</label>
+                <select class="small bLeft"  name="status">
+                    <option <eq name="vo.status" value="1" >selected</eq> value="1">启用</option>
+                    <option <eq name="vo.status" value="0" >selected</eq> value="0">禁用</option>
+                </select>
+            </div>
+
+            <div class="unit">
+                <label>个人签名:</label>
+                <textarea class="input" type="text" cols="57" rows="3" name="signature">{$vo.signature}</textarea>
+            </div>
+            <div class="unit">
+                <label>个人简介：</label>
+                <textarea name="profile" rows="5" cols="57">{$vo.profile}</textarea>
+            </div>
+			
+		</div>
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">Submit</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">Cancel</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+	
+</div>
+

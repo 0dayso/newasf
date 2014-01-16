@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>提示信息</title>
+    <link href="__PUBLIC__/mobile/css/global.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="__PUBLIC__/mobile/js/jquery-1.9.1.min.js"></script>
+    <style type="text/css">
+        *{padding: 0;margin: 0}
+        #msg{width:280px;height:150px;background-color:#f4f4f4;text-align:center;font-size:14px;position:absolute;top:50%;left:50%;margin:-75px 0 0 -140px;}
+		#msg a{color:#3598db;}
+        #msg h2{line-height:36px;font-size:18px;background-color:#3598db;}
+        #msg p{color:#333333;line-height:50px;}
+        #msg h2,#logout span{color:#FFF;}
+        #msg div{padding-top:10px;}
+        #msg span{width:92px;height:30px;line-height:30px;cursor:pointer;display:inline-block;}
+    </style>
+</head>
+<body>
+<div id="msg" type="">
+    <h2>提示信息</h2>
+    <p>
+        {$message}
+        {$error}
+    </p>
+    <div>
+        页面自动 <a id="href" href="{$jumpUrl}">跳转</a> 等待时间：<b id="wait">{$waitSecond}</b>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function(){
+        //卷轴
+        $(window).scroll(function(){
+            var top=($(this).scrollTop()+($(this).height())/2) +'px';
+            $('#msg').css({top:top});
+        });
+
+        var wait = document.getElementById('wait'),href = document.getElementById('href').href;
+        var interval = setInterval(function(){
+            var time = --wait.innerHTML;
+            if(time <= 0) {
+                location.href = href;
+                clearInterval(interval);
+            }
+        }, 1000);
+    });
+</script>
+</body>
+</html>

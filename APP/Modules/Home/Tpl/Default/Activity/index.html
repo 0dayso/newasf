@@ -1,0 +1,105 @@
+<include file="public:activity_header" />
+<div class="wd980">
+<div class="wd700 left">
+<div class="act_box">
+<h3>主题活动推荐</h3>
+<div id="actAd">
+<ul>
+ <li><a href="{:U('zt/cathaypacific_sales2')}" target="_blank"><img src="__PUBLIC__/images/Zt/cathaypacific_sales2/ad_680_340.jpg" alt="国泰航空公司" /></a></li>
+ <li><a href="{:U('zt/dijialaixi')}" target="_blank"><img src="__PUBLIC__/images/slide_img9.jpg" /></a></li>
+ <li><a href="{:U('zt/thtjbjbm')}" target="_blank"><img src="__PUBLIC__/images/activity/ib_ad0.jpg" /></a></li>
+</ul>
+<ol>
+ <li><a href="javascript:;" class="active">1</a></li>
+ <li><a href="javascript:;">2</a></li>
+ <li><a href="javascript:;">3</a></li>
+</ol>
+</div>
+</div>
+<div class="act_box">
+<h3><span class="right"><a href="{:U('activity/theme')}" target="_blank">更多》</a></span>热门活动</h3>
+<dl id="hot_act">
+<dt class="m10"><a href="{:U('zt/flysas_sales')}" target="_blank"><img src="__PUBLIC__/images/activity/ad7.jpg" /></a></dt>
+<dd>
+<h4>京沪往返欧洲低价推荐</h4>
+<p>为了给旅客提供更加快捷的旅行，爱尚飞与北欧航空强强联手，推出“京沪惠，游欧洲”的超低价活动，京沪往返欧洲3600元起，游客正在火热抢票中。<a href="{:U('zt/flysas_sales')}" target="_blank">查看详情》</a></p>
+<span>关注指数：<em>★★★★★</em></span>
+<!-- Baidu Button BEGIN -->
+<div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare" data="{'url':'http://www.aishangfei.com/zt/flysas_sales','text':'为了给旅客提供更加快捷的旅行，爱尚飞与北欧航空强强联手，推出“京沪惠，游欧洲”的超低价活动，京沪往返欧洲3600元起，游客正在火热抢票中。’,'pic':'http://www.aishangfei.com/Public/images/activity/ad7.jpg'}">
+<span class="bds_more">分享到：</span>
+<a class="bds_qzone"></a>
+<a class="bds_tsina"></a>
+<a class="bds_tqq"></a>
+<a class="bds_renren"></a>
+<a class="bds_t163"></a>
+</div>
+<!-- Baidu Button END -->
+</dd>
+<dd class="m10">
+<h4>穗港往返北美超值精选</h4>
+<p>应广大旅客寻求超低价机票的需求，爱尚飞与美联航再次合作，将底价进行到底。为旅客提供从广州、香港往返北美的超值机票，惊喜价格，等您来发现！<a href="{:U('zt/united_sales2')}" target="_blank">查看详情》</a></p>
+<span>关注指数：<em>★★★★</em></span>
+<!-- Baidu Button BEGIN -->
+<div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare" data="{'url':'http://www.aishangfei.com/zt/united_sales2','text':'应广大旅客寻求超低价机票的需求，爱尚飞与美联航再次合作，将底价进行到底。为旅客提供从广州、香港往返北美的超值机票，惊喜价格，等您来发现！','pic':'http://www.aishangfei.com/Public/images/activity/ad8.jpg'}">
+<span class="bds_more">分享到：</span>
+<a class="bds_qzone"></a>
+<a class="bds_tsina"></a>
+<a class="bds_tqq"></a>
+<a class="bds_renren"></a>
+<a class="bds_t163"></a>
+</div>
+<!-- Baidu Button END -->
+</dd>
+<dt><a href="{:U('zt/united_sales2')}" target="_blank"><img src="__PUBLIC__/images/activity/ad8.jpg" /></a></dt>
+<dt class="m10"><a href="{:U('/zt/chaoditejia')}" target="_blank"><img src="__PUBLIC__/images/activity/ad6.jpg" /></a></dt>
+<dd>
+<h4>二线城市出发抄底特价大放送</h4>
+<p>爱尚飞在品质服务不断提升的同时现又隆重推出从二线城市出发到全球各地的特价机票活动，底价放送。成都往返法兰克福4800元起，抄底价引爆你的眼球。<a href="{:U('/zt/chaoditejia')}" target="_blank">查看详情》</a></p>
+<span>关注指数：<em>★★★★★</em></span>
+<!-- Baidu Button BEGIN -->
+<div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare" data="{'url':'http://www.aishangfei.com/zt/chaoditejia','text':'爱尚飞在品质服务不断提升的同时现又隆重推出从二线城市出发到全球各地的特价机票活动，底价放送，保证惊喜。成都往返法兰克福4800元起，抄底价引爆你的眼球。','pic':'http://www.aishangfei.com/Public/images/activity/ad6.jpg'}">
+<span class="bds_more">分享到：</span>
+<a class="bds_qzone"></a>
+<a class="bds_tsina"></a>
+<a class="bds_tqq"></a>
+<a class="bds_renren"></a>
+<a class="bds_t163"></a>
+</div>
+<!-- Baidu Button END -->
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="wd270 right">
+<div class="act_box" id="act_info">
+<h3><span><strong>活动</strong>资讯</span></h3>
+<ul>
+<volist name="newlist" id="vo">
+<li><a href='{:U("/News/info/$vo[id]","","html")}' title="{$vo.title}" target="_blank"><span></span> {:cutStr($vo[title],16)}</a>
+    <if condition="$vo[is_push] neq 0"> <span class="hot"></span></if></li>
+</volist>
+</ul>
+</div>
+
+<div id="r_ad"><a href="{:U('zt/wdyindex')}" target="_blank"><img src="__PUBLIC__/images/activity/r_ad.jpg" /></a></div>
+
+<div class="act_box">
+<h3>关注我们</h3>
+<div id="attention"><img src="__PUBLIC__/images/weixin_ewm.gif" />加爱尚飞微信号<br/><em>aishangfeiweixin</em>为好友或直接扫描左侧二维码，可了解更多活动及优惠信息<span>@ 爱尚飞国际机票网</span></div>
+</div>
+
+<div class="act_box">
+<h3>我们的合作伙伴</h3>
+<a href="{:U('about/partner')}" target="_blank"><img src="__PUBLIC__/images/activity/partner.jpg" /></a>
+</div>
+
+</div>
+</div>
+
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6671062" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<include file="public:footer" />

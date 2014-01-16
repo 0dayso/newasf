@@ -1,0 +1,92 @@
+<form id="pagerForm" action="__URL__" method="post">
+    <input type="hidden" name="pageNum" value="{$_REQUEST['pageNum']|default=1}"/>
+    <input type="hidden" name="numPerPage" value="{$numPerPage}"/>
+    <input type="hidden" name="so" value="{$_REQUEST.so}" />
+    <input type="hidden" name="_order" value="{$_REQUEST._order}"/>
+    <input type="hidden" name="_sort" value="{$_REQUEST['_sort']|default='1'}"/>
+    <input type="hidden" name="listRows" value="{$_REQUEST['listRows']}"/>
+
+    <volist name="map" id="m">
+        <input type="hidden" name="{$key}" value="{$_REQUEST[$key]}"/>
+    </volist>
+
+</form>
+
+<div class="pageHeader">
+    <form rel="pagerForm" onsubmit="return navTabSearch(this);" action="__URL__" method="post">
+        <div class="searchBar">
+            <ul class="searchContent">
+                <li>
+                    <label>搜索：</label>
+                    <input type="text" name="so" value="{$_REQUEST.so}"/>
+                </li>
+
+            </ul>
+            <div class="subBar">
+                <ul>
+                    <li><div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div></li>
+                </ul>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+			<li><a class="add" href="__URL__/add" target="dialog" rel="add" mask="true" width="810" height="400" ><span>新增</span></a></li>
+			<li><a class="delete" href="__URL__/foreverdelete/id/{sid_user}/navTabId/__MODULE__" target="ajaxTodo" title="你确定要删除吗？" warn="请选择用户" ><span>删除</span></a></li>
+			<li><a class="edit" href="__URL__/edit/id/{sid_user}" target="navTab" rel="edit" mask="true" warn="请选择用户"><span>编辑</span></a></li>
+			<li class="line">line</li>
+			<!--<li><a class="icon" href="__URL__/password/id/{sid_user}" target="dialog" mask="true" warn="请选择用户"><span>修改密码</span></a></li>
+            <li><a class="edit" href="__URL__/setRole/id/{sid_user}/navTabId/__MODULE__" target="dialog" mast="true" warn="请选择用户"><span>设置权限</span></a></li>-->
+        </ul>
+	</div>
+
+	<table class="table" width="100%" layoutH="115">
+		<thead>
+		<tr>
+			<th width="60" orderField="id" <if condition="$_REQUEST._order eq 'id'">class="{$_REQUEST._sort}"</if>>编号</th>
+			<th orderField="name" <if condition="$_REQUEST._order eq 'nickname'">class="{$_REQUEST._sort}"</if>>用户名</th>
+			<th orderField="from_city" <if condition="$_REQUEST._order eq 'from_city'">class="{$_REQUEST._sort}"</if>>出发城市</th>
+			<th width="100" orderField="to_city" <if condition="$_REQUEST._order eq 'to_city'">class="{$_REQUEST._sort}"</if>是>目的城市</th>
+			<th width="120" orderField="contents" <if condition="$_REQUEST._order eq 'contents'">class="{$_REQUEST._sort}"</if>>评论内容</th>
+			<th width="80" orderField="create_time" <if condition="$_REQUEST._order eq 'create_time'">class="{$_REQUEST._sort}"</if>>评论时间</th>
+			<!--<th width="80" orderField="status" <if condition="$_REQUEST._order eq 'status'">class="{$_REQUEST._sort}"</if>>状态</th>-->
+            <th width="80">操作</th>
+		</tr>
+		</thead>
+		<tbody>
+		<volist id="vo" name="list">
+			<tr target="sid_user" rel="{$vo['id']}">
+				<td>{$vo['id']}</td>
+				<td>{$vo['name']}</td>
+				<td>{$vo['from_city']}</td>
+				<td>{$vo['to_city']}</td>
+				<td>{$vo['contents']}</td>
+                <td>{$vo['create_time']|date="Y-m-d",###}</td>
+                <!--<td>{$vo['status']|getStatus}</td>
+                <td>{$vo['status']|showStatus=$vo['id'],'navTabAjaxMenu'} <a href="__URL__/edit/id/{$vo['id']}" target="dialog" rel="edit">编辑</a></td>-->
+                <td><a href="__URL__/read/id/{$vo['id']}" target="dialog" rel="read">查看</a> <a href="__URL__/edit/id/{$vo['id']}" target="dialog" rel="edit">编辑</a></td>
+		</tr>
+		</volist>
+		</tbody>
+	</table>
+
+	<div class="panelBar">
+        <div class="pages">
+            <span>显示</span>
+            <select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
+                <option value="10" <eq name="numPerPage" value="10">selected=selected</eq>>10</option>
+                <option value="20" <eq name="numPerPage" value="20">selected=selected</eq>>20</option>
+                <option value="30" <eq name="numPerPage" value="35">selected=selected</eq>>30</option>
+                <option value="50" <eq name="numPerPage" value="50">selected=selected</eq>>50</option>
+            </select>
+            <span>共{$totalCount}条</span>
+        </div>
+		<div class="pagination" targetType="navTab" totalCount="{$totalCount}" numPerPage="{$numPerPage}" pageNumShown="10" currentPage="{$currentPage}"></div>
+	</div>
+
+</div>
+
+

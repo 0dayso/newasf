@@ -1,0 +1,96 @@
+<include file="public:header" />
+
+    <link rel="stylesheet" href="__PUBLIC__/css/member.css" type="text/css" />
+    <script type="text/javascript" src="__PUBLIC__/js/member.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/layer/layer.min.js"></script>
+    <script src="__PUBLIC__/admin/Js/jquery.form.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/modify.js"></script>
+    <div class="member">
+    	<!--会员中心导航-->
+    	<include file="public:left" />
+        
+	  	<div class="right" id="memberR">
+        	<h1 class="nav_tit">编辑常用旅客信息</h1>
+            <div id="passenger">
+            	<form action="/" method="post">
+                	<ul>
+                    	<li>
+                        	<span>旅客姓名：<b>*</b></span>
+                        	<input class="txt w190" name="" type="text" value required placeholder="中文名/英文名"/>
+                        </li>
+                        <li>
+                        	<span>国籍：<b>*</b></span>
+                        	<input class="txt w190" name="" type="text" value required placeholder="中文/英文"/>
+                        </li>
+                        <li>
+                        	<span>性别：</span>
+                        	<input name="sex" type="radio" value="1" <if condition="$userInfo['sex'] eq 1">checked</if> />男
+                        	<input name="sex" type="radio" value="0" <if condition="$userInfo['sex'] eq 0">checked</if> />女
+                        </li>
+                        <li>
+                        	<span>生日：<b>*</b></span>
+                        	&nbsp;<select name="year" id="idYear" on="{$birthday[0]}">
+                            	<option value="0">请选择年份</option>
+                            </select>
+							<select name="month" id="idMonth"  on="{$birthday[1]}">
+                            	<option value="0">请选择月份</option>
+                            </select>
+							<select name="day" id="idDay" on="{$birthday[2]}">
+                            	<option value="0">请选择日期</option>
+							</select>
+                        </li>
+                        <li>
+                        	<span>手机号码：<b>*</b></span>
+                            <input class="txt w190" name="" type="text" value required/><em>非中国大陆手机号请先输入区号，例：香港手机号85291111111</em>
+                        </li>
+                        <li>
+                        	<span>联系电话：<b>*</b></span>
+                            <input class="txt w50" name="" type="text" value required placeholder="区号" />-<input class="txt w100" name="" type="text" value required placeholder="电话" />-<input class="txt w50" name="" type="text" value required placeholder="分机" />
+                        </li>
+                        <li>
+                        	<span>电子邮箱：<b>*</b></span>
+                            <input class="txt w190" name="" type="text" value="" />
+                        </li>
+                        <li>
+                        	<span>证件信息：<b>*</b></span>
+                            <input class="txt w190" name="" type="text" value="" />
+                       	</li>
+                    </ul>
+                    <ul class="bt">
+                    	<li>
+                        	<span>证件类型：</span>
+                            &nbsp;<select name="">
+                              <option value="身份证">身份证</option>
+                            </select>
+                            &nbsp;证件号码：
+                            <input class="txt w190" name="" type="text" value="" />
+                            &nbsp;有效期：
+                            <input class="txt w100" name="" type="text" value="" />
+                            <a class="del">删除</a>
+                       	</li>
+                        <li>
+                        	<span>证件信息：</span>
+                            &nbsp;<select name="">
+                              <option value="身份证">身份证</option>
+                            </select>
+                            &nbsp;证件号码：
+                            <input class="txt w190" name="" type="text" value="" />
+                            &nbsp;有效期：
+                            <input class="txt w100" name="" type="text" value="" />
+                            <a class="del">删除</a>
+                       	</li>
+                        <li><span>&nbsp;</span><a id="addpapers">添加证件</a></li>
+                        <li><span>&nbsp;</span>&nbsp;&nbsp;设为首选旅客<input name="" type="checkbox" value="" /></li>
+                        <li><span>&nbsp;</span><input class="bt99" type="submit" value="提交"></li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    	$(function(){
+			optionDate("#idYear","#idMonth","#idDay");
+			});
+    </script>
+    
+<include file="public:footer" />

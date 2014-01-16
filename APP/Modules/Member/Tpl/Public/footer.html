@@ -1,0 +1,95 @@
+ <div id="footer">
+    	<div class="wd960">
+            <div id="ft_link">
+                <ul>
+                    <li><a href="{:U('/about')}" target="_blank">关于爱尚飞</a> |</li>
+                    <li><a href="{:U('/Adviser')}" target="_blank">专业顾问</a> |</li>
+                    <li><a href="{:U('/about/service')}" target="_blank">会员服务</a> |</li>
+                    <li><a href="{:U('/about/privacy')}" target="_blank">隐私保护</a> |</li>
+                    <li><a href="{:U('/about/job')}" target="_blank">人才招聘</a> |</li>
+                    <li><a href="http://www.cata.org.cn/clientWeb/frm_Single_Search.aspx?name=%u5E7F%u5DDE%u7F8E%u4E50%u5546%u52A1%u670D%u52A1%u6709%u9650%u516C%u53F8&type=agentname&leixing=&chengshi=&chengqu=" target="_blank">中国航空运输协会</a> |</li>
+                    <li><a href="__PUBLIC__/images/zz_08.jpg" target="_blank">企业营业执照</a> |</li>
+                    <li><a href="__PUBLIC__/images/ylzg.jpg" target="_blank">民航客运一类代理</a></li>
+                </ul>
+            </div>
+            <?php
+            //设置备案号
+            if($_SERVER['HTTP_HOST']=='www.aishangfei.cn'){
+                $bah="粤ICP备11009654号-7";
+            }elseif($_SERVER['HTTP_HOST']=='www.aishangfei.org'){
+                $bah="粤ICP备11009654号-9";
+            }else{
+                $bah="粤ICP备11009654号-21";
+            }
+            ?>
+            <div id="ft_copyright">Copyright © 2009-2013 爱尚飞国际机票网 广州美乐商务服务有限公司. All Rights Reserved
+                <img src="__PUBLIC__/images/ft_icp.jpg" alt="icp" />
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">{$bah}</a>
+            </div>
+            <div id="ft_icons">
+                <a class="a0" href="#" target="_blank"></a>
+                <a class="a1" href="#" target="_blank"></a>
+                <a class="a2" href="#" target="_blank"></a>
+                <a class="a3" href="http://trust.360.cn/search.php" target="_blank"></a>
+                <a class="a4" href="#" target="_blank"></a>
+                <a class="a5" href="http://www.gzaic.gov.cn/GZCX/WebUI/credit/qiyeInfo.htm#" target="_blank"></a>
+                <a class="a6" href="http://net.china.com.cn/index.htm" target="_blank"></a>
+                <a class="a7" href="http://www.cyberpolice.cn/wfjb/" target="_blank"></a>
+            </div>
+
+
+        <div style="display:none;">
+                <script type="text/javascript">
+        var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fd4cf44a2f93f50230dbcc266a1e41306' type='text/javascript'%3E%3C/script%3E"));
+            </script>
+
+        </div>
+     <script type="text/javascript">
+         var _gaq = _gaq || [];
+         _gaq.push(['_setAccount', 'UA-35556838-1']);
+         _gaq.push(['_setDomainName', 'aishangfei.net']);
+         _gaq.push(['_setLocalRemoteServerMode']);
+         _gaq.push(['_trackPageview']);
+
+         (function() {
+             var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+             ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+         })();
+     </script>
+     <!-- Google Code for &#20877;&#33829;&#38144;&#26631;&#35760; -->
+     <!-- Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. For instructions on adding this tag and more information on the above requirements, read the setup guide: google.com/ads/remarketingsetup -->
+
+
+    	</div>        
+	</div>
+
+
+ <!-- WPA Button Begin 统计分析代码-->
+ <script charset="utf-8" type="text/javascript" src="http://wpa.b.qq.com/cgi/wpa.php?key=XzkzODAwOTkwMl85Njg2NV80MDA2MDg1MTg4Xw"></script>
+ <!-- WPA Button End -->
+
+
+    <style type="text/css">
+    #line_query_qq{width:140px;height:248px;background:url(__PUBLIC__/images/line_query_qq.gif) no-repeat;position:absolute;top:170px;right:0;}
+	#line_query_qq dt{height:18px;}
+	#line_query_qq dt span{float:right;width:18px;height:18px;line-height:60px;cursor:pointer;overflow:hidden;}
+	#line_query_qq dd{height:115px;}
+	#line_query_qq dd.kf a{width:140px;height:115px;line-height:300px;display:block;overflow:hidden;}
+	#line_query_qq dd span{display:block;margin-top:80px;height:22px;text-align:center;}
+    </style>
+    <script type="text/javascript">
+	$(function(){
+		$(window).scroll(function(){
+			var top=$(this).scrollTop()+170+'px';
+			$('#line_query_qq').css('top',top);
+			});
+		$('#line_query_qq span').click(function(){
+			$('#line_query_qq').hide();
+			});
+	});
+    </script>
+ 
+</body>
+</html>

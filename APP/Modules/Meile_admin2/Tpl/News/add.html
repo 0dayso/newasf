@@ -1,0 +1,101 @@
+<php>$title="添加、编辑新闻-后台管理";$currentNav ='资讯管理 > 添加编辑新闻';</php>
+<include file="Public:header" />
+            <div class="mainBody">
+                <include file="Public:left" />
+                <div id="Right">
+                    <div class="Item hr">
+                        <div class="current">添加编辑</div>
+                    </div>
+                    <form>
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table1">
+                            <tr>
+                                <th width="100">文章标题：</th>
+                                <td><input id="title" type="text" class="input" size="60" name="info[title]" value="{$info.title}"/> <a href="javascript:void(0)" id="checkNewsTitle">检测是否重复</a></td>
+                            </tr>
+
+                            <tr>
+                                <th width="100">文章发布状态：</th>
+                                <td><label><input type="radio" name="info[status]" value="0" <if condition="$info.status eq 0"> checked="checked"</if> /> 文章审核状态</label> &nbsp; <label><input type="radio" name="info[status]" value="1" <if condition="$info.status eq 1"> checked="checked"</if> /> 文章已发布状态</label> </td>
+                            </tr>
+                            <tr>
+                                <th>文章属性：</th>
+                                <td>
+                                    <select name="info[is_push]">
+                                        <option value="0" >--推荐级别--</option>
+                                        <option value="1" <if condition="$info['is_push'] eq 1">selected</if>>--1级推荐--</option>
+                                        <option value="2"<if condition="$info['is_push'] eq 2">selected</if> >--2级推荐--</option>
+                                        <option value="3" <if condition="$info['is_push'] eq 3">selected</if>>--3级推荐--</option>
+                                        <option value="4" <if condition="$info['is_push'] eq 4">selected</if>>--4级推荐--</option>
+                                        <option value="5" <if condition="$info['is_push'] eq 5">selected</if>>--5级推荐--</option>
+                                    </select>
+
+                                    <select name="info[is_top]">
+                                        <option value="0">--置顶级别--</option>
+                                        <option value="1" <if condition="$info['is_top'] eq 1">selected</if>>--1级置顶--</option>
+                                        <option value="2" <if condition="$info['is_top'] eq 2">selected</if>>--2级置顶--</option>
+                                        <option value="3" <if condition="$info['is_top'] eq 3">selected</if>>--3级置顶--</option>
+                                        <option value="4" <if condition="$info['is_top'] eq 4">selected</if>>--4级置顶--</option>
+                                        <option value="5" <if condition="$info['is_top'] eq 5">selected</if>>--5级置顶--</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th width="100">发布时间：</th>
+                                <td><input type="text"  class="input"  name="info[published]" <empty name="info['published']">value="{:date('Y-m-d H:i:s',time())}"<else /> value="{$info[published]|date='Y-m-d H:i:s',###}"</empty> /></td>
+
+                            <tr>
+                                <th>文章所属分类：</th>
+                                <td>
+                                    <select name="info[cid]">
+                                        <volist name="list" id="vo">
+                                            <if condition="$vo[cid] eq $info[cid]">
+                                                <option value="{$vo.cid}" selected="selected">{$vo.fullname}</option>
+                                                <else/>
+                                                <option value="{$vo.cid}">{$vo.fullname}</option>
+                                            </if>
+                                        </volist>
+                                    </select></td>
+                            </tr>
+                            <tr>
+                                <th>文章关键词：</th>
+                                <td><input type="text" class="input" size="60" name="info[keywords]" value="{$info.keywords}"/> 多关键词间用半角逗号（,）分开，可用于做文章关联阅读条件</td>
+                            </tr>
+                            <tr>
+                                <th>文章描述：</th>
+                                <td><textarea class="input" style="height: 60px; width: 600px;" name="info[description]">{$info.description}</textarea> 用于SEO 如果不填写则系统自动截取文章前200个字符</td>
+                            </tr>
+                            <tr>
+                                <th>文章内容：</th>
+                                <td><textarea id="content" class="input" style="height: 300px; width: 100%;" name="info[content]">{$info.content}</textarea></td>
+                            </tr>
+                        </table>
+                        <input type="hidden" name="info[id]" value="{$info.id}" />
+                    </form>
+                    <div class="commonBtnArea" >
+                        <button class="btn submit">提交</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <include file="Public:footer" />
+        <js href="__PUBLIC__/admin/kindeditor/kindeditor.js,__PUBLIC__/admin/kindeditor/lang/zh_CN.js"/>
+        <script type="text/javascript">
+            $(function(){var  content ;
+                KindEditor.ready(function(K) {
+                    content = K.create('#content');
+                });
+                $("#checkNewsTitle").click(function(){
+                    $.getJSON("__URL__/checkNewsTitle", { title:$("#title").val(),id:"{$info.id}"}, function(json){
+                        $("#checkNewsTitle").css("color",json.status==1?"#0f0":"#f00").html(json.info);
+                    });
+                });
+                $(".submit").click(function(){
+                    content.sync();
+                    commonAjaxSubmit();
+                    return false;
+                });
+            });
+        </script>
+    </body>
+</html>

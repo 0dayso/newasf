@@ -1,0 +1,101 @@
+<form id="pagerForm" action="__URL__/index" method="post">
+    <input type="hidden" name="pageNum" value="{$_REQUEST['pageNum']|default=1}"/>
+    <input type="hidden" name="numPerPage" value="{$numPerPage}"/>    
+    <input type="hidden" name="so" value="{$_REQUEST.so}" />
+    <input type="hidden" name="_order" value="{$_REQUEST._order}"/>
+    <input type="hidden" name="_sort" value="{$_REQUEST['_sort']|default='1'}"/>
+    <input type="hidden" name="listRows" value="{$_REQUEST['listRows']}"/>        
+    <input type="hidden" name="so_date1" value="{$_REQUEST.so_date1}" />
+    <input type="hidden" name="so_date2" value="{$_REQUEST.so_date2}" />    
+    <volist name="map" id="m">
+        <input type="hidden" name="{$key}" value="{$_REQUEST[$key]}"/>
+    </volist>
+</form>
+
+<div class="pageHeader">
+    <form rel="pagerForm" onsubmit="return navTabSearch(this);" action="__URL__/index" method="post">
+        <div class="searchBar">
+            <ul class="searchContent">
+                <li>
+                    <label>搜索：</label>
+                    <input type="text" name="so" value="{$_REQUEST.so}"/>
+                </li>
+                <li>
+                    <label>发送日期：</label>
+                    <input type="text" class="date textInput valid" size="8" name="so_date1" value="{$_REQUEST.so_date1}">
+                    <a class="inputDateButton" href="javascript:;">选择</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-
+                </li>
+                <li>
+                    <input type="text" class="date textInput valid" size="8" name="so_date2" value="{$_REQUEST.so_date2}">
+                    <a class="inputDateButton" href="javascript:;">选择</a>
+                </li>
+            </ul>
+            <div class="subBar">
+                <ul>
+                    <li>
+                       <div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div>                     
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+			<li><a class="add" href="__URL__/send" target="dialog" rel="add" mask="true" width="810" height="400" ><span>发送短信</span></a></li>
+			<li><a class="delete" href="__URL__/foreverdelete/id/{sid_user}/navTabId/__MODULE__" target="ajaxTodo" title="你确定要删除吗？" warn="请选择用户" ><span>删除</span></a></li>
+            <li><a title="确实要删除这些记录吗?" target="selectedTodo" target="dialog" rel="ids[]" href="__URL__/delAll" class="delete" ><span>批量删除</span></a></li>
+			<li class="line">line</li>
+        </ul>
+	</div>
+
+	<table class="table" width="100%" layoutH="115">
+		<thead>
+		<tr>
+        	 <th width="20"><input type="checkbox" group="ids[]" class="checkboxCtrl"></th>
+			<th width="40" orderField="id" <if condition="$_REQUEST._order eq 'id'">class="{$_REQUEST._sort}"</if>>编号</th>
+			<th width="60" orderField="mobile" <if condition="$_REQUEST._order eq 'mobile'">class="{$_REQUEST._sort}"</if>>手机号码</th>
+			<th width="200" orderField="content" <if condition="$_REQUEST._order eq 'content'">class="{$_REQUEST._sort}"</if>>短信内容</th>
+			<th width="70" orderField="IP" <if condition="$_REQUEST._order eq 'IP'">class="{$_REQUEST._sort}"</if>是>IP</th>
+			<th width="250" orderField="from" <if condition="$_REQUEST._order eq 'from'">class="{$_REQUEST._sort}"</if>>来路</th>
+			<th width="40" orderField="return_var" <if condition="$_REQUEST._order eq 'return_var'">class="{$_REQUEST._sort}"</if>>返回值</th>
+            <th width="100" orderField="sent_time" <if condition="$_REQUEST._order eq 'sent_time'">class="{$_REQUEST._sort}"</if>>发送时间</th>
+            <th width="50">操作</th>
+		</tr>
+		</thead>
+		<tbody>
+		<volist id="vo" name="list">
+			<tr target="sid_user" rel="{$vo['id']}">
+            	<td><input name="ids[]" value="{$vo['id']}" type="checkbox"></td>
+				<td>{$vo['id']}</td>
+				<td>{$vo['mobile']}</td>
+				<td title="{$vo['content']}">{$vo['content']}</td>
+				<td>{$vo['ip']}</td>
+				<td title="{$vo['source']}">{$vo['source']}</td>
+                <td>{$vo['return_var']}</td>
+                <td>{$vo['sent_time']|date="Y-m-d H:i:s",###}</td>
+                <td><a href="__URL__/check/id/{$vo['id']}" target="dialog" rel="read">查看</a>  <a href="__URL__/foreverdelete/id/{$vo['id']}/navTabId/__MODULE__-index" target="navTabTodo" title="你确定要删除吗？">删除</a></td>
+		</tr>
+		</volist>
+		</tbody>
+	</table>
+
+	<div class="panelBar">
+        <div class="pages">
+            <span>显示</span>
+            <select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
+                <option value="10" <eq name="numPerPage" value="10">selected=selected</eq>>10</option>
+                <option value="20" <eq name="numPerPage" value="20">selected=selected</eq>>20</option>
+                <option value="30" <eq name="numPerPage" value="35">selected=selected</eq>>30</option>
+                <option value="50" <eq name="numPerPage" value="50">selected=selected</eq>>50</option>
+            </select>
+            <span>共<if condition="$totalCount eq 0">0<else/>{$totalCount}</if>条</span>
+        </div>
+		<div class="pagination" targetType="navTab" totalCount="{$totalCount}" numPerPage="{$numPerPage}" pageNumShown="10" currentPage="{$currentPage}"></div>
+	</div>
+
+</div>
+
+

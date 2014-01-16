@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>{$title} - {:C('WEB_NAME')}</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="__PUBLIC__/css/activity.css" type="text/css" />
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/main.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/activity.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/layer/layer.min.js"></script>
+    <style type="text/css">#kfivtwin{display:none!important;/*隐藏53客服*/}</style>
+</head>
+<body>
+<script type="text/javascript">
+    function open_kf(){
+    <?php if($userinfo): ?>
+        window.open('http://wpa.qq.com/msgrd?v=3&uin={$userinfo.user.qq|trim}&site=qq&menu=yes');
+    <?php else: ?>
+        setIsinvited();hz6d_cus_web_msg_open();
+    <?php endif;?>
+    }
+</script>
+<div id="hd_top">
+        <div class="wd960">
+			<if condition="$userinfo">
+
+				<span class="left">您好,
+				<a title="进入会员中心" href="{:U('/Member/index')}"><if condition="$userinfo['name']">{$userinfo.name}<else/>{$userinfo.username}</if></a>
+					普通会员  <a href="{:U('/member/out')}">退出</a>
+				</span>
+
+			<else/>
+				<span class="left">您好，欢迎光临爱尚飞国际机票网<a href="{:U('/member/login')}">登录</a><a href="{:U('/member/register')}">注册</a></span>
+			</if>
+            <span class="right">
+             <if condition="$userinfo">
+                 <a id="myAisf_w" href="{:U('/member')}">我的爱尚飞</a>
+                 <ul id="myAisf_u">
+                     <li><a href="{:U('/member/booking')}">我的订单</a></li>
+                     <li><a href="{:U('/member/information')}">个人资料</a></li>
+                     <li><a  target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={$userinfo.user.qq|trim}&site=qq&menu=yes">咨询我的顾问</a></li>
+                     <li><a href="{:U('/member/editpwd')}">修改密码</a></li>
+                 </ul>
+                 <a id="myAisf_t"></a>
+             </if>
+                <a class="spr gz"></a><a href="http://e.weibo.com/aishangfei2012?ref=http%3A%2F%2Fweibo.com%2Fu%2F2014524587%3Fwvr%3D5%26" class="ml0" target="_blank">关注我们</a><a class="spr wx"></a><a href="javascript:;" class="ml0" id="weixin_me">微信我们</a><a href="{:U('/iflight/verify')}" class="ts">机票验真</a><a href="{:U('/help')}" class="bz">帮助中心</a><a class="spr dh"></a></span>
+        </div>
+    </div>
+    <div id="hd_logo">
+        <div class="wd960">
+            <a href="{:U('/')}" class="left"><img src="__PUBLIC__/images/logo.gif" alt="logo" class="logo" /></a>
+            <div class="right hd_nav"><a href="{:U('/')}">首页</a>|<a href="{:U('/iflight')}">国际机票</a>|<a href="{:U('/about/service')}">会员服务</a>|<a href="{:U('/jifen')}">积分商城</a>|<a href="<if condition="$userinfo">{:U('/Adviser/review')}_{$userinfo.user.id}<else/>{:U('/adviser')}</if>">专业顾问</a></div>
+        </div>
+    </div>
+    <?php if(MODULE_NAME=='Activity' and ACTION_NAME=='theme'){ ?>
+    <div id="top_img1">
+      <div class="wd1080"><img src="__PUBLIC__/images/activity/top_img1.jpg" /></div>
+    </div>
+    <?php }elseif(MODULE_NAME=='Activity' and ACTION_NAME=='trademark'){ ?>
+    <div id="top_img4">
+      <div class="wd1080"><img src="__PUBLIC__/images/activity/top_img4.gif" /></div>
+    </div>
+    <?php }elseif(MODULE_NAME=='Activity' and ACTION_NAME=='sale'){ ?>
+    <div id="top_img3">
+      <div class="wd1080"><img src="__PUBLIC__/images/activity/top_img3.gif" /></div>
+    </div>
+    <?php }else{ ?>
+    <div id="top_img0">
+      <div class="wd1080"><img src="__PUBLIC__/images/activity/top_img0.jpg" /></div>
+    </div>
+    <?php } ?>
+    <div id="top_nav">
+        <div class="wd960">
+            <ul>
+                <li><a <?php if(MODULE_NAME=='Activity' and ACTION_NAME!='theme' and ACTION_NAME!='sale' and ACTION_NAME!='trademark') echo "class='active'"; ?> href="{:U('/activity')}">活动首页</a></li>
+                <li><a <?php if(MODULE_NAME=='Activity' and ACTION_NAME=='theme') echo "class='active'"; ?> href="{:U('activity/theme')}">主题活动</a></li>
+                <li><a <?php if(MODULE_NAME=='Activity' and ACTION_NAME=='trademark') echo "class='active'"; ?> href="{:U('activity/trademark')}">品牌专区</a></li>
+                <li><a <?php if(MODULE_NAME=='Activity' and ACTION_NAME=='sale') echo "class='active'"; ?> href="{:U('activity/sale')}">特价汇</a></li>
+                <li><a href="{:U('member/login')}" target="_blank">我的爱尚飞</a></li>
+            </ul>
+        </div>
+	</div>

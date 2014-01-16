@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="__PUBLIC__/css/main.css" type="text/css" />
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/layer/layer.min.js"></script>
+    <script src="__PUBLIC__/admin/Js/jquery.form.js"></script>
+</head>
+
+<body>
+<style>
+    #qr_ul_info .yl{float:none}
+
+</style>
+<script type="text/javascript">
+    $(function(){
+        var index = parent.layer.getFrameIndex();
+        $('.close').click(function(){
+            parent.layer.close(index);
+        });
+
+        $('.del_img').click(function(){
+            $.get('','act=del_img&id={$info.id}',function(data){
+                layer.load(1,0,0);
+                if(data){
+                    $('.img').hide();
+                }
+            })
+        })
+
+        $('.submits').click(function(){
+            $('form').ajaxSubmit({
+                url:$('form').attr('action'),
+                type:"POST",
+                success:function(data) {
+                    if(data && (typeof data)=='string'){
+                        var data = eval("(" + data + ")");
+                    };
+                    $('#msg').val(data.info);
+                    parent.layer.msg(data.info,2,data.status);
+                    parent.layer.close(index);
+                }
+            });
+        })
+
+    });
+</script>
+<input type="hidden" id="msg" value="1"/>
+<form action="" class="fh_form" method="post">
+    <ul id="qr_ul_info">
+        <li><span>订单号：</span>{$info['order_id']}</li>
+        <li><span>会员名：</span>{$info.member_name}</li>
+        <li><span>行程：</span>{$info.from_city} → {$info.to_city}</li>
+        <li class="allsprice"><span>合计价格：</span><span class="yl">{$info.price}</span>
+            <volist name="info.price_des" id="price_vo">
+                ( {$price_vo.type_name}: 票价<span class="yl">{$price_vo.price}</span>+税费<span class="yl">{$price_vo.tax}</span>×人数<span class="yl">{$price_vo.num}<?php $chengren[$i]=$price_vo['num'] ?></span>=<span class="yl">{$price_vo.total}</span>)
+            </volist>
+        </li>
+        <li><span>价格：</span>￥<input type="text" class="text" style="width: 100px"   value="{$info['price']}" name="price" /></li>
+        <li><span>下单时间：</span>{$info.order_datetime}</li>
+        <li><span>订单状态：</span><input type="text" class="text" style="width: 100px"   value="{$info['order_status']}" name="order_status" /></li>
+        <li><span>&nbsp;</span>
+            <input name="id" type="hidden" value="{$info.id}"/>
+            <input style="height: 30px;padding: 5px;background: #FC9C03" type="button" class=" submits" value="确认提交" />
+            <input  style="height: 30px;padding: 5px;margin-left:20px;background: #cccccc"type="button"  class="close" value="取消">
+        </li>
+    </ul>
+</form>
+</body>
+</html>

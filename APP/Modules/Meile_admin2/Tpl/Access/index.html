@@ -1,0 +1,110 @@
+<php>$title="权限管理-后台管理"</php>
+<include file="Public:header" />
+<script type="text/javascript">
+    function searchs(p){
+         var  datas=$('#search').serialize();
+        $.getJSON("{:U('access/index')}?ss=1&p="+p, datas,function(data){
+            if(data.list){
+            var str='';
+            $.each(data.list, function(i,item){
+                str+='<tr align="center" aid='+item.id+'>';
+                str+=' <td>'+item.id+'</td>';
+                str+=' <td>'+item.username+'</td>';
+                str+=' <td>'+item.name+'</td>';
+                str+=' <td>'+item.public_mobile+'</td>';
+                str+=' <td>'+item.telephone+'</td>';
+                str+=' <td>'+item.qq+'</td>';
+                str+='  <td>'+item.email+'</td>';
+                var dtime= new Date(item.create_time*1000);
+                str+='<td>'+dtime.getFullYear()+'-'+(dtime.getMonth()+1)+'-'+dtime.getDate()+'</td>';
+                str+=' <td>'+item.statusTxt+'</td>';
+                str+=' <td>[<a href="__URL__/editAdmin?id='+item.id+'">编辑</a> ]</if></td>';
+                str+=' </tr>';
+            });
+                $('#datalist').html(str);
+                $('#page').html(data.page);
+            }else{
+                $('#datalist').html('');
+                $('#page').html('');
+            }
+        })
+
+
+    }
+    function page(u,p){
+        searchs(p);
+    }
+</script>
+            <div class="mainBody">
+                <include file="Public:left" />
+                <div id="Right">
+                    <div class="Item hr"><form method="" class="form" id="search">
+                        <div class="current">管理员列表</div>
+
+                        <tr>
+                        <td><select onchange="searchs()" name="where[company_id]"><option value="" >--所有公司--</option>{$info.companyOption.option}</select></td>
+                        <td><select onchange="searchs()" name="where[department_id]"><option value="" >--所有部门--</option>{$info.departmentOption.option}</select></td>
+                        <td><select onchange="searchs()" name="where[position_id]"><option value="" >--所有职位--</option>{$info.positionOption.option}</select></td>
+                        <td><select onchange="searchs()" name="where[status]">
+                            <option value="" >---所有状态---</option>
+                            <option value="1"  selected="selected">--启用状态--</option>
+                            <option value="0" >--禁用状态--</option>
+                        </select>
+                        </td>
+                        <td><button type="button" onclick="$('select').val('');searchs()" class="button">清除</button></td>
+                        <td><input type="text" class="input" name="search" class="search"><button type="button" class="button" onclick="searchs()">搜索</button></td>
+                        <tr>
+
+                        <style>
+                            thead thead tr td{overflow:hidden}
+                            .t9,.t10{width:50px}
+                            .t2,.t3{width:60px}
+                            .t4,.t5,.t6,.t7{width:100px}
+                        </style>
+
+                    </form>
+
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab">
+                        <thead>
+                            <tr>
+                                <td class="t1">ID</td>
+                                <td class="t2">账号</td>
+                                <td class="t3">姓名</td>
+                                <td class="t4">手机</td>
+                                <td class="t5">电话</td>
+                                <td class="t6">QQ</td>
+                                <td class="t7">Email</td>
+
+                                <td class="t8">开通时间</td>
+                                <td class="t9">状态</td>
+                                <td class="t10">操作</td>
+                            </tr>
+                        </thead>
+                        <tbody id="datalist">
+                        <volist name="list" id="vo">
+                            <tr align="center" aid="{$vo.id}">
+                                <td>{$vo.id}</td>
+                                <td>{$vo.username}</td>
+                                <td>{$vo.name}</td>
+                                <td>{$vo.public_mobile}</td>
+                                <td>{$vo.telephone}</td>
+                                <td>{$vo.qq}</td>
+                                <td>{$vo.email}</td>
+
+                                <td>{$vo.create_time|date='Y-m-d H:i',###}</td>
+                                <td>{$vo.statusTxt}</td>
+                                <td><if condition="$vo.email eq C('ADMIN_AUTH_KEY')">--<else/>[ <a href="__URL__/editAdmin?id={$vo.id}">编辑</a> ]</if></td>
+                            </tr>
+                        </volist>
+                        </tbody>
+                        <tr><td colspan='7' align="center" id="page">{$page}</td></tr>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="clear"></div>
+        <include file="Public:footer" />
+    </body>
+</html>

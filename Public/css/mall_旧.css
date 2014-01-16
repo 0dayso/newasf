@@ -1,0 +1,116 @@
+/*会员状态积分商城*/
+#mall{margin:10px auto; width:940px; text-align:left;}
+#mall .sideleft{width:196px;float:left;}
+#mall .classify_list{width:194px; border:1px solid #cde6fd;}
+#mall .allproduct{width:196px; height:36px; overflow:hidden;float:left;}
+#mall .allproduct img{width:196px; height:36px;}
+#mall .classify_list ul{width:196x;float:left;}
+#mall .classify_list ul li{width:196x;display:table;margin-bottom:4px;}
+#mall  h4 a{text-indent:15px; color:#666;display:block; width:194px; font-size:14px; font-weight:bold;height:31px; line-height:31px; background:url(../images/flbj_03.jpg) no-repeat;}
+#mall  h4 a:hover{display:block;color:#f60;background:url(../images/flbj2_03.jpg) no-repeat;}
+#mall .classify_list li a{margin-top:2px;width:50px; height:22px; line-height:22px;display:block; float:left;margin-left:11px;color:#666;}
+#mall .classify_list li a:hover{color:#f60;}
+#mall .ph_jf{margin-top:10px;width:194px; border:1px solid #ddd;}
+#mall .ph_jf h4{width:196px; text-indent:15px; height:33px; line-height:33px; color:#146cc4; font-size:14px; font-weight:bold; background:#f5f5f5; border-top:2px solid #177ade;}
+#mall .ph_jf dl{margin-top:8px;border-bottom:1px dotted #d6d6d6; float:left;position:relative;padding-bottom:5px;}
+#mall .ph_jf dt{margin-right:5px;width:65px;margin-left:5px;float:left; height:52px; overflow:hidden;display:inline;}
+#mall .ph_jf dt img{width:52px; height:52px; border:none;float:left;}
+#mall .ph_jf .ph{width:13px; height:17px;background:url(../images/jfscicon.gif) no-repeat -7px -20px;float:left;}
+#mall .ph_jf .ph1{background-position:-7px -20px;}
+#mall .ph_jf .ph2{background-position:-26px -20px;}
+#mall .ph_jf .ph3{background-position:-45px -20px;}
+#mall .ph_jf .ph4{background-position:-63px -20px;}
+#mall .ph_jf .ph5{background-position:-82px -20px;}
+#mall .ph_jf .ph6{background-position:-101px -20px;}
+#mall .ph_jf .ph7{background-position:-120px -20px;}
+#mall .ph_jf .ph8{background-position:-138px -20px;}
+#mall .ph_jf .ph9{background-position:-157px -20px;}
+#mall .ph_jf .ph10{background-position:-176px -20px;}
+#mall .ph_jf dd{width:107px;float:left; line-height:18px;}
+#mall .ph_jf dd a{color:#06c;float:left;height:38px;overflow:hidden;}
+#mall .ph_jf dd a:hover{color:#f60;}
+#mall .ph_jf dd span.span0{color:#ff2500;font-weight:bold;}
+#mall .pro_list dd span.span0{color:#146cc4;font-weight:bold;}
+#mall .pro_list dd.bt{height:72px;overflow:hidden;}
+
+
+#mall .ctright{width:734px;float:right;}
+#mall .ctright .banner{width:734px; height:198px; overflow:hidden;}
+#mall .ctright .banner img{width:734px; height:198px; }
+#mall .ctright .pro_list{margin-top:10px;width:734px;}
+#mall .ctright .pro_list h2{width:734px; text-indent:15px; height:28px; line-height:28px;color:#333;font-weight:bold; font-size:18px;border-bottom:2px solid #177ade;}
+#mall .ctright .pro_list h2 label{color:#0066cc;font-size:15px;font-weight:normal;}
+#mall .ctright .pro_list dl{margin:10px 5px;width:350px; height:190px; overflow:hidden; float:left;display:inline;}
+#mall .ctright .pro_list dl h3{width:350px;height:30px; line-height:30px;float:left;overflow:hidden;}
+#mall .ctright .pro_list dl h3 a{font-size:14px; font-weight:bold;color:#333;}
+#mall .ctright .pro_list dl h3 a:hover{color:#06c;}
+#mall .ctright .pro_list dt{width:130px; height:130px; float:left;}
+#mall .ctright .pro_list dt img{width:130px; height:130px; }
+#mall .ctright .pro_list dd{margin:0 0 0 5px;padding-bottom:5px;width:189px; line-height:22px;color:#333; float:left; }
+#mall .ctright .pro_list dd.bt{border-bottom:1px dotted #d6d6d6;}
+#mall .ctright .pro_list .gwc_bt{width:86px; height:24px; background:url(../images/jfscicon.gif) no-repeat -5px -72px; font-weight:bold;color:#fff; border:none;cursor:pointer;}
+#mall .ctright .pro_list .sc_bt{margin-left:10px;width:50px; height:23px; background:url(../images/jfscicon.gif) no-repeat -101px -73px; color:#fff;border:none;cursor:pointer;}
+#mall .ctright .pro_list input:hover{color:#ccc;}
+#mall .ctright .pro_list .page{padding-top:10px;width:734px; border-top:1px solid #b5dff5; text-align:center;}
+
+/*非会员状态积分商城*/
+#mall .nm_pro{margin-top:10px;width:734px;}
+#mall .nm_pro .hotcg{width:734px; float:left;}
+#mall .nm_pro h2{float:left;width:734px; text-indent:15px; height:28px; line-height:28px;color:#333;font-weight:bold; font-size:18px;border-bottom:2px solid #177ade;}
+#mall .nm_pro h2.hot{width:734px; height:34px; background:url(../images/hotpro_03.jpg) no-repeat; border:none;}
+#mall .nm_pro .hotcg dl{margin-top:10px;margin-left:30px;width:146px; height:205px; overflow:hidden;float:left; display:inline;}
+#mall .nm_pro .hotcg dt{width:146px; height:146px; overflow:hidden;}
+#mall .nm_pro .hotcg dt img{width:146px; height:146px;}
+#mall .nm_pro .hotcg dd{width:146px;line-height:20px; text-align:center;}
+#mall .nm_pro .hotcg dd span.span0{color:#06c;font-weight:bold;}
+#mall .nm_pro .hotcg dd a{color:#333;float:left;width:100%;height:40px;overflow:hidden;}
+#mall .nm_pro .hotcg dd a:hover{color:#ff6600;}
+#mall .nm_pro .hotcg h2 a{float:left;color:#333;font-size:20px;}
+#mall .nm_pro .hotcg h2 a:hover{color:#ccc;}
+#mall .nm_pro .hotcg .sp{background:url(../images/jfscicon.gif) no-repeat -41px -47px;width:35px;height:18px;margin-top:3px;}
+#mall .nm_pro .hotcg .cf{background-position:-91px -47px;}
+#mall .nm_pro .hotcg .cf{background-position:-140px -47px;}
+
+/*产品详情*/
+#prodetial{width:734px;float:right;}
+#prodetial .pro_inf{width:734px;}
+#prodetial .pro_inf .pro_pic{width:290px; overflow:hidden; float:left;}
+#prodetial .pro_inf .pro_pic .pro{border:1px solid #e5e5e5;width:288px; height:288px; overflow:hidden;float:left;}
+#prodetial .pro_inf. pro_pic .pro img{width:290px; height:290px;}
+#prodetial .pro_inf .share{margin-top:15px;float:left;}
+#prodetial .pro_inf .share *{float:left;line-height:16px;}
+#prodetial .pro_inf .share a{height:16px}
+#prodetial .share a.a1{background-position:-22px 0;}
+#prodetial .share a.a2{background-position:-44px 0;}
+#prodetial .share a.a3{background-position:-67px 0;}
+#prodetial .share a.a4{background-position:-90px 0;}
+#prodetial .pro_inf .detial{width:405px; float:right;}
+#prodetial .pro_inf .detial  h2{float:right; font-size:20px; font-weight:bold;width:405px; height:47px; line-height:47px;float:left;}
+#prodetial .pro_inf .detial ul li{width:405px; line-height:24px; color:#666;float:left;}
+#prodetial .pro_inf .detial li.wd{height:70px;;}
+#prodetial .pro_inf .detial li.m{font-size:14px; line-height:28px;}
+#prodetial .pro_inf .detial li span{float:left;}
+/*#prodetial .pro_inf .detial li span.sp0{width:72px;}*/
+#prodetial .numPos *{float:left;margin-right:5px;color:#000;}
+#prodetial .numPos input{width:25px;text-align:center;}
+#prodetial .numPos a{background:url(../images/s_small_tb.gif) no-repeat -270px -84px;width:11px;height:11px;margin-top:7px;cursor:pointer;}
+#prodetial .numPos a.a1{background-position:-259px -84px;}
+#prodetial .pro_inf .detial li.num{margin-top:10px;margin-bottom:20px;font-size:14px;}
+#prodetial .pro_inf .detial li.sub{margin-top:5px;}
+#prodetial .pro_inf .detial .dh{width:114px; height:38px; background:url(../images/jfscicon.png) no-repeat -4px -104px;margin-right:20px;float:left;}
+#prodetial .pro_inf .detial .sc{width:77px; height:35px; background:url(../images/jfscicon.png) no-repeat -5px -149px;float:left;margin-top:1px;}
+#duihuan{color:#666;line-height:25px;margin-left:20px;display:none;margin-top:20px;}
+#duihuan h2{color:#ff6600;font-weight:bold;}
+#duihuan div{padding:0px 0 30px 20px;;border-bottom:1px dashed #cde6fe;margin:10px 0;}
+#duihuan div span{display:block;clear:both;}
+#duihuan div span label{color:#333;width:75px;text-align:right;float:left;}
+#duihuan div span a{float:left;width:600px;}
+#prodetial div.goods_js{height:36px;border:1px solid #bae2f6;margin-top:20px;border-width:0 0 1px 1px;}
+#prodetial .goods_js a{float:left;margin-right:0px;width:97px;border:1px solid #bae2f6;border-width:1px 1px 0 0px;height:35px;line-height:35px;text-align:center;background-color:#e5f3ff;color:#0066cc;font-size:14px;cursor:pointer;}
+#prodetial .goods_js a:hover{color:#ff6600;}
+#prodetial .goods_js a.active{background-color:#0776e8;color:#fff;}
+#lipin_xq h2{background:url(../images/goods_detail.gif) no-repeat 0 0;width:733px;height:24px;margin:20px 0 10px 0;}
+#lipin_xq h2.h1{background-position:0 -24px;}
+#lipin_xq ul li{border-bottom:1px dashed #f0f0f0;line-height:26px;padding:5px 0;font-size:14px;color:#333;}
+#lipin_xq ul li span{display:block;margin-left:30px;}
+#lipin_xq ul li span.tit{font-weight:bold;margin-left:5px;}

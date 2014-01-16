@@ -1,0 +1,39 @@
+<OTA_OrderSynRQ xmlns="http://www.trafree.com/OTA/2011/05" Version="1.000">
+<POS>
+<Requestors>
+<Requestor Type="13" Password="" ID=" " />
+</Requestors>
+</POS>
+<Order OrderId="11111" source="fly4free" orderDateTime="2011-10-31 17:28:00"/>
+<BookingReferences>
+<BookingReference>
+<OriginDestinationOption RefNumber="1" OptionId="1" GroupId="1" IsCheckfare="0" FilingAirline="MU" Resource="TFR">
+<FlightSegment ArrivalDateTime="2011-09-12 20:30:00" DepartureDateTime="2011-09-12 14:00:00" FlightNumber="271" InfoSource="PEK440" InfoSourceTypeCode="14" ResBookDesigCode="R" >
+<DepartureAirport LocationCode="PEK" /> 
+<ArrivalAirport LocationCode="NRT" /> 
+<MarketingAirline Code="MU" /> 
+</FlightSegment>
+</OriginDestinationOption>
+<OriginDestinationOption RefNumber="2" OptionId="1" GroupId="1" IsCheckfare="0" FilingAirline="MU" Resource="TFR">
+<FlightSegment ArrivalDateTime="2011-10-25 16:40:00" DepartureDateTime="2011-10-25 10:55:00" FlightNumber="272" InfoSource="PEK440" InfoSourceTypeCode="14" ResBookDesigCode="R" >
+<DepartureAirport LocationCode="NRT" />
+<ArrivalAirport LocationCode="PEK" />
+<MarketingAirline Code="MU" />
+</FlightSegment>
+</OriginDestinationOption>
+<AirItineraryPricingInfo>
+<Agent AgentId="1" >
+<PriceInfo Fare="4367" Tax="2730" Currency="CNY" PassengerTypeCode="ADT" PassengerQuantity="1" priceDetail="(4300+2730)*1"/>
+<PriceInfo Fare="3270" Tax="2730" Currency="CNY" PassengerTypeCode="CNN" PassengerQuantity="1" priceDetail="(3100+2730)*1"/>
+</Agent>
+<TicketingInfo TicketTimeLimit="2011-07-25" />
+</AirItineraryPricingInfo>
+<BookingReferenceID ID="4A452C" Type="14" Resource="TFR" InfoSource="PEK440" />
+</BookingReference>
+</BookingReferences>
+<Travelerinfos>
+<Travelerinfo title="Ms" firstName="alcint" lastName="wang" dateBirth="1984-05-30" idType="1" idNumber="11111111111111" idCountry="CN"
+idTimeLimit="21111111" />
+</Travelerinfos>
+<Contactinfo account="a@b.c" email="a@b.c" cell="13333333333" />
+</OTA_OrderSynRQ>

@@ -1,0 +1,50 @@
+<php>$title="内容管理-后台管理";$currentNav ='内容管理 > 内容列表';</php>
+<include file="Public:header" />
+            <div class="mainBody">
+                <include file="Public:left" />
+                <div id="Right">
+                    <div class="Item hr">
+                        <div class="current">内容列表</div>
+                    </div>
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab">
+                        <thead>
+                            <tr>
+                                <td>标题</td>
+                                <td>所在分类</td>
+                                <td>状态</td>
+                                <td>发布时间</td>
+                                <td>发布人</td>
+                                <td width="150">操作</td>
+                            </tr>
+                        </thead>
+                        <volist name="list" id="vo">
+                            <tr align="center" id="{$vo.id}">
+                                <td align="left">{$vo.id}</td>
+                                <td>{$vo.title}</td>
+                                <td>{$vo.type}</td>
+                                <td>{$vo.create_time|date="Y-m-d H:i:s",###}</td>
+                                <td>{$vo.member_id}</td>
+                                <td> [ <a link="{:U('News/del/',array('id'=>$vo['id']))}" href="javascript:void(0)" name="{$vo.title}" class="del">删除 </a> ]</td>
+                            </tr>
+                        </volist>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <include file="Public:footer" />
+        <script type="text/javascript">
+            $(function(){
+                $(".del").click(function(){
+                    var delLink=$(this).attr("link");
+                    popup.confirm('你真的打算删除【<b>'+$(this).attr("name")+'</b>】吗?','温馨提示',function(action){
+                        if(action == 'ok'){
+                            top.window.location.href=delLink;
+                        }
+                    });
+                    return false;
+                });
+            });
+        </script>
+    </body>
+</html>

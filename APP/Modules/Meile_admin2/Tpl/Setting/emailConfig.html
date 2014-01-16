@@ -1,0 +1,69 @@
+<php>$title="邮箱配置-系统设置"</php>
+<include file="Public:header" />
+        <div class="mainBody"> <include file="Public:left" />
+            <div id="Right">
+                <div class="contentArea">
+                    <div class="Item hr">
+                        <div class="current">邮箱配置</div>
+                    </div>
+                    <form action="{:U('setting/updateConfig')}" method="post">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table1">
+                            <tr>
+                                <th width="120">邮件服务器：</th>
+                                <td><input name="SMTP_SERVER" type="text" class="input" size="40" value="{:C('SMTP_SERVER')}" /></td>
+                            </tr>
+                            <tr>
+                                <th>邮件发送端口：</th>
+                                <td><input class="input" name="SMTP_SERVERPORT" type="text" size="40" value="{:C('SMTP_SERVERPORT')}" /></td>
+                            </tr>
+                            <tr>
+                                <th>发件人地址：</th>
+                                <td><input class="input" name="SMTP_USERMAIL" type="text" size="40" value="{:C('SMTP_USERMAIL')}" /></td>
+                            </tr>
+                            <tr>
+                                <th>发件人名称：</th>
+                                <td><input class="input" name="SMTP_FROM_NAME" type="text" size="40" value="{:C('SMTP_FROM_NAME')}" /></td>
+                            </tr>
+                            <tr>
+                                <th>验证用户名：</th>
+                                <td><input class="input" name="SMTP_USER" type="text" size="40" value="{:C('SMTP_USER')}" /></td>
+                            </tr>
+                            <tr>
+                                <th>验证密码：</th>
+                                <td><input class="input" name="SMTP_PASS" type="password" size="40" value="{:C('SMTP_PASS')}" /></td>
+                            </tr>
+                            <tr>
+                                <th>投诉建议 接收EMAIL：</th>
+                                <td><input class="input" name="SMTP_EMAILTO" type="text" size="40" value="{:C('SMTP_EMAILTO')}" /> </td>
+                            </tr>
+
+                            <tr>
+                                <th>接收测试邮件地址：</th>
+                                <td><input class="input" name="SMTP_TEST" id="testEmail" type="text" size="40" value="{:C('SMTP_TEST')}" /> （只有填写了接收测试邮件地址方可测试邮件配置是否成功）</td>
+                            </tr>
+                        </table>
+                    </form>
+                    <div class="commonBtnArea" >
+                        <button class="btn submit">提交</button>
+                        <button class="btn test">测试配置是否成功</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+<include file="Public:footer" />
+<script type="text/javascript">
+    $(".submit").click(function(){
+        commonAjaxSubmit();
+    });
+    $(".test").click(function(){
+        if($.trim($("#testEmail").val())==''){
+            popup.alert("没有填写接收测试邮件地址，无法发送测试邮件");
+            return;
+        }
+        commonAjaxSubmit('{:U("setting/testEmailConfig")}');
+    });
+</script>
+</body>
+</html>

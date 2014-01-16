@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>粘贴图片</title>
+    <script src="/newasf/Public/js/jquery-1.8.3.min.js"></script>
+
+</head>
+<body>
+<script language="javascript">
+//因为安全原因，浏览器为我们提供了onpaste事件，读取剪贴板数据仅能在该事件发生时在事件处理程序中进行。
+main.addEventListener("paste", function(e) {
+    xx(e);
+});
+var xx = function(e){
+    if(navigator.userAgent.indexOf("Firefox")>0){
+        setTimeout(function(){
+            var txt = main.innerHTML;
+            if(txt.match(/src="(.*?)"/))
+            {
+                var img=txt.match(/src="(.*?)"/);
+                if(img)
+                {
+                    //这里加入图片上传函数。上传的是base64编码的数据。
+                }
+                else{
+                    alert('错误');
+                }
+            }
+        },200);
+    }
+    else{
+        for (var i = 0; i < e.clipboardData.items.length; i++) {
+        if (e.clipboardData.items[i].kind == "file" && e.clipboardData.items[i].type == "image/png") {
+            var imageFile = e.clipboardData.items[i].getAsFile();
+            var fileReader = new FileReader();
+            fileReader.onloadend = function(e) {
+                //这里加入图片上传函数。上传的是base64编码的数据。
+            };
+            fileReader.readAsDataURL(imageFile);
+            // prevent the default paste action
+            e.preventDefault();
+            }
+        }
+    }
+}
+function readFile(){
+				var file = this.files[0];
+				if(!/image\/\w+/.test(file.type)){
+					alert("请确保文件为图像类型");
+					return false;
+				}
+				var reader = new FileReader();
+				reader.readAsDataURL(file);
+				reader.onload = function(e){
+					result.innerHTML = '<img src="'+this.result+'" alt=""/>'
+				}
+			}
+
+</script>
+<textarea id="editor">
+1111
+</textarea>
+</body>
+</html>

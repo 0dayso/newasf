@@ -1,0 +1,80 @@
+<include file="Public:header" />
+<link rel="stylesheet" href="__PUBLIC__/css/userCenter.css" type="text/css" />
+    <div id="cont">
+        <div class="wd960 mt10 bgWhite">
+        	<h1 class="h1_tit_nav">你当前所在位置：<a href="{:U('/')}" class="sy">首页</a> > <a href="{:U('/Member')}" class="sy">会员中心</a> > <a class="cur">交易记录</a></h1>
+            <include file="left" />
+           
+            <div class="left mt10" id="mdsc">
+                <include file="top_kf" />
+                <div class="top_nav_hr"><span>财务管理</span></div>
+                <div class="top_nav_qh">
+               		<ul>
+                   		<li><a href="{:U('Member/onlinePay')}">在线支付</a></li>
+                        <li><a href="{:U('Member/transRecode')}" class="active">交易记录</a></li>
+                   	</ul>
+               	</div>
+                <div class="prosc">
+                    <table width="100%" cellpadding="2">
+                    	<tr class="thbg">
+                            <td width="15%"><strong>订单ID</strong></td>
+                            <td width="22%"><strong>航班行程</strong></td>
+                            <td width="14%"><strong>价格</strong></td>
+                            <td width="18%"><strong>支付时间</strong></td>
+                            <td width="16%"><strong>订单状态</strong></td>
+                            <td width="15%"><strong>操作</strong></td>
+                      	</tr>
+                        <foreach name="list" item="v">
+                        <tr>
+                            <td>{$v.order_id}</td>
+                            <td>{$v.from_city}→{$v.to_city}</td>
+                            <td>{$v.price}</td>
+                            <td>{$v.order_datetime}</td>
+                            <td>{$v.status}</td>
+                            <td><a class="button" href="{:U('Member/booking','details='.$v[id])}">查看</a></td>
+                    	</tr>
+                        </foreach>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                    	</tr>
+
+                    </table>
+				</div>
+                <p class="pagingBar"><span class="cur"> {$page}</span></p>
+         	</div>
+        </div>
+    </div>
+    
+    
+    <div id="footer">
+    	<div class="wd960">
+            <div id="ft_link">
+                <ul>
+                    <li><a href="#" target="_blank">关于美飞网</a> |</li>
+                    <li><a href="#" target="_blank">客服团队</a> |</li>
+                    <li><a href="#" target="_blank">服务条款</a> |</li>
+                    <li><a href="#" target="_blank">隐私保护</a> |</li>
+                    <li><a href="#" target="_blank">人才招聘</a> |</li>
+                    <li><a href="#" target="_blank">中国航空运输协会</a> |</li>
+                    <li><a href="#" target="_blank">企业营业执照</a> |</li>
+                    <li><a href="#" target="_blank">民航客运一类代理</a></li>
+                </ul>
+            </div>
+            <div id="ft_copyright">Copyright © 2010-2012 爱尚飞国际机票网 广州美乐商务服务有限公司. All Rights Reserved
+                <img src="images/ft_icp.jpg" alt="icp" />粤ICP备11009654号-2
+            </div>
+            <div id="ft_icons">
+                <img src="images/ft_icons.gif" alt="ico" />
+                <a href="http://trust.360.cn/search.php" target="_blank" title="360绿色网站">
+                    <img src="images/ft_360img.gif" alt="306" />
+                </a>
+            </div>
+   	  </div>        
+</div>            
+</body>
+</html>

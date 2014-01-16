@@ -1,0 +1,7 @@
+ <?php
+ // 1确定出票时间                   2订票员                     预订时间  3               4订单状态              5订单类型          6退改           7 采购状态       8   供应状态                 9 当前营业部                            10   订票营业部                                11  pnr.                              12    PNR 状态  .                     13 大编码          14 客户类型           15 会员卡号 /单位编号       16 客户名称         17 类型          18 航程          19航班号.           20舱 位           21起飞时间          22乘机人                 23人数              24采购价            25  账单价           26留款            27 加价 /让利           28销售价           29机建                30税费            31小计            32保险                            33接车                                34其他                35应收金额               36支付          37已付金额            38支付科目            39 OFFICE            40电子邮件         41可用积分        42旅客联系人        43联系电话             44配送方式 .      45配送时间             46订票公司          47 新PNR             48客户订单号     49 订单编号         50 订单来源
+   
+$kayName=array('','cpsj','userid','dprq','ddzt','ddlx','gt','cgzt','gyzt','pnr','pnr_zt','hkgs_pnr','zkfx','hykh','xm','lx','hc','hbh','cw','qfsj','cjr','rs','cgj','zdj','lk','jjrl','xsj','jj','sf','xj','bx','jc','qt','ysje','pay','yf','zf_fkkm','office','email','kyjf','nklxr','lxdh','ps_lx','tyqsj','dpgs','xpnr','khddh','ddbh','ddly');
+   
+lx     qfsj  
+   

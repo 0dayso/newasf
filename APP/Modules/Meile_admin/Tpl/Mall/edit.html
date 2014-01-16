@@ -1,0 +1,72 @@
+<div class="page">
+	<div class="pageContent">
+
+	<form method="post" action="__URL__/update/navTabId/__MODULE__-index" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone)">
+		<input type="hidden" name="id" value="{$vo.id}" >
+		<div class="pageFormContent" layoutH="58">
+            <div class="unit">
+                <label>标题：</label>
+                <input type="text" class="required" size="60" name="title" id="title" value="{$vo.title}">
+            </div>
+            <div class="unit">
+                <label>发布状态：</label>
+                <input type="radio" name="status" value="0" <if condition="$vo.status eq 0"> checked="checked"</if> /> 审核状态 &nbsp; <input type="radio" name="status" value="1" <if condition="$vo.status eq 1"> checked="checked"</if> /> 已发布状态
+            </div>
+
+            <div class="unit">
+                <label width="100">发布时间：</label>
+                <input type="text"  class="input"  name="published" <empty name="$vo['published']">value="{:date('Y-m-d H:i:s',time())}"<else /> value="{$vo[published]|date='Y-m-d H:i:s',###}"</empty> />
+            </div>
+            <div class="unit">
+                <label>所属分类：</label>
+                <select name="cid">
+                    <volist name="list" id="vol">
+                        <if condition="$vol[cid] eq $vo[cid]">
+                            <option value="{$vol.cid}" selected="selected">{$vol.fullname}</option>
+                            <else/>
+                            <option value="{$vol.cid}">{$vol.fullname}</option>
+                        </if>
+                    </volist>
+                </select>
+            </div>
+            <div class="unit">
+                <label>产品数量：</label>
+                <input type="text" class="input" name="info[amount]" value="" />
+            </div>
+            <div class="unit">
+                <label>兑换数：</label>
+                <input type="text" class="input" name="info[sales]" value="" />
+            </div>
+
+            <div class="unit">
+                <label>所需积分：</label>
+                <input type="text" class="input" name="info[jifen]" value="" />
+            </div>
+            <div class="unit">
+                <label>图片：</label>
+                <input type="file" class="input" size="60" name="img" value="" />
+            </div>
+            <div class="unit">
+                <label>描述：</label>
+                <textarea class="alt" cols="100" rows="3" name="description" alt="用于SEO 如果不填写则系统自动截取文章前200个字符" >{$vo.description}</textarea>
+                <span class="info"></span>
+            </div>
+            <div class="unit">
+                <label>内容：</label>
+                <textarea id="content" class="editor"  cols="100" rows="20" name="content">{$vo.content}</textarea>
+            </div>
+        </div>
+
+		</div>
+
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+	
+	</div>
+</div>
+

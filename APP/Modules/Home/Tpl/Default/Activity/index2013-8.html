@@ -1,0 +1,192 @@
+<include file="public:header" />
+<script src="__PUBLIC__/activity/images/FancyZoomHTML.js" type="text/javascript"></script>
+<script src="__PUBLIC__/activity/images/FancyZoom.js" type="text/javascript"></script>
+<script src="__PUBLIC__/activity/images/s2t.js" type="text/javascript"></script>
+<link href="__PUBLIC__/activity/images/style.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+#placeLayer {
+	position: absolute;
+	/*left:200px;
+        top:81px;*/
+	width: 483px;
+	height: 194px;
+	z-index: 9999;
+	background-color: #FFFFFF;
+	display: none;
+}
+div, form, ul, li, table {
+	overflow: visible;
+}
+</style>
+<script type="text/javascript">
+    function showMe()
+    {
+        document.getElementById("placeLayer").style.left=event.x+"px";
+        document.getElementById("placeLayer").style.top=event.y+"px";
+        document.getElementById("placeLayer").style.display="block";
+    }
+    function closeMe()
+    {
+        document.getElementById("placeLayer").style.display="none";
+    }
+</script>
+
+<body onLoad="setupZoom(); ">
+<script type="text/javascript">
+    //<![CDATA[
+    var theForm = document.forms['Form1'];
+    if (!theForm) {
+        theForm = document.Form1;
+    }
+    function __doPostBack(eventTarget, eventArgument) {
+        if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+            theForm.__EVENTTARGET.value = eventTarget;
+            theForm.__EVENTARGUMENT.value = eventArgument;
+            theForm.submit();
+        }
+    }
+    //]]>
+</script>
+<div class="box" style="background-image:url('__PUBLIC__/images/bg_cont.gif');repart-x;">
+  <div style="background:url(__PUBLIC__/images/huodong.jpg);width:960px;margin:0 auto;">
+    <div class="headerR"> <a id="StranLink" title=""></a>
+      <div id="top_divMember"></div>
+    </div>
+    
+    <!--头部end-->
+    <div id="placeLayer" style="border: 1px solid rgb(200, 200, 200); height: auto; width: auto; box-shadow: rgba(0, 0, 0, 0.247059) 0px 0px 5px; background-color: rgb(255, 255, 255); left: 387px; top: 500px; display: none;"> <span id="txtProfile">
+      <p>美国火人节</p>
+      <p>8月25日至9月2日</p>
+      <p>&nbsp;</p>
+      <p>英国诺丁山嘉年华</p>
+      <p>8月25日至8月26日</p>
+      </span> </div>
+    <div align="center" class="bgimg" >
+      <table id="calendar" cellspacing="0" cellpadding="2" title="日曆" border="0" style="border-width:0px;border-style:Inset;border-collapse:collapse;">
+        <tbody>
+          <tr>
+            <td colspan="7" style="background-color:Transparent;border-width:0px;"><table class="day_title" cellspacing="0" border="0" style="font-weight:bold;width:100%;border-collapse:collapse;">
+                <tbody>
+                  <tr>
+                    <td style="font-weight:normal;width:15%;"></td>
+                    <td align="center" style="width:70%;">2013年8月</td>
+                    <td align="right" style="font-weight:normal;width:15%;"></td>
+                  </tr>
+                </tbody>
+              </table></td>
+          </tr>
+          <tr>
+            <th class="day" align="center" abbr="星期日" scope="col" style="height:10px;">星期日</th>
+            <th class="day" align="center" abbr="星期一" scope="col" style="height:10px;">星期一</th>
+            <th class="day" align="center" abbr="星期二" scope="col" style="height:10px;">星期二</th>
+            <th class="day" align="center" abbr="星期三" scope="col" style="height:10px;">星期三</th>
+            <th class="day" align="center" abbr="星期四" scope="col" style="height:10px;">星期四</th>
+            <th class="day" align="center" abbr="星期五" scope="col" style="height:10px;">星期五</th>
+            <th class="day" align="center" abbr="星期六" scope="col" style="height:10px;">星期六</th>
+          </tr>
+          <tr>
+            <td align="left" valign="top" style="border-color:#DADADA;height:86px;width:100px;"></td>
+            <td align="left" valign="top" style="border-color:#DADADA;height:86px;width:100px;"></td>
+            <td align="left" valign="top" style="border-color:#DADADA;height:86px;width:100px;"></td>
+            <td align="left" valign="top" style="border-color:#DADADA;height:86px;width:100px;"></td>
+            <td class="NotDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','4961')" style="color:Black" title="8月1日">1</a>
+              <div class="WhiteDate">1</div>
+              <div class="fontclass"><font color="black" style="font-weight:bold;">瑞士國慶日</font></div></td>
+            <td class="NotDay" align="left" valign="top" onMouseOver="javascript:showMe();document.getElementById(&#39;txtProfile&#39;).innerHTML=&#39;&lt;p&gt;8月2日至8月7日&lt;/p&gt;&lt;p&gt;东北区的盛大节日，&amp;nbsp;人们会用竹子或木头等做成灯笼，上面画上历史人物、鸟兽、武士等，点灯后放在花车上沿街游行。&lt;/p&gt;&#39;;" onMouseOut="javascript:closeMe();" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','4962')" style="color:Black" title="8月2日">2</a>
+              <div class="WhiteDate">2</div>
+              <div class="fontclass"><font color="black" style="font-weight:bold;">日本青森六燈節</font></div></td>
+            <td class="NotDay" align="left" valign="top" onMouseOver="javascript:showMe();document.getElementById(&#39;txtProfile&#39;).innerHTML=&#39;&lt;p&gt;8月3日至8月6日&lt;/p&gt;&#39;;" onMouseOut="javascript:closeMe();" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','4963')" style="color:Black" title="8月3日">3</a>
+              <div class="WhiteDate">3</div>
+              <div class="fontclass"><font color="black" style="font-weight:bold;">日本秋田竿燈節</font></div></td>
+          </tr>
+          <tr>
+            <td class="FullDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','4964')" style="color:Black" title="8月4日">4</a>
+              <div class="WhiteDate">4</div></td>
+            <td class="NotDay" align="left" valign="top" onMouseOver="javascript:showMe();document.getElementById(&#39;txtProfile&#39;).innerHTML=&#39;&lt;p&gt;8月5日至8月7日&lt;/p&gt;&#39;;" onMouseOut="javascript:closeMe();" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','4965')" style="color:Black" title="8月5日">5</a>
+              <div class="WhiteDate">5</div>
+              <div class="fontclass"><font color="black" style="font-weight:bold;">日本山行花笠祭</font></div></td>
+            <td class="NotDay" align="left" valign="top" onMouseOver="javascript:showMe();document.getElementById(&#39;txtProfile&#39;).innerHTML=&#39;&lt;p&gt;8月6日至8月8日&lt;/p&gt;&#39;;" onMouseOut="javascript:closeMe();" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','4966')" style="color:Black" title="8月6日">6</a>
+              <div class="WhiteDate">6</div>
+              <div class="fontclass"><font color="black" style="font-weight:bold;">日本仙臺七夕節</font></div></td>
+            <td class="FullDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','4967')" style="color:Black" title="8月7日">7</a>
+              <div class="WhiteDate">7</div></td>
+            <td class="NotDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','4968')" style="color:Black" title="8月8日">8</a><a href="__PUBLIC__/activity/images/201303250225208403.png" class="date"><img class="Thumb" src="__PUBLIC__/activity/images/201303250225208403.png" width="96" height="80"></a>
+              <div class="WhiteDate">8</div></td>
+            <td class="NotDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','4969')" style="color:Black" title="8月9日">9</a>
+              <div class="WhiteDate">9</div>
+              <div class="fontclass"><font color="black" style="font-weight:bold;">新加坡國慶日</font></div></td>
+            <td class="NotDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','4970')" style="color:Black" title="8月10日">10</a><a href="__PUBLIC__/activity/images/201303250224014663.jpg" class="date"><img class="Thumb" src="__PUBLIC__/activity/images/201303250224014663.jpg" width="96" height="80"></a>
+              <div class="WhiteDate">10</div></td>
+          </tr>
+          <tr>
+            <td class="NotDay" align="left" valign="top" onMouseOver="javascript:showMe();document.getElementById(&#39;txtProfile&#39;).innerHTML=&#39;&lt;p&gt;在曾是法国最大养猪场的小镇Trie&amp;nbsp;Sur&amp;nbsp;Baise举行，场内有各种以猪制成的美食，小孩可与小猪玩游戏，不能错过的是扮猪叫大赛，有趣至极！&lt;/p&gt;&#39;;" onMouseOut="javascript:closeMe();" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','4971')" style="color:Black" title="8月11日">11</a>
+              <div class="WhiteDate">11</div>
+              <div class="fontclass"><font color="black" style="font-weight:bold;">法國愛豬節</font></div></td>
+            <td class="NotDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','4972')" style="color:Black" title="8月12日">12</a>
+              <div class="WhiteDate">12</div>
+              <div class="fontclass"><font color="black" style="font-weight:bold;">國際青年節</font></div></td>
+            <td class="NotDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','4973')" style="color:Black" title="8月13日">13</a><a href="__PUBLIC__/activity/images/201303250233249783.png" class="date"><img class="Thumb" src="__PUBLIC__/activity/images/201303250233249783.png" width="96" height="80"></a>
+              <div class="WhiteDate">13</div></td>
+            <td class="FullDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','4974')" style="color:Black" title="8月14日">14</a>
+              <div class="WhiteDate">14</div></td>
+            <td class="NotDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','4975')" style="color:Black" title="8月15日">15</a>
+              <div class="WhiteDate">15</div>
+              <div class="fontclass"><font color="black" style="font-weight:bold;">印尼獨立紀念日</font></div></td>
+            <td class="FullDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','4976')" style="color:Black" title="8月16日">16</a>
+              <div class="WhiteDate">16</div></td>
+            <td class="FullDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','4977')" style="color:Black" title="8月17日">17</a>
+              <div class="WhiteDate">17</div></td>
+          </tr>
+          <tr>
+            <td class="FullDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','4978')" style="color:Black" title="8月18日">18</a>
+              <div class="WhiteDate">18</div></td>
+            <td class="NotDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','4979')" style="color:Black" title="8月19日">19</a>
+              <div class="WhiteDate">19</div>
+              <div class="fontclass"><font color="black" style="font-weight:bold;">阿富汗國慶日</font></div></td>
+            <td class="NotDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','4980')" style="color:Black" title="8月20日">20</a>
+              <div class="WhiteDate">20</div>
+              <div class="fontclass"><font color="black" style="font-weight:bold;">匈牙利國慶日</font></div></td>
+            <td class="FullDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','4981')" style="color:Black" title="8月21日">21</a>
+              <div class="WhiteDate">21</div></td>
+            <td class="NotDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','4982')" style="color:Black" title="8月22日">22</a><a href="__PUBLIC__/activity/images/201303250217036243.png" class="date"><img class="Thumb" src="__PUBLIC__/activity/images/201303250217036243.png" width="96" height="80"></a>
+              <div class="WhiteDate">22</div></td>
+            <td class="NotDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','4983')" style="color:Black" title="8月23日">23</a><a href="__PUBLIC__/activity/images/201303250218296853.png" class="date"><img class="Thumb" src="__PUBLIC__/activity/images/201303250218296853.png" width="96" height="80"></a>
+              <div class="WhiteDate">23</div></td>
+            <td class="FullDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','4984')" style="color:Black" title="8月24日">24</a>
+              <div class="WhiteDate">24</div></td>
+          </tr>
+          <tr>
+            <td class="NotDay" align="left" valign="top" onMouseOver="javascript:showMe();document.getElementById(&#39;txtProfile&#39;).innerHTML=&#39;&lt;p&gt;美国火人节&lt;/p&gt;&lt;p&gt;8月25日至9月2日&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;p&gt;英国诺丁山嘉年华&lt;/p&gt;&lt;p&gt;8月25日至8月26日&lt;/p&gt;&#39;;" onMouseOut="javascript:closeMe();" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','4985')" style="color:Black" title="8月25日">25</a>
+              <div class="WhiteDate">25</div>
+              <div class="fontclass"><font color="black" style="font-weight:bold;">美國火人節</font></div></td>
+            <td class="NotDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','4986')" style="color:Black" title="8月26日">26</a><a href="__PUBLIC__/activity/images/201303250230292373.png" class="date"><img class="Thumb" src="__PUBLIC__/activity/images/201303250230292373.png" width="96" height="80"></a>
+              <div class="WhiteDate">26</div></td>
+            <td class="NotDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','4987')" style="color:Black" title="8月27日">27</a>
+              <div class="WhiteDate">27</div>
+              <div class="fontclass"><font color="black" style="font-weight:bold;">日本東京隅田川花火會</font></div></td>
+            <td class="NotDay" align="left" valign="top" onMouseOver="javascript:showMe();document.getElementById(&#39;txtProfile&#39;).innerHTML=&#39;&lt;p&gt;自1994年开始成为不尼奥尔镇的传统节日，群众会互相投掷熟透的番茄，番茄弹横飞，不一会周&lt;a href=&quot;http://www.bangbangwx.com&quot; target=&quot;_blank&quot; &gt;斗罗大陆&lt;/a&gt;围都是红色一片的番茄浆，狂野欢欣。&lt;/p&gt;&#39;;" onMouseOut="javascript:closeMe();" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','4988')" style="color:Black" title="8月28日">28</a>
+              <div class="WhiteDate">28</div>
+              <div class="fontclass"><font color="black" style="font-weight:bold;">西班牙番茄節</font></div></td>
+            <td class="NotDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','4989')" style="color:Black" title="8月29日">29</a><a href="__PUBLIC__/activity/images/201303250212451493.png" class="date"><img class="Thumb" src="__PUBLIC__/activity/images/201303250212451493.png" width="96" height="80"></a>
+              <div class="WhiteDate">29</div></td>
+            <td class="NotDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','4990')" style="color:Black" title="8月30日">30</a><a href="__PUBLIC__/activity/images/201303250214141193.jpg" class="date"><img class="Thumb" src="__PUBLIC__/activity/images/201303250214141193.jpg" width="96" height="80"></a>
+              <div class="WhiteDate">30</div></td>
+            <td class="FullDay" align="left" valign="top" style="border-color:#DADADA;border-width:1px;border-style:solid;height:86px;width:100px;"><a href="javascript:__doPostBack('calendar','4991')" style="color:Black" title="8月31日">31</a>
+              <div class="WhiteDate">31</div></td>
+          </tr>
+          <tr>
+            <td align="left" valign="top" style="border-color:#DADADA;height:86px;width:100px;"></td>
+            <td align="left" valign="top" style="border-color:#DADADA;height:86px;width:100px;"></td>
+            <td align="left" valign="top" style="border-color:#DADADA;height:86px;width:100px;"></td>
+            <td align="left" valign="top" style="border-color:#DADADA;height:86px;width:100px;"></td>
+            <td align="left" valign="top" style="border-color:#DADADA;height:86px;width:100px;"></td>
+            <td align="left" valign="top" style="border-color:#DADADA;height:86px;width:100px;"></td>
+            <td align="left" valign="top" style="border-color:#DADADA;height:86px;width:100px;"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<!--底部end--> 
+<include file="public:footer" />

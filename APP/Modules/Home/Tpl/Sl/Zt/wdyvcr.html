@@ -1,0 +1,430 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>爱尚飞-微电影大赛</title>
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	var url="{:U('/Zt/wdyVote')}";
+    var vcrid='{$vo.id}';
+    var is_login="{$userinfo.username}";
+
+	//赞同踏下
+	$('#fn_updown a').click(function(){
+            var tshis=$(this);
+            var updown=$(this).attr('updown');
+            $.getJSON(url,{id:vcrid,updown:updown},function(data){
+                if(data.status==1){
+                    tshis.children('span').text(data.info);
+                }else{
+                    if(data.url){
+                        popups();
+                    }else{
+                        alert(data.info);
+                    }
+                }
+
+             });
+	});
+
+	//投票功能
+	$('.but').click(function(){
+        alert('投票已结束');return;
+            var em=$(this).siblings().find('em');
+            $.getJSON(url,{id:vcrid},function(data){
+                if(data.status==1){
+                    em.text(data.info);
+                }else{
+                    if(data.url){
+                        popups();
+                    }else{
+                        alert(data.info);
+                    }
+                }
+            });
+    });
+	//下载次数
+	$('#fn_download').click(function(){
+		$.getJSON(url,{id:vcrid,down:1},function(data){
+			if(data.status==1){
+				$('#download').text(data.info);
+				}else{
+                alert(data.info);
+            }
+			});
+		});
+	//评论功能
+	var textarea=$('#comment textarea');
+	var textval=textarea.val();
+	var cont="有什么感想，您也来说说吧！";
+	textarea.focus(function(){
+		if($(this).val()==cont){
+			$(this).val('');
+		}
+		}).blur(function(){
+			if($(this).val()==""){
+			$(this).val(cont);
+		}
+	});
+	//限制字数
+	textarea.keyup(function(){
+		var length=$(this).val().length;
+		var em=$(this).prev().find('em');
+		if(length<=300){
+		em.html(length);
+		}else{
+		em.html('<strong>'+length+'</strong>');
+		}
+		});
+	//提交评论
+		$('#combut a').click(function(){
+		if($('#comment textarea').val().length>300){
+			alert('评论超出限制字数！');
+			}else{
+				$.post("{:U('/Zt/wdyPl')}",{id:vcrid,val:$('#comment textarea').val()},function(data){
+                    if(data.status==1){
+				    	$('#comment_list').html(updatecomment(data));
+                    }else{
+                        if(data.url){
+                            popups();
+                        }else{
+                            alert(data.info);
+                        }
+                    }
+			    },"json");
+			}
+		});
+	//选择页数
+	$('#comment_list .right a').live('click',function(){
+		var page=$(this).attr('page');
+		$.getJSON("{:U('/Zt/wdyPl')}",{id:vcrid,p:page},function(data){
+            $('#comment_list').html(updatecomment(data));
+			});
+		});
+		
+	
+	//更新评论
+	function updatecomment(data){
+		/*
+		sum         评论总数
+		pagesum     总页数
+		page        第几页
+		number      每页的条数
+		comment     评论内容
+		*/
+		var html='';
+		html+='<h3><span><strong>全部评论</strong><em>('+data.sum+')</em></span></h3>';
+        html+='<div class="paging"><span class="left">第'+((data.number*(data.page-1))+1)+'-'+(data.number*data.page)+'/'+data.sum+'条</span>';
+		html+='<span class="right"><ul class="prenext"><li class="pre">';
+		if(data.page==1){
+			html+='<span>上一页</span>';
+			}else{
+				html+='<a href="javascript:;" page="'+(data.page-1)+'">上一页</a>';
+			}
+		html+='</li><li class="next">';
+		if(data.page==data.pagesum){
+			html+='<span>下一页</span>';
+			}else{
+				html+='<a href="javascript:;" page="'+(data.page+1)+'">下一页</a>';
+			}
+		html+='</li></ul><div class="pages">';
+		for(var i=1;i<data.pagesum+1;i++){
+			html+='<a href="javascript:;" page="'+i+'"';
+			if(i==data.page){
+				html+='class="on"';
+				}
+			html+='>'+i+'</a>';
+			}
+		html+='</div></span></div>';
+		html+='<ul class="list">';
+        $.each(data.info, function(i,comdata){
+			html+='<li>';
+			html+='<span class="name">'+comdata.member_name+'</span>';
+			html+='<p>'+comdata.content+'</p>';
+			html+='<span class="time">'+comdata.time+'</span>';
+			html+='</li>';
+			});
+		html+='</ul>';
+		return html;
+		}
+		
+	//弹窗
+	function popups(){
+		$('#tier').show();
+		$('#popups').show();
+		};
+	$('#regcon a').click(function(){
+		$('#popups').hide();
+		$('#tier').hide();
+		});
+	$(window).scroll(function(){
+		var top  = $(this).scrollTop()+200 + 'px';
+		var left = ($(this).width()-411)/2 + 'px';
+		$('#popups').css({top:top,left:left});
+		$('#tier').css({width:$('body').width(),height:$('body').height(),opacity:0.20});
+	});
+		
+	});
+</script>
+<style type="text/css">
+body,ul,li,img,p,h1,h2,h3,h4,h5,dl,dt,dd{margin:0;padding:0;font-weight:normal;}
+body{width:auto;color:#666666;font-size:12px;}
+ul,li{list-style-type:none;}
+a{color:#666666;text-decoration:none;}
+a:hover{color:#aaaaaa;}
+img{border-width: 0px;}
+.m{margin:0 auto;}
+.left{float:left;}
+.right{float:right;}
+.cur{color:#0069D1;}
+/*头部*/
+#top{width:100%;background:url(__PUBLIC__/images/Zt/wdy/bgTop.png) repeat-x center top;}
+#head{width:960px;}
+#lgog_nav{height:53px;}
+#lgog_nav span{margin-top: 20px;}
+#logo{padding:9px 0 0 20px;}
+#h_nav{height:20px;margin-top:16px;padding-left:30px;background:url(__PUBLIC__/images/Zt/wdy/icon.png) no-repeat 5px -5px;}
+#h_nav li{float:left;width:55px;margin-top:3px;line-height:14px;text-align:center;}
+#h_nav li.bor_r{border-right: 1px solid #777777;}
+/*头部广告*/
+#top_ad{margin:10px 0;}
+#top_ad a{color:#FFF;}
+#top_ad a:hover{color:#f76300;}
+#top_ad span,#top_ad ul,#top_ad li{float:left;}
+#top_ad ul{padding-top:30px;width:280px;height:47px;background-color:#5a97b4;}
+#top_ad li{padding:0 10px;font-size:14px;font-weight:bold;}
+#top_ad li.bor_r{border-right:1px solid #8ab9d0;}
+#nav{font-size:12px;line-height:40px;}
+/*内容*/
+#content{width:960px;}
+/*左边*/
+.w730{width:730px;margin-right:10px;}
+.w730 h1{font-size:24px;line-height:30px;}
+.w730 h1 span{font-size:12px;color:#666;}
+#summarize{line-height:30px;}
+#summarize em{font-style:normal;color:#F00;padding-left:5px;}
+#vcr{width:auto;height:auto;}
+#fns{height:30px;margin:15px 0;}
+#fn_updown{float:left;border:1px solid #c9c9c9; margin-right:10px;}
+#fn_updown a{display:block;background:url(__PUBLIC__/images/Zt/wdy/icon.png) repeat-x 0px -125px;cursor: pointer;}
+#fn_updown a:hover{background:url(__PUBLIC__/images/Zt/wdy/icon.png) repeat-x 0px -155px;}
+#fn_updown span{display:block;padding:0 5px 0 32px;height:28px;line-height:28px;}
+#fn_up{float:left;border-right:1px solid #c9c9c9;}
+#fn_up span{background:url(__PUBLIC__/images/Zt/wdy/icon.png) no-repeat 0px -185px;}
+#fn_down{float: left;}
+#fn_down span{background:url(__PUBLIC__/images/Zt/wdy/icon.png) no-repeat 0px -211px;}
+#fn_share{padding-top:2px;}
+#fn_download{line-height:30px;padding-left:5px;}
+#fn_download a{color:#3399e0;}
+#vote{width:140px;height:27px;padding:2px 8px 1px 0;}
+#vote span{line-height:27px;}
+#vote em{font-style: normal;color: #F00;margin-right:5px;}
+#vote .but{margin-left:5px;width:71px;height:27px;background:url(__PUBLIC__/images/Zt/wdy/icon.png) no-repeat -5px -65px;cursor: pointer;color:#FFF;text-align: center;}
+#introduce{padding:15px;line-height:24px;background-color:#f5f5f5;color:#333;margin-bottom:15px;}
+/*评论*/
+#comment{margin-bottom:40px;}
+#comment h3{font-size:12px;height:30px;line-height:30px;color:#8a8a8a;}
+#comment h3 .left a{color:#3399e0;padding:0 2px;}
+#comment h3 .right{font-family:Constantia,Georgia;font-size:18px;}
+#comment h3 .right strong{color:#F00;}
+#comment textarea{width:720px;height:72px;padding:4px;border:1px solid #d4d9dd;line-height:24px;color:#bbbbbb; margin-bottom:6px;}
+#comment #combut a{display:block;width:81px;height:30px;line-height:30px;text-align:center;background:url(__PUBLIC__/images/Zt/wdy/icon.png) no-repeat 0px -241px;color:#333333;}
+#comment #combut a:hover{background:url(__PUBLIC__/images/Zt/wdy/icon.png) no-repeat 0px -271px;color:#333333;}
+/*评论列表*/
+#comment_list{clear: left;}
+#comment_list h3{line-height:32px;background:url(__PUBLIC__/images/Zt/wdy/icon.png) repeat-x 0px -305px;color:#333333;}
+#comment_list h3 span{display:block;width:115px;height:32px;text-align:center;background:url(__PUBLIC__/images/Zt/wdy/icon.png) repeat-x 0px -337px;}
+#comment_list h3 em{font-style:normal;font-family:Verdana,Geneva;font-size:10px;}
+#comment_list .paging{padding:15px 0;height:22px;font-size:12px;}
+#comment_list .prenext,#comment_list .pages{float:right;}
+#comment_list .prenext li{float:left;text-align:center;color:#c6c6c6;padding-left:5px;}
+#comment_list .prenext span,#comment_list .prenext a{display:block;width:48px;height:20px;line-height:20px;border:1px solid #e5e5e5;}
+#comment_list a,#comment_list a:hover{color:#3399e0;}
+#comment_list .pages a{float:left;height:20px;line-height:20px;padding:0 3px;border:1px solid #fff;margin-right:3px;}
+#comment_list .pages a:hover{border:1px solid #c6c6c6;}
+#comment_list .pages a.on,#comment_list .pages a:hover.on{border:1px solid #c6c6c6;background-color:#c6c6c6;color:#fff;font-weight:bold;}
+#comment_list .list{width:730px;}
+#comment_list .list li{border-bottom:1px solid #e5e5e5;margin-bottom:10px;}
+#comment_list .name,#comment_list p{line-height:24px;}
+#comment_list .name{color:#3399e4;}
+#comment_list p{color:#000;}
+#comment_list .time{color:#909090;line-height:50px;}
+/*右边*/
+.w220{width:220px;}
+#vcr_list h3{height:29px;line-height:29px;background-color:#e8e8e8;padding-left:12px;color:#333;font-weight:bold;}
+#vcr_list ul{border:1px solid #e8e8e8;padding:0 9px;}
+#vcr_list li{width:200px;height:64px;padding:10px 0;}
+#vcr_list img{float:left;width:116px;padding:1px;border:1px solid #e8e8e8;margin-right:4px;}
+#vcr_list li span{float:left;width:75px;line-height:20px}
+#vcr_list li a{display:block;}
+#footer{width:960px;height:50px;padding-top:15px;clear:left;}
+#footer p{text-align:center;line-height: 33px;}
+/*弹窗*/
+#tier,#popups{position:absolute;display:none;z-index:10000!important;}
+#tier{background-color:#000;}
+#popups{width:411px;height:134px;background:url(__PUBLIC__/images/Zt/wdy/popups.png) repeat-x;}
+#popups h5,#popups #regcon a{color: #FFF;}
+#popups h5{height:30px;line-height:30px;padding-left:18px;font-size:14px;}
+#popups #regcon{padding:24px 0 12px 0;text-align:center;}
+#popups #regcon a{display:inline-block;width:108px;line-height:28px;margin:0 15px;}
+#popups #regcon a#reg{background-color:#3f98e4;}
+#popups #regcon a#con{background-color:#9d9d9d;}
+#popups span{line-height:40px;padding-right:15px;}
+#popups span a{color:#0066cc;}
+</style>
+</head>
+
+<body>
+<div id="tier"></div>
+<div id="popups">
+<h5><strong>请先注册成为爱尚飞国际机票网会员，再进行投票</strong></h5>
+<div id="regcon"><a href="{:U('/member/register')}" target="_blank" id="reg">立即注册</a>&nbsp;<a href="javascript:;" id="con">取消</a></div>
+<span class="right"><a href="{:U('/about/service')}" target="_blank">了解会员服务</a></span>
+</div>
+
+<div id="top">
+<div id="head" class="m">
+    <include file="wdy_top" />
+<div id="top_ad">
+<span><a href="{:U('/zt/wdyindex')}"><img src="__PUBLIC__/images/Zt/wdy/vcrTopAd.jpg"></a></span>
+<ul>
+<li class="bor_r"><a href="{:U('/zt/wdyindex#link')}">活动首页</a></li>
+<li class="bor_r"><a href="{:U('/zt/wdyrule#link')}">活动规则</a></li>
+<li><a href="{:U('/zt/wdyreview#link')}">往届作品回顾</a></li>
+</ul>
+</div>
+<h2 id="nav"><a href="{:U('/zt/wdyindex')}">活动首页</a> > <a class="cur">微电影</a></h2>
+</div>
+</div>
+
+<div id="content" class="m">
+<div class="w730 left">
+<h1 class="cur"><strong>{$vo.title}</strong><span class="right">发布时间：<empty name='vo.publish_tim'>{$vo.create_time|date='Y-m-d',###}<else/>{$vo.publish_time}</empty></span></h1>
+<div id="summarize">
+<span class="left">参赛组别：{$vo.groups}&nbsp;&nbsp;&nbsp;&nbsp;参赛团体：{$vo.team}</span>
+<span class="right">观看：{$vo.view_num} | 下载：<span id="download">{$vo.down_num}</span>| 评论<em>{$pl.sum}</em></span>
+</div>
+<div id="vcr">
+    <embed src="{$vo.video_url}" allowFullScreen="true" quality="high" width="730" height="450" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash" wmode="Opaque"></embed>
+</div>
+<div id="fns">
+<div id="fn_updown">
+<div id="fn_up"><a vcrid="1" updown="up"><span>{$vo.is_up}</span></a></div>
+<div id="fn_down"><a vcrid="1" updown="down"><span>{$vo.is_down}</span></a></div>
+</div>
+<!-- Baidu Button BEGIN -->
+<div id="fn_share">
+<div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare">
+<a class="bds_qzone"></a>
+<a class="bds_tsina"></a>
+<a class="bds_tqq"></a>
+<a class="bds_renren"></a>
+<a class="bds_t163"></a>
+<span class="bds_more">更多</span>
+</div>
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6671062" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+</div>
+<!-- Baidu Button END -->
+<div class="left" id="fn_download"><a target="_blank" href="{$vo.yun_url}">下载到电脑播放</a></div>
+<div class="right" id="vote">
+<span class="left"><em>{$vo.vote_num}</em>人投票</span>
+<span class="right but">投票已结束</span>
+</div>
+</div>
+<!--fns end-->
+<div id="introduce">
+  {$vo.content}
+</div>
+<!--introduce end-->
+<div id="comment">
+<h3>
+    <empty name="userinfo">
+    <span class="left">
+    <a href="{:U('/member/login')}" target="_blank">登录</a>|<a href="{:U('/member/register')}" target="_blank">注册</a>
+    </span>
+    </empty>
+    <span class="right"><em>0</em>/300</span></h3>
+<textarea name="comment" cols="" rows="">有什么感想，您也来说说吧！</textarea>
+<div><span class="right" id="combut"><a href="javascript:;">发表评论</a></span></div>
+</div>
+<!--comment end-->
+<div id="comment_list">
+<h3><span><strong>全部评论</strong><em>({$pl.sum})</em></span></h3>
+<div class="paging">
+<span class="left">第<?php echo ($pl['number']*($pl['page']-1))+1;?>-{$pl['number']*$pl.page}/{$pl.sum}条</span>
+<span class="right">
+<ul class="prenext">
+    <li class="pre">
+   <?php
+    if($pl['page']==1){
+      echo '<span>上一页</span>';
+    }else{
+         echo  '<a href="javascript:;" page="'.($pl['page']-1).'">上一页</a>';
+    }
+    ?>
+    </li><li class="next">
+    <?php
+
+    if($pl['page']==$pl['pagesum']){
+      echo  '<span>下一页</span>';
+    }else{
+      echo '<a href="javascript:;" page="'.($pl['page']+1).'">下一页</a>';
+    }
+    ?>
+    </li>
+</ul>
+<div class="pages">
+   <?php
+        for($i=1;$i<$pl['pagesum']+1;$i++){
+            if($i==$pl['page']){
+                $on='class="on"';
+            }else{
+             $on='';
+            }
+        echo '<a href="javascript:;" '.$on.' page="'.$i.'">'.$i.'</a>';
+         }
+   ?>
+
+</div>
+</span>
+</div>
+<ul class="list">
+    <volist name="pl.list" id="v">
+    <li>
+    <span class="name">{$v.member_name}</span>
+    <p>{$v.content}</p>
+    <span class="time">{$v.time}</span>
+    </li>
+   </volist>
+</ul>
+
+</div>
+<!--comment list end-->
+</div>
+<div class="w220 left">
+<div id="vcr_list">
+<h3>最新观看排名</h3>
+<ul>
+    <volist name="top_list" id='vo'>
+<li>
+<a href="{:U('Zt/wdyvcr','id='.$vo['id'])}"><img name="" src="__PUBLIC__/uploads/video/s_{$vo.thumbnail}" width="108" height="60" alt="" /></a>
+<span><a href="{:U('Zt/wdyvcr','id='.$vo['id'])}">{$vo.title}</a>播放数: {$vo.view_num}</span>
+</li>
+</volist>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="footer" class="m">
+<p>Copyright © 2009-2013 爱尚飞国际机票网 广州美乐商务服务有限公司</p>
+</div>
+</div>
+
+</body>
+</html>

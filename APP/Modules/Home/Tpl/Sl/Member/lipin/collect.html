@@ -1,0 +1,37 @@
+<include file="Public:header" />
+<link rel="stylesheet" href="__PUBLIC__/css/userCenter.css" type="text/css" />
+    <div id="cont">
+        <div class="wd960 mt10 bgWhite">
+        	<h1 class="h1_tit_nav">你当前所在位置：<a href="/" class="sy">首页</a> > <a href="userCenter.html" class="sy">会员中心</a> > <a class="cur">我的收藏	</a></h1>
+
+            <include file='left' />
+           
+            <div class="left mt10" id="mdsc">
+                <include file="top_kf" />
+               	<div class="top_nav_qh">
+               		<ul>
+                   		<li><a href="collect" class="active">我的收藏</a></li>
+                        <li><a href="cart">我的购物车</a></li>
+                        <li><a href="exchange">已兑换的礼品</a></li>
+                   	</ul>
+               	</div>
+            	<div class="prosc">
+                    <foreach name="list" item="v">
+                   	<dl>
+                      	<dt><a href="{:U('/jifen/info','id='.$v['mall_id'])}"><img src="__PUBLIC__/uploads/mall/m_{$v.img}" width="146" height="146" /></a></dt>
+                      	<dd><a href="{:U('/jifen/info','id='.$v['mall_id'])}">{$v.title}</a>积分：<span class="red bold">{$v.jifen}</span></dd>
+                        <dd><a style="display: inline-block;" href="cart/?act=add&id={$v.mall_id}">加入购物车</a>&nbsp;<a style="display: inline-block;" href="collect/?act=del&id={$v.id}">删除</a></dd>
+                 	</dl>
+                    </foreach>
+
+               	</div>
+                <p class="pagingBar">
+                    	<span class="cur">
+                    		{$page}
+                        </span>
+                </p>
+         	</div>
+        </div>
+    </div>
+
+<include file="Public:footer" />

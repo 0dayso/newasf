@@ -1,0 +1,40 @@
+<include file="Public:header" />
+<link rel="stylesheet" href="__PUBLIC__/css/userCenter.css" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/js/modify.js"></script>
+
+    <div id="cont">
+        <div class="wd960 mt10 bgWhite">
+        	<h1 class="h1_tit_nav">你当前所在位置：<a href="/" class="sy">首页</a> > <a class="cur">会员中心</a></h1>
+            <include file="left" />
+
+            <div class="left mt10" id="mydate">
+                <include file="top_kf" />
+                <div class="top_nav_hr"><span>我的资料</span></div> 
+                <div class="top_nav_qh">
+           		<ul>
+                   		<li><a href="{:U('/member/information')}" class="active">个人资料</a></li>
+                        <li><a href="{:U('/member/editpwd')}">修改密码</a></li>
+                   	</ul>
+               	</div>
+               	<div class="bd">
+                	<form action="" name="form" method="post">
+                  	<ul>
+                        <div class="ts" >爱尚飞国际机票网建议您提供准确及完善的个人提料，以便我们为您提供更完善的会员服务；如您需要修改个人资料，请直接在下方输入框中进行修改</div>
+                        <li><label class="tt"> 姓名：</label><input name="name" type="text"  class="text" value="{$userinfo.name}" /></li>
+                        <li class="g"><label class="tt">称谓：</label>
+                            <select name="sex" ><option value="0" >先生</option>
+                                <option value="1"  <if condition="$userinfo.sex eq '1'">selected="selected"</if>>女士</option></select></li>
+                        <li><label class="tt">联系电话：</label><input name="mobile" disabled=true type="text" class="text" value="{$userinfo.mobile}"/></li>
+                        <li id="addcodePCT" val="{$userinfo.province},{$userinfo.city}" class="g"><label class="tt">所在地：</label><select name="province" id="province_sel"><option value=""> -- </option></select><select name="city" class="op" id="city_sel"><option value=""> -- </option></select></li>
+                        <li><label class="tt">联系地址：</label><input name="address" type="text"  class="text" value="{$userinfo.address}"/></li>
+                        <li><label class="tt">电子邮箱：</label><input name="email" type="text" class="text" value="{$userinfo.email}"/></li>
+                         <li><label class="tt">邮政编码：</label><input name="zip_code" type="text" class="text" value="{$userinfo.zip_code}"/></li>
+                        <li><label class="tt"></label><input class="bt" type="submit" value="确认无误，提交" /></li>
+                  	</ul>
+                    </form>
+              	</div>
+          	</div>
+        </div>
+    </div>
+
+<include file="Public:footer" />

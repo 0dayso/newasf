@@ -1,0 +1,69 @@
+<div class="page">
+	<div class="pageContent">
+
+	<form method="post" action="__URL__/addClaim/navTabId/__MODULE__-claimList" class="pageForm required-validate" onsubmit="return validateCallback(this,dialogAjaxDone)">
+		<div class="pageFormContent" layoutH="58">
+		<!-- 	<div class="unit">
+			<label>请选择分类：</label>
+			<select name="class_id" id="test" class="required combox">
+				<option value="">请选择</option>
+				<volist name="cate" id="vocate">
+					<option value="{$key}">{$vocate}</option>
+				</volist>
+			</select>
+		</div> -->
+            <style type="text/css">
+                .bank{margin-left: 120px;}
+                .bank label{width: 100px;}
+                 .unit label{ padding:0}
+                </style>
+			<div class="unit">
+				<label>到账日期：</label>
+				<input type="text" class="required date textInput valid"  name="arrival_date" value="{$Think.cookie.old_input_arrival_date}">
+                <a class="inputDateButton" href="javascript:;">选择</a>
+			</div>
+            <div class="unit">
+                <label>汇款人名字：</label>
+                <input type="text" class=""  name="remitter" >
+            </div>
+            <div class="unit">
+                <label>到账金额：</label>
+                <input type="text" class="required number"  name="arrival_amount" >
+            </div>
+            <div class="unit">
+                <label>手续费：</label>
+                <input type="text" class="number"  name="poundage" >
+            </div>
+            <notempty name="bankArr">
+            <div class="unit">
+                <label>银行：</label>
+                <div class="bank">
+                    <volist name="bankArr" id="vo">
+                       <label><input type="radio" class="required"  name="bank" value="{$vo}"/>{$vo}</label>
+                    </volist>
+                </div>
+            </div>
+            </notempty>
+         <!--   <div class="unit">
+                <label>财务审核人：</label>
+                <input type="text" class="required textInput valid" name="audit_uid" value="" >
+            </div>-->
+          <div class="unit">
+			<label>备注：</label>
+            <textarea name="audit_remark" editor="{:uniqid()}" cols="50" rows="3"></textarea>
+          </div>
+		</div>
+		
+		<div class="formBar">
+			<ul>
+				<li>
+                    <input type="hidden" name="book_id" value="{$book_id}">
+                    <div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+	
+	</div>
+</div>
+

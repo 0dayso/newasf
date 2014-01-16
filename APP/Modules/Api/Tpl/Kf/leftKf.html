@@ -1,0 +1,59 @@
+  document.writeln('<style>');
+
+  document.writeln(' #left_kf{position: absolute;overflow:hidden;width:180px;height:270px;top:200px;right:0;color:#055191}');
+  document.writeln('#left_kf a{color:#055191}#left_kf .kf_xw{position: relative;cursor: pointer;width:30px;height:196px;background:url(__PUBLIC__/images/kf_xw.gif);background-repeat:no-repeat;float:right;margin-top:10px;}#left_kf .kf_body{width:148px;height:267px;background:url(__PUBLIC__/images/kf_body.gif);background-repeat:no-repeat;float:right;}#left_kf .kf_avatar{float:left;width:75px;height:75px;margin:30px 0 10px 38px;}#left_kf .kf_avatar img{width:75px;height:75px;}#left_kf .kf_qq{width:140px;height:43px;top:215px;margin-left:5px;background:url(__PUBLIC__/images/kf_qq.gif);background-repeat:no-repeat;}#left_kf .kf_contact{width: 148px;height: 65px;margin-top:12px}#left_kf .kf_name{width:148px;clear:both;font-size:14px;height: 20px;line-height: 20px;text-align:center;}.kf_name a{font-weight:bold;}.kf_contact li{line-height: 25px;font-size:13px;}.status_ion{position:absolute;top:174px;left:11px;width:7px;height:13px;background:url(__PUBLIC__/images/kf_status_ion.gif);background-repeat:no-repeat;background-position:-7px}');
+  document.writeln('</style>');
+
+    document.writeln('<div id="left_kf">');
+
+        document.writeln(' <div class="kf_body">');
+            document.writeln('  <div class="kf_avatar"><a href="{:U('/Adviser/review')}_{$userinfo.user.id}"><img src="__PUBLIC__/uploads/{$userinfo.user.avatar}"/></a></div>');
+            document.writeln('<div class="kf_name"><a href="{:U('/Adviser/review')}_{$userinfo.user.id}">{$userinfo.user.name}</a></div>');
+            document.writeln(' <div class="kf_contact">');
+            document.writeln(' <li>手机：{$userinfo.user.public_mobile}</li>');
+            document.writeln(' <li>电话：{$userinfo.user.telephone}</li>');
+            document.writeln(' </div>');
+            document.writeln(' <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={$userinfo.user.qq|trim}&site=qq&menu=yes""><div class="kf_qq"></div></a>');
+            document.writeln(' </div>');
+      document.writeln(' <div class="kf_xw"><div class="status_ion"></div></div>');
+        document.writeln('</div>');
+
+
+    var tips;
+    var theTop = 160;
+    var old = theTop;
+    function initFloatTips() {
+        tips = document.getElementById('left_kf');
+        moveTips()
+    };
+    initFloatTips();
+    function moveTips() {
+        var tt = 50;
+        if (window.innerHeight) {
+            pos = window.pageYOffset
+        } else if (document.documentElement && document.documentElement.scrollTop) {
+            pos = document.documentElement.scrollTop
+        } else if (document.body) {
+            pos = document.body.scrollTop
+        }
+        pos = pos - tips.offsetTop + theTop;
+        pos = tips.offsetTop + pos / 10;
+        if (pos < theTop) pos = theTop;
+        if (pos != old) {
+            tips.style.top = pos + "px";
+            tt = 10
+        }
+        old = pos;
+        setTimeout(moveTips, tt)
+    }
+
+    $(".kf_xw").toggle(
+          function(){
+              $(".kf_body").animate({width: "0px"}, 1000 );
+              $(".status_ion").animate({backgroundPosition: "0px"}, 10 );
+           },
+          function(){
+              $(".kf_body").animate({width: "148px"}, 1000 );
+              $(".status_ion").animate({backgroundPosition: "-7px"}, 10 );
+          }
+  )

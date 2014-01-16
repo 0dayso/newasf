@@ -1,0 +1,110 @@
+@charset "utf-8";
+/* 全局设置 */
+body,div,span,p,img,ul,li,dl,dd,dt,h1,h2,h3,h4,h5,h6,form,label,input,textarea{margin:0px;padding:0px;font-size:12px;}
+body{background-color:#f2f1f0; font-family:"微软雅黑", "黑体", "宋体";}
+ul,li,dl,dd,dt{list-style-type:none;}
+a{text-decoration: none;}
+a img{border:none;}
+label{cursor: default;}
+label a{color: #06C;}
+#page,#header,#content,#footer{width:auto;height:auto;clear:left;}
+#page{background-color:#f2f1f0;}
+#header{padding:4px;background-color:#FFF;}
+#footer{text-align:center;background-color:#f2f1f0;}
+#footer #telservice,#footer #copyright{line-height:32px;}
+#footer #telservice a.tel{font-size:18px;font-weight:bold;padding-left:45px;background:url(../images/tel_bg.png) no-repeat 20px center;}
+#footer #telservice a.service{font-size:16px;padding-left:20px;background:url(../images/telservice.gif) no-repeat left center;margin-right:20px;}
+#footer #telservice a.qq{font-size:16px;padding-left:20px;background:url(../images/qq_consult.gif) no-repeat left center;}
+#footer #telservice a{color:#c51522;display:inline-block;margin-top:8px;}
+#footer .nav{line-height:14px;margin:9px 0;}
+#footer .nav a{color:#333;width:24%;display:inline-block;}
+#footer .nav a.bor{border-left:1px solid #777777;border-right:1px solid #777777;}
+#footer #copyright{color:#666666;}
+
+/* 表单 */
+input,textarea{border:none!important;text-indent:10px!important;}
+input.txt,textarea{width:100%!important;display:inline-block!important;}
+input.txt,input.code,textarea,select{background-color:#f2f1f0;color:#666666!important;}
+input.txt,input.code,select{line-height:normal;height:29px;}
+input.code{float:left;width:20%;display:inline-block!important;margin-right:10px;}
+.sub{width:100%;line-height:29px;height:29px;background-color:#3598db;border-style:none;color:#FFF;font-weight:bold;cursor:pointer;display:block;text-align:center;}
+textarea{line-height:24px!important;padding:0px!important;}
+select{border-style:none!important;width:70%!important;}
+select option{border-style:none!important;}
+.box{padding:10px;}
+.box h2{border-bottom:1px solid #e7e5e5;height:35px;line-height:35px;text-align:center;color:#2690d8;display:block; overflow:hidden;}
+.box h2,#import{background-color:#FFF;}
+.box p{line-height:24px;color:#666666;display:block;}
+.box p em,.box label em{font-style:normal;color:#F00;padding:0 5px;}
+.box p strong{color:#3598db;}
+.pad10{padding:10px;background-color:#FFF;display:block;margin-bottom:10px;}/*填充为10px*/
+
+
+/* 图标设置 */
+.icon-home,.icon-tel,.icon-returnclose,.icon-return,.icon-up,.icon-down,h5 .icon-up,h5 .icon-down,h6 .icon-up,h6 .icon-down{background:url(../images/icon.png) no-repeat;}
+.icon-home{background-position:0px 0px;}
+.icon-tel{background-position:0px -42px;}
+.icon-returnclose{background-position:0px -84px;}
+.icon-return{background-position:0px -238px;}
+.icon-up{background-position:-6px -278px;}
+.icon-down{background-position:-6px -314px;}
+/*我们的服务中的ICON*/
+h5 .icon-up,h6 .icon-up{background-position:0px -380px;}
+h5 .icon-down,h6 .icon-down{background-position:0px -422px;}
+
+/* 内容设置 */
+.left{float:left;}
+.right{float:right;}
+#topnav,.topnav{text-align:center;}
+#topnav,.topnav{background-color:#3598db;color:#FFF;font-size:18px;line-height:42px;height:42px;padding:0 4px;}
+#topnav .icon a,.topnav .icon a,.box .icon a{display:block;width:42px;height:42px;overflow:hidden;line-height:200px;}
+#topnav #exit{width:80px;height:30px;line-height:30px;text-align:center;color:#2690d8;background:url(../images/title_bg.png) no-repeat 0px 0px;cursor:pointer;}
+
+/* 可折叠的列表 */
+.collapsible{color:#404040;}
+.collapsible h3{line-height:36px;background-color:#FFF;cursor:pointer;}
+.collapsible h3 a{color:#404040;display:block;padding-left:20px;font-size:14px;font-weight:normal;}
+.collapsible h4{line-height:36px;background-color:#eeeeee;border-bottom:1px solid #FFF;cursor:pointer;}
+.collapsible h4 a{color:#404040;display:block;padding-left:10px;}
+.collapsible h4 span,.collapsible h3 span{float:right;display:block;width:36px;height:36px;line-height:200px;overflow:hidden;}
+.collapsible ul{display:none;}
+.collapsible h5,.collapsible h6{line-height:42px;background-color:#FFF;border-bottom:1px solid #e7e5e5;cursor:pointer;}
+.collapsible h5 a{color:#2690d8;display:block;padding-left:55px;background:url(../images/service.png) no-repeat;}
+.collapsible h5 a.s1{background-position:0px 0px;}
+.collapsible h5 a.s2{background-position:0px -45px;}
+.collapsible h5 a.s3{background-position:0px -90px;}
+.collapsible h5 a.s4{background-position:0px -135px;}
+.collapsible h5 a.s5{background-position:0px -180px;}
+.collapsible h5 a.s6{background-position:0px -225px;}
+.collapsible h5 a.s7{background-position:0px -270px;}
+.collapsible h5 a.s8{background-position:0px -315px;}
+.collapsible h5 span,.collapsible h6 span{float:right;display:block;width:42px;height:42px;line-height:200px;overflow:hidden;}
+.collapsible p{padding:10px;background-color:#FFF;border-bottom:1px solid #e7e5e5;}
+.collapsible h6 a{color:#2690d8;display:block;padding-left:10px;}
+.collapsible .faq{display:none;}
+
+/*块状连接*/
+.block_link{margin:10px 0;}
+.block_link a{display:block;width:100%;line-height:29px;text-align:center;background-color:#3598db;color:#FFF;font-weight:bold;}
+
+/*加载中、提示*/
+#loading,#reminder{padding:10px;text-align:center;display:none;}
+#reminder{line-height:20px;background-color:#FFF;color:#fe8707;font-weight:bold;}
+
+/*退出登录*/
+#msg{width:280px;height:150px;background-color:#f4f4f4;text-align:center;font-size:14px;position:absolute;top:120px;}
+#msg a{color:#3598db;cursor:pointer;}
+#msg h2{line-height:36px;font-size:18px;background-color:#3598db;}
+#msg p{color:#333333;}
+#msg p label{padding-left:35px;height:50px;line-height:50px;background:url(../images/msg_icon.gif) no-repeat;display:inline-block;}
+#msg p .warning{background-position:0px 0px;}
+#msg p .forbid{background-position:0px -50px;}
+#msg p .correct{background-position:0px -100px;}
+#msg p .query{background-position:0px -150;}
+#msg h2,#logout span{color:#FFF;}
+#msg div{padding-top:10px;}
+#msg span{width:92px;height:30px;line-height:30px;display:inline-block;cursor:pointer;}
+#msg #cancel{margin-right:15px;}
+#msg #cancel a,#msg #call-back a,#msg #confirm a{width:92px;height:30px;line-height:30px;color:#FFF;display:block;}
+#msg #cancel a{background-color:#b0b0b0;}
+#msg #call-back a,#msg #confirm a,#logout span#cancel a:hover{background-color:#67b1e4;}

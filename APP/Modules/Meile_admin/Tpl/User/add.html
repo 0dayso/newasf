@@ -1,0 +1,128 @@
+
+<script language="JavaScript">
+<!--
+function checkName(){
+	ThinkAjax.send('__URL__/checkAccount/','ajax=1&account='+$F('account'));
+}
+//-->
+</script>
+
+
+<div class="pageContent">
+	
+	<form method="post" action="__URL__/insert/navTabId/__MODULE__" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone)">
+		<div class="pageFormContent" layoutH="58">
+			<p>
+				<label>帐号：</label>
+				<input type="text" class="required alphanumeric" size="30" maxlength="20" name="username" value="{$vo.username}" />
+			</p>
+            <p>
+                <label>胜意帐号：</label>
+                <input type="text" class=" " size="30" maxlength="20" name="asms_user_id" value="{$vo.asms_user_id}" />(业务必填)
+            </p>
+            <p>
+                <label>姓名：</label>
+                <input type="text" class="required" name="name" value="{$vo.name}">
+            </p>
+			<p>
+				<label>密码：</label>
+				<input type="password" name="password" size="30" maxlength="20" class="required alphanumeric"/>
+			</p>
+			<p>
+				<label>Email：</label>
+				<input type="text" name="email" size="30" maxlength="100" class="email"/>
+			</p>
+            <p>
+                <label>性别：</label>
+                <select name="sex" class="sex"><option value="0">先生</option><option value="1" selected='selected'>女士</option></select>
+            </p>
+            <p>
+                <label>头像：</label>
+                <input type="text" name="avatar" lookup="img.fileName" size="12"  readonly="readonly" class="textInput readonly" value='{$vo.avatar}'>
+                <a class="btnAttach" href="__URL__/upload" lookupGroup="img" width="560" height="300" title="查找带回">查找带回</a>(业务必填)
+            </p>
+            <p>
+                <label>公司手机号：</label>
+                <input class="input" name="public_mobile" type="text" size="30" value="" />(业务必填)
+            </p>
+            <p>
+                <label>私人手机号：</label>
+                <input class="input" name="private_mobile" type="text" size="30" value="" />
+            </p>
+            <p>
+                <label>电话：</label>
+                <input class="input" name="telephone" type="text" size="30" value="" />
+            </p>
+            <p>
+                <label>QQ号：</label>
+                <input class="input" name="qq" type="text" size="30" value="" />(业务必填)
+            </p>
+            <p>
+                <label>MSN：</label>
+                <input class="input" name="msn" type="text" size="30" value="" />
+            </p>
+            <p>
+                <label>skype：</label>
+                <input class="input" name="skype" type="text" size="30" value="" />
+            </p>
+            <p>
+                <label>入职日期：</label>
+                <input class="date textInput valid" name="enpy_time" type="text"   value="{:date('Y-m-d')}" />                 </p>
+            <p>
+                <label>所属公司：</label>
+                <select name="company_id" ><option value="">--请选择--</option>{$vo.companyOption.option}</select>
+            </p>
+            <p>
+                <label>所属部门:</label>
+                <select name="department_id" ><option value="">--请选择--</option>{$vo.departmentOption.option}</select>
+
+            </p>
+            <p>
+                <label>所属职位：</label>
+                <select name="position_id" ><option value="">--请选择--</option>{$vo.positionOption.option}</select>
+            </p>
+			<p>
+				<label>Status：</label>
+				<select name="status">
+					<option value="1">启用</option>
+					<option value="0">禁用</option>
+				</select>
+			</p>
+            <p>
+                <label>前台显示：</label>
+                <select name="view">
+                    <option value="1">启用</option>
+                    <option value="0">禁用</option>
+                </select>
+            </p>
+
+
+<!--            <p>
+                <label>部门名称：</label>
+                <input type="hidden" name="orgLookup.id" value="${orgLookup.id}"/>
+                <input type="text" class="required" name="orgLookup.orgName" value="" suggestFields="orgNum,orgName" suggestUrl="demo/database/db_lookupSuggest.html" lookupGroup="orgLookup" />
+                <a class="btnLook" href="demo/database/dwzOrgLookup.html" lookupGroup="orgLookup">查找带回</a>
+            </p>-->
+
+            <div class="unit">
+                <label>个人签名:</label>
+                <textarea class="input" type="text" cols="57" rows="3" name="signature" value=""/>
+            </div>
+            <div class="unit">
+                <label>个人简介：</label>
+                <textarea name="profile" rows="5" cols="57"></textarea>
+            </div>
+			
+		</div>
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">Submit</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">Cancel</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+	
+</div>
+
+
+

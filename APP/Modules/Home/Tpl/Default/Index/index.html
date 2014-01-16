@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>{$title}</title>
+    <meta name="keywords" content="爱尚飞国际机票,国际机票查询,打折机票,特价机票,机票预订" />
+    <mete name="description" content="爱尚飞国际机票网为广大空中乘客提供全球218国家,4000个城市的国际航班信息查询，国际航班和国际机票预订服务。" />
+    <link rel="stylesheet" href="__PUBLIC__/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="__PUBLIC__/css/index.css" type="text/css" />
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/main.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/index.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/css/register.css" type="text/css" />
+
+</head>
+<body>
+<include file="Public:index_top_nav" />
+
+    <div id="renzheng_lan" class="wd980">
+    <h2>选择爱尚飞的理由</h2>
+       <ul>
+          <li class="lb0"><label></label><span>100%国际航协认证,<br/>第一手真实价格</span></li>
+          <li class="lb1"><label></label><span>100%中国航协认证,<br/>资质保证，订票无忧</span></li>
+          <li class="lb2"><label></label><span>100%出票,不加收费,<br/>先验票 后付款</span></li>
+          <li class="lb3"><label></label><span>实时推出特价及提<br/>供专业旅行顾问服务</span></li>
+        </ul>
+     </div>
+     
+    <div id="cont">
+        <div class="wd980 contMain">
+            <!--首页左边栏-->
+            <div class="left contlt">
+               <!--特价机票-->
+               <include file="public:special" />
+               
+               <!--航空公司特惠-->
+               <include file="public:preferential" />
+               
+               <!--会员活动精选(Member Activities)&新鲜事(fangle)-->
+               <div id="ma_fab">
+					<div id="fangle">
+                    	<dl>
+                       	  <dt>新鲜事</dt>
+                            <volist name="nothing" id="vo">
+                            <dd><span>{$vo.name}</span>参加了<a href="{:U('/')}{$vo.hd_url}">{$vo.hd}</a><em>{$vo.from_now}前</em></dd>
+                            </volist>
+                        </dl>
+                    </div>
+					<div id="mem_act">
+                    	<div class="box_l">
+                    		<h2>会员活动精选</h2>
+                            <ul>
+                            	<li><a href="{:U('/zt/lxs')}" target="_blank"><img src="__PUBLIC__/images/mem_act01.jpg" /></a></li>
+                                <li><a href="{:U('/zt/thtjbjbm')}" target="_blank"><img src="__PUBLIC__/images/mem_act02.jpg" /></a></li>
+                                <li><a href="{:U('/zt/chaoditejia')}" target="_blank"><img src="__PUBLIC__/images/mem_act03.jpg" /></a></li>
+                                <li><a href="{:U('/zt/gqcf')}" target="_blank"><img src="__PUBLIC__/images/mem_act04.jpg" /></a></li>
+                            </ul>
+                        </div>
+                    </div>
+					
+               </div>
+               
+            </div><!--首页左边栏 END-->
+            
+            
+            <div class="right contrt">
+            	<!--他们正在查...-->
+                <div class="box_r">
+                    <h2><strong>他们正在查...</strong></h2>
+                    <ul id="find_flight">
+                        <volist name="while_search" id="vo">
+                       <li><span>{$vo.from_date}</span><a href="{:U('/')}{$vo.url}" title="{$vo.from_city} 至 {$vo.to_city}">{:cutStr($vo['from_city'].'-'.$vo['to_city'],7)}</a><strong>{$vo.type}</strong><em>{$vo.from_now}前</em></li>
+                       </volist>
+                    </ul>
+                </div><!--他们正在查 END-->
+                
+                <!--我们的十大优势-->
+                <div class="box_r">
+                    <h2>我们的十大优势</h2>
+                    <ul id="service">
+                    	<li><a href="{:U('/about/toubu')}#step1" target="_blank" class="spr1 a0"><label>信息真实</label></a></li>
+                        <li><a href="{:U('/about/toubu')}#step2" target="_blank" class="spr1 a1"><label>机票专营</label></a></li>
+                        <li><a href="{:U('/about/toubu')}#step3" target="_blank" class="spr1 a2"><label>专业顾问</label></a></li>
+                        <li><a href="{:U('/about/toubu')}#step4" target="_blank" class="spr1 a3"><label>航协认证</label></a></li>
+                        <li><a href="{:U('/about/toubu')}#step5" target="_blank" class="spr1 a4"><label>百度认证</label></a></li>
+                        <li><a href="{:U('/about/toubu')}#step6" target="_blank" class="spr1 a5"><label>资质公开</label></a></li>
+                        <li><a href="{:U('/about/toubu')}#step7" target="_blank" class="spr1 a6"><label>出票保证</label></a></li>
+                        <li><a href="{:U('/about/toubu')}#step8" target="_blank" class="spr1 a7"><label>全天服务</label></a></li>
+                        <li><a href="{:U('/about/toubu')}#step9" target="_blank" class="spr1 a8"><label>免费送票</label></a></li>
+                        <li><a href="{:U('/about/toubu')}#step10" target="_blank" class="spr1 a9"><label>支付灵活</label></a></li>
+                    </ul>
+                </div><!--我们的十大优势 END-->
+                
+                <div id="web_link">
+                <a href="{:U('/zt/ethiopian_sales')}" target="_blank"><img src="__PUBLIC__/images/zt/ethiopian_sales/ethiopian_iad.jpg" alt="jingxuan" /></a>
+                </div>
+                
+                <!--机票工具箱-->
+                <div class="box_r" id="chest_link">
+                    <h2>机票工具箱</h2>
+                    <dl>
+                        <dd class="a0"><a href="{:U('/member/login')}" target="_blank">我的机票</a></dd>
+                        <dd class="a1"><a href="{:U('/iflight/orderflight')}" target="_blank">低价预约</a></dd>
+                        <dd class="a2"><a href="{:U('/help/members#help_ul3')}" target="_blank">订票攻略</a></dd>
+                    </dl>
+                    <ul>
+		                <li><label class="spr2 a0"></label><a rel="nofollow" href="http://www.tianqi.com/worldcity.html" target="_blank">天气预报</a></li>
+		                <li><label class="spr2 a1"></label><a rel="nofollow" href="http://time.123cha.com/" target="_blank">国际时差</a></li>
+		                <li><label class="spr2 a2"></label><a rel="nofollow" href="http://qq.ip138.com/hl.asp" target="_blank">汇率查询</a></li>
+		                <li><label class="spr2 a3"></label><a rel="nofollow" href="http://baike.baidu.com/view/1618627.htm" target="_blank">旅游签证</a></li>
+		                <li><label class="spr2 a4"></label><a rel="nofollow" href="http://ditu.google.cn/" target="_blank">电子地图</a></li>
+		                <li><label class="spr2 a5"></label><a rel="nofollow" href="http://www.travelsky.com/newsky/index.html" target="_blank">机票真伪</a></li>
+	                </ul>
+                </div><!--机票工具箱 END-->
+                
+                <!--客户评价-->
+                <div class="box_r" id="index_evaluate_list">
+                        <h2><span class="left">客户评价</span><span class="right"><a>客户满意度：</a><label>99.6%</label></span></h2>
+                        <div id="page_nav"><dl><dt>&lt;</dt><dd>&gt;</dd></dl><em>1</em>/3</div>
+                        <div id="evaluate">
+                            <volist name="evaluat" id="v" mod="3">
+                                <if condition="$mod eq 0 and $i neq 1"></ul></if>
+                                <eq name="mod" value="0"><ul <eq name="i" value="1">class="active"</eq> ></eq>
+                           		<li>
+                               		<span class="title"><a class="spr3 assgd"></a><div><label>{$v.name|msubstr=###,0,8} 点评了</label><a href="{:U('airline/pl/','from='.$v['from_iata'].'&to='.$v['to_iata'])}" target="_blank" class="travel">{$v.from_city}→{$v.to_city}</a></div></span>
+                               		<span class="intro">{$v.contents}</span>
+                          		</li>
+                                <if condition="$i eq 9"></ul></if>
+                            </volist>
+                         </div>
+                </div><!--客户评价 END-->
+                <script type="text/javascript">
+                	$(function(){
+							$('#page_nav dt').click(function(){
+									evalPage(-1);
+								});
+							$('#page_nav dd').click(function(){
+									evalPage(1);
+								});
+							function evalPage(numder){
+									var page=parseInt($('#page_nav em').text());
+									if(page+numder==0){
+											page=3;
+										}else if(page+numder>=4){
+												page=1;
+											}else{
+													page=page+numder;
+												}
+									$('#page_nav em').text(page);
+									$('#evaluate ul').eq(page-1).addClass('active').siblings().removeClass('active');
+								}
+						});
+                </script>
+
+            </div>
+            
+        </div>
+        
+        
+        
+        <div class="wd980 infobt">
+                <dl>
+                	<dt>爱尚飞介绍</dt>
+                    <dd><a href="{:U('/about')}" target="_blank">公司简介</a></dd>
+                    <dd><a href="{:U('/about/qualifications')}" target="_blank">荣誉资质</a></dd>
+                    <dd><a href="{:U('/about/events')}" target="_blank">发展历程  </a></dd>
+                    <dd><a href="{:U('/about/contact')}" target="_blank">联系我们</a></dd>
+                </dl>
+                <dl>
+                	<dt>会员帮助</dt>
+                    <dd><a href="{:U('/')}help/members#help_ul0" target="_blank">会员注册</a></dd>
+                    <dd><a href="{:U('/')}help/members#help_ul1" target="_blank">会员积分</a></dd>
+                    <dd><a href="{:U('/')}help/members#help_ul2" target="_blank">密码修改</a></dd>
+                    <dd><a href="{:U('member/information')}" target="_blank">资料修改 </a></dd>
+                </dl>
+                <dl>
+                	<dt>支付方式</dt>
+                    <dd><a href="{:U('/')}help/pay#help_ul0" target="_blank">转账支付</a></dd>
+                    <dd><a href="{:U('/')}help/pay#help_ul1" target="_blank">在线支付</a></dd>
+                    <dd><a href="{:U('/')}help/pay#help_ul2" target="_blank">刷卡支付</a></dd>
+                    <dd><a href="{:U('/')}help/pay#help_ul3" target="_blank">现金支付</a></dd>
+                </dl>
+            <div class="blk">
+            	<a class="spr bki"></a>
+            </div>
+        </div>
+    </div>
+    <if condition="$userinfo and !$userinfo['user_id']">
+        <include file="Member:set_kf" />
+    </if>
+    <!-- 投诉建议&国际机票咨询预订流程 首页右漂 -->
+    <div id="comp_zxyd">
+      <div class="verify"><a target="_blank" href="{:U('/iflight/verify')}">机票验真</a></div>
+      <div class="comp"><a href="{:U('/complaint')}">投诉建议</a></div>
+      <div class="zxyd"><a href="{:U('/Process/zxyd')}">咨询预订<br/>流程</a></div>
+    </div>   
+<!--    <script type="text/javascript">
+    $(function(){
+		$(window).scroll(function(){
+			var top=$(this).scrollTop()+440+'px';
+			$('#comp_zxyd').css('top',top);
+			});
+		});
+    </script>-->
+   <include file="Public:footer" />

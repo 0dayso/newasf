@@ -1,0 +1,33 @@
+@charset "utf-8";
+/* CSS Document */
+.wrapout{margin:0 auto;width:744px;  border:3px solid #64a5e9; font-size:12px; overflow:hidden;}
+a{text-decoration:none;}
+.close{margin:0 auto;width:701px; height:50px; border-bottom:1px solid #64a5e9;}
+img{border:none;}
+h1{margin:0 auto;margin-top:20px;width:701px; height:50px; background:url(image/xcd.jpg) center no-repeat;}
+.hbxx{margin:10px auto;width:701px; overflow:hidden; font-size:14px;}
+.hbxx ul{margin:0;padding:0;}
+.hbxx ul li{margin-top:10px;padding:0;width:701px; color:#333; height:30px; line-height:30px; overflow:hidden; float:left; display:inline;list-style:none; }
+.bd{font-weight:bold;}
+.hbxx table{width:701px; border:1px solid #b4dff5;  overflow:hidden; float:left;}
+.hbxx tr{text-indent:5px;}
+.bg{background:e5f3ff;border-bottom:1px solid #b4dff5;  text-indent:5px; font-size:16px; font-weight:bold; color:#0053aa; height:39px; line-height:39px;}
+.lh{border-bottom:1px solid #b4dff5;}
+.zz{border-top:1px solid #b4dff5;}
+p{line-height:1px;}
+.hbxx li a{maring-left:10px; text-decoration:none; color:#333;}
+.kf{width:277px; overflow:hidden; float:left; font-size:12px; }
+.kf span.imgs{width:80px; height:80px;margin-right:5px;border:1px sold #ddd;float:left; }
+.kf span.imgs img{width:80px; height:80px;}
+.kf span.infos{width:180px;float:left;}
+.kf span.infos a{display:block; line-height:25px; color:#666;}
+.kf span.infos a.name{color:#ff6600; font-weight:bold;}
+.kf span.infos label{color:#333;}
+.kf span.kfpj{clear:both;margin-top:5px; padding-top:10px; display:block;}
+.kf span.kfpj label{float:left;}
+.kf span.kfpj label.kfpj a{background:url(image/pingjia_dj.gif) no-repeat 0 0;margin-right:5px; float:left; margin-top:0; height:11px; margin-right:5px; width:59px;  }
+.kf span.kfpj label.kfpj a.a9{background-position:0 -20px;margin-right:5px;}
+.kf span.kfpj label.aa{color:#0066cc; margin-left:20px;}
+.kf span.kfpj label.aa a:hover{color:#ff6600;}
+.bt{margin-bottom:30px;}
+.lk{margin-top:70px;width:226px; height:47px; background:url(image/xcd.jpg) no-repeat; float:right;}

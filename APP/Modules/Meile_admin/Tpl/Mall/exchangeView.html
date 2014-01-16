@@ -1,0 +1,43 @@
+<div class="pageContent">
+    <form method="post" action="__URL__/exchangeView/navTabId/__MODULE__-index" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone)">
+        <input type="hidden" name="id" value="{$vo.id}" />
+        <div class="pageFormContent" layoutH="58">
+            <p>
+                <label>单号:</label>
+                <input type="text"  value="{$vo['order_num']}" class="text" disabled="true" />
+            </p>
+            <p>
+                <label>姓名:</label><input type="text"  value="{$vo.member.username}" class="text" name="name" />
+            </p>
+            <p>
+                <label>手机:</label><input type="text"  value="{$vo.member.mobile}" class="text"disabled="true" />
+            </p>
+            <p>
+                <label>状态:</label>
+                {$vo.status_name}
+            </p>
+            <p>
+                <label>礼品详细:</label>
+                <volist name="vo.info" id="vv">
+                    {$vv.title}{$vv.jifen}
+                </volist>
+            </p>
+
+            <div class="unit">
+                <label>详细地址:</label>
+                <input type="text" size="38" value="{$vo['address']}" class="text" name="address" />
+            </div>
+            <p>
+                <label>备注：</label>
+                <textarea name="remark">{$vo.remark}</textarea>
+            </p>
+        </div>
+        <div class="formBar">
+            <ul>
+                               <li><div class="button"><div class="buttonContent"><button type="button" class="close">Cancel</button></div></div></li>
+            </ul>
+        </div>
+    </form>
+
+</div>
+

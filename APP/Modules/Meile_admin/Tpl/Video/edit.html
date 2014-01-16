@@ -1,0 +1,61 @@
+
+<script language="JavaScript">
+<!--
+function checkName(){
+	ThinkAjax.send('__URL__/checkAccount/','ajax=1&account='+$F('account'));
+}
+//-->
+</script>
+
+
+<div class="pageContent">
+	<form method="post" action="__URL__/update/navTabId/{$navTabId}"  class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone)">
+		<div class="pageFormContent" layoutH="58">
+			<p>
+				<label>标题：</label>
+				<input type="text" class="required " size="30" maxlength="20" name="title" value="{$vo.title}" />
+			</p>
+            <div class="unit">
+                <label>缩略图：</label>
+                <input type="text" name="img.thumbnail" size="12" readonly="readonly" class="textInput readonly" value='{$vo.thumbnail}'>
+                <a class="btnAttach" href="__URL__/upload" lookupgroup="img" width="560" height="300" title="查找带回">查找带回</a>
+
+            </div>
+            <div class="unit">
+				<label>视频地址：</label>
+				<input type="text" name="video_url" size="50" maxlength="100" class="required" value='{$vo.video_url}'/>
+			</div>
+            <div class="unit">
+                <label>下载地址：</label>
+                <input type="text" name="yun_url" size="50" maxlength="100" class="" value="{$vo.yun_url}"/>
+            </div>
+            <div class="unit">
+                <label>参赛组别：</label>
+                <input type="text" name="groups" size="50" maxlength="100"  value="{$vo.groups}"/>
+            </div>
+            <div class="unit">
+                <label>参赛团体：</label>
+                <input type="text" name="team" size="50" maxlength="100"  value="{$vo.team}"/>
+            </div>
+            <div class="unit">
+                <label>发布时间：</label>
+                <input type="text" name="publish_time" size="50" maxlength="100"  value="<empty name='vo.publish_tim'>{$vo.create_time|date='Y-m-d',###}<else/>{$vo.publish_time}</empty>"/>
+            </div>
+			<div class="unit">
+				<label>内容：</label>
+				<textarea class="editor"  name="content"  rows="20" cols="80">{$vo.content}</textarea>
+			</div>
+			
+		</div>
+		<div class="formBar">
+			<ul><input type="hidden" name="id" value="{$vo.id}">
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">Submit</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">Cancel</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+	
+</div>
+
+
+

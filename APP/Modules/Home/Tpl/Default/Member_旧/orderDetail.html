@@ -1,0 +1,146 @@
+<include file="Public:header" />
+    <link rel="stylesheet" href="__PUBLIC__/css/userCenter.css" type="text/css" />
+
+    <div id="cont">
+        <div class="wd960 mt10 bgWhite">
+        	<h1 class="h1_tit_nav">你当前所在位置：<a href="/" class="sy">首页</a> > <a href="{:U('/member')}" class="sy">会员中心</a> > <a class="cur">国际机票订单详情</a></h1>
+            <include file="left" />
+           
+            <div class="left mt10" id="mdsc">
+            	<include file="top_kf" />
+                <div class="top_nav_hr"><span>我的订单</span></div>
+                <div id="o_details">
+                    <h5 class="det">国际机票订单详情</h5>
+                    <div class="det">
+                        <ul>
+                            <li><span class="bt">订单ID号：</span>{$info.order_id}<span style="color:#06c">[{$info.status}]</span></li>
+                            <li id="liHangcheng">
+                                <span class="left">航班行程：</span>
+                                <span class="right">
+                                    <volist name="info['references']['OriginDestinationOption']" id="v">
+                                    <span style="color:#06c; font-weight:bold;">
+                                        <if condition="$i eq 1">去程<else/>返程</if></span><a>{$v.from}→{$v.to}</a><a >日期：{$v.FlightSegment.0.DepartureDateTime}</a><br/>
+                                    <div class="detail">
+                                        <volist name="v['FlightSegment']" id="vv">
+                                    	<dl>
+                                            <dd class="dd0">
+                                            	<span class="sp0"><img src="__PUBLIC__/airline/{$vv.MarketingAirline}.jpg" alt="tb" />
+                                                    <label class="hk">{$vv.MarketingAirline}</label><!--经济--></span>
+                                                <span class="sp1"><label class="tm">{$vv.DepartureDateTime}</label></span>
+                                                <span class="sp2">{$vv.FromAirport}<label class="hk"></label></span>
+                                            </dd>
+
+                                            <dd>
+                                            	<span class="sp0"><label class="jx">{$vv.FlightNumber}</label></span>
+                                                <span class="sp1"><label class="tm">{$vv.ArrivalDateTime}</label></span>
+                                                <span class="sp2">{$vv.ToAirport}</span>
+                                            </dd>
+                                            <dd>
+                                            <!--	<span class="sp0"><label class="jx">机型：321</label></span> -->
+                                            </dd>
+                                        </dl>
+
+                                           <h6><span>
+                                               <?php if($i<=(count($v['FlightSegment'])-1)): ?>
+                                               <img src="__PUBLIC__/airline/{$vv.MarketingAirline}.jpg" alt="zz">{$vv.ToAirport}
+                                               <?php endif; ?>
+                                           </span></h6>
+
+                                        </volist>
+                                    </div>
+                                    </volist>
+
+                                    <span class="zk"><a href="javascript:;" id="zkhc">展开航程↓</a></span>
+                                    <script type="text/javascript">
+										var des=$("#o_details ul .detail");
+										$("#zkhc").click(function(){
+											var $this=$(this);
+											if($(this).hasClass("active")){
+												des.each(function(j){
+													$(this).slideUp(300,function(){
+														if(j==des.length-1){
+															$this.removeClass("active");
+															$this.html("展开航程↓");
+														}
+													});
+												});
+											}else{
+												des.each(function(j){
+													$(this).slideDown(300,function(){
+														if(j==des.length-1){
+															$this.addClass("active");
+															$this.html("收起航程↑");
+														}
+													});
+												});
+											}
+											return false;
+										});
+									</script>
+                                </span>
+                            </li>
+                            <li><span class="bt">机票类型：</span>直接出票</li>
+                            <li class="allsprice">合计价格：<span class="yl">{$info.price}</span>
+                                <volist name="info.price_des" id="price_vo">
+                                    ( {$price_vo.type_name}: 票价<span class="yl">{$price_vo.price}</span>+税费<span class="yl">{$price_vo.tax}</span>×人数<span class="yl">{$price_vo.num}<?php $chengren[$i]=$price_vo['num'] ?></span>=<span class="yl">{$price_vo.total}</span>)
+                                </volist>
+                            </li>
+                            <li class="allsprice">下单时间：{$info.order_datetime}</li>
+                            <li><span class="bt">出票时间：</span>直接出票</li>
+                            <li class="nbd"><span class="bt">乘客信息：</span>{$chengren[1]}成人/{$chengren[2]}儿童</li>
+                            <li>
+                                <table width="100%" cellpadding="2">
+                                    <tr bgcolor="#ffffcc">
+                                        <td><strong>姓名</strong></td>
+                                        <td><strong>乘客类型</strong></td>
+                                        <td><strong>票价类型</strong></td>
+                                        <td><strong>票价</strong></td>
+                                        <td><strong>参考税</strong></td>
+                                        <td><strong>返现</strong></td>
+                                        <td><strong>结算价</strong></td>
+                                    </tr>
+                                    <foreach name="info.travelerinfo" item="v">
+                                    <tr>
+                                        <td>{$v.title} {$v.lastName} {$v.firstName}</td>
+                                        <td>{$v.type_name}</td>
+                                        <td>&nbsp;</td>
+                                        <td>{$v.price}</td>
+                                        <td>{$v.tax}</td>
+                                        <td>&nbsp;</td>
+                                        <td>{$v['price']+$v['tax']}</td>
+                                    </tr>
+                                    </foreach>
+                                </table>
+
+                            </li>
+                            <li class="nbd"><span class="bt">机票票号</span></li>
+                            <li>
+                                <table width="100%" cellpadding="2">
+                                    <tr bgcolor="#ffffcc">
+                                        <td><strong>乘客名</strong></td>
+                                        <td><strong>起飞时间</strong></td>
+                                        <td><strong>航程</strong></td>
+                                        <td><strong>舱位等级</strong></td>
+                                        <td><strong>订单状态</strong></td>
+                                        <td><strong>机票票号</strong></td>
+                                 
+                                    </tr>
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                </table>
+                            </li>
+                            <li><span class="bt">联系人信息：</span>{$userinfo.mobile}<a></a></li>
+                            <li class="dingdan"><a class="dingdan dayin" href="javascript:;">打印订单</a><a class="dingdan fanhui" href="javascript:history.go(-1);">返回列表</a></li>
+                        </ul>
+                	</div>
+            	</div>
+        	</div>
+     	</div>
+    </div>
+<include file="Public:footer" />

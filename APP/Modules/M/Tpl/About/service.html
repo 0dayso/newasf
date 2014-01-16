@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>我们的服务-爱尚飞手机网</title>
+<link href="__PUBLIC__/mobile/css/global.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+#topnav {padding-right: 42px;}
+.collapsible p{display:none;}
+</style>
+</head>
+
+<body>
+<div id="page">
+  <div id="content">
+    <h1 id="topnav"><span class="left icon"><a href="{:U('/')}" class="icon-home">首页</a></span>我们的服务</h1>
+    <div class="box">
+      <div class="collapsible-set">
+        <div class="collapsible">
+        <h5><a class="s1">注册成功后首次出票返现50元<span class="icon-down">展开</span></a></h5>
+        <p>为感谢广大会员客户对爱尚飞国际机票网的信任和支持，每位会员首次成功预订国际机票将获赠50元返利，该返利可用于往后预订机票时使用。<em>(温馨提示：在出票前请向您的专职顾问提出使用返利。）</em></p>
+        </div>
+        <div class="collapsible">
+        <h5><a class="s2">涵盖全球153家航空公司预订业务<span class="icon-down">展开</span></a></h5>
+        <p>爱尚飞国际机票网目前的业务范围已覆盖全球153家国际航空公司的国际航班票务查询和预定，拥有强大的航线资讯，协助出行旅客做出购买时机判断，每周特价分销，为旅客把握最低价出行机会。</p>
+        </div>
+        <div class="collapsible">
+        <h5><a class="s3">专业旅行顾问提供一对一服务<span class="icon-down">展开</span></a></h5>
+        <p>通过爱尚飞国际机票网进行国际机票的查询和预定，全程有专业旅行顾问为您提供一对一咨询服务，为您解疑答惑，伴随您查询和预定的每一步，为您的订票出行节省大量的精力和时间，让旅客体验无微不至的优质服务。</p>
+        </div>
+        <div class="collapsible">
+        <h5><a class="s4">高性价比票价及优质票务服务<span class="icon-down">展开</span></a></h5>
+        <p>爱尚飞国际机票网专业从事全球153家国际航空公司的国际机票直销业务，并与数十家航空公司有着长期稳定的业务合作关系，无论是价格还是服务上都具备不可比拟的竞争优势，可为广大客户提供高性价比的票价和质优的服务。</p>
+        </div>
+        <div class="collapsible">
+        <h5><a class="s5">便捷的票务在线预订功能<span class="icon-down">展开</span></a></h5>
+        <p>爱尚飞国际机票网具备全面的软硬件设施，拥用ABACUS、ETERM、AMADEUS等世界著名航空公司分销系统，为旅客提供全面、准确、及时的航班信息及订座服务，提供网上航班查询及票务预定服务，无论何时何地，机票轻松搞定，让您的出行更便捷。</p>
+        </div>
+        <div class="collapsible">
+        <h5><a class="s6">100%先出票,验票后再付款<span class="icon-down">展开</span></a></h5>
+        <p>您可以在爱尚飞国际机票网专职客服顾问的帮助下进行在线下单，我们保证100%出票；在电子客票出票后，您可以先检验票是否真实有效，并确定行程没有问题吗，最后一步再付款。</p>
+        </div>
+        <div class="collapsible">
+        <h5><a class="s7">预订及评价送积分,兑换丰厚礼品<span class="icon-down">展开</span></a></h5>
+        <p>您在成为爱尚飞国际机票网的尊贵会员后,每次成功预订及对我们的服务和乘机感受进行评价,都可以获赠相应的积分,积分可以兑换丰厚礼品。</p>
+        </div>
+        <div class="collapsible">
+        <h5><a class="s8">免费送票服务(限一线城市)<span class="icon-down">展开</span></a></h5>
+        <p>爱尚飞国际机票网为广大旅客提供免费送票上门服务(限北京、上海、广州、深圳)，随着电子机票的普及，旅客将可获得多种取票方式。对于以上一线城市外的客户我们采取邮寄或快递的方式为您送达机票。</p>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+ <include file="Public:footer" />
+</div>
+<script type="text/javascript" src="__PUBLIC__/mobile/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('.collapsible h5').click(function(){
+		var i=$(this).parent().index();
+		$('.collapsible p').each(function(index,element){
+			if($(this).siblings().find('span').attr('class')=='icon-up'){
+               $(this).hide().siblings().find('span').removeClass('icon-up').addClass('icon-down');
+			}else if($(this).siblings().find('span').attr('class')=='icon-down'&&index==i){
+			   $(this).show().siblings().find('span').removeClass('icon-down').addClass('icon-up');
+			}
+			});
+		});
+	});
+</script>
+<include file="Public:kf" />
+</body>
+</html>

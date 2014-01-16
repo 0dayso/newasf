@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>爱尚飞手机网</title>
+<link href="__PUBLIC__/mobile/css/global.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+#ad{margin-bottom:10px;position:relative;}
+#ad img{width:100%;border:0;}
+#ad #adlist li{display:none;}
+#ad #adlist .on{display:block;}
+#ad #slidebar{position:absolute;left:48%;bottom:8px;}
+#ad #slidebar li{font-size:10px;display:inline-block;color:#5d5d5d;cursor:pointer;padding:0 2px;}
+#ad #slidebar li.select{color:#e0e0e0;}
+
+#entrance{padding-left:10px;height:320px;background-color:#fff;}
+#entrance dt,#entrance dd{float:left;width:50%;height:160px;}
+#entrance a{display:block;margin:0 10px 10px 0;position:relative;}
+#entrance a.c01{background:#e43636 url(__PUBLIC__/mobile/images/icon01.png) no-repeat right bottom;}
+#entrance a.c02{background:#d3c41e url(__PUBLIC__/mobile/images/icon02.png) no-repeat right bottom}
+#entrance a.c03{background:#348bd3 url(__PUBLIC__/mobile/images/icon03.png) no-repeat right bottom}
+#entrance a.c04{background:#2ba5c9 url(__PUBLIC__/mobile/images/icon04.png) no-repeat right bottom}
+#entrance a.c05{background:#795e6d url(__PUBLIC__/mobile/images/icon05.png) no-repeat right bottom}
+#entrance a.c06{background:#afafac url(__PUBLIC__/mobile/images/icon06.png) no-repeat right bottom}
+#entrance dt a{height:150px;}
+#entrance dd a{height:70px;}
+#entrance h3{color:#fff;font-size:16px;z-index:100;line-height:24px;position:absolute;left:15px;top:15px;}
+#entrance span{position:absolute;right:15px;bottom:10px;}
+</style>
+</head>
+
+<body>
+<div id="page">
+  <div id="content">
+    <div id="ad">
+    <ul id="adlist">
+    <li class="on"><a href="tel:4006085188"><img src="__PUBLIC__/mobile/images/iad06.jpg" width="100%"></a></li>
+    <li><a href="tel:4006085188"><img src="__PUBLIC__/mobile/images/iad05.gif" width="100%"></a></li>
+    <li><a href="tel:4006085188"><img src="__PUBLIC__/mobile/images/iad01.jpg" width="100%"></a></li>
+    </ul>
+    <ul id="slidebar">
+    <li class="select">●</li>
+    <li>●</li>
+    <li>●</li>
+    </ul>
+    </div>
+    <dl id="entrance">
+    <dt><a href="{:U('/Flight')}" class="c01"><h3>国际机票<br/>预订</h3></a></dt>
+    <dd><a href="{:U('/About/service')}" class="c02"><h3>会员服务</h3></a><a href="{:U('/adviser')}" class="c03"><h3>旅行顾问</h3></a></dd>
+    <dd><a href="{:U('/specialoffer')}" class="c04"><h3>特惠活动</h3></a><a href="{:U('/Mydemand')}" class="c05"><h3>快速下单</h3></a></dd>
+    <dt><a href="{:U('/Member')}" class="c06"><h3>我的<br/>爱尚飞</h3></a></dt>
+    </dl>
+  </div>
+  <include file="Public:footer" />
+</div>
+<script type="text/javascript" src="__PUBLIC__/mobile/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	
+	//初始化变量index为0，用于保存索引
+	var index = 0;
+	//初始化变量len为为图片列表的数量
+	var len = $('#adlist li').size();
+	
+	//setInterval()方法
+	setInterval(function(){
+		showPics(index);                   
+		index++;
+		if(index == len){index = 0;};
+		},4000);
+		
+	//showPics()设置图片和滑块的显示和隐藏
+	function showPics(index){
+		$('#adlist li').eq(index).addClass('on').siblings('li').removeClass('on');
+		$('#slidebar li').eq(index).addClass('select').siblings('li').removeClass('select');
+		};
+	
+	//当鼠标进入滑块,调用showPics()函数
+	$('#slidebar li').mouseenter(function(){
+		index = $(this).index();
+		showPics(index);
+		});
+		
+	});
+</script>
+<include file="Public:kf" />
+</body>
+</html>

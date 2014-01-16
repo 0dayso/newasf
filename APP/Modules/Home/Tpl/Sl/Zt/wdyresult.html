@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>活动首页 爱尚飞-微电影大赛</title>
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+$(function(){
+    var username="{$userinfo.username}";
+	//#footer不透明度设置
+	$('#footer').css('opacity','0.20');
+	
+	});
+</script>
+<style type="text/css">
+body,ul,li,img,p,h2,h3,h4,h5,h6,dl,dt,dd{margin:0;padding:0;}
+body{width:auto;color:#333333;font-size:12px;}
+ul,li{list-style-type:none;}
+a{color:#333333;text-decoration:none;}
+a:hover{color:#aaaaaa;}
+h3,h4{font-weight: bold;color: #FFF;}
+img{border-width: 0px;}
+.m{margin:0 auto;}
+.left{float:left;}
+.right{float:right;}
+#top{width:100%;height:570px;background:url(__PUBLIC__/images/Zt/wdy/bg1.jpg) no-repeat center top;}
+#head{width: 1240px;}
+#lgog_nav{width:960px;height:53px;}
+#lgog_nav span{margin-top: 20px;}
+#logo{padding:9px 0 0 20px;}
+#h_nav{height:20px;margin-top:16px;padding-left:30px;background:url(__PUBLIC__/images/Zt/wdy/icon.png) no-repeat 5px -5px;}
+#h_nav li{float:left;width:55px;margin-top:3px;line-height:14px;text-align:center;}
+#h_nav li.bor_r{border-right: 1px solid #777777;}
+#content{width:auto;height:auto;background:url(__PUBLIC__/images/Zt/wdy/bg2.jpg) no-repeat center top;}
+#con_box{width:960px;}
+#con_box #nav{width:945px;padding-left:15px;background-color: #ffa43a;height: 56px;}
+#con_box #nav a{float:left;font-size: 24px;font-family: "微软雅黑", "黑体", "宋体";color: #FFF;padding:0 10px;margin:8px 15px 8px 0;line-height: 40px;height: 40px;display:block;}
+#con_box #nav a.on,#con_box #nav a:hover{background-color: #e27a00;}
+#con_box .box{background-color: #fffcf5;padding: 15px;width: 930px;}
+#con_box .box p{line-height:30px;}
+#con_box .on{display: block;}
+/*获奖作品*/
+#lists{width:930px;height:782px;background:url(__PUBLIC__/images/Zt/wdy/bg4.jpg) no-repeat;}
+#lists dt{margin-bottom:10px;}
+#lists .img{float:left;width:340px;margin-right:20px;}
+#lists .txt{float:left;width:570px;color:#333333;}
+#lists .txt h5,#lists .txt h6{font-size:14px;line-height:30px;}
+#lists .txt h6{ border-bottom:1px solid #ad7d09;}
+#lists .txt h6 a{color:#ad7d09;}
+#footer{width:960px;height:150px;padding-top:15px;}
+#footer p{color: #FFF;text-align:center;background-color: #000;line-height: 33px;}
+</style>
+</head>
+
+<body>
+<div id="top">
+    <div id="head" class="m">
+        <include file="wdy_top" />
+        <div><img src="__PUBLIC__/images/Zt/wdy/topImg1.jpg"><img src="__PUBLIC__/images/Zt/wdy/topImg2.jpg"></div>
+    </div>
+</div>
+
+<div id="content">
+<div id="con_box" class="m">
+<div id="nav">
+<a href="{:U('/zt/wdyindex#link')}">活动首页</a>
+<a href="{:U('/zt/wdyrule#link')}">活动规则</a>
+<a href="{:U('/zt/wdyreview#link')}">往届作品回顾</a>
+<a href="{:U('/zt/wdyresult#link')}" class="on">获奖作品</a>
+<a name="link" id="link">&nbsp;</a>
+</div>
+
+<!--活动首页-->
+<div class="box on" style="height:1202px;">
+<p>感谢大家对《爱尚飞一微电影大赛》的热情参与支持。根据现场综合评分、网络投票标准评选最佳影片一、二、三等奖，现已出炉。</p>
+<p>现公示获奖结果如下：</p>
+<img src="__PUBLIC__/images/Zt/wdy/boxImg2.jpg">
+<dl id="lists">
+<dt><img src="__PUBLIC__/images/Zt/wdy/1.gif"></dt>
+<dd>
+<span class="img"><a href="{:U('/zt/wdyvcr/id/30')}" target="_blank"><img src="__PUBLIC__/images/Zt/wdy/1m.jpg"></a></span>
+<span class="txt">
+<h5>组名：岭南虎</h5>
+<h6><a href="{:U('/zt/wdyvcr/id/30')}" target="_blank">片名：那些年，我曾追过的梦</a></h6>
+<p>
+<strong>影片阐述：</strong> <br/>
+本片讲述一位叫做邓飞的年轻人，一直追逐着他自己的梦想。追梦过程中，他经历来自事业，家庭，爱情种种出现的问题，或许主人翁是上天眷顾的一员，经过自身的努力以及来自各界的帮助...
+</p>
+</span>
+</dd>
+<dt><img src="__PUBLIC__/images/Zt/wdy/2.gif"></dt>
+<dd>
+<span class="img"><a href="{:U('/zt/wdyvcr/id/21')}" target="_blank"><img src="__PUBLIC__/images/Zt/wdy/2m.jpg"></a></span>
+<span class="txt">
+<h5>组名：思锐</h5>
+<h6><a href="{:U('/zt/wdyvcr/id/21')}" target="_blank">片名：大话西游之梦想飞</a></h6>
+<p>
+<strong>影片阐述：</strong> <br/>
+西天实业即将在纳斯达克上市，但是唐僧师徒四人因受山寨机票代理商的哄骗，被迫在叙利亚重新开始。经过了重重磨难，他们再一次成功。这一次，师徒四人打算去纳斯达克圆梦，他们会成功吗？
+</p>
+</span>
+</dd>
+<dt><img src="__PUBLIC__/images/Zt/wdy/3.gif"></dt>
+<dd>
+<span class="img"><a href="{:U('/zt/wdyvcr/id/32')}" target="_blank"><img src="__PUBLIC__/images/Zt/wdy/3m.jpg"></a></span>
+<span class="txt">
+<h5>组名：M-Plus</h5>
+<h6><a href="{:U('/zt/wdyvcr/id/32')}" target="_blank">片名：将梦进行到底</a></h6>
+<p>
+<strong>影片阐述：</strong> <br/>
+一位年轻人失恋、一位年轻的职业经理人事业失败、一位成功的女性CEO为自己繁重的工作任务与自己的梦想冲突而痛苦，他们怎么才能摆脱各自的困境？一位黑衣天使，为他们送来“易”字真经...   
+</p>
+</span>
+</dd>
+</dl>
+</div>
+
+</div>
+
+<div id="footer" class="m">
+<p>Copyright © 2009-2013 爱尚飞国际机票网 广州美乐商务服务有限公司</p>
+</div>
+</div>
+
+</body>
+</html>

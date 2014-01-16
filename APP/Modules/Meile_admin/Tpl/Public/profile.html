@@ -1,0 +1,51 @@
+<div class="page">
+	<div class="pageContent">
+	
+	<form method="post" action="__URL__/change/navTabId/__MODULE__" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone)">
+		<input type="hidden" name="id" value="{$vo.id}">
+		<div class="pageFormContent" layoutH="58">
+		
+	<div class="unit">
+		<label>姓名：</label>
+		<input type="text" class="required"  name="name" value="{$vo.name}"/>
+	</div>
+    <div class="unit">
+        <label>我的胜意帐号：</label>
+        <input type="text" class=""  name="asms_user_id" value="{$vo.asms_user_id}"/>
+    </div>
+	<div class="unit">
+		<label>Email：</label>
+		<input type="text" class="required email"  name="email" size="30" value="{$vo.email}"/>
+	</div>
+    <div class="unit">
+        <label>公司手机号：</label>
+        <input class="input" name="public_mobile" <notempty name="vo['public_mobile']" >disabled="true"</notempty> type="text" size="30" value="{$vo.public_mobile}" />
+    </div>
+        <div class="unit">
+        <label>私人手机号：</label>
+        <input class="input" name="private_mobile" <notempty name="vo['private_mobile']" >disabled="true"</notempty> type="text" size="30" value="{$vo.private_mobile}" />
+    </div>
+        <div class="unit">
+        <label>电话：</label>
+        <input class="input" name="telephone"  <notempty name="vo['telephone']" >disabled="true"</notempty> type="text" size="30" value="{$vo.telephone}" />
+    </div>
+    <div class="unit">
+        <label>QQ号：</label>
+        <input class="input" name="qq" type="text" <notempty name="vo['qq']" >disabled="true"</notempty> size="30" value="{$vo.qq}" />
+    </div>
+	<div class="unit">
+		<label>个人简介：</label>
+		<textarea class="required"  name="profile"  rows="5" cols="57" >{$vo.profile}</textarea>
+	</div>
+
+</div>
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">Submit</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">Cancel</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+	
+	</div>
+</div>

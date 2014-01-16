@@ -1,0 +1,8 @@
+ update asf_cheap set sort=100 where zhou='欧洲';
+  update asf_cheap set sort=200 where zhou='大洋洲';
+  update asf_cheap set sort=300 where zhou='亚洲';
+  update asf_cheap set sort=400 where zhou='非洲及中东';
+  update asf_cheap set sort=500 where zhou='留学生';
+
+//更新 用户对应客服
+update asf_member set user_id=(select id from asf_user where department_id=5 and status=1 and public_mobile!='' and view=1 and avatar!='' order by rand() limit 1)  where user_id in (select id from asf_user where  status=0);

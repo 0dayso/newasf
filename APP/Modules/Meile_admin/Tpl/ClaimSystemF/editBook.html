@@ -1,0 +1,54 @@
+<div class="page">
+    <div class="pageContent">
+
+        <form method="post" action="__URL__/editBook/navTabId/__MODULE__-index" class="pageForm required-validate" onsubmit="return validateCallback(this,dialogAjaxDone)">
+            <div class="pageFormContent" layoutH="58">
+                <!-- 	<div class="unit">
+                    <label>请选择分类：</label>
+                    <select name="class_id" id="test" class="required combox">
+                        <option value="">请选择</option>
+                        <volist name="cate" id="vocate">
+                            <option value="{$key}">{$vocate}</option>
+                        </volist>
+                    </select>
+                </div> -->
+                <div class="unit">
+                    <label>帐本名：</label>
+                    <input type="text" class="required"  name="name" id="title" value="{$vo.name}">
+                </div>
+                <if condition="$_REQUEST.type neq 1">
+                <div class="unit">
+                    <label>所属公司：</label>
+                    <select name="company_id" >{$info.companyOption.option}</select>
+                </div>
+                <div class="unit">
+                    <label>帐本可视权限</label>
+                    <label> <input type="radio" checked name="view" value="1">所以人可视</label>
+                    <label><input type="radio"  <if condition="$vo['view'] eq 0">checked</if> name="view" value="0">所属公司可视</label>
+
+                </div>
+                <div class="unit">
+                    <label>所有银行：</label>
+                    <textarea name="bank" editor="{:uniqid()}" cols="50" rows="5">{$vo.bank}</textarea>
+                </div>
+                </if>
+                <div class="unit">
+                    <label>描述：</label>
+                    <textarea name="remark" editor="{:uniqid()}" cols="50" rows="3">{$vo.remark}</textarea>
+                </div>
+            </div>
+
+            <div class="formBar">
+                <ul>
+
+                    <li>
+                        <input type="hidden" name="id" value="{$vo.id}">
+                        <div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+                    <li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+                </ul>
+            </div>
+        </form>
+
+    </div>
+</div>
+
