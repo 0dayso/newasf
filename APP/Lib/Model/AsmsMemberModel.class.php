@@ -4,10 +4,17 @@ class AsmsMemberModel extends RelationModel{
 
     protected $_link = array(
         'member'=> array(//关联用户表
-        'mapping_type'=>HAS_ONE ,
-        'class_name'=>'member',
-        'foreign_key'=>'asms_member_id',
-         'condition'=>'status=1',
+            'mapping_type'=>HAS_ONE ,
+            'class_name'=>'member',
+            'foreign_key'=>'asms_member_id',
+            'condition'=>'status=1',
+            // 'mapping_fields'=>'id,username,name,status',
+            // 定义更多的关联属性 relation(true)
+        ),
+        'user'=> array(//关联用户表
+            'mapping_type'=>BELONGS_TO ,
+            'class_name'=>'asms_user',
+            'foreign_key'=>'ywyid',
             // 'mapping_fields'=>'id,username,name,status',
             // 定义更多的关联属性 relation(true)
         ),
@@ -273,7 +280,8 @@ class AsmsMemberModel extends RelationModel{
         $page_r=isset($_GET['page_r'])?$_GET['page_r']:20;
         $page_p=isset($_GET['page_p'])?$_GET['page_p']:1;
         $page_start=($page_r*$page_p)-$page_r;
-        $url=C('ASMS_HOST')."/asms/member/t_member_p_info.shtml?count=$page_r&start=$page_start&";
+        $date=isset($_GET['createdate1'])?"createdate1=".$_GET['createdate1']:'';
+        $url=C('ASMS_HOST')."/asms/member/t_member_p_info.shtml?count=$page_r&start=$page_start&$date";
 
         $str= http_build_query($arr_post);
         $data=curl_post($url.$str,'',COOKIE_FILE,0);
@@ -316,6 +324,11 @@ class AsmsMemberModel extends RelationModel{
 
         //更新保存到数据库
         foreach($arr as $key=>$val){
+            //业务员id
+            preg_match('/([0-9A-Z]+)/',$val['ywy'],$ywy);
+            print_r($ywy);
+            $val['ywyid']=$ywy[1];
+            $arr[$key]['ywyid']=$ywy[1];
             if($is_info){ //详细
                 $arr[$key]=$this->memberInfo($val['hyid']);
             }else{
@@ -364,8 +377,8 @@ class AsmsMemberModel extends RelationModel{
     function memberFind($shyzcm,$shykh='',$ssj='',$update=1){
         $where=array();
         $shyzcm && $where['hyzcm']=$shyzcm;
-        $shykh && $where['shykh']=$shykh;
-        $ssj && $where['ssj']=$ssj;
+        $shykh && $where['hykh']=$shykh;
+        $ssj && $where['sj']=$ssj;
         if(empty($where)) return false;
         $dbRs=$this->where($where)->find();
         if($dbRs){
@@ -377,7 +390,8 @@ class AsmsMemberModel extends RelationModel{
                 return $dbRs;
             }
         }
-
+        $shykh && $where['shykh']=$shykh;
+        $ssj && $where['ssj']=$ssj;
         $rs= $this->memberFindAll($where,1);
         if($rs){
             return $rs[0];

@@ -1,7 +1,5 @@
 <?php
-/** "{{user}}"表对应的模型类.
- *
- * '{{user}}'表中的列字段:
+/**
  * @property integer $id
 * @property string $username
 * @property string $password
@@ -30,10 +28,8 @@
 * @property integer $bad_review
  * */
 
-class UserModel extends RelationModel{
-	private $userid;
-	private $username;
-	private $avatar;
+class UserAdminModel extends RelationModel{
+    protected $tableName = 'user';//定义数据表
     protected $_link = array(
         'position'=> array(
             'mapping_type'=>BELONGS_TO,
@@ -176,6 +172,29 @@ class UserModel extends RelationModel{
          return  $this->where("company_id=1 and status=1 and view=1 and avatar!=''")->order('rand()')->getField('id');
     }
 
+    //用户权限级别条件
+    function userLevelWhere($uid){
+        $uid=$uid?$uid:getUid();
+        //管理员
+        if($uid==C('ADMIN_ID')){
+            return true;
+        }
+        $rs=$this->field('id,name,role_level,company_id,department_id')->find($uid);
+        if($rs['role_level']==0){
+            $map['user_id']=$uid;
+        }elseif($rs['role_level']==1){
+            $where['company_id']=$rs['company_id'];
+            $where['department_id']=$rs['department_id'];
+            $user_id_arr = $this->field('id')->where($where)->select();
+            foreach($user_id_arr as $val){
+               $arr[]= $val['id'];
+            }
+            $map['user_id'] = array('in',$arr);
+        }elseif($rs['role_level']==2){
+
+        }
+        return $map;
+    }
 
 	 
 	

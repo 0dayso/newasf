@@ -42,7 +42,7 @@ class PointsModel extends RelationModel{
         $arr['description']=$description;
         $arr['last_points']=$mpoints+$points;
 		$arr['create_time']=time();
-    
+        D('Member')->where("id=".$uid)->setField('points',$mpoints+$points);
 	   if($this->create($arr)){
 	   	 $rs=$this->add();
 		 if($rs){
@@ -68,7 +68,7 @@ class PointsModel extends RelationModel{
         $arr['description']=$description;
         $arr['last_points']=$mpoints-$points;
 		$arr['create_time']=time();
-	  
+	    D('Member')->where("id=".$uid)->setField('points',$mpoints-$points);
        if($this->create($arr)){         
           $rs=$this->add();
 		  if($rs){

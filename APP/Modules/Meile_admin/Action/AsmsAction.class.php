@@ -83,6 +83,7 @@ class AsmsAction extends CommonAction {
             $this->map = $map;
             $this->relation=true;
             parent::index(D('AsmsMember'));
+         //   print_r($this->list);
         }
         $this->display();
 
@@ -112,7 +113,7 @@ class AsmsAction extends CommonAction {
     //会员全部更新
     function memberUpdateALL(){
         echo "正在更新...";
-        $page_r=isset($_GET['page_r'])?"?page_r=".$_GET['page_r']."":'?page_r=5';
+        $page_r=isset($_GET['page_r'])?"?page_r=".$_GET['page_r']."":'?page_r=50';
         $page_p=isset($_GET['page_p'])?"&page_p=".($_GET['page_p']+1)."":'&page_p=0';
         $url=$page_r.$page_p;
         if(!isset($_GET['page_p'])) echo "<script>location.href='$url';</script>";
@@ -126,6 +127,39 @@ class AsmsAction extends CommonAction {
 
         if($_GET['page_tr']==$_GET['page_p']){
            echo "更新完成";exit;
+        }
+
+        echo "<script type='text/javascript'>location.href='$url';</script>";
+        //    print_r($rs);
+        $this->display();
+    }
+
+    //会员同步更新
+    function memberUpdateNew(){
+        echo "正在更新...";
+        $AsmsMember=D('AsmsMember');
+        $page_r=isset($_GET['page_r'])?"?page_r=".$_GET['page_r']."":'?page_r=50';
+        $page_p=isset($_GET['page_p'])?"&page_p=".($_GET['page_p']+1)."":'&page_p=0';
+
+
+        $cjrq=$AsmsMember->order('cjrq desc')->getField('cjrq');
+        strtotime($cjrq)-(3600*24);
+        $_GET['createdate1']=isset($_GET['createdate1'])?$_GET['createdate1']:$cjrq;
+        $url=$page_r.$page_p."&createdate1=".$_GET['createdate1'];
+        if(!isset($_GET['page_p'])) echo "<script>location.href='$url';</script>";
+
+        $cjrq=$AsmsMember->order('cjrq desc')->getField('cjrq');
+        $_GET['createdate1']=isset($_GET['createdate1'])?$_GET['createdate1']:$cjrq;
+
+        $rs= $AsmsMember->memberFindAll(array());
+
+        if(!$rs){
+            echo   $AsmsMember->getError();
+            echo "<script type='text/javascript'>window.reload()</script>";
+        }
+
+        if($_GET['page_tr']==$_GET['page_p']){
+            echo "更新完成";exit;
         }
 
         echo "<script type='text/javascript'>location.href='$url';</script>";

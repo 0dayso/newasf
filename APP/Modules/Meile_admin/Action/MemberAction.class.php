@@ -2,14 +2,9 @@
 // 后台用户模块
 class MemberAction extends CommonAction {
 	function index(){
-        $role_level=$this->userInfo['role_level'];
-        if($role_level==0){
-            $map['user_id']=getUid();
-        }elseif($role_level==1){
-            $user_id_arr = D('User')->field('id')->where("department_id=".$this->userInfo['department_id'])->select();
-            $map['user_id'] = array('in',$user_id_arr);
+        if(!I('user_id')){
+            $map=D("UserAdmin")->userLevelWhere();
         }
-
         if(I('so')){
             $where['name'] = array('like',"%".I('so')."%");
             $where['username']  = array('like',"%".I('so')."%");
@@ -24,7 +19,7 @@ class MemberAction extends CommonAction {
         $this->order='id desc';
         $this->relation = true;
         parent::index(D("Member"));
-     //   print_r($this->list);
+
         $this->display();
 	}
 

@@ -47,14 +47,16 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="edit" href="__URL__/memberUpdateALL/navTabId/__MODULE__"  target="ajaxTodo" title="你确定要更新全部吗？" ><span>更新全部</span></a></li>
-		    </ul>
+			<li><a class="edit" href="__URL__/memberUpdateALL/navTabId/__MODULE__"  target="_blank" title="你确定要更新全部吗？" ><span>更新全部</span></a></li>
+            <li><a class="edit" href="__URL__/memberUpdateNew/navTabId/__MODULE__"  target="_blank" title="你确定要同步新的吗？" ><span>同步新的</span></a></li>
+		</ul>
 	</div>
 
 	<table class="table" width="100%" layoutH="115">
 		<thead>
 		<tr>
-			<th width="100" orderField="hyzcm" <if condition="$_REQUEST._order eq 'hyzcm'">class="{$_REQUEST._sort}"</if>>注册名</th>
+            <th width="100">ID</th>
+            <th width="100" orderField="hyzcm" <if condition="$_REQUEST._order eq 'hyzcm'">class="{$_REQUEST._sort}"</if>>注册名</th>
             <th width="100" orderField="hykh" <if condition="$_REQUEST._order eq 'hykh'">class="{$_REQUEST._sort}"</if>>卡号</th>
             <th orderField="xm" <if condition="$_REQUEST._order eq 'xm'">class="{$_REQUEST._sort}"</if>>姓名</th>
             <th orderField="xb" <if condition="$_REQUEST._order eq 'xm'">class="{$_REQUEST._sort}"</if>>性别</th>
@@ -73,12 +75,13 @@
 		<tbody>
 		<volist id="vo" name="list">
 			<tr target="sid_user" rel="{$vo['id']}">
+                <td>{$vo['hyid']}</td>
 				<td><a href="__URL__/memberInfo/hyid/{$vo['hyid']}/navTabId/__MODULE__"  target="dialog" rel="viewMember" >{$vo['hyzcm']}</a></td>
-				<td>{$vo['hykh']}</td>
+                <td>{$vo['hykh']}</td>
                 <td>{$vo.xm}</td>
 				<td>{$vo['xb']}</td>
                 <td>{$vo['sj']}</td>
-                <td>{$vo.ywy}</td>
+                <td>{$vo.ywyid}</td>
                 <td>{$vo.hyly}</td>
                 <td>{$vo.cjrq}</td>
 				<td>{$vo['update_time']|date="Y-m-d H:i:s",###}</td>
