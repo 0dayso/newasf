@@ -125,15 +125,19 @@ class CommonAction extends IniAction{
             }
         }
     }
-
+	
+	
     function sendMobile(){
+		import('ORG.Util.String');
+		$auth_str=String::randString(6,1);  //生成6位数的认证码
+		session('auth_str',$auth_str);
         if(!session('auth_num'))
             session('auth_num',1);
         else
             session('auth_num', session('auth_num')+1);
         if(session('auth_num')>5) session(null);
         if(session('auth_str')){
-            $rs=sendMobileSms(session('auth_mobile'), str_replace('xxxxxx',session('auth_str'),C('GETPASSWORD')));;
+            $rs=sendMobileSms(session('auth_mobile'), session('auth_str'));
             if($rs){
                 echo 1;
             }else{

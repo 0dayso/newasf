@@ -69,7 +69,7 @@
                     	<div id="cart">
                         	<div id="cart_nav"><a class="active">积Fun礼品</a>|<a>爱钻礼品</a></div>
                             <div class="cart_block cart_on" id="cart_fun"> 
-                            	<form action="" method="get">
+                            	<form action="{:U('/Member/Assetaccount/exchange')}" method="get">
                             	<table width="788" border="0" cellspacing="0" cellpadding="0" id="cart_fun_table">
 									<tr class="tit">
 										<td width="148" class="first"><input type="checkbox" class="checkbox" checked="checked"/>全选</td>
@@ -82,7 +82,7 @@
                                     <volist name='CartJifen' id='vo'>
                                     <tr class="clist" gid="{$vo.id}">
 									  	<td class="first"><input type="checkbox" checked="checked"/>{$vo.order_num}</td>
-									  	<td class="blue"><a href="{:U('jifen/info','id='.$vo['id'])}"><img src="__PUBLIC__/uploads/mall/m_{$vo.img}" widht="40px" height="40px">{$vo.title}</a></td>
+									  	<td class="blue"><a href="{:U('jifen/info','id='.$vo['mall_id'])}"><img src="__PUBLIC__/uploads/mall/m_{$vo.img}" widht="40px" height="40px">{$vo.title}</a></td>
                                       	<td class="price">{$vo.jifen}</td>
 									  	<td class="quantity"><a class="reduce"></a><input type="text" value="{$vo.num}" class="tx"><a class="add"></a></td>
                                       	<td class="price">{$vo['jifen']*$vo['num']}</td>
@@ -90,12 +90,13 @@
 									</tr>
                                     </volist>                              
 								</table>
-                              <div class="cart_bot"><input type="checkbox" class="checkbox all" checked="checked"/>全选 <a class="all_del_gift">删除</a> <a class="del_invalid">清除失效礼品</a> <a class="all_move_favo">批量移入收藏夹</a><span class="right">合计所需积Fun：<b class="total">{$totlejf}</b><input type="submit" class="exchange" value=""></span></div>
+                              <div class="cart_bot"><input type="checkbox" class="checkbox all" checked="checked"/>全选 <a class="all_del_gift">删除</a> <a class="del_invalid">清除失效礼品</a> <a class="all_move_favo">批量移入收藏夹</a><span class="right">合计所需积Fun：<b class="total">{$totlejf}</b>
+                              <input type="submit" class="exchange" value=""></span></div>
                               </form>
                           </div><!--积Fun礼品-->
                           
                           <div class="cart_block" id="cart_aizuan">
-                         	 <form action="" method="get">
+                         	 <form action="{:U('/Member/Assetaccount/exchange')}" method="get">
                             	<table width="788" border="0" cellspacing="0" cellpadding="0">
 									<tr class="tit">
 										<td width="148" class="first"><input type="checkbox" class="checkbox" checked="checked"/>全选</td>
@@ -108,7 +109,7 @@
                                     <volist name='CartAizuan' id='vo'>
                                     <tr class="clist" gid="{$vo.id}">
 									  	<td class="first"><input type="checkbox" checked="checked"/>{$vo.order_num}</td>
-									  	<td class="blue"><a href="{:U('jifen/info','id='.$vo['id'])}"><img src="__PUBLIC__/uploads/mall/m_{$vo.img}" widht="40px" height="40px">{$vo.title}</a></td>
+									  	<td class="blue"><a href="{:U('jifen/info','id='.$vo['mall_id'])}"><img src="__PUBLIC__/uploads/mall/m_{$vo.img}" widht="40px" height="40px">{$vo.title}</a></td>
                                       	<td class="price"><span>x<em>{$vo.jifen}</em></span></td>
 									  	<td class="quantity"><a class="reduce"></a><input type="text" value="{$vo.num}" class="tx"><a class="add"></a></td>
                                       	<td class="price"><span>x<em>{$vo['jifen']*$vo['num']}</em></span></td>
@@ -116,7 +117,8 @@
 									</tr>
                                     </volist>                                      
 								</table>
-                              <div class="cart_bot"><input type="checkbox" class="checkbox all" checked="checked"/>全选 <a class="all_del_gift">删除</a> <a class="del_invalid">清除失效礼品</a> <a class="all_move_favo">批量移入收藏夹</a><span class="right">合计所需爱钻：<b class="total">{$totleaz}</b><input type="submit" class="exchange" value=""></span></div>
+                              <div class="cart_bot"><input type="checkbox" class="checkbox all" checked="checked"/>全选 <a class="all_del_gift">删除</a> <a class="del_invalid">清除失效礼品</a> <a class="all_move_favo">批量移入收藏夹</a><span class="right">合计所需爱钻：<b class="total">{$totleaz}</b>
+                              <input type="submit" class="exchange" value=""></span></div>
                          	</form>
                           </div><!--爱钻礼品-->
                         </div>

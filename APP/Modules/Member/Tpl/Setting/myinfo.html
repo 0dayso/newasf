@@ -13,24 +13,30 @@
         	<h1 class="nav_tit">我的信息</h1>
             <div id="myinfo">
             	<form action="myinfo.php" method="post">
-                	<div class="info">
+                	<div class="info"> 
                     	<ul>
                         	<li><span>用户名：</span>
 								{$userInfo.username}
 							</li>
                             <li><span>手机：</span>
-								{$userInfo.mobile}<a href="#">修改</a>
+								{$userInfo.mobile}<a href="{:U('/Member/Setting/replacephone')}">修改</a>
 							</li>
                             <li><span>邮箱：</span>
-								<input type="text"  value="{$userInfo.email}" class="text" name="mail" /><em>添加电子邮箱并通过验证奖励<b>500</b>积fun</em>{$userInfo.email}<a href="{:U('/Member/Setting/replacemailbox')}">修改</a>
+                                  <if condition="$userInfo['check_email'] eq 0">
+                                        <input type="text"  value="{$userInfo.email}" class="text" name="email" /><em>添加电子邮箱并通过验证奖励<b>500</b>积fun</em>
+                                  <elseif condition="$userInfo['email'] eq ''"/>                                  
+                                    	<input type="text"  value="" class="text" name="email" /><em>添加电子邮箱并通过验证奖励<b>500</b>积fun</em>
+                                   <else/>
+                                        {$userInfo.email}<a href="{:U('/Member/Setting/replacemailbox')}">修改</a>
+                                  </if>
 							</li>
                             <li><span>姓名：</span>
 								<input type="text"  value="{$userInfo.name}" class="text" name="name" />
 								<em>请输入真实姓名,不得超过10个汉字或20个英文字母</em>
 							</li>
 							<li><span>昵称：</span>
-								<input type="text"  value="" class="text" name="nickname" />
-								<em>4-30个字符,可由中英文字母、数字、“-”、“-”组成</em>
+								<input type="text"  value="{$userInfo.nickname}" class="text" name="nickname" />
+								<em>4-30个字符,可由中英文字母、数字、“_”、“-”组成</em>
 							</li> 
                             <li><span>性别：</span>																
 								<input name="sex" type="radio" value="1" <if condition="$userInfo['sex'] eq 1">checked</if> />男								
@@ -49,7 +55,13 @@
 							</li>                        	
                         </ul>
                         <div class="right">
-                        	<a href="{:U('/Member/Setting/seticon')}"><div id="icon"><img src="__PUBLIC__/images/member/icon.gif" /></div>设置头像</a>
+                        	<a href="{:U('/Member/Setting/seticon')}"><div id="icon">
+								<empty name="userInfo['headimg']">
+									<img src="__PUBLIC__/images/member/icon.gif" />
+								<else/>
+									<img src="__PUBLIC__/member/images/{$userinfo['headimg']}" />
+								</empty>
+							</div>设置头像</a>
                         </div>
                     </div>
                   	<ul id="hint">

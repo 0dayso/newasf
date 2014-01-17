@@ -11,45 +11,50 @@
         
 	  	<div class="right" id="memberR">
         	<h1 class="nav_tit">确认邮寄地址<span class="right"><a href="{:U('/Member/Setting/addresslist')}">管理邮寄地址</a></span></h1>
-            <div class="address_list"><strong>寄送至</strong><span>广东省  广州市  白云区机场路棠景街6-8号寓景大厦8楼全层（xx）    13600000000</span><a href="#">修改该地址</a></div>
+<<<<<<< .mine
+            <div class="address_list"><strong>寄送至</strong><span>{$province_city.province} {$province_city.city} {$addressInfo.address}（{$addressInfo.zip_code}）    {$addressInfo.mobile}</span><a href="#">修改该地址</a></div>
             <div id="add_address"><a href="#"><img src="__PUBLIC__/images/member/add_news_address.gif" /></a></div>
             
 			<div id="address">
             	<h2>使用新地址</h2>
                 <form action="{:U('Member/address')}?act=edit" class="fh_form" method="post">
                 	<ul>
-                    	<li id="addcodePCT" val="{$info.province},{$info.city}"><span>所在地：<b>*</b></span><select name="province" value="{$info['province']}"  class="province" id="province_sel"><option value="">- -</option></select><select name="city"  value="{$info['city']}" class="city" id="city_sel"><option value="">- -</option></select></li>
-                        <li><span>联系地址：<b>*</b></span><input type="text"  value="{$info['address']}" class="text" name="address" id="fh_address" /><label class="pro"></label></li>
-                        <li><span>收货人姓名：<b>*</b></span><input type="text" class="text" name="name" id="fh_name" value="{$info['name']}"/><label class="pro"></label></li>
-                        <li><span>手机号：<b>*</b></span><input type="text" class="text" name="mobile" value="{$info['mobile']}" id="fh_phone" /><label class="pro"></label></li>
-                        <li><span>联系电话：</span><input type="text" value="{$info['area_code']}" class="text" name="area_code" style="width: 50px"/> - <input type="text" style="width: 100px" value="{$info['telephone']}" class="text" name="telephone" /> 建议填写固定电话</li>
-                        <li><span>设置默认：</span><input type="checkbox" <if condition="$info['is_default']">checked</if> value="1" name="is_default" /> 设置为默认收货地址</li>
-                      <li><span>&nbsp;</span><input name="id" type="hidden" value="{$info.id}"/><input type="button" class="submits" value="" /><input name="重置" type="reset"  class="close" value=""></li>
+                    	<li id="addcodePCT" val="{$info.province},{$info.city}"><span>所在地：<b>*</b></span>
+							<select name="province" value="{$info['province']}"  class="province" id="province_sel"><option value="">- -</option></select>
+							<select name="city"  value="{$info['city']}" class="city" id="city_sel"><option value="">- -</option></select>
+						</li>
+                        <li><span>联系地址：<b>*</b></span>
+							<input type="text"  value="{$info['address']}" class="text" name="address" id="fh_address" />
+							<label class="pro"></label>
+						</li>
+                        <li><span>收货人姓名：<b>*</b></span>
+							<input type="text" class="text" name="name" id="fh_name" value="{$info['name']}"/>
+							<label class="pro"></label>
+						</li>
+                        <li><span>手机号：<b>*</b></span>
+							<input type="text" class="text" name="mobile" value="{$info['mobile']}" id="fh_phone" /><label class="pro"></label>
+						</li>
+                        <li><span>联系电话：</span>
+							<input type="text" value="{$info['area_code']}" class="text" name="area_code" style="width: 50px"/> - 
+							<input type="text" style="width: 100px" value="{$info['telephone']}" class="text" name="telephone" /> 建议填写固定电话
+						</li>
+                        <li><span>设置默认：</span>
+							<input type="checkbox" <if condition="$info['is_default']">checked</if> value="1" name="is_default" /> 设置为默认收货地址
+						</li>
+                      <li><span>&nbsp;</span>
+						  <input name="id" type="hidden" value="{$info.id}"/>
+						  <input type="button" class="submits" value="" />
+						  <input name="重置" type="reset"  class="close" value="">
+					  </li>
                     </ul>
                 </form>
             </div>
           
+=======
+            <div class="address_list"><strong>寄送至</strong><span>广东省  广州市  白云区机场路棠景街6-8号寓景大厦8楼全层（xx）    13600000000</span><a href="{:U('/Member/Setting/addressedit')}">修改该地址</a></div>
+            <div id="add_address"><a href="{:U('/Member/Setting/addressadd')}"><img src="__PUBLIC__/images/member/add_news_address.gif" /></a></div>
+>>>>>>> .r6225
         </div>
     </div>
-    <script type="text/javascript">
-    $(function(){
-
-        $('.submits').click(function(){
-            $('form').ajaxSubmit({
-                url:$('form').attr('action'),
-                type:"POST",
-                success:function(data) {
-                    if(data && (typeof data)=='string'){
-                        var data = eval("(" + data + ")");
-                    };
-                    $('#msg').val(data.info);
-                    parent.layer.msg(data.info,2,data.status);
-                    parent.layer.close(index);
-                }
-            });
-        })
-
-    });
-</script>
     
 <include file="public:footer" />

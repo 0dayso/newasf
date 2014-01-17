@@ -21,6 +21,14 @@ class ActionsAction extends CommonAction{
     }
 
     /*
+   * 禁用 恢复
+   */
+    function forbid(){
+        $this->actionName="Action";
+        parent::forbid();
+    }
+
+    /*
      * add添加
      */
     function add(){
@@ -50,9 +58,10 @@ class ActionsAction extends CommonAction{
 
    function actionLog(){
         $this->meta_title = '用户行为';
-
+        $this->relation=true;
         $this->order="id desc";
         parent::index(D('ActionLog'));
+    //   print_r($this->list);
         $this->display();
     }
 

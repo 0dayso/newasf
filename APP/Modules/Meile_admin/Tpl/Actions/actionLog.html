@@ -42,9 +42,7 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="__URL__/add" target="dialog" rel="add" mask="true" ><span>新增</span></a></li>
-			<li><a class="delete" href="__URL__/foreverdelete/id/{sid_user}/navTabId/__MODULE__-index" target="ajaxTodo" title="你确定要删除吗？" warn="请选择用户" ><span>删除</span></a></li>
-			<li><a class="edit" href="__URL__/edit/id/{sid_user}" target="dialog" rel="edit" mask="true" warn="请选择用户"><span>编辑</span></a></li>
+			<li><a class="edit" href="__URL__/edit/id/{sid_user}" target="dialog" rel="edit" mask="true" warn="请选择"><span>查看</span></a></li>
         </ul>
 	</div>
 
@@ -52,9 +50,10 @@
 		<thead>
 		<tr>
 			<th width="60" orderField="id" <if condition="$_REQUEST._order eq 'id'">class="{$_REQUEST._sort}"</if>>编号</th>
-	         <th width="100" orderField="name" <if condition="$_REQUEST._order eq 'name'">class="{$_REQUEST._sort}"</if>>行为名称</th>
-            <th width="60" orderField="asms_user_id" <if condition="$_REQUEST._order eq 'asms_user_id'">class="{$_REQUEST._sort}"</if>>执行者</th>
-            <th width="100" orderField="department_id" <if condition="$_REQUEST._order eq 'department_id'">class="{$_REQUEST._sort}"</if>>执行时间</th>
+	        <th width="100">行为标识</th>
+           <th  width="100">行为名称</th>
+            <th width="60" orderField="user_id" <if condition="$_REQUEST._order eq 'user_id'">class="{$_REQUEST._sort}"</if>>执行者</th>
+            <th width="100" orderField="create_time" <if condition="$_REQUEST._order eq 'create_time'">class="{$_REQUEST._sort}"</if>>执行时间</th>
 			<th>日志</th>
              <th width="80">操作</th>
 		</tr>
@@ -63,14 +62,13 @@
 		<volist id="vo" name="list">
 			<tr target="sid_user" rel="{$vo['id']}">
 				<td>{$vo['id']}</td>
-				<td>{$vo['name']}</td>
-                <td>{$vo.title}</td>
-                <td>{$vo.type}</td>
-                <td>{$vo.remark}</td>
+				<td>{$vo.action.name}</td>
+                <td>{$vo.action.title}</td>
+                <td>{$vo.user_id}</td>
 
-				<td>{$vo['update_time']|date="Y-m-d",###}</td>
-                <td>{$vo['status']|getStatus}</td>
-                <td>{$vo['status']|showStatus=$vo['id'],'navTabAjaxMenu'} <a href="__URL__/edit/id/{$vo['id']}" target="dialog" rel="edit">编辑</a></td>
+                <td>{$vo['create_time']|date="Y-m-d",###}</td>
+                <td>{$vo.remark}</td>
+                <td></td>
 			</tr>
 		</volist>
 		</tbody>

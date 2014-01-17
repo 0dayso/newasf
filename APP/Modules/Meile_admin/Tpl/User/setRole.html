@@ -31,7 +31,12 @@
 					<option <eq name="vo.status" value="0" >selected</eq> value="0">禁用</option>
 				</select>
 			</div>
-
+        <div class="unit">
+            <label>角色：</label>
+            <label>个人：<input type="radio" name="role_level"  value="0" <eq name="vo.role_level" value="0" >checked</eq>/></label>
+            <label>主管：<input type="radio" name="role_level" value="1" <eq name="vo.role_level" value="1" >checked</eq>/></label>
+            <label>经理：<input type="radio" name="role_level" value="2" <eq name="vo.role_level" value="2" >checked</eq>/></label>
+        </div>
             <div class="unit">
                 <label>权限组：</label>
                 <volist name="role" id="v">

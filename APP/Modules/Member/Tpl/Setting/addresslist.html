@@ -10,7 +10,7 @@
     	<include file="public:left" />
         
 	  	<div class="right" id="memberR">
-        	<h1 class="nav_tit">邮寄地址<div class="right"><a href="#"><img src="__PUBLIC__/images/member/add_news_address.gif" /></a></div></h1>
+        	<h1 class="nav_tit">邮寄地址<div class="right"><a href="{:U('/Member/Setting/addressadd')}"><img src="__PUBLIC__/images/member/add_news_address.gif" /></a></div></h1>
             <div id="list_con" class="addrbox">
             	<div id="addresslist">
                 	<table width="788" border="0" cellspacing="0" cellpadding="0">
@@ -23,24 +23,17 @@
                             <td>电话号码</td>
                             <td>操作</td>
 						</tr>
-                        <tr  gid="">
-                        	<td class="first"><input type="checkbox" /></td>
-                            <td>广东省 广州市</td>
-                            <td>白云区机场路棠景街6-8号寓景大厦8楼全层</td>
-                            <td>张三</td>
-                            <td>13600000000</td>
-                            <td>02088888888</td>
-                            <td><a href="#">查看</a>  <a class="del">删除</a></td>
-						</tr>
-                        <tr  gid="">
-                        	<td class="first"><input type="checkbox" /></td>
-                            <td>广东省 广州市</td>
-                            <td>白云区机场路棠景街6-8号寓景大厦8楼全层</td>
-                            <td>张三</td>
-                            <td>13600000000</td>
-                            <td>02088888888</td>
-                            <td><a href="#">查看</a>  <a class="del">删除</a></td>
-						</tr>
+                        <volist name='addressInfo' id='vo'>
+                            <tr  gid="{$vo.id}">
+                                <td class="first"><input type="checkbox" /></td>
+                                <td>{$vo.province}&nbsp;&nbsp;{$vo.city}</td>
+                                <td>{$vo.address}</td>
+                                <td>{$vo.name}</td>
+                                <td>{$vo.mobile}</td>
+                                <td>{$vo.telephone}</td>
+                                <td><a href="{:U('/Member/Setting/addressedit','id='.$vo['id'])}">查看</a>  <a class="del">删除</a></td>
+                            </tr>             		
+                        </volist>
 					</table>
 					<div class="bot"><input type="checkbox" class="checkbox all"/>全选 <a class="alldel">删除</a></div>
             	</div>

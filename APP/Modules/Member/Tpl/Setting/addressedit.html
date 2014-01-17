@@ -1,0 +1,68 @@
+<include file="public:header" />
+
+    <link rel="stylesheet" href="__PUBLIC__/css/member.css" type="text/css" />
+    <script type="text/javascript" src="__PUBLIC__/js/member.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/layer/layer.min.js"></script>
+    <script src="__PUBLIC__/admin/Js/jquery.form.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/modify.js"></script>
+    <div class="member">
+    	<!--会员中心导航-->
+    	<include file="public:left" />
+        
+	  	<div class="right" id="memberR">
+        	<h1 class="nav_tit">修改当前地址<span class="right"><a href="{:U('/Member/Setting/addresslist')}">管理邮寄地址</a></span></h1>
+            <div id="address">
+            	<h2>修改当前地址</h2>
+                <form action="{:U('Member/address')}?act=edit" class="fh_form" method="post">
+                	<ul>
+                    	<li id="addcodePCT" val="{$info['province']},{$info['city']}"><span>所在地：<b>*</b></span>
+                      		 <select name="province" value="{$info['province']}" class="province" id="province_sel"><option value="">- -</option></select>
+                       		 <select name="city"  value="{$info['city']}" class="city" id="city_sel"><option value="">- -</option></select>
+                        </li>
+                        <li><span>联系地址：<b>*</b></span>
+                       		 <input type="text"  value="{$info['address']}" class="text" name="address" id="fh_address" /><label class="pro"></label>
+                        </li>
+                        <li><span>收货人姓名：<b>*</b></span>
+                       		 <input type="text" class="text" name="name" id="fh_name" value="{$info['name']}"/><label class="pro"></label>
+                        </li>
+                        <li><span>手机号：<b>*</b></span>
+                       		 <input type="text" class="text" name="mobile" value="{$info['mobile']}" id="fh_phone" /><label class="pro"></label>
+                        </li>
+                        <li><span>联系电话：</span>
+                       		 <input type="text" value="{$info['area_code']}" class="text" name="area_code" style="width: 50px"/> - 
+                       		 <input type="text" style="width: 100px" value="{$info['telephone']}" class="text" name="telephone" /> 建议填写固定电话
+                        </li>
+                        <li><span>设置默认：</span>
+                       		 <input type="checkbox" value="1" name="is_default" <if condition="$info['is_default'] eq 1">checked</if> /> 设置为默认收货地址
+                        </li>
+                     	<li><span>&nbsp;</span>
+                          <input name="id" type="hidden" value="{$info.id}"/><input type="button" class="submits" value="" />
+                          <input name="重置" type="reset"  class="close" value="">
+                     	</li>
+                    </ul>
+                </form>
+            </div>
+          
+        </div>
+    </div>
+    <script type="text/javascript">
+    $(function(){
+        $('.submits').click(function(){
+            $('form').ajaxSubmit({
+                url:$('form').attr('action'),
+                type:"POST",
+                success:function(data) {
+                    if(data && (typeof data)=='string'){
+                        var data = eval("(" + data + ")");
+                    };
+                    $('#msg').val(data.info);
+                    parent.layer.msg(data.info,2,data.status);
+                    parent.layer.close(index);
+                }
+            });
+        })
+
+    });
+</script>
+    
+<include file="public:footer" />

@@ -44,6 +44,10 @@ class AsmsOrderModel extends RelationModel{
         }
         $orderRs=$this->find($ddbh);
         if(!C('ASMS_ONLINE')) return $orderRs; //没连asms 直接返回缓存数据
+        //缓存更新
+        if(isset($orderRs['info_update_time']) && $orderRs['info_update_time']>(time()-C('CACHE_TIME'))){
+            return $orderRs;
+        }
 
         $this->check_login();
         $url= C('ASMS_HOST')."/asms/ydzx/ddgl/kh_khdd_xq.shtml?ddbh=".$ddbh;
@@ -90,7 +94,6 @@ class AsmsOrderModel extends RelationModel{
             }
         }
 
-
      //   print_r($arr1);
      //   exit;
         $index=0;
@@ -109,6 +112,7 @@ class AsmsOrderModel extends RelationModel{
         unset($data);
         $data=$arr;
         $data['ddbh']=$ddbh;
+        $data['info_update_time']=time();
         $data['hd_info']=json_encode($arr1);
         $data['cjr_info']=json_encode($arr2);
      //   $rs=$this->find($ddbh);
@@ -289,7 +293,7 @@ class AsmsOrderModel extends RelationModel{
         if(!C('ASMS_ONLINE')) return $dbRs; //没连asms 直接返回缓存数据
         if($dbRs){
             if(!$update){
-                if($dbRs[0]['update_time']>(time()-60)){// 60秒更新
+                if($dbRs[0]['update_time']>(time()-C('CACHE_TIME'))){// 缓存更新
                     return $dbRs;
                 }
             }
@@ -349,6 +353,11 @@ class AsmsOrderModel extends RelationModel{
 
     /*
      * 订单支付
+     * $ddbh  订单编号
+     * $hyid  会员id
+     * $zf_je  支付金额
+     * $pay_id 支付流水
+     * $bzbz 备注
      */
     function orderPay($ddbh,$hyid,$zf_je,$pay_id,$bzbz=''){
         $this->check_login();
@@ -392,11 +401,11 @@ class AsmsOrderModel extends RelationModel{
      * 适应于会员查看自己的订单
      */
     function myOrder(){
-        if(!getUid()){
+        if(!ASMSUID){
            $this->error="未登陆";
            return false;
         }
-        return $this->orderFind(gsession('asmsUid'));
+        return $this->orderFind(ASMSUID);
     }
 
     /*

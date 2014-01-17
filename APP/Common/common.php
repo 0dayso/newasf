@@ -119,15 +119,27 @@ function msubstr($str, $start=0, $length, $charset="utf-8", $suffix=false){
 }
 
 /**
-*
 *短信平台
-*
+*$mobile 手机号
+* $contents  内容
+* $restrict  发送时间范围限制
 **/
 
-function sendMobileSms($mobile,$contents,$fh=0){
+function sendMobileSms($mobile,$contents,$restrict=null,$fh=0){
 	if(empty($mobile)){
 		return false;
 	}
+
+    //发送限制
+    if($restrict){
+          $sms=D('Mobilesms');
+          $time=$restrict>10?time()-$restrict:time()-59;
+          $rs=$sms->where("mobile=$mobile and sent_time>$time")->count();
+          if($rs){
+              return false;
+          }
+    }
+
 	if(is_array($mobile)){
 		$mobile=implode(',',$mobile);
 	}
@@ -182,7 +194,7 @@ function sendMobileSms($mobile,$contents,$fh=0){
 	$line=str_replace("</string>","",$line);
 	$result=explode("-",$line);
 	
-	$sms=D('Mobilesms');				
+	$sms=D('Mobilesms');
 	$arr['mobile']=$mobile;
 	$arr['content']=$contents;
 	$arr['ip']=get_client_ip();
@@ -448,7 +460,7 @@ function sec2time($sec,$show='i'){
  * @return boolean
  * @author huajie <banhuajie@163.com>
  */
-function action_log($action = null, $model = null, $record_id = null, $user_id = null){
+function action_log($action = null, $model = null, $record_id = null, $user_id = null,$md=null){
 
     //参数检查
     if(empty($action) || empty($model) || empty($record_id)){
@@ -505,6 +517,10 @@ function action_log($action = null, $model = null, $record_id = null, $user_id =
 
         //执行行为
         $res = execute_action($rules, $action_info['id'], $user_id);
+    }
+
+    if($md && !empty($action_info['rule'])){
+
     }
 }
 

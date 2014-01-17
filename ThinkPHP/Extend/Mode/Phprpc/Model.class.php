@@ -385,7 +385,7 @@ class Model {
      */
     public function getModelName() {
         if(empty($this->name)) {
-            $this->name =   substr(get_class($this),0,-5);
+            $this->name =  substr(get_class($this),0,-5);
         }
         return $this->name;
     }

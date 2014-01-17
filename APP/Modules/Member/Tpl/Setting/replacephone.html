@@ -12,11 +12,14 @@
 		<div class="right" id="memberR">
         	<h1 class="nav_tit">更换手机号</h1>
             <div id="replacephone" class="scbox">
-            	<form action="" method="post">
+            	<form action="{:U('/Member/Setting/replacephone2')}" method="post">
             	<div class="hint">若您当前手机号已不使用或丢失，或无法收到验证码，您可以进行<a href="{:U('/Member/Setting/appeal')}">手机账号申诉</a></div>
                 <ul>
-                	<li><span>原手机号：</span>{$userInfo.mobile|msubstr=0,2}****{$userInfo.mobile|msubstr=7,10}</li>
-                    <li class="imgcode"><span>图形验证码：</span><input name="code" type="text" id="code" required ><img onclick="this.src=this.src+ '?ts='+ (new Date()).getTime();" title="点击重新获取验证码" src="/svn/newasf/common/verify_code"></li>
+                	<li><span>原手机号：</span>{$userInfo.mobile|msubstr=0,3}****{$userInfo.mobile|msubstr=7,10}</li>
+                    <li class="imgcode"><span>图形验证码：</span>
+                    	<input name="code" type="text" id="code" required >
+                    	<img onclick="this.src=this.src+ '?ts='+ (new Date()).getTime();" title="点击重新获取验证码" src="{:U('/common/verify_code')}">
+                    </li>
                     <li class="code"><span>短信验证码：</span><input name="auth_str" type="text" id="verify" required ><a class="fsa" id="fsan">发送认证码短信</a></li>
                     <li><span>&nbsp;</span><b id="fslb"></b></li>
 				</ul>
@@ -26,12 +29,13 @@
 			
       </div>
     </div>
-    <script type="text/javascript">
+    
+<script type="text/javascript">
     var a=document.getElementById("fsan");
 	     a.onclick=function(e){
 		if(a.className!="fsa"){return;}
 		var t=60;
-		$.post("{:U('/Member/Setting/replacephone')}","send=1",function(data){
+		$.post("{:U('/Member/common/sendMobile')}","send=1",function(data){
 			if(data){
                 msg("发送成功",0,'correct');
 			}else{
@@ -41,9 +45,9 @@
 			 })
     a.className="active";
 	changeHtml(a,t);
-	
 	return false;
 	}
+	
 	var changeHtml=function(o,t){
 		o.innerHTML="重发验证码短信("+(--t)+")";
 		var timer=setTimeout(function(){

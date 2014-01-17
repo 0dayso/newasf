@@ -141,7 +141,7 @@ class MemberModel extends RelationModel{
         $this->login_count=1;
         $this->verify_mobile=I('mobile');
         $this->source=I('source')?I('source'):'pc'; //来路
-        $this->referee_id=cookie('referee_id')?cookie('referee_id'):''; //推荐人ID
+        $this->referee_id=cookie('invite_id')?cookie('invite_id'):''; //推荐人ID
         $id=$this->add(); //插入数据库
         if(!empty($id)){  //注册成功
             $this->uid=$id;
@@ -149,11 +149,15 @@ class MemberModel extends RelationModel{
             if(C('REG_POINTS')){
                 D('Points')->addPoints($id,C('REG_POINTS'),I('username').'注册 获得'.C('REG_POINTS').'积分'); //添加注册送积分
             }
-            if(cookie('referee_id')){ // 邀请注册
-                D('Points')->addPoints(cookie('referee_id'),C('INVITE_POINTS'),'邀请 '.I('post.username').'注册 获得'.C('INVITE_POINTS').'积分'); //添加邀请注册积分
+            if(cookie('invite_id')){ // 邀请注册
+                $asms_member_id=$this->field('asms_member_id')->find(cookie('invite_id'));
+                if($asms_member_id && D('AsmsOrder')->where("hyid=$asms_member_id and zf_fkf=1")->count()){
+                    D('Points')->addPoints(cookie('invite_id'),1,'邀请 '.I('post.username').'注册 获得1 枚爱钻',1); //添加邀请注册积分
+                }
+                D('Points')->addPoints(cookie('invite_id'),C('INVITE_POINTS'),'邀请 '.I('post.username').'注册 获得'.C('INVITE_POINTS').'积分'); //添加邀请注册积分
             }
             //记录行为
-            action_log('member_register', 'member', getUid(), getUid());
+            action_log('member_register', 'member', getUid(), getUid(),$this);
             return true;
         }else{
             return("注册出错！");
@@ -237,6 +241,8 @@ class MemberModel extends RelationModel{
         $data['password']=hashPassword($password,$salt); //# 对密码进行md5 混合加密
         $rs=$member->where("id=$uid")->save($data);
         if($rs){
+            //记录行为
+            action_log('member_edit_pwd', 'member', getUid(), getUid());
             return true;
         }
         return false;

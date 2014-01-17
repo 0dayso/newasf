@@ -57,11 +57,10 @@ class DeliverAddressModel extends Model {
         return $list;
     }
 
-
-
     //解析xml城市地址
     function xml_address($province=0,$city=0){
         $this->cityList=$this->cityList?$this->cityList:simplexml_load_file(APP_PATH."Common/cityList.xml");
+	//	print_r($this->cityList);
         if($this->cityList){
             $rs= $this->cityList->CountryRegion->State[(int)$province];
             $address['province']=(string)$rs->attributes()->Name;

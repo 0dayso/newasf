@@ -93,7 +93,8 @@ class AsmsMemberModel extends RelationModel{
 
             $data['salt']=generateSalt();
             $data['password']=hashPassword($memberInfo['mm'],$data['salt']);
-            $data['user_id']=D('AsmsUser')->asmsUserTo($memberInfo['wyyid']);
+
+            $data['user_id']=D('AsmsUser')->asmsUserTo($memberInfo['ywyid']);
             $data['source']='Asms';
             $data['asms_member_id']=$rs;
             if(!$memberDB->create($data)){

@@ -2,6 +2,14 @@
 // 后台用户模块
 class MemberAction extends CommonAction {
 	function index(){
+        $role_level=$this->userInfo['role_level'];
+        if($role_level==0){
+            $map['user_id']=getUid();
+        }elseif($role_level==1){
+            $user_id_arr = D('User')->field('id')->where("department_id=".$this->userInfo['department_id'])->select();
+            $map['user_id'] = array('in',$user_id_arr);
+        }
+
         if(I('so')){
             $where['name'] = array('like',"%".I('so')."%");
             $where['username']  = array('like',"%".I('so')."%");
@@ -14,7 +22,7 @@ class MemberAction extends CommonAction {
         }
         $this->map=$map;
         $this->order='id desc';
-        $this->relation=true;
+        $this->relation = true;
         parent::index(D("Member"));
      //   print_r($this->list);
         $this->display();
@@ -255,19 +263,23 @@ class MemberAction extends CommonAction {
       //  是通过邀请注册的
         $sql2="select u.id,u.name,count(m.id) invite_count from asf_user u left join asf_member m on m.user_id=u.id where $where m.user_id>0 and m.invite_id>1 group by m.user_id ";
         //邀请注册后有订票的
-        $sql3="select u.id,u.name,count(m.id) effective from asf_user u left join asf_member m on m.user_id=u.id where $where m.user_id>0 and m.invite_id>1 and (select o.pay from asf_asms_order o where o.hyid=m.asms_member_id and o.pay=1 limit 1) is not null group by m.user_id ";
+        $sql3="select u.id,u.name,count(m.id) effective from asf_user u left join asf_member m on m.user_id=u.id where $where m.user_id>0 and m.invite_id>1 and (select o.zf_fkf from asf_asms_order o where o.hyid=m.asms_member_id and o.zf_fkf=1 limit 1) is not null group by m.user_id ";
+        //  直接订票会员数
+        $sql4="select u.id,u.name,count(m.id) direct from asf_user u left join asf_member m on m.user_id=u.id where $where m.user_id>0 and m.invite_id=0 and (select o.zf_fkf from asf_asms_order o where o.hyid=m.asms_member_id and o.zf_fkf=1 limit 1) is not null group by m.user_id ";
 
         $arr=array();
         //执行sql
         $arr=$M->query($sql);
         $arr2=$M->query($sql2);
         $arr3=$M->query($sql3);
+        $arr4=$M->query($sql4);
         //组和查询结果
      //  print_r($arr);
         foreach($arr as $key=>$val){
             $arr[$key]['effective']= 0;
             $arr[$key]['reward']=0;
             $arr[$key]['invite_count']=0;
+            $arr[$key]['direct']=0;
             foreach($arr2 as $k=>$v){
                 if($val['id']==$v['id']){
                     $array[$key]['invite_count']=$v['invite_count'];
@@ -280,20 +292,25 @@ class MemberAction extends CommonAction {
                     $arr[$key]['reward']=$v['effective']?$v['effective']*20:0;
                 }
             }
-            $arr[$key]['direct']=$val['count']-$arr[$key]['invite_count'];
+            foreach($arr4 as $k=>$v){
+                if($val['id']==$v['id']){
+                $arr[$key]['direct']=$v['direct'];
+                }
+            }
+
         }
 
         foreach($arr as $val){
             $arrs[$val['id']]=$val;
         }
-     //   print_r($arrs);
+      //  print_r($arr);
         $this->arr=$arrs;
         //创建临时表
         $sql="CREATE TEMPORARY TABLE asf_tmp_table ( id int(10) ,status tinyint(1) DEFAULT 0,department_id int(10)  DEFAULT 0,`count` int(10) DEFAULT 0,direct int(10) DEFAULT 0, invite_count int(10) DEFAULT 0,effective int(10) DEFAULT 0,reward float(10,2))";
         $M->query($sql);
         $tmp_table= M('tmp_table');
         $tmp_table->addall($arr);//写入临时表
-      //  dump($tmp_table->getDbError());
+     //   dump($tmp_table->getDbError());
       //  print_r(M('tmp_table')->select());
         $access=D('Access');
         $info['departmentOption']=$access->getOption('department',array('id'=>I('department_id')));

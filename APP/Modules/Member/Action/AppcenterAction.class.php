@@ -26,4 +26,10 @@ class AppcenterAction extends IniAction {
 		$this->display();
     }
 	
+	//预订评价
+	function evaluate(){
+		$this->title="预订评价";
+		$this->display();
+    }
+	
 }

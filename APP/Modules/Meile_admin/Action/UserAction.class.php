@@ -58,6 +58,12 @@ class UserAction extends CommonAction {
         if($_POST){
             $where['user_id']=I('uid');
             D('RoleUser')->where($where)->delete();
+            $user= D('User');
+            $data['id']=I('id');
+            $data['status']=I('status');
+            $data['role_level']=I('role_level');
+            $user->create($data);
+            $user->save();
             $rs=D('Role')->setGroupsUser(I('gid'),I('uid'));
             if($rs){
                 $this->success('成功！');
@@ -65,8 +71,7 @@ class UserAction extends CommonAction {
                 $this->error('失败！');
             }
         }else{
-            $this->vo=D('User')->field('id,username,name,status')->find(I('id'));
-
+            $this->vo=D('User')->field('id,username,name,status,role_level')->find(I('id'));
             $role=D('Role')->select();
             $where['user_id']=$_GET['id'];
             $checkRole=D('RoleUser')->where($where)->select();

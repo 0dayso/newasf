@@ -400,14 +400,31 @@
 #fun .class_list h2 a{float:right;color:#06C;font-weight:bold;padding-right:15px;}
 #fun .class_list h2 span{float:left;width:4px;height:20px;margin-right:10px;background:#ffad00;display:block;}
 #fun .class_list ul{border-left:1px solid #E3E3E3;}
-#fun .class_list li{float:left;width:201px;height:250px;border-right:1px solid #e3e3e3;border-bottom:1px solid #e3e3e3;line-height:25px;}
-#fun .class_list li a{display:block;width:150px;height:200px;padding:25px;}
+#fun .class_list li{float:left;width:201px;height:275px;border-right:1px solid #e3e3e3;border-bottom:1px solid #e3e3e3;line-height:25px;}
+#fun .class_list li a{display:block;width:150px;height:225px;padding:25px;}
 #fun .class_list li a:hover{background:#e3f6ff;}
 #fun .class_list li a img{width:150px;height:150px;}
 #fun .class_list li a h3{margin-top:5px;color:#333;}
 #fun .class_list li a p{color:#666;margin-bottom:6px;}
 #fun .class_list li a p b{padding-left:25px;display:inline-block;height:20px;background:url(../images/assistant.png) no-repeat -10px -155px;font-family:Arial;font-weight:normal;}
-
 #fun .introduce{margin-top:10px;padding:0 0 20px 8px;}
 #fun .introduce dt{line-height:36px;font-weight:bold;}
 #fun .introduce dd{line-height:26px;padding-left:15px;}
+
+/*预订评价*/
+#exc_list{padding:10px;}
+#exc_list span{color:#666;}
+#exc_list dl{padding-bottom:20px;}
+#exc_list dt,#exc_list dd{padding:0 10px;}
+#exc_list dt{height:30px;line-height:30px;background:#f0f0f0;}
+#exc_list dt strong{color:#0066cc;}
+#exc_list dd{height:20px;line-height:20px;margin-top:10px;}
+#exc_list dd a{display:inline-block;width:64px;height:12px;background:url(../images/evaluate_pf.gif) no-repeat -1px -2px;margin:0 20px 0 5px;}
+#exc_list dd a.exc5{background-position: -1px -77px;}
+#exc_list dd a.exc4{background-position: -1px -62px;}
+#exc_list dd a.exc3{background-position: -1px -47px;}
+#exc_list dd a.exc2{background-position: -1px -32px;}
+#exc_list dd a.exc1{background-position: -1px -17px;}
+#exc_list dd a.exc0{background-position: -1px -2px;}
+#exc_list dd span{margin-right:40px;}
+#exc_list dd em{font-style:normal;color:#333;}

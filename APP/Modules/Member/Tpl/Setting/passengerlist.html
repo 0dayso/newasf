@@ -10,7 +10,7 @@
     	<include file="public:left" />
         
 	  	<div class="right" id="memberR">
-        	<h1 class="nav_tit">常用旅客<div id="passengeract"><input name="search" type="text" class="search" value placeholder="旅客中文名/英文名" /><a class="quer">查询</a><a class="add" href="{:U('/Member/Setting/passenger')}">新增</a><a class="return" href="{:U('/Member/Setting/passengerlist')}">返回</a></div></h1>
+        	<h1 class="nav_tit">常用旅客<div id="passengeract"><input name="search" type="text" class="search" value placeholder="旅客中文名/英文名" /><a class="quer">查询</a><a class="add" href="{:U('/Member/Setting/passengeradd')}">新增</a><a class="return" href="{:U('/Member/Setting/passengerlist')}">返回</a></div></h1>
             <div id="list_con" class="addrbox">
             	<div id="passengerlist">
                 	<table width="788" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -32,7 +32,7 @@
                             <td> 440105*******6213X</td>
                             <td>中国大陆</td>
                             <td>女</td>
-                            <td><span class="preferred"><em>首选旅客</em></span> <a class="edit" href="{:U('/Member/Setting/passenger')}?id=1">编辑</a> <a class="del">删除</a></td>
+                            <td><span class="preferred"><em>首选旅客</em></span>&nbsp;&nbsp;<a class="edit" href="{:U('/Member/Setting/passenger')}?id=1">编辑</a>&nbsp;&nbsp;<a class="del">删除</a></td>
 						</tr>
                         <tr  gid="">
                         	<td class="first"><input type="checkbox" /></td>
@@ -42,7 +42,7 @@
                             <td> 440105*******6213X</td>
                             <td>中国大陆</td>
                             <td>女</td>
-                            <td><span class="preferred">设为首选</span> <a class="edit" href="{:U('/Member/Setting/passenger')}?id=1">编辑</a> <a class="del">删除</a></td>
+                            <td><span class="preferred">设为首选</span>&nbsp;&nbsp;<a class="edit" href="{:U('/Member/Setting/passenger')}?id=1">编辑</a>&nbsp;&nbsp;<a class="del">删除</a></td>
 						</tr>
 					</table>
 				  <div class="bot"><input type="checkbox" class="checkbox all"/>全选 <a class="alldel">删除</a></div>
@@ -71,7 +71,7 @@
                             	html += '<td>'+item+'</td>';
                             	html += '<td>'+item+'</td>';
                             	html += '<td>'+item+'</td>';
-                            	html += '<td><span class="preferred">设为首选</span> <a class="edit" href="'+url+'?id='+item.id+'">编辑</a> <a class="del">删除</a></td>';					
+                            	html += '<td><span class="preferred">设为首选</span>&nbsp;&nbsp;<a class="edit" href="'+url+'?id='+item.id+'">编辑</a>&nbsp;&nbsp;<a class="del">删除</a></td>';					
 							});
 							$('#passengerlist table').html(html);
 							$('#passengeract .add').hide();

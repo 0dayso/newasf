@@ -82,7 +82,7 @@
             <th width="90" orderField="department_id" <if condition="$_REQUEST._order eq 'department_id'">class="{$_REQUEST._sort}"</if>>部门</th>
 			<th width="80" orderField="count" <if condition="$_REQUEST._order eq 'count'">class="{$_REQUEST._sort}"</if>>共注册会员</th>
 
-            <th width="80">直接订票会员数</th>
+            <th width="80" orderField="direct" <if condition="$_REQUEST._order eq 'direct'">class="{$_REQUEST._sort}"</if>>直接订票会员数</th>
             <th width="80" orderField="invite_count" <if condition="$_REQUEST._order eq 'invite_count'">class="{$_REQUEST._sort}"</if>>成功邀请注册数</th>
             <th width="80" orderField="effective" <if condition="$_REQUEST._order eq 'effective'">class="{$_REQUEST._sort}"</if>>成功邀请后消费</th>
             <th width="80" >时间段</th>

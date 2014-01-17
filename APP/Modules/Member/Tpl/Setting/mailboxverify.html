@@ -42,7 +42,7 @@
 			$('#mailbox .change').bind('click',function(){
 				//发送一个请求，看邮箱是否通过验证
 				$.getJSON("{:U('/Member/Setting/mailboxverify')}",{verifyask:"asking"},function(data){});
-					//如果通过验证为1，跳转到安全中心
+					//如果通过验证为1，跳转到"安全中心",不是就跳转到"我的信息"更换邮箱
 					if(data.verify==1){
 						window.location.href="{:U('/Member/Setting/securitycenter')}";
 						}else{

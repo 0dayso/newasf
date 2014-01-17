@@ -32,7 +32,7 @@ class AsmsUserModel extends RelationModel{
     function asmsUserTo($ywyid){
         if(empty($ywyid)){return false;};
         $this->update($ywyid);
-        return  D('User')->where("asms_user_id='$ywyid'")->getField('id');
+        return  D('User')->where("asms_user_id='$ywyid' and status=1")->getField('id');
     }
 
     //获取业务员信息

@@ -25,6 +25,7 @@ return array(
     'ASMS_HOST'=>'http://121.8.201.163:8150/',
     'ASMS_ACCOUNT'=>6000,
     'ASMS_PWD'=>'77169',
+    'CACHE_TIME'=>50,
     'ASMS_ONLINE'=>1,//asms 联网模式
     'ASMS_WEBSITECODE'=>'1',
     'ASMS_VERSION'=>'1',

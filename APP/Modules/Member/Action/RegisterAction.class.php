@@ -1,7 +1,6 @@
 <?php
 // 首页控制器
 class RegisterAction extends IniAction {
-
     //注册
     function index(){
         //提交数据处理

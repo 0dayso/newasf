@@ -70,7 +70,7 @@ class RoleModel extends CommonModel {
 		}
 		$where = 'a.id ='.$groupId.' AND b.id in('.$moduleIdList.')';
 		$rs = $this->db->execute('INSERT INTO '.$this->tablePrefix.'access (role_id,node_id,pid,level) SELECT a.id, b.id,b.pid,b.level FROM '.$this->tablePrefix.'role a, '.$this->tablePrefix.'node b WHERE '.$where);
-		if($result===false) {
+		if($rs===false) {
 			return false;
 		}else {
 			return true;
@@ -106,7 +106,7 @@ function setGroupActions($groupId,$actionIdList)
 	}
     $where = 'a.id ='.$groupId.' AND b.id in('.$actionIdList.')';
     $rs = $this->db->execute('INSERT INTO '.$this->tablePrefix.'access (role_id,node_id,pid,level) SELECT a.id, b.id,b.pid,b.level FROM '.$this->tablePrefix.'role a, '.$this->tablePrefix.'node b WHERE '.$where);
-    if($result===false) {
+    if($rs===false) {
         return false;
     }else {
         return true;

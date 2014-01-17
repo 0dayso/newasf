@@ -7,6 +7,7 @@ class AssetaccountAction extends IniAction {
 		$this->display();
     }
 	
+	//-----------------------------------------------------------------------------------
 	//现金卷
 	function cashcoupon(){
 		$userInfo=$this->userInfo;
@@ -569,11 +570,82 @@ print_R($ids);
 		
 	
 	//-----------------------------------------------------------------------------
+	//兑换确认
 	function exchange(){
+		$mall=D('Mall');		
+		$cart=D('MallCart');
+		$collect=D('MallCollect');
+		$exchange=D('MallExchange');
+		$userInfo=$this->userInfo;
+		$address=D('DeliverAddress');
+		
+		if(empty($_POST)){
+			//$this->error('请选择至少一个要兑换的商品');
+		}elseif($_POST['num'] == 0){
+			//$this->error('商品数量不能为0');
+		}else{
+			$id=I('id');//该id不是商品的id，而是购物车自增的id			
+			$num=I('num');
+						
+			$cartid['member_id']=$userInfo['id'];
+			
+			if(is_array($id)){//如果数量有变，对数据库进行数量更新
+				$cartid['id']=array('in',$id);	
+				$n=$cart->field('num')->where($cartid)->select();
+				foreach($n as $k=>$v){
+					if($num[$k] !== $v[$k]['num']){
+						$cart->where($cartid)->setField('num',$num);
+					}
+				}
+			}else{
+				$cartid['id']=$id;
+				$n=$cart->where($cartid)->getField('num');
+				if($num !== $n){
+					$cart->where($cartid)->setField('num',$num);
+				}				
+			}
+			
+			$ids=$cart->field('mall_id')->where($cartid)->select();						
+			foreach($ids as $k=>$v){
+				$mall_ids[]=$v['mall_id'];//商品的id
+			}			
+			
+			$Where['id']=array('in',$mall_ids);			
+			$this->mall_info=$cart->where($Where)->order('create_time desc')->relation(true)->select();	
+									
+				
+			foreach($this->mall_info as $k => $v){//计算总积分和爱钻
+				if($v['type'] == 0){
+					$this->totlejifen += $v['jifen'];
+				}else{
+					$this->totleaizuan += $v['jifen'];
+				}
+			}
+			
+		}
+		
+		//地址
+		//$where['member_id']=$userInfo['id'];
+		$where['member_id']=1103;//测试用
+		$where['is_default']=1;		
+		$addressInfo=$address->where($where)->find();
+		$province_city = D('DeliverAddress')->xml_address($addressInfo['province'],$addressInfo['city']);		
+		$this->assign('province_city',$province_city);	
+		$this->assign('addressInfo',$addressInfo);
+		
+		
+		
+		
+		
+		
 		$this->title="兑换确认";
 		$this->display();
     }
 	
+	function address(){
+		$this->title="地址确认";
+		$this->display();
+    }
 	
 	
 }

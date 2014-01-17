@@ -1,0 +1,88 @@
+<include file="public:header" />
+    <link rel="stylesheet" href="__PUBLIC__/css/member.css" type="text/css" />
+    <script type="text/javascript" src="__PUBLIC__/js/member.js"></script>
+    <div class="member">
+    	<!--会员中心导航-->
+    	<include file="public:left" />
+
+      	<div class="right" id="memberR">
+        	<h1 class="nav_tit">预订评价</h1>
+            <div id="list_box">
+            	<div id="list_nav"><a class="active">待评价订单</a><a>预订评价记录</a></div>
+                <div id="list_con">                
+                	<div class="list_block on" id="toevaluate">
+                    	<table width="788" border="0" align="center" cellpadding="0" cellspacing="0">
+							<tr class="tit">
+								<td class="first">订单ID</td>
+								<td>航班航程</td>
+								<td>价格（含税）</td>
+								<td>现金券</td>
+                                <td>合计价格</td>
+								<td>订单状态</td>
+								<td>出票时间</td>
+								<td>操作</td>
+							</tr> 
+						  	<tr>
+								<td class="first">IF51DCC0F13A800B0064</td>
+								<td class="blue">北京-芝加哥 往返</td>
+								<td>无</td>
+								<td>未使用</td>
+                            	<td class="price">￥200</td>
+								<td class="blue">已出票</td>
+								<td>2013-07-10 15:35</td>
+								<td class="link"><a href="#">评价</a></td>
+							</tr>		
+                            <tr>
+								<td class="first">IF51DCC0F13A800B0064</td>
+								<td class="blue">北京-芝加哥 往返</td>
+								<td>无</td>
+								<td>未使用</td>
+                            	<td class="price">￥200</td>
+								<td class="blue">已出票</td>
+								<td>2013-07-10 15:35</td>
+								<td class="link"><a href="#">评价</a></td>
+							</tr>				                          
+						</table>
+                        <div class="page" totlePage="1" page="1">
+                            <span class="next ajax"></span>
+                            <span class="page_num"><em>1</em>/1页</span>
+                            <span class="prev ajax"></span>
+                        </div>						
+                    </div>
+                    
+                    <div class="list_block" id="exchange">
+                    		<div id="exc_list">
+                            	<dl>
+                               	  <dt><span class="right">评价时间: 2014-8-13 20:36</span><strong>广州 -- 布宜诺斯艾利斯   单程</strong></dt>
+                                    <dd>总体评价：<a class="exc0">&nbsp;</a><span><em>服务5</em>（很好）</span> <span><em>出票4</em>（比较快）</span> <span><em>价格5</em>（很实惠）</span></dd>
+                                  <dd>通过爱尚飞进行订票，方便快捷，价格也比较实惠,票也很有保障</dd>
+                                </dl>
+                                <dl>
+                               	  <dt><span class="right">评价时间: 2014-8-13 20:36</span><strong>广州 -- 布宜诺斯艾利斯   单程</strong></dt>
+                                    <dd>总体评价：<a class="exc1">&nbsp;</a><span><em>服务5</em>（很好）</span> <span><em>出票4</em>（比较快）</span> <span><em>价格5</em>（很实惠）</span></dd>
+                                  <dd>通过爱尚飞进行订票，方便快捷，价格也比较实惠,票也很有保障</dd>
+                                </dl>
+                                <dl>
+                               	  <dt><span class="right">评价时间: 2014-8-13 20:36</span><strong>广州 -- 布宜诺斯艾利斯   单程</strong></dt>
+                                    <dd>总体评价：<a class="exc2">&nbsp;</a><span><em>服务5</em>（很好）</span> <span><em>出票4</em>（比较快）</span> <span><em>价格5</em>（很实惠）</span></dd>
+                                  <dd>通过爱尚飞进行订票，方便快捷，价格也比较实惠,票也很有保障</dd>
+                                </dl>
+                            </div>
+                            <div class="page" totlePage="{$totlePage}" page="1">
+                                <span class="next ajax"></span>
+                                <span class="page_num"><em>1</em>/1页</span>
+                                <span class="prev ajax"></span>
+                            </div>
+                        </div>	
+                  </div>
+              </div>
+        </div><!--list_block-->
+        
+        </div>
+    </div>
+    
+<script type="text/javascript">
+	$(function(){			
+		});
+</script>
+<include file="public:footer" />

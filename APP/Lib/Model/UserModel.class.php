@@ -176,6 +176,17 @@ class UserModel extends RelationModel{
          return  $this->where("company_id=1 and status=1 and view=1 and avatar!=''")->order('rand()')->getField('id');
     }
 
+    //用户权限级别条件
+    function userLevelWhere($uid){
+        $uid=$uid?$uid:getUid();
+        $role_level=$this->userInfo['role_level'];
+        if($role_level==0){
+            $map['user_id']=$uid;
+        }elseif($role_level==1){
+            $user_id_arr = D('User')->field('id')->where("department_id=".$this->userInfo['department_id'])->select();
+            $map['user_id'] = array('in',$user_id_arr);
+        }
+    }
 
 	 
 	
