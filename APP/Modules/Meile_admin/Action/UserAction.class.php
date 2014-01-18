@@ -285,10 +285,15 @@ class UserAction extends CommonAction {
 
         $arr=$memberDB->field('id,user_id,invite_id')->where($where)->select();
 
+        $array= list_to_tree($arr,0,'id','invite_id');
+        foreach($array as $val){
+            $a[]=tree_to_list($val, $child = '_child');
+        }
+        print_r($a);
         $where['invite_id']=array('gt',1);
         $ar=$memberDB->where($where)->count();
-        dump($ar);
-        dump($arr);
+      //  dump($ar);
+      //  print_r($array);
 
         $this->display();
     }
