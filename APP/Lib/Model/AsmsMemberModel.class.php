@@ -326,7 +326,6 @@ class AsmsMemberModel extends RelationModel{
         foreach($arr as $key=>$val){
             //业务员id
             preg_match('/([0-9A-Z]+)/',$val['ywy'],$ywy);
-            print_r($ywy);
             $val['ywyid']=$ywy[1];
             $arr[$key]['ywyid']=$ywy[1];
             if($is_info){ //详细

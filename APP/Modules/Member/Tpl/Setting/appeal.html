@@ -12,17 +12,30 @@
 		<div class="right" id="memberR">
         	<h1 class="nav_tit">手机账号申诉</h1>
             <div id="replacephone" class="scbox">
-            	<form action="" method="post">
+            	<form action="{:U('/Member/Setting/appeal')}" method="post">
             	<div class="hint">手机可接收短信，需更换其它号码，请<a href="{:U('/Member/Setting/replacephone')}">点击修改</a>，立即生效。</div>
                 <ul>
                 	<li class="title"><strong>资料验证</strong>申诉人工修改手机号,会在两个工作日内处理</li>
-                    <li><span>您的真实姓名：</span><input name="name" type="text" id="name" required ></li>
-                    <li><span>填写原手机号：</span><input name="oldphone" type="text" id="oldphone" required ></li>
-                    <li class="code"><span>购买记录描述：</span><textarea name="describe" id="describe">您可以描述,曾经购买过的国际机票行程、购买时间、乘机人等信息，有助于提高申诉的成功率。10个字符以上</textarea></li>
+                    <li><span>您的真实姓名：</span>
+                    <input name="name" type="text" id="name" required >
+                    </li>
+                    <li><span>填写原手机号：</span>
+                    <input name="oldphone" type="text" id="oldphone" required >
+                    </li>
+                    <li class="code"><span>购买记录描述：</span>
+                    <textarea name="describe" id="describe">您可以描述,曾经购买过的国际机票行程、购买时间、乘机人等信息，有助于提高申诉的成功率。10个字符以上</textarea>
+                    </li>
                     <li class="title"><strong>设置新手机号</strong>新手机号不得与原手机号一致，申诉成功后，您的爱尚飞账户登录名将自动更新为新手机号</li>
-               	  	<li><span>手机号码：</span><input name="phone" type="text" id="phone" required ></li>
-                    <li class="imgcode"><span>图形验证码：</span><input name="code" type="text" id="code" required ><img onclick="this.src=this.src+ '?ts='+ (new Date()).getTime();" title="点击重新获取验证码" src="/svn/newasf/common/verify_code"></li>
-                    <li class="code"><span>短信验证码：</span><input name="auth_str" type="text" id="verify" required ><a class="fsa" id="fsan">发送认证码短信</a></li>
+               	  	<li><span>手机号码：</span>
+                    <input name="phone" type="text" id="phone" required >
+                    </li>
+                    <li class="imgcode"><span>图形验证码：</span>
+                    <input name="code" type="text" id="code" required >
+                    <img onclick="this.src=this.src+ '?ts='+ (new Date()).getTime();" title="点击重新获取验证码" src="{:U('/common/verify_code')}">
+                    </li>
+                    <li class="code"><span>短信验证码：</span>
+                    <input name="auth_str" type="text" id="verify" required ><a class="fsa" id="fsan">发送认证码短信</a>
+                    </li>
                     <li><span>&nbsp;</span><b id="fslb"></b></li>
 				</ul>
 				<div class="sub_return"><input name="" type="submit" value="确定" /></div>
@@ -32,9 +45,12 @@
       </div>
     </div>
 <script type="text/javascript">
+$(function(){
     var a=document.getElementById("fsan");
 	     a.onclick=function(e){
 		if(a.className!="fsa"){return;}
+		var phone=$('#phone').val(),re=/^(1[0-9]{10})$/;
+		if(!re.test(phone)||phone.length<=0){alert('请输入正确的手机号！');return;}
 		var t=60;
 		$.post("{:U('/Member/Setting/replacephone')}","send=1",function(data){
 			if(data){
@@ -58,6 +74,8 @@
 			}
     /*xmlhttp*/
 	function CreateAjax() { if (window.XMLHttpRequest) { return new XMLHttpRequest(); } else if (window.ActiveXObject) { try { return new ActiveXObject("Msxml2.XMLHTTP"); } catch (e) { try { return new ActiveXObject("Microsoft.XMLHTTP"); } catch (e) { alert("Sorry,你的机子缺少AJAX组件。"); return false; } } } }
+
+});
 </script>
     
 <include file="public:footer" />

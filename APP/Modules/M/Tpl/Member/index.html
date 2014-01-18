@@ -7,16 +7,31 @@
 <link href="__PUBLIC__/mobile/css/global.css" rel="stylesheet" type="text/css">
 <style type="text/css">
 #topnav .icon{width:80px;}
-.block h2,.block h3,.block li a{background:url(__PUBLIC__/mobile/images/title_bg.png) no-repeat;}
+.block h2,.block h3,.block li a,#tab_block li a{background:url(__PUBLIC__/mobile/images/title_bg.png) no-repeat;}
 .block{background:#FFF;padding:0px 10px;margin:10px 10px 0px 10px;}
 .block h2,.block h3{color:#FFF;height:31px;line-height:31px;text-align:center;}
 .block h2{width:100px;background-position:0px -40px;}
 .block h3{width:130px;background-position:0px -82px;}
-.block li,.block li a{line-height:30px;color:#333;}
-.block li span{width:60px;color:#666;display:inline-block;}
-.block li a{display:block;background-position:right -130px;}
-.block .link a{color:#2690d8;font-size:14px;line-height:40px;}
-.block ul,.block .link a{padding:0px 15px;}
+.block ul,.block .link{padding:0px 15px;}
+.block li,.block li a,.block .list dd,#tab_block li a{line-height:30px;color:#333;}
+.block li span,.block .link span{width:60px;color:#666;display:inline-block;}
+.block li a,#tab_block li a{display:block;background-position:right -130px;}
+.block .link a{color:#2690d8;font-size:14px;line-height:40px;padding:0px 5px;}
+.block .list{padding:0 10px 20px 10px;}
+.block .list dd{padding:0 10px;}
+.block .list dd{background:#f2f1f0;margin-top:10px;}
+.block .list span{padding-right:10px;color:#666;display:inline-block;}
+.block .list em{font-style:normal;color:#2690d8;}
+.block .list b{padding-left:25px;display:inline-block;height:30px;background:url(__PUBLIC__/images/assistant.png) no-repeat -10px -152px;font-family:Arial;font-weight:normal;}
+.block .list a{float:right;color:#2690d8;}
+
+#tab_block{background:#FFF;margin:10px 10px 0px 10px;}
+#tab{background:#f2f1f0;}
+#tab a{display:inline-block;width:25%;margin-right:10px;background-color:#67b1e4;text-align:center;color:#FFF;line-height:30px;cursor:pointer;}
+#tab a:hover,#tab a.on{background-color:#FFF;color:#ff8400;}
+#tab_block ul{padding:0px 25px;display:none;}
+#tab_block ul.on{display:block;}
+
 #adviser{padding:15px;}
 #adviser .avatar,.block .infos,.block .star a{display:inline-block;}
 #adviser .avatar{width:82px;}
@@ -56,9 +71,48 @@
       <ul>
        <li><span>用&nbsp;户&nbsp;名：</span> {$userinfo.username}</li>
        <li><a href="{:U('/Member/information')}"><span>会员级别：</span>普通会员</a></li>
-       <li><span>积&nbsp;&nbsp;分&nbsp;&nbsp;：</span>{$userinfo.points}分</li>
       </ul>
-      <div class="link"><a href="{:U('/Member/editPwd')}">修改密码</a></div>
+      <div class="link"><span>账户安全：</span>中&nbsp;&nbsp;[<a href="{:U('/Member/editPwd')}">修改密码</a>]</div>
+      <dl class="list">
+      	<dd><span>预付款余额：</span>xxxx元</dd>
+        <dd><a href="#">如何使用？</a><span>现金券：</span><em>xxxx</em>元</dd>
+        <dd><a href="#">积fun规则</a><span>积fun：</span>3000</dd>
+        <dd><a href="#">如何获取</a><span>爱钻：</span><b>x2</b></dd>
+      </dl>
+    </div>
+
+    <div class="block">
+      <h2>我的订单</h2>
+      <ul>
+       <li><a href="{:U('/Member/booking/status/pending')}">待处理订单：（{$order_status[0]+$order_status[1] |default=0}）</a></li>
+       <li><a href="{:U('/Member/booking/status/process')}">已支付订单：（{$order_status[2]|default=0}）</a></li>
+       <li><a href="{:U('/Member/booking/status/cancel')}">已取消订单：（{$order_status[-1] |default=0}）</a></li>
+      </ul>
+    </div>
+    
+    
+    <div id="tab_block">
+    	<div id="tab"><a class="on">现金券</a><a>我的积fun</a><a>我的爱钻</a></div>
+		<ul class="on">
+			<li><a href="{:U('/Member/information')}">使用记录</a></li>
+            <li><a href="{:U('/Member/information')}">发放记录</a></li>
+      	</ul>
+        <ul>
+       		<li><a href="#">积fun明细</a></li>
+            <li><a href="#">兑换记录</a></li>
+      	</ul>
+        <ul>
+       		<li><a href="#">爱钻明细</a></li>
+            <li><a href="#">兑换记录</a></li>
+      	</ul>
+    </div>
+    
+    <div class="block">
+      <h2>我的积分</h2>
+      <ul>
+       <li><a href="{:U('/Member/points')}">积分明细</a></li>
+       <li><a href="{:U('/Member/bonuspoints')}">已消费积分</a></li>
+      </ul>
     </div>
     
     <div class="block">
@@ -66,7 +120,6 @@
       <div id="adviser">
       <span class="avatar">
         <img src="__PUBLIC__/uploads<if condition="$userinfo['user']['avatar']">{$userinfo['user']['avatar']}<else/>/avatar/default.gif</if>">
-
       </span>
       <span class="infos">
           <a href="{:U('/Adviser/review/id/'.$userinfo['user']['id'])}" class="name">{$userinfo.user.name}</a>
@@ -82,24 +135,17 @@
       </div>
     </div>
     
-    <div class="block">
-      <h2>我的订单</h2>
-      <ul>
-       <li><a href="{:U('/Member/booking/status/pending')}">待处理订单：（{$order_status[0]+$order_status[1] |default=0}）</a></li>
-       <li><a href="{:U('/Member/booking/status/process')}">已支付订单：（{$order_status[2]|default=0}）</a></li>
-       <li><a href="{:U('/Member/booking/status/cancel')}">已取消订单：（{$order_status[-1] |default=0}）</a></li>
-      </ul>
-    </div>
-    
-    <div class="block">
-      <h2>我的积分</h2>
-      <ul>
-       <li><a href="{:U('/Member/points')}">积分明细</a></li>
-       <li><a href="{:U('/Member/bonuspoints')}">已消费积分</a></li>
-      </ul>
-    </div>
   </div>
 </div>
 <include file="Public:CommonJs" />
+<script type="text/javascript">
+	$(function(){
+		$('#tab a').click(function(){
+			var i=$(this).index();
+			$(this).addClass('on').siblings().removeClass('on');
+			$('#tab_block ul').eq(i).addClass('on').siblings().removeClass('on');
+			});
+		});
+</script>
 </body>
 </html>

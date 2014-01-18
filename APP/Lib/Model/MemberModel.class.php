@@ -136,12 +136,13 @@ class MemberModel extends RelationModel{
         $this->salt=$salt;  // 设置salt字段值
         $this->password=hashPassword($password,$salt); //# 对密码进行md5 混合加密
         $this->rebate=C('REG_REBATE')?C('REG_REBATE'):0;  //注册返利
-        $this->user_id=0; //分配客服
+
         $this->rank_id=1;                  //默认为普通用户组
         $this->login_count=1;
         $this->verify_mobile=I('mobile');
         $this->source=I('source')?I('source'):'pc'; //来路
-        $this->referee_id=cookie('invite_id')?cookie('invite_id'):''; //推荐人ID
+        $this->invite_id=cookie('invite_id')?cookie('invite_id'):0; //推荐人ID
+        $this->user_id=$this->invite_id; //分配客服
         $id=$this->add(); //插入数据库
         if(!empty($id)){  //注册成功
             $this->uid=$id;

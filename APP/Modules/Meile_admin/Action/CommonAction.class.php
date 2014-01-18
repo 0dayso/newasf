@@ -199,7 +199,7 @@ class CommonAction extends Action {
 			 $pageNum =empty($_REQUEST['numPerPage']) ? C('PAGE_LISTROWS') : $_REQUEST['numPerPage'];
 			//分页查询数据
             if($this->relation){
-                 $voList = $model->where($map)->relation(true)->order($order)->limit($pageNum)->page($_REQUEST[C('VAR_PAGE')])->select();
+                 $voList = $model->where($map)->relation($this->relation)->order($order)->limit($pageNum)->page($_REQUEST[C('VAR_PAGE')])->select();
             }else{
 	    		 $voList = $model->where($map)->order($order)->limit($pageNum)->page($_REQUEST[C('VAR_PAGE')])->select();
             }

@@ -12,11 +12,13 @@
 		<div class="right" id="memberR">
         	<h1 class="nav_tit">修改邮箱</h1>
             <div id="replacemailbox" class="scbox">
+            	<form action="{:U('/Member/Setting/replacemailbox2')}" method="post">
            	  		<ul>
                 		<li><span>您当前的邮箱：</span><a>{$userInfo.email}</a></li>
                         <li><span>您在爱尚飞的登录密码：</span><input type="password" class="text" name="password" required id="password" /></li>
                 	</ul>
                 	<div class="sub"><input class="bt99" type="submit" value="下一步" /><a href="{:U('/Member/Setting/securitycenter')}">撤销</a></div>
+                 </form>
             </div>
             
       </div>

@@ -13,7 +13,7 @@ return array(
 
     'VAR_PAGE'=>'pageNum',
     //lxz
-    'PAGE_LISTROWS'=>20,  //分页 每页显示多少条
+    'PAGE_LISTROWS'=>30,  //分页 每页显示多少条
     'PAGE_NUM_SHOWN'=>10, //分页 页标数字多少个
 
     'USER_AUTH_ON'=>true,

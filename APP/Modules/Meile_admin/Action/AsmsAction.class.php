@@ -4,11 +4,17 @@ class AsmsAction extends CommonAction {
     //Asms业务员列表
 	function user(){
         if(I('so')){
-            $where['name'] = array('like',"%".I('so')."%");
-            $where['ywyid']  = array('like',"%".I('so')."%");
-            $where['phone']  = array('like',"%".I('so')."%");
-            $where['_logic'] = 'or';
-            $map['_complex'] = $where;
+            if(strstr(I('so'),':')){
+                $so=explode(':',I('so'));
+                $map[$so[0]]=$so[1];
+            }else{
+                $where['name'] = array('like',"%".I('so')."%");
+                $where['ywyid']  = array('like',"%".I('so')."%");
+                $where['phone']  = array('like',"%".I('so')."%");
+                $where['_logic'] = 'or';
+                $map['_complex'] = $where;
+            }
+
         }
 
         $this->map = $map;
@@ -72,6 +78,8 @@ class AsmsAction extends CommonAction {
             $where['hyzcm']  = array('like',"%".I('so')."%");
             $where['hykh']  = array('like',"%".I('so')."%");
             $where['xm']  = array('like',"%".I('so')."%");
+            $where['ywyid']  = array('like',"%".I('so')."%");
+            $where['ywy']  = array('like',"%".I('so')."%");
             $where['sj']  = array('like',"%".I('so')."%");
             $where['_logic'] = 'or';
             $map['_complex'] = $where;
@@ -114,7 +122,7 @@ class AsmsAction extends CommonAction {
     function memberUpdateALL(){
         echo "正在更新...";
         $page_r=isset($_GET['page_r'])?"?page_r=".$_GET['page_r']."":'?page_r=50';
-        $page_p=isset($_GET['page_p'])?"&page_p=".($_GET['page_p']+1)."":'&page_p=0';
+        $page_p=isset($_GET['page_p'])?"&page_p=".($_GET['page_p']+1)."":'&page_p=1';
         $url=$page_r.$page_p;
         if(!isset($_GET['page_p'])) echo "<script>location.href='$url';</script>";
         $AsmsMember=D('AsmsMember');
@@ -122,11 +130,11 @@ class AsmsAction extends CommonAction {
 
         if(!$rs){
             echo   $AsmsMember->getError();
-            echo "<script type='text/javascript'>window.reload()</script>";
+            echo "<script type='text/javascript'>window.location.reload();</script>";
         }
 
-        if($_GET['page_tr']==$_GET['page_p']){
-           echo "更新完成";exit;
+        if(!isset($_GET['page_tr']) || $_GET['page_tr']==$_GET['page_p']){
+            echo "更新完成";exit;
         }
 
         echo "<script type='text/javascript'>location.href='$url';</script>";
@@ -137,13 +145,15 @@ class AsmsAction extends CommonAction {
     //会员同步更新
     function memberUpdateNew(){
         echo "正在更新...";
+
+
         $AsmsMember=D('AsmsMember');
         $page_r=isset($_GET['page_r'])?"?page_r=".$_GET['page_r']."":'?page_r=50';
-        $page_p=isset($_GET['page_p'])?"&page_p=".($_GET['page_p']+1)."":'&page_p=0';
+        $page_p=isset($_GET['page_p'])?"&page_p=".($_GET['page_p']+1)."":'&page_p=1';
 
 
         $cjrq=$AsmsMember->order('cjrq desc')->getField('cjrq');
-        strtotime($cjrq)-(3600*24);
+        $cjrq=date("Y-m-d",strtotime($cjrq)-(3600*24));
         $_GET['createdate1']=isset($_GET['createdate1'])?$_GET['createdate1']:$cjrq;
         $url=$page_r.$page_p."&createdate1=".$_GET['createdate1'];
         if(!isset($_GET['page_p'])) echo "<script>location.href='$url';</script>";
@@ -153,12 +163,16 @@ class AsmsAction extends CommonAction {
 
         $rs= $AsmsMember->memberFindAll(array());
 
+        if($rs==-1){
+            echo "asms 网络错误";
+            echo "<script type='text/javascript'>window.location.reload();</script>";
+            exit;
+        }
         if(!$rs){
             echo   $AsmsMember->getError();
-            echo "<script type='text/javascript'>window.reload()</script>";
+            exit;
         }
-
-        if($_GET['page_tr']==$_GET['page_p']){
+        if(!isset($_GET['page_tr']) || $_GET['page_tr']==$_GET['page_p']){
             echo "更新完成";exit;
         }
 

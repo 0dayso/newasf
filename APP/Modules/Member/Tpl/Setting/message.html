@@ -23,20 +23,19 @@
 								<td>发送时间</td>
 								<td>操作</td>
 							</tr>
-                          	<tr gid="">
-								<td class="first"><input type="checkbox" /></td>
-								<td class="blue"><a href="#">您在2013.6.15日订购的XX到XX的国际机票已经成功，请进行评价。<em>NEW!</em></a></td>
-								<td>国际机票预订</td>
-								<td>2013-6-15 20:38:16</td>
-								<td><a class="delmes">删除</a></td>
-							</tr>
-                            <tr gid="">
-								<td class="first"><input type="checkbox" /></td>
-								<td class="blue"><a href="#">您在2013.6.15日订购的XX到XX的国际机票已经成功，请进行评价。<em>NEW!</em></a></td>
-								<td>国际机票预订</td>
-								<td>2013-6-15 20:38:16</td>
-								<td><a class="delmes">删除</a></td>
-							</tr>
+                            <volist name="info" id="vo">
+                                <tr gid="{$vo.id}">
+                                    <td class="first"><input type="checkbox" /></td>
+                                    <td class="blue">
+                                   	 <a href="#">{$vo.title}
+                                     	<if condition="$vo['is_read'] eq 0"><em>NEW!</em></if>
+                                     </a>
+                                    </td>
+                                    <td>国际机票预订</td>
+                                    <td>{$vo.create_time|date="Y-m-d H:i:s",###}</td>
+                                    <td><a class="delmes">删除</a></td>
+                                </tr>
+          					</volist>
 						</table>
                         <div class="mes_bot"><input type="checkbox" class="checkbox all" />全选 <a class="alldel">删除</a></div>
                     </div> 

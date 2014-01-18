@@ -1,5 +1,4 @@
 <include file="public:header" />
-
     <link rel="stylesheet" href="__PUBLIC__/css/member.css" type="text/css" />
     <script type="text/javascript" src="__PUBLIC__/js/member.js"></script>
     <script type="text/javascript" src="__PUBLIC__/js/layer/layer.min.js"></script>
@@ -24,26 +23,24 @@
                             <td>性别</td>
                             <td>操作</td>
 						</tr>
-                        <tr  gid="">
+                        <volist name="Info" id="vo">
+                        <tr  gid="{$vo.id}">
                         	<td class="first"><input type="checkbox" /></td>
-                            <td>李雯</td>
-                            <td>136****0000</td>
-                            <td>护照</td>
-                            <td> 440105*******6213X</td>
-                            <td>中国大陆</td>
-                            <td>女</td>
-                            <td><span class="preferred"><em>首选旅客</em></span>&nbsp;&nbsp;<a class="edit" href="{:U('/Member/Setting/passenger')}?id=1">编辑</a>&nbsp;&nbsp;<a class="del">删除</a></td>
+                            <td>{$vo.last_name}/{$vo.first_name}</td>
+                            <td>{$vo.mobile|msubstr=0,3}****{$vo.mobile|msubstr=7,11}</td>
+                            <td>{$vo.type}</td>
+                            <td> {$vo.id_number|msubstr=0,6}*******{$vo.id_number|msubstr=$vo.len-5,$vo.len-1}X</td>
+                            <td>{$vo.id_country}</td>
+                            <td><if condition="$vo['sex'] eq 0">女<else/>男</if></td>
+                            <td>
+                            <span class="preferred">
+                           		<if condition="$vo['first_choice'] eq 1"><em>首选旅客</em> <else/>设为首选</if>
+                            </span>
+                            &nbsp;&nbsp;
+                            <a class="edit" href="{:U('/Member/Setting/passenger','id='.$vo['id'])}">编辑</a>&nbsp;&nbsp;<a class="del">删除</a></td>
 						</tr>
-                        <tr  gid="">
-                        	<td class="first"><input type="checkbox" /></td>
-                            <td>李雯</td>
-                            <td>136****0000</td>
-                            <td>护照</td>
-                            <td> 440105*******6213X</td>
-                            <td>中国大陆</td>
-                            <td>女</td>
-                            <td><span class="preferred">设为首选</span>&nbsp;&nbsp;<a class="edit" href="{:U('/Member/Setting/passenger')}?id=1">编辑</a>&nbsp;&nbsp;<a class="del">删除</a></td>
-						</tr>
+                        </volist>
+                        
 					</table>
 				  <div class="bot"><input type="checkbox" class="checkbox all"/>全选 <a class="alldel">删除</a></div>
             	</div>

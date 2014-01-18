@@ -63,6 +63,15 @@ class UserAdminModel extends RelationModel{
             'mapping_fields'=>'ywyid,name,status',
             // 定义更多的关联属性 relation(true)
         ),
+        //asms_user   asms 同步
+        'member'=> array(
+            'mapping_type'=>HAS_MANY,
+            'class_name'=>'member',
+            'foreign_key'=>'user_id',
+            //    'condition'=>'wscx',
+            'mapping_fields'=>'count(*) count',
+            // 定义更多的关联属性 relation(true)
+        ),
     );
 //	protected $serializeField = array(
 //          'info' => array('name', 'email', 'address'),
@@ -177,7 +186,7 @@ class UserAdminModel extends RelationModel{
         $uid=$uid?$uid:getUid();
         //管理员
         if($uid==C('ADMIN_ID')){
-            return true;
+            return;
         }
         $rs=$this->field('id,name,role_level,company_id,department_id')->find($uid);
         if($rs['role_level']==0){
@@ -194,6 +203,48 @@ class UserAdminModel extends RelationModel{
 
         }
         return $map;
+    }
+
+    /*
+     * 关联会员转让
+     */
+    function transfer($uid,$to_uid=null){
+        $where['user_id']=$uid;
+        $MemberDB=D('Member');
+        $memberCount=$MemberDB->where($where)->count();
+
+        //转移给指定用户
+        if($to_uid){
+            $data['user_id']=$to_uid;
+            $rs=$MemberDB->where($where)->save($data);
+            return $rs;
+        }else{
+             //随机转移给部门用户
+            $data['user_id']=$to_uid;
+          //  $where['']=
+            $rs=$MemberDB->where($where)->save($data);
+        }
+
+        D('Member')->where($where)->select();
+
+    }
+
+/*
+* 获取当前用户部门的成员id
+*/
+    function getDepartmentUid($uid,$orderBy='rand()',$cl=1,$limit = null){
+        $Department_id = $this->where("id=$uid")->getfield('department_id');
+        if(!$Department_id){
+            return false;
+        }
+        $where['department_id']=$Department_id;
+        $cl &&  $where['id']=array('neq',$uid);
+        $rs=$this->field('id')->where($where)->order($orderBy)->limit($limit)->select();
+        if(empty($rs)) return false;
+        foreach($rs as $val){
+            $arr[]=$val['id'];
+        }
+        return $arr;
     }
 
 	 

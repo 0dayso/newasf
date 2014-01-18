@@ -74,6 +74,7 @@
 			<li class="line">line</li>
 			<li><a class="icon" href="__URL__/password/id/{sid_user}" target="dialog" mask="true" warn="请选择用户"><span>修改密码</span></a></li>
             <li><a class="edit" href="__URL__/setRole/id/{sid_user}/navTabId/__MODULE__" target="dialog" mast="true" warn="请选择用户"><span>设置权限</span></a></li>
+            <li><a class="edit" href="__URL__/transfer/id/{sid_user}/navTabId/__MODULE__" target="dialog" mast="true" warn="请选择用户"><span>离职处理</span></a></li>
         </ul>
 	</div>
 
@@ -90,7 +91,8 @@
 			<th width="120" orderField="last_login_time" <if condition="$_REQUEST._order eq 'last_login_time'">class="{$_REQUEST._sort}"</if>>上次登录</th>
 			<th width="80" orderField="login_count" <if condition="$_REQUEST._order eq 'login_count'">class="{$_REQUEST._sort}"</if>>登录次数</th>
             <th width="80" orderField="view" <if condition="$_REQUEST._order eq 'view'">class="{$_REQUEST._sort}"</if>>前台显示</th>
-			<th width="80" orderField="status" <if condition="$_REQUEST._order eq 'status'">class="{$_REQUEST._sort}"</if>>状态</th>
+			<th width="80" orderField="member.0.count" <if condition="$_REQUEST._order eq 'member.0.count'">class="{$_REQUEST._sort}"</if>>关联会员数</th>
+            <th width="80" orderField="status" <if condition="$_REQUEST._order eq 'status'">class="{$_REQUEST._sort}"</if>>状态</th>
             <th width="80">操作</th>
 		</tr>
 		</thead>
@@ -101,13 +103,14 @@
 				<td>{$vo['username']}</td>
 
 				<td>{$vo['name']}</td>
-                <td><a href="#" title="{$vo.asms_user.name}">{$vo.asms_user.ywyid}</a></td>
+                <td><a href="{:U('/meile_admin/Asms/user')}?so=ywyid:{$vo.asms_user.ywyid}" target="navTab" rel="Asms-user" title="{$vo.asms_user.name}">{$vo.asms_user.ywyid}</a></td>
                 <td>{$vo.department.name}</td>
 				<td>{$vo['email']}</td>
 				<td>{$vo['create_time']|date="Y-m-d",###}</td>
 				<td>{$vo['last_login_time']|date="Y-m-d H:i:s",###}</td>
 				<td>{$vo['login_count']}</td>
                 <td>{$vo['view']}</td>
+                <td><a href="{:U('/meile_admin/Member/index')}?so=user_id:{$vo.id}" target="navTab" rel="Member-index" title="会员搜索">{$vo['member'][0]['count']}</a></td>
                 <td>{$vo['status']|getStatus}</td>
                 <td>{$vo['status']|showStatus=$vo['id'],'navTabAjaxMenu'} <a href="__URL__/edit/id/{$vo['id']}" target="dialog" rel="edit">编辑</a></td>
 			</tr>
@@ -121,8 +124,9 @@
             <select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
                 <option value="10" <eq name="numPerPage" value="10">selected=selected</eq>>10</option>
                 <option value="20" <eq name="numPerPage" value="20">selected=selected</eq>>20</option>
-                <option value="30" <eq name="numPerPage" value="35">selected=selected</eq>>30</option>
+                <option value="30" <eq name="numPerPage" value="30">selected=selected</eq>>30</option>
                 <option value="50" <eq name="numPerPage" value="50">selected=selected</eq>>50</option>
+                <option value="100" <eq name="numPerPage" value="100">selected=selected</eq>>100</option>
             </select>
             <span>共{$totalCount}条</span>
         </div>

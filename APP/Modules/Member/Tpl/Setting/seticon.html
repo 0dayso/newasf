@@ -1,15 +1,19 @@
 <include file="public:header" />
     <link rel="stylesheet" href="__PUBLIC__/css/member.css" type="text/css" />
-    <script type="text/javascript" src="__PUBLIC__/js/member.js"></script>
+    
+   <!-- <script type="text/javascript" src="__PUBLIC__/js/member.js"></script>	-->
     <!--头像上传相关-->
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/jquery.Jcrop.min.css" media="all">
-	<link rel="stylesheet" type="text/css" href="__PUBLIC__/js/uploadify-v3.1/uploadify.css" media="all">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/js/ThinkBox/css/ThinkBox.css" media="all">
+    
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/js/uploadify-v3.1/uploadify.css" media="all">	
+ 
 	<script type="text/javascript" src="__PUBLIC__/js/uploadify-v3.1/jquery.uploadify-3.1.min.js"></script>
 	<script type="text/javascript" src="__PUBLIC__/js/jquery.Jcrop.min.js"></script>
 	<script type="text/javascript" src="__PUBLIC__/js/ThinkBox/jquery.ThinkBox.js"></script>
-	<link rel="stylesheet" type="text/css" href="__PUBLIC__/js/ThinkBox/css/ThinkBox.css" media="all">
+
 <style type="text/css">
-.main{margin:0 auto;width:450px;padding:50px 0;font-family:"microsoft yahei";}
+.seticon{margin:0 auto;width:450px;padding:50px 0;font-family:"microsoft yahei";}
 .cf:before,.cf:after{display:table;content:"";line-height:0;}
 .cf:after{clear: both;}
 .cf{*zoom:1;}
@@ -33,19 +37,20 @@
         
 		<div class="right" id="memberR">
         	<h1 class="nav_tit">设置头像</h1>
-            	<div class="main">
+            	<div class="seticon">
 				<!-- 修改头像 -->
-				<form action="{:U('/Member/setting/seticon')}" method="post" id="pic" class="update-pic cf">
+				<form action="{:U('/Member/Setting/cropImg')}" method="post" id="pic" class="update-pic cf">
 					<div class="upload-area">
 						<input type="file" id="user-pic">
 						<div class="file-tips">支持JPG,PNG,GIF，图片小于1MB，尺寸不小于100*100,真实高清头像更受欢迎！</div>
 						<div class="preview hidden" id="preview-hidden"></div>
-						</div>
-						<div class="preview-area">
+					</div>
+					<div class="preview-area">
 						<input type="hidden" id="x" name="x" />
 						<input type="hidden" id="y" name="y" />
 						<input type="hidden" id="w" name="w" />
 						<input type="hidden" id="h" name="h" />
+                        <input type="hidden" id='picname' name='picname'/>
 						<input type="hidden" id='img_src' name='src'/>
 						<div class="tcrop">头像预览</div>
 						<div class="crop crop100"><img id="crop-preview-100" src="" alt=""></div>
@@ -56,7 +61,6 @@
 				</form>
 				<!-- /修改头像 -->
 			</div>
-            
         </div>
     </div>
 <script type="text/javascript">
@@ -68,7 +72,7 @@
 			'preventCaching' : true,
 			'multi'    : false,
 			'swf' 			: '__PUBLIC__/js/uploadify-v3.1/uploadify.swf',
-			'uploader' 		: '{:U("Index/uploadImg")}',
+			'uploader' 		: '{:U("/Member/Setting/uploadImg")}',
 			'buttonText' 	: '<i class="userup-icon"></i>上传头像',
 			'width' 		: '200',
 			'height' 		: '200',
@@ -85,6 +89,7 @@
 				$('.crop').children('img').attr('src',data['data']+'?random='+Math.random());
 				//隐藏表单赋值
 				$('#img_src').val(data['data']);
+				$('#picname').val(data['picname']);
 				//绑定需要裁剪的图片
 				var img = $('<img />');
 				preview.append(img);

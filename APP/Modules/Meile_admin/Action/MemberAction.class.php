@@ -6,12 +6,18 @@ class MemberAction extends CommonAction {
             $map=D("UserAdmin")->userLevelWhere();
         }
         if(I('so')){
+            if(strstr(I('so'),':')){
+                $so=explode(':',I('so'));
+                $map[$so[0]]=$so[1];
+            }else{
             $where['name'] = array('like',"%".I('so')."%");
             $where['username']  = array('like',"%".I('so')."%");
             $where['mobile']  = array('like',"%".I('so')."%");
             $where['_logic'] = 'or';
             $map['_complex'] = $where;
+            }
         }
+
         if(I('so_date1')&& I('so_date2')){
             $map['create_time']=array(array('egt',strtotime(I('so_date1'))),array('elt',strtotime(I('so_date2'))));
         }
@@ -19,7 +25,6 @@ class MemberAction extends CommonAction {
         $this->order='id desc';
         $this->relation = true;
         parent::index(D("Member"));
-
         $this->display();
 	}
 

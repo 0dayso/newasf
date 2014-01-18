@@ -1,14 +1,21 @@
 <?php
 // 后台用户模块
 class UserAction extends CommonAction {
-	function _before_index(){
+	function index(){
         if(I('so')){
-            $where['name'] = array('like',"%".I('so')."%");
-            $where['username']  = array('like',"%".I('so')."%");
-            $where['public_mobile']  = array('like',"%".I('so')."%");
-            $where['_logic'] = 'or';
-            $map['_complex'] = $where;
+            if(strstr(I('so'),':')){
+                $so=explode(':',I('so'));
+                $map[$so[0]]=$so[1];
+            }else{
+                $where['name'] = array('like',"%".I('so')."%");
+                $where['username']  = array('like',"%".I('so')."%");
+                $where['public_mobile']  = array('like',"%".I('so')."%");
+                $where['_logic'] = 'or';
+                $map['_complex'] = $where;
+            }
+
         }
+
         if(!isset($_POST['status'])){
             $map['status'] = 1;
             $_REQUEST['status']=1;
@@ -21,9 +28,11 @@ class UserAction extends CommonAction {
         $info['departmentOption']=$access->getOption('department',array('id'=>I('department_id')));
         $info['positionOption']=$access->getOption('position',array('id'=>I('position_id')));
         $this->info=$info;
-        $this->relation=true;
-        $this->index(D('User'));
+        $this->relation=array('department','asms_user','member');
+        parent::index(D('UserAdmin'));
+
      //   print_r($this->list);
+        $this->display();
 
 
 	}
@@ -121,7 +130,20 @@ class UserAction extends CommonAction {
         parent::upload('','','avatar');
     }
 
+    /*
+     * 禁用
+     */
+    function forbid(){
+        $where['user_id']=I('id');
+        if(D('Member')->field('id')->where($where)->count()){
+            $this->error('还有关联会员 不能禁用');
+        }
+        parent::forbid();
+    }
 
+    /*
+     * 编辑
+     */
     function edit(){
         $M = M("user");
         $id = (int) $_GET['id'];
@@ -249,10 +271,30 @@ class UserAction extends CommonAction {
         $this->info=$info;
         $this->relation=true;
         parent::index();
-
     }
 
-    
- 
+    /*
+     * 关联会员 转移
+     */
+    function transfer(){
+        $UserAdmin=D('UserAdmin');
+        $rs= $UserAdmin->getDepartmentUid(I('id'));
+      //  dump($rs);
+        $memberDB=D("Member");
+        $where['user_id']=I('id');
+
+        $arr=$memberDB->field('id,user_id,invite_id')->where($where)->select();
+
+        $where['invite_id']=array('gt',1);
+        $ar=$memberDB->where($where)->count();
+        dump($ar);
+        dump($arr);
+
+        $this->display();
+    }
+
+
+
+
 }
 ?>

@@ -62,7 +62,8 @@
             <th width="100" orderField="qfsj" <if condition="$_REQUEST._order eq 'qfsj'">class="{$_REQUEST._sort}"</if>>起飞时间</th>
 			<th orderField="hbh" <if condition="$_REQUEST._order eq 'hbh'">class="{$_REQUEST._sort}"</if>>行班号</th>
 
-            <th width="80" orderField="pay" <if condition="$_REQUEST._order eq 'pay'">class="{$_REQUEST._sort}"</if>>支付</th>
+            <th width="30" orderField="zf_fkf" <if condition="$_REQUEST._order eq 'zf_fkf'">class="{$_REQUEST._sort}"</if>>支付</th>
+            <th width="80" orderField="yf" <if condition="$_REQUEST._order eq 'yf'">class="{$_REQUEST._sort}"</if>>已付</th>
             <th width="50" orderField="pnr" <if condition="$_REQUEST._order eq 'pnr'">class="{$_REQUEST._sort}"</if>>pnr</th>
             <th width="80">旅客联系人 </th>
             <th width="80">联系电话</th>
@@ -82,7 +83,8 @@
 				<td>{$vo['lx']}</td>
                 <td>{$vo['qfsj']}</td>
                 <td>{$vo.hbh}</td>
-                <td>{$vo.pay}</td>
+                <td>{$vo.zf_fkf}</td>
+                <td>{$vo.yf}</td>
                 <td>{$vo.pnr}</td>
 				<td>{$vo['nklxr']}</td>
                 <td>{$vo.lxdh}</td>

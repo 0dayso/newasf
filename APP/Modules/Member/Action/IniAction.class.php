@@ -26,8 +26,7 @@ class IniAction extends PublicAction{
             define('ASMSUID',$userInfo['asms']['hyid']);//加入asms id
             cookie('uid',session('uid'));
 		}
-        //记录行为
-        action_log('member_register', 'member', getUid(), getUid(),$this);
+
         //登陆后检测是否关联胜意 没有则注册到asms
         if(getUid() && !$userInfo['asms_member_id']){
             D('AsmsMember')->relationReg($userInfo);

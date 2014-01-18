@@ -68,7 +68,7 @@
                 <td>{$vo['last_login_time']|date="Y-m-d H:i",###}</td>
                 <td>{$vo['login_count']}</td>
                 <td>{$vo['status']}</td>
-                <td>{$vo.user.name}</td>
+                <td <eq name="vo.user.status" value="0">class="bg_red"</eq>>{$vo.user.name}</td>
                 <td>{$vo.source}</td>
                 <td><a href="__URL__/edit/id/{$vo.id}" target="dialog" rel="edit" width="650">[编辑]</a></td>
             </tr>
@@ -78,6 +78,14 @@
 
     <div class="panelBar">
         <div class="pages">
+            <span>显示</span>
+            <select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
+                <option value="10" <eq name="numPerPage" value="10">selected=selected</eq>>10</option>
+                <option value="20" <eq name="numPerPage" value="20">selected=selected</eq>>20</option>
+                <option value="30" <eq name="numPerPage" value="30">selected=selected</eq>>30</option>
+                <option value="50" <eq name="numPerPage" value="50">selected=selected</eq>>50</option>
+                <option value="100" <eq name="numPerPage" value="100">selected=selected</eq>>100</option>
+            </select>
             <span>共{$totalCount}条</span>
         </div>
         <div class="pagination" targetType="navTab" totalCount="{$totalCount}" numPerPage="{$numPerPage}"  pageNumShown="10" currentPage="{$currentPage}"></div>

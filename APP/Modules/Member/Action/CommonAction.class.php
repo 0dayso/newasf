@@ -52,6 +52,7 @@ class CommonAction extends IniAction{
     //检测手机号
 	function CheckPhone(){
 		if(IS_AJAX){
+		    $AsmsMember=D('AsmsMember');
 			if(isset($_GET['d'])){
 				$phone=$_GET['d'];
                 $rs=preg_match('/^([0-9]){11,12}$/i',$phone);
@@ -60,14 +61,14 @@ class CommonAction extends IniAction{
                     exit;
                 }
 
-				if($this->checkMember(array('sj'=>$phone))!==true){
+				if($AsmsMember->checkMember(array('sj'=>$phone))!==true){
                     echo "该手机已注册过";
 				}else{
 					echo 1;
                 }
 			}elseif(isset($_GET['phone'])){
                 $phone=I('phone');
-                if($this->checkMember(array('sj'=>$phone))!==true){
+                if($AsmsMember->checkMember(array('sj'=>$phone))!==true){
                     echo "该手机已注册过";exit;
                 }
 

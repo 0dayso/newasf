@@ -78,6 +78,14 @@ class ZtAction extends IniAction {
         $this->title='埃塞俄比亚航空';
         $this->display();
     }	
+	function airchina_sales(){
+        $this->title='中国国际航空';
+        $this->display();
+    }	
+	function virgin_atlantic_sales(){
+        $this->title='维珍航空';
+        $this->display();
+    }
 	
 	
 	
