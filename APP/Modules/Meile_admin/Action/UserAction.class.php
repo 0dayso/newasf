@@ -186,6 +186,8 @@ class UserAction extends CommonAction {
 		$User->id			=	$id;
 		$result	=	$User->save();
         if(false !== $result) {
+            //记录行为
+            action_log('admin_resetPwd', 'user', $id, getUid(),$this);
             $this->success("密码修改为$password");
         }else {
         	$this->error('重置密码失败！');

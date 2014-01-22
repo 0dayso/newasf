@@ -48,7 +48,7 @@ class IniAction extends PublicAction{
 
     //未登录不能访问
 	function restrict(){
-		$array=array('register','login','invite','phoneverify','getpassword','getpassword1','getpassword2','getpassword3');//不需要登陆可访问的function
+		$array=array('register','login','invite');//不需要登陆可访问的
 			$module_name=strtolower(MODULE_NAME);
             if(!in_array($module_name,$array)){
 				if(!session('uid')){

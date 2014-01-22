@@ -8,8 +8,14 @@
 <style type="text/css">
 #topnav .icon{width:80px;}
 .box h2{padding-right:42px;}
-#import{padding:10px 10px 0 10px;margin-bottom:10px;height:80px;}
+#import{padding:10px 10px 0 10px;margin-bottom:10px;height:165px;}
 #import span{margin-bottom:10px;display:block;}
+#import dl{display:block;width:100%;height:26px;padding-bottom:10px;}
+#import dt,#import dd{display:inline-block;width:32%;}
+#import .mr2{margin-right:2%;}
+#import dt{height:8px;background:#ddd;}
+#import dt.on{background:#ff980f;}
+#import dd{height:22px;line-height:22px;text-align:center;}
 </style>
 </head>
 
@@ -21,8 +27,10 @@
       <form action="" method="post">
         <h2><span class="left icon"><a href="{:U('/Member')}" class="icon-return">返回</a></span>修改密码</h2>
         <div id="import">
-          <span><input name="password" type="password" id="password" maxlength="18" required placeholder="请输入新密码" class="txt"></span>
-          <span><input name="re_password" type="password" id="password2" maxlength="18" required placeholder="再次输入新密码" class="txt"></span>
+        	<span><input name="nowpw" type="password" id="nowpw" maxlength="18" required placeholder="请输入您当前使用的密码" class="txt"></span>
+          <span><input name="newpw" type="password" id="newpw" maxlength="18" required placeholder="请输入新密码(6-18位数字或字母组合字符)" class="txt"></span>
+          <span><dl><dt class="mr2">&nbsp;</dt><dt class="mr2">&nbsp;</dt><dt>&nbsp;</dt><dd class="mr2">弱</dd><dd class="mr2">中</dd><dd>强</dd></dl></span>
+          <span><input name="newpw2" type="password" id="newpw2" maxlength="18" required placeholder="再次输入新密码" class="txt"></span>
         </div>
         <input type="submit" value="确认无误，提交" class="sub">
       </form>
@@ -32,37 +40,80 @@
 <include file="Public:CommonJs" />
 <script type="text/javascript">
 $(function(){
-	//提交表单
-	$('form').submit(function(){
-		if(!(verify('#password','密码',18,/^[A-Za-z0-9]{6,18}$/))){
-			return false;
-			}else if($('#password').val()!==$('#password2').val()){
-				msg("两次输入的密码不相同！");
-				return false;
+	$('#nowpw').blur(function(){
+		var pw=$(this).val();
+		$.getJSON("{:U('/Member/editPwd')}",{nowpw:pw},function(data){
+			if(data.status==1){
+				msg("密码正确");
 				}else{
-					$.post(url,$('#password').val(),function(data){
-						if(data.status==1){
-							msg("修改成功！",0,'correct');
-							window.location.href="{:U('/Member')}";
-							}else{
-								msg(data.info);
-                            }
-							},'json');
+					msg("密码错误");
+					$(this).val('');
 					}
-                     return false;
+				});
+			});
+				
+			$('#newpw').blur(function(){
+				var pw=$(this).val();
+				$('#import dt').removeClass('on');
+				if(isSecurity(pw)>0&&isSecurity(pw)<4){
+					$('#import dt').eq(0).addClass('on')
+					}else if(isSecurity(pw)>=4&&isSecurity(pw)<7){
+						$('#import dt').eq(0).addClass('on')
+						$('#import dt').eq(1).addClass('on')
+						}else if(isSecurity(pw)>=7){
+							$('#import dt').addClass('on');
+							}if(isSecurity(pw)<0){
+								$('#import dt').removeClass('on');
+								msg("请输入6~18位字符、数字、字母组合");
+								$(this).val('');
+								}
+				function isSecurity(pw){
+					var score=0;//安全分数
+					if(pw.match(/[a-z]/)){score += 1}
+					if(pw.match(/[0-9]/)){score += 1}
+					if(pw.match(/[a-z]/)&&pw.match(/[A-Z]/)){score += 2}
+					if(pw.match(/[a-z]/)&&pw.match(/[0-9]/)){score += 2}
+					if(pw.match(/[A-Z]/)&&pw.match(/[0-9]/)){score += 2}
+					if(pw.match(/[a-z]/)&&pw.match(/[@#$%^&*?_-]/)){score += 2}
+					if(pw.match(/[0-9]/)&&pw.match(/[@#$%^&*?_-]/)){score += 2}
+					if(pw.match(/[a-z]/)&&pw.match(/[A-Z]/)&&pw.match(/[0-9]/)){score += 7}
+					if(pw.match(/[a-z]/)&&pw.match(/[0-9]/)&&pw.match(/[@#$%^&*?_-]/)){score += 10}
+					if(pw.match(/[A-Z]/)&&pw.match(/[0-9]/)&&pw.match(/[@#$%^&*?_-]/)){score += 10}
+					if(pw.length<6){score += -10;}
+					if(pw.length<8){score += 2;}
+					return score;
+					}
+				});
+			
+			$('#newpw2').blur(function(){
+				if($(this).val()!=$('#newpw').val()){
+					msg("两次输入的密码不相同");
+					$(this).val('');
+					}
+				});
+	
+	//提交表单
+	$("form").submit(function(){
+		if($('#nowpw').val()==""){
+			msg('当前使用的密码不能空！');return false;
+			}else if($('#newpw').val()==""){
+				msg('新密码不能空！');return false;
+				}else if($('#newpw2').val()==""){
+					msg('确定密码不能空！');return false;
+					}else{
+						$.post("{:U('/Member/editPwd')}",$('#password').val(),function(data){
+							if(data.status==1){
+								msg("修改成功！",0,'correct');
+								window.location.href="{:U('/Member')}";
+								}else{
+									msg(data.info);
+                            	}
+							},'json');
+				}
+		return false;
 		});
+			
 });
-//表单验证
-function verify(id,name,maxlength,expression){
-	var value=$(id).val(),content="";
-	/*alert(expr);*/
-	if(expression!=""){
-		content=value==""?name+"不能为空！":value.length>maxlength?name+"内容超出限制！":(!expression.test(value))?name+"输入不正确！":"";
-		}else{
-			content=value==""?name+"不能为空！":value.length>maxlength?name+"内容超出限制！":"";
-			}
-	if(content!=""){return msg(content);}else{return true;}
-	}
 </script>
 </body>
 </html>

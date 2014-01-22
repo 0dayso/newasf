@@ -49,6 +49,18 @@ class SettingAction extends IniAction {
 	//设置头像
 	function seticon(){
 		$userInfo=$this->userInfo;
+		$member=D('Member');
+		$where['id']=$userInfo['id'];
+		$headimg=$member->field('headimg')->where($where)->find();
+		
+		$base_dir=U('/Public/member/images/');
+		$a=opendir($base_dir);
+		
+		while ($fileName = readdir($a)) { 
+		 echo "<br/>";
+		 echo $fileName;
+		}
+		//print_r($open);
 		$this->title="设置头像";
 		$this->display();
     }	
@@ -60,7 +72,7 @@ class SettingAction extends IniAction {
 			$upload->allowExts = array('jpg','png','gif');	//设置上传图片的后缀
 			$upload->uploadReplace = true;					//同名则替换
 			$upload->saveRule = 'uniqid';					//设置上传头像命名规则(临时图片),修改了UploadFile上传类				
-			$path = './Public/member/images/';//完整的头像路径
+			$path = './Public/member/images/'.$this->userInfo["id"];              //完整的头像路径	
 			$upload->savePath = $path;				
 			if(!$upload->upload()) {						// 上传错误提示错误信息
 				$this->ajaxReturn('',$upload->getErrorMsg(),0,'json');
@@ -73,7 +85,7 @@ class SettingAction extends IniAction {
 				}
 				$data['picname'] = $info['0']['savename'];
 				$data['status'] = 1;
-				$data['url'] = __ROOT__.'/Public/member/images/'.$data['picname'];
+				$data['url'] = __ROOT__.'/Public/member/images/'.$this->userInfo["id"].$data['picname'];
 				$data['info'] = $info;
 				$this->ajaxReturn($data,'json');
 			}
@@ -87,7 +99,7 @@ class SettingAction extends IniAction {
 			return;
 		}				
 		//头像目录地址
-		$path = './public/member/images/';				
+		$path = './Public/member/images/'.$this->userInfo["id"];
 		//要保存的图片
 		$real_path = $path.$params['picname'];					
 		//临时图片地址
@@ -98,8 +110,14 @@ class SettingAction extends IniAction {
 		//裁剪原图
 		$Think_img->open($pic_path)->crop($params['w'],$params['h'],$params['x'],$params['y'])->save($real_path);
 		//生成缩略图
+		//$Think_img->open($real_path)->thumb(150,150, 1)->save($path.$thumb[0].'_100.jpg');
 		$Think_img->open($real_path)->thumb(100,100, 1)->save($path.$thumb[0].'_100.jpg');
 		$Think_img->open($real_path)->thumb(60,60, 1)->save($path.$thumb[0].'_60.jpg');	
+		
+		$userInfo=$this->userInfo;
+		$member=D('Member');
+		$where['id']=$userInfo['id'];
+		$member->where($where)->setField('headimg',$thumb[0].'_100.jpg');
 		
 		$this->success('上传头像成功');
 	}
@@ -464,18 +482,27 @@ class SettingAction extends IniAction {
 	//常用旅客 ok
 	function passengerlist(){
 		$userInfo=$this->userInfo;
-		$passenger=D('Passenger');
+		$passenger=D('Passenger');//乘机人
 		$idtype=D('IdType');//证件类型
+		$document=D('DocumentInfo');
 		
 		$where['member_id']=$userInfo['id'];
-		$passengerInfo=$passenger->where($where)->order('first_choice desc,id desc')->select();		
+		$passengerInfo=$passenger->field('id,first_name,last_name,id_country,first_choice,mobile,telphone,sex')->where($where)->order('first_choice desc,id desc')->select();	//乘客信息
+		$documentInfo=$document->field('t_id,number')->where($where)->select();	
+		foreach($documentInfo as $k=>$v){//转换证件类型
+			$wh['id']=$v['t_id'];
+			$document_type=$idtype->where($wh)->find();
+			$passengerInfo[$k]['type']=$document_type['id_type'];//
+			$passengerInfo[$k]['number']=$v['number'];
+		}
 		foreach($passengerInfo as $k=>$v){
 			$wh['id']=$v['id_type'];
-			$type=$idtype->where($wh)->find();
-			$passengerInfo[$k]['type']=$type['id_type'];
+			$type=$idtype->where($wh)->find();			
 			$passengerInfo[$k]['len']=strlen($v['id_number']);
-		}
+		}		
 		$this->assign('Info',$passengerInfo);
+		//print_r($passengerInfo);
+		
 		if($this->isAjax()){
 			if(I('act') == 'del'){//删除
 				$id=I('id');
@@ -512,71 +539,250 @@ class SettingAction extends IniAction {
 		$this->display();
     }
 	
+	
 	//编辑常用旅客信息
 	function passenger(){
-		$userInfo=$this->userInfo;
-		$passenger=D('Passenger');
+		$userInfo=$this->userInfo;//用户信息
+		$passenger=D('Passenger');//乘机人信息
 		$idtype=D('IdType');//证件类型
-		$id=I('id');
-		$this->info=$passenger->where("id='$id'")->find();
-		$wheres['id']=$this->info['id_type'];
-		$this->type=$idtype->where($wheres)->find();//证件类型转换
+		$document=D('DocumentInfo');//证件信息
+		$id=I('get.id');
+		$info=$passenger->where("id='$id'")->find();
+		$this->assign('info',$info);
 		$this->birthday=explode('-',$this->info['birthday']);//出生年月日转换成数组
-		$this->telphone=explode('-',$this->info['telphone']);//电话号码格式转换
-		if($_POST){	
-			$data['last_name']=$_POST['last_name'];
+		$this->telphone=explode('-',$this->info['telphone']);//电话号码格式转换		
+			
+		//证件类型转换
+		$wheres['id']=$this->info['id_type'];
+		$this->type=$idtype->where($wheres)->find();
+		//证件信息查询
+		$wh['p_id']=$this->info['id'];
+		$this->typeinfo=$document->where($wh)->select();	
+		
+		if($_POST){			
 			$data['first_name']=$_POST['first_name'];
+			$data['last_name']=$_POST['last_name'];
 			$data['sex']=$_POST['sex'];
 			$data['birthday']=$_POST['year'].'-'.$_POST['month'].'-'.$_POST['day'];
-			$data['id_country']=$_POST['id_country'];
-			$data['first_choice']=$_POST['first_choice'];
-			$data['mobiel']=$_POST['mobiel'];
+			$data['id_country']=$_POST['country'];
+			$data['mobile']=$_POST['mobile'];
 			$data['email']=$_POST['email'];
-			$data['telphone']=$_POST['area_code'].'-'.$_POST['telphone'].'-'.$_POST['extension'];		
-			$newdata=array_udiff_uassoc($data,$this->info);//两函数比较取差值，键名也比较,返回的数组中键名不变
+			$data['telphone']=$_POST['area_code'].'-'.$_POST['telphone'].'-'.$_POST['extension'];	
+			$data['create_time']=time();
+			
+			if($_POST['first_choice'] == 1){//如果设置为首选，将原来的首选释放				
+				$condition['member_id']=$userInfo['id'];
+				$condition['first_choice']=1;
+				$res=$passenger->where($condition)->find();
+				if(!empty($res)){
+					$passenger->where($condition)->setField('first_choice',0);
+				}
+				$data['first_choice']=1;
+			}else{
+				$data['first_choice']=0;
+			}
+			
+			function myfunction_key($v1,$v2){
+				if ($v1===$v2){return 0;}
+				return 1;
+			}
+			function myfunction_value($v1,$v2){
+				if ($v1===$v2){return 0;}
+				return 1;
+			}
+			$newdata=array_udiff_uassoc($data,$info,"myfunction_key","myfunction_value");//两函数比较取差值，键名也比较,返回的数组中键名不变
+			
 			if(!empty($newdata)){
-				if(empty($_POST['last_name']) || empty($_POST['first_name'])){
-					$this->error('姓名不能为空');
+				if(!empty($newdata['last_name']) || !empty($newdata['first_name'])){
+					if(!preg_match('/^[A-Za-z]/',$_POST['last_name']) || !preg_match('/^[A-Za-z]/',$_POST['first_name'])){
+						$this->error('姓名只能是拼音或英文');
+					}
 				}
-				if(empty($_POST['mobiel'])){
-					$this->error('手机号码不能为空');
+				if(!empty($newdata['mobile'])){
+					if(!preg_match('/^[0-9]*[1-9][0-9]*$/',$newdata['mobile'])){ 
+						$this->error('手机号码格式不对,请重新输入');         
+					}
 				}
-				if(empty($_POST['email'])){
-					$this->error('电子邮箱不能为空');
+				if(!empty($newdata['email'])){
+					if(!preg_match('/^[\w\d]+[\w\d-.]*@[\w\d-.]+\.[\w\d]{2,10}$/i',$_POST['email'])){
+						$this->error('邮箱格式不对,请重新输入');
+					}
 				}
-				if(!preg_match('/^[_\w\d]$/iu',$_POST['last_name']) || !preg_match('/^[_\w\d]$/iu',$_POST['first_name'])){
-					$this->error('姓名只能是拼音或英文');
+				if(!empty($newdata['telphone'])){
+					if(!preg_match('/((\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$)/',$newdata['telphone'])){
+						$this->error('电话号码格式不对,请重新输入');
+					}
 				}
-				if(!preg_match('/^1[3|4|5|8][0-9]\d{4,8}$/',$_POST['mobiel'])){ 
-					$this->error('手机号码格式不对,请重新输入');         
-				}	
-				if(!preg_match('/^[\w\d]+[\w\d-.]*@[\w\d-.]+\.[\w\d]{2,10}$/i',$_POST['email'])){
-					$this->error('邮箱格式不对,请重新输入');
-				}				
-				$passenger->where("id='$id'")->setField($newdata);//更新数据				
-				if(!empty($_POST['first_choice'])){//如果设置为首选，将原来的首选释放
-					$condition['member_id']=$userInfo['id'];
-					$condition['first_choice']=1;
-					$res=$passenger->where($condition)->find();
-					if(!empty($res)){
-						$passenger->where($condition)->setField('first_choice',0);
+				$passenger->where("id='$id'")->setField($newdata);//更新数据
+			}
+			
+			//已有证件信息处理
+			foreach($_POST['id'] as $k=>$v){
+				foreach($_POST['data'] as $key=>$value){
+					$arr[$k]['id']=$v;
+					$arr[$k]['idtype']=$_POST['data']['idtype'][$k];
+					$arr[$k]['idnum']=$_POST['data']['idnum'][$k];
+					$arr[$k]['validity']=$_POST['data']['validity'][$k];				
+					if($_POST['firstchoice']== $v){							
+						$where['p_id']=$id;
+						$where['firstchioce']=1;
+						$rs=$document->where($wh)->select();
+						if(!empty($rs)){
+							$document->where($where)->setField('first_choice',0);
+						}
+						$arr[$k]['firstchoice']=1;			
+					}else{
+						$arr[$k]['firstchoice']=0;
 					}
 				}
 			}
-			
 		
+			foreach($arr as $k=>$v){
+				$con['id']=$v[id];
+				$a=$document->where($con)->find();
+				$data1['t_id']=$v['idtype'];
+				$data1['number']=$v['idnum'];
+				$data1['validity']=$v['validity'];
+				$data1['firstchoice']=$v['firstchoice'];
+				$b=array_udiff_uassoc($data1,$a,"myfunction_key","myfunction_value");//两函数比较取差值，键名也比较,返回的数组中键名不变
+				if(!empty($b)){
+					$document->where($con)->setField($data1);
+				}			
+			}
+			//新增证件信息处理
+			$addtype=$_POST['new'];
+			if(!empty($_POST['new'])){//如果有新增证件则执行
+				foreach($_POST['new']['t_id'] as $value){
+					if($value != 0){//新增证件信息中"证件类型"不为“请选择”时执行
+						foreach($addtype as $k=>$v){
+							foreach($v as  $key=>$val){					
+								$data2[$key][$k]=$val;	//赋值
+								if(preg_match('/[\'.,:;*?~`!@#$%^&+=)(<{}]|\]|\[|\/|\\\|\"|\|/',$data2['number'])){
+									$this->error('请勿输入特殊字符');
+								}
+								if(preg_match('/[\'.,:;*?~`!@#$%^&+=)(<{}]|\]|\[|\/|\\\|\"|\|/',$data2['validity'])){
+									$this->error('请勿输入特殊字符');
+								}
+								$n=stristr($_POST['firstchoice'],'n');
+								if($n){//如果有“设为首选证件”时执行
+									$n=explode('-',$n);
+									if($n[1]==$key){							
+										$w['p_id']=$id;
+										$w['firstchoice']=1;
+										$rs=$document->where($w)->select();
+										if(!empty($rs)){
+											$document->where($w)->setField('firstchoice',0);
+										}
+										$data2[$key]['firstchoice']=1;
+									}
+								}else{
+									$data2[$key]['firstchoice']=0;
+								}
+								$data2[$key]['member_id']=$userInfo['id'];
+								$data2[$key]['p_id']=$id;
+								}
+							}
+						}
+						foreach($data2 as $k=>$v){
+							$document->add($v);//添加数据
+						}
+					}
+				}
+			}		
 		
-		
-		
-		}
+		if($this->isAjax()){
+			if(I('act') == 'del'){//删除
+				$id=I('id');
+				if(is_array($id)){
+					$condition['id']=array('in',$id);
+				}else{
+					$condition['id']=$id;
+				}
+				$res=$document->where($condition)->delete();
+				if($res){
+					$this->success();
+				}else{
+					$this->error();
+				}
+			}
+		}	
+	
 		$this->title="编辑常用旅客信息";
 		$this->display();
     }
-	//增加常用旅客
+		
+	//增加常用旅客 ok
 	function passengeradd(){
+		$userInfo=$this->userInfo;//用户信息
+		$passenger=D('Passenger');//乘机人信息
+		//$idtype=D('IdType');//证件类型
+		$document=D('DocumentInfo');//证件信息
+		
+		if($_POST){
+			if(!preg_match('/^[_\w\d]$/iu',$_POST['last_name']) || !preg_match('/^[_\w\d]$/iu',$_POST['first_name'])){					
+				$this->error('姓名输入有误，请重新输入');
+			}
+			if(!preg_match('/^1[3|4|5|8][0-9]\d{4,8}$/',$_POST['mobiel'])){ 
+				$this->error('手机号码格式不对,请重新输入');         
+			}	
+			if(!preg_match('/^[\w\d]+[\w\d-.]*@[\w\d-.]+\.[\w\d]{2,10}$/i',$_POST['emali'])){
+				$this->error('邮箱格式不对,请重新输入');
+			}
+			$data['member_id']=$userInfo['id'];
+			$data['last_name']=$_POST['last_name'];
+			$data['first_name']=$_POST['first_name'];
+			$data['id_country']=$_POST['country'];
+			$data['sex']=$_POST['sex'];
+			$data['birthday']=$_POST['year'].'-'.$_POST['month'].'-'.$_POST['day'];
+			$data['telphone']=$_POST['area_code'].'-'.$_POST['telphone'].'-'.$_POST['extension'];
+			$data['mobiel']=$_POST['mobiel'];
+			$data['emali']=$_POST['emali'];
+			$data['create_time']=time();
+			if(empty($_POST['first'])){
+				$data['first_choice']=0;
+			}else{
+		    	//设为首选，将原来的首选释放			
+				$condition['member_id']=$userInfo['id'];
+				$condition['first_choice']=1;
+				$res=$passenger->where($condition)->find();
+				if(!empty($res)){
+					$passenger->where($condition)->setField('first_choice',0);
+				}
+				//赋值
+				$data['first_choice']=$_POST['first'];	
+			}			
+			$passenger->create($data);
+			$passenger->add();				
+		}
+		
+		for($i=1;$i<=20;$i++){
+			if($_POST["idtype.$i"] != 0){
+				if(empty($_POST["idnum.$i"])){
+					$this->error('请输入证件号码'); 
+				}
+				if(empty($_POST["validity.$i"])){
+					$this->error('请输入有效期'); 
+				}				
+				$wheres['member_id']=$userInfo['id'];
+				$wheres['t_id']=$_POST["idtype.$i"];
+				$wheres['number']=$_POST["idnum.$i"];
+				$wheres['validity']=$_POST["validity.$i"];
+				if(empty($_POST['firstchoice.$i'])){
+					$wheres['firstchoice']=0;
+				}else{
+					$wheres['firstchoice']=1;
+				}
+				$pid['member_id']=$userInfo['id'];
+				$res=$passenger->field('id')->where($pid)->order('create_time desc')->find();
+				$wheres['p_id']=$res['id'];
+				$document->create($wheres);
+				$document->add();
+			}
+		}		
 		$this->title="增加常用旅客";
 		$this->display();
     }
+
 
 	//站内信
 	function message(){
@@ -682,6 +888,4 @@ class SettingAction extends IniAction {
 			$this->error('该邮箱已注册过'); 				
 		}	
 	}
-	
-	
 }

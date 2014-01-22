@@ -21,6 +21,7 @@ class MemberAction extends CommonAction {
         if(I('so_date1')&& I('so_date2')){
             $map['create_time']=array(array('egt',strtotime(I('so_date1'))),array('elt',strtotime(I('so_date2'))));
         }
+
         $this->map=$map;
         $this->order='id desc';
         $this->relation = true;

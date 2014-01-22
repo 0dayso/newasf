@@ -7,7 +7,7 @@
 <link href="__PUBLIC__/mobile/css/global.css" rel="stylesheet" type="text/css">
 <style type="text/css">
 #topnav{padding-right:42px;}
-#import{padding:10px 10px 0 10px;margin-bottom:10px;height:208px;}
+#import{padding:10px 10px 0 10px;margin-bottom:10px;height:248px;}
 #import span{margin-bottom:10px;display:block;}
 #import textarea{height:120px;}
 .box p{padding:10px;}
@@ -23,6 +23,7 @@
         <div id="import">
           <span><input name="name" type="text" id="name" maxlength="20" required placeholder="您的姓名" class="txt" value="{$userinfo.name}"></span>
           <span><input name="phone" type="text" id="phone" maxlength="11" required placeholder="您的手机号" class="txt" value="{$userinfo.mobile}"></span>
+          <span><input name="qq" type="text" id="qq" required placeholder="您的QQ号" class="txt" value=""></span>
           <span><textarea name="content" id="demand" maxlength="60" required placeholder="您的订票需求,例如:9月17日,北京到洛杉矶,往返限30个字符以内"></textarea></span>
         </div>
         <input type="submit" value="完成" class="sub" id="sub">
@@ -41,16 +42,18 @@ $(function(){
 			return false;
 			}else if(!(verify('#phone','手机',11,/^(1(([35][0-9])|(47)|[8][01236789]))\d{8}$/))){
 				return false;
-				}else if(!(verify('#demand','需求',60,''))){
+				}else if(!(verify('#qq','QQ号码',50,''))){
 					return false;
-					}else{
-						$.post(url,$(this).serialize(),function(data){
-                            if(data.status==1){
-                                alert(data.info);
-                                location.href=data.url;
-                            }else{
-                                alert(data.info);
-                            }
+					}else if(!(verify('#demand','需求',60,''))){
+						return false;
+						}else{
+							$.post(url,$(this).serialize(),function(data){
+                            	if(data.status==1){
+									alert(data.info);
+									location.href=data.url;
+                            	}else{
+                               	 	alert(data.info);
+                            		}
 							},'json');
 					}
                      return false;

@@ -340,7 +340,7 @@
 #passenger li input.txt{border:1px solid #afafaf;height:24px;line-height:24px;padding-left:10px;color:#999;}
 #passenger li input.w50{width:50px;}
 #passenger li input.w80{width:80px;}
-#passenger li input.w140{width:140px;}
+#passenger li input.w140{width:140px; }
 #passenger li a#addpapers{padding-left:35px;background:url(../images/member/addpapers.gif) no-repeat 15px center;}
 
 /*站内信*/

@@ -10,11 +10,12 @@
 	  	<div class="right" id="memberR">
         	<h1 class="nav_tit">增加常用旅客信息</h1>
             <div id="passenger">
-            	<form action="/" method="post">
+            	<form action="{:U('/Member/Setting/passengeradd')}" method="post">
                 	<ul>
                     	<li>
                         	<span>旅客姓名：<b>*</b></span>
-                        	<input class="txt w140" name="name" type="text" value required placeholder="中文名/英文名"/>
+                        	<input class="txt w140" name="last_name" type="text" value="{$info.last_name}" required placeholder="姓（拼音或英文）"/>&nbsp;
+                            <input class="txt w140" name="first_name" type="text" value="{$info.first_name}" required placeholder="名（拼音或英文）"/>
                         </li>
                         <li>
                         	<span>国籍：<b>*</b></span>
@@ -27,13 +28,13 @@
                         </li>
                         <li>
                         	<span>生日：<b>*</b></span>
-                        	&nbsp;<select name="year" id="idYear" on="">
+                        	&nbsp;<select name="year" id="idYear" on="{$birthday[0]}">
                             	<option value="0">请选择年份</option>
                             </select>
-							<select name="month" id="idMonth"  on="">
+							<select name="month" id="idMonth"  on="{$birthday[1]}">
                             	<option value="0">请选择月份</option>
                             </select>
-							<select name="day" id="idDay" on="">
+							<select name="day" id="idDay" on="{$birthday[2]}">
                             	<option value="0">请选择日期</option>
 							</select>
                         </li>
@@ -42,18 +43,19 @@
                             <input class="txt w140" name="mobiel" type="text" value required/><em>非中国大陆手机号请先输入区号，例：香港手机号85291111111</em>
                         </li>
                         <li>
-                        	<span>联系电话：</span>
+                        	<span>联系电话：<b>*</b></span>
                             <input class="txt w50" name="area_code" type="text" value required placeholder="区号" />-
                             <input class="txt w100" name="telphone" type="text" value required placeholder="电话" />-
                             <input class="txt w50" name="extension" type="text" value required placeholder="分机" />
                         </li>
                         <li>
                         	<span>电子邮箱：<b>*</b></span>
-                            <input class="txt w140" name="" type="text" value="" />
+                            <input class="txt w140" name="emali" type="text" value="" />
                         </li>
                     </ul>
                   <ul class="bt">
                     	<li><span>证件类型：</span>&nbsp;<select name="idtype1" id="idtype1" >
+                        		<option value="0">请选择</option>
                                 <option value="1">身份证</option>
                                 <option value="2">护照</option>
                                 <option value="3">学生证</option>
@@ -72,10 +74,10 @@
                                 <option value="17">警官证</option>
                                 <option value="16">生出证明</option>
                                 <option value="18">其他</option>
-                            </select>&nbsp;证件号码：<input class="txt w140" name="idnum1" type="text" value id="idnum1" />&nbsp;有效期：<input class="txt w80" name="validity1" type="text" value id="validity1" />&nbsp;设为首选证件<input name="firstchoice" type="radio" value="" checked="checked" /><a class="del">删除</a>
+                            </select>&nbsp;证件号码：<input class="txt w140" name="idnum1" type="text" value id="idnum1" />&nbsp;有效期：<input class="txt w80" name="validity1" type="text" value id="validity1" />&nbsp;设为首选证件<input name="firstchoice1" type="radio" value="1" checked="checked" /><a class="del">删除</a>
                         </li>
                         <li><span>&nbsp;</span><a id="addpapers" num="1">添加证件</a></li>
-                        <li><span>&nbsp;</span>&nbsp;&nbsp;设为首选旅客<input name="" type="checkbox" value="" /></li>
+                        <li><span>&nbsp;</span>&nbsp;&nbsp;设为首选旅客<input name="first" type="checkbox" value="" /></li>
                         <li><span>&nbsp;</span><input class="bt99" type="submit" value="增加"></li>
                     </ul>
                 </form>
@@ -94,6 +96,7 @@
 				html += '<li>';
 				html += '<span>证件类型：</span>';
                 html += '&nbsp;<select name="idtype'+num+'" id="idtype'+num+'" >';
+				html += '<option value="0">请选择</option>';
                 html += '<option value="1">身份证</option>';
 				html += '<option value="2">护照</option>';
 				html += '<option value="3">学生证</option>';
@@ -118,15 +121,14 @@
                 html += '&nbsp;有效期：';
                 html += '<input class="txt w80" name="validity'+num+'" type="text" value id="validity'+num+'" />';
 				html += '&nbsp;设为首选证件';
-				html += '<input name="firstchoice" type="radio" value="" />';
+				html += '<input name="firstchoice'+num+'" type="radio" value="" />';
                 html += '<a class="del">删除</a>';
                 html += '</li>';
 				$(this).parent().before(html);
 				$(this).attr("num",num);
 				//重载删除
 				$("#passenger .del").bind("click",function(){$(this).parent().remove();});				
-				});
-				
+				});				
 			//删除
 			$("#passenger .del").bind("click",function(){$(this).parent().remove();});			
 			});

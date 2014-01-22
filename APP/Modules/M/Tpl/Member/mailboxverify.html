@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>个人资料-爱尚飞手机网</title>
+<link href="__PUBLIC__/mobile/css/global.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+#topnav .icon{width:80px;}
+.box h2{padding-right:42px;}
+#mbv{padding:10px 10px 0 10px;margin-bottom:10px;background:#FFF;}
+#mbv p{line-height:30px;padding-bottom:10px;}
+#mbv p input{width:75%!important;}
+#editmail{float:right;color:#2690d8;cursor:pointer;}
+.hint{padding:10px 0;line-height:30px;color:#666;}
+.hint b{color:#ff8400;}
+</style>
+</head>
+
+<body>
+<div id="page">
+  <div id="content">
+    <h1 id="topnav"><span class="left icon"><a href="{:U('/')}" class="icon-home">首页</a></span>我的爱尚飞<span class="right" id="exit">退出登录</span></h1>
+	<div class="box">
+		<h2><span class="left icon"><a href="{:U('/Member/information')}" class="icon-return">返回</a></span>邮箱验证</h2>
+		<div id="mbv">
+        	<p><a id="editmail">修改</a>当前邮箱：<span id="mailbox">luviolet11@126.com</span></p>
+		</div>
+      <input type="submit" value="发送验证邮件" class="sub">
+      <div class="hint">成功通过邮箱验证奖励<b>500</b>积fun</div>
+    </div>
+    
+  </div>
+</div>
+<include file="Public:CommonJs" />
+<script type="text/javascript">
+	$(function(){
+		//修改邮箱
+		$("#editmail").click(function(){
+			var mailbox=$("#mailbox").text();
+			$(this).hide();
+			$('.sub').hide();
+			$("#mailbox").html('<input name="mail" type="text" class="txt" value="'+mailbox+'"/>');
+			});
+		//把新邮箱提交到服务器
+		$(document).on("blur","#mailbox input",function(){
+			var mail=$(this).val();
+			var re=/^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+			if(re.test(mail)&&mail!==""){
+				$.getJSON("{:U('Member/mailboxverify')}",{mail:mail},function(data){
+					if(data.status==1){
+						$("#mailbox").html(mail);
+						$("#editmail").show();
+						$('.sub').hide();
+						}else{
+							msg(data.info,2,"warning","");
+							$(this).focus();
+						}
+				});
+				}else{
+					msg('请输入正确的邮箱！',2,"warning","");
+					$(this).focus();
+					}
+			});
+		//发送验证邮件
+		$(document).on("click",".sub",function(){
+			var mailbox=$("#mailbox").text()
+			$.getJSON("{:U('/Member/mailboxverify')}",{m:mail},function(data){
+					if(data.status==1){
+						var html='',url="{:U('/Member/information')}";
+						html += '<h2><span class="left icon"><a href="'+url+'" class="icon-return">返回</a></span>邮箱验证</h2>';
+						html += '<div id="mbv">';
+						html += '<div class="hint">请登录到您的邮箱<b>'+mailbox+'</b>查收验证邮件，并点击邮件中的验证链接完成验证，如没有收到邮件请选择再次发送或更换邮箱。</div>';
+						html += '<input type="submit" value="再次发送验证邮件" class="sub">';
+						$('.box').append(html);
+						}
+					});
+			});
+		
+		});
+</script>
+</body>
+</html>

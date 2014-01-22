@@ -3,7 +3,6 @@
  * 支付模型
  */
 class PayOrderModel extends RelationModel{
-
     protected $_link = array(
         'member'=> array(//关联用户表
             'mapping_type'=>BELONGS_TO ,

@@ -77,6 +77,8 @@ class PayAction extends IniAction {
             if(!$PayOrder->add()) $this->error('订单写入失败');
             //echo  $tenpayUrl;
             //转向支付页面
+            //记录行为
+            action_log('pay_tenPay', 'pay', getUid(), getUid(),$this);
             header("Location:$tenpayUrl");
         }
     }
@@ -90,7 +92,8 @@ class PayAction extends IniAction {
         /* 创建支付应答对象 */
         $resHandler = new ResponseHandler();
         $resHandler->setKey(C('TENPAY_KEY'));
-
+        //记录行为
+        action_log('pay_tenReturn', 'pay', getUid(), getUid(),$this);
         //判断签名
         if($resHandler->isTenpaySign()) {
             //通知id

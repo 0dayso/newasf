@@ -166,6 +166,8 @@ class UserModel extends RelationModel{
         if($auto){ $data['auto_user']=$user_id;}
         $rs=$member_db->where($wheres)->save($data);  //设置会员对印客服
         if($rs){
+            //记录行为
+            action_log('assign_kf', 'member', $user_id, getUid(),$this);
             return $user_id;
         }
         return false;

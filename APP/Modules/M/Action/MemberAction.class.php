@@ -56,6 +56,11 @@ class MemberAction extends IniAction {
         }
     }
 	
+	public function mailboxverify(){
+            $this->title="邮箱验证";
+            $this->display();
+    }
+	
 	public function editpwd(){
         if($_POST){
             $rs=D('Member')->editPwd();
@@ -329,4 +334,35 @@ class MemberAction extends IniAction {
         $this->points();
     //    $this->display();
     }
+	
+	//新增的-------------------------------------------------------
+	//我的积fun
+	public function integralDetail(){
+            $this->title="积fun明细";
+            $this->display();
+    }
+	public function integralExchange(){
+            $this->title="兑换记录";
+            $this->display();
+    }
+	//我的爱钻
+	public function aizuanDetail(){
+            $this->title="爱钻明细";
+            $this->display();
+    }
+	public function aizuanExchange(){
+            $this->title="兑换记录";
+            $this->display();
+    }
+	//现金券
+	public function cashcouponDetail(){
+            $this->title="发放记录";
+            $this->display();
+    }
+	public function cashcouponExchange(){
+            $this->title="使用记录";
+            $this->display();
+    }
+	
+	
 }

@@ -8,13 +8,19 @@
 <style type="text/css">
 #topnav .icon{width:80px;}
 .box h2{padding-right:42px;}
-.box p{line-height:30px;}
-.box p em{font-style:normal;color:#333333;}
-#import{padding:10px 10px 0 10px;margin-bottom:10px;}
-#import span{margin-bottom:10px;display:block;color:#666666;}
+#info_list{background:#FFF;}
+#info_list p{line-height:30px;padding-bottom:10px;}
+#info_list p em{font-style:normal;color:#333333;}
+#info_list p span{float:right;}
+#info_list,#import{padding:10px 10px 0 10px;margin-bottom:10px;}
+#import span{padding-bottom:10px;display:block;color:#666666;}
 #import span.bg{background-color:#f2f1f0;line-height:29px;height:29px;text-align:right;padding-right:10px;}
 #import span.bg input{margin-right:5px;}
+#import span input.wd75{width:75%!important;}
 #import span select{width:30%!important;margin-right:10px;line-height:29px!important;height:29px!important;}
+#import span a,#import span i{display:inline-block;font-style:normal;}
+#import span a{float:right;width:25%;line-height:29px;text-align:center;color:#2690d8;}
+#import span i{width:90px;}
 </style>
 </head>
 
@@ -24,28 +30,26 @@
     <h1 id="topnav"><span class="left icon"><a href="{:U('/')}" class="icon-home">首页</a></span>我的爱尚飞<span class="right" id="exit">退出登录</span></h1>
     <div class="box">
       <h2><span class="left icon"><a href="{:U('/Member')}" class="icon-return">返回</a></span>个人资料</h2>
-        <div id="import" style="height:120px;">
+        <div id="info_list">
         <p>用&nbsp;户&nbsp;名：<em>{$userinfo.username}</em></p>
-        <p>会员级别：<em>普通会员</em></p>
-        <p>积&nbsp;&nbsp;&nbsp;&nbsp;分：<em>{$userinfo.points}分</em></p>
-        <p>手&nbsp;机&nbsp;号：<em>{$userinfo.mobile}</em></p>
+        <p><span>已验证</span>电子邮箱:<em>wuhaifa@163.com</em></p>
+        <p><span>已验证</span>手&nbsp;机&nbsp;号：<em>{$userinfo.mobile}</em></p>
       </div>
     </div>
     <div class="box">
       <form action="" method="post">
-        <div id="import" style="height:275px;">
-          <span><input name="name" type="text" id="name" placeholder="姓名" value="{$userinfo.name}" class="txt"></span>
-          <span class="bg"><input type="radio" name="sex" checked value="0" id="sex0">男&nbsp;&nbsp;<input type="radio" name="sex" value="1" id="sex1" <if condition="$userinfo.sex eq '1'">checked</if>>女</span>
-          <span><input name="mobile" type="text" disabled=true id="phone" placeholder="联系电话,例：020-88888888" class="txt" value="{$userinfo.mobile}"></span>
-          <span id="addcodePCT" val="{$userinfo.province},{$userinfo.city}" class="g">
-          <select name="province"  id="province_sel"><option value=""> 所在地 </option></select>
-          <select name="city"  id="city_sel"><option value=""> 所在地 </option></select>
-          </span>
-          <span><input name="address" type="text"  class="txt" id="address" value="{$userinfo.address}" placeholder="联系地址"/></span>
-          <span><input name="email" type="text" class="txt" id="email" value="{$userinfo.email}" placeholder="电子邮箱"/></span>
-          <span><input name="zip_code" type="text" class="txt" id="zip_code" value="{$userinfo.zip_code}" placeholder="邮编"/></span>
+        <div id="import">
+			<span><input name="email" type="text" class="txt" id="email" value="" placeholder="添加电子邮箱并通过验证奖励500积fun"/></span>
+            <!--邮箱不为空-->
+            <span><em><a href="{:U('/Member/mailboxverify')}">立即验证</a></em><input name="email" type="text" class="txt wd75" id="email" value="wuhaifa@163.com" placeholder="添加电子邮箱并通过验证奖励500积fun"/></span>
+			<span><input name="name" type="text" id="name" placeholder="姓名" value="{$userinfo.name}" class="txt"></span>
+            <span><input name="nickname" type="text" id="nickname" placeholder="昵称" value="" class="txt"></span>
+          	<span class="bg"><input type="radio" name="sex" checked value="0" id="sex0">男&nbsp;&nbsp;<input type="radio" name="sex" value="1" id="sex1" <if condition="$userinfo.sex eq '1'">checked</if>>女</span>
+          	<span><i>生日：</i><select name="year" id="idYear" on="{$birthday[0]}"><option value="0">请选择年份</option></select><select name="month" id="idMonth"  on="{$birthday[1]}"><option value="0">请选择月份</option></select><select name="day" id="idDay" on="{$birthday[2]}"><option value="0">请选择日期</option></select></span>
+            <span><i>职业：</i><select name=""><option value="0">请选择职业</option></select></span>
+			<span id="addcodePCT" val="{$userinfo.province},{$userinfo.city}" class="g"><i>常用出发城市：</i><select name="province"  id="province_sel"><option value=""> 所在地 </option></select>省&nbsp;<select name="city"  id="city_sel"><option value=""> 所在地 </option></select>市</span>
         </div>
-        <input type="submit" value="完成" class="sub">
+        <input type="submit" value="提交" class="sub">
       </form>
     </div>
     
@@ -54,8 +58,40 @@
 <include file="Public:CommonJs" />
 <script type="text/javascript" src="__PUBLIC__/js/modify.js"></script>
 <script type="text/javascript">
-
-//提示
+	$(function(){
+		optionDate("#idYear","#idMonth","#idDay");
+		});
+	//出生年月日
+	function optionDate(idYear,idMonth,idDay){
+			var htmlYear="",htmlMonth="",htmlDay="";
+			var y=$(idYear).attr('on'),m=$(idMonth).attr('on'),d=$(idDay).attr('on');
+			for(var i=1900;i<=2100;i++){
+				if(i==y){
+					htmlYear += '<option selected="selected" value="'+ i +'">'+ i +'</option>'
+					}else{
+						htmlYear += '<option value="'+ i +'">'+ i +'</option>'
+						}
+			}
+		
+			for(var j=1;j<=12;j++){
+				if(j==m){
+					htmlMonth += '<option selected="selected" value="'+ j +'">'+ j +'</option>'
+					}else{
+						htmlMonth += '<option value="'+ j +'">'+ j +'</option>'
+						}
+			}
+		
+			for(var k=1;k<=31;k++){
+				if(k==d){
+					htmlDay += '<option selected="selected" value="'+ k +'">'+ k +'</option>'
+					}else{
+						htmlDay += '<option value="'+ k +'">'+ k +'</option>'
+						}
+			}
+		$(idYear).html(htmlYear);
+		$(idMonth).html(htmlMonth);
+		$(idDay).html(htmlDay);
+	}
 </script>
 </body>
 </html>

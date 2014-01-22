@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{$title}-爱尚飞手机网</title>
+<link href="__PUBLIC__/mobile/css/global.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+#topnav .icon{width:80px;}
+.box h2{padding-right:42px;}
+#exchange{padding:10px;color:#666;}
+#exchange p{background-color:#FFF;line-height:50px;text-align:center;}
+#tab a{display:inline-block;width:25%;margin-right:10px;background-color:#67b1e4;text-align:center;color:#FFF;line-height:30px;}
+#tab a:hover,#tab a.on{background-color:#FFF;color:#ff8400;}
+.list{background-color:#FFF;padding:10px;border-bottom:1px solid #e7e5e5;}
+.list li{line-height:26px;}
+.list li.product{line-height:32px;}
+.list li.product a{display:inline-block;color:#666;}
+.list li.product img{float:left;margin:0 10px;}
+.list li div{display:inline-block;width:50%;}
+.list li span{color:#333;}
+</style>
+</head>
+
+<body>
+<div id="page">
+  <div id="content">
+    <h1 id="topnav"><span class="left icon"><a href="{:U('/')}" class="icon-home">首页</a></span>我的爱尚飞<span class="right" id="exit">退出登录</span></h1>
+    <div class="box">
+        <h2><span class="left icon"><a href="{:U('/Member')}" class="icon-return">返回</a></span>我的积fun</h2>
+    </div>
+    <div id="exchange" page="1">
+    <div id="tab"><a href="{:U('/Member/integralDetail')}" >积分明细</a><a class="on">兑换记录</a></div>
+        <div id="list">
+        	<p>无</p>
+            <ul class="list">
+                <li><span>礼品订单号：</span>60542030</li>
+                <li class="product"><span>礼品名称：</span><a href="#"><img src="http://www.aishangfei.com/Public/uploads/mall/s_51f1dc68aa5f4.jpg" width="32" height="32">小熊蒸蛋器</a></li>
+                <li><div><span>兑换积fun：</span>xxxxx</div><div><span>数量：</span>1</div></li>
+                <li><span>积fun小计：</span>xxxxx</li>
+                <li><div><span>兑换日期：</span>2016-12-31</div><div><span>订单状态：</span>待发货</div></li>
+            </ul>
+        </div>
+    </div>
+    <div id="loading"><img src="__PUBLIC__/mobile/images/loading.gif"></div>
+    <div id="reminder"></div>
+  </div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/mobile/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	//自动刷新内容
+	$(window).scroll(function(){
+		//被卷去的高度
+		var scrollTop=$(this).scrollTop();
+		//可视区域高度
+		var viewHeight=$(window).height();
+		//页面高度
+		var pageHeight=$('body').height();
+		if((scrollTop+viewHeight)>=(pageHeight)){
+			//page为页数;type为类型,1代表已消费积分;addto为1是追加数据,0为更迭数据
+			var page=parseInt($('#exchange').attr('page'))+1,type=1,addto=1;
+			ajax_list(type,page,addto);//调用AJAX的函数
+			$('#exchange').attr('page',page);//更新分页数
+			}
+		});
+	});
+//AJAX函数
+function ajax_list(type,page,addto){
+	$('#loading').show();//显示加载中
+	$('#reminder').hide();
+	$.getJSON("{:U('/Member/integralExchange')}",{type:type,p:page},function(data){
+		if(data.status==1){
+			var html='',list=data.list;
+			$.each(list,function(i,item){
+				html +='<ul class="list">';
+				html +='<li><span>礼品订单号：</span>'+ item.a +'</li>';
+                html +='<li class="product"><span>礼品名称：</span><a href="'+ item.a +'"><img src="'+ item.a +'" width="32" height="32">'+ item.a +'</a></li>';
+                html +='<li><div><span>兑换积fun：</span>'+ item.a +'</div><div><span>数量：</span>'+ item.a +'</div></li>';
+                html +='<li><span>积fun小计：</span>'+ item.a +'</li>';
+                html +='<li><div><span>兑换日期：</span>'+ item.a +'</div><div><span>订单状态：</span>'+ item.a +'</div></li>';
+				html +='</ul>';
+				if(addto==0){
+					$('#loading').hide();
+				    $('#list').html(html);
+				}else{
+				    $('#loading').hide();
+				    $('#list').append(html);
+				    }
+				});
+			}else{
+				$('#loading').hide();
+				$('#reminder').show().text(data.info);
+				}
+		});
+	}
+</script>
+<include file="Public:logout" />
+</body>
+</html>

@@ -79,6 +79,7 @@
 			'fileTypeExts'	: '*.jpg; *.png; *.gif;',
 			'onUploadSuccess' : function(file, data, response){
 				var data = $.parseJSON(data);
+				//alert(data);
 				if(data['status'] == 0){
 					$.ThinkBox.error(data['info'],{'delayClose':3000});
 					return;
@@ -86,14 +87,14 @@
 				var preview = $('.upload-area').children('#preview-hidden');
 				preview.show().removeClass('hidden');
 				//两个预览窗口赋值
-				$('.crop').children('img').attr('src',data['data']+'?random='+Math.random());
+				$('.crop').children('img').attr('src',data.url+'?random='+Math.random());
 				//隐藏表单赋值
 				$('#img_src').val(data['data']);
 				$('#picname').val(data['picname']);
 				//绑定需要裁剪的图片
 				var img = $('<img />');
 				preview.append(img);
-				preview.children('img').attr('src',data['data']+'?random='+Math.random());
+				preview.children('img').attr('src',data.url+'?random='+Math.random());
 				var crop_img = preview.children('img');
 				crop_img.attr('id',"cropbox").show();
 				var img = new Image();

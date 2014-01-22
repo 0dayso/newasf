@@ -1,0 +1,41 @@
+<div class="pageContent">
+		<div class="pageFormContent" layoutH="58">
+
+			<p>
+				<label>行为标识：</label>
+				<input type="text" class="required"   name="name" value="{$vo.username}">（英文字母）
+			</p>
+			<p>
+                <label>行为名称：</label>
+                <input type="text" class="required"  name="title" value="{$vo.title}" />
+            </p>
+			<p>
+				<label>行为类型：</label>
+                <select name="type">
+                    <option value="1">系统</option>
+                    <option value="2">用户</option>
+                </select>
+			</p>
+            <div class="unit">
+                <label>行为描述：</label>
+                <textarea name="remark" cols="57">{$vo.remark}</textarea>
+             </div>
+            <div class="unit">
+                <label>行为规则：</label>
+                <textarea name="rule" cols="57">{$vo.rule}</textarea>
+            </div>
+            <div class="unit">
+                <label>请求：</label>
+                <textarea name="log" cols="57">{$vo.log}</textarea>
+            </div>
+
+
+		</div>
+		<div class="formBar">
+			<ul>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">Cancel</button></div></div></li>
+			</ul>
+		</div>
+	
+</div>
+

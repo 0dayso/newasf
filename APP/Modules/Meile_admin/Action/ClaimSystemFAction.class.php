@@ -40,6 +40,8 @@ class ClaimSystemFAction extends CommonAction{
             }
             $rs=$claimBooks->add();
             if($rs){
+                //记录行为
+                action_log('claim_addook', 'claim', $rs, getUid(),$this);
                 $this->success('成功');
             }else{
                 $this->error('失败');
@@ -228,9 +230,11 @@ class ClaimSystemFAction extends CommonAction{
                 $this->error($ClaimData->getError());
             }
             $rs=$ClaimData->save();
-            if($rs)
+            if($rs){
+                //记录行为
+                action_log('claim_editClaim', 'claim_data', $rs, getUid(),$this);
                 $this->success('成功');
-            else
+            } else
                 $this->error('失败');
         }else{
             $ClaimData=D('ClaimData');

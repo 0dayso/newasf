@@ -27,9 +27,15 @@
                         <tr  gid="{$vo.id}">
                         	<td class="first"><input type="checkbox" /></td>
                             <td>{$vo.last_name}/{$vo.first_name}</td>
-                            <td>{$vo.mobile|msubstr=0,3}****{$vo.mobile|msubstr=7,11}</td>
+                            <td>
+                                <notempty name="vo['mobile']">
+                                    {$vo.mobile|msubstr=0,3}****{$vo.mobile|msubstr=7,11}
+                                 <else/>
+                                    {$vo.telphone}
+                                 </notempty>
+                            </td>
                             <td>{$vo.type}</td>
-                            <td> {$vo.id_number|msubstr=0,6}*******{$vo.id_number|msubstr=$vo.len-5,$vo.len-1}X</td>
+                            <td> {$vo.number|msubstr=0,6}*******{$vo.number|msubstr=$vo.len-5,$vo.len-1}X</td>
                             <td>{$vo.id_country}</td>
                             <td><if condition="$vo['sex'] eq 0">女<else/>男</if></td>
                             <td>

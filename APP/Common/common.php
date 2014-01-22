@@ -1,5 +1,14 @@
 <?php
 /**
+ * 时间戳格式化
+ * @param int $time
+ * @return string 完整的时间显示
+ */
+function time_format($time = NULL,$format='Y-m-d H:i'){
+    $time = $time === NULL ? NOW_TIME : intval($time);
+    return date($format, $time);
+}
+/**
  * 密码二次加密
  *@param $password 密码
  *@param $salt 随机字符串
@@ -544,6 +553,8 @@ function action_log($action = null, $model = null, $record_id = null, $user_id =
             $log['record']  =   $record_id;
             $log['model']   =   $model;
             $log['time']    =   NOW_TIME;
+            $log['url']   =   $_SERVER['REQUEST_URI'];
+            $log['post']   =  http_build_query($_POST);
             $log['data']    =   array('user'=>$user_id,'model'=>$model,'record'=>$record_id,'time'=>NOW_TIME);
             foreach ($match[1] as $value){
                 $param = explode('|', $value);
@@ -559,9 +570,9 @@ function action_log($action = null, $model = null, $record_id = null, $user_id =
         }
     }else{
         //未定义日志规则，记录操作url
-        $data['remark']     =   '操作url：'.$_SERVER['REQUEST_URI'];
+        $data['remark']     =   '操作url：'.$_SERVER['REQUEST_URI'] ;
     }
-
+    $data['request']='url：'.$_SERVER['REQUEST_URI']."post:".http_build_query($_POST);
     M('ActionLog')->add($data);
 
     if(!empty($action_info['rule'])){

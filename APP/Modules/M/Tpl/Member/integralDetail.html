@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{$title}-爱尚飞手机网</title>
+<link href="__PUBLIC__/mobile/css/global.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+#topnav .icon{width:80px;}
+.box h2{padding-right:42px;}
+#detail{padding:10px;color:#666;}
+#detail p{background-color:#FFF;line-height:50px;text-align:center;}
+#tab a{display:inline-block;width:25%;margin-right:10px;background-color:#67b1e4;text-align:center;color:#FFF;line-height:30px;}
+#tab a:hover,#tab a.on{background-color:#FFF;color:#ff8400;}
+.list{background-color:#FFF;padding:10px;border-bottom:1px solid #e7e5e5;}
+.list li{line-height:26px;}
+.list li div{display:inline-block;width:50%;}
+.list li span{color:#333;}
+</style>
+</head>
+
+<body>
+<div id="page">
+  <div id="content">
+    <h1 id="topnav"><span class="left icon"><a href="{:U('/')}" class="icon-home">首页</a></span>我的爱尚飞<span class="right" id="exit">退出登录</span></h1>
+    <div class="box">
+        <h2><span class="left icon"><a href="{:U('/Member')}" class="icon-return">返回</a></span>我的积fun</h2>
+    </div>
+    <div id="detail" page="1">
+    <div id="tab"><a class="on">积fun明细</a>
+        <a href="{:U('/Member/integralExchange')}">兑换记录</a>
+    </div>
+     <div id="list">
+         <p>您还没有积分哦，赶快去下单吧！</p>
+         <ul class="list">
+         	<li><span>积fun日期：</span>2013-07-10</li>
+         	<li><div><span>积fun来源：</span>服务评价</div><div><span>积fun数：</span>500</div></li>
+            <li><span>过期日期：</span>2013-07-10</li>
+         </ul>
+         <ul class="list">
+         	<li><span>积fun日期：</span>2013-07-10</li>
+         	<li><div><span>积fun来源：</span>服务评价</div><div><span>积fun数：</span>500</div></li>
+            <li><span>过期日期：</span>2013-07-10</li>
+         </ul>
+    </div>
+    </div>
+    <div id="loading"><img src="__PUBLIC__/mobile/images/loading.gif"></div>
+    <div id="reminder"></div>
+  </div>
+</div>
+<include file="Public:CommonJs" />
+<script type="text/javascript">
+$(function(){
+	//自动刷新内容
+	$(window).scroll(function(){
+		//被卷去的高度
+		var scrollTop=$(this).scrollTop();
+		//可视区域高度
+		var viewHeight=$(window).height();
+		//页面高度
+		var pageHeight=$('body').height();
+		if((scrollTop+viewHeight)>=(pageHeight)){
+			var page=parseInt($('#detail').attr('page'))+1,type="",addto=1;//page为页数;type这类型;addto为1是追加数据,0为更迭数据
+			ajax_list(type,page,addto);//调用AJAX的函数
+			$('#detail').attr('page',page);//更新分页数
+			}
+		});
+	});
+//AJAX函数
+function ajax_list(type,page,addto){
+	$('#loading').show();//显示加载中
+	$('#reminder').hide();
+	$.getJSON("{:U('/Member/integralDetail')}",{type:type,p:page},function(data){
+		if(data.status==1){
+			var html='',list=data.list;
+			$.each(list,function(i,item){
+				html +='<ul class="list">';
+				html +='<li><span>积fun日期：</span>'+ item.a +'</li>';
+         		html +='<li><div><span>积fun来源：</span'+ item.a +'</div><div><span>积fun数：</span>'+ item.a +'</div></li>';
+            	html +='<li><span>过期日期：</span>'+ item.a +'</li>';
+				html +='</ul>';
+				if(addto==0){
+					$('#loading').hide();
+				    $('#list').html(html);
+				}else{
+				    $('#loading').hide();
+				    $('#list').append(html);
+				    }
+				});
+			}else{
+				$('#loading').hide();
+				$('#reminder').show().text(data.info);
+				}
+		});
+	}
+</script>
+</body>
+</html>

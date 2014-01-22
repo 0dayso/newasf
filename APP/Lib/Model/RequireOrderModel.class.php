@@ -137,7 +137,7 @@ class RequireOrderModel extends RelationModel{
         $domain=array(
             array('sl.aishangfei.com'), //国际商务部
             array('www.aishangfei.com','www.aishangfei.cn','www.aishangfei.net','m.aishangfei.com','www.ttfdp.com','www.shlc.ac.cn'),//广州
-            array('www.hihivisa.com','sh.aishangfei.com'),//上海
+            array('www.hihivisa.com','m.hihivisa.com','sh.aishangfei.com'),//上海
             array('www.chuguow.com','www.hljiam.ac.cn','www.idb.ac.cn','bj.aishangfei.com'),//北京
             array('sz.aishangfei.com','www.aishangfei.com.cn','www.21fei.com','www.21cc.cn','www.19188.cn'),//深圳
         );

@@ -500,7 +500,7 @@ function curl_login($url,$fields,$cookie_file){
 //访问操作可以post也可以不
 function curl_post($post_url,$post_fields,$cookie_file,$ispost=1,$HTTPHEADER=array(),$issetcookie=0){
     if(!is_file($cookie_file)){
-        $cookie_file = dirname(__FILE__)."/cookie.txt";
+        $cookie_file = dirname(__FILE__)."/cookie#";
     }
     $ch = curl_init($post_url);
     curl_setopt($ch, CURLOPT_HEADER, 0);
