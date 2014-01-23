@@ -181,6 +181,7 @@ class UploadFile {//类定义开始
                 }else{
                     // 尝试创建目录
                     if(!mkdir($savePath)){
+						//mkdir($savePath,0777);
                         $this->error  =  '上传目录'.$savePath.'不存在';
                         return false;
                     }
@@ -194,6 +195,8 @@ class UploadFile {//类定义开始
         }
         $fileInfo = array();
         $isUpload   = false;
+		
+		//print_r($fileInfo);
 
         // 获取上传的文件信息
         // 对$_FILES数组信息处理
@@ -401,10 +404,10 @@ class UploadFile {//类定义开始
         	}else{
         		if(function_exists($rule)) {
         			//使用函数生成一个唯一文件标识号
-        			$saveName = $rule().".".$filename['extension'];
+        			$saveName = 'headimg'.".".$filename['extension'];
         		}else {
         			//使用给定的文件名作为标识号
-        			$saveName = $rule.".".$filename['extension'];
+        			$saveName = 'headimg'.".".$filename['extension'];
         		}
         	} 
         }

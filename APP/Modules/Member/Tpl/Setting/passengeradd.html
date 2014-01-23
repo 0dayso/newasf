@@ -14,8 +14,8 @@
                 	<ul>
                     	<li>
                         	<span>旅客姓名：<b>*</b></span>
-                        	<input class="txt w140" name="last_name" type="text" value="{$info.last_name}" required placeholder="姓（拼音或英文）"/>&nbsp;
-                            <input class="txt w140" name="first_name" type="text" value="{$info.first_name}" required placeholder="名（拼音或英文）"/>
+                        	<input class="txt w140" name="last_name" type="text" value="" required placeholder="姓（拼音或英文）"/>&nbsp;
+                            <input class="txt w140" name="first_name" type="text" value="" required placeholder="名（拼音或英文）"/>
                         </li>
                         <li>
                         	<span>国籍：<b>*</b></span>
@@ -40,7 +40,7 @@
                         </li>
                         <li>
                         	<span>手机号码：<b>*</b></span>
-                            <input class="txt w140" name="mobiel" type="text" value required/><em>非中国大陆手机号请先输入区号，例：香港手机号85291111111</em>
+                            <input class="txt w140" name="mobile" type="text" value required/><em>非中国大陆手机号请先输入区号，例：香港手机号85291111111</em>
                         </li>
                         <li>
                         	<span>联系电话：<b>*</b></span>
@@ -50,11 +50,11 @@
                         </li>
                         <li>
                         	<span>电子邮箱：<b>*</b></span>
-                            <input class="txt w140" name="emali" type="text" value="" />
+                            <input class="txt w140" name="email" type="text" value="" />
                         </li>
                     </ul>
                   <ul class="bt">
-                    	<li><span>证件类型：</span>&nbsp;<select name="idtype1" id="idtype1" >
+                    	<li><span>证件类型：</span>&nbsp;<select name="data[t_id][1]" id="idtype1" >
                         		<option value="0">请选择</option>
                                 <option value="1">身份证</option>
                                 <option value="2">护照</option>
@@ -74,10 +74,10 @@
                                 <option value="17">警官证</option>
                                 <option value="16">生出证明</option>
                                 <option value="18">其他</option>
-                            </select>&nbsp;证件号码：<input class="txt w140" name="idnum1" type="text" value id="idnum1" />&nbsp;有效期：<input class="txt w80" name="validity1" type="text" value id="validity1" />&nbsp;设为首选证件<input name="firstchoice1" type="radio" value="1" checked="checked" /><a class="del">删除</a>
+                            </select>&nbsp;证件号码：<input class="txt w140" name="data[number][1]" type="text" value id="idnum1" />&nbsp;有效期：<input class="txt w80" name="data[validity][1]" type="text" value id="validity1" />&nbsp;设为首选证件<input name="firstchoice" type="radio" value="1" checked="checked" /><a class="del">删除</a>
                         </li>
                         <li><span>&nbsp;</span><a id="addpapers" num="1">添加证件</a></li>
-                        <li><span>&nbsp;</span>&nbsp;&nbsp;设为首选旅客<input name="first" type="checkbox" value="" /></li>
+                        <li><span>&nbsp;</span>&nbsp;&nbsp;设为首选旅客<input name="first_choice" type="checkbox" value="" /></li>
                         <li><span>&nbsp;</span><input class="bt99" type="submit" value="增加"></li>
                     </ul>
                 </form>
@@ -95,7 +95,7 @@
 				var html='';
 				html += '<li>';
 				html += '<span>证件类型：</span>';
-                html += '&nbsp;<select name="idtype'+num+'" id="idtype'+num+'" >';
+                html += '&nbsp;<select name="data[t_id]['+num+']" id="idtype'+num+'" >';
 				html += '<option value="0">请选择</option>';
                 html += '<option value="1">身份证</option>';
 				html += '<option value="2">护照</option>';
@@ -117,11 +117,11 @@
 				html += '<option value="18">其他</option>';
                 html += '</select>';
                 html += '&nbsp;证件号码：';
-                html += '<input class="txt w140" name="idnum'+num+'" type="text" value id="idnum'+num+'" />';
+                html += '<input class="txt w140" name="data[number]['+num+']" type="text" value id="idnum'+num+'" />';
                 html += '&nbsp;有效期：';
-                html += '<input class="txt w80" name="validity'+num+'" type="text" value id="validity'+num+'" />';
+                html += '<input class="txt w80" name="data[validity]['+num+']" type="text" value id="validity'+num+'" />';
 				html += '&nbsp;设为首选证件';
-				html += '<input name="firstchoice'+num+'" type="radio" value="" />';
+				html += '<input name="firstchoice" type="radio" value="'+num+'" />';
                 html += '<a class="del">删除</a>';
                 html += '</li>';
 				$(this).parent().before(html);

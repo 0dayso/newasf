@@ -505,8 +505,7 @@ class AssetaccountAction extends IniAction {
 					if($v['status'] == 0){
 						$ids[]=$v['id'];
 					}				
-				}
-print_R($ids);				
+				}			
 				$idsarr['mall_id']=array('in',$ids);
 				$res=$cart->where($idsarr)->delete();
 				if($res){
@@ -522,47 +521,35 @@ print_R($ids);
 		
 		 //-------------------
 		 //已兑换礼品		
-		$where1['member_id']=$userInfo['id'];
-		$where1['type2']=0;//积分
-		$exchange1=$exchange->field('info,status,create_time,order_num')->where($where1)->select();
+		$where4['member_id']=$userInfo['id'];
+		$where4['type2']=0;//积分
+		$exchange1=$exchange->field('info,status,create_time,order_num,type2')->where($where4)->select();
+		
+		
 		foreach($exchange1 as $key=>$value){	
-			$obj=json_decode($value['info'],true);			
-			$arrs[]=$obj[0]['mall_id'];
-			for($i=$key;$i<count($arrs);$i++){
-				$mall=D('Mall');
-				$whereMallId['id']=$arrs[$i];
-				$mall=$mall->field('img')->where($whereMallId)->find();
-				$img=$mall['img'];
-			}			
-			foreach($obj as $k=>$v) {
-				$v['status']=$value['status'];
-				$v['create_time']=$value['create_time'];
-				$v['order_num']=$value['order_num'];
-				$v['img']=$img;
-				$arr1[]=$v;
-			}					
-		}		
-		$where1['type2']=1;//爱钻
-		$exchange2=$exchange->field('info,status,create_time,order_num')->where($where1)->select();
+			$obj[$key]=json_decode($value['info'],true);			
+			$whereMallId['id']=$obj[$key]['mall_id'];
+			$mallimg=$mall->field('img')->where($whereMallId)->find();
+			$obj[$key]['img']=$mallimg['img'];
+			$obj[$key]['order_num']=$exchange1[$key]['order_num'];
+			$obj[$key]['create_time']=$exchange1[$key]['create_time'];
+			$obj[$key]['status']=$exchange1[$key]['status'];
+		}
+		
+		$where4['type2']=1;//爱钻
+		$exchange2=$exchange->field('info,status,create_time,order_num,type2')->where($where4)->select();
 		foreach($exchange2 as $key=>$value){	
-			$obj=json_decode($value['info'],true);			
-			$arrs[]=$obj[0]['mall_id'];
-			for($i=$key;$i<count($arrs);$i++){
-				$mall=D('Mall');
-				$whereMallId['id']=$arrs[$i];
-				$mall=$mall->field('img')->where($whereMallId)->find();
-				$img=$mall['img'];
-			}			
-			foreach($obj as $k=>$v) {
-				$v['status']=$value['status'];
-				$v['create_time']=$value['create_time'];
-				$v['order_num']=$value['order_num'];
-				$v['img']=$img;
-				$arr2[]=$v;
-			}					
-		}		
-		$this->assign('exchange1',$arr1);
-		$this->assign('exchange2',$arr2);
+			$obj2[$key]=json_decode($value['info'],true);			
+			$whereMallId['id']=$obj[$key]['mall_id'];
+			$mallimg=$mall->field('img')->where($whereMallId)->find();
+			$obj2[$key]['img']=$mallimg['img'];
+			$obj2[$key]['order_num']=$exchange2[$key]['order_num'];
+			$obj2[$key]['create_time']=$exchange2[$key]['create_time'];
+			$obj2[$key]['status']=$exchange2[$key]['status'];
+		}
+		
+		$this->assign('exchange1',$obj);
+		$this->assign('exchange2',$obj2);
 		
 		$this->title="我的礼品";
 		$this->display();
@@ -578,56 +565,36 @@ print_R($ids);
 		$exchange=D('MallExchange');
 		$userInfo=$this->userInfo;
 		$address=D('DeliverAddress');
-		
-		if($_POST){
-			if(empty($_POST)){
-				$this->error('请选择至少一个要兑换的商品');
-			}elseif($_POST['num'] == 0){
-				$this->error('商品数量不能为0');
-			}else{
-				$id=I('id');//该id不是商品的id，而是购物车自增的id			
-				$num=I('num');
-							
-				$cartid['member_id']=$userInfo['id'];
 				
-				if(is_array($id)){//如果数量有变，对数据库进行数量更新
-					$cartid['id']=array('in',$id);	
-					$n=$cart->field('num')->where($cartid)->select();
-					foreach($n as $k=>$v){
-						if($num[$k] !== $v[$k]['num']){
-							$cart->where($cartid)->setField('num',$num);
-						}
-					}
-				}else{
-					$cartid['id']=$id;
-					$n=$cart->where($cartid)->getField('num');
-					if($num !== $n){
-						$cart->where($cartid)->setField('num',$num);
-					}				
-				}
-				
-				$ids=$cart->field('mall_id')->where($cartid)->select();						
-				foreach($ids as $k=>$v){
-					$mall_ids[]=$v['mall_id'];//商品的id
-				}			
-				
-				$Where['id']=array('in',$mall_ids);			
-				$this->mall_info=$cart->where($Where)->order('create_time desc')->relation(true)->select();	
-										
-					
-				foreach($this->mall_info as $k => $v){//计算总积分和爱钻
-					if($v['type'] == 0){
-						$this->totlejifen += $v['jifen'];
-					}else{
-						$this->totleaizuan += $v['jifen'];
-					}
-				}
-			}			
+		foreach($_POST['id'] as $key=>$val){
+			$cartid['id']=$val;
+			$mallid=$cart->field('mall_id')->where($cartid)->find();
+			$goods[$key]['mall_id']=$mallid['mall_id'];
+			foreach($_POST['num'] as $k=>$v){
+				if($k == $val){
+					$goods[$key]['num']=$v[0];	
+				}					
+			}
 		}
+		foreach($goods as $k=>$v){
+			$con['id']=$v['mall_id'];					
+			$data[$k]=$mall->field('id,type,jifen,title,img')->where($con)->find();
+		}
+		foreach($data as $key=>$val){
+			foreach($goods as $k=>$v){
+				$data[$k]['mall_id']=$v['mall_id'];
+				$data[$k]['num']=$v['num'];
+				$data[$k]['sumjifen']=$v['num']*$data[$k]['jifen'];				
+			}
+			$totlejifen += $data[$key]['sumjifen'];
+		}
+		//print_r($data);
+		$this->assign('totlejifen',$totlejifen);
+		$this->assign('data',$data);
 		
 		//地址
-		//$where['member_id']=$userInfo['id'];
-		$where['member_id']=1103;//测试用
+		$where['member_id']=$userInfo['id'];
+		//$where['member_id']=1103;//测试用
 		$where['is_default']=1;		
 		$addressInfo=$address->where($where)->find();
 		$province_city = D('DeliverAddress')->xml_address($addressInfo['province'],$addressInfo['city']);		
@@ -638,9 +605,47 @@ print_R($ids);
 		$this->display();
     }
 	
-	function address(){
-		$this->title="地址确认";
-		$this->display();
+	function exchange2(){
+		if($_POST){
+			$address=D('DeliverAddress');
+			$exchange=D('MallExchange');
+			
+			$wh['member_id']=$this->userInfo['id'];
+			$wh['id_default']=1;
+			$address=$address->where($wh)->order('update_time')->find();
+			$address=json_encode($address);
+			
+			foreach($_POST as $key=>$val){
+				foreach($val as $k=>$v){
+					$arr[$k][$key]=$v;
+				}		
+			}
+			foreach($arr as $k => $v){
+				unset($v['type2']);
+				$json[$k]=json_encode($v);
+			}
+			
+			foreach($json as $k=>$v){
+				foreach($arr as $key => $val){
+					$data[$k]['member_id']=$this->userInfo['id'];
+					$data[$k]['order_num']='M'.$this->userInfo['id'].'D'.date('Ymd',time()).'N'.rand(0,1000);//M会员ID，D日期，N随机数
+					$data[$k]['type2']=$val['type2'];
+					$data[$k]['info']=$v;
+					$data[$k]['address']=$address;
+					$data[$k]['status']=0;
+					$data[$k]['create_time']=time();				
+				}
+			}
+			foreach($data as $v){
+				$exchange->create($v);
+				$res=$exchange->add();
+			}
+			if($res){
+				$this->success('恭喜你，下单成功！',U('/Member/Assetaccount/gift'));
+			}
+		}else{
+			$this->error('该页面不存在');
+		}
     }
 	
 	

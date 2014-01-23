@@ -84,11 +84,13 @@ function hint(id,value){
 }
 </script>
 <style type="text/css">
-#ordfli{border:1px solid #b5e2f7;}
-#ordfli h2{height:32px;line-height:32px;background-color:#f6fbff;padding-left:15px;font-size:14px;color:#0069d1;border-bottom:1px solid #b5e2f7;}
+#cont{background-image:none!important;}
+.h1_tit_nav{border-bottom:none!important;}
+#ordfli{padding:10px;border:2px solid #25acee;background-color:#f6fbff;}
+#ordfli h2{height:40px;line-height:40px;padding-left:15px;font-size:16px;color:#0069d1;border-bottom:1px solid #d2d8dd;}
 #radio_sel2{text-align:center;}
-#ordfli h2 span{float:right;padding-right:20px;color:#fe6700}
-#ordfli_form{width:500px;margin:50px auto;}
+#ordfli h2 span{float:right;padding-right:20px;font-size:12px;color:#fe6700}
+#ordfli_form{width:500px;margin:36px auto;}
 #ordfli_form form{padding:0px;margin:0px;overflow:hidden;}
 #ordfli_form span{display:inline-block;width:200px;text-align:right;}
 #ordfli_form ul li{height:38px;line-height:38px;overflow:hidden;}
@@ -142,10 +144,12 @@ function hint(id,value){
             
 			</div>
 			<div class="right" id="interTicR">
-            <div id="renzheng_lan_s">
-                	<ul>
-                    	<li><label class="lb0"></label><span>100%国际航协认证,第一手真实价格</span></li>
-                        <li><label class="lb1"></label><span>100%中国航协认证,资质保证，订票无忧</span></li>
+            	<div id="iflight_tools">
+                	<h2>机票工具箱</h2>
+                  	<ul>
+                    	<li><a class="a0" href="{:U('/Member/booking')}?status=pending">我的机票</a></li>
+                    	<li class="on"><a class="a1" href="{:U('/iflight/orderflight')}">预约特价国际机票</a></li>
+                        <li><a class="a2" href="{:U('/help/members')}#help_ul3">订票攻略</a></li>
                     </ul>
                 </div>
 				<div id="ser_com" class="mt10">

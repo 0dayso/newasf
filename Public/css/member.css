@@ -67,6 +67,26 @@
 #hint span{width:60px;color:#F00;}
 #hint span,#hint p{float:left;display:block;line-height:24px;}
 
+/*会员中心*/
+#user_info{padding:9px;border:1px solid #e5e5e5;}
+#user_info a{color:#0065d1;}
+#user_info .icon{width:100px;padding-right:20px;text-align:center;}
+#user_info .icon img{width:100px;height:100px;margin-bottom:10px;}
+#user_info .info{width:660px;padding-right:10px;}
+#user_info .info li{height:32px;line-height:32px;}
+#user_info .info li span{display:inline-block;width:195px;}
+#user_info .info li strong{font-size:14px;color:#e46600;margin-right:10px;}
+#user_info .verify a,#user_info .verify b{float:left;display:inline-block;}
+#user_info .verify a.mr20{margin-right:20px;}
+#user_info .verify b{width:21px;height:19px;margin:6px 3px 0 0;background:url(../images/member/yesnoverify.gif) no-repeat;}
+#user_info .verify b.a0{background-position:-5px 0;}
+#user_info .verify b.a1{background-position:-35px 0;}
+#user_info .verify b.a2{background-position:-5px -22px;}
+#user_info .verify b.a2{background-position:-35px -22px;}
+#user_info dd{float:left;width:320px;height:30px;line-height:30px;padding-left:10px;margin-top:4px;background:#f2f2f2;}
+#user_info dd span{display:inline-block;width:150px;}
+#user_info dd a{padding:0 10px;}
+#user_info dd b{padding-left:25px;display:inline-block;height:30px;line-height:30px;background:url(../images/assistant.png) no-repeat -10px -152px;font-family: Arial,Helvetica,sans-serif;color:#e56700;}
 
 /*现金券*/
 #manual{margin-top:20px;}
@@ -343,7 +363,7 @@
 #passenger li input.w140{width:140px; }
 #passenger li a#addpapers{padding-left:35px;background:url(../images/member/addpapers.gif) no-repeat 15px center;}
 
-/*站内信*/
+/*消息提醒*/
 #meslist .first input{float:left;margin:7px 10px 0 0;}
 #meslist .blue{text-align:left;}
 #meslist .blue a em{font-size:14px;font-family:Arial;color:#F00;}
@@ -356,6 +376,7 @@
 #messet{padding:50px 0 50px 125px;}
 #messet dt{line-height:40px;font-size:14px;font-weight:bold;}
 #messet dd{line-height:32px;}
+#messet em{font-style:normal;color:#F00;padding:0 10px 0 5px;}
 #messet dd input{margin-right:10px;}
 #messet .bt99{font-weight:bold;color:#FFF;border:none;margin-top:15px;cursor:pointer;width:99px;line-height:33px;font-size:16px;background:url(../images/member/bt99.gif) no-repeat;}
 

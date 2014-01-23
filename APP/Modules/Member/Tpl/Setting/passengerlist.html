@@ -27,17 +27,11 @@
                         <tr  gid="{$vo.id}">
                         	<td class="first"><input type="checkbox" /></td>
                             <td>{$vo.last_name}/{$vo.first_name}</td>
-                            <td>
-                                <notempty name="vo['mobile']">
-                                    {$vo.mobile|msubstr=0,3}****{$vo.mobile|msubstr=7,11}
-                                 <else/>
-                                    {$vo.telphone}
-                                 </notempty>
-                            </td>
+                            <td>{$vo.mobile2}</td>
                             <td>{$vo.type}</td>
-                            <td> {$vo.number|msubstr=0,6}*******{$vo.number|msubstr=$vo.len-5,$vo.len-1}X</td>
+                            <td> {$vo.number}</td>
                             <td>{$vo.id_country}</td>
-                            <td><if condition="$vo['sex'] eq 0">女<else/>男</if></td>
+                            <td>{$vo['sex2']}</td>
                             <td>
                             <span class="preferred">
                            		<if condition="$vo['first_choice'] eq 1"><em>首选旅客</em> <else/>设为首选</if>
@@ -61,19 +55,19 @@
 				var act="quer";//设置类型为查询
 				var cont=$(this).prev().val();
 				if(cont != ""){
-					$.getJSON("{:U('/Member/Setting/passengerlist')}",{cont:cont,act:act},function(){
-						if(data.status==1){
+					$.getJSON("{:U('/Member/Setting/passengerlist')}",{cont:cont,act:act},function(data){
+						if(data.status==1){							
 							var url="{:U('/Member/Setting/passenger')}",dataList=data.list;html='';
-							html += '<tr class="tit"><td class="first"><input type="checkbox" class="checkbox"/>全选</td><td>姓名</td><td>手机/电话</td><td>证件类型</td><td>证件号码</td><td>国籍</td<td>性别</td><td>操作</td></tr>';
+							html += '<tr class="tit"><td class="first"><input type="checkbox" class="checkbox"/>全选</td><td>姓名</td><td>手机/电话</td><td>证件类型</td><td>证件号码</td><td>国籍</td><td>性别</td><td>操作</td></tr>';
 							$.each(dataList,function(i,item){
 								html += '<tr  gid="'+item.id+'">';
                         		html += '<td class="first"><input type="checkbox" /></td>';
-                            	html += '<td>'+item.name+'</td>';
-                            	html += '<td>136****0000</td>';
-                            	html += '<td>'+item+'</td>';
-                            	html += '<td>'+item+'</td>';
-                            	html += '<td>'+item+'</td>';
-                            	html += '<td>'+item+'</td>';
+                            	html += '<td>'+item.last_name+'/'+item.first_name+'</td>';
+                            	html += '<td>'+item.mobile2+'</td>';                            	
+                            	html += '<td>'+item.type+'</td>';
+                            	html += '<td>'+item.number+'</td>';
+                            	html += '<td>'+item.id_country+'</td>';
+								html += '<td>'+item.sex2+'</td>';
                             	html += '<td><span class="preferred">设为首选</span>&nbsp;&nbsp;<a class="edit" href="'+url+'?id='+item.id+'">编辑</a>&nbsp;&nbsp;<a class="del">删除</a></td>';					
 							});
 							$('#passengerlist table').html(html);

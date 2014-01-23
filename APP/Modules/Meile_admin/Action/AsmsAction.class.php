@@ -229,20 +229,35 @@ class AsmsAction extends CommonAction {
             $where['_logic'] = 'or';
             $map['_complex'] = $where;
         }
+        if(I('ksrq')&& I('jsrq')){
+            $map['dprq']=array(array('egt',I('ksrq')),array('elt',I('jsrq')));
+        }
         $AsmsOrder=D('AsmsOrder');
 
         if(I('gj_so')){ //高级搜索
             I('hyzcm')&& $_POST['khid']=D('AsmsMember')->checkMember(I('hyzcm'));
             $this->list=$AsmsOrder->orderFindAll($_POST);
-            $this->totalCount=count($this->list);
+            $this->numPerPage=isset($_GET['numPerPage'])?$_GET['numPerPage']:100;
+            //    $this->pageNum=isset($_GET['pageNum'])?$_GET['pageNum']:1;
+            //   dump($_GET);
+            $this->totalCount=$_GET['totalCount']; //
+            $this->totalPages=$_GET['totalPages'];
+            $this->currentPage=isset($_GET['pageNum'])?$_GET['pageNum']:1;
         }elseif(I('is_ss')){
             I('so') && $rs=D('AsmsMember')->checkMember(I('so'));
+            $where['ksrq']=I('ksrq');
+            $where['jsrq']=I('jsrq');
             if(is_numeric($rs)){
                 $this->list=$AsmsOrder->orderFindAll(array("khid"=>$rs));
             }else{
                 $this->list=$AsmsOrder->orderFindAll(array("khid"=>I('so')));
             }
-            $this->totalCount=count($this->list); //
+            $this->numPerPage=isset($_GET['numPerPage'])?$_GET['numPerPage']:100;
+        //    $this->pageNum=isset($_GET['pageNum'])?$_GET['pageNum']:1;
+         //   dump($_GET);
+            $this->totalCount=$_GET['totalCount']; //
+            $this->totalPages=$_GET['totalPages'];
+            $this->currentPage=isset($_GET['pageNum'])?$_GET['pageNum']:1;
         }else{
             $this->map = $map;
             $this->relation=true;

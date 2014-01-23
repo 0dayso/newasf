@@ -81,7 +81,9 @@ class MessageModel extends RelationModel{
             $data['to_id']=$to;
             $data['from_id']=$from;
             $data['is_sys']=$sys;
-            $rs=$this->add($data);
+            $this->create($data);
+
+            $rs=$this->add();
             return $rs;
         }
             return false;

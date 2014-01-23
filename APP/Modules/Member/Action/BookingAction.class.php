@@ -108,35 +108,36 @@ class BookingAction extends IniAction {
 	//订单在线支付
 	function onlinepay(){
 		$this->title="订单在线支付";
-        if(I("ddbh")){
-            $orderDB=D("AsmsOrder");
-            if(!is_array(I("ddbh"))){
-                $ddbh=explode (",",I("ddbh"));
-            }else{
-                $ddbh=I("ddbh");
-            }
-            //生成支付id
-            $this->order_pay_id=date("YmdHis").rand(1000,2000);
+        if(!I("ddbh")) $this->error('请选择要支付的订单');
 
-            $this->order_id_arr=implode(',',$ddbh);
-            $rs= $orderDB->orderPayList($ddbh);
-            $this->pay_total_price=$rs['total_price'];//总价格
-            $this->pay_count=count($rs['list']); //总个数
-            $pay_list=$orderDB->format($rs['list']); //格式化
-            foreach($pay_list as $k=>$v){
-                $v['hc']=str_split($v['hc'],3);
-                $v['hc_a'] = D("City")->getCity($v['hc']);
-                $v['hc_n']=implode('-',$v['hc_a']);
-                $pay_list[$k]=$v;
-            }
-
-            //行程
-            foreach($pay_list as $val){
-                $route[]=$val['hc_n'];
-            }
-            $this->route=implode(',',$route);
-            $this->pay_list=$pay_list;
+        $orderDB=D("AsmsOrder");
+        if(!is_array(I("ddbh"))){
+            $ddbh=explode (",",I("ddbh"));
+        }else{
+            $ddbh=I("ddbh");
         }
+        //生成支付id
+        $this->order_pay_id=date("YmdHis").rand(1000,2000);
+
+        $this->order_id_arr=implode(',',$ddbh);
+        $rs= $orderDB->orderPayList($ddbh);
+        $this->pay_total_price=$rs['total_price'];//总价格
+        $this->pay_count=count($rs['list']); //总个数
+        $pay_list=$orderDB->format($rs['list']); //格式化
+        foreach($pay_list as $k=>$v){
+            $v['hc']=str_split($v['hc'],3);
+            $v['hc_a'] = D("City")->getCity($v['hc']);
+            $v['hc_n']=implode('-',$v['hc_a']);
+            $pay_list[$k]=$v;
+        }
+
+        //行程
+        foreach($pay_list as $val){
+            $route[]=$val['hc_n'];
+        }
+        $this->route=implode(',',$route);
+        $this->pay_list=$pay_list;
+
         $PayOrderDB=D('PayOrder');
         $where['member_id']=getUid();
         $list=$PayOrderDB->where($where)->limit(15)->select();

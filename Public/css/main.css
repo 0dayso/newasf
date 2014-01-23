@@ -889,3 +889,18 @@ label.kfpj a.a0{background-position:0 -200px}
 #index_preferential .type_txt a{float:left;width:100px;color:#0069d1;display:block;}
 #index_preferential .type_txt a:hover{color:#ff6600;}
 #index_preferential .type_txt strong{float:left;width:70px;color:#ff6600;display:block;text-align:right;}
+
+/*机票工具箱*/
+#iflight_tools{border:1px solid #e7e7e7;font-family:"微软雅黑","黑体","宋体";}
+#iflight_tools h2{line-height:32px;padding-left:12px;background:#f4f4f4;font-size:16px;color:#333;border-bottom:1px solid #e7e7e7;}
+#iflight_tools ul{padding:10px;}
+#iflight_tools li{line-height:38px;border-bottom:1px dotted #e7e7e7;}
+#iflight_tools li a{display:block;height:40px;padding-left:55px;font-size:14px;color:#1679dd; background:url(../images/iflight_tools.gif) no-repeat}
+#iflight_tools li a:hover,#iflight_tools li.on a{color:#ff6600;}
+#iflight_tools li a.a0{background-position:10px 0px;}
+#iflight_tools li a.a1{background-position:10px -80px;}
+#iflight_tools li a.a2{background-position:10px -160px;}
+#iflight_tools li a.a0:hover,#iflight_tools li.on a.a0{background-position:10px -40px;}
+#iflight_tools li a.a1:hover,#iflight_tools li.on a.a1{background-position:10px -120px;}
+#iflight_tools li a.a2:hover,#iflight_tools li.on a.a2{background-position:10px -200px;}
+

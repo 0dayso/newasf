@@ -20,9 +20,14 @@ class InviteAction extends IniAction {
         $this->title="邀请注册";
         if(I("id")){
             $memberDB=D("Member");
-            $arr=$memberDB->UserInfo(I("id"));
+            $arr=$memberDB->find(I("id"));
             if(empty($arr)){
                 $this->error('你访问的链接已失效');
+            }
+            if($arr['asms_member_id']){
+                //同步asms 订单
+                $orderDB=D("AsmsOrder");
+                $orderDB->orderFind($arr['asms_member_id']); //查找出我的订单
             }
         }
         //邀请注册人id保存到cookie

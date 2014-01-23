@@ -84,7 +84,7 @@
                 </div>
             </div>
             <div class="right mt10 mr10" id="evaluate_art">
-            	<h2 class="tp"><a <if condition="$userinfo['name']">href="{:U('/Adviser')}/{$userinfo.user.id}/review" <else /> href="{:U('/member/login')}"</if>>我已订票成功，立即评价</a></h2>
+            	<h2 class="tp"><a <if condition="$userinfo">href="{:U('/Member/Appcenter/evaluate')}" <else /> href="{:U('/member/login')}"</if>>我已订票成功，立即评价</a></h2>
                 <div id="near_order" class="proa">
                     <h2 class="titbk"><a class="spr3 tj"></a><span class="left">最近订单</span></h2>
                     <ul>

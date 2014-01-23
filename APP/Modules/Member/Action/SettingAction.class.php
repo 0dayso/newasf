@@ -49,18 +49,7 @@ class SettingAction extends IniAction {
 	//设置头像
 	function seticon(){
 		$userInfo=$this->userInfo;
-		$member=D('Member');
-		$where['id']=$userInfo['id'];
-		$headimg=$member->field('headimg')->where($where)->find();
-		
-		$base_dir=U('/Public/member/images/');
-		$a=opendir($base_dir);
-		
-		while ($fileName = readdir($a)) { 
-		 echo "<br/>";
-		 echo $fileName;
-		}
-		//print_r($open);
+
 		$this->title="设置头像";
 		$this->display();
     }	
@@ -110,14 +99,15 @@ class SettingAction extends IniAction {
 		//裁剪原图
 		$Think_img->open($pic_path)->crop($params['w'],$params['h'],$params['x'],$params['y'])->save($real_path);
 		//生成缩略图
-		//$Think_img->open($real_path)->thumb(150,150, 1)->save($path.$thumb[0].'_100.jpg');
+		
 		$Think_img->open($real_path)->thumb(100,100, 1)->save($path.$thumb[0].'_100.jpg');
 		$Think_img->open($real_path)->thumb(60,60, 1)->save($path.$thumb[0].'_60.jpg');	
+		$Think_img->open($real_path)->thumb(150,150, 1)->save($path.$thumb[0].'_150.jpg');
 		
 		$userInfo=$this->userInfo;
 		$member=D('Member');
 		$where['id']=$userInfo['id'];
-		$member->where($where)->setField('headimg',$thumb[0].'_100.jpg');
+		$member->where($where)->setField('headimg',$userInfo['id'].$thumb[0].'_150.jpg');
 		
 		$this->success('上传头像成功');
 	}
@@ -487,32 +477,34 @@ class SettingAction extends IniAction {
 		$document=D('DocumentInfo');
 		
 		$where['member_id']=$userInfo['id'];
-		$passengerInfo=$passenger->field('id,first_name,last_name,id_country,first_choice,mobile,telphone,sex')->where($where)->order('first_choice desc,id desc')->select();	//乘客信息
-		$documentInfo=$document->field('t_id,number')->where($where)->select();	
-		foreach($documentInfo as $k=>$v){//转换证件类型
-			$wh['id']=$v['t_id'];
-			$document_type=$idtype->where($wh)->find();
-			$passengerInfo[$k]['type']=$document_type['id_type'];//
-			$passengerInfo[$k]['number']=$v['number'];
-		}
-		foreach($passengerInfo as $k=>$v){
-			$wh['id']=$v['id_type'];
-			$type=$idtype->where($wh)->find();			
-			$passengerInfo[$k]['len']=strlen($v['id_number']);
-		}		
-		$this->assign('Info',$passengerInfo);
-		//print_r($passengerInfo);
+		$passengerInfo=$passenger->field('id,first_name,last_name,id_country,first_choice,mobile,sex')->where($where)->order('first_choice desc,id desc')->select();	//乘客信息
 		
-		if($this->isAjax()){
+		foreach($passengerInfo as $k=>$v){
+			$where3['p_id']=$v['id'];
+			$documentInfo=$document->field('t_id,number')->where($where3)->order('firstchoice desc')->find();
+			$wh['id']=$documentInfo['t_id'];
+			$document_type=$idtype->where($wh)->find();
+			$passengerInfo[$k]['type']=$document_type['id_type'];
+			$passengerInfo[$k]['number']=substr($documentInfo['number'],0,4).'******'.substr($documentInfo['number'],-4,-1).'X';
+			$passengerInfo[$k]['mobile2']=substr($passengerInfo[$k]['mobile'],0,4).'*****'.substr($passengerInfo[$k]['mobile'],-2);
+			if($passengerInfo[$k]['sex'] == 1){$passengerInfo[$k]['sex2'] = "男";}
+			if($passengerInfo[$k]['sex'] == 0){$passengerInfo[$k]['sex2'] = "女";}
+		}	
+		$this->assign('Info',$passengerInfo);
+		
+		if(IS_AJAX){
 			if(I('act') == 'del'){//删除
 				$id=I('id');
 				if(is_array($id)){
 					$condition['id']=array('in',$id);
+					$con['p_id']=array('in',$id);
 				}else{
 					$condition['id']=$id;
-				}
+					$con['p_id']=$id;
+				}	
+				$rs=$document->where($con)->delete();
 				$res=$passenger->where($condition)->delete();
-				if($res){
+				if($rs && $res){
 					$this->success();
 				}else{
 					$this->error();
@@ -530,6 +522,32 @@ class SettingAction extends IniAction {
 				$rs=$passenger->where($wheres)->setField('first_choice',1);
 				if($res && $rs){
 					$this->success();
+				}else{
+					$this->error();
+				}
+			}
+			if(I('act') == 'quer'){//查询
+				$cont=I('cont');
+				$checkwhere['last_name|first_name']= array('like',"%$cont%");
+
+				$Info=$passenger->field('id,first_name,last_name,id_country,first_choice,mobile,sex')->where($checkwhere)->order('first_choice desc,id desc')->select();
+			
+				if($Info){
+					foreach($Info as $k=>$v){
+						$where3['p_id']=$v['id'];
+						$documentInfo=$document->field('t_id,number')->where($where3)->order('firstchoice desc')->find();
+						$wh['id']=$documentInfo['t_id'];
+						$document_type=$idtype->where($wh)->find();
+						$Info[$k]['type']=$document_type['id_type'];
+						$Info[$k]['number']=substr($documentInfo['number'],0,4).'******'.substr($documentInfo['number'],-4,-1).'X';
+						$Info[$k]['mobile2']=substr($Info[$k]['mobile'],0,4).'*****'.substr($Info[$k]['mobile'],-2);
+						if($Info[$k]['sex'] == 1){$Info[$k]['sex2'] = "男";}
+						if($Info[$k]['sex'] == 0){$Info[$k]['sex2'] = "女";}
+					}
+					$data['list']=$Info;
+					$data['status']=1;
+
+					$this->AJAXreturn($data);
 				}else{
 					$this->error();
 				}
@@ -559,7 +577,7 @@ class SettingAction extends IniAction {
 		$wh['p_id']=$this->info['id'];
 		$this->typeinfo=$document->where($wh)->select();	
 		
-		if($_POST){			
+		if(!empty($_POST)){			
 			$data['first_name']=$_POST['first_name'];
 			$data['last_name']=$_POST['last_name'];
 			$data['sex']=$_POST['sex'];
@@ -595,22 +613,22 @@ class SettingAction extends IniAction {
 			if(!empty($newdata)){
 				if(!empty($newdata['last_name']) || !empty($newdata['first_name'])){
 					if(!preg_match('/^[A-Za-z]/',$_POST['last_name']) || !preg_match('/^[A-Za-z]/',$_POST['first_name'])){
-						$this->error('姓名只能是拼音或英文');
+						//$this->error('姓名只能是拼音或英文');
 					}
 				}
 				if(!empty($newdata['mobile'])){
 					if(!preg_match('/^[0-9]*[1-9][0-9]*$/',$newdata['mobile'])){ 
-						$this->error('手机号码格式不对,请重新输入');         
+						//$this->error('手机号码格式不对,请重新输入');         
 					}
 				}
 				if(!empty($newdata['email'])){
 					if(!preg_match('/^[\w\d]+[\w\d-.]*@[\w\d-.]+\.[\w\d]{2,10}$/i',$_POST['email'])){
-						$this->error('邮箱格式不对,请重新输入');
+						//$this->error('邮箱格式不对,请重新输入');
 					}
 				}
 				if(!empty($newdata['telphone'])){
 					if(!preg_match('/((\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$)/',$newdata['telphone'])){
-						$this->error('电话号码格式不对,请重新输入');
+						//$this->error('电话号码格式不对,请重新输入');
 					}
 				}
 				$passenger->where("id='$id'")->setField($newdata);//更新数据
@@ -680,19 +698,20 @@ class SettingAction extends IniAction {
 								}
 								$data2[$key]['member_id']=$userInfo['id'];
 								$data2[$key]['p_id']=$id;
-								}
 							}
 						}
-						foreach($data2 as $k=>$v){
-							$document->add($v);//添加数据
-						}
+					}
+					foreach($data2 as $k=>$v){
+						$document->add($v);//添加数据
 					}
 				}
-			}		
+			}
+			$this->success('添加成功',U('/Member/Setting/passengerlist'));
+		}		
 		
 		if($this->isAjax()){
 			if(I('act') == 'del'){//删除
-				$id=I('id');
+				$id=I('gid');
 				if(is_array($id)){
 					$condition['id']=array('in',$id);
 				}else{
@@ -705,8 +724,7 @@ class SettingAction extends IniAction {
 					$this->error();
 				}
 			}
-		}	
-	
+		}
 		$this->title="编辑常用旅客信息";
 		$this->display();
     }
@@ -714,29 +732,28 @@ class SettingAction extends IniAction {
 	//增加常用旅客 ok
 	function passengeradd(){
 		$userInfo=$this->userInfo;//用户信息
-		$passenger=D('Passenger');//乘机人信息
-		//$idtype=D('IdType');//证件类型
+		$passenger=D('Passenger');//乘机人信息	
 		$document=D('DocumentInfo');//证件信息
 		
 		if($_POST){
-			if(!preg_match('/^[_\w\d]$/iu',$_POST['last_name']) || !preg_match('/^[_\w\d]$/iu',$_POST['first_name'])){					
-				$this->error('姓名输入有误，请重新输入');
+			if(!preg_match('/^[A-Za-z]/',$_POST['last_name']) || !preg_match('/^[A-Za-z]/',$_POST['first_name'])){					
+				//$this->error('姓名输入有误，请重新输入');
 			}
-			if(!preg_match('/^1[3|4|5|8][0-9]\d{4,8}$/',$_POST['mobiel'])){ 
-				$this->error('手机号码格式不对,请重新输入');         
+			if(!preg_match('/^1[3|4|5|8][0-9]\d{4,8}$/',$_POST['mobile'])){ 
+				//$this->error('手机号码格式不对,请重新输入');         
 			}	
 			if(!preg_match('/^[\w\d]+[\w\d-.]*@[\w\d-.]+\.[\w\d]{2,10}$/i',$_POST['emali'])){
-				$this->error('邮箱格式不对,请重新输入');
+				//$this->error('邮箱格式不对,请重新输入');
 			}
 			$data['member_id']=$userInfo['id'];
-			$data['last_name']=$_POST['last_name'];
 			$data['first_name']=$_POST['first_name'];
+			$data['last_name']=$_POST['last_name'];
 			$data['id_country']=$_POST['country'];
 			$data['sex']=$_POST['sex'];
 			$data['birthday']=$_POST['year'].'-'.$_POST['month'].'-'.$_POST['day'];
+			$data['mobile']=$_POST['mobile'];
 			$data['telphone']=$_POST['area_code'].'-'.$_POST['telphone'].'-'.$_POST['extension'];
-			$data['mobiel']=$_POST['mobiel'];
-			$data['emali']=$_POST['emali'];
+			$data['email']=$_POST['email'];
 			$data['create_time']=time();
 			if(empty($_POST['first'])){
 				$data['first_choice']=0;
@@ -752,39 +769,42 @@ class SettingAction extends IniAction {
 				$data['first_choice']=$_POST['first'];	
 			}			
 			$passenger->create($data);
-			$passenger->add();				
-		}
-		
-		for($i=1;$i<=20;$i++){
-			if($_POST["idtype.$i"] != 0){
-				if(empty($_POST["idnum.$i"])){
-					$this->error('请输入证件号码'); 
+			$passenger->add();//添加数据
+			
+			if(!empty($_POST['data'])){
+				foreach($_POST['data']['t_id'] as $key=>$val){
+					if($val != 0){
+						foreach($_POST['data'] as $k=>$v){
+							foreach($v as $k1=>$v1){
+								$arr[$k1][$k]=$v1;
+								if($_POST['firstchoice'] == $k1){
+									$arr[$k1]['firstchoice']=1;
+								}else{
+									$arr[$k1]['firstchoice']=0;
+								}							
+								$wh2['member_id']=$userInfo['id'];
+								$pid=$passenger->field('id')->where($wh2)->order('create_time desc')->find();
+								$arr[$k1]['member_id']=$userInfo['id'];
+								$arr[$k1]['p_id']=$pid['id'];
+								$arr[$k1]['create_time']=time();
+							}
+						}
+					}
 				}
-				if(empty($_POST["validity.$i"])){
-					$this->error('请输入有效期'); 
-				}				
-				$wheres['member_id']=$userInfo['id'];
-				$wheres['t_id']=$_POST["idtype.$i"];
-				$wheres['number']=$_POST["idnum.$i"];
-				$wheres['validity']=$_POST["validity.$i"];
-				if(empty($_POST['firstchoice.$i'])){
-					$wheres['firstchoice']=0;
-				}else{
-					$wheres['firstchoice']=1;
-				}
-				$pid['member_id']=$userInfo['id'];
-				$res=$passenger->field('id')->where($pid)->order('create_time desc')->find();
-				$wheres['p_id']=$res['id'];
-				$document->create($wheres);
-				$document->add();
 			}
-		}		
+			foreach($arr as $k=>$v){
+				$document->add($v);//添加数据
+			}
+			$this->success('添加成功',U('/Member/Setting/passengerlist'));
+		}
+		//print_r($arr);
+		//print_r($_POST);
 		$this->title="增加常用旅客";
 		$this->display();
     }
 
 
-	//站内信
+	//消息提醒
 	function message(){
 		$userInfo=$this->userInfo;	
 		$message=D('Message');
@@ -807,9 +827,10 @@ class SettingAction extends IniAction {
 				$this->error();
 			}
 		}
-		$this->title="站内信";
+		$this->title="消息提醒";
 		$this->display();
     }
+
 	
 	//--------------------------------------------------------------
 	//数据验证	

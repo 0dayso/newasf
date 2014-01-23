@@ -25,9 +25,17 @@
                     <label>状态：</label>
                     <select class="combox" name="status">
                         <option value="">请选择</option>
-                        <option value="0" <eq name="_REQUEST.status" value="0">selected=selected</eq>>禁用</option>
-                        <option value="1" <eq name="_REQUEST.status" value="1">selected=selected</eq>>启用</option>
+                        <option value="0" <eq name="_REQUEST.status" value="0">selected=selected</eq>>未支付</option>
+                        <option value="1" <eq name="_REQUEST.status" value="1">selected=selected</eq>>支付</option>
                     </select>
+                </li>
+                <li>
+                    <label>预订日始</label>
+                    <input type="text" style="width: 85px" name="ksrq" class="date"  <if condition="_REQUEST.ksrq">value="{$_REQUEST.ksrq}"<else />value="2013-10-01"</if>>
+                </li>
+                <li>
+                    <label>预订日止</label>
+                    <input type="text" style="width: 85px" name="jsrq" class="date" <if condition="_REQUEST.jsrq">value="{$_REQUEST.jsrq}"<else />value="{:date('Y-m-d')}"</if>>
                 </li>
                 <li>
                     <label>实时：</label>

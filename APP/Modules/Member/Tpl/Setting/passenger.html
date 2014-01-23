@@ -76,11 +76,7 @@
                                 <option value="17" <if condition="$vo['t_id'] eq 16">selected</if> >警官证</option>
                                 <option value="16" <if condition="$vo['t_id'] eq 17">selected</if> >生出证明</option>
                                 <option value="18" <if condition="$vo['t_id'] eq 18">selected</if> >其他</option>
-                            </select>
-                            &nbsp;证件号码：<input class="txt w140" name="data[idnum][]" type="text" value="{$vo.number}" id="idnum{$i}" />
-                            &nbsp;有效期：<input class="txt w80" name="data[validity][]" type="text" value="{$vo.validity}" id="validity{$i}" />
-                            &nbsp;设为首选证件<input name="firstchoice" type="radio" value="{$vo.id}" checked="checked" />
-                            <a class="del">删除</a>
+                            </select>&nbsp;证件号码：<input class="txt w140" name="data[idnum][]" type="text" value="{$vo.number}" id="idnum{$i}" />&nbsp;有效期：<input class="txt w80" name="data[validity][]" type="text" value="{$vo.validity}" id="validity{$i}" />&nbsp;设为首选证件<input name="firstchoice" type="radio" value="{$vo.id}" checked="checked" /><a class="del" gid="{$vo.id}">删除</a>
                         </li>
                      </volist>
                         <li><span>&nbsp;</span><a id="addpapers" num="1">添加证件</a></li>
@@ -131,12 +127,16 @@
                 html += '<a class="del">删除</a>';
                 html += '</li>';
 				$(this).parent().before(html);
-				$(this).attr("num",num);
-				//重载删除
-				$("#passenger .del").bind("click",function(){$(this).parent().remove();});				
+				$(this).attr("num",num);			
 				});				
 			//删除
-			$("#passenger .del").bind("click",function(){$(this).parent().remove();});			
+			$("#passenger .del").live("click",function(){
+				var act="del";//设置类型为删除
+				var gid=$(this).attr('gid');
+				$.getJSON("{:U('/Member/Setting/passenger/')}",{gid:gid,act:act},function(data){});
+				$(this).parent().remove();
+				});
+				
 			});
     </script>    
 <include file="public:footer" />

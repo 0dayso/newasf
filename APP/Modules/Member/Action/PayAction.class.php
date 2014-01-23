@@ -137,6 +137,7 @@ class PayAction extends IniAction {
                     $order_id_arr=explode(',',$rs['order_id_arr']);
                     foreach($order_id_arr as $val){
                         $orderDB = D('AsmsOrder');
+                        $orderDB->setField('zf_fkf','');
                         $ors= $orderDB->field('ysje')->find($val);
                         $rr= $orderDB->orderPay($val,ASMSUID,$ors['ysje'],$out_trade_no,$rs['remark']);
                     }
@@ -175,6 +176,7 @@ class PayAction extends IniAction {
                     $order_id_arr=explode(',',$rs['order_id_arr']);
                     foreach($order_id_arr as $val){
                         $orderDB = D('AsmsOrder');
+                        $orderDB->setField('zf_fkf','');
                         $ors= $orderDB->field('ysje')->find($val);
                         $rr= $orderDB->orderPay($val,ASMSUID,$ors['ysje'],$out_trade_no,$rs['remark']);
                     }
@@ -193,5 +195,17 @@ class PayAction extends IniAction {
         }
 
     }
+
+
+    //支付宝支付
+    function aliPay(){
+        Vendor('Alipay.ResponseHandler#class');
+    }
+
+    //支付宝返回
+    function aliReturn(){
+
+    }
+
 	
 }

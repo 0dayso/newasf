@@ -4,11 +4,11 @@
 		<div class="pageFormContent" layoutH="58">
 			<div class="unit">
 				<label>预订日始</label>
-		        <input type="text" style="width: 85px" name="ksrq" class="date" value="2013-10-01">
+		        <input type="text" style="width: 85px" name="ksrq" class="date" <if condition="_REQUEST.ksrq">value="{$_REQUEST.ksrq}<else />value="2013-10-01"</if>>
 			</div>
 			<div class="unit">  	
 		        <label>预订日止</label>
-		        <input type="text" style="width: 85px" name="jsrq" class="date" value="{:date('Y-m-d')}">
+		        <input type="text" style="width: 85px" name="jsrq" class="date" <if condition="_REQUEST.jsrq">value="{$_REQUEST.jsrq}<else />value="{:date('Y-m-d')}"</if>>
 		 	</div>
             <div class="unit">
                 <label>会员帐号</label>

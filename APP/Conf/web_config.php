@@ -45,6 +45,13 @@ return array(
     'TENPAY_RETURN_URL' => "http://www.aishangfei.com/pay/payReturnUrl.php",
     'TENPAY_NOTIFY_URL' => "http://www.aishangfei.com/pay/payNotifyUrl.php",
 
+    //aliPay 支付宝
+    'ALIPAY_SPNAME'=>"广州美乐商务服务有限公司",
+    'ALIPAY_PARTNER' => '2088502941273894',
+    'ALIPAY_KEY' => 'farwfl31btngq19q5ew1rg4ax0ze6ns2',
+    'ALIPAY_RETURN_URL' => "http://www.aishangfei.com/Alipay/payReturnUrl.php",
+    'ALIPAY_NOTIFY_URL' => "http://www.aishangfei.com/Alipay/payNotifyUrl.php",
+
         //其它配置项
     'VERIFY_CODE'=>1,       //注册码开关
     'REG_REBATE'=>50,	//注册返利rebate

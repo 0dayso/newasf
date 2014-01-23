@@ -155,8 +155,8 @@ class AsmsOrderModel extends RelationModel{
             return false;
         }
         $hyid=$data['khid'];
-        $page_r=isset($_GET['page_r'])?$_GET['page_r']:100;
-        $page_p=isset($_GET['page_p'])?$_GET['page_p']:1;
+        $page_r=I('numPerPage')?I('numPerPage'):100;
+        $page_p=I('pageNum')?I('pageNum'):1;
         $start=$page_r*$page_p-$page_r;
         $page_start=$start;
 
@@ -179,7 +179,7 @@ class AsmsOrderModel extends RelationModel{
         }
 
         $data_preg="/<form name=\"batchForm\" .*?>(.*?)<\/form>/s";
-
+       // print_r($data);
         preg_match($data_preg,$data,$data2);
         //print_r($data[1]);
         //正则匹配数据
@@ -192,15 +192,15 @@ class AsmsOrderModel extends RelationModel{
             return false;
         }
 
-      //  print_r($info);exit;
+     //   print_r($info);exit;
 
          $pregs="/<table .*?class=\"turnPlan\">.*?<tr>.*?<b>(\d+)<\/b>.*?<input .*?value=\'(\d+)\'>.*?<\/table>/si";
           preg_match($pregs,$data2[1],$infos);
         if(!empty($infos[0])){
-            $_GET['page_n']=$infos[1];
-            $_GET['page_p']=$infos[2];
-            $_GET['page_r']=$page_r;
-            $_GET['page_tr']=Ceil($infos[1]/$page_r);
+            $_GET['totalCount']=$infos[1];
+            $_GET['pageNum']=$infos[2];
+            $_GET['numPerPage']=$page_r;
+            $_GET['totalPages']=Ceil($infos[1]/$page_r);
         }
         //设置 key值
         $kayName=array('','version','cpsj','userid','dprq','ddzt','ddlx','gt','cgzt','gyzt','yyb','dpyyb','pnr','pnr_zt','hkgs_pnr','zkfx','hykh','xm','lx','hc','hbh','cw','qfsj','cjr','rs','cgj','zdj','lk','jjrl','xsj','jj','sf','xj','bx','jc','qt','ysje','zf_fkf','yf','zf_fkkm','office','email','kyjf','nklxr','lxdh','ps_lx','tyqsj','dpgs','xpnr','khddh','ddbh','ddly');        //  print_r($info);
@@ -246,7 +246,7 @@ class AsmsOrderModel extends RelationModel{
         }
 
      //   print_R($kayName);
-     //   print_r($arr);
+      //  print_r($arr);
         //更新保存到数据库
         foreach($arr as $key=>$val){
             if($is_info){ //详细
@@ -254,7 +254,7 @@ class AsmsOrderModel extends RelationModel{
                 $arr[$key]['hd_info']=$info['hd_info'];
                 $arr[$key]['cjr_info']=$info['cjr_info'];
             }else{
-                $rs=$this->find($val['ddbh']);
+                $rs=$this->where("ddbh=".$val['ddbh'])->select();
                 $val['hyid']=$hyid;
                 if($rs){
                     $save= $this->create($val);

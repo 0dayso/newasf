@@ -2,7 +2,7 @@
 // 首页控制器
 class IndexAction extends IniAction {
 
-    function index(){
+/*    function index(){
         if($_GET['test']){
             $data['name']=D('Member')->username;
             D('Message')->message_action('reg_success',$data);//发送信息
@@ -29,9 +29,12 @@ class IndexAction extends IniAction {
         //    $this->redirect('/member/login');
         }
 
-    }
+    }*/
 
-
+	function index(){
+		$this->title="会员中心";
+		$this->display();
+        }
 
 	
 	

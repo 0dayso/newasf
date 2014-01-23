@@ -1,5 +1,4 @@
-<include file="public:header" />
-
+﻿<include file="public:header" />
     <link rel="stylesheet" href="__PUBLIC__/css/member.css" type="text/css" />
     <script type="text/javascript" src="__PUBLIC__/js/member.js"></script>
     <div class="member">
@@ -13,7 +12,7 @@
             
 			<div id="order_info">
             	<h2>确认订单信息</h2>
-                <form action="" method="post">
+                <form action="{:U('/Member/Assetaccount/exchange2')}" method="post">
                 <div class="order_box" id="list_con">
                 	<table width="788" border="0" align="center" cellpadding="0" cellspacing="0">
 					  <tr class="tit">
@@ -22,28 +21,39 @@
                             <td>数量</td>
                             <td>积Fun小计</td>
 					  </tr>
-                      <volist name="mall_info" id="vo">
+                      <volist name="data" id="vo">
                         <tr class="h60">
-							<td class="first blue"><a href="{:U('jifen/info','id='.$vo['mall_id'])}"><img src="__PUBLIC__/uploads/mall/m_{$vo.img}" widht="40px" height="40px">{$vo.img}</a></td>
+							<td class="first blue"><a href="{:U('jifen/info','id='.$vo['mall_id'])}"><img src="__PUBLIC__/uploads/mall/m_{$vo.img}" widht="40px" height="40px">{$vo.title}</a></td>
                             <if condition="$vo['type'] eq 0">
                             	<td class="price">{$vo.jifen}</td>
                              <else/>
                              	<td class="price"><span class="aizuan">{$vo.jifen}</span></td>
                              </if>
-                             
                             <td>{$vo.num}</td>
                             
                             <if condition="$vo['type'] eq 0">
-                            <td class="price"><?php echo $vo['jifen']*$vo['num'];?></td>
+                            <td class="price">{$vo.sumjifen}</td>
                             <else/>
-                            	<td class="price"><span class="aizuan">x<?php echo $vo['jifen']*$vo['num'];?></span></td>
+                            	<td class="price"><span class="aizuan">x{$vo.sumjifen}</span></td>
                             </if>
 						</tr>
+                         	<input type="hidden" name="id[]" value="{$vo.id}"/>
+                       		<input type="hidden" name="mall_id[]" value="{$vo.mall_id}"/>
+                            <input type="hidden" name="num[]" value="{$vo.num}"/>
+                            <input type="hidden" name="jifen[]" value="{$vo.sumjifen}"/>
+                            <input type="hidden" name="title[]" value="{$vo.title}"/>                            
+                            <input type="hidden" name="type2[]" value="{$vo.type}"/>
                 		</volist>
 					</table>
-					<div class="total"><span class="right">合计兑换积Fun：<b>{$totlejifen}</b></span><span class="right">合计兑换爱钻：<span class="aizuan">x{$totleaizuan}</span></span></div>
+					<div class="total">
+                    	  <if condition="$vo['type'] eq 0">
+                          	<span class="right">合计兑换积Fun：<b>{$totlejifen}</b></span>
+                          <else/>
+                   			<span class="right">合计兑换爱钻：<span class="aizuan">x{$totlejifen}</span></span>
+                          </if>
+                    </div>
             </div>
-            <div class="confirm"><span><a href="{:U('/Member/Assetaccount/gift')}">返回购物车</a></span><input name="确定兑换" type="submit" class="exchange" value=""></div>
+            <div class="confirm"><span><a href="{:U('/Member/Assetaccount/gift')}">返回购物车</a></span><input type="submit" class="exchange" value=""></div>
             </form>
             <div class="explain">
             <p>所有积分兑换礼品的邮寄费用由爱尚飞国际机票网承担；</p>

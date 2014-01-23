@@ -1,82 +1,50 @@
 <include file="public:header" />
-        <style>
-            .xubox_layer,.xubox_layer div{overflow: visible;}
-            .xubox_layer div a{color:#fff}
-         </style>
-    <link rel="stylesheet" href="__PUBLIC__/css/userCenter.css" type="text/css" />
-    
-    <div id="cont">
-        <div class="wd960 mt10 bgWhite">
-        	<h1 class="h1_tit_nav">你当前所在位置：<a href="{:U('/')}" class="sy">首页</a> > <a class="cur" href="{:U('/Member/index')}">会员中心</a></h1>
-            <include file='left' />
-            <div class="left mt10" id="userCenterR">
-            	<ul id="user_info">
-                	<li class="li0"><span>会员账号:<label>{$userinfo.username}</label></span><span> 会员等级:<label class="dj">普通会员</label></span><span>会员积分:<label>{$userinfo.points}</label></span></li>
-                    <li><span>预付款余额:<label class="red">0</label>元</span></li>
-                    <li><span>会员返利:<label>{$userinfo.rebate}</label>元</span></li>
-                    <li class="li3"><span>总订单:[ <label>{$order_count|default=0}</label> ]</span><span>已完成订单:[ <label>{$order_status[2]|default=0}</label> ]</span><span>处理中订单:[ <label>{$order_status[0]+$order_status[1] |default=0 }</label> ]</span><span>已取消订单:[ <label>{$order_status[-1] |default=0}</label> ]</span></li>
-                </ul>
-                <ul id="system_info">
-                	<li class="tit">系统通知</li>
-                    <script type="text/javascript">
-                    $(function(){
-                        $('.message .cont').click(function(){
-                            layer.tips($(this).html() ,this, 0, 600, 0, ['background-color:#449ef6; color:#fff;','#449ef6']);
-                            if($(this).next('a').attr('class')){
-                               var aa = $(this).next('a');
-                                $.getJSON("{:U('/Member/message')}",'act=read&id='+ $(this).attr('data'),function(data){
-                                    if(data.status==1){
-                                       aa.removeClass('new');
-                                    }
-                                });
-                            }
-                       })
-                    })
-                    </script>
-                    <ul class="message">
-                        <volist name="sysMessageList" id="vo">
-                    	<li class='ms{$vo.id}'><a class="cont" data="{$vo.id}" href="javascript:;" >{$vo.contents}</a><a <if condition="$vo['is_read'] eq 0">class="new"</if>></a><a class="time">{$vo.time}</a></li>
-                        </volist>
+    <link rel="stylesheet" href="__PUBLIC__/css/member.css" type="text/css" />
+    <script type="text/javascript" src="__PUBLIC__/js/member.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/layer/layer.min.js"></script>
+    <script src="__PUBLIC__/admin/Js/jquery.form.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/modify.js"></script>
+    <div class="member">
+    	<!--会员中心导航-->
+    	<include file="public:left" />
+        
+		<div class="right" id="memberR">
+			<div id="user_info">
+            	<div class="icon left">
+               		<a href="{:U('/Member/Setting/seticon')}"><img src="__PUBLIC__/images/member/icon.gif" />设置头像</a>
+				</div>
+                <div class="info right">
+               	  <ul>
+                    	<li>
+                        	<div class="verify right"><b class="a0"></b><a class="mr20" href="{:U('/Member/Setting/securitycenter')}">手机已验证</a><b class="a2"></b><a href="{:U('/Member/Setting/securitycenter')}">邮箱已验证</a></div>
+                            <span>用户名：test</span>
+							<span>账户安全：中[<a href="{:U('/Setting/securitycenter')}">修改</a>]</span></li>
+                        <li>
+                        	<span>会员等级：<strong>白银会员</strong><a href="#">如何升级</a></span>
+                        </li>
+                        <li>
+                        	<span>待支付订单：[<a href="{:U('/Member/booking')}?status=pending">{$common.pending_count}</a>]</span>
+                            <span>已付款订单：[<a href="{:U('/Member/booking')}?status=process">{$common.process_count}</a>]</span>
+                            <span>已取消订单：[<a href="{:U('/Member/booking')}?status=cancel">{$common.cancel_count}</a>]</span>
+                        </li>
+                        <li>
+                        	<span>消息提醒：[<a href="{:U('/Member/Setting/message')}">{$common.message_count}</a>]</span>
+                        </li>
                     </ul>
-                </ul>
-                <ul id="exc_service">
-                	<li class="li0 tit">您的专属旅行顾问</li>
-                    <li class="li1">
-                    	<span class="span0">
-                        	<img src="__PUBLIC__/uploads/{$userinfo.user.avatar}" alt="kf" />
-                            <label>{$userinfo.user.name}</label>
-                        </span>
-                        <span class="span1">
-                        	<label>手机号码:</label><a>{$userinfo.user.public_mobile}</a><br/>
-                            <label>电话号码:</label><a>{$userinfo.user.telephone}</a><br/>
-                            <label>QQ:</label><a>{$userinfo.user.qq}</a><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={$userinfo.user.qq|trim}&site=qq&menu=yes"><img src="http://wpa.qq.com/pa?p=2:{$userinfo.user.qq|trim}:51" alt="点击这里给我发消息" title="点击这里给我发消息"/></a><br/>
-                        </span>
-                    </li>
-                    <li class="li2">
-                    	<span><a class="a0">服务评价：</a><label class="ht kfpj" title="五颗星"><a class="a{$server*2|round=###}"></a></label><a>{$server}</a><a style="margin-left:10px;color: #0066cc; " href="{:U('/Adviser/review')}_{$userinfo.user.id}">查看所有评价</a>
-                        <a class="wpj" href="{:U('/Adviser')}/{$userinfo.user.id}/review">我要评价</a></span>
-                    </li>
-                    <li class="li3"><label class="red">温馨提示：</label>如果您有任何问题可以直接与您的专属旅行顾问联系</li>
-                </ul>
-                <ul id="invite_link">
-                	<li class="li0 tit">邀请链接</li>
-                    <li class="li1">如果您对我们的服务感到满意，请复制以下链接邀请您身边的亲朋好友注册本网站，每成功邀请一位新用户注册，系统将自动向您赠送500积分（详细说明请参考“<label class="red"><a href="{:U('help/members')}#help_ul1">积分规则</a></label>”）</li>
-                    <li class="li2">邀请链接<input type="text" id="copytext"   value="{:U('/Member/register','referee_id='.$userinfo['id'],'','',true)}" /><a href="javascript:;" onclick="copyToClipBoard('#copytext')">(复制链接发送给好友)</a></li>
-                </ul>
-                <script language="javascript" type="text/javascript">
-						function copyToClipBoard(o){
-                        var  Text = $(o).val();
-						if(window.clipboardData){
-							window.clipboardData.setData("Text", Text);
-							alert("复制成功");
-							}else{
-							//alert("浏览器不支持快捷复制，请将鼠标移到左侧内容，按 Ctrl + C 进行复制！");
-							alert("浏览器不支持快捷复制，请按 Ctrl + C 进行复制！");
-							$('#copytext').select();
-							};
-						};
-                </script>
+                    <dl>
+                   	  <dd><span>预付款余额：2000元</span></dd>
+                      <dd><span>现金券：200元</span><a href="{:U('/Member/Assetaccount/integral')}">查看明细</a><a href="#">如何使用？</a></dd>
+                      <dd><span>我的积fun：2000</span><a href="{:U('/jifen/lists/cid/55')}">兑换好礼</a><a href="#">积fun规则</a></dd>
+                      <dd><span>我的爱钻：<b>x2</b></span><a href="{:U('/jifen/lists/cid/56')}">兑换好礼</a><a href="#">如何获取？</a></dd>
+                    </dl>
+                </div>
             </div>
         </div>
     </div>
-   <include file="public:footer" />
+    
+    <script type="text/javascript">
+    	$(function(){
+			});
+    </script>
+    
+<include file="public:footer" />

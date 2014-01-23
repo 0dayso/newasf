@@ -4,6 +4,9 @@ class LoginAction extends IniAction {
 
     function index(){
         if($_POST['act']=='login'){
+            if( C('VERIFY_CODE') && I('verify_code','','md5') != session('verify')){
+                return '验证码错误！';
+            }
             $member=D('AsmsMember');
             $rs=$member->login(I('post.name'),I('post.password'));
             if($rs===true){
