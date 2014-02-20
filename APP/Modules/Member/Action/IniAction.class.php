@@ -93,11 +93,10 @@ class IniAction extends PublicAction{
             $common['process_count']=$orderDB->where($where)->limit($pagesize)->count();
 
             //站内信
-            $messageDB=D('Message');
-            $where=array();
-            $where['to_id']=getUid();
-            $common['message_count']=$messageDB->where($where)->count();
-
+            $messageDB=D('Message');          
+            $wh['to_id']=getUid();			
+			$wh['id_read']=0;//0表示未读
+            $common['message_count']=$messageDB->where($wh)->count();
             $this->common=$common;//公共数据
         }
     }

@@ -22,13 +22,14 @@
 								{$userInfo.mobile}<a href="{:U('/Member/Setting/replacephone')}">修改</a>
 							</li>
                             <li><span>邮箱：</span>
-                                  <if condition="$userInfo['check_email'] eq 0">
-                                        <input type="text"  value="{$userInfo.email}" class="text" name="email" /><em>添加电子邮箱并通过验证奖励<b>500</b>积fun</em>
-                                  <elseif condition="$userInfo['email'] eq ''"/>                                  
-                                    	<input type="text"  value="" class="text" name="email" /><em>添加电子邮箱并通过验证奖励<b>500</b>积fun</em>
-                                   <else/>
-                                        {$userInfo.email}<a href="{:U('/Member/Setting/replacemailbox')}">修改</a>
-                                  </if>
+                                <empty name="userInfo['email']"> <!---邮箱为空-->                                
+                                    	<input type="text"  value="{$userInfo.email}" class="text" name="email" /><em>添加电子邮箱并通过验证奖励<b>500</b>积fun</em>
+                                 </empty>       
+                                 <if condition="$checkemail['is_check'] eq 1">
+                                        {$userInfo.email}<a href="{:U('/Member/Setting/replacemailbox')}">修改</a> 
+                                 <else/>
+                                      <input type="text"  value="{$userInfo.email}" class="text" name="email" /><em>添加电子邮箱并通过验证奖励<b>500</b>积fun</em> 
+                                 </if>
 							</li>
                             <li><span>姓名：</span>
 								<input type="text"  value="{$userInfo.name}" class="text" name="name" />
@@ -47,7 +48,16 @@
 								<select name="month" id="idMonth"  on="{$birthday[1]}"><option value="0">请选择月份</option></select>
 								<select name="day" id="idDay" on="{$birthday[2]}"><option value="0">请选择日期</option></select></li>
                             <li><span>职业：</span>
-								<select name=""><option value="0">请选择职业</option></select>
+								<select name="profession">
+                               		<option value="0">请选择职业</option>
+                                	<option value="1" <if condition="$userInfo['profession'] eq 1">selected="selected"</if>>白领</option>
+                                    <option value="2" <if condition="$userInfo['profession'] eq 2">selected="selected"</if>>教师</option>
+                                    <option value="3" <if condition="$userInfo['profession'] eq 3">selected="selected"</if>>学生</option>
+                                    <option value="4" <if condition="$userInfo['profession'] eq 4">selected="selected"</if>>公务员</option>
+                                    <option value="5" <if condition="$userInfo['profession'] eq 5">selected="selected"</if>>老板</option>
+                                    <option value="6" <if condition="$userInfo['profession'] eq 6">selected="selected"</if>>自由职业者</option>
+                                    <option value="7" <if condition="$userInfo['profession'] eq 7">selected="selected"</if>>其它</option>
+                                </select>
 							</li>
                         	<li id="addcodePCT" val="{$userInfo.province},{$userInfo.city}"><span>常用出发城市：</span>
 								<select name="province" value="{$userInfo['province']}"  class="province" id="province_sel"><option value="">- -</option></select>省
@@ -60,6 +70,7 @@
 									<img src="__PUBLIC__/images/member/icon.gif" />
 								<else/>
 									<img src="__PUBLIC__/member/images/{$userinfo['headimg']}" />
+                                    <!--<img src="{：U('/public/member/images/$userinfo.headimg')}" />-->
 								</empty>
 							</div>设置头像</a>
                         </div>

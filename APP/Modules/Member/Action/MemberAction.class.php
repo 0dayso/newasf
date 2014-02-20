@@ -33,7 +33,7 @@ class MemberAction extends IniAction{
 		}else{
 			$this->redirect('/member/login');
 		}
-
+		
     }
 
 	//注册

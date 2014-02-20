@@ -4,7 +4,6 @@
     <div class="member">
     	<!--会员中心导航-->
     	<include file="public:left" />
-
       	<div class="right" id="memberR">
         	<h1 class="nav_tit">预订评价</h1>
             <div id="list_box">
@@ -22,67 +21,135 @@
 								<td>出票时间</td>
 								<td>操作</td>
 							</tr> 
-						  	<tr>
-								<td class="first">IF51DCC0F13A800B0064</td>
-								<td class="blue">北京-芝加哥 往返</td>
-								<td>无</td>
-								<td>未使用</td>
-                            	<td class="price">￥200</td>
-								<td class="blue">已出票</td>
-								<td>2013-07-10 15:35</td>
-								<td class="link"><a href="#">评价</a></td>
-							</tr>		
-                            <tr>
-								<td class="first">IF51DCC0F13A800B0064</td>
-								<td class="blue">北京-芝加哥 往返</td>
-								<td>无</td>
-								<td>未使用</td>
-                            	<td class="price">￥200</td>
-								<td class="blue">已出票</td>
-								<td>2013-07-10 15:35</td>
-								<td class="link"><a href="#">评价</a></td>
-							</tr>				                          
+                            <volist name="info" id="vo">
+                                <tr>
+                                    <td class="first">{$vo.ddbh}</td>
+                                    <td class="blue">{$vo.hc_n}　{$vo.style}</td>
+                                    <td>{$vo.xj}</td>
+                                    <td>{$vo.xjj}</td>
+                                    <td class="price">￥{$vo.xj}</td>
+                                    <td class="blue">{$vo.status}</td>
+                                    <td>{$vo.cpsj}</td>
+                                    <td class="link"><a href="{:U('/Adviser')}/{$userinfo.user.id}/review?orderid={$vo.ddbh}">评价</a></td>
+                                </tr>
+                            </volist>                   
 						</table>
-                        <div class="page" totlePage="1" page="1">
+                        <div class="page" totlePage="{$allPage}" page="1">
                             <span class="next ajax"></span>
-                            <span class="page_num"><em>1</em>/1页</span>
+                            <span class="page_num"><em>{$nowpage}</em>/{$allPage}页</span>
                             <span class="prev ajax"></span>
                         </div>						
                     </div>
                     
-                    <div class="list_block" id="exchange">
+                    <div class="list_block" id="evaluate">
                     		<div id="exc_list">
-                            	<dl>
-                               	  <dt><span class="right">评价时间: 2014-8-13 20:36</span><strong>广州 -- 布宜诺斯艾利斯   单程</strong></dt>
-                                    <dd>总体评价：<a class="exc0">&nbsp;</a><span><em>服务5</em>（很好）</span> <span><em>出票4</em>（比较快）</span> <span><em>价格5</em>（很实惠）</span></dd>
-                                  <dd>通过爱尚飞进行订票，方便快捷，价格也比较实惠,票也很有保障</dd>
-                                </dl>
-                                <dl>
-                               	  <dt><span class="right">评价时间: 2014-8-13 20:36</span><strong>广州 -- 布宜诺斯艾利斯   单程</strong></dt>
-                                    <dd>总体评价：<a class="exc1">&nbsp;</a><span><em>服务5</em>（很好）</span> <span><em>出票4</em>（比较快）</span> <span><em>价格5</em>（很实惠）</span></dd>
-                                  <dd>通过爱尚飞进行订票，方便快捷，价格也比较实惠,票也很有保障</dd>
-                                </dl>
-                                <dl>
-                               	  <dt><span class="right">评价时间: 2014-8-13 20:36</span><strong>广州 -- 布宜诺斯艾利斯   单程</strong></dt>
-                                    <dd>总体评价：<a class="exc2">&nbsp;</a><span><em>服务5</em>（很好）</span> <span><em>出票4</em>（比较快）</span> <span><em>价格5</em>（很实惠）</span></dd>
-                                  <dd>通过爱尚飞进行订票，方便快捷，价格也比较实惠,票也很有保障</dd>
-                                </dl>
+                            	<volist name="list" id="vo">
+                                    <dl>
+                                      <dt><span class="right">评价时间: {$vo.create_time1}</span>
+                                         <strong>{$vo.from_city} -- {$vo.to_city}   {$vo.trip_way}</strong>
+                                      </dt>
+                                       <dd>总体评价：{$vo.total1}
+                                            <span><em>服务{$vo.server}</em>{$vo.server1}</span> 
+                                            <span><em>出票{$vo.speed}</em>{$vo.speed1}</span> 
+                                            <span><em>价格{$vo.price}</em>{$vo.price1}</span>     
+                                        </dd>
+                                      <dd>{$vo.contents}</dd>
+                                    </dl>  
+                                </volist>                              
                             </div>
                             <div class="page" totlePage="{$totlePage}" page="1">
                                 <span class="next ajax"></span>
-                                <span class="page_num"><em>1</em>/1页</span>
+                                <span class="page_num"><em>{$page}</em>/{$totlePage}页</span>
                                 <span class="prev ajax"></span>
-                            </div>
+                           </div>
                         </div>	
                   </div>
               </div>
-        </div><!--list_block-->
-        
+        </div><!--list_block-->        
         </div>
-    </div>
-    
+    </div>    
 <script type="text/javascript">
-	$(function(){			
+$(function(){
+	//待评价订单 AJAX分页
+	$('#toevaluate .ajax').click(function(){
+		var totlePage=$(this).parent().attr('totlePage'),page=$(this).parent().attr('Page'),i=$(this).index();
+		if(i==0){	
+			page=parseInt(page)+1;					
+			if(page>totlePage){page=totlePage;}
+			}else if(i==2){
+				page=parseInt(page)-1;
+				if(page<=0){page=1;}
+				}
+		toevaluate_ajax(totlePage,page);
 		});
+		//待评价订单AJAX分页函数
+		function toevaluate_ajax(totlePage,page){
+			$.getJSON("{:U('/Member/Appcenter/evaluate')}",{t:'order',p:page},function(data){
+				if(data.status==1){
+					var dataList=data.list,html='';
+					html += '<tr class="tit"><td class="first">订单ID</td><td>航班航程</td><td>价格（含税）</td><td>现金券</td><td>合计价格</td><td>订单状态</td><td>出票时间</td><td>操作</td></tr>';
+					$.each(dataList,function(i,item){
+						html += '<tr>';
+						html += '<td class="first">'+item.ddbh+'</td>';
+						html += '<td class="blue">'+item.hc_n+'　'+item.style +'</td>';
+						html += '<td>'+item.xj+'</td>';
+						html += '<td>'+item.xjj+'</td>';
+                        html += '<td class="price">￥'+item.xj+'</td>';
+						html += '<td class="blue">'+item.status+'</td>';
+						html += '<td>'+item.cpsj+'</td>';
+						html += '<td class="link"><a href="#">评价</a></td>';
+						html += '</tr>';					
+						});
+					$('#toevaluate table').html(html);
+					$('#toevaluate .page').attr('page',page);
+					$('#toevaluate .page_num em').html(page);
+					}else{
+						alert(data.info);
+						}
+				});
+			}	
+	
+	//预订评价记录 AJAX分页
+	$('#evaluate .ajax').click(function(){
+		var totlePage=$(this).parent().attr('totlePage'),page=$(this).parent().attr('Page'),i=$(this).index();
+		if(i==0){	
+			page=parseInt(page)+1;					
+			if(page>totlePage){page=totlePage;}
+			}else if(i==2){
+				page=parseInt(page)-1;
+				if(page<=0){page=1;}
+				}
+		evaluate_ajax(totlePage,page);
+		});
+
+		//AJAX分页函数
+		function evaluate_ajax(totlePage,page){
+			$.getJSON("{:U('/Member/Appcenter/evaluate')}",{t:'record',p:page},function(data){
+				if(data.status==1){
+					var dataList=data.list,html='';
+					$.each(dataList,function(i,item){
+						html += '<dl>';
+                        html += '<dt>';
+						html += '<span class="right">'+'评价时间:'+item.create_time1+'</span>';
+						html += '<strong>'+item.from_city+' -- '+item.to_city+'   '+item.trip_way+'</strong>';
+						html += '</dt>';
+						html += '<dd>';
+						html += '总体评价：'+item.total1;
+						html += '<span><em>'+'服务'+item.server+'</em>'+item.server1+'</span>';
+						html += '<span><em>'+'出票'+item.speed+'</em>'+item.speed1+'</span>';
+						html += '<span><em>'+'价格'+item.price+'</em>'+item.price1+'</span>';						
+						html += '</dd>';
+						html += '<dd>'+item.contents+'</dd>';
+                        html += '</dl>';						
+						});
+					$('#evaluate #exc_list').html(html);
+					$('#evaluate .page').attr('page',page);
+					$('#evaluate .page_num em').html(page);
+					}else{
+						alert(data.info);
+						}
+				});
+			}		
+	});
 </script>
 <include file="public:footer" />

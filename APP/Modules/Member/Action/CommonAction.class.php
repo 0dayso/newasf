@@ -1,9 +1,7 @@
 <?php
 class CommonAction extends IniAction{
-	function index(){
-		
-	}
-	
+	function index(){		
+	}	
 	function verify_code($w=52,$h=27,$verify='verify'){ //验证码
 		import("ORG.Util.Image");
         $w=I('w')?I('w'):$w;

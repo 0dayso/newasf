@@ -5,8 +5,10 @@ class BookingAction extends IniAction {
     //订票中心
 	function index(){
 		$this->title="订票中心";
-        $orderDB=D("AsmsOrder");
-        $where['hyid']=ASMSUID;
+        $orderDB=D("AsmsOrder");        
+		
+		$where['hyid']=ASMSUID;
+	//	$where['hyid']=0;
 
         //取消订单
         if($_GET['act']=='cancel' && I('id')){
@@ -106,23 +108,31 @@ class BookingAction extends IniAction {
     }
 	
 	//订单在线支付
-	function onlinepay(){
-		$this->title="订单在线支付";
+	function onlinepay(){		
         if(!I("ddbh")) $this->error('请选择要支付的订单');
 
         $orderDB=D("AsmsOrder");
         if(!is_array(I("ddbh"))){
-            $ddbh=explode (",",I("ddbh"));
+			$ddbh=explode (",",I("ddbh"));		
         }else{
             $ddbh=I("ddbh");
         }
         //生成支付id
+		$wh['ddbh']=array('in',$ddbh);
         $this->order_pay_id=date("YmdHis").rand(1000,2000);
-
         $this->order_id_arr=implode(',',$ddbh);
-        $rs= $orderDB->orderPayList($ddbh);
+  //$rs= $orderDB->orderPayList($ddbh);
+  
+		$res=$orderDB ->where($wh)->select();
+		$rs['list']=$res;		
+		foreach($res as $key=>$val){
+			$rs['total_price'] += $val['xj'];
+		
+		} 
+		
         $this->pay_total_price=$rs['total_price'];//总价格
-        $this->pay_count=count($rs['list']); //总个数
+        $this->pay_count=count($ddbh); //总个数
+		
         $pay_list=$orderDB->format($rs['list']); //格式化
         foreach($pay_list as $k=>$v){
             $v['hc']=str_split($v['hc'],3);
@@ -142,6 +152,8 @@ class BookingAction extends IniAction {
         $where['member_id']=getUid();
         $list=$PayOrderDB->where($where)->limit(15)->select();
         $this->list = $PayOrderDB->format($list);
+		
+		$this->title="订单在线支付";
 		$this->display();
     }
 

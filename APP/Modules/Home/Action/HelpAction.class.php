@@ -16,6 +16,10 @@ class HelpAction extends IniAction {
         $this->title="会员服务 - 帮助中心";
         $this->display();
     }
+	function assetaccount(){
+        $this->title="资产账户 - 帮助中心";
+        $this->display();
+    }
     function pay(){
         $this->title="支付方式 - 帮助中心";
         $this->display();

@@ -65,10 +65,6 @@ class JifenAction extends IniAction {
         $this->path=$cat->getPath($info['cid']);
         $this->title="$info[title] - 积分商城";
         $this->display();
-<<<<<<< .mine
-    }	
-=======
-    }
->>>>>>> .r5104
+
 	
 }

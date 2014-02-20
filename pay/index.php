@@ -45,7 +45,7 @@ if(!empty($_POST))
     $reqHandler->setParameter("time_start",date("YmdHis"));  //订单生成时间
     $reqHandler->setParameter("time_expire", "");             //订单失效时间
     $reqHandler->setParameter("buyer_id", "");                //买方财付通帐号
-    $reqHandler->setParameter("goods_tag", $_POST['order_id_arr']);               //商品标记
+    $reqHandler->setParameter("goods_tag", isset($_POST['order_id_arr'])?$_POST['order_id_arr']:"");               //商品标记
     $reqHandler->setParameter("trade_mode",$_POST['trade_mode']);              //交易模式（1.即时到帐模式，2.中介担保模式，3.后台选择（卖家进入支付中心列表选择））
     $reqHandler->setParameter("transport_desc","");              //物流说明
     $reqHandler->setParameter("trans_type","1");              //交易类型
@@ -56,9 +56,9 @@ if(!empty($_POST))
     $tenpayUrl=$reqHandler->getRequestURL();
     $debugInfo=$reqHandler->getDebugInfo();
     
-    echo  $tenpayUrl;
+    //echo  $tenpayUrl;
     //转向支付页面
-   // header("Location:$tenpayUrl");
+    header("Location:$tenpayUrl");
  }
  else
  {
@@ -102,8 +102,10 @@ a:hover {
     <tr>
       <td width="381" align="left" valign="middle"><a href="http://www.aishangfei.net" target="_blank"><img src="image/logo.gif" border="0"></a> 在线支付</td>
       <td width="379" align="right" valign="middle" font style="color:#000000;font-size:12px;">
-		<A  href="/" target="_blank">爱尚飞首页</A> | 
-		<a href="http://www.aishangfei.net/yeepay" target="_blank">易宝ePOS支付</a>
+		<A  href="/" target="_blank">爱尚飞首页</A> |
+        <a href="../alipay" >支付宝</a> |
+          <a href="../pay" >财付通</a> |
+          <a href="../yeepay" >易宝ePOS支付</a>
 	  </td>
     </tr>
   </table>

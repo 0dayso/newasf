@@ -7,7 +7,7 @@
         <!--现金卷-->
       <div class="right" id="memberR">
         	<h1 class="nav_tit">现金券</h1>
-            <div class="top_tit">现金券余额：<strong class="csp16">{$overage}</strong>元<span class="right"><a href="#" class="cBlue">如何使用？</a></span></div>
+            <div class="top_tit">现金券余额：<strong class="csp16"><empty name="overage">0<else/>{$overage}</empty></strong>元<span class="right"><a href="{:U('/help/assetaccount#help_ul0')}" target="_blank" class="cBlue">如何使用？</a></span></div>
             <div id="list_box">
             	<div id="list_nav"><a class="active">使用记录</a><a>发放记录</a></div>
                 <div id="list_con">
@@ -87,7 +87,7 @@
 			});
 		//AJAX分页函数
 		function exchange_ajax(totlePage,page){
-			$.getJSON("{:U('/Member/Assetaccount/cashcoupon/')}",{type:'exchange',p:page},function(data){
+			$.getJSON("{:U('/Member/Assetaccount/cashcoupon/')}",{t:'exchange',p:page},function(data){
 				if(data.status==1){
 					var dataList=data.exchange,html='<tr class="tit"><td class="first">订单ID</td><td>使用日期</td><td>航班行程</td><td>使用金额</td><td>状态</td></tr>';
 					$.each(dataList,function(i,item){
@@ -122,7 +122,7 @@
 			});
 		//AJAX分页函数
 		function detail_ajax(totlePage,page){
-			$.getJSON("{:U('/Member/Assetaccount/cashcoupon/')}",{type:'detail',p:page},function(data){
+			$.getJSON("{:U('/Member/Assetaccount/cashcoupon/')}",{t:'detail',p:page},function(data){
 				if(data.status==1){
 					var dataList=data.list,html='<tr class="tit"><td class="first">发放日期</td><td>发放金额</td><td>获取方式</td><td>过期日期</td></tr>';
 					$.each(dataList,function(i,item){

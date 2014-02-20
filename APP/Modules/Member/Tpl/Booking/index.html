@@ -10,9 +10,9 @@
         	<h1 class="nav_tit">订票中心</h1>
             <div id="list_box">
             	<div id="list_nav">
-                    <a href="#one" class="<if condition='$_REQUEST.status eq pending'>active</if><empty name='_REQUEST.status'>active</empty>" id="#one" >待支付订单</a>
-                    <a href="#two" class="<if condition='$_REQUEST.status eq process'>active</if>">已付款订单</a>
-                    <a href="#three" class="<if condition='$_REQUEST.status eq cancel'>active</if>">已取消订单</a>
+                    <a class="<if condition='$_REQUEST.status eq pending'>active</if><empty name='_REQUEST.status'>active</empty>" id="#one" >待支付订单</a>
+                    <a class="<if condition='$_REQUEST.status eq process'>active</if>">已付款订单</a>
+                    <a class="<if condition='$_REQUEST.status eq cancel'>active</if>">已取消订单</a>
                 </div>
                 <div id="list_con" class="booking">
                 	<div class="list_block <if condition='$_REQUEST.status eq pending'>on</if><empty name='_REQUEST.status'>on</empty>" id="executory">
@@ -20,7 +20,7 @@
                         <div id="pay_hint">您有<span>{$pending.count}</span>笔国际机票订单需要进行支付，合计应付金额为<span>{$pending.price}</span>元。我们建议您尽快付款，延迟未付款系统会自动取消订单，且航空公司很可能会随时取消您的舱位。</div>
                     	<table width="788" border="0" align="center" cellpadding="0" cellspacing="0">
 						<tr class="tit">
-							<td class="first"><input type="checkbox" class="checkbox all" checked="checked"/>全选<span class="right">订单ID</span></td>
+							<td class="first"><span class="right">订单ID</span><input type="checkbox" class="checkbox all" checked="checked"/>全选</td>
                             <td>航班行程</td>
                             <td>价格（含税）</td>
                             <td>现金券</td>
@@ -108,8 +108,8 @@
         </div><!--list_block-->
         
         <ul id="hint">
-			<li class="on"><span>温馨提示:</span><p>1.因系统每日处理的数据量较大,部分刚提交的订单可能会略有延迟(一分钟以内)才能显示,为此给您带来的不便请见谅；<br/>2.订单中现金券一栏如显示“未使用”，即表示您可使用现金券但未选择使用，如需使用请取消该订单并重新预订；<br/>  注意：机票价格实时变动，重新预订同一航程价格有可能跟原订单价格不一致。<br/>3.如需选择其它支付方式，请点击“<a href="#">帮助中心-支付方式</a>”。</p></li>
-        	<li><span>温馨提示:</span><p>已出票订单如需退票改签请联系您的专职旅行顾问 <a href="{:U('/Adviser')}/review_{$userInfo.user.id}">{$userInfo.user.name}</a> ；</p></li>
+			<li class="on"><span>温馨提示:</span><p>1.因系统每日处理的数据量较大,部分刚提交的订单可能会略有延迟(一分钟以内)才能显示,为此给您带来的不便请见谅；<br/>2.订单中现金券一栏如显示“未使用”，即表示您可使用现金券但未选择使用，如需使用请取消该订单并重新预订；<br/>  注意：机票价格实时变动，重新预订同一航程价格有可能跟原订单价格不一致。<br/>3.如需选择其它支付方式，请点击“<a href="{:U('/help/pay')}" target="_blank">帮助中心-支付方式</a>”。</p></li>
+        	<li><span>温馨提示:</span><p>已出票订单如需退票改签请联系您的专职旅行顾问 <a href="{:U('/Adviser')}/review_{$userInfo.user.id}" target="_blank">{$userInfo.user.name}</a> ；</p></li>
             <li></li>
         </ul>
         <script type="text/javascript">

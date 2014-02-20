@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{$title}-爱尚飞手机网</title>
+<link href="__PUBLIC__/mobile/css/global.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+#topnav .icon{width:80px;}
+.box h2{padding-right:42px;}
+#order{padding:10px;color:#666;}
+#order p{background-color:#FFF;line-height:50px;text-align:center;}
+#tab a{display:inline-block;width:25%;margin-right:10px;background-color:#67b1e4;text-align:center;color:#FFF;line-height:30px; cursor:pointer;}
+#tab a:hover,#tab a.on{background-color:#FFF;color:#ff8400;}
+.list{background-color:#FFF;padding:10px;border-bottom:1px solid #e7e5e5;}
+.list li{line-height:26px;}
+.list li input{float:right;margin-right:10px;}
+.list li span{color:#333;}
+.list li em{font-style:normal;color:#ff840f;}
+.list li a{color:#2690d8;}
+</style>
+</head>
+
+<body>
+<div id="page">
+	<div id="content">
+    	<h1 id="topnav"><span class="left icon"><a href="{:U('/')}" class="icon-home">首页</a></span>我的爱尚飞<span class="right" id="exit">退出登录</span></h1>
+    	<div class="box">
+        	<h2><span class="left icon"><a href="{:U('/Member')}" class="icon-return">返回</a></span>我的订单</h2>
+    	</div>
+		<div id="order">
+    		<div id="tab">
+            	<a href="{:U('/Member/bookingPending')}">待处理订单</a>
+            	<a class="on">已支付订单</a>
+            	<a href="{:U('/Member/bookingCancel')}">已取消订单</a>
+			</div>
+    		<div id="order_list" status="pending" page="1">
+				<p>您没有已付款订单，请确认是否有待支付订单！</p>
+				<ul class="list">
+     				<li><span>订单 ID ：</span>IF51DCC0F13A800B0064</li>
+     				<li><span>航班行程：</span> 广州-台北&nbsp;&nbsp;往返</li>
+     				<li><span>价格（含税）：</span><em>￥2514</em></li>
+                    <li><span>现金券：</span>无</li>
+                    <li><span>应付金额：</span><em>￥2514</em></li>
+     				<li><span>下单时间：</span>2013-09-26  10:26</li>
+     				<li><span>订单状态：</span>已出票</li>
+				</ul>
+                <ul class="list">
+     				<li><span>订单 ID ：</span>IF51DCC0F13A800B0064</li>
+     				<li><span>航班行程：</span> 广州-台北&nbsp;&nbsp;往返</li>
+     				<li><span>价格（含税）：</span><em>￥2514</em></li>
+                    <li><span>现金券：</span>200</li>
+                    <li><span>应付金额：</span><em>￥2314</em></li>
+     				<li><span>下单时间：</span>2013-09-26  10:26</li>
+     				<li><span>订单状态：</span>已出票</li>
+				</ul>
+			</div>
+		</div>
+        <div id="loading"><img src="__PUBLIC__/mobile/images/loading.gif"></div>
+    	<div id="reminder"></div>
+	</div>
+</div>
+<include file="Public:CommonJs" />
+<script type="text/javascript">
+$(function(){
+	//自动刷新内容
+	$(window).scroll(function(){
+		//被卷去的高度
+		var scrollTop=$(this).scrollTop();
+		//可视区域高度
+		var viewHeight=$(window).height();
+		//页面高度
+		var pageHeight=$('body').height();
+		if((scrollTop+viewHeight)>=(pageHeight)){
+			var status=$('#order_list').attr('status');//订单状态,待付款'pending',已支付'process',已取消'cancel'
+			var page=parseInt($('#order_list').attr('page'))+1,addto=1;//page为页数;addto为1是追加数据,0为更迭数据
+			ajax_list(status,page,addto);//调用AJAX的函数
+			$('#order_list').attr('page',page);//更新分页数
+			}
+		});
+	});
+//AJAX函数
+function ajax_list(status,page,addto){
+	$('#loading').show();//显示加载中
+	$('#reminder').hide();
+	$.getJSON("{:U('/Member/booking')}",{status:status,p:page},function(data){
+		if(data.status==1){
+			var html='',list=data.list;
+            if(list){
+			$.each(list,function(i,item){
+				html +='<ul class="list">';
+				html +='<li><span>订单 ID ：</span>'+ item.order_id +'</li>';
+				html +='<li><span>航班行程：</span>'+ item.from_city +'-'+ item.to_city +'&nbsp;&nbsp;'+item.lineType+'</li>';
+				html +='<li><span>价格（含税）：</span><em>￥2514</em></li>';
+				html +='<li><span>现金券：</span>无</li>';
+				html +='<li><span>应付金额：</span><em>￥2514</em></li>';
+				html +='<li><span>下单时间：</span>'+ item.order_datetime+ '</li>';
+				html +='<li><span>订单状态：</span>'+ item.status +'</li>';
+				html +='</ul>';
+				if(addto==0){
+					$('#loading').hide();
+				    $('#order_list').html(html);
+				}else{
+				    $('#loading').hide();
+				    $('#order_list').append(html);
+				    }
+				});
+            }else{
+                $('#loading').hide();
+                $('#order_list').html('<p>您没有已付款订单，请确认是否有待支付订单！</p>');
+            }
+		}else{
+				$('#loading').hide();
+				$('#reminder').show().text(data.info);
+				}
+		});
+	}
+</script>
+</body>
+</html>

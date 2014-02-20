@@ -63,8 +63,6 @@ $config=array(
 
     'LOG_RECORD' => true, // 开启日志记录
     'LOG_LEVEL'  =>'EMERG,ALERT', // 只记录EMERG ALERT CRIT ERR 错误
-
-
 );
 $web_config = include_once "web_config.php";
 return array_merge($config,$web_config);

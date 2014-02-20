@@ -1,0 +1,67 @@
+<style type="text/css">
+.border_div{border:1px solid #999; font-size:12px;}
+.border_div span{font-weight:bold;}
+.border_bottom{border-bottom:1px solid #CCC;padding-left:20px; margin-top:5px; margin-bottom:5px;padding-bottom:5px;}
+</style>
+
+<div class="border_div">
+    <div class="border_bottom"><span>订单ID号:</span>{$list.ddbh}&nbsp;&nbsp;&nbsp;{$list['zf_status']}</div>  
+      
+	<div class="border_bottom"><span>航程信息:</span>
+    	<div style="margin-left:90px; margin-top:-12px;">
+        	<if condition="$list['hc_d'] eq 1">
+                单程：{$list['hd_info'][0]->hbh} {$list['hc_n']}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日期：{$list['hd_info'][0]->cfsj}
+            </if>            
+            <if condition="$list['hc_d'] eq 2">
+                去程：{$list['hd_info'][0]->hbh} {$list['hc_n1']}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日期：{$list['hd_info'][0]->cfsj}
+                <br/><br/>          
+                返程：{$list['hd_info'][0]->hbh} {$list['hc_n2']}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日期：{$list['hd_info'][1]->cfsj}
+            </if>
+        </div>
+	</div> 
+         
+	<div class="border_bottom"><span>票面价格：</span><empty name="list['xsj']">0<else/>{$list.xsj}</empty></div>
+    <div class="border_bottom"><span>税费：</span><empty name="list['sf']">0<else/>{$list.sf}</empty></div>  
+    <div class="border_bottom"><span>保险：</span><empty name="list['taxa']">0<else/>{$list.taxa}</empty></div>     
+	<div class="border_bottom"><span>现金券使用：</span>无</div>    
+	<div class="border_bottom"><span>应付金额：</span>{$list['ysje']}</div>    
+	<div class="border_bottom"><span>出票时间：</span>{$list['cpsj']|date='Y-m-d H:i:s',###}</div>  
+       
+    <div class="border_bottom"><span>乘客信息：</span>
+    	<empty name="men">0<else/>{$men}</empty>成人&nbsp;&nbsp;/&nbsp;&nbsp;
+        <empty name="chl">0<else/>{$chl}</empty>儿童&nbsp;&nbsp;/&nbsp;&nbsp;
+        <empty name="baby">0<else/>{$baby}</empty>婴儿
+		<br/><br/>
+    	<table cellpadding="10" cellspacing="50" width="700px" border="1">
+        	<thead>
+                <tr style="background:#0CF; text-align:center;">
+                    <td>姓名</td>
+                    <td>乘客类型</td>
+                    <td>证件号码</td>
+                    <td>票价</td>
+                    <td>机建/参考税</td>
+                    <td>现金券</td>
+                    <td>结算价</td>
+                </tr>
+            </thead>
+            <tbody>
+            	<volist name="cjr_info" id="vo">
+                    <tr>
+                        <td>{$vo->cjr_cjrxm}</td>
+                        <td>{$vo->lx}</td>
+                        <td>{$vo->cjr_clkid}</td>
+                        <td>{$vo->cjr_xsj}</td>
+                        <td>{$vo->cjr_jsf}/{$vo->cjr_tax}</td>
+                        <td>无</td>
+                        <td>{$vo->cjr_xsj+$vo->cjr_jsf+$vo->cjr_tax}</td>
+                    </tr>
+           		</volist>
+            </tbody>
+        </table>
+	</div>
+	<div class="border_bottom"><span>联系人信息：</span>
+        姓名：{$list['nklxr']}&nbsp;&nbsp;&nbsp;
+        手机号：<empty name="list['lxdh']">这位旅客太大意了，忘了留下手机号码<else/>{$list['lxdh']}</empty>&nbsp;&nbsp;&nbsp; 
+        邮箱：<empty name="list['email']">这位旅客没有留下邮箱<else/>{$list['email']}</empty>
+    </div>
+</div>

@@ -21,12 +21,51 @@ class MemberAction extends CommonAction {
         if(I('so_date1')&& I('so_date2')){
             $map['create_time']=array(array('egt',strtotime(I('so_date1'))),array('elt',strtotime(I('so_date2'))));
         }
-
         $this->map=$map;
         $this->order='id desc';
         $this->relation = true;
         parent::index(D("Member"));
-        $this->display();
+		
+		$info=$this->list;
+		foreach($info as $key=>$val){
+			$points=D('Points'); 
+			$wh['member_id']=$val['id'];
+			
+			//积分总数
+			$wh['type2']=0;	
+			$jifen=$points->where($wh)->sum('points');
+			if(empty($jifen)){
+				$info[$key]['jifen']=0;
+			}else{
+				$info[$key]['jifen']=$jifen;
+			}
+			//爱钻总数
+			$wh['type2']=1;	
+			$aizuan=$points->where($wh)->sum('points');
+			if(empty($aizuan)){
+				$info[$key]['aizuan']=0;
+			}else{
+				$info[$key]['aizuan']=$jifen;
+			}
+			
+			//待支付订单
+			$orderDB=D('AsmsOrder');
+			$where['hyid']=$val['id'];
+			$where['zf_fkf']=0;
+			$totel_zf=$orderDB->where($where)->select();
+			$info[$key]['totel_zf']=count($totel_zf);//待支付订单数
+
+			if($info[$key]['totel_zf'] != 0){
+				foreach($totel_zf as $k=>$v){
+					$arrId[]=$v['ddbh'];//待支付订单ID号
+				}
+			}
+				
+		}
+		
+		$this->assign('arrId',$arrId);
+		$this->assign('info',$info);
+ 		$this->display();
 	}
 
     function add(){
@@ -321,6 +360,67 @@ class MemberAction extends CommonAction {
         $this->display();
 
     }
+	
+	//查看订单
+	function order_view(){
+		$orderDB=D('AsmsOrder');
+		$where['ddbh']=array('in',I('id'));
+		$list=$orderDB->where($where)->find();
+
+		$list['hc']= $orderDB->format($list['hc']);
+		$list['hc']=str_split($list['hc'],3);
+		$list['hc_a'] = D("City")->getCity($list['hc']);
+		$count=count($list['hc_a']);
+		if($list['hc_a'][0] == $list['hc_a'][$count-1]){
+			$list['hc_d']=2;			
+			//去程
+			for($i=0;$i<=$count-2;$i++){
+				$hc1[]=$list['hc_a'][$i];
+			}
+			//返程
+			$hc2[]=$list['hc_a'][$count-2];
+			$hc2[]=$list['hc_a'][$count-1];
+			
+			$list['hc_n1']=implode('->',$hc1);
+			$list['hc_n2']=implode('->',$hc2);
+		}else{
+			$list['hc_d']=1;
+			$list['hc_n']=implode('->',$list['hc_a']);
+		}
+				
+		//航班信息
+		$hd_info=json_decode($list['hd_info']);
+		$list['hd_info']=$hd_info;
+
+		//乘客信息
+		$cjr_info=json_decode($list['cjr_info']);
+		$cjr_info=get_object_vars($cjr_info);
+		foreach($cjr_info as $k=>$v){
+			if($v->cjr_cjrlx == 1){$v->lx = '成人';$men++;$this->assign('men',$men);}
+			if($v->cjr_cjrlx == 2){$v->lx = '儿童';$chl++;$this->assign('chl',$chl);}
+			if($v->cjr_cjrlx == 3){$v->lx = '婴儿';$baby++;$this->assign('baby',$baby);}
+		}
+		
+		//支付状态
+		if($list['zf_fkf'] == 0){			
+			$list['zf_status']="[待支付]";
+		}elseif($list['zf_fkf'] == 1){
+			$list['zf_status']="[已付款]";
+		}else{
+			$list['zf_status']="[已取消]";
+		}
+		
+		$this->assign('cjr_info',$cjr_info);
+	    $this->assign('list',$list);
+	    $this->display();
+	}
+
+	
+	
+	
+	
+	
+	
 
 }
 ?>

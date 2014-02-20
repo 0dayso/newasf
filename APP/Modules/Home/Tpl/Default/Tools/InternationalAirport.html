@@ -1,0 +1,97 @@
+<include file="public:header" />
+<link rel="stylesheet" href="__PUBLIC__/css/interticket.css" type="text/css" />
+<link rel="stylesheet" href="__PUBLIC__/css/index.css" type="text/css" />
+    <div id="cont">
+        <div class="wd1000 mt10 interTic">
+        	<h1 class="h1_tit_nav">你当前所在位置：<a href="{:U('/')}" class="sy">首页</a> > <a class="cur">低价国际机票预约</a></h1>
+			<div class="left ml10" id="interTic270">
+            	<!--国际机票查询-->
+				<div id="ticket_Query">
+                	<div class="covr_c"></div>
+                    <div class="cont_c">
+                    	<div class="cont_c_b">
+                        	<h1 class="spr htop"></h1>
+                            <include file="Public:searchform" />
+                        </div>
+                    </div>
+                    <div class="covr_c"></div>
+                </div><!--国际机票查询-->
+                <!--认证-->
+                <div id="renzheng_lan_s" class="mt10">
+                	<ul>
+                    	<li><label class="lb0"></label><span>100%国际航协认证,<br/>第一手真实价格</span></li>
+                        <li><label class="lb1"></label><span>100%中国航协认证,<br/>资质保证，订票无忧</span></li>
+                    </ul>
+                </div><!--认证-->
+			</div>
+			<div class="right mr10" id="interTic700">
+            	<div class="tools_box" id="intr_airport">
+                	<h2><strong>法兰克福机场</strong></h2>
+                    <div class="cont"><div class="airport_img"><img width="225" height="155"  src="" /></div>法兰克福国际机场是德国的国家航空公司德国汉莎航空公司的一个基地。由于法兰克福的容量有限，因此汉莎航空公司将业务分别放在法兰克福和慕尼黑的慕尼黑国际机场。是欧洲第一大机场，虽客运量不及戴高乐机场和希思罗机场，但占地面积、飞机承载超过两大机场。<br/>　　法兰克福国际机场比伦敦的希斯罗国际机场提供更多的飞行目的地，但按乘客流量来算，法兰克福国际机场在欧洲位列第三位，排在伦敦的希斯罗国际机场和巴黎的夏尔·戴高乐国际机场之后。
+                    </div>
+                </div>
+                
+                <div id="airticket" class="mt10">
+                	<div class="tab"><a class="on">法兰克福特价机票-到达</a><a>法兰克福特价机票-出发</a></div>
+                    <div class="at_box on">
+                    	<ul>
+                        	<li class="pr70">上海-法兰克福<a>查看</a></li>
+                            <li class="pr70">上海-法兰克福<a>查看</a></li>
+                            <li>上海-法兰克福<a>查看</a></li>
+                            <li class="pr70">上海-法兰克福<a>查看</a></li>
+                            <li class="pr70">上海-法兰克福<a>查看</a></li>
+                            <li>上海-法兰克福<a>查看</a></li>
+                            <li class="pr70">上海-法兰克福<a>查看</a></li>
+                            <li class="pr70">上海-法兰克福<a>查看</a></li>
+                            <li>上海-法兰克福<a>查看</a></li>
+                            <li class="pr70">上海-法兰克福<a>查看</a></li>
+                            <li class="pr70">上海-法兰克福<a>查看</a></li>
+                            <li>上海-法兰克福<a>查看</a></li>
+                            <li class="pr70">上海-法兰克福<a>查看</a></li>
+                            <li class="pr70">上海-法兰克福<a>查看</a></li>
+                            <li>上海-法兰克福<a>查看</a></li>
+                            <li class="pr70">上海-法兰克福<a>查看</a></li>
+                            <li class="pr70">上海-法兰克福<a>查看</a></li>
+                            <li>上海-法兰克福<a>查看</a></li>
+                        </ul>
+                        <div class="more"><a href="#">更多法兰克福到达机票>></a></div>
+                    </div>
+                    <div class="at_box">2</div>
+                </div>
+                
+                <div class="tools_box mt10" id="fquery_li">
+                	<h2><span>法兰克福机场航班查询</span></h2>
+                    <ul>
+                    	<li>><a href="#">法兰克福-上海</a></li>
+                        <li>><a href="#">法兰克福-上海</a></li>
+                        <li>><a href="#">法兰克福-上海</a></li>
+                        <li>><a href="#">法兰克福-上海</a></li>
+                        <li>><a href="#">法兰克福-上海</a></li>
+                        <li>><a href="#">法兰克福-上海</a></li>
+                        <li>><a href="#">法兰克福-上海</a></li>
+                        <li>><a href="#">法兰克福-上海</a></li>
+                        <li>><a href="#">法兰克福-上海</a></li>
+                        <li>><a href="#">法兰克福-上海</a></li>
+                        <li>><a href="#">法兰克福-上海</a></li>
+                        <li>><a href="#">法兰克福-上海</a></li>
+                        <li>><a href="#">法兰克福-上海</a></li>
+                        <li>><a href="#">法兰克福-上海</a></li>
+                        <li>><a href="#">法兰克福-上海</a></li>
+                        <li>><a href="#">法兰克福-上海</a></li>
+                    </ul>
+                </div>
+                
+			</div>
+        </div>
+    </div>
+  <include file="public:footer" />
+  
+<script type="text/javascript">
+$(function(){
+	$("#airticket .tab a").click(function(){
+		var i=$(this).index();
+		$(this).addClass("on").siblings().removeClass("on");
+		$("#airticket .at_box").eq(i).addClass("on").siblings().removeClass("on");
+		});
+	});
+</script>

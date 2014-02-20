@@ -9,7 +9,7 @@
         <!--现金卷-->
       <div class="right" id="memberR">
         	<h1 class="nav_tit">我的爱钻</h1>
-            <div class="top_tit">累计爱钻：<span class="aizuan">x{$totle}</span>　　　共<strong class="csp16">{$totle}</strong>枚<span class="instructions"><a href="#" class="cBlue">如何使用？</a></span><span class="right"><a href="#" class="cBlue">查看可兑换好礼</a></span></div>
+            <div class="top_tit">累计爱钻：<span class="aizuan">x<empty name="totle">0<else/>{$totle}</empty></span>　　　共<strong class="csp16"><empty name="totle">0<else/>{$totle}</empty></strong>枚<span class="instructions"><a href="{:U('/help/assetaccount#help_ul2')}" target="_blank" class="cBlue">如何使用？</a></span><span class="right"><a href="{:U('/jifen/lists/cid/56')}" target="_blank" class="cBlue">查看可兑换好礼</a></span></div>
             <div id="list_box">
             	<div id="list_nav"><a class="active">爱钻明细</a><a>兑换记录</a></div>
                 <div id="list_con">
@@ -62,7 +62,7 @@
                                     <td>{$vo.num}</td>
                                     <td><span class="aizuan">x<?php echo $vo['jifen']*$vo['num']?></span></td>
                                     <td>{$vo.create_time}</td>
-                                    <td class="blue">{$vo.status}</td>
+                                    <td class="blue">{$vo.status2}</td>
                                 </tr>
                             </volist>
 						</table>
@@ -93,7 +93,7 @@
 			});
 		//AJAX分页函数
 		function detail_ajax(totlePage,page){
-			$.getJSON("{:U('/Member/Assetaccount/aizuan/')}",{type:'detail',p:page},function(data){
+			$.getJSON("{:U('/Member/Assetaccount/aizuan/')}",{t:'detail',p:page},function(data){
 				if(data.status==1){
 					var dataList=data.list,html='<tr class="tit"><td class="first">获取日期</td><td>积Fun来源</td><td>积Fun数</td><td>过期日期</td></tr>';
 					$.each(dataList,function(i,item){
@@ -127,7 +127,7 @@
 			});
 		//AJAX分页函数
 		function exchange_ajax(totlePage,page){
-			$.getJSON("{:U('/Member/Assetaccount/aizuan/')}",{type:'exchange',p:page},function(data){
+			$.getJSON("{:U('/Member/Assetaccount/aizuan/')}",{t:'exchange',p:page},function(data){
 				if(data.status==1){
 					var dataList=data.exchange,html='<tr class="tit"><td class="first">礼品订单号</td><td>礼品名称</td><td>兑换爱钻</td><td>数量</td><td>爱钻小计</td><td>兑换日期</td><td>订单状态</td></tr>';
 					$.each(dataList,function(i,item){
@@ -148,7 +148,7 @@
 						html +='<span class="aizuan">'+'x'+(item.jifen)*(item.num)+'</span>';
 						html +='</td>';
                         html += '<td>'+ item.create_time +'</td>';
-                        html += '<td class="blue">'+ item.status +'</td>';
+                        html += '<td class="blue">'+ item.status2 +'</td>';
                         html += '</tr>';						
 						});
 					$('#exchange table').html(html);

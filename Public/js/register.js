@@ -82,7 +82,7 @@ $(function(){
 		else{$(this).parent().removeAttr("val");pro.html("<img src='"+js_path+"alterRight.gif' />");}
 	});
 	//验证手机号
-	$("#reg_ph").blur(function(){
+	$("#reg_ph2").blur(function(){
 		var re= /^1[3|4|5|8][0-9]\d{4,8}$/;
 		var value=$(this).val();
 		var pro=$(this).next();
@@ -100,7 +100,7 @@ $(function(){
 		}
 	});
 
-    $("#reg_ph2").blur(function(){
+    $("#reg_ph").blur(function(){
         var re= /^1[3|4|5|8][0-9]\d{4,8}$/;
         var value=$(this).val();
         var pro=$(this).next();

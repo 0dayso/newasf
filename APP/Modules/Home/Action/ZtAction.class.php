@@ -81,15 +81,27 @@ class ZtAction extends IniAction {
 	function airchina_sales(){
         $this->title='中国国际航空';
         $this->display();
-    }	
+    }
 	function virgin_atlantic_sales(){
         $this->title='维珍航空';
+        $this->display();
+    }
+	function singaporeair_sales(){
+        $this->title='新加坡航空';
+        $this->display();
+    }
+	function hnair_sales(){
+        $this->title='海南航空';
         $this->display();
     }
 	
 	
 	
-	
+	/*特别专题*/
+	function firstClass(){
+        $this->title='头等舱 / 商务舱预订专区';
+        $this->display();
+    }
 	
 
 	function weidianying(){

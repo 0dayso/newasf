@@ -9,12 +9,10 @@
                 </li>
                 <li>
                     <label>注册日期：</label>
-                    <input type="text" size="10"  class="date textInput valid"  name="so_date1" value="{$_REQUEST.so_date1}">
-                    <a class="inputDateButton" href="javascript:;">选择</a> &nbsp;&nbsp;-
+                    <input type="text" size="10"  class="date textInput valid"  name="so_date1" value="{$_REQUEST.so_date1}">                    
                 </li>
                 <li>
-                    <input type="text" size="10"  class="date textInput valid"  name="so_date2" value="{$_REQUEST.so_date2}">
-                    <a class="inputDateButton" href="javascript:;">选择</a>
+                    <input type="text" size="10"  class="date textInput valid"  name="so_date2" value="{$_REQUEST.so_date2}">                   
                 </li>
             </ul>
             <div class="subBar">
@@ -37,27 +35,35 @@
             <li><a class="icon" href="__URL__/password/id/{sid_user}" target="dialog" mask="true" warn="请选择用户"><span>修改密码</span></a></li>
         </ul>
     </div>
-
+<style type="text/css">
+th{
+	text-align:center;
+}
+</style>
     <table class="table" width="100%" layoutH="115">
         <thead>
         <tr>
-            <th width="50">编号</th>
+            <th width="30">编号</th>
             <th width="100" orderField="username" <if condition="$_REQUEST._order eq 'username'">class="{$_REQUEST._sort}"</if>>用户名</th>
-            <th width="100" orderField="name" <if condition="$_REQUEST._order eq 'name'">class="{$_REQUEST._sort}"</if>>昵称</th>
-            <th width="90" orderField="mobile" <if condition="$_REQUEST._order eq 'mobile'">class="{$_REQUEST._sort}"</if>>手机</th>
-            <th width="100" orderField="email" <if condition="$_REQUEST._order eq 'email'">class="{$_REQUEST._sort}"</if>>Email</th>
-            <th width="60" orderField="create_time" <if condition="$_REQUEST._order eq 'create_time'">class="{$_REQUEST._sort}"</if>是>添加时间</th>
-            <th width="120" orderField="last_login_time" <if condition="$_REQUEST._order eq 'last_login_time'">class="{$_REQUEST._sort}"</if>>上次登录</th>
+            <th width="80" orderField="name" <if condition="$_REQUEST._order eq 'name'">class="{$_REQUEST._sort}"</if>>昵称</th>
+            <th width="60" orderField="mobile" <if condition="$_REQUEST._order eq 'mobile'">class="{$_REQUEST._sort}"</if>>手机</th>
+            <th width="120" orderField="email" <if condition="$_REQUEST._order eq 'email'">class="{$_REQUEST._sort}"</if>>Email</th>
+            <th width="70" orderField="create_time" <if condition="$_REQUEST._order eq 'create_time'">class="{$_REQUEST._sort}"</if>是>添加时间</th>
+            <th width="110" orderField="last_login_time" <if condition="$_REQUEST._order eq 'last_login_time'">class="{$_REQUEST._sort}"</if>>上次登录</th>
             <th width="50" orderField="login_count" <if condition="$_REQUEST._order eq 'login_count'">class="{$_REQUEST._sort}"</if>>登录次数</th>
-            <th width="80" orderField="status" <if condition="$_REQUEST._order eq 'status'">class="{$_REQUEST._sort}"</if>>状态</th>
-            <th width="120" orderField="status" <if condition="$_REQUEST._order eq 'user_name'">class="{$_REQUEST._sort}"</if>>专属顾问</th>
-
+            <th width="30" orderField="status" <if condition="$_REQUEST._order eq 'status'">class="{$_REQUEST._sort}"</if>>状态</th>
+            <th width="60" orderField="status" <if condition="$_REQUEST._order eq 'user_name'">class="{$_REQUEST._sort}"</if>>专属顾问</th>
             <th width="25">来路</th>
-            <th width="80">操作</th>
+            <th width="60">自主注册</th>
+            <th width="60">积fun</th>
+            <th width="60">爱钻</th>
+            <th width="70">待支付订单</th>
+            <th width="80">人工添加订单</th>
+            <th width="40">操作</th>
         </tr>
         </thead>
         <tbody>
-        <volist id="vo" name="list">
+        <volist id="vo" name="info">
             <tr target="sid_user" rel="{$vo['id']}">
                 <td>{$vo['id']}</td>
                 <td>{$vo['username']}</td>
@@ -70,7 +76,18 @@
                 <td>{$vo['status']}</td>
                 <td <eq name="vo.user.status" value="0">class="bg_red"</eq>>{$vo.user.name}</td>
                 <td>{$vo.source}</td>
-                <td><a href="__URL__/edit/id/{$vo.id}" target="dialog" rel="edit" width="650">[编辑]</a></td>
+                <td>是</td>
+                <td>{$vo.jifen}</td>
+                <td>{$vo.aizuan}</td>
+                <td>
+                	<if condition="$vo['totel_zf'] eq 0">
+                    	（<span style=" color:#F00;">0</span>）
+                     <else/>
+                     	（<span style=" color:#F00;">{$vo.totel_zf}</span>）<a href="__URL__/order_view/id/{$arrId}" style="color:#06F;" target="dialog" rel="edit">查看</a>
+                     </if>
+                </td>
+                <td><a href="__URL__/order_add"  style="color:#06F;" target="dialog" rel="edit">添加</a></td>
+                <td><a href="__URL__/edit/id/{$vo.id}" target="dialog" rel="edit">[编辑]</a></td>
             </tr>
         </volist>
         </tbody>

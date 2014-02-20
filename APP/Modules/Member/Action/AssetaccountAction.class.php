@@ -1,7 +1,7 @@
 <?php
-// 首页控制器
-class AssetaccountAction extends IniAction {
-	
+
+// 资产账户
+class AssetaccountAction extends IniAction {	
 	function index(){
 		$this->title="会员中心";
 		$this->display();
@@ -22,17 +22,15 @@ class AssetaccountAction extends IniAction {
 			$this->overage=0;
 		}
 		
-		//发放记录
-		$where['member_id']=$userInfo['id'];
-		$where['type2']=2;		
+		//发放记录		
 		$pagesize=12; //每页显示的记录
-		$count= $points->where($where)->count();//总记录数        
+		$count= $points->where($wh)->count();//总记录数		
 		$totlePage=ceil($count/$pagesize);//总页数
 			if($totlePage==0){$totlePage=1;}
 		$page=I('p');//定义当前页
 			if($page<=1){$page=1;}	
 		$offset=($page-1)*$pagesize; 		
-		$list=$points->where($where)->order('create_time DESC')->limit($offset,$pagesize)->select();
+		$list=$points->where($wh)->order('create_time DESC')->limit($offset,$pagesize)->select();
 		
 		foreach($list as $k=>$v){
 		  $time=date("Y",$list[$k]['create_time']);
@@ -43,7 +41,7 @@ class AssetaccountAction extends IniAction {
 		foreach($list as $key=>$value){//向数组加入元素time
 			$list[$key]['time']=$time;
 		}	
-				
+			
 		//---------------------------------------
 		//使用记录
 		$AsmsOrder=D('AsmsOrder');  
@@ -91,10 +89,7 @@ class AssetaccountAction extends IniAction {
 		$this->assign('totlePage1',$totlePage1);
 		$this->assign('page1',$page1);
 		$this->assign('exchange',$cash);
-		
-		//print_r($cash);
-		
-		//使用记录
+
 		$this->title="现金卷";
 		$this->display();
     }	
@@ -104,23 +99,22 @@ class AssetaccountAction extends IniAction {
 	function integral(){
 		$userInfo=$this->userInfo;	//获取会员信息
 		$points=D('Points');    //实例化points 
-				
+		$exchange=D('mall_exchange');
+		
 		//---------------------------------------
 		//积分明细				
 		$wh['member_id']=$userInfo['id'];	
 		$wh['type2']=0;	
-		$this->totle=$points->where($wh)->sum('points');//积分总数
+		$this->totle=$points->where($wh)->sum('points');//积分总数		
 		
-		$where['member_id']=$userInfo['id'];	
-		$where['type']=0;		
 		$pagesize=12; //每页显示的记录
-		$count= $points->where($where)->count();//总记录数        
+		$count= $points->where($wh)->count();//总记录数        
 		$totlePage=ceil($count/$pagesize);//总页数
 			if($totlePage==0){$totlePage=1;}
 		$page=I('p');//定义当前页
 			if($page<=1){$page=1;}	
 		$offset=($page-1)*$pagesize; 		
-		$list=$points->where($where)->order('create_time DESC')->limit($offset,$pagesize)->select();
+		$list=$points->where($wh)->order('create_time DESC')->limit($offset,$pagesize)->select();
 		
 		foreach($list as $k=>$v){
 		  $time=date("Y",$list[$k]['create_time']);
@@ -134,43 +128,42 @@ class AssetaccountAction extends IniAction {
 				
 		//---------------------------------------
 		//兑换记录
-		$exchange=D('mall_exchange');
-		$where['member_id']=$userInfo['id'];			 
-		$num=10;
-		$count1= $exchange->where($where)->count();//总记录数
-		$totlePage1=ceil($count1/$num);//总页数
+		$count1= $exchange->where($wh)->count();//总记录数
+		$totlePage1=ceil($count1/$pagesize);//总页数
 			if($totlePage1==0){$totlePage1=1;}
 		$page1=I('p');//定义当前页
 			if($page1<=1){$page1=1;}
-		$exchange=$exchange->where($where)->field('info,status,create_time,order_num')->limit(($page1-1)*$num.','.$num)->select();			
+		$exchange=$exchange->where($wh)->field('info,status,create_time,order_num')->limit(($page1-1)*$pagesize.','.$pagesize)->select();	
+		
 		foreach($exchange as $k=>$v){
-		  $exchange[$k]['create_time'] = date("Y-m-d",$list[$k]['create_time']);//时间戳格式化		
-		}		
-		foreach($exchange as $key=>$value){	
-			$obj=json_decode($value['info'],true);			
-			$arrs[]=$obj[0]['mall_id'];
-			for($i=$key;$i<count($arrs);$i++){
-				$mall=D('Mall');
-				$whereMallId['id']=$arrs[$i];
-				$mall=$mall->field('img')->where($whereMallId)->find();
-				$img=$mall['img'];
-			}			
-			foreach($obj as $k=>$v) {
-				if($value['status'] == 0){
-					$value['status']='未发货';
-				}else if($value['status'] == 1){
-					$value['status']='已发货';
-				}else{
-					$value['status']='已完成';
-				}
-				$v['status']=$value['status'];
-				$v['create_time']=$value['create_time'];
-				$v['order_num']=$value['order_num'];
-				$v['img']=$img;
-				$arr2[]=$v;
-					
-			}					
-		}	
+			$exchange[$k]['create_time'] = date("Y-m-d",$list[$k]['create_time']);//时间戳格式化		  
+			$obj = json_decode($v['info'],true);//json转化为数组
+			
+			//图片
+			$mall=D('Mall');
+			$whereMallId['id']=$obj['mall_id'];
+			$mall=$mall->field('img')->where($whereMallId)->find();
+			$exchange[$k]['img']=$mall['img'];
+			
+			//订单状态
+			if($v['status'] == 0){
+				$exchange[$k]['status2']='未发货';
+			}elseif($v['status'] == 1){
+				$exchange[$k]['status2']='已发货';
+			}else{
+				$exchange[$k]['status2']='已完成';
+			}
+			
+			$exchange[$k]['mall_id']=$obj['mall_id'];
+			$exchange[$k]['num']=$obj['num'];
+			$exchange[$k]['jifen']=$obj['jifen'];
+			$exchange[$k]['title']=$obj['title'];
+			
+			//删除多余的元素
+			unset($exchange[$k]['info']);
+			unset($exchange[$k]['status']);
+		}
+		
 		 //ajax
 		if ($this->isAjax()){
 			if(I('t')=='detail'){			
@@ -184,7 +177,7 @@ class AssetaccountAction extends IniAction {
 				$data['totlePage']=$totlePage1;
 				$data['page']=$page1;
 				$data['status']=1;
-				$data['exchange']=$arr2;
+				$data['exchange']=$exchange;
 				$this->ajaxReturn($data);
 			}
 		}
@@ -196,7 +189,7 @@ class AssetaccountAction extends IniAction {
 		
 		$this->assign('totlePage1',$totlePage1);
 		$this->assign('page1',$page1);
-		$this->assign('exchange',$arr2);
+		$this->assign('exchange',$exchange);
 		
 		$this->title="我的积分";
 		$this->display();		
@@ -208,7 +201,8 @@ class AssetaccountAction extends IniAction {
 	function aizuan(){		
 		$userInfo=$this->userInfo;	//获取会员信息
 		$points=D('Points');    //实例化points 
-				
+		$exchange=D('mall_exchange');	
+		
 		//爱钻总数				
 		$wh['member_id']=$userInfo['id'];	
 		$wh['type2']=1;	
@@ -216,16 +210,14 @@ class AssetaccountAction extends IniAction {
 		
 		//---------------------------------------
 		//爱钻明细
-		$where['member_id']=$userInfo['id'];	
-		$where['type']=1;		
 		$pagesize=12; //每页显示的记录
-		$count= $points->where($where)->count();//总记录数        
+		$count= $points->where($wh)->count();//总记录数        
 		$totlePage=ceil($count/$pagesize);//总页数
 			if($totlePage==0){$totlePage=1;}
 		$page=I('p');//定义当前页
 			if($page<=1){$page=1;}	
 		$offset=($page-1)*$pagesize; 		
-		$list=$points->where($where)->order('create_time DESC')->limit($offset,$pagesize)->select();
+		$list=$points->where($wh)->order('create_time DESC')->limit($offset,$pagesize)->select();
 		
 		foreach($list as $k=>$v){
 		  $time=date("Y",$list[$k]['create_time']);
@@ -239,42 +231,41 @@ class AssetaccountAction extends IniAction {
 				
 		//---------------------------------------
 		//兑换记录
-		$exchange=D('mall_exchange');
-		$where['member_id']=$userInfo['id'];		 
-		$num=10;
-		$count1= $exchange->where($where)->count();//总记录数
-		$totlePage1=ceil($count1/$num);//总页数
+		$count1= $exchange->where($wh)->count();//总记录数
+		$totlePage1=ceil($count1/$pagesize);//总页数
 			if($totlePage1==0){$totlePage1=1;}
 		$page1=I('p');//定义当前页
 			if($page1<=1){$page1=1;}
-		$exchange=$exchange->where($where)->field('info,status,create_time,order_num')->limit(($page1-1)*$num.','.$num)->select();			
+		$exchange=$exchange->where($wh)->field('info,status,create_time,order_num')->limit(($page1-1)*$pagesize.','.$pagesize)->select();	
+		
 		foreach($exchange as $k=>$v){
-		  $exchange[$k]['create_time'] = date("Y-m-d",$list[$k]['create_time']);//时间戳格式化		
-		}		
-		foreach($exchange as $key=>$value){	
-			$obj=json_decode($value['info'],true);			
-			$arrs[]=$obj[0]['mall_id'];
-			for($i=$key;$i<count($arrs);$i++){
-				$mall=D('Mall');
-				$whereMallId['id']=$arrs[$i];
-				$mall=$mall->field('img')->where($whereMallId)->find();
-				$img=$mall['img'];
-			}			
-			foreach($obj as $k=>$v) {
-				if($value['status'] == 0){
-					$value['status']='未发货';
-				}else if($value['status'] == 1){
-					$value['status']='已发货';
-				}else{
-					$value['status']='已完成';
-				}
-				$v['status']=$value['status'];
-				$v['create_time']=$value['create_time'];
-				$v['order_num']=$value['order_num'];
-				$v['img']=$img;
-				$arr2[]=$v;
-			}					
-		}	
+			$exchange[$k]['create_time'] = date("Y-m-d",$list[$k]['create_time']);//时间戳格式化		  
+			$obj = json_decode($v['info'],true);//json转化为数组
+			
+			//图片
+			$mall=D('Mall');
+			$whereMallId['id']=$obj['mall_id'];
+			$mall=$mall->field('img')->where($whereMallId)->find();
+			$exchange[$k]['img']=$mall['img'];
+			
+			//订单状态
+			if($v['status'] == 0){
+				$exchange[$k]['status2']='未发货';
+			}elseif($v['status'] == 1){
+				$exchange[$k]['status2']='已发货';
+			}else{
+				$exchange[$k]['status2']='已完成';
+			}
+			
+			$exchange[$k]['mall_id']=$obj['mall_id'];
+			$exchange[$k]['num']=$obj['num'];
+			$exchange[$k]['jifen']=$obj['jifen'];
+			$exchange[$k]['title']=$obj['title'];
+			
+			//删除多余的元素
+			unset($exchange[$k]['info']);
+			unset($exchange[$k]['status']);
+		}
 		
 		 //ajax
 		if ($this->isAjax()){
@@ -289,7 +280,7 @@ class AssetaccountAction extends IniAction {
 				$data['totlePage']=$totlePage1;
 				$data['page']=$page1;
 				$data['status']=1;
-				$data['exchange']=$arr2;
+				$data['exchange']=$exchange;
 				$this->ajaxReturn($data);
 			}
 		}
@@ -301,7 +292,7 @@ class AssetaccountAction extends IniAction {
 		
 		$this->assign('totlePage1',$totlePage1);
 		$this->assign('page1',$page1);
-		$this->assign('exchange',$arr2);
+		$this->assign('exchange',$exchange);
 		
 		$this->title="我的爱钻";
 		$this->display();
@@ -311,17 +302,18 @@ class AssetaccountAction extends IniAction {
 	//我的礼品
 	function gift(){		
 		$userInfo=$this->userInfo;	
+		//print_r($userInfo);
 		$mall=D('Mall');		
 		$cart=D('MallCart');
 		$collect=D('MallCollect');
 		$exchange=D('MallExchange');
 		 
-		if(I('act') !== ''){
+		if(I('act') !== ''){//收藏产品、加入购物车
 		 	if(I('act')== 'add'){
 				if(isset($_GET['num']) && I('num')<1){
                     $this->error("添加失败,商品数量不能小于1");                    
 				}
-				$cart->addCart()?$this->success("添加成功",U('/Member/Assetaccount/gift')):$this->error("添加失败");			
+				$cart->addCart()?$this->success("添加成功",U('/Member/Assetaccount/gift?status=cart')):$this->error("添加失败");			
 			}elseif(I('act')== 'sc'){
 				if(isset($_GET['num']) && I('num')<1){
                     $this->error("收藏失败,商品数量不能小于1");                    
@@ -393,6 +385,16 @@ class AssetaccountAction extends IniAction {
 				$data['status']=1;
 				$data['list']=$aizuansc;	
 				$this->ajaxReturn($data);			
+			}
+		}
+			//删除收藏的礼品
+		if($this->isAjax()){
+			if(I('act') == 'delcollect'){
+				$delcollect_id['id']=I('id');
+				$success=$collect->where($delcollect_id)->delete();
+				if($success){
+					$this->success();
+				}
 			}
 		}
 				
@@ -523,8 +525,7 @@ class AssetaccountAction extends IniAction {
 		 //已兑换礼品		
 		$where4['member_id']=$userInfo['id'];
 		$where4['type2']=0;//积分
-		$exchange1=$exchange->field('info,status,create_time,order_num,type2')->where($where4)->select();
-		
+		$exchange1=$exchange->field('info,status,create_time,order_num,type2')->where($where4)->select();		
 		
 		foreach($exchange1 as $key=>$value){	
 			$obj[$key]=json_decode($value['info'],true);			
@@ -613,7 +614,7 @@ class AssetaccountAction extends IniAction {
 			$wh['member_id']=$this->userInfo['id'];
 			$wh['id_default']=1;
 			$address=$address->where($wh)->order('update_time')->find();
-			$address=json_encode($address);
+			$address=preg_replace("/\\\u([0-9a-f]{4})/ie", "iconv('UCS-2BE', 'UTF-8', pack('H4', '$1'))", json_encode($address));
 			
 			foreach($_POST as $key=>$val){
 				foreach($val as $k=>$v){
@@ -622,7 +623,8 @@ class AssetaccountAction extends IniAction {
 			}
 			foreach($arr as $k => $v){
 				unset($v['type2']);
-				$json[$k]=json_encode($v);
+				//$json[$k]=json_encode($v);
+				$json[$k]=preg_replace("/\\\u([0-9a-f]{4})/ie", "iconv('UCS-2BE', 'UTF-8', pack('H4', '$1'))", json_encode($v));
 			}
 			
 			foreach($json as $k=>$v){
@@ -641,7 +643,7 @@ class AssetaccountAction extends IniAction {
 				$res=$exchange->add();
 			}
 			if($res){
-				$this->success('恭喜你，下单成功！',U('/Member/Assetaccount/gift'));
+				$this->success('恭喜你，下单成功！',U('/Member/Assetaccount/gift?status=dh'));
 			}
 		}else{
 			$this->error('该页面不存在');

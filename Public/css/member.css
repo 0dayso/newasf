@@ -5,7 +5,7 @@
 #memberR{width:810px;padding-bottom:10px;color:#333;}
 
 /*会员中心导航*/
-#memberL h2{height:40px;line-height:40px;background:url(../images/member/member_bg.gif) repeat-x;padding-left:15px;font-size:18px;font-weight:bold;color:#FFF;}
+#memberL h2{height:40px;line-height:40px;background:url(../images/member/member_bg.gif) repeat-x;text-align:center;font-size:16px;font-weight:bold;color:#FFF;}
 #memberL dl{border:1px solid #e5e5e5;border-top:none;border-bottom:none;}
 #memberL dl a{display:block;color:#333;}
 #memberL dt,#memberL dd{border-bottom:1px solid #e5e5e5;}
@@ -82,7 +82,7 @@
 #user_info .verify b.a0{background-position:-5px 0;}
 #user_info .verify b.a1{background-position:-35px 0;}
 #user_info .verify b.a2{background-position:-5px -22px;}
-#user_info .verify b.a2{background-position:-35px -22px;}
+#user_info .verify b.a3{background-position:-35px -22px;}
 #user_info dd{float:left;width:320px;height:30px;line-height:30px;padding-left:10px;margin-top:4px;background:#f2f2f2;}
 #user_info dd span{display:inline-block;width:150px;}
 #user_info dd a{padding:0 10px;}
@@ -103,7 +103,7 @@
 #gift_list .gift_list_block{display:none;}
 #gift_list .gift_list_block .page{margin-top:0px!important;}
 #gift_list .gift_on{display:block!important;}
-#gift_list li{float:left;width:151px;height:250px;border-right:1px solid #e3e3e3;border-bottom:1px solid #e3e3e3;padding:15px 25px;line-height:30px;}
+#gift_list li{float:left;width:151px;height:250px;border-right:1px solid #e3e3e3;border-bottom:1px solid #e3e3e3;padding:15px 25px;line-height:30px;position:relative;}
 #gift_list li.nobor{border-right:none!important;}
 #gift_list li img{width:150px;height:150px;}
 #gift_list li a h3{margin-top:10px;height:60px;color:#333;}
@@ -111,7 +111,8 @@
 #gift_list li p em,#gift_list li p b{color:#ff6600;font-style:normal;}
 #gift_list li p b{padding-left:25px;display:inline-block;height:30px;background:url(../images/assistant.png) no-repeat -10px -152px;font-family:Arial;font-weight:normal;}
 #gift_list li.bg{background:#e3f6ff;}
-#gift_list li a.shopping,#gift_list li a.collect{display:inline-block;line-height:20px;text-align:center;border-radius:15px;-moz-border-radius:15px;}
+#gift_list li a.shopping,#gift_list li a.collect,#gift_list li a.delcollect{display:inline-block;width:40px;height:20px;line-height:20px;color:#FFF;font-weight:bold;text-align:center;border-radius:15px;-moz-border-radius:15px;position:absolute;right:22px;bottom:22px;display:none;cursor:pointer;background:#FFB000;}
+#gift_list li a:hover.shopping,#gift_list li a:hover.collect,#gift_list li a:hover.delcollect{background:#ffa200;}
 
 /*购买车*/
 #cart .cart_block{display:none;padding:0 10px 10px 10px;}
@@ -366,6 +367,8 @@
 /*消息提醒*/
 #meslist .first input{float:left;margin:7px 10px 0 0;}
 #meslist .blue{text-align:left;}
+#meslist .blue a span,#meslist .blue a em{float:left;display:inline-block;}
+#meslist .blue a span{width:380px;height:40px;overflow:hidden;}
 #meslist .blue a em{font-size:14px;font-family:Arial;color:#F00;}
 #meslist a.delmes{cursor:pointer;color:#06C;}
 #meslist a:hover.delmes,#meslist .mes_bot a:hover{cursor:pointer;color:#E56700;}

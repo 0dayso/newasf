@@ -10,7 +10,7 @@
 		 var defaults={
 			 fadeTime:1000,              //广告图淡入的时间
 			 showTime:6000,              //广告图显示的时间
-			 mainWidth:980,              //主体的宽度
+			 mainWidth:980               //主体的宽度
 			 };
 		 //使用$.extend()覆盖插件中的默认值
 		 var options=$.extend(defaults,options);
@@ -22,7 +22,7 @@
 			 var obj=$(this).find('li');
 			 var nav=obj.parent().siblings().find('a');
 			 //设置#slide_ad_nav的右边距
-			 obj.parent().siblings().css({"right":sanr,"opacity":0.9,}).show(500);
+			 obj.parent().siblings().css({"right":sanr,"opacity":0.9}).show(500);
 			 //初始化变量index为0，用于保存索引
              var index = 0;
 	         //初始化变量len为为图片列表的数量

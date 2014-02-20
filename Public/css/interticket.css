@@ -1,7 +1,9 @@
 .interTic{background-color:#fff;padding-bottom:10px;}
-#interTicL{width:700px;margin-left:10px;margin-top:10px;}
+#interTicL{width:700px;margin-left:10px;/*margin-top:10px;*/}
+#interTicR{width:270px;margin-right:10px;/*margin-top:10px;*/}
 #interTicL700{width:700px;margin-left:10px;margin-top:10px;}
-#interTicR{width:270px;margin-right:10px;margin-top:10px;}
+#interTic700{width:700px;}
+#interTic270{width:270px;}
 
 /*LEFT BOX*/
 .box_l{border:1px solid #d0e8fd;border-top:2px solid #1679dd!important;margin-top:10px;}

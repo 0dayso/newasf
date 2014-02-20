@@ -1,0 +1,79 @@
+<style type="text/css">
+.border_div{border:1px solid #999; font-size:12px;}
+.border_div span{font-weight:bold; clear:both;}
+.border_bottom{border-bottom:1px solid #CCC; padding-top:3px; padding-bottom:3px;padding-left:20px;}
+.border_div input{ border:1px solid #999; color:#666; height:15px; margin-top:2px; margin-left:5px; margin-right:5px;float:none;}
+</style>
+<div class="border_div">
+<form action="__URL__/order_edit" method="post">   
+    <div class="border_bottom"><span>订单ID号:</span><input name="ddbh" type="text" value="" /></div>
+    
+	<div class="border_bottom"><span>航程信息:</span>
+    	<div style="margin-left:90px; margin-top:-15px;">        	
+                去程&nbsp;&nbsp;&nbsp;<input type="text" style="width:80px;" name="num1" value=""/> &nbsp;&nbsp;&nbsp;
+                <input type="text" style="width:170px;" name="from_city1" value=""/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                日期：<input type="text" style="width:100px;" class="date textInput valid"  name="date1" value="">
+				<br/>
+                返程&nbsp;&nbsp;&nbsp;<input type="text" style="width:80px;" name="num1" value=""/> &nbsp;&nbsp;&nbsp;
+                <input type="text" style="width:170px;" name="from_city1" value=""/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                日期：<input type="text" style="width:100px;" class="date textInput valid"  name="date1" value="">
+        </div>
+	</div>   
+    
+	<div class="border_bottom">
+    	 <span>票面价格：</span><input type="text" name="xsj" style="width:80px;" value=""/>
+    	 <span>税费：</span><input type="text" name="sf" style="width:80px;" value=""/>
+         <span>保险：</span><input type="text" name="taxa" style="width:80px;" value=""/>
+	</div>
+    
+	<div class="border_bottom"><span>现金券使用：</span>无</div>
+    
+	<div class="border_bottom"><span>应付金额：</span> <input type="text" style="width:80px;" name="ysje" value=""/>
+	</div>
+    
+	<div class="border_bottom"><span>出票时间：</span><input type="text" size="10"  class="date textInput valid"  name="cpsj" value="">
+	</div>    
+     
+    <div class="border_bottom"><span>乘客信息：</span>
+    	<input type="text" size="2" value="" style="clear:both;">成人&nbsp;&nbsp;/&nbsp;&nbsp;
+        <input type="text" size="2" value="" style="clear:both;">儿童&nbsp;&nbsp;/&nbsp;&nbsp;
+        <input type="text" size="2" value="" style="clear:both;">婴儿
+		<br/><br/>
+    	<table border="0" cellpadding="0" cellspacing="0" class="border_div">
+        	<thead>
+                <tr style="background:#0CF; text-align:center;">
+                    <td>姓名</td>
+                    <td>乘客类型</td>
+                    <td>证件号码</td>
+                    <td>票价</td>
+                    <td>机建/参考税</td>
+                    <td>现金券</td>
+                    <td>结算价</td>
+                </tr>
+            </thead>
+            <tbody>
+                    <tr>
+                        <td><input type="text" name="cjr_cjrxm" value=""/></td>
+                        <td><input type="text" name="cjr_cjrlx"  value=""/></td>
+                        <td><input type="text" name="cjr_clkid" value=""/></td>
+                        <td><input type="text" name="cjr_xsj" value=""/></td>
+                        <td><input type="text" name="cjr_jsf" value=""/></td>
+                        <td>无</td>
+                        <td><input type="text" name="passenger_jiesuan" value=""/></td>
+                    </tr>           	
+            </tbody>
+        </table>
+	</div>
+
+	<div class="border_bottom"><span>联系人信息：</span>
+    	 姓名<input type="text" name="nklxr" value=""/>         
+         手机号<input type="text" name="lxdh" value=""/>
+         邮箱<input type="text" name="email" value=""/>
+	</div>
+
+	<div style="margin-left:20px; margin-bottom:2px; margin-top:2px;">
+    <input type="submit" value="确认提交" style=" background-color:#09F; color:#FFF; border:0; font-size:16px; height:20px;"/> 
+    <a href="__URL__/index"><input type="button" value="返回" style=" border:0; background:#999; color:#FFF; font-weight:bold;font-size:16px; height:20px;"/></a> 
+    </div>
+</form>
+</div>

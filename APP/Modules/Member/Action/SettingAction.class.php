@@ -6,42 +6,27 @@ class SettingAction extends IniAction {
 	function myinfo(){
 		$member=D('Member');
 		$userInfo=$this->userInfo;
-		
-		//构造新数组		
-		$newarr['name']=$userInfo['name'];
-		$newarr['nickname']=$userInfo['nickname'];
-		$newarr['sex']=$userInfo['sex'];
-		$newarr['birthday']=$userInfo['birthday'];
-		$newarr['province']=$userInfo['province'];
-		$newarr['city']=$userInfo['city'];
-		if(empty($userInfo['email'])){$newarr['email']=$userInfo['email'];}
-		
-		//重新构造post
-		$newpost['name']=$_POST['name'];
-		$newpost['nickname']=$_POST['nickname'];
-		$newpost['sex']=$_POST['sex'];
-		$newpost['birthday']=$_POST['year'].'-'.$_POST['month'].'-'.$_POST['day'];
-		$newpost['province']=$_POST['province'];
-		$newpost['city']=$_POST['city'];
-		if(!empty($_POST['email'])){$newpost['email']=$_POST['email'];}
-		
-		$data=array_udiff_uassoc($newpost,$newarr);//两函数比较取差值，键名也比较,返回的数组中键名保持不变
-		
-		if(!empty($data)){
-			if($newpost['name'] = array('in',$data)){//姓名
-				$this->name($newpost['name']);
-			}
-			if($newpost['email'] = array('in',$data)){//邮箱
-				$this->e_mail($newpost['name']);
-			}
-			if($newpost['nickname'] = array('in',$data)){//昵称
-				$this->nname($newpost['nickname']);
-			}
-		    $where['id']=$userInfo['id'];
-			$member->where($where)->setField($data);//更新数据		
+		$checkemail=D('CheckEmail');
+		if($_POST){
+			$newpost['name']=$_POST['name'];
+			$newpost['nickname']=$_POST['nickname'];
+			$newpost['sex']=$_POST['sex'];
+			$newpost['birthday']=$_POST['year'].'-'.$_POST['month'].'-'.$_POST['day'];
+			$newpost['province']=$_POST['province'];
+			$newpost['city']=$_POST['city'];
+			$newpost['profession']=$_POST['profession'];
+			if(!empty($_POST['email'])){$newpost['email']=$_POST['email'];}
+			$where['id']=$userInfo['id'];		
+			$res=$member->where($where)->save($newpost);
+			if($res){$this->success("修改成功");}
 		}
-		
 		$this->birthday=explode('-',$userInfo['birthday']);//生日处理
+		
+		//邮箱是否验证
+		$wh['member_id']=$userInfo['id'];
+		$wh['email']=$userInfo['email'];
+		$this->checkemail=$checkemail->where($wh)->find();
+		
 		$this->title="我的信息";
 		$this->display();
     }
@@ -49,11 +34,9 @@ class SettingAction extends IniAction {
 	//设置头像
 	function seticon(){
 		$userInfo=$this->userInfo;
-
 		$this->title="设置头像";
 		$this->display();
-    }	
-	
+    }
 	public function uploadImg(){				
 			import('ORG.UploadFile');
 			$upload = new UploadFile();						// 实例化上传类
@@ -80,7 +63,7 @@ class SettingAction extends IniAction {
 			}
 		}
 		
-	//裁剪并保存用户头像
+		//裁剪并保存用户头像
 	public function cropImg(){				
 		//图片裁剪数据
 		$params = $this->_post();						//裁剪参数
@@ -98,8 +81,7 @@ class SettingAction extends IniAction {
 		$Think_img = new ThinkImage(THINKIMAGE_GD); 
 		//裁剪原图
 		$Think_img->open($pic_path)->crop($params['w'],$params['h'],$params['x'],$params['y'])->save($real_path);
-		//生成缩略图
-		
+		//生成缩略图		
 		$Think_img->open($real_path)->thumb(100,100, 1)->save($path.$thumb[0].'_100.jpg');
 		$Think_img->open($real_path)->thumb(60,60, 1)->save($path.$thumb[0].'_60.jpg');	
 		$Think_img->open($real_path)->thumb(150,150, 1)->save($path.$thumb[0].'_150.jpg');
@@ -107,14 +89,41 @@ class SettingAction extends IniAction {
 		$userInfo=$this->userInfo;
 		$member=D('Member');
 		$where['id']=$userInfo['id'];
-		$member->where($where)->setField('headimg',$userInfo['id'].$thumb[0].'_150.jpg');
+		$headimg=$member->field('headimg')->where($where)->find();
+		if(empty($headimg)){
+			$member->where($where)->setField('headimg',$userInfo['id'].$thumb[0].'_150.jpg');
+			
+			//上传头像成功增加500积分
+			$points=D('Points');
+			$wh['member_id']=$userInfo['id'];
+			$last_points=$points->field('last_points')->where($wh)->order('cteate_time desc')->find();
+			$data['member_id']=$userInfo['id'];
+			$data['type2']=1;
+			$data['points']=500;
+			$data['type']=1;
+			$data['description']="上传头像成功赠送500积fun";
+			$data['last_points']=$last_points['last_points']+500;
+			$data['cteate_time']=time();
+			$points->data($data)->add;
+		}else{
+			$member->where($where)->setField('headimg',$userInfo['id'].$thumb[0].'_150.jpg');
+		}
 		
-		$this->success('上传头像成功');
+			
+		rmdir($path);
+		$this->success('上传头像成功',U('/Member/Setting/myinfo'));
 	}
 	
 	//安全中心 ok
 	function securitycenter(){
 		$userInfo=$this->userInfo;
+		$checkemail=D(CheckEmail);
+		
+		//邮箱是否验证
+		$wh['member_id']=$userInfo['id'];
+		$wh['email']=$userInfo['email'];
+		$this->checkemail=$checkemail->where($wh)->find();
+
 		$this->title="安全中心";
 		$this->display();
     }	
@@ -125,14 +134,13 @@ class SettingAction extends IniAction {
             $rs=D('Member')->editPwd();
             if($rs===true){
                 D('Message')->message_action('edit_pwd');//发送信息
-                $this->success("修改成功");
+                $this->success("修改成功",U('/Member/Setting/securitycenter'));
             }else{
-                $this->error($rs);
+                $this->error("修改失败，请重新修改",U('/Member/Setting/password'));
             }
-        }else{
-             $this->title="修改密码";
-             $this->display();
         }
+		 $this->title="修改密码";
+         $this->display();
     }	
 	
 	//--------------------------------------------------------------
@@ -143,35 +151,25 @@ class SettingAction extends IniAction {
 		$this->display();
     }
 		//更换手机号2 ok
-	function replacephone2(){
-		$userInfo=$this->userInfo;
-		session('auth_mobile',$userInfo['mobile']);		
+	function replacephone2(){		
 		if($_POST){
+			$userInfo=$this->userInfo;
+			session('auth_mobile',$userInfo['mobile']);
 			if(md5($_POST['code']) !== session('verify')){
 				$this->error("验证码错误 请重新输入");					
 			}elseif($_POST['auth_str'] !== session('auth_str')){
 				$this->error("短信验证码错误 请重新输入");
 			}
+		}else{
+			$this->error("你无权查看该页面");
 		}
-		
 		$this->title="更换手机号";
 		$this->display();
     }
 		//更换手机号3 ok
 	function replacephone3(){
 		if(IS_AJAX){
-			$phone=I('phone');
-			if(!empty($phone)){				
-				$rs=preg_match('/^([0-9]){11,12}$/i',$phone);
-				if(!$rs){
-					$this->error("手机号格式不正确");
-				}
-				if($this->checkMember(array('sj'=>$phone))!==true){
-					$this->error("该手机已注册过");
-				}
-			}else{
-				$this->error("请输入手机号码");
-			}
+			$phone=I('phone');		
 			import('ORG.Util.String');
 			$auth_str=String::randString(6,1);  //生成6位数的认证码			
 			session('auth_str',$auth_str);
@@ -189,45 +187,31 @@ class SettingAction extends IniAction {
 				$member->where($where)->setField('mobile',$_POST['phone']);
 				$this->success('更改成功',U('/Member/Setting/securitycenter'));
 			}
-		}		
-		$this->title="更换手机号";
-		$this->display();	
+		}	
 	}
 		//手机账号申诉 ok
 	function appeal(){
 		if(IS_AJAX){
 			$phone=I('phone');
-			if(!empty($phone)){				
-				$rs=preg_match('/^([0-9]){11,12}$/i',$phone);
-				if(!$rs){
-					$this->error("手机号格式不正确");
-				}
-				if($this->checkMember(array('sj'=>$phone))!==true){
-					$this->error("该手机已注册过");
-				}
-			}else{
-				$this->error("请输入手机号码");
-			}
+			$this->mobi($phone);//手机号码验证
 			import('ORG.Util.String');
 			$auth_str=String::randString(6,1);  //生成6位数的认证码			
 			session('auth_str',$auth_str);
 			$data['mobile']=$phone;
 			$data['yzm']=$auth_str;
 			$rs=D('Message')->message_action('replace_phone',$data);
-		}
-		
+		}		
 		if($_POST){
+			$userInfo=$this->userInfo;			
 			if(md5($_POST['code']) !== session('verify')){
 				$this->error("图像验证码错误 请重新输入");					
 			}
 			if($_POST['auth_str'] !== session('auth_str')){
 				$this->error("短信验证码错误 请重新输入");
-			}
-			$userInfo=$this->userInfo;
+			}			
 			$member=D('Member');
 			$where['member_id']=$userInfo['id'];
-			$member->where($where)->setField('mobile',$_POST['phone']);//更新手机号码
-			//$this->success('更改成功',U('/Member/Setting/securitycenter'));
+			$member->where($where)->setField('mobile',$_POST['phone']);//更新手机号码			
 			
 			//写入数据appeal
 			$appeal=D('Appeal');
@@ -237,7 +221,7 @@ class SettingAction extends IniAction {
 			$data['create_time']=time();
 			$rs=$appeal->data($data)->add();
 			if($rs){
-				$this->success('申诉成功！');
+				$this->success('申诉成功！',U('/Member/Setting/securitycenter'));
 			}else{
 				$this->error('申诉失败！');
 			}
@@ -250,10 +234,114 @@ class SettingAction extends IniAction {
 	//邮箱验证
 	function mailboxverify(){
 		$userInfo=$this->userInfo;
+		$member=D('Member');
+		$email=D('CheckEmail');
+	
+		//发送邮件
+		if($this->isAjax()){
+			$mail=I('id');
+			if(!empty($mail)){
+				$this->notify($mail);
+				$data['status']=1;	
+				$this->success($data);
+			}			
+		}
+		
+		//验证用户和激活码
+		$key=I('key');
+		$uid=I('uid');	
+		if(!empty($uid) && !empty($key)){			
+			$where['member_id']=$uid;
+			$where['key']=$key;
+			$res=$email->where($where)->find();				
+			if(!empty($res)){
+				if(time()<=$res['key_exptime']){					
+					$info=array('key'=>'','is_check'=>1);
+					$email->where($where)->setField($info);
+					$this->success('恭喜你，邮箱验证成功！',U('/Member/Setting/securitycenter'));
+					
+					//邮箱验证成功增加500积分
+					$points=D('Points');
+					$wh['member_id']=$userInfo['id'];
+					$last_points=$points->field('last_points')->where($wh)->order('cteate_time desc')->find();
+					$data['member_id']=$userInfo['id'];
+					$data['type2']=1;
+					$data['points']=500;
+					$data['type']=1;
+					$data['description']="邮箱验证成功赠送500积fun";
+					$data['last_points']=$last_points['last_points']+500;
+					$data['cteate_time']=time();
+					$points->data($data)->add;
+					
+					session('verify',1);		
+				}else{
+					$this->error('验证码已过期，请重新获取！',U('/Member/Setting/mailboxverify'));
+				}
+			}else{
+				$this->error('邮箱验证失败，请重新验证！',U('/Member/Setting/mailboxverify'));
+			}
+		}
+		
+		if($this->isAjax()){
+			$verifyask=I('verifyask');
+			if(!empty($verifyask)){
+				if(session('verify') == 1){
+					$data['status']=1;
+					$data['verify']=1;	
+					$this->success($data);
+				}else{
+					$data['status']=1;
+					$this->success($data);
+				}
+			}			
+		}
 		$this->title="邮箱验证";
 		$this->display();
     }
-	
+		//发送邮件
+	function notify($email){
+		$smtpemailto 	= 	$email;//发送给谁
+		$actcodes = md5($smtpemailto.mt_rand(111111,999999)); //激活码			
+		$mailsubject 	= 	 "邮箱验证激活——爱尚飞国际机票网";//邮件主题	
+		
+		////////////////模板赋值
+			$userInfo=$this->userInfo;
+			$username=$userInfo['username'];
+			$uid=$userInfo['id'];
+			$key=$actcodes;
+			$href='http://'.$this->_server('HTTP_HOST').__ROOT__.'/Member/Setting/mailboxverify';
+			$time=date('Y-m-d H:i:s',time());		
+		$template = $this->fetch('sendemail');
+		$template = str_replace('{username}',$username,$template);
+		$template = str_replace('{uid}',$uid,$template);
+		$template = str_replace('{key}',$key,$template);
+		$template = str_replace('{href}',$href,$template);
+		$template = str_replace('{time}',$time,$template);	
+		
+		/////////////////写入数据库
+			$email=D('CheckEmail');
+			$data['member_id']=$this->userInfo['id'];
+			$data['email']=$smtpemailto;
+			$data['key']=$actcodes;
+			$data['key_exptime']=strtotime("+15 day");		
+		$where['email']=$smtpemailto;
+		$res=$email->where($where)->select();		
+		if(!empty($res)){
+			$hh=$email->where($where)->save($data);//如果已有，则更新
+		}else{		
+			$hh = $email->data($data)->add();  //如果没有，则写入数据
+		}		
+		
+		//////////////////发送邮件			
+		if($hh){
+		   sendMail($smtpemailto,$mailsubject,$template);  //发送邮件
+		}else {
+		  echo '发送失败！';
+		  exit;
+		}
+	}
+
+
 	//更换邮箱1 ok
 	function replacemailbox(){	
 		$userInfo=$this->userInfo;		
@@ -273,7 +361,7 @@ class SettingAction extends IniAction {
 			$password=hashPassword($password,$salt);
 			$gpassword= $member->where("id=$uid")->getField('password');
 			if($password != $gpassword){
-				$this->error('输入的当前密码有误,请检查后重新输入');
+				$this->error('输入密码有误,请检查后重新输入');
 			}
 		}		
 		if(!empty($_POST['mail'])){
@@ -281,7 +369,7 @@ class SettingAction extends IniAction {
 			$where['id']=$userInfo['id'];
 			$rs=$member->where($where)->setField('email',$_POST['mail']);
 			if($rs){
-				$this->success('邮箱更改成功');
+				$this->success('邮箱更改成功',U('/Member/Setting/securitycenter'));
 			}else{
 				$this->error('邮箱更改失败');
 			}
@@ -294,8 +382,8 @@ class SettingAction extends IniAction {
 	function address(){
 		$userInfo=$this->userInfo;
 		$address=D('DeliverAddress');
-		//$where['member_id']=$userInfo['id'];
-		$where['member_id']=1103;//测试用
+		$where['member_id']=$userInfo['id'];
+		//$where['member_id']=1103;//测试用
 		$where['is_default']=1;		
 		$addressInfo=$address->where($where)->find();
 		$province_city = D('DeliverAddress')->xml_address($addressInfo['province'],$addressInfo['city']);		
@@ -310,24 +398,19 @@ class SettingAction extends IniAction {
 				$tel=$_POST['area_code'].$_POST['telephone'];
 				$this->telphone($tel);
 			}
-
 			$rs=$this->D('DeliverAddress')->addressAdd();
 			if($rs){$this->success();}
-			
-
 		}
 		
 		$this->title="邮寄地址";
 		$this->display();
     }
-	
-	
+		
 	//邮寄地址列表 ok
 	function addresslist(){
 		$userInfo=$this->userInfo;
 		$address=D('DeliverAddress');
-		//$where['member_id']=$userInfo['id'];
-		$where['member_id']=1103;//测试用
+		$where['member_id']=$userInfo['id'];		
 		$addressInfo=$address->where($where)->select();
 		foreach($addressInfo as $v){
 			$data[] = D('DeliverAddress')->xml_address($v['province'],$v['city']);	
@@ -338,7 +421,7 @@ class SettingAction extends IniAction {
 			$data[$k]['mobile']=$v['mobile'];
 			$data[$k]['telephone']=$v['telephone'];
 			$data[$k]['address']=$v['address'];	
-			$data[$k]['zip_code']=$v['zip_code'];	
+			$data[$k]['area_code']=$v['area_code'];	
 		}		
 		$this->assign('addressInfo',$data);	
 		
@@ -364,17 +447,9 @@ class SettingAction extends IniAction {
 		$userInfo=$this->userInfo;
 		$deliverAddress=D('DeliverAddress');
 		if($_POST){	
-			$this->address_check($_POST['address']);//验证联系地址
-			$this->name($_POST['name']);//收货人姓名
-			$this->mobi($_POST['mobile']);//手机号码
-			if(!empty($_POST['area_code']) || !empty($_POST['telephone'])){//电话号码
-				$tel=$_POST['area_code'].$_POST['telephone'];
-				$this->telphone($tel);
-			}
 			if(empty($_POST['is_default'])){
 				$_POST['is_default']=0;
-			}else{
-				$_POST['is_default']=1;
+			}else{				
 				$wh['member_id']=$userInfo['id'];
 				$res=$deliverAddress->where($wh)->select();
 				if(!empty($res)){
@@ -385,8 +460,8 @@ class SettingAction extends IniAction {
 						$deliverAddress->where($wh)->data($field)->save();
 					}
 				}
-			}
-			
+				$_POST['is_default']=1;	
+			}			
 			$_POST['member_id']=$userInfo['id'];			
 			$_POST['sex']=$userInfo['sex'];
 			$_POST['create_time']=time();
@@ -394,7 +469,7 @@ class SettingAction extends IniAction {
 			$data=$_POST;			
 			$re=$deliverAddress->add($data);
 			if($re){
-				$this->success('添加成功');
+				$this->success('添加成功',U('/Member/Setting/addresslist'));
 			}else{
 				$this->error('添加失败');
 			}		
@@ -406,69 +481,36 @@ class SettingAction extends IniAction {
 	
 	//修改邮寄地址 ok
 	function addressedit(){
-		$userInfo=$this->userInfo;
+		$userInfo=$this->userInfo;		
 		$DeliverAddress=D('DeliverAddress');
 		$where['id']=I('id');
-		//$where['member_id']=$userInfo('id');
-		$address=$DeliverAddress->where($where)->find();	
+		$address=$DeliverAddress->where($where)->find();
+		$this->assign('info',$address);
 		
-		$info= D('DeliverAddress')->xml_address($address['province'],$address['city']);//省市的转换	
-		
-		$info['id']=$address['id'];
-		$info['address']=$address['address'];
-		$info['name']=$address['name'];
-		$info['mobile']=$address['mobile'];
-		$info['area_code']=$address['area_code'];
-		$info['telephone']=$address['telephone'];
-		$info['is_default']=$address['is_default'];	
-		//print_r($info);
-		$this->assign('info',$info);
-			
-		if($_POST){
-			//数据验证
-			$this->address_check($_POST['address']);//验证联系地址
-			$this->name($_POST['name']);//验证收货人姓名
-			if(empty($_POST['mobile'])){  //手机号码验证
-				$this->error('手机号码不能为空');
-			}else{
-				if(!preg_match('/^1[3|4|5|8][0-9]\d{4,8}$/',$_POST['mobile'])){ 
-					$this->error('手机号码格式不对,请重新输入');         
-				}
-			}			
-			if(!empty($_POST['area_code']) || !empty($_POST['telephone'])){//电话号码验证
-				$tel=$_POST['area_code'].$_POST['telephone'];
-				$this->telphone($tel);
-			}
-			
-			//找出变动的数据并更新数据表
-			function keys($v1,$v2){
-				if ($v1===$v2){return 0;}
-				return 1;
-			}
-			function values($v1,$v2){
-				if ($v1===$v2){return 0;}
-				return 1;
-			}
+		if($_POST){			
+			$data['member_id']=$userInfo['id'];
+			$data['sex']=$userInfo['sex'];
+			$data['province']=$_POST['province'];
+			$data['city']=$_POST['city'];
+			$data['address']=$_POST['address'];
+			$data['name']=$_POST['name'];
+			$data['mobile']=$_POST['mobile'];
+			$data['area_code']=$_POST['area_code'];
+			$data['telephone']=$_POST['telephone'];
 			if(empty($_POST['is_default'])){
-				$_POST['is_default']=0;
+				$data['is_default']=0;
+			}else{
+				$data['is_default']=1;
 			}
-			$data=array_udiff_uassoc($_POST,$address,'keys','values');//两函数比较取差值，键名也比较,返回的数组中键名保持不变
-	
-			if(!empty($data)){
-				if($data['is_default'] = array('in',$data)){
-					$wh['member_id']=$userInfo['id'];
-					$wh['is_default']=1;
-					$field['is_default']=0;
-					$DeliverAddress->where($wh)->save($field);
-				}
-				$data['update_time']=time();			
-				$DeliverAddress->where($where)->save($data);//更新已更改的数据
-			}
+			$data['update_time']=time();
+			$wh=$_POST['id'];
+			$res=D('DeliverAddress')->where($wh)->save($data);
+			if($res){$this->success('修改成功',U('/Member/Setting/addresslist'));}else{$this->error('修改失败');}
 		}
 		$this->title="修改当前地址";
 		$this->display();
     }
-			
+	
 	//常用旅客 ok
 	function passengerlist(){
 		$userInfo=$this->userInfo;
@@ -613,22 +655,22 @@ class SettingAction extends IniAction {
 			if(!empty($newdata)){
 				if(!empty($newdata['last_name']) || !empty($newdata['first_name'])){
 					if(!preg_match('/^[A-Za-z]/',$_POST['last_name']) || !preg_match('/^[A-Za-z]/',$_POST['first_name'])){
-						//$this->error('姓名只能是拼音或英文');
+						$this->error('姓名只能是拼音或英文');
 					}
 				}
 				if(!empty($newdata['mobile'])){
 					if(!preg_match('/^[0-9]*[1-9][0-9]*$/',$newdata['mobile'])){ 
-						//$this->error('手机号码格式不对,请重新输入');         
+						$this->error('手机号码格式不对,请重新输入');         
 					}
 				}
 				if(!empty($newdata['email'])){
 					if(!preg_match('/^[\w\d]+[\w\d-.]*@[\w\d-.]+\.[\w\d]{2,10}$/i',$_POST['email'])){
-						//$this->error('邮箱格式不对,请重新输入');
+						$this->error('邮箱格式不对,请重新输入');
 					}
 				}
 				if(!empty($newdata['telphone'])){
 					if(!preg_match('/((\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$)/',$newdata['telphone'])){
-						//$this->error('电话号码格式不对,请重新输入');
+						$this->error('电话号码格式不对,请重新输入');
 					}
 				}
 				$passenger->where("id='$id'")->setField($newdata);//更新数据
@@ -736,15 +778,6 @@ class SettingAction extends IniAction {
 		$document=D('DocumentInfo');//证件信息
 		
 		if($_POST){
-			if(!preg_match('/^[A-Za-z]/',$_POST['last_name']) || !preg_match('/^[A-Za-z]/',$_POST['first_name'])){					
-				//$this->error('姓名输入有误，请重新输入');
-			}
-			if(!preg_match('/^1[3|4|5|8][0-9]\d{4,8}$/',$_POST['mobile'])){ 
-				//$this->error('手机号码格式不对,请重新输入');         
-			}	
-			if(!preg_match('/^[\w\d]+[\w\d-.]*@[\w\d-.]+\.[\w\d]{2,10}$/i',$_POST['emali'])){
-				//$this->error('邮箱格式不对,请重新输入');
-			}
 			$data['member_id']=$userInfo['id'];
 			$data['first_name']=$_POST['first_name'];
 			$data['last_name']=$_POST['last_name'];
@@ -755,7 +788,7 @@ class SettingAction extends IniAction {
 			$data['telphone']=$_POST['area_code'].'-'.$_POST['telphone'].'-'.$_POST['extension'];
 			$data['email']=$_POST['email'];
 			$data['create_time']=time();
-			if(empty($_POST['first'])){
+			if(empty($_POST['first_choice'])){
 				$data['first_choice']=0;
 			}else{
 		    	//设为首选，将原来的首选释放			
@@ -766,7 +799,7 @@ class SettingAction extends IniAction {
 					$passenger->where($condition)->setField('first_choice',0);
 				}
 				//赋值
-				$data['first_choice']=$_POST['first'];	
+				$data['first_choice']=1;	
 			}			
 			$passenger->create($data);
 			$passenger->add();//添加数据
@@ -804,34 +837,45 @@ class SettingAction extends IniAction {
     }
 
 
+
 	//消息提醒
 	function message(){
 		$userInfo=$this->userInfo;	
-		$message=D('Message');
-		
-		//$where['to_id']=$userInfo['id'];
-		$where['to_id']=1103;//测试用
+		$message=D('Message');		
+		$where['to_id']=$userInfo['id'];
+		//$where['to_id']=1269;//测试用
 		$this->info=$message->where($where)->select();
 		
-		if($this->isAjax()){
-			$id=I('id');
-			if(is_array($id)){
-				$wh['id']=array('in',$id);
-			}else{
-				$wh['id']=$id;
+		if($this->isAjax()){//删除
+			if(I('act') == 'del'){
+				$id=I('id');
+				if(is_array($id)){
+					$wh['id']=array('in',$id);
+				}else{
+					$wh['id']=$id;
+				}
+				$res=$message->where($wh)->delete();
+				if($res){
+					$this->success();
+				}else{
+					$this->error();
+				}
 			}
-			$res=$message->where($wh)->delete();
-			if($res){
-				$this->success();
-			}else{
-				$this->error();
-			}
+			if(I('act') == 'look'){//查看
+				$wh['id']=I('id');
+				$message->where($wh)->setField('is_read',1);
+				$data=$message->field('contents')->where($wh)->find();
+				$data['status']=1;	
+				$this->success($data);
+			}			
+		}
+		if($_POST){
+			$this->success('保存成功！');
 		}
 		$this->title="消息提醒";
 		$this->display();
     }
 
-	
 	//--------------------------------------------------------------
 	//数据验证	
 	function mobi($data){//手机号码验证		

@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{$title}-爱尚飞手机网</title>
+<link href="__PUBLIC__/mobile/css/global.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+#topnav .icon{width:80px;}
+.box h2{padding-right:42px;}
+.block{background:#FFF;padding:0px 10px;margin-top:10px;}
+.block h2{width:100px;background:url(__PUBLIC__/mobile/images/title_bg.png) no-repeat 0px -40px;color:#FFF;height:31px;line-height:31px;text-align:center;}
+.block label{display:inline-block;width:48%;height:60px;background:url(__PUBLIC__/mobile/images/payTerrace.jpg) no-repeat;}
+.block label.alipay{background-position:0 0;}
+.block label.tenpay{background-position:0 -60px;}
+.block input{margin:22px 0 0 10px;}
+#order{padding:10px;color:#666;}
+#order p{background-color:#FFF;line-height:50px;text-align:center;}
+#tab a{display:inline-block;width:45%;margin-right:10px;background-color:#67b1e4;text-align:center;color:#FFF;line-height:30px; cursor:pointer;}
+#tab a:hover,#tab a.on{background-color:#FFF;color:#ff8400;}
+#explain,#total{padding:10px;background:#FFF;}
+#explain span,#total span{display:block;padding:5px 10px;line-height:24px;background:#f2f1f0;}
+#explain span{text-indent:2em;}
+.list{background-color:#FFF;padding:10px;border-bottom:1px solid #e7e5e5;}
+.list li{line-height:26px;}
+.list li span{display:inline-block;width:65px;padding-right:5px;color:#333;text-align:right;}
+.list li em,#total b{font-style:normal;font-weight:bold;color:#ff840f;}
+.list li a{color:#2690d8;}
+#total{font-size:14px;}
+#total b{font-size:18px;}
+#pay{background:#ff980f;line-height:30px;margin-top:10px;font-size:16px;font-weight:bold;color:#FFF;text-align:center; cursor:pointer;}
+</style>
+</head>
+
+<body>
+<div id="page">
+	<div id="content">
+    	<h1 id="topnav"><span class="left icon"><a href="{:U('/')}" class="icon-home">首页</a></span>我的爱尚飞<span class="right" id="exit">退出登录</span></h1>
+    	<div class="box">
+        	<h2><span class="left icon"><a href="{:U('/Member')}" class="icon-return">返回</a></span>订单在线支付</h2>
+    	</div>
+		<div id="order">
+    		<div id="tab">
+            	<a class="on">在线支付</a>
+            	<a href="{:U('/Member/payList')}">交易记录</a>
+			</div>
+    		<div id="order_list" status="pending" page="1">
+                <div id="explain"><span>您的订单已经审核通过，我们建议您尽快付款，延迟未付款系统会自动取消订单，且航空公司很可能会随时取消您的舱位。</span></div>
+				<ul class="list">
+     				<li><span>订单 ID ：</span>IF51DCC0F13A800B0064</li>
+     				<li><span>航班行程：</span>去程&nbsp;ZH9675&nbsp;&nbsp;北京→台北</li>
+     				<li><span>&nbsp;</span>日期：2013-07-12</li>
+                    <li><span>&nbsp;</span>回程&nbsp;ZH9664&nbsp;&nbsp;台北→北京</li>
+                    <li><span>&nbsp;</span>日期：2013-07-26</li>
+     				<li><span>乘客信息：</span>成人&nbsp;&nbsp;david/li</li>
+                    <li><span>&nbsp;</span>护照&nbsp;&nbsp;T07129925</li>
+     				<li><span>应付金额：</span><em>￥2514</em></li>
+				</ul>
+                <ul class="list">
+     				<li><span>订单 ID ：</span>IF51DCC0F13A800B0064</li>
+     				<li><span>航班行程：</span>去程&nbsp;ZH9675&nbsp;&nbsp;北京→台北</li>
+     				<li><span>&nbsp;</span>日期：2013-07-12</li>
+                    <li><span>&nbsp;</span>回程&nbsp;ZH9664&nbsp;&nbsp;台北→北京</li>
+                    <li><span>&nbsp;</span>日期：2013-07-26</li>
+     				<li><span>乘客信息：</span>成人&nbsp;&nbsp;david/li</li>
+                    <li><span>&nbsp;</span>护照&nbsp;&nbsp;T07129925</li>
+     				<li><span>应付金额：</span><em>￥2514</em></li>
+				</ul>
+              	<div id="total">
+                    <span>合计应付金额：<b>￥4828</b></span>
+                </div>
+			</div>
+            
+			<div class="block">
+				<h2>选择支付平台</h2>
+				<label class="alipay"><input name="payTerrace" type="radio" id="payTerrace_0" value="alipay" checked></label>
+				<label class="tenpay"><input name="payTerrace" type="radio" id="payTerrace_1" value="tenpay" ></label>
+        	</div>
+            
+            <div id="pay">下一步</div>
+            
+		</div>
+	</div>
+</div>
+<include file="Public:CommonJs" />
+
+<script type="text/javascript">
+$(function(){
+
+	})
+</script>
+</body>
+</html>

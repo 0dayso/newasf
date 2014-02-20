@@ -11,16 +11,31 @@
 		<div class="right" id="memberR">
 			<div id="user_info">
             	<div class="icon left">
-               		<a href="{:U('/Member/Setting/seticon')}"><img src="__PUBLIC__/images/member/icon.gif" />设置头像</a>
+               		<a href="{:U('/Member/Setting/seticon')}">								
+                        <empty name="userInfo['headimg']">
+                            <img src="__PUBLIC__/images/member/icon.gif" />
+                        <else/>
+                            <img src="__PUBLIC__/member/images/{$userinfo['headimg']}" />
+                        </empty>
+                    设置头像
+                     </a>
 				</div>
                 <div class="info right">
                	  <ul>
                     	<li>
-                        	<div class="verify right"><b class="a0"></b><a class="mr20" href="{:U('/Member/Setting/securitycenter')}">手机已验证</a><b class="a2"></b><a href="{:U('/Member/Setting/securitycenter')}">邮箱已验证</a></div>
-                            <span>用户名：test</span>
-							<span>账户安全：中[<a href="{:U('/Setting/securitycenter')}">修改</a>]</span></li>
+                        	<div class="verify right">
+                                <b class="a0"></b><a class="mr20" href="{:U('/Member/Setting/securitycenter')}">手机已验证</a>
+                                <if condition="$userInfo['check_email'] eq 0">
+                               		<b class="a3"></b><a href="{:U('/Member/Setting/securitycenter')}">邮箱未验证</a>
+                                <else/>
+                                	<b class="a4"></b><a href="{:U('/Member/Setting/securitycenter')}">邮箱已验证</a>
+                                </if>
+                            </div>
+                            <span>用户名：{$userinfo.username}</span>
+							<span>账户安全： <if condition="$userInfo['check_email'] eq 1"> 高<else/> 中</if>[<a href="{:U('/Member/Setting/securitycenter')}">修改</a>]</span>
+                         </li>
                         <li>
-                        	<span>会员等级：<strong>白银会员</strong><a href="#">如何升级</a></span>
+                        	<span>会员等级：<strong>{$dj}</strong><a href="{:U('/help/members#help_ul1')}" target="_blank">如何升级</a></span>
                         </li>
                         <li>
                         	<span>待支付订单：[<a href="{:U('/Member/booking')}?status=pending">{$common.pending_count}</a>]</span>
@@ -32,10 +47,10 @@
                         </li>
                     </ul>
                     <dl>
-                   	  <dd><span>预付款余额：2000元</span></dd>
-                      <dd><span>现金券：200元</span><a href="{:U('/Member/Assetaccount/integral')}">查看明细</a><a href="#">如何使用？</a></dd>
-                      <dd><span>我的积fun：2000</span><a href="{:U('/jifen/lists/cid/55')}">兑换好礼</a><a href="#">积fun规则</a></dd>
-                      <dd><span>我的爱钻：<b>x2</b></span><a href="{:U('/jifen/lists/cid/56')}">兑换好礼</a><a href="#">如何获取？</a></dd>
+                   	  <dd><span>预付款余额：0元</span></dd>
+                      <dd><span>现金券：{$overage}元</span><a href="{:U('/Member/Assetaccount/integral')}" target="_blank">查看明细</a><a href="{:U('/help/assetaccount#help_ul0')}" target="_blank">如何使用？</a></dd>
+                      <dd><span>我的积fun：{$totlejf}</span><a href="{:U('/jifen/lists/cid/55')}" target="_blank">兑换好礼</a><a href="{:U('/help/assetaccount#help_ul1')}" target="_blank">积fun规则</a></dd>
+                      <dd><span>我的爱钻：<b>x{$totleac}</b></span><a href="{:U('/jifen/lists/cid/56')}" target="_blank">兑换好礼</a><a href="{:U('/help/assetaccount#help_ul2')}" target="_blank">如何获取？</a></dd>
                     </dl>
                 </div>
             </div>

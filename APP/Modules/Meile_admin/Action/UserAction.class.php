@@ -134,7 +134,7 @@ class UserAction extends CommonAction {
      * 禁用
      */
     function forbid(){
-        $where['user_id']=I('id');
+        $where['user_id']=I('get.id');
         if(D('Member')->field('id')->where($where)->count()){
             $this->error('还有关联会员 不能禁用');
         }

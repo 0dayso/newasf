@@ -21,7 +21,7 @@ class PayAction extends IniAction {
             $reqHandler->setGateUrl("https://gw.tenpay.com/gateway/pay.htm");
             $partner=C('TENPAY_PARTNER');
             $notify_url=C('TENPAY_NOTIFY_URL');
-            $return_url=U('/Member/Pay/tenReturn','','','',true);;//支付后返回地址
+            $return_url=U('/Member/Pay/tenReturn','','','',true);//支付后返回地址
         //    echo $reqHandler.$key.$partner.$notify_url.$return_url;
 
             //----------------------------------------
@@ -82,7 +82,7 @@ class PayAction extends IniAction {
             header("Location:$tenpayUrl");
         }
     }
-
+       
     /*
      * 支付返回
      */
@@ -120,7 +120,6 @@ class PayAction extends IniAction {
                     //注意判断返回金额
 
                     $PayOrder=D('PayOrder');
-
                     $rs= $PayOrder->find($out_trade_no);
                     if($rs['order_price']!=$total_fee/100){
                         $this->error('支付失败');
@@ -152,11 +151,9 @@ class PayAction extends IniAction {
                 }
             }elseif( "2" == $trade_mode  ){
                 if( "0" == $trade_state){
-
                     //------------------------------
                     //处理业务开始
                     //------------------------------
-
                     //注意交易单不要重复处理
                     //注意判断返回金额
                     $PayOrder=D('PayOrder');
@@ -180,7 +177,6 @@ class PayAction extends IniAction {
                         $ors= $orderDB->field('ysje')->find($val);
                         $rr= $orderDB->orderPay($val,ASMSUID,$ors['ysje'],$out_trade_no,$rs['remark']);
                     }
-
                     //------------------------------
                     //处理业务完毕
                     //------------------------------
@@ -193,19 +189,199 @@ class PayAction extends IniAction {
         } else {
             $this->error('认证签名失败');
         }
-
     }
 
-
-    //支付宝支付
-    function aliPay(){
-        Vendor('Alipay.ResponseHandler#class');
+	//支付宝
+	 //在类初始化方法中，引入相关类库    
+     public function _initialize() {
+        vendor('Alipay.Corefunction');
+        vendor('Alipay.Md5function');
+        vendor('Alipay.Notify');
+        vendor('Alipay.Submit');    
     }
+		//入口
+	 public function alipay(){		
+		 if(!empty($_POST)){			
+		  	if(!I('order_no')) $this->error('非法操作');			
+			$alipay_config['partner']		= C('ALIPAY_PARTNER');
+			$alipay_config['key']			= C('ALIPAY_KEY');
+			$alipay_config['sign_type']     = strtoupper('MD5');
+			$alipay_config['input_charset'] = strtolower('utf-8');
+			$alipay_config['cacert']        = getcwd().'\\cacert.pem';
+			$alipay_config['transport']     = 'http';
+			
+			/**************************请求参数**************************/
+			$payment_type = "1"; //支付类型 //必填，不能修改
+			$notify_url = C('ALIPAY_NOTIFY_URL'); //服务器异步通知页面路径
+			$return_url = C('ALIPAY_RETURN_URL'); //页面跳转同步通知页面路径			
+			$seller_email = C('seller_email');//卖家支付宝帐户必填			
+			$out_trade_no = $_POST['order_no'];//商户订单号 通过支付页面的表单进行传递，注意要唯一！
+			$subject = $_POST['product_name'];  //订单名称 //必填 通过支付页面的表单进行传递
+			$total_fee = $_POST['order_price'];   //付款金额  //必填 通过支付页面的表单进行传递
+			$body = $_POST['product_name'];  //订单描述 通过支付页面的表单进行传递
+			$anti_phishing_key = "";//防钓鱼时间戳 //若要使用请调用类文件submit中的query_timestamp函数
+			$exter_invoke_ip = $_SERVER['REMOTE_ADDR']; //客户端的IP地址
+			$show_url = "";//商品展示地址
+			$goods_tag=$_POST['order_id_arr']; //商品标记
+			$trade_mode=$_POST['trade_mode'];//交易模式（1.即时到帐模式，2.中介担保模式，3.后台选择（卖家进入支付中心列表选择））
+			$trans_type=1; //交易类型
+			$time_start=date("YmdHis");  //订单生成时间			
+			/**********************************************************/
+		
+			//构造要请求的参数数组，无需改动
+			$parameter = array(
+				"service" => "create_direct_pay_by_user",
+				"partner" => trim($alipay_config['partner']),
+				"payment_type"    => $payment_type,
+				"notify_url"    => $notify_url,
+				"return_url"    => $return_url,
+				"seller_email"    => $seller_email,
+				"out_trade_no"    => $out_trade_no,
+				"subject"    => $subject,
+				"total_fee"    => $total_fee,
+				"body"            => $body,
+				"show_url"	=> $show_url,
+				"anti_phishing_key"	=> $anti_phishing_key,
+				"exter_invoke_ip"	=> $exter_invoke_ip,
+				"_input_charset"	=> trim(strtolower($alipay_config['input_charset']))
+			);
+			//建立请求
+			$alipaySubmit = new AlipaySubmit($alipay_config);
+			$html_text = $alipaySubmit->buildRequestForm($parameter,"post", "确认");
+			echo $html_text;
+			
+			//写入数据
+			$PayOrder=D('PayOrder');
+			$_POST['product_name']=get_encoding($_POST['product_name']);
+			
+            $data['id']=$_POST['order_no'];//交易号
+			$data['order_id_arr']=$_POST['order_id_arr'];
+			$data['type']=1;
+			$data['member_id']=getUid();
+			$data['product_name']=$_POST['product_name'];			
+            $route=I('route');
+            if(is_array($route)){
+                $data['route']=implode(',',$route);
+            }else{
+                $data['route']=$route;
+            } 
+			$data['coupon']=0;
+			$data['order_price']=$_POST['order_price'];		
+			$data['trade_mode']=$_POST['trade_mode'];
+			$data['trade_state']=$payment_type;	
+		   	$data['status']=0;
+			$data['data_json']=0;
+            $data['remark']=$_POST['remarkexplain'];//简要说明			
+			$data['create_time']=time();
+			$data['update_time']=time();			
+					
+            $PayOrder->create($data,1);
+            if(!$PayOrder->add()) $this->error('订单写入失败');
+            //echo  $tenpayUrl;
+            //转向支付页面
+            //记录行为
+            action_log('pay_aliPay', 'alipay', getUid(), getUid(),$this);
+            //header("Location:$alipayUrl");
+		}
+	 }
 
-    //支付宝返回
-    function aliReturn(){
-
-    }
-
-	
+		/******************************
+        服务器异步通知页面方法
+        其实这里就是将notify_url.php文件中的代码复制过来进行处理        
+        *******************************/
+		public function notifyurl(){
+			$alipay_config['partner']		= C('ALIPAY_PARTNER');
+			$alipay_config['key']			= C('ALIPAY_KEY');
+			$alipay_config['sign_type']     = strtoupper('MD5');
+			$alipay_config['input_charset'] = strtolower('utf-8');
+			$alipay_config['cacert']        = getcwd().'\\cacert.pem';
+			$alipay_config['transport']     = 'http';
+			
+			//计算得出通知验证结果
+			$alipayNotify = new AlipayNotify($alipay_config);
+			$verify_result = $alipayNotify->verifyNotify();
+			
+			if($verify_result) {
+				   //验证成功
+					   //获取支付宝的通知返回参数，可参考技术文档中服务器异步通知参数列表
+				   $out_trade_no   = $_POST['out_trade_no'];      //商户订单号
+				   $trade_no       = $_POST['trade_no'];          //支付宝交易号
+				   $trade_status   = $_POST['trade_status'];      //交易状态
+				   $total_fee      = $_POST['total_fee'];         //交易金额
+				   $notify_id      = $_POST['notify_id'];         //通知校验ID。
+				   $notify_time    = $_POST['notify_time'];       //通知的发送时间。格式为yyyy-MM-dd HH:mm:ss。
+				   $buyer_email    = $_POST['buyer_email'];       //买家支付宝帐号；
+				
+				$parameter = array(
+					"out_trade_no"     => $out_trade_no,      //商户订单编号；
+					"trade_no"     => $trade_no,          //支付宝交易号；
+					"total_fee"      => $total_fee,         //交易金额；
+					"trade_status"     => $trade_status,      //交易状态
+					"notify_id"      => $notify_id,         //通知校验ID。
+					"notify_time"    => $notify_time,       //通知的发送时间。
+					"buyer_email"    => $buyer_email,       //买家支付宝帐号
+				);
+				
+			   if($trade_status == 'TRADE_FINISHED' || $trade_status == 'TRADE_SUCCESS') {
+			   	   if(!checkorderstatus($out_trade_no)){//commom/commom.php
+					    orderhandle($parameter);  //进行订单处理，并传送从支付宝返回的参数；		   
+				   }				   
+				   echo "success";        //请不要修改或删除
+				}else {
+						//验证失败
+						echo "fail";
+			  }    
+		  }
+		}
+			
+		
+		/****************************
+		支付返回
+		****************************/		
+		public function returnurl(){			
+			$alipay_config['partner']		= C('ALIPAY_PARTNER');
+			$alipay_config['key']			= C('ALIPAY_KEY');
+			$alipay_config['sign_type']     = strtoupper('MD5');
+			$alipay_config['input_charset'] = strtolower('utf-8');
+			$alipay_config['cacert']        = getcwd().'\\cacert.pem';
+			$alipay_config['transport']     = 'http';
+			
+			$alipayNotify = new AlipayNotify($alipay_config);//计算得出通知验证结果
+			$verify_result = $alipayNotify->verifyReturn();
+			
+			if($verify_result) {
+				//验证成功
+				//获取支付宝的通知返回参数，可参考技术文档中页面跳转同步通知参数列表
+				$out_trade_no   = $_GET['out_trade_no'];      //商户订单号
+				$trade_no       = $_GET['trade_no'];          //支付宝交易号
+				$trade_status   = $_GET['trade_status'];      //交易状态
+				$total_fee      = $_GET['total_fee'];         //交易金额
+				$notify_id      = $_GET['notify_id'];         //通知校验ID。
+				$notify_time    = $_GET['notify_time'];       //通知的发送时间。
+				$buyer_email    = $_GET['buyer_email'];       //买家支付宝帐号；				
+		
+				$parameter = array(
+					"out_trade_no"     => $out_trade_no,      //商户订单编号；
+					"trade_no"     => $trade_no,          //支付宝交易号；
+					"total_fee"      => $total_fee,         //交易金额；
+					"trade_status"     => $trade_status,      //交易状态
+					"notify_id"      => $notify_id,         //通知校验ID。
+					"notify_time"    => $notify_time,       //通知的发送时间。
+					"buyer_email"    => $buyer_email,       //买家支付宝帐号
+				);
+				
+				if($_GET['trade_status'] == 'TRADE_FINISHED' || $_GET['trade_status'] == 'TRADE_SUCCESS') {
+			   	   if(!checkorderstatus($out_trade_no)){//commom/commom.php
+					    orderhandle($parameter);  //进行订单处理，并传送从支付宝返回的参数；		   
+				   }
+				$this->success('即时到帐支付成功',U('/Member/booking')."?status=process");
+				}else {					
+					$this->error('支付失败',U('/Member/booking'));
+				}
+		 }else {
+			//验证失败
+			//如要调试，请看alipay_notify.php页面的verifyReturn函数			
+			$this->error('支付失败',U('/Member/booking'));
+		}
+	}
 }

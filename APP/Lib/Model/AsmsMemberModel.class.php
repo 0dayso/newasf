@@ -46,17 +46,17 @@ class AsmsMemberModel extends RelationModel{
         $_POST['name']=$hyzcm;
         $_POST['password']=$pwd;
         $MInfo=$memberDB->where("username='$hyzcm' or mobile='$hyzcm'")->find();
-     //   print_r($MInfo);
         if($MInfo){ //本地 (本地数据库已有帐号)
             $mrs=$memberDB->login();
-            if($mrs==true && getUid()){ //登陆成功
+         //   dump($mrs);
+            if($mrs===true && getUid()){ //登陆成功
                $memberInfo = $memberDB->field('id,username,name,mobile,asms_member_id')->find(getUid());
                if($memberInfo['asms_member_id']){ //有asms关联id
                    $this->memberInfo($memberInfo['asms_member_id']);//更新
-                   return true;
                }else{ // 没有asms关联id   查询asms里是否有相同电话
-                   return  $this->relationReg($memberInfo);
+                   $this->relationReg($memberInfo);
                }
+               return true;
             }else{
                 $this->error=$mrs;
                 return false;
@@ -73,7 +73,9 @@ class AsmsMemberModel extends RelationModel{
                     return false;
                 }
             }else{
-                $this->memberFind($hyzcm);
+                echo $hyzcm;
+                dump($this->checkName(13078270036));
+               dump( $this->memberFind($hyzcm));exit;
                 $rs=$this->checkMember($hyzcm);
                 if(!is_numeric($rs)){
                     $this->error="用户不存在";
@@ -82,7 +84,7 @@ class AsmsMemberModel extends RelationModel{
             }
 
             $memberInfo=$this->relation(true)->find($rs);
-        //    dump($memberInfo);
+          // dump($memberInfo);
             if($pwd!=$memberInfo['mm']){
                 $this->error="密码不正确";
                 return false;
@@ -100,19 +102,28 @@ class AsmsMemberModel extends RelationModel{
 
             $data['salt']=generateSalt();
             $data['password']=hashPassword($memberInfo['mm'],$data['salt']);
-
-            $data['user_id']=D('AsmsUser')->asmsUserTo($memberInfo['ywyid']);
+            $ywyid=D('AsmsUser')->asmsUserTo($memberInfo['ywyid']);
+            $data['user_id']=$ywyid?$ywyid:C('ASMS_ACCOUNT');
             $data['source']='Asms';
             $data['asms_member_id']=$rs;
+
             if(!$memberDB->create($data)){
                 $this->error=$memberDB->getError();
                 return false;
             }
-
+           // dump($data);
             $rs=$memberDB->add();//asma 帐号添加到本地
+          //  dump($rs);dump($memberDB->getDBError());
             if($rs){ //
-                return $memberDB->login();
+                $mrs=$memberDB->login();
+                if($mrs===true && getUid()){ //登陆成功
+                    return true;
+                }else{
+                    $this->error=$mrs;
+                    return false;
+                }
             }
+            $this->error="ASMS 帐号 登陆失败";
             return false;
          }
 
@@ -125,7 +136,7 @@ class AsmsMemberModel extends RelationModel{
   function relationReg($memberInfo){
       $memberDB=D("Member");
       if($memberInfo['mobile']){ //有电话
-          $ars=$this->checkMember(array('sj'=>$memberInfo['mobile']));
+          $ars=$this->checkName($memberInfo['mobile']);
           if(is_numeric($ars)){ //asms 电话存在
               $member_id=$memberDB->where("asms_member_id=$ars")->getField('id');
               if(!$member_id){ //asms id 没有被占用
@@ -152,12 +163,15 @@ class AsmsMemberModel extends RelationModel{
       //无重复 注册到asms
       $data['hyzcm']=$memberInfo['username'];
       $data['sj']=$memberInfo['mobile'];
-      $data['xm']=isset($memberInfo['name'])?$memberInfo['name']:$memberInfo['username'];
+      //dump($memberInfo);
+      $data['xm']=!empty($memberInfo['name'])?$memberInfo['name']:$memberInfo['username'];
       $data['email']=$memberInfo['email'];
       $data['lxdz']=$memberInfo['address'];
-      $ywyyid=D('User')->where("id='$memberInfo[user_id]'")->getField('ywyid');
+      $ywyyid=D('User')->where("id={$memberInfo['user_id']}")->getField('asms_user_id');
       $data['ywyid']=$ywyyid?$ywyyid:C('ASMS_ACCOUNT');
-      $this->register($data);//注册到asms
+
+      $rs=$this->register($data);//注册到asms
+      echo $this->error;
   }
 
     //获取用户信息
@@ -405,6 +419,7 @@ class AsmsMemberModel extends RelationModel{
      * @return bool|string
      */
     function checkName($name){
+
         if($rs=$this->memberFind($name,'','',0)){
             $this->error="会员名已存在";//会员注册名
             return $rs['wyid'];
@@ -413,7 +428,7 @@ class AsmsMemberModel extends RelationModel{
             return $rs['wyid'];
         }elseif($rs=$this->memberFind('','',$name,0)){
             $this->error="手机号已存在";//手机号已存在
-            return $rs['wyid'];
+            return $rs['hyid'];
         }else{
             return true;
         }
@@ -634,11 +649,11 @@ class AsmsMemberModel extends RelationModel{
 
          curl_post(C('ASMS_HOST').'/asms/member/t_member_save.shtml',$post,COOKIE_FILE);
       //  print_r($rs);
-        if($rs=$this->checkMember($data['hyzcm'])!==false){
+        if($rs=$this->checkMember($data['hyzcm'])!==false && is_numeric($rs)){
            //注册成功
             return $rs;
         }else{
-            $this->error=$this->error."注册失败";
+            $this->error=$this->error."Asms注册失败";
             return false;
         }
     }

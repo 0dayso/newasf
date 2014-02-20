@@ -1,0 +1,87 @@
+<include file="public:header" />
+<link rel="stylesheet" href="__PUBLIC__/css/interticket.css" type="text/css" />
+<link rel="stylesheet" href="__PUBLIC__/css/index.css" type="text/css" />
+    <div id="cont">
+        <div class="wd1000 mt10 interTic">
+        	<h1 class="h1_tit_nav">你当前所在位置：<a href="{:U('/')}" class="sy">首页</a> > <a class="cur">低价国际机票预约</a></h1>
+			<div class="left ml10" id="interTic270">
+            	<!--国际机票查询-->
+				<div id="ticket_Query">
+                	<div class="covr_c"></div>
+                    <div class="cont_c">
+                    	<div class="cont_c_b">
+                        	<h1 class="spr htop"></h1>
+                            <include file="Public:searchform" />
+                        </div>
+                    </div>
+                    <div class="covr_c"></div>
+                </div><!--国际机票查询-->
+                <!--认证-->
+                <div id="renzheng_lan_s" class="mt10">
+                	<ul>
+                    	<li><label class="lb0"></label><span>100%国际航协认证,<br/>第一手真实价格</span></li>
+                        <li><label class="lb1"></label><span>100%中国航协认证,<br/>资质保证，订票无忧</span></li>
+                    </ul>
+                </div><!--认证-->
+			</div>
+			<div class="right mr10" id="interTic700">
+				<div id="iflight_list">
+                	<h2><a href="#">法兰克福到达国际机票</a><strong>法兰克福到达国际机票</strong></h2>
+                    <div class="if_list">
+                    	<h3><a href="#A">A</a><a href="#B">B</a><a href="#C">C</a></h3>
+                        <div class="if_box">
+                        	<dl>
+								<dt><a>A</a><span>◆</span></dt>
+								<dd>
+									<ul>
+										<li><a href="#">阿姆斯特丹-法兰克福</a></li>
+                                    	<li><a href="#">阿姆斯特丹-法兰克福</a></li>
+                                    	<li><a href="#">阿姆斯特丹-法兰克福</a></li>
+                                    	<li><a href="#">阿姆斯特丹-法兰克福</a></li>
+									</ul>
+								</dd>
+							</dl>
+                        </div>
+                        <div class="if_box">
+                        	<dl>
+								<dt><a>B</a><span>◆</span></dt>
+								<dd>
+									<ul>
+										<li><a href="#">阿姆斯特丹-法兰克福</a></li>
+                                    	<li><a href="#">阿姆斯特丹-法兰克福</a></li>
+                                    	<li><a href="#">阿姆斯特丹-法兰克福</a></li>
+                                    	<li><a href="#">阿姆斯特丹-法兰克福</a></li>
+									</ul>
+								</dd>
+							</dl>
+                        </div>
+                        <div class="if_box">
+                        	<dl>
+								<dt><a>C</a><span>◆</span></dt>
+								<dd>
+									<ul>
+										<li><a href="#">阿姆斯特丹-法兰克福</a></li>
+                                    	<li><a href="#">阿姆斯特丹-法兰克福</a></li>
+                                    	<li><a href="#">阿姆斯特丹-法兰克福</a></li>
+                                    	<li><a href="#">阿姆斯特丹-法兰克福</a></li>
+									</ul>
+								</dd>
+							</dl>
+                        </div>
+                        
+                    </div>
+                </div>
+			</div>
+        </div>
+    </div>
+  <include file="public:footer" />
+  
+<script type="text/javascript">
+$(function(){
+	$("#airticket .tab a").click(function(){
+		var i=$(this).index();
+		$(this).addClass("on").siblings().removeClass("on");
+		$("#airticket .at_box").eq(i).addClass("on").siblings().removeClass("on");
+		});
+	});
+</script>

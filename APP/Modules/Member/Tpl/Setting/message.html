@@ -1,5 +1,4 @@
 <include file="public:header" />
-
     <link rel="stylesheet" href="__PUBLIC__/css/member.css" type="text/css" />
     <script type="text/javascript" src="__PUBLIC__/js/member.js"></script>
     <script type="text/javascript" src="__PUBLIC__/js/layer/layer.min.js"></script>
@@ -7,8 +6,7 @@
     <script type="text/javascript" src="__PUBLIC__/js/modify.js"></script>
     <div class="member">
     	<!--会员中心导航-->
-    	<include file="public:left" />
-        
+    	<include file="public:left" />        
 		<div class="right" id="memberR">
         	<h1 class="nav_tit">消息提醒</h1>
 			<div id="list_box">
@@ -27,7 +25,8 @@
                                 <tr gid="{$vo.id}">
                                     <td class="first"><input type="checkbox" /></td>
                                     <td class="blue">
-                                   	 <a href="#">{$vo.title}
+                                   	 <a class="cont" href="javascript:;">
+                                     	<span>{$vo.contents}</span>
                                      	<if condition="$vo['is_read'] eq 0"><em>NEW!</em></if>
                                      </a>
                                     </td>
@@ -38,28 +37,42 @@
           					</volist>
 						</table>
                         <div class="mes_bot"><input type="checkbox" class="checkbox all" />全选 <a class="alldel">删除</a></div>
-                    </div> 
-                                      
+                    </div>                                       
                     <div class="list_block" id="messet">
-                    	<dl>
-                        	<dt>短信通知设置：</dt>
-                            <dd><em>*</em>会员基础服务（注册/登录、修改密码、验证、升降级等）</dd>
-                            <dd><em>*</em>机票预订通知（待付款、已付款、已出票、已取消）</dd>
-                            <dd><input name="" type="checkbox" value="" checked="checked"/>现金券赠送/消费</dd>
-                            <dd><input name="" type="checkbox" value="" checked="checked"/>礼品兑换</dd>
-                            <dd><input name="" type="checkbox" value="" checked="checked"/>积fun赠送</dd>
-                            <dd><input name="" type="checkbox" value="" checked="checked"/>爱钻赠送</dd>
-                        </dl>
-                        <input class="bt99" type="submit" value="保存">
-                    </div>
-                    
+                    	<form action="{:U('/Member/Setting/message')}" method="post">
+                            <dl>
+                                <dt>短信通知设置：</dt>
+                                <dd><em>*</em>会员基础服务（注册/登录、修改密码、验证、升降级等）</dd>
+                                <dd><em>*</em>机票预订通知（待付款、已付款、已出票、已取消）</dd>
+                                <dd><input name="" type="checkbox" value="" checked="checked"/>现金券赠送/消费</dd>
+                                <dd><input name="" type="checkbox" value="" checked="checked"/>礼品兑换</dd>
+                                <dd><input name="" type="checkbox" value="" checked="checked"/>积fun赠送</dd>
+                                <dd><input name="" type="checkbox" value="" checked="checked"/>爱钻赠送</dd>
+                            </dl>
+                            <input class="bt99" type="submit" value="保存">
+                        </form>
+                    </div>                    
               </div>
-        </div>
-        </div>
-    </div>
-    
+          </div>
+       </div>
+    </div>    
     <script type="text/javascript">
     	$(function(){
+			//查看信息
+			$("#meslist .cont").click(function(){
+				layer.tips($(this).find('span').html() ,this, 0, 600, 0, ['background-color:#449ef6; color:#fff;','#449ef6']);
+				
+				if($(this).find('em')){
+					var act="look";//设置类型为查看
+					var gid=$(this).parents('tr').attr('gid');
+					var em=$(this).find('em');
+					$.getJSON("{:U('/Member/Setting/message')}",{id:gid,act:act},function(data){
+						if(data.status==1){
+							em.remove();
+							}
+						});
+					}
+				});
 			//站内信 全选功能
 			$("#meslist .checkbox").change(function(){
 				if(this.checked){
@@ -116,6 +129,5 @@
 				}
 				
 			});
-    </script>
-    
+    </script>    
 <include file="public:footer" />

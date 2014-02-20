@@ -23,7 +23,7 @@
 $alipay_config['partner']		= '2088502941273894';
 
 //安全检验码，以数字和字母组成的32位字符
-$alipay_config['key']			= '';
+$alipay_config['key']			= 'farwfl31btngq19q5ew1rg4ax0ze6ns2';
 
 
 //↑↑↑↑↑↑↑↑↑↑请在这里配置您的基本信息↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑

@@ -336,6 +336,30 @@ class MemberAction extends IniAction {
     }
 	
 	//新增的-------------------------------------------------------
+	//我的订单
+	public function bookingPending(){
+            $this->title="待支付订单";
+            $this->display();
+    }
+	public function bookingProcess(){
+            $this->title="已付款订单";
+            $this->display();
+    }
+	public function bookingCancel(){
+            $this->title="已取消订单";
+            $this->display();
+    }
+	
+	//订单在线支付
+	public function pay(){
+            $this->title="在线支付";
+            $this->display();
+    }
+	public function payList(){
+            $this->title="交易记录";
+            $this->display();
+    }
+	
 	//我的积fun
 	public function integralDetail(){
             $this->title="积fun明细";

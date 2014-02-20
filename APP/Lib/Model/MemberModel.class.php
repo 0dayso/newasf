@@ -144,6 +144,7 @@ class MemberModel extends RelationModel{
         $this->invite_id=cookie('invite_id')?cookie('invite_id'):0; //推荐人ID
         $this->user_id=$this->invite_id; //分配客服
         $id=$this->add(); //插入数据库
+        echo $this->getDBerror();
         if(!empty($id)){  //注册成功
             $this->uid=$id;
             session('uid',$id);
@@ -264,14 +265,6 @@ class MemberModel extends RelationModel{
         $pjCount['server']=round(($sum/$pjCount['count']),1);
         return $pjCount;
     }
-
-
-
-	
-	
-	 
-	
-		
 }
 
 ?>

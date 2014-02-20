@@ -84,9 +84,9 @@
     <div class="block">
       <h2>我的订单</h2>
       <ul>
-       <li><a href="{:U('/Member/booking/status/pending')}">待处理订单：（{$order_status[0]+$order_status[1] |default=0}）</a></li>
-       <li><a href="{:U('/Member/booking/status/process')}">已支付订单：（{$order_status[2]|default=0}）</a></li>
-       <li><a href="{:U('/Member/booking/status/cancel')}">已取消订单：（{$order_status[-1] |default=0}）</a></li>
+       <li><a href="{:U('/Member/bookingPending')}">待处理订单：（{$order_status[0]+$order_status[1] |default=0}）</a></li>
+       <li><a href="{:U('/Member/bookingProcess')}">已付款订单：（{$order_status[2]|default=0}）</a></li>
+       <li><a href="{:U('/Member/bookingCancel')}">已取消订单：（{$order_status[-1] |default=0}）</a></li>
       </ul>
     </div>
     

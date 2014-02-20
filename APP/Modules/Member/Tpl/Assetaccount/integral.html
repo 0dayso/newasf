@@ -3,12 +3,11 @@
     <script type="text/javascript" src="__PUBLIC__/js/member.js"></script>
     <div class="member">
     	<!--会员中心导航-->
-    	<include file="public:left" />
-        
+    	<include file="public:left" />        
         <!--我的积分-->
       <div class="right" id="memberR">
         	<h1 class="nav_tit">我的积分</h1>
-            <div class="top_tit">可用积分：<strong class="csp16">{$totle}</strong><span class="instructions"><a href="#" class="cBlue">如何使用？</a></span><span class="right"><a href="#" class="cBlue">查看可兑换好礼</a></span></div>
+            <div class="top_tit">可用积分：<strong class="csp16"><empty name="totle">0<else/>{$totle}</empty></strong><span class="instructions"><a href="{:U('/help/assetaccount#help_ul1')}" target="_blank" class="cBlue">如何使用？</a></span><span class="right"><a href="{:U('/jifen/lists/cid/55')}" target="_blank" class="cBlue">查看可兑换好礼</a></span></div>
             <div id="list_box">
             	<div id="list_nav"><a class="active">积Fun明细</a><a>兑换记录</a></div>
                 <div id="list_con">                
@@ -51,7 +50,7 @@
                                 <tr class="h50">
                                     <td class="first">{$vo.order_num}</td>
                                     <td class="blue">
-                                       <a href="{:U('jifen/info','id='.$vo['id'])}" title="{$vo.title}">
+                                       <a href="{:U('jifen/info','id='.$vo['mall_id'])}" title="{$vo.title}">
                                         <img src="__PUBLIC__/uploads/mall/m_{$vo.img}" widht="40px" height="40px">
                                         {$vo.title|msubstr=0,25}
                                         </a>
@@ -60,7 +59,7 @@
                                     <td>{$vo.num}</td>
                                     <td class="price"><?php echo $vo['jifen']*$vo['num']?></td>                                
                                     <td>{$vo.create_time}</td>
-                                    <td class="blue">{$vo.status}</td>
+                                    <td class="blue">{$vo.status2}</td>
                                 </tr>
                             </volist>
 						</table>
@@ -93,7 +92,7 @@
 			});
 		//AJAX分页函数
 		function detail_ajax(totlePage,page){
-			$.getJSON("{:U('/Member/Assetaccount/integral/')}",{type:'detail',p:page},function(data){
+			$.getJSON("{:U('/Member/Assetaccount/integral/')}",{t:'detail',p:page},function(data){
 				if(data.status==1){
 					var dataList=data.list,html='<tr class="tit"><td class="first">获取日期</td><td>积Fun来源</td><td>积Fun数</td><td>过期日期</td></tr>';
 					$.each(dataList,function(i,item){
@@ -127,7 +126,7 @@
 			});
 		//AJAX分页函数
 		function exchange_ajax(totlePage,page){
-			$.getJSON("{:U('/Member/Assetaccount/integral/')}",{type:'exchange',p:page},function(data){
+			$.getJSON("{:U('/Member/Assetaccount/integral/')}",{t:'exchange',p:page},function(data){
 				if(data.status==1){
 					var dataList=data.exchange,html='<tr class="tit"><td class="first">礼品订单号</td><td>礼品名称</td><td>兑换积Fun</td><td>数量</td><td>积Fun小计</td><td>兑换日期</td><td>订单状态</td></tr>';
 					$.each(dataList,function(i,item){
@@ -144,7 +143,7 @@
                         html += '<td>'+ item.num +'</td>';
                         html += '<td class="price">'+ (item.jifen)*(item.num)+'</td>';
                         html += '<td>'+ item.create_time +'</td>';
-                        html += '<td class="blue">'+ item.status +'</td>';
+                        html += '<td class="blue">'+ item.status2 +'</td>';
                         html += '</tr>';						
 						});
 					$('#exchange table').html(html);

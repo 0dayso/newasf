@@ -1,6 +1,5 @@
 <?php
 
-
 class ResponseHandler  {
 	
 	/** 密钥 */

@@ -26,7 +26,7 @@ return array(
     'ASMS_ACCOUNT'=>6000,
     'ASMS_PWD'=>'77169',
     'CACHE_TIME'=>50,
-    'ASMS_ONLINE'=>1,//asms 联网模式
+    'ASMS_ONLINE'=>0,//asms 联网模式
     'ASMS_WEBSITECODE'=>'1',
     'ASMS_VERSION'=>'1',
 
@@ -37,7 +37,6 @@ return array(
     'SYNORDER_KEY'=>'B2767789E670B0A770923A01CB42B532',
 
     //支付
-
     //财付通
     'TENPAY_SPNAME'=>"广州美乐商务服务有限公司",
     'TENPAY_PARTNER' => '1213106701',
@@ -45,13 +44,21 @@ return array(
     'TENPAY_RETURN_URL' => "http://www.aishangfei.com/pay/payReturnUrl.php",
     'TENPAY_NOTIFY_URL' => "http://www.aishangfei.com/pay/payNotifyUrl.php",
 
+
     //aliPay 支付宝
     'ALIPAY_SPNAME'=>"广州美乐商务服务有限公司",
     'ALIPAY_PARTNER' => '2088502941273894',
     'ALIPAY_KEY' => 'farwfl31btngq19q5ew1rg4ax0ze6ns2',
-    'ALIPAY_RETURN_URL' => "http://www.aishangfei.com/Alipay/payReturnUrl.php",
-    'ALIPAY_NOTIFY_URL' => "http://www.aishangfei.com/Alipay/payNotifyUrl.php",
+	'seller_email'=>'mlcw@aishangfei.net',//这里是卖家的支付宝账号，也就是你申请接口时注册的支付宝账号
+	//	'ALIPAY_RETURN_URL' => "http://www.aishangfei.com/Alipay/return_url.php",//这里是异步通知页面url，提交到项目的Pay控制器的notifyurl方法；
+	'ALIPAY_RETURN_URL' => "http://www.aishangfei.com/Member/pay/returnurl",
 
+	//	'ALIPAY_NOTIFY_URL' => "http://www.aishangfei.com/Alipay/notify_url.php", //这里是页面跳转通知url，提交到项目的Pay控制器的returnurl方法；
+	'ALIPAY_NOTIFY_URL' => "http://www.aishangfei.com/Member/pay/notifyurl.php",
+	'successpage'=>'http://www.aishangfei.cn/Member/booking?status=process',     //支付成功跳转到的页面
+	'errorpage'=>'http://www.aishangfei.com/Member/booking?status=pending',       //支付失败跳转到的页面	
+	
+	
         //其它配置项
     'VERIFY_CODE'=>1,       //注册码开关
     'REG_REBATE'=>50,	//注册返利rebate

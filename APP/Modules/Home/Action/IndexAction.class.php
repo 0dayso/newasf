@@ -6,16 +6,16 @@ class IndexAction extends IniAction {
                 redirect(U('/@m'));
         }
         $this->title="爱尚飞国际机票官网_爱尚飞让你爱上飞";
-        $this->order=D("Booking")->nearOrder(); //最近订单
+    //    $this->order=D("Booking")->nearOrder(); //最近订单
 
-        $this->evaluat=D('Evaluat')->getList('',9,"total desc");
+        $this->evaluat=D('EvaluatView')->getList('',9,"total desc");
 
         R('Common/cheap','arr'); //特价机票数据
 
         //大家正在查
         $this->while_search=D('searchRecord')->whileSearch(5);
 
-        $nothing=D('Evaluat')->getList('',5);
+        $nothing=D('EvaluatView')->getList('',5);
 
         $nothingA=array(
            " 圣诞&元旦双节狂欢出国度假  活动",

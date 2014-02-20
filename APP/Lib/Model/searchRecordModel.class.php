@@ -46,7 +46,7 @@ class searchRecordModel extends RelationModel{
              $where['to_city']=array('neq','');
              $where['from_date']=array('neq','');
          }
-       return $this->where($where)->relation(true)->order('id desc')->limit($limit)->select();
+       return $this->where($where)->order('id desc')->limit($limit)->select();
      }
 
     function whileSearch($limit=10,$where=array()){

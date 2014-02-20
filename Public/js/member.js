@@ -18,8 +18,10 @@ $(function(){
 	//我的收藏 礼品更换背景
 	$('#gift_list li').mouseover(function(){
 		$(this).addClass('bg').siblings().removeClass('bg');
+		$(this).find('.delcollect').show();
 		}).mouseout(function(){
 			$(this).removeClass('bg');
+			$(this).find('.delcollect').hide();
 			});
 	
 	//购买车TAB

@@ -9,13 +9,15 @@
         	<h1 class="nav_tit">我的礼品</h1>
             <div id="list_box">
             	<div id="list_nav">
-                	<a class="active">我的收藏</a>
-                    <a >我的购物车</a>
-                    <a >已兑换礼品</a>
+                	<a href="?status=sc" id="one" class="<if condition='$_REQUEST.status eq sc'>active</if><empty name='_REQUEST.status'>active</empty>">我的收藏</a>
+                    <a href="?status=cart" class="<if condition='$_REQUEST.status eq cart'>active</if>">我的购物车</a>
+                    <a href="?status=dh" class="<if condition='$_REQUEST.status eq dh'>active</if>">已兑换礼品</a>
                 </div>
                 <div id="list_con">
-                	<div class="list_block on">
+					<!--我的收藏 begin-->
+                	<div class="list_block <if condition='$_REQUEST.status eq sc'>on</if><empty name='_REQUEST.status'>on</empty>">
                     	<div id="gift_list">
+							<!--我的收藏-所有礼品-->
                         	<div id="gift_list_nav"><a class="active">所有礼品</a>|<a>积Fun礼品</a>|<a>爱钻礼品</a></div>
                             <div class="gift_list_block gift_on" id="allgift">
                             	<ul>
@@ -25,6 +27,7 @@
                                             	<img src="__PUBLIC__/uploads/mall/m_{$vo.img}" title="{$vo.title}">                                           		<h3>{$vo.title}</h3>
                                             </a> 
                                              <p>{$vo.jifen}</p>
+                                             <a class="delcollect" gid="{$vo.id}">删除</a>
                                         </li>                                    
                                     </volist>	
 								</ul>
@@ -33,14 +36,15 @@
                                     <span class="page_num"><em>{$nowpage}</em>/{$allPage}页</span>
                                     <span class="prev ajax"></span>
                                 </div>
-                            </div><!--我的收藏-所有礼品-->
-                            
+                            </div>
+                            <!--我的收藏-积Fun礼品-->
                             <div class="gift_list_block" id="jfgift">
                             	<ul>
                                 	<volist name="jifensc" id="vo">
                                         <li>
                                             <a href="{:U('jifen/info','id='.$vo['mall_id'])}"><img src="__PUBLIC__/uploads/mall/m_{$vo.img}" title="{$vo.title}">                                           	<h3>{$vo.title}</h3></a> 
                                            <p>积fen：<em>{$vo.jifen}</em></p>
+                                           <a class="delcollect" gid="{$vo.id}">删除</a>
                                         </li>
 									</volist>
 								</ul>
@@ -49,14 +53,15 @@
                                     <span class="page_num"><em>{$nowpagejf}</em>/{$jfPage}页</span>
                                     <span class="prev ajax"></span>
                                 </div>
-                            </div><!--我的收藏-积Fun礼品-->
-                            
+                            </div>
+                            <!--我的收藏-爱钻礼品--> 
                             <div class="gift_list_block" id="azgift">
                             	<ul>
                                 	<volist name="aizuansc" id="vo">
                                         <li>
                                             <a href="{:U('jifen/info','id='.$vo['mall_id'])}"><img src="__PUBLIC__/uploads/mall/m_{$vo.img}" title="{$vo.title}">                                           	<h3>{$vo.title}</h3></a> 
                                             <p>爱钻：<b>x{$vo.jifen}</b></p>
+                                            <a class="delcollect" gid="{$vo.id}">删除</a>
                                         </li>
                                     </volist>                         
 								</ul>
@@ -65,11 +70,12 @@
                                     <span class="page_num"><em>{$nowpageaz}</em>/{$azPage}页</span>
                                     <span class="prev ajax"></span>
                                 </div>
-                            </div><!--我的收藏-爱钻礼品-->                            
+                            </div>                           
                         </div>
-                    </div>
-                    
-                    <div class="list_block"><!--购物车-->
+                    </div><!--我的收藏 end-->
+					
+                    <!--购物车 begin-->
+                    <div class="list_block <if condition='$_REQUEST.status eq cart'>on</if>" >                    	                                 	
                     	<div id="cart">
                         	<div id="cart_nav"><a class="active">积Fun礼品</a>|<a>爱钻礼品</a></div>
                             <div class="cart_block cart_on" id="cart_fun"> 
@@ -129,10 +135,11 @@
                               </span></div>
                          	</form>
                           </div><!--爱钻礼品-->
-                        </div>
+                        </div>                        
 					</div><!--购买车end-->
-                    
-                   <div class="list_block">
+					
+                    <!---begin 已兑换礼品---> 
+                   <div class="list_block <if condition='$_REQUEST.status eq dh'>on</if>" >                 
                     	<div id="exchange">
                         	<div id="exch_nav"><a class="active">积Fun礼品</a>|<a>爱钻礼品</a></div>
                             <div class="exch_block exch_on">
@@ -194,7 +201,7 @@
 								</table>
                             </div><!--爱钻礼品-->
 						</div>
-					</div><!--已兑换礼品-->
+					</div><!--end 已兑换礼品-->
                     
               </div>
         </div><!--list_block-->
@@ -415,6 +422,21 @@
   </script>
   <script type="text/javascript">
 	$(function(){
+		
+		//我的收藏删除收藏
+		$('#gift_list .delcollect').click(function(){
+			var act="delcollect";//设置类型为删除收藏
+			var gid=$(this).attr("gid");
+			$.getJSON("{:U('/Member/Assetaccount/gift/')}",{id:gid,act:act},function(data){
+				if(data.status==1){
+					$('#gift_list .delcollect').each(function(i){
+						if($(this).attr('gid')==gid){
+							$(this).parent('li').remove();
+							}
+						});
+					}
+				});
+			});
 		//我的收藏-所有礼品 AJAX分页
 		$('#allgift .ajax').click(function(){
 			var totlePage=$(this).parent().attr('totlePage'),page=$(this).parent().attr('page'),i=$(this).index();			

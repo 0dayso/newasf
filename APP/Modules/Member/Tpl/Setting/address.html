@@ -12,12 +12,12 @@
 	  	<div class="right" id="memberR">
         	<h1 class="nav_tit">确认邮寄地址<span class="right"><a href="{:U('/Member/Setting/addresslist')}">管理邮寄地址</a></span></h1>
 
-            <div class="address_list"><strong>寄送至</strong><span>{$province_city.province} {$province_city.city} {$addressInfo.address}（{$addressInfo.zip_code}）    {$addressInfo.mobile}</span><a href="#">修改该地址</a></div>
+            <div class="address_list"><strong>寄送至</strong><span>{$province_city.province} {$province_city.city} {$addressInfo.address}（{$addressInfo.zip_code}）    {$addressInfo.mobile}</span><a href="{:U('/Member/Setting/addresslist','id=',$addressInfo['id'])}">修改该地址</a></div>
             <div id="add_address"><a href="#"><img src="__PUBLIC__/images/member/add_news_address.gif" /></a></div>
             
 			<div id="address">
             	<h2>使用新地址</h2>
-                <form action="{:U('Member/address')}?act=edit" class="fh_form" method="post">
+                <form action="{:U('/Member/Setting/addressadd')}" class="fh_form" method="post">
                 	<ul>
                     	<li id="addcodePCT" val="{$info.province},{$info.city}"><span>所在地：<b>*</b></span>
 							<select name="province" value="{$info['province']}"  class="province" id="province_sel"><option value="">- -</option></select>

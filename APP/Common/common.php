@@ -261,6 +261,8 @@ function sendMail($address,$title,$message){
     // 设置用户名和密码。
     $mail->Username=C('SMTP_USER');
     $mail->Password=C('SMTP_PASS');
+	
+	$mail->IsHTML();
     // 发送邮件。
     return($mail->Send());
 }
@@ -679,11 +681,40 @@ function execute_action($rules = false, $action_id = null, $user_id = null){
     return $return;
 }
 
+//----------------------------------------------2014.2.12
+//在线交易订单支付处理函数
+//函数功能：根据支付接口传回的数据判断该订单是否已经支付成功；
+//返回值：如果订单已经成功支付，返回true，否则返回false；
+function checkorderstatus($ordid){
+    $Ord=M('Payorder');
+    $ordstatus=$Ord->where('id='.$ordid)->getField('status');
+    if($ordstatus==1){
+        return true;
+    }else{
+        return false;    
+    }
+}
 
+//处理订单函数
+//更新订单状态，写入订单支付后返回的数据
+function orderhandle($parameter){
+    $ordid=$parameter['out_trade_no'];        
+    $data['update_time']   =time();
+	$data['data_json']=json_encode($parameter);
+    $data['status']             =1;
+    $Ord=M('Payorder');
+    $Ord->where('id='.$ordid)->save($data);
 
-
-
-
+	$PayOrder=D('PayOrder');
+	$rs= $PayOrder->find($ordid);
+	$order_id_arr=explode(',',$rs['order_id_arr']);
+	foreach($order_id_arr as $val){
+		$orderDB = D('AsmsOrder');
+		$orderDB->setField('zf_fkf','');
+		$ors= $orderDB->field('ysje')->find($val);
+		$orderDB->orderPay($val,ASMSUID,$ors['ysje'],$out_trade_no,$rs['remark']);
+	}	
+} 
 
 
 ?>

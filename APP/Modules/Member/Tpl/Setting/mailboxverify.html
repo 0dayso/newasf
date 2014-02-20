@@ -1,5 +1,4 @@
 <include file="public:header" />
-
     <link rel="stylesheet" href="__PUBLIC__/css/member.css" type="text/css" />
     <script type="text/javascript" src="__PUBLIC__/js/member.js"></script>
     <script type="text/javascript" src="__PUBLIC__/js/layer/layer.min.js"></script>
@@ -7,8 +6,7 @@
     <script type="text/javascript" src="__PUBLIC__/js/modify.js"></script>
     <div class="member">
     	<!--会员中心导航-->
-    	<include file="public:left" />
-        
+    	<include file="public:left" />        
 		<div class="right" id="memberR">
         	<h1 class="nav_tit">邮箱验证</h1>
             <div id="mailbox" class="scbox">
@@ -16,41 +14,37 @@
                 		<li><span>您的邮箱：</span><a>{$userInfo.email}</a></li>
                 	</ul>
                 	<div class="sub"><input class="bt99" type="submit" value="下一步" /><a href="{:U('/Member/Setting/securitycenter')}">返回</a></div>
-            </div>
-            
+            </div>            
       </div>
     </div>
 	<script type="text/javascript">
-    	$(function(){
-			
+    	$(function(){			
 			//邮箱验证
-			$('#mailbox input').bind('click',function(){
+			$('#mailbox input').live('click',function(){
 				var mail=$('#mailbox li a').text();
-				$.getJSON("{:U('/Member/Setting/mailboxverify')}",{m:mail},function(data){
+				$.getJSON("{:U('/Member/Setting/mailboxverify')}",{id:mail},function(data){
 					if(data.status==1){
 						var html='';
 						html += '<ul>';
                 		html += '<li class="p90">请登录到您的邮箱 <a>'+ mail +'</a> 查收验证邮件，并点击邮件中的验证链接完成验证，如没有收到邮件请选择再次发送或更换邮箱。</li>';
                 		html += '</ul>';
-                		html += '<div class="sub"><input class="bt132"type="submit" value="再次发送验证邮件" /><a class="change">返回更换邮箱</a></div>';
-						$('#mailbox').append(html);
+                		html += '<div class="sub"><input class="bt132" type="submit" value="再次发送验证邮件" /><a href="javascript:;" class="change">返回更换邮箱</a></div>';
+						$('#mailbox').html(html);						
 						}
 					});
-				});
-			
+				});			
 			//返回更换邮箱
-			$('#mailbox .change').bind('click',function(){
+			$('#mailbox .change').live('click',function(){
 				//发送一个请求，看邮箱是否通过验证
-				$.getJSON("{:U('/Member/Setting/mailboxverify')}",{verifyask:"asking"},function(data){});
+				$.getJSON("{:U('/Member/Setting/mailboxverify')}",{verifyask:"asking"},function(data){
 					//如果通过验证为1，跳转到"安全中心",不是就跳转到"我的信息"更换邮箱
-					if(data.verify==1){
+					if(data.status==1){
 						window.location.href="{:U('/Member/Setting/securitycenter')}";
 						}else{
 							window.location.href="{:U('/Member/Setting/myinfo')}";
 							}
-				});
-			
+					});
+				});			
 			});
-    </script>
-        
+    </script>        
 <include file="public:footer" />

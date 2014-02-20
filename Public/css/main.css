@@ -31,7 +31,7 @@ textarea{overflow:auto;}
 #iconDiv1{display:none;}
 
 /*h1头部处理*/
-.h1_tit_nav{height:34px;border-bottom:1px solid #ececec;line-height:34px;padding-left:25px;color:#666666;background-color:#fff;}
+.h1_tit_nav{height:34px;/*border-bottom:1px solid #ececec;*/line-height:34px;/*padding-left:25px;*/padding-left:15px;color:#666666;background-color:#fff;}
 .h1_tit_nav a.sy{color:#666;}
 .h1_tit_nav a.sy:hover{color:#36F;}
 .h1_tit_nav a.cur{color:#0069d1;}
@@ -103,13 +103,13 @@ textarea{overflow:auto;}
 #hd_nav{background-color:#1679dd;height:40px;line-height:40px;font-family:"微软雅黑";overflow:visible;}
 #hd_nav .pl270{padding-left:270px}
 #hd_nav .home_nav li{float:left;width:117px;}
-#hd_nav .home_nav li a{display:block;width:65px;height:40px;color:#fff;font-size:16px;text-align:center;float:left;padding:0px 26px;}
+#hd_nav .home_nav li a{display:block;width:75px;height:40px;color:#fff;font-size:16px;text-align:center;float:left;padding:0px 26px;}
 #hd_nav .home_nav li a.new{position:relative;}
 #hd_nav .home_nav li a.new span{position:absolute;top:6px;left:90px;}
 #hd_nav .home_nav li a:hover{color:#eee;}
 #hd_nav .home_nav li a.active{background-color:#0f5cd1;color:#cfebff;}
 
-#hd_nav .nav li{float:left;padding:0px 15px;}
+#hd_nav .nav li{float:left;padding:0px 14px;}
 #hd_nav .nav li a{color:#fff;font-size:16px;float:left;padding:0px 35px;font-family:"微软雅黑";}
 #hd_nav .nav li a.new{position:relative;}
 #hd_nav .nav li a.new span{position:absolute;top:5px;left:90px;}
@@ -123,7 +123,7 @@ textarea{overflow:auto;}
 #myAisf_t{background:url(../images/t_b_aaa.gif) no-repeat 0 0px;width:9px;height:5px;margin-top:11px;overflow:hidden}
 #myAisf_t.active{background-position:0px -5px;width:9px;height:5px;}
 
-#cont{width:100%;background:#fff url(../images/bg_cont.gif) repeat-x 0 0;overflow:hidden;}
+#cont{width:100%;/*background:#fff url(../images/bg_cont.gif) repeat-x 0 0;*/overflow:hidden;}
 
 #footer{border-top:3px solid #0776e8;padding:10px;}
 #footer .wd960{text-align:center;}
@@ -891,16 +891,86 @@ label.kfpj a.a0{background-position:0 -200px}
 #index_preferential .type_txt strong{float:left;width:70px;color:#ff6600;display:block;text-align:right;}
 
 /*机票工具箱*/
-#iflight_tools{border:1px solid #e7e7e7;font-family:"微软雅黑","黑体","宋体";}
-#iflight_tools h2{line-height:32px;padding-left:12px;background:#f4f4f4;font-size:16px;color:#333;border-bottom:1px solid #e7e7e7;}
+.tools_box{border:1px solid #e7e7e7;font-family:"微软雅黑","黑体","宋体";}
+.tools_box h2{line-height:32px;padding-left:12px;background:#f4f4f4;font-size:16px;color:#333;border-bottom:1px solid #e7e7e7;}
+.tools_box h2 a{float:right;color:#0066cc;}
+.tools_box h2 strong{color:#3366cc;font-size:14px;}
+.tools_box h2 span{color:#333;font-size:14px;font-weight:bold;}
 #iflight_tools ul{padding:10px;}
 #iflight_tools li{line-height:38px;border-bottom:1px dotted #e7e7e7;}
-#iflight_tools li a{display:block;height:40px;padding-left:55px;font-size:14px;color:#1679dd; background:url(../images/iflight_tools.gif) no-repeat}
+#iflight_tools li a{display:block;height:40px;padding-left:55px;font-size:14px;color:#1679dd; background:url(../images/tools/iflight_tools.gif) no-repeat}
 #iflight_tools li a:hover,#iflight_tools li.on a{color:#ff6600;}
 #iflight_tools li a.a0{background-position:10px 0px;}
 #iflight_tools li a.a1{background-position:10px -80px;}
 #iflight_tools li a.a2{background-position:10px -160px;}
+#iflight_tools li a.a3{background-position:10px -200px;}
 #iflight_tools li a.a0:hover,#iflight_tools li.on a.a0{background-position:10px -40px;}
 #iflight_tools li a.a1:hover,#iflight_tools li.on a.a1{background-position:10px -120px;}
 #iflight_tools li a.a2:hover,#iflight_tools li.on a.a2{background-position:10px -200px;}
+#iflight_tools li a.a3:hover,#iflight_tools li.on a.a3{background-position:10px -280px;}
 
+#airport{border:1px solid #e7e7e7;padding:9px;}
+#airport h2{height:36px;line-height:36px;font-size:18px;background:#f4f4f4;text-indent:10px;}
+#airport .hot{border-bottom:1px dashed #e7e7e7;}
+#airport .hot h3{width:660px;padding:20px 0 10px 0;line-height:15px;}
+#airport .hot h3 span{border-left:4px solid #25acee;padding-left:10px;font-size:14px;font-weight:bold;color:#0066cc;}
+#airport ul{clear:both;padding-bottom:20px;}
+#airport ul.mt20{margin-top:20px;}
+#airport li{float:left;width:25%;line-height:36px;}
+#airport li strong{float:left;display:inline-block;width:60px;color:#333;overflow:hidden;}
+#airport li a{color:#666;}
+#airp_box{margin-top:20px;}
+#airp_box .tab,#servcont .tab,#airticket .tab{border-left:1px solid #e7e7e7;height:34px; background:url(../images/tools/tools_tab_bg.gif) repeat-x;}
+#airp_box .tab a,#servcont .tab a,#airticket .tab a{float:left;display:block;padding:0 25px;line-height:32px;background:#f4f4f4;border:1px solid #e7e7e7;border-left:none;color:#333;cursor:pointer;font-size:14px;font-weight:bold;color:#333;}
+#airp_box .tab a.on,#servcont .tab a.on,#airticket .tab a.on{line-height:31px;background:#FFF;border-top:2px solid #1679dd;color:#0066cc;border-bottom-color:#FFF;}
+#airp_box .airp_box{display:none;}
+#airp_box .on,#servcont .on,#airticket .on{display:block!important;}
+#airp_box .airp_list{margin-top:10px;border-bottom:1px solid #e7e7e7;}
+#airp_box dl{clear:both;}
+#airp_box dt,#airp_box dd{float:left;}
+#airp_box dt{width:40px;height:40px;position:relative;}
+#airp_box dd{width:620px;}
+#airp_box dt a{display:block;width:18px;height:18px;line-height:18px;background:#a2a2a2;text-align:center;z-index:100;color:#fff;font-weight:bold;font-family:Arial;position:absolute;top:8px;border-radius:2px;-moz-border-radius:2px; /* Old Firefox */}
+#airp_box dt span{font-size:14px;color:#a2a2a2;position:absolute;top:9px;left:10px;}
+
+#servcont h2.title{font-size:18px;font-weight:bold;line-height:48px;}
+#servcont .sc_box,#airticket .at_box{border:1px solid #e7e7e7;padding:9px;border-top:none;display:none;}
+.weather{margin-top:10px;}
+#hot_airp ul{padding:9px;}
+#hot_airp li{float:left;width:50%;line-height:30px;font-size:10px;font-family:Verdana, Geneva, sans-serif;color:#999;}
+#hot_airp li a{font-size:12px;color:#333;padding-left:5px;}
+
+/*机票工具箱 国际机场内容页*/
+#intr_airport .cont{padding:12px;text-indent:2em;line-height:24px;color:#666;}
+#intr_airport .airport_img{float:left;width:225px;height:155px;border:1px solid #e7e7e7;padding:5px;margin:0 12px 12px 0;}
+#intr_airport .airport_img img{float:left;}
+#airticket ul{padding:10px;}
+#airticket li{float:left;width:180px;line-height:48px;color:#0055aa;border-bottom:1px dashed #ccc;}
+#airticket li.pr70{padding-right:60px;}
+#airticket li a{float:right;display:block;width:50px;line-height:19px;text-align:center;color:#FFF;cursor:pointer;background:url(../images/tools/bt_50.gif) no-repeat;margin-top:13px;}
+#airticket .more{text-align:right;padding-right:10px;}
+#airticket .more a{color:#666;}
+#fquery_li ul{padding:10px 0;}
+#fquery_li li{float:left;width:130px;line-height:32px;padding:0 20px;color:#999;font-family:Verdana, Geneva, sans-serif;}
+#fquery_li li a{padding-left:10px;color:#0055aa;}
+
+#iflight_list{border:1px solid #e7e7e7;}
+#iflight_list h2{padding:0 12px;line-height:38px;border-bottom:1px solid #e7e7e7;font-family:"微软雅黑","黑体","宋体"; background:url(../images/tools/iflight_list.gif) repeat-x;}
+#iflight_list h2 strong{font-size:14px;}
+#iflight_list h2 a{float:right;color:#0066cc;}
+#iflight_list .if_list{padding:12px;}
+#iflight_list .if_list h3{line-height:30px;background:#f4f4f4;}
+#iflight_list .if_list h3 a{font-size:16px;color:#0055cc;padding-left:10px;}
+
+#iflight_list .if_box{border-bottom:1px dashed #e7e7e7;}
+#iflight_list dl{clear:both;}
+#iflight_list dt,#iflight_list dd{float:left;}
+#iflight_list dt{width:40px;height:40px;position:relative;}
+#iflight_list dd{width:632px;}
+#iflight_list dt a{display:block;width:18px;height:18px;line-height:18px;background:#a2a2a2;text-align:center;z-index:100;color:#fff;font-weight:bold;font-family:Arial;position:absolute;top:12px;border-radius:2px;-moz-border-radius:2px; /* Old Firefox */}
+#iflight_list dt span{display:block;font-size:14px;color:#a2a2a2;position:absolute;top:13px;left:10px;}
+ul{clear:both;padding-bottom:20px;}
+#iflight_list ul{clear:both;}
+#iflight_list ul.mt20{margin-top:20px;}
+#iflight_list li{float:left;width:25%;line-height:42px;}
+#iflight_list li a{color:#0055aa;}

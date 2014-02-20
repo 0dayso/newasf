@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{$title}-爱尚飞手机网</title>
+<link href="__PUBLIC__/mobile/css/global.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+#topnav .icon{width:80px;}
+.box h2{padding-right:42px;}
+#order{padding:10px;color:#666;}
+#order p{background-color:#FFF;line-height:50px;text-align:center;}
+#tab a{display:inline-block;width:25%;margin-right:10px;background-color:#67b1e4;text-align:center;color:#FFF;line-height:30px; cursor:pointer;}
+#tab a:hover,#tab a.on{background-color:#FFF;color:#ff8400;}
+#explain,#checkall_total{padding:10px;background:#FFF;}
+#explain span,#checkall{padding:10px;line-height:24px;background:#f2f1f0;}
+#explain span{display:block;text-indent:2em;}
+.list{background-color:#FFF;padding:10px;border-bottom:1px solid #e7e5e5;}
+.list li{line-height:26px;}
+.list li input{float:right;margin-right:10px;}
+.list li span{color:#333;}
+.list li em,#explain em,#total b{font-style:normal;color:#ff840f;}
+.list li a{color:#2690d8;}
+#checkall{text-align:right;}
+#checkall span{color:#2690d8;padding:0 10px;}
+#checkall span#cancel{cursor:pointer;}
+#checkall input{float:right;margin-top:5px;}
+#total{font-size:14px;padding-top:10px;}
+#total b{font-size:18px;}
+#pay{background:#ff980f;line-height:30px;margin-top:10px;font-size:16px;font-weight:bold;color:#FFF;text-align:center; cursor:pointer;}
+</style>
+</head>
+
+<body>
+<div id="page">
+	<div id="content">
+    	<h1 id="topnav"><span class="left icon"><a href="{:U('/')}" class="icon-home">首页</a></span>我的爱尚飞<span class="right" id="exit">退出登录</span></h1>
+    	<div class="box">
+        	<h2><span class="left icon"><a href="{:U('/Member')}" class="icon-return">返回</a></span>我的订单</h2>
+    	</div>
+		<div id="order">
+    		<div id="tab">
+            	<a class="on">待处理订单</a>
+            	<a href="{:U('/Member/bookingProcess')}">已支付订单</a>
+            	<a href="{:U('/Member/bookingCancel')}">已取消订单</a>
+			</div>
+    		<div id="order_list" status="pending" page="1">
+				<p>您还没有国际机票订单哦，赶快去下单吧！</p>
+                <div id="explain"><span>您有<em>2</em>笔国际机票订单需要进行支付，合计应付金额为<em>XXXXX</em>元。我们建议您尽快付款，延迟未付款系统会自动取消订单，且航空公司很可能会随时取消您的舱位。</span></div>
+				<ul class="list">
+     				<li><input type="checkbox" gid="1" cope="2514" checked="checked"><span>订单 ID ：</span>IF51DCC0F13A800B0064</li>
+     				<li><span>航班行程：</span> 广州-台北&nbsp;&nbsp;往返</li>
+     				<li><span>价格（含税）：</span><em>￥2514</em></li>
+                    <li><span>现金券：</span>无</li>
+                    <li><span>应付金额：</span><em>￥2514</em></li>
+     				<li><span>下单时间：</span>2013-09-26  10:26</li>
+     				<li><span>订单状态：</span>待支付</li>
+				</ul>
+                <ul class="list">
+     				<li><input type="checkbox" gid="2" cope="2314" checked="checked"><span>订单 ID ：</span>IF51DCC0F13A800B0064</li>
+     				<li><span>航班行程：</span> 广州-台北&nbsp;&nbsp;往返</li>
+     				<li><span>价格（含税）：</span><em>￥2514</em></li>
+                    <li><span>现金券：</span>200</li>
+                    <li><span>应付金额：</span><em>￥2314</em></li>
+     				<li><span>下单时间：</span>2013-09-26  10:26</li>
+     				<li><span>订单状态：</span>待支付</li>
+				</ul>
+              	<div id="checkall_total">
+                	<div id="checkall"><span id="cancel">取消</span><span>全选<input type="checkbox" class="checkbox"  checked="checked"></span></div>
+                    <div id="total">合计应付金额：<b>￥<span>4828</span></b></div>
+                </div>
+			</div>
+            
+            <div id="pay">立即支付</div>
+            
+		</div>
+	</div>
+</div>
+<include file="Public:CommonJs" />
+
+<script type="text/javascript">
+$(function(){
+	//待处理订单单选
+	$("#order_list input:checkbox").change(function(){
+		if($(this).hasClass('checkbox') != true){$('#order_list .checkbox').removeAttr('checked');}
+		fun_price_js();
+		});
+	//待处理订单全选
+	$("#order_list .checkbox").change(function(){
+		if(this.checked){
+			$("#order_list input:checkbox").each(function(){this.checked="checked";});
+			fun_price_js();
+			}else{
+				$("#order_list input:checkbox").each(function(){this.checked="";});
+				$("#total span").html(0);
+				}
+		});
+	//待处理订单合计
+	function fun_price_js(){
+		var money=0;
+		$("#order_list input:checkbox").each(function(){
+			if($(this).hasClass('checkbox') != true && this.checked){
+				money=money+Number($(this).attr("cope"));
+				}
+			});
+		$("#total span").html(money);
+		}
+	
+	$("#pay").click(function(){
+		var gid = new Array();
+		$("#order_list input:checkbox").each(function(){
+			if($(this).hasClass('checkbox') != true && this.checked){
+				gid.push($(this).attr('gid'));
+				}
+			});
+		if(gid.length<=0){
+			alert("请选择订单！");
+			}else{
+				window.location="{:U('/Member/pay')}"+"?gid="+gid;
+				}
+		});
+
+	})
+</script>
+</body>
+</html>
