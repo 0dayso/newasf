@@ -144,13 +144,16 @@ class MemberModel extends RelationModel{
         $this->invite_id=cookie('invite_id')?cookie('invite_id'):0; //推荐人ID
         $this->user_id=$this->invite_id; //分配客服
         $id=$this->add(); //插入数据库
-        echo $this->getDBerror();
+     //   echo $this->getDBerror();
         if(!empty($id)){  //注册成功
             $this->uid=$id;
             session('uid',$id);
             if(C('REG_POINTS')){
                 D('Points')->addPoints($id,C('REG_POINTS'),I('username').'注册 获得'.C('REG_POINTS').'积分'); //添加注册送积分
             }
+           if(C('REG_COUPON')){
+               D('Points')->addPoints($id,C('REG_COUPON'),I('username').'注册 获得'.C('REG_COUPON').'现金券',2); //添加注册送现金
+           }
             if(cookie('invite_id')){ // 邀请注册
                 $asms_member_id=$this->field('asms_member_id')->find(cookie('invite_id'));
                 if($asms_member_id && D('AsmsOrder')->where("hyid=$asms_member_id and zf_fkf=1")->count()){

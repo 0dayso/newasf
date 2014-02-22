@@ -18,15 +18,18 @@ class IniAction extends PublicAction{
 					}else{
                         cookie('uid',null);  cookie('salt',null);
                     }
-				}
+				}else{
+                    cookie('uid',null);  cookie('salt',null);
+                }
 			}
 		}elseif(session('uid')){
             $userInfo=$member->UserInfo(session('uid'));
+            if(!$userInfo) session('uid',null);
             $this->userInfo=$userInfo;
-            define('ASMSUID',$userInfo['asms']['hyid']);//加入asms id
+            $asmsUid=$userInfo['asms']['hyid']?$userInfo['asms']['hyid']:'-1';
+            define('ASMSUID',$asmsUid);//加入asms id
             cookie('uid',session('uid'));
 		}
-
         //登陆后检测是否关联胜意 没有则注册到asms
         if(getUid() && !$userInfo['asms_member_id']){
             D('AsmsMember')->relationReg($userInfo);
@@ -48,7 +51,7 @@ class IniAction extends PublicAction{
 
     //未登录不能访问
 	function restrict(){
-		$array=array('register','login','invite');//不需要登陆可访问的
+		$array=array('register','login','invite','pay');//不需要登陆可访问的
 			$module_name=strtolower(MODULE_NAME);
             if(!in_array($module_name,$array)){
 				if(!session('uid')){

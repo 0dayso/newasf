@@ -26,7 +26,7 @@ return array(
     'ASMS_ACCOUNT'=>6000,
     'ASMS_PWD'=>'77169',
     'CACHE_TIME'=>50,
-    'ASMS_ONLINE'=>0,//asms 联网模式
+    'ASMS_ONLINE'=>1,//asms 联网模式
     'ASMS_WEBSITECODE'=>'1',
     'ASMS_VERSION'=>'1',
 
@@ -54,7 +54,7 @@ return array(
 	'ALIPAY_RETURN_URL' => "http://www.aishangfei.com/Member/pay/returnurl",
 
 	//	'ALIPAY_NOTIFY_URL' => "http://www.aishangfei.com/Alipay/notify_url.php", //这里是页面跳转通知url，提交到项目的Pay控制器的returnurl方法；
-	'ALIPAY_NOTIFY_URL' => "http://www.aishangfei.com/Member/pay/notifyurl.php",
+	'ALIPAY_NOTIFY_URL' => "http://www.aishangfei.com/Member/pay/notifyurl",
 	'successpage'=>'http://www.aishangfei.cn/Member/booking?status=process',     //支付成功跳转到的页面
 	'errorpage'=>'http://www.aishangfei.com/Member/booking?status=pending',       //支付失败跳转到的页面	
 	
@@ -62,6 +62,7 @@ return array(
         //其它配置项
     'VERIFY_CODE'=>1,       //注册码开关
     'REG_REBATE'=>50,	//注册返利rebate
+    'REG_COUPON'=>50, ///注册送现金劵
     'REG_POINTS'=>1000,   //注册送积分
 
     'INVITE_POINTS'=>500,   //邀请注册送积分

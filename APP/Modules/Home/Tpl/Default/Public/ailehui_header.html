@@ -4,15 +4,18 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>{$title} - {:C('WEB_NAME')}</title>
     <link rel="stylesheet" href="__PUBLIC__/css/main.css" type="text/css" />
-    <link rel="stylesheet" href="__PUBLIC__/css/activity.css" type="text/css" />
+    <link rel="stylesheet" href="__PUBLIC__/css/ailehui.css" type="text/css" />
     <script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
     <script type="text/javascript" src="__PUBLIC__/js/main.js"></script>
-    <script type="text/javascript" src="__PUBLIC__/js/activity.js"></script>
     <script type="text/javascript" src="__PUBLIC__/js/layer/layer.min.js"></script>
     <style type="text/css">#kfivtwin{display:none!important;/*隐藏53客服*/}</style>
 </head>
 <body>
 <script type="text/javascript">
+    var BaseInfo = {
+        'path':"{:U('/')}"
+    };
+
     function open_kf(){
     <?php if($userinfo): ?>
         window.open('http://wpa.qq.com/msgrd?v=3&uin={$userinfo.user.qq|trim}&site=qq&menu=yes');
@@ -49,20 +52,16 @@
     </div>
     <div id="hd_logo">
         <div class="wd960">
-            <a href="{:U('/')}" class="left"><img src="__PUBLIC__/images/logo.gif" alt="logo" class="logo" /></a>
-            <div class="right hd_nav"><a href="{:U('/')}">首页</a>|<a href="{:U('/iflight')}">国际机票</a>|<a href="{:U('/about/service')}">会员服务</a>|<a href="{:U('/jifen')}">积fun商城</a>|<a href="<if condition="$userinfo">{:U('/Adviser/review')}_{$userinfo.user.id}<else/>{:U('/adviser')}</if>">专业顾问</a></div>
+            <a href="{:U('/')}" class="left"><img src="__PUBLIC__/images/logo.gif" alt="logo" class="logo" /></a><span id="logo_txt">爱乐汇</span>
         </div>
     </div>
-    <div id="top_img5">
-      <div class="wd1080"><img src="__PUBLIC__/images/activity/top_img5.gif" /></div>
-    </div>
-    <div id="top_nav">
-        <div class="wd960">
-            <ul>
-                <li><a <?php if(MODULE_NAME=='Activity' and ACTION_NAME=='activity') echo "class='active'"; ?> href="{:U('activity/activity')}">活动首页</a></li>
-                <li><a href="{:U('/')}">好友fun享</a></li>
-                <li><a href="{:U('jifen')}">积分商城</a></li>
-                <li><a <?php if(MODULE_NAME=='Activity' and ACTION_NAME=='rule') echo "class='active'"; ?> href="{:U('activity/rule')}">活动规则</a></li>
+    <div id="alh_nav">
+        <div class="wd980">
+            <ul class="nav">
+                <li><a <?php if(MODULE_NAME=='Ailehui') echo "class='active'"; ?> href="{:U('/ailehui')}">爱乐汇首页                                                   </a></li>
+                <li><a <?php if(MODULE_NAME=='Iflight') echo "class='active'"; ?> href="{:U('/iflight')}">会员升级</a></li>
+                <li><a <?php if(MODULE_NAME=='About' and ACTION_NAME=='service') echo "class='active'"; ?> href="{:U('/about/service')}">会员特权</a></li>
+                <li><a <?php if(MODULE_NAME=='Jifen') echo "class='active'"; ?> href="{:U('/jifen')}">账户管理</a></li>
             </ul>
         </div>
 	</div>

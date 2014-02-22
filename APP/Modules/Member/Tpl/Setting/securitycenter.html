@@ -28,19 +28,19 @@
                             <span><a href="{:U('/Member/Setting/myinfo')}">立即验证</a> </span>
                             <strong>邮箱验证</strong> | 您还未添加邮箱及进行验证<em>(成功验证即可获赠500积fun)</em> 
                         </li>
-                    </empty>         
-                    <if condition="$checkemail['is_check'] eq 0"><!--邮箱没有进行验证-->
-                      <li class="no">
-                         <span><a href="{:U('/Member/Setting/mailboxverify')}">立即验证</a> <a href="{:U('/Member/Setting/myinfo')}">修改</a> </span>
-                         <strong>邮箱验证</strong> | 邮箱<a>{$userInfo['email']}</a>未通过验证<em>(成功验证即可获赠500积fun)</em>
-                       </li>
-                    <else/><!--邮箱通过验证-->
-                        <li class="yes">
-                          <span><a href="{:U('/Member/Setting/myinfo')}">修改邮箱</a></span>
-                          <strong>邮箱验证</strong> | 邮箱<a>{$userInfo['email']}</a>已通过验证</em>
-                        </li>
-                    </if>
-                   
+                    <else/>
+                        <if condition="$checkemail['is_check'] eq 0"><!--邮箱没有进行验证-->
+                          <li class="no">
+                             <span><a href="{:U('/Member/Setting/mailboxverify')}">立即验证</a> <a href="{:U('/Member/Setting/myinfo')}">修改</a> </span>
+                             <strong>邮箱验证</strong> | 邮箱<a>{$userInfo['email']}</a>未通过验证<em>(成功验证即可获赠500积fun)</em>
+                           </li>
+                        <else/><!--邮箱通过验证-->
+                            <li class="yes">
+                              <span><a href="{:U('/Member/Setting/myinfo')}">修改邮箱</a></span>
+                              <strong>邮箱验证</strong> | 邮箱<a>{$userInfo['email']}</a>已通过验证</em>
+                            </li>
+                        </if>
+                    </empty>
                 </ul>
             </div>
         </div>

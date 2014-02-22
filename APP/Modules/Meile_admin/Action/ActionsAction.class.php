@@ -65,6 +65,12 @@ class ActionsAction extends CommonAction{
         $this->display();
     }
 
+    function logView(){
+        $this->vo=D('ActionLog')->relation(true)->find(I('id'));
+        $this->display();;
+
+    }
+
 }
 
 

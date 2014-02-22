@@ -316,6 +316,106 @@ class AsmsOrderModel extends RelationModel{
         }
     }
 
+    function editOrder($data=array()){
+      //  if(!isset($data['ddbh'])) return false;
+        $this->check_login();
+        $url= C('ASMS_HOST')."/asms/ydzx/ddgl/kh_khdd_xq.shtml?ddbh=".'6565656565651402212';
+        //   echo $url;
+        $data=curl_post($url,'',COOKIE_FILE,0);
+        if(!$data){return -1;}
+
+      /*  $preg="/<div class=\"nav_junior_con\".*?>(.*?)<script.*?<tr id=\"hctr0\">(.*?)<\/table>.*?<tbody id=\"tb\">(.*?)<\/tbody>/si";
+
+        preg_match($preg,$data,$info);
+
+        if(empty($info[0])){
+            $this->error="GETORDERINFO 未找到";
+            return false;
+        }
+        $data1=$info[1];
+        $data2=$info[2];
+        $data3=$info[3];//从html页面上取需要的
+        //    print_r($data1);
+
+        $preg1="/<input .*?name=\"(.*?)\" .*?value=\"(.*?)\".*?>/";
+        preg_match_all($preg1,$data1,$info1);
+
+        foreach($info1 as $key=>$val){
+            foreach($val as $k=>$v){
+                if($key==0) continue;
+                if($key==1)
+                    $kk[$k]=$v;
+                if($key==2)
+                    $arr[$kk[$k]]=$v;
+            }
+        }
+        $arr['hyid']=$arr['ct_hyid'];
+        $preg="/<td.*?>(.*?)<\/td>.*?<td.*?>(.*?)<\/td>.*?<input .*?value=\"(.*?)\"\/>.*?<input .*?value=\"(.*?)\"\/>.*?<input .*?value=\"(.*?)\"\/>.*?<input .*?value=\"(.*?)\"\/>.*?<input .*?value=\"(.*?)\"\/>.*?<input .*?value=\"(.*?)\"\/>.*?<input .*?value=\"(.*?)\"\/>.*?<input .*?value=\"(.*?)\"\/>.*?<input .*?value=\"(.*?)\"\/>.*?<input .*?value=\"(.*?)\"\/>.*?<input .*?value=\"(.*?)\"\/>.*?<input .*?value=\"(.*?)\"\/>.*?<input .*?value=\"(.*?)\"\/>.*?<td.*?>(.*?)<\/td>.*?<td.*?>(.*?)<\/td>.*?<\/tr>/si";
+
+        preg_match_all($preg,$data2,$info2);
+        //  print_R($info2);
+        $preg2="/<input .*?name=\"(.*?)\" .*?value=\"(.*?)\".*?>/";
+        preg_match_all($preg2,$data3,$info3);
+        $hdArr=array('','hbh','hc','hd_id','hd_hbh','hd_cfcity','hd_ddcity','hd_cfsj','hd_cfsj_p','hd_bzbz','hd_bzbz_p','hd_cw','hd_fjjx','hd_hzl','hd_cityname','hd_ddcityname','cfsj','ddsj');
+        foreach($info2 as $key=>$val){
+            foreach($val as $k=>$v){
+                if($key==0) continue;
+                $arr1[$k][$hdArr[$key]]=$v;
+            }
+        }
+
+        $index=0;
+        foreach($info3 as $key=>$val){
+            foreach($val as $k=>$v){
+                if($key==0) continue;
+                if($v=='cjr_index'){
+                    $index=$info3[2][$k];
+                }
+                if($key==1){
+                    $kk[$k]=$v;
+                    $arr2[$index][$v]=$info3[2][$k];
+                }
+            }
+        }
+        print_r($arr1);print_r($arr2);
+        exit;*/
+        $preg1="/<input .*?name=\"(.*?)\" .*?value=\"(.*?)\".*?>/";
+        preg_match_all($preg1,$data,$info1);
+
+        foreach($info1 as $key=>$val){
+            foreach($val as $k=>$v){
+                if($key==0) continue;
+                if($key==1)
+                    $kk[$k]=$v;
+                if($key==2)
+                    $arr[$kk[$k]]=$v;
+            }
+        }
+        print_r($arr);
+        $url=$url= C('ASMS_HOST')."/asms/ydzx/ddgl/kh_khdd_detail_save.shtml?submitForm=listForm";
+        $post=$arr;
+        $post['ddbh']='6565656565651402212';
+     //   $post['cjr_cgj']=30;
+        $post['cjr_xsj']=10;
+        $post['sfqrtx']='';
+        $post['ds_memo']='';
+        $post['p']='ddXqSave';
+        $post['openlx']=0;
+        $post['ddxgtype']='ddxq';
+        $post['ddzt']=1;
+        $post['ddbz']="dddd";
+        unset($post['ddbz']);
+        $post= http_build_query($post);
+     //   $post="sfqrtx=0&ds_memo=&p=ddXqSave&openlx=0&ddxgtype=ddxq&ddbh=6565656565651402212&ddzt=1&pnr_hkgstldatetime=2014-02-23+1645&zkfx=0&ps_pszt=0&longrangegaveiick=0&pnr_adultno=2&ps_yqrqsj=2014-02-24+1634-1734&xg_userid=6000&ct_hyid=131106162247096671&pnr_cfrqsj=2014-03-16+12%3A15&zcfw=0&version=27&zf_fkf=0&sjjlfs=0&xjjlfs=0&sfbm=0&tss_yn=0&sfmp=0&sfzsp=0&sfsgd=1&ddlx=1&zcid=&ifxf=1&ptzcbs_zc=0&czfrom=ASMS%E8%AE%A2%E5%8D%95%E8%AF%A6&ps_compid_dd=&ps_deptid_dd=&ddtzbz=&ds_compid_dd=GZML&ds_deptid_dd=GZMLDZSW&dp_compmc=%E5%B9%BF%E5%B7%9E%E7%BE%8E%E4%B9%90&dp_deptmc=%E7%94%B5%E5%AD%90%E5%95%86%E5%8A%A1%E9%83%A8&dp_dpyid=6000&jsfl=0&bxjsj=0&ddlx_dd=0&ddtzfs=0&ifxf_dd=1&refun=&xglyflag=1&hyxgflag=0&gjpjgs=0&wjlpjsfjs=1&cs2830=0&hd_id=140222121430691000000000100416&hd_hbh=CZ392&hd_cfcity=DAC&hd_ddcity=CAN&hd_cfsj=2014-03-16&hd_cfsj_p=1215&hd_bzbz=2014-03-16&hd_bzbz_p=1735&hd_cw=T&hd_fjjx=738&hd_hzl=6&hd_cityname=%E8%BE%BE%E5%8D%A1&hd_ddcityname=%E5%B9%BF%E5%B7%9E&mblx=%2Fasms%2Fydzx%2Fddgl%2Fdetail%2Fkh_khdd_cjrxx_mb_gj_tbody.jsp&cjr_index=1&cjr_cjrid=AAAAAA1402211635495842&cjr_cjrlx=1&cjr_cjrxm=ZHAN%2FYUAN&cjr_clkid=2014022116024964874&cjr_jfhyid=&cjr_cgj=30&cjr_pjsjjsfl=0&cjr_pjsjjsj=50&cjr_hidediscount=0&cjr_khlk=0&cjr_jj=-20&cjr_xsj=10&cjr_jsf=0&cjr_tax=0&cjr_qt2=0&cjr_jec=0&cjr_qt1=0&cjr_bxfs=0&cjr_bxdj=0&cjr_zsbx=0&cjr_bxjl=0&cjr_pjxjjsfl=0&cjr_lwyj=0&cjr_fpj_hj=10&cjr_bxxjjsj=0&cjr_bx=0&cjr_pjxjjsj=10&cjr_returntoinvalidate=0&cjr_pj_mj=0.01&cjr_khfx=0&cjr_hf_hkgs=0&cjr_spa=0&cjr_pj_sjjsfl_xs=0&cjr_zz_hkgs=0&cjr_cplx=&cjr_zjhm=E10495309&cjr_sjhm=18673800250&cjr_gj=%E4%B8%AD%E5%9B%BD&cjr_xb=M&cjr_zjyxq=&cjr_sfmp=0&cjr_sfzsp=0&temp_pjxjjsj=10.00&temp_pjsjjsj=50.00&temp_pjsjjsfl=0.00&temp_cgj=30.00&temp_khlk=0.00&temp_jj=0.00&temp_pj_mj=0.01&temp_returntoinvalidate=0.00&temp_xsj=10.00&temp_hf_hkgs=0.00&temp_spa=0.00&temp_pj_sjjsfl_xs=0.00&cjr_index=2&cjr_cjrid=AAAAAA1402221317356055&cjr_cjrlx=1&cjr_cjrxm=SDS%2FWA&cjr_clkid=2014010816014525795&cjr_jfhyid=&cjr_cgj=30&cjr_pjsjjsfl=0&cjr_hidediscount=0&cjr_khlk=0&cjr_xsj=20&cjr_jsf=0&cjr_tax=0&cjr_qt2=0&cjr_jec=0&cjr_qt1=0&cjr_bxfs=0&cjr_bxdj=0&cjr_zsbx=0&cjr_bxjl=0&cjr_pjxjjsfl=0&cjr_lwyj=0&cjr_fpj_hj=20&cjr_bxxjjsj=0&cjr_bx=0&cjr_pjxjjsj=20&cjr_returntoinvalidate=0&cjr_pj_mj=0.01&cjr_khfx=0&cjr_hf_hkgs=0&cjr_spa=0&cjr_pj_sjjsfl_xs=0&cjr_zz_hkgs=0&cjr_cplx=&cjr_pjsjjsj=30&cjr_jj=-10&cjr_zjhm=425022&cjr_sjhm=&cjr_gj=%E4%B8%AD%E5%9B%BD&cjr_xb=M&cjr_zjyxq=&cjr_sfmp=0&cjr_sfzsp=0&temp_pjxjjsj=10.00&temp_pjsjjsj=50.00&temp_pjsjjsfl=0.00&temp_cgj=30.00&temp_khlk=0.00&temp_jj=0.00&temp_pj_mj=0.01&temp_returntoinvalidate=0.00&temp_xsj=10.00&temp_hf_hkgs=0.00&temp_spa=0.00&temp_pj_sjjsfl_xs=0.00&ct_cpfs=1&cplx=BPET&confirmDate=2014-02-23&confirmTime=1645&bxlx=131101234004998165&zf_fklx=1006433&ct_lxrkh=18673800250&ct_hyxm=yin&cu_ifljjf=0&ct_nxr=yin&ct_nxrdh=18673800250&ct_smsmobilno=18673800250&ct_email=&clyy=&vipxmmc=&xmdh=&vip_jsbmName=&vip_jsbm=&vipusermc=&vip_dp_userid=0&vip_bmdh=&vip_ddbh=&vip_kmm=&vipusermc=&vip_spr=&vip_spgzid=&ps_lx=2&ps_city=96&qpbm=&ct_xcd=1&ct_sjr=&ct_yzbm=&ps_dz=%E8%81%94%E7%B3%BB%E5%9C%B0%E5%9D%80&yqdate=2014-02-24&sj=1634-1734&ct_sjdz=&ps_bz=&gjftnr=&ddbz=ddddss&qtdd_len=1&ywdh=6565656565651402212&ywlx=01&qz_nr=test";
+     //   parse_str($post,$myArray);
+        print_r($post);
+       $data=curl_post($url,$post,COOKIE_FILE);
+        print_r($data);
+        if(!$data)  return true;
+        $this->error=$data;
+        return false;
+    }
+
 
     //取消订单
     function orderCancel($ddbh){
@@ -357,9 +457,12 @@ class AsmsOrderModel extends RelationModel{
      * $hyid  会员id
      * $zf_je  支付金额
      * $pay_id 支付流水
+     * $zfkm  支付方式、渠道
      * $bzbz 备注
      */
-    function orderPay($ddbh,$hyid,$zf_je,$pay_id,$bzbz=''){
+    function orderPay($ddbh,$hyid,$zf_je,$pay_id,$zfkm,$bzbz=''){
+        $zfArr=array(1=>'1006416',2=>'1006417',3=>'1006419'); //支付宝\财富通、易宝
+        $zfkm=is_int($zfkm) && isset($zfArr[$zfkm])?$zfArr[$zfkm]:$zfArr[1];
         $this->check_login();
         $url= C('ASMS_HOST')."/asms/ydzx/ddgl/kh_khdd_pay.shtml";
         $post['p']='save';
@@ -369,8 +472,8 @@ class AsmsOrderModel extends RelationModel{
         $post['zf_je']=$zf_je;
         $post['zf_zfzh']=$pay_id;
      //   $post['fpj_hj']='0.01';
-        $post['zfkm']='1006417';
-      //  $post['zffs1006417']='1006309';
+        $post['zfkm']=$zfkm;
+        $post['zffs'.$zfkm]='1006309';
         $post['ywType']='1';
         $post['bzbz']=$bzbz;
         $rs=$this->find($ddbh);
@@ -387,8 +490,10 @@ class AsmsOrderModel extends RelationModel{
         $post['ipsvalue']='';
         $post['epos_zhivr']='';
         $post['hkgs']='AA';
+     //   dump($post);
         $post= http_build_query($post);
         $data=curl_post($url,$post,COOKIE_FILE);
+      // print_r($data);
         if(strpos($data,'正在处理')){
             return true;
         }else{
@@ -428,6 +533,8 @@ class AsmsOrderModel extends RelationModel{
             $on=1;
         }
         foreach($data as $key=>$val){
+            !is_array($val['hd_info']) &&  $data[$key]['hd_info']=object_to_array(json_decode($val['hd_info']));
+            !is_array($val['cjr_info']) && $data[$key]['cjr_info']=object_to_array(json_decode($val['cjr_info']));
             $data[$key]['ddzt_n']=$this->status[$val['ddzt']];
             $data[$key]['lx_n']=$this->lx[$val['lx']];
             $data[$key]['zf_zt']=$val['zf_fkf']==1?"已付款":'待支付';
@@ -463,6 +570,7 @@ class AsmsOrderModel extends RelationModel{
         $array['list']=$list;
         return $array;
     }
+
 		
 }
 

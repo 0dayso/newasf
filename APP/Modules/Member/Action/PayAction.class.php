@@ -2,6 +2,10 @@
 // 首页控制器
 class PayAction extends IniAction {
 
+    function index(){
+        D("AsmsOrder")->editOrder();
+        echo "支付";
+    }
     /*
      *财付通支付
      */
@@ -138,7 +142,7 @@ class PayAction extends IniAction {
                         $orderDB = D('AsmsOrder');
                         $orderDB->setField('zf_fkf','');
                         $ors= $orderDB->field('ysje')->find($val);
-                        $rr= $orderDB->orderPay($val,ASMSUID,$ors['ysje'],$out_trade_no,$rs['remark']);
+                        $rr= $orderDB->orderPay($val,ASMSUID,$ors['ysje'],$out_trade_no,2,$rs['remark']);
                     }
 
                     //------------------------------
@@ -188,6 +192,126 @@ class PayAction extends IniAction {
             }
         } else {
             $this->error('认证签名失败');
+        }
+    }
+
+    //财富通 异步通知
+    function tenNotify(){
+        action_log('pay_tenNotify', 'pay', getUid(), getUid(),$this);
+        $data=array();
+        $data['input']=file_get_contents('php://input');  # 获取trafree推送的信息
+        $data['get']=$_GET;
+        $data['post']=$_POST;
+        $data=json_encode($data);
+        $dir=WEB_ROOT.'log/pay';
+        if(!is_dir($dir))mkdir($dir,'0777',true);
+        file_put_contents($dir.'/'.date("Y-m-d").'.log',date("H:i:s")."\n".$data."\n",FILE_APPEND);
+
+        Vendor('Tenpay.ResponseHandler#class');
+        Vendor('Tenpay.RequestHandler#class');
+        Vendor('Tenpay.ClientResponseHandler#class');
+        Vendor('Tenpay.TenpayHttpClient#class');
+
+        /* 创建支付应答对象 */
+        $resHandler = new ResponseHandler();
+        $resHandler->setKey(C('TENPAY_KEY'));
+
+        //判断签名
+        if($resHandler->isTenpaySign()) {
+            //通知id
+            $notify_id = $resHandler->getParameter("notify_id");
+
+            //通过通知ID查询，确保通知来至财付通
+            //创建查询请求
+            $queryReq = new RequestHandler();
+            $queryReq->init();
+            $queryReq->setKey(C('TENPAY_KEY'));
+            $queryReq->setGateUrl("https://gw.tenpay.com/gateway/simpleverifynotifyid.xml");
+            $queryReq->setParameter("partner", C('TENPAY_PARTNER'));
+            $queryReq->setParameter("notify_id", $notify_id);
+
+            //通信对象
+            $httpClient = new TenpayHttpClient();
+            $httpClient->setTimeOut(5);
+            //设置请求内容
+            $httpClient->setReqContent($queryReq->getRequestURL());
+            //后台调用
+            if($httpClient->call()) {
+                //设置结果参数
+                $queryRes = new ClientResponseHandler();
+                $queryRes->setContent($httpClient->getResContent());
+                $queryRes->setKey(C('TENPAY_KEY'));
+                if($resHandler->getParameter("trade_mode") == "1"){
+                    //判断签名及结果（即时到帐）
+                    //只有签名正确,retcode为0，trade_state为0才是支付成功
+                    if($queryRes->isTenpaySign() && $queryRes->getParameter("retcode") == "0" && $resHandler->getParameter("trade_state") == "0") {
+                        log_result("即时到帐验签ID成功");
+                        //取结果参数做业务处理
+                        $out_trade_no = $resHandler->getParameter("out_trade_no");
+                        //财付通订单号
+                        $transaction_id = $resHandler->getParameter("transaction_id");
+                        //金额,以分为单位
+                        $total_fee = $resHandler->getParameter("total_fee");
+                        //如果有使用折扣券，discount有值，total_fee+discount=原请求的total_fee
+                        $discount = $resHandler->getParameter("discount");
+                        //------------------------------
+                        //处理业务开始
+                        //------------------------------
+                        $PayOrder=D('PayOrder');
+                        $rs= $PayOrder->find($out_trade_no);
+                        if($rs['order_price']!=$total_fee/100){
+                            $this->error('支付失败');
+                        }
+
+                        $data['id']=$out_trade_no;
+                        $data['trade_mode']=1;
+                        $data['trade_state']=0;
+                        $data['order_price']=$total_fee/100;
+                        $data['status']=1;
+                        $data['data_json']=json_encode($_REQUEST);
+
+                        $PayOrder->update($data);
+                        $order_id_arr=explode(',',$rs['order_id_arr']);
+                        $orderDB = D('AsmsOrder');
+                        foreach($order_id_arr as $val){
+                            $orderDB->setField('zf_fkf','');
+                            $ors= $orderDB->field('ysje')->find($val);
+                            $rr= $orderDB->orderPay($val,ASMSUID,$ors['ysje'],$out_trade_no,2,$rs['remark']);
+                        }
+
+                        //------------------------------
+                        //处理业务完毕
+                        //------------------------------
+                        echo "success";
+                        file_put_contents($dir.'/'.date("Y-m-d").'.log',date("H:i:s")."\n success \n",FILE_APPEND);
+                    } else {
+                        //错误时，返回结果可能没有签名，写日志trade_state、retcode、retmsg看失败详情。
+                        //echo "验证签名失败 或 业务错误信息:trade_state=" . $resHandler->getParameter("trade_state") . ",retcode=" . $queryRes->                         getParameter("retcode"). ",retmsg=" . $queryRes->getParameter("retmsg") . "<br/>" ;
+                        file_put_contents($dir.'/'.date("Y-m-d").'.log',date("H:i:s")."\n"." 验证签名失败 或 业务错误信息:trade_state=" . $resHandler->getParameter("trade_state") ."\n",FILE_APPEND);
+                        echo "fail";
+                    }
+                }
+                echo "<br>DebugInfo :" . $queryRes->getDebugInfo() . "<br>";
+                //获取查询的debug信息,建议把请求、应答内容、debug信息，通信返回码写入日志，方便定位问题
+                /*
+                    echo "<br>------------------------------------------------------<br>";
+                    echo "http res:" . $httpClient->getResponseCode() . "," . $httpClient->getErrInfo() . "<br>";
+                    echo "query req:" . htmlentities($queryReq->getRequestURL(), ENT_NOQUOTES, "GB2312") . "<br><br>";
+                    echo "query res:" . htmlentities($queryRes->getContent(), ENT_NOQUOTES, "GB2312") . "<br><br>";
+                    echo "query reqdebug:" . $queryReq->getDebugInfo() . "<br><br>" ;
+                    echo "query resdebug:" . $queryRes->getDebugInfo() . "<br><br>";
+                    */
+            }else{
+                //通信失败
+                echo "fail";
+                //后台调用通信失败,写日志，方便定位问题
+                file_put_contents($dir.'/'.date("Y-m-d").'.log',date("H:i:s")."\n"."<br>call err:" . $httpClient->getResponseCode() ."," . $httpClient->getErrInfo() . "<br>"."\n",FILE_APPEND);
+                echo "<br>call err:" . $httpClient->getResponseCode() ."," . $httpClient->getErrInfo() . "<br>";
+            }
+        }else{
+            echo "<br/>" . "认证签名失败" . "<br/>";
+            file_put_contents($dir.'/'.date("Y-m-d").'.log',date("H:i:s")."\n 认证签名失败".$resHandler->getDebugInfo() ."\n",FILE_APPEND);
+            echo $resHandler->getDebugInfo() . "<br>";
         }
     }
 
@@ -248,7 +372,7 @@ class PayAction extends IniAction {
 			//建立请求
 			$alipaySubmit = new AlipaySubmit($alipay_config);
 			$html_text = $alipaySubmit->buildRequestForm($parameter,"post", "确认");
-			echo $html_text;
+
 			
 			//写入数据
 			$PayOrder=D('PayOrder');
@@ -275,12 +399,20 @@ class PayAction extends IniAction {
 			$data['create_time']=time();
 			$data['update_time']=time();			
 					
-            $PayOrder->create($data,1);
-            if(!$PayOrder->add()) $this->error('订单写入失败');
-            //echo  $tenpayUrl;
+            if($PayOrder->create($data)){
+                if(!$PayOrder->add()){
+                    $this->error('订单写入失败');
+                }else{
+                   echo  $PayOrder->getDbError();
+                }
+            }else{
+                $this->error('订单创建失败');
+            }
+
             //转向支付页面
             //记录行为
             action_log('pay_aliPay', 'alipay', getUid(), getUid(),$this);
+            echo $html_text;
             //header("Location:$alipayUrl");
 		}
 	 }
@@ -290,6 +422,7 @@ class PayAction extends IniAction {
         其实这里就是将notify_url.php文件中的代码复制过来进行处理        
         *******************************/
 		public function notifyurl(){
+            action_log('pay_notifyurl', 'pay', getUid(), getUid(),$this);
 			$alipay_config['partner']		= C('ALIPAY_PARTNER');
 			$alipay_config['key']			= C('ALIPAY_KEY');
 			$alipay_config['sign_type']     = strtoupper('MD5');
@@ -338,7 +471,8 @@ class PayAction extends IniAction {
 		/****************************
 		支付返回
 		****************************/		
-		public function returnurl(){			
+		public function returnurl(){
+            action_log('pay_returnurl', 'pay', getUid(), getUid(),$this);
 			$alipay_config['partner']		= C('ALIPAY_PARTNER');
 			$alipay_config['key']			= C('ALIPAY_KEY');
 			$alipay_config['sign_type']     = strtoupper('MD5');
@@ -371,7 +505,7 @@ class PayAction extends IniAction {
 				);
 				
 				if($_GET['trade_status'] == 'TRADE_FINISHED' || $_GET['trade_status'] == 'TRADE_SUCCESS') {
-			   	   if(!checkorderstatus($out_trade_no)){//commom/commom.php
+			   	   if(!checkorderstatus($out_trade_no)){    //commom/commom.php
 					    orderhandle($parameter);  //进行订单处理，并传送从支付宝返回的参数；		   
 				   }
 				$this->success('即时到帐支付成功',U('/Member/booking')."?status=process");

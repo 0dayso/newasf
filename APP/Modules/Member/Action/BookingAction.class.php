@@ -108,7 +108,8 @@ class BookingAction extends IniAction {
     }
 	
 	//订单在线支付
-	function onlinepay(){		
+	function onlinepay(){
+     //  dump( D("AsmsOrder")->orderPay(I("ddbh"),ASMSUID,'0.1',"201402211139551579"));
         if(!I("ddbh")) $this->error('请选择要支付的订单');
 
         $orderDB=D("AsmsOrder");
@@ -142,12 +143,12 @@ class BookingAction extends IniAction {
         }
 
         //行程
-        foreach($pay_list as $val){
+        foreach($pay_list as $key=>$val){
             $route[]=$val['hc_n'];
         }
         $this->route=implode(',',$route);
-        $this->pay_list=$pay_list;
 
+        $this->pay_list=$pay_list;
         $PayOrderDB=D('PayOrder');
         $where['member_id']=getUid();
         $list=$PayOrderDB->where($where)->limit(15)->select();

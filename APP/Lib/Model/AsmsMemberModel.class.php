@@ -68,22 +68,25 @@ class AsmsMemberModel extends RelationModel{
             if($rs){
                 $this->memberFind('','',$hyzcm);
                 $rs=$this->checkMember(array('sj'=>$hyzcm));
-                if(!is_numeric($rs)){
+                if($rs===false && $rs===true){
                     $this->error="手机号不存在";
                     return false;
                 }
             }else{
-                echo $hyzcm;
-                dump($this->checkName(13078270036));
-               dump( $this->memberFind($hyzcm));exit;
-                $rs=$this->checkMember($hyzcm);
-                if(!is_numeric($rs)){
+                $rs=$this->checkMember($hyzcm);;
+                if($rs===false && $rs===true){
                     $this->error="用户不存在";
                     return false;
                 }
             }
-
             $memberInfo=$this->relation(true)->find($rs);
+            if(!$memberInfo){
+                $memberInfo=$this->getMemberInfo($rs);
+            }
+            if(!$memberInfo['sj'] || !preg_match('/^([0-9]){11}$/i',$memberInfo['sj'])){
+                $this->error="Asms 帐号信息不完善";
+                return false;
+            }
           // dump($memberInfo);
             if($pwd!=$memberInfo['mm']){
                 $this->error="密码不正确";
@@ -136,8 +139,8 @@ class AsmsMemberModel extends RelationModel{
   function relationReg($memberInfo){
       $memberDB=D("Member");
       if($memberInfo['mobile']){ //有电话
-          $ars=$this->checkName($memberInfo['mobile']);
-          if(is_numeric($ars)){ //asms 电话存在
+          $ars=$this->checkMember(array('sj'=>$memberInfo['mobile']),1);
+          if(is_string($ars)){ //asms 电话存在
               $member_id=$memberDB->where("asms_member_id=$ars")->getField('id');
               if(!$member_id){ //asms id 没有被占用
                   $data['id']=$memberInfo['id'];
@@ -149,8 +152,8 @@ class AsmsMemberModel extends RelationModel{
       }
 
       //查询asms里是否有相同注册名
-      $ars=$this->checkMember($memberInfo['username']);
-      if(is_numeric($ars)){
+      $ars=$this->checkMember($memberInfo['username'],1);
+      if(is_string($ars)){
           $member_id=$memberDB->where("asms_member_id=$ars")->getField('id');
           if(!$member_id){ //asms id 没有被占用
               $data['id']=$memberInfo['id'];
@@ -158,6 +161,9 @@ class AsmsMemberModel extends RelationModel{
               $rs=$memberDB->save($data);//关联asms帐号
               return $rs;
           }
+      }
+      if(!$memberInfo['mobile']){
+          echo "手机号为空";
       }
       $data=array();
       //无重复 注册到asms
@@ -169,9 +175,8 @@ class AsmsMemberModel extends RelationModel{
       $data['lxdz']=$memberInfo['address'];
       $ywyyid=D('User')->where("id={$memberInfo['user_id']}")->getField('asms_user_id');
       $data['ywyid']=$ywyyid?$ywyyid:C('ASMS_ACCOUNT');
-
       $rs=$this->register($data);//注册到asms
-      echo $this->error;
+   //   echo $this->error;
   }
 
     //获取用户信息
@@ -471,23 +476,23 @@ class AsmsMemberModel extends RelationModel{
      * @return bool 成功 并存在 返回id
      * 成功 可用返回true
      */
-    function checkMember($name){
+    function checkMember($name,$ss=false){
         if(is_array($name)){
             $names=$name;
             $name= http_build_query($name);
             $errorN="号码";
         }else{
-            $names=$name="hyzcm='$name'";
+            $names=$name="hyzcm=$name";
             $errorN="用户名";
         }
-
-        $dbRs=$this->where($names)->find();
-        if($dbRs){
-            $this->error="$errorN 已存在";
-            return $dbRs['hyid'];
+        $db_hyid=$this->where($names)->getField('hyid');
+        if(!$ss && $db_hyid){
+            $this->error="$errorN 已存在！";
+            return $db_hyid;
         }
+
         $this->check_login();
-        $rs=curl_post(C('ASMS_HOST')."/asms/member/checkmember.shtml?$name",$name,COOKIE_FILE);
+        $rs=curl_post(C('ASMS_HOST')."/asms/member/checkmember.shtml?$name",$name,COOKIE_FILE,0);
         if($rs){
             $json=json_decode($rs,true);
             $rs=$json['rows'][0];
@@ -495,9 +500,9 @@ class AsmsMemberModel extends RelationModel{
                 $arr['hyid']=$rs['HYID'];
                 $arr['hyzcm']=$rs['HYZCM'];
                 $arr['hykh']=$rs['HYKH'];
-                if(!$dbRs){
-                    $save = $this->create($arr);
-                    $this->save($save);
+
+                if($db_hyid){ //
+                    $this->save($arr);
                 }else{
                     $this->create($arr);
                     $this->add();
@@ -505,6 +510,9 @@ class AsmsMemberModel extends RelationModel{
                 $this->error=" $name 已存在";
                 return $rs['HYID'];
             }else{
+                if($db_hyid){
+                    $this->delete($db_hyid);//远程删除本地也删除
+                }
                 $this->error="$name 未找到";
                 return true;
             }

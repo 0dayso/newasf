@@ -574,7 +574,8 @@ function action_log($action = null, $model = null, $record_id = null, $user_id =
         //未定义日志规则，记录操作url
         $data['remark']     =   '操作url：'.$_SERVER['REQUEST_URI'] ;
     }
-    $data['request']='url：'.$_SERVER['REQUEST_URI']."post:".http_build_query($_POST);
+    $data['request'] = 'url：'.$_SERVER['REQUEST_URI']." | post:".http_build_query($_POST);
+
     M('ActionLog')->add($data);
 
     if(!empty($action_info['rule'])){
@@ -712,7 +713,7 @@ function orderhandle($parameter){
 		$orderDB = D('AsmsOrder');
 		$orderDB->setField('zf_fkf','');
 		$ors= $orderDB->field('ysje')->find($val);
-		$orderDB->orderPay($val,ASMSUID,$ors['ysje'],$out_trade_no,$rs['remark']);
+		$orderDB->orderPay($val,ASMSUID,$ors['ysje'],$ordid,1,$rs['remark']);
 	}	
 } 
 
