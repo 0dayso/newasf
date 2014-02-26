@@ -14,7 +14,6 @@ class AsmsAction extends CommonAction {
                 $where['_logic'] = 'or';
                 $map['_complex'] = $where;
             }
-
         }
 
         $this->map = $map;

@@ -1,0 +1,236 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>关于爱尚飞 - 爱尚飞国际机票网</title>
+    <link rel="stylesheet" href="/newasf/Public/css/main.css" type="text/css" />
+    <script type="text/javascript" src="/newasf/Public/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="/newasf/Public/js/main.js"></script>
+    <script type="text/javascript" src="/newasf/Public/js/layer/layer.min.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+    var BaseInfo = {
+        'path':"/newasf/"
+    };
+
+    function open_kf(){
+            window.open('http://wpa.qq.com/msgrd?v=3&uin=2355356102&site=qq&menu=yes');
+        }
+</script>
+<div id="hd_top">
+        <div class="wd960">
+			<span class="left">您好,
+				<a title="进入会员中心" href="/newasf/Member/index">admintest</a>
+					普通会员  <a href="/newasf/member/out">退出</a>
+				</span>
+
+			            <span class="right">
+             <a id="myAisf_w" href="/newasf/member">我的爱尚飞</a>
+                 <ul id="myAisf_u">
+                     <li><a href="/newasf/member/booking">我的订单</a></li>
+                     <li><a href="/newasf/member/information">个人资料</a></li>
+                     <li><a  target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2355356102&site=qq&menu=yes">咨询我的顾问</a></li>
+                     <li><a href="/newasf/member/editpwd">修改密码</a></li>
+                 </ul>
+                 <a id="myAisf_t"></a>                <a class="spr gz"></a><a href="http://e.weibo.com/aishangfei2012?ref=http%3A%2F%2Fweibo.com%2Fu%2F2014524587%3Fwvr%3D5%26" class="ml0" target="_blank">关注我们</a><a class="spr wx"></a><a href="javascript:;" class="ml0" id="weixin_me">微信我们</a><!--<a href="/newasf/iflight/verify" class="ts">机票验真</a>--><a href="/newasf/help" class="bz">帮助中心</a><a class="spr dh"></a></span>
+        </div>
+    </div>
+    <div id="hd_logo">
+        <div class="wd960">
+            <a href="/newasf/" class="left"><img src="/newasf/Public/images/logo.gif" alt="logo" class="logo" /></a>
+            <div class="right"><a href="/newasf/zt/airchina_sales" target="_blank"><img src="/newasf/Public/images/Zt/airchina_sales/ad_578_80.jpg" alt="中国国际航空" /></a></div>
+        </div>
+    </div>
+    <div id="hd_nav">
+        <div class="wd960">
+            <ul class="nav">
+                <li><a href="/newasf/">首页</a></li>
+                <li><a  href="/newasf/iflight">国际机票</a></li>
+                <li><a  href="/newasf/about/service">会员服务</a></li>
+                <li><a  href="/newasf/jifen">积fun商城</a></li>
+                <li><a  href="/newasf/Adviser/review_51">专业顾问</a></li>
+                <li><a  href="/newasf/activity" class="new">活动频道<span><img src="/newasf/Public/images/top_nav_new.gif" alt="new"/></span></a></li>
+            </ul>
+        </div>
+	</div>
+<style type="text/css">#kfivtwin{display:none!important;/*隐藏53客服*/}</style>
+    <div id="cont">
+        <div class="wd960 mt10 bgWhite about_asf">
+        	<h1 class="h1_tit_nav">你当前所在位置：<a href="/" class="sy">首页</a> > <a class="cur">美乐简介</a></h1>
+			
+            <div class="left list_left_gy">
+<style type="text/css">#kfivtwin{display:none!important;/*隐藏53客服*/}</style>
+	<h2></h2>
+	<ul>
+				<li><a href="/newasf/about" class="active">公司介绍</a></li>
+		<ul>
+			<li><a href="/newasf/about/intro" class='active'>美乐简介</a></li>
+			<li><a href="/newasf/about/intro/view/brand" >品牌故事</a></li>
+			<li><a href="/newasf/about/intro/view/style" >员工风采</a></li>
+		</ul>
+		
+		<li><a href="/newasf/about/qualifications" >公司资质</a></li>
+	<!--<li><a href="/newasf/about/honour" >公司荣誉</a></li>-->
+		<li><a href="/newasf/about/events" >发展历程</a></li>
+		<li><a href="/newasf/about/partner" >合作伙伴</a></li>
+				 
+		 <li><a href="/newasf/news/company">最新动态</a></li>		 
+		 
+		 		<li><a href="/newasf/about/job" >人才招聘</a></li>
+		<li><a href="/newasf/about/contact" >联系我们</a></li>
+	</ul>
+</div>
+			
+            <div class="list_right_gy" id="introduction">
+            	<img src="/newasf/Public/images/mljj_03.gif" alt="美乐简介" />
+            	<h3 class="h3"><a class="jj"></a></h3>
+                <p><a class="bold">广州美乐商务服务有限公司</a>成立于2009年，是经民航、国际航空运输协会、工商管理部门批准注册成立并具有国际航空运输协会会员资格的独立法人企业。现已形成了多元化的服务体系,建立了完善的销售网络，并在<a>北京</a>、<a>上海</a>、<a>深圳</a>、<a>广州</a>建立了分支机构，实现以一线城市辐射全国主要城市的战略布局。依托中国航信、ABACUS Amadeus、Galileo等全球分销系统整合强大的航运资源，直接采用GDS、BSP数据，提供权威准确的实时航班信息、舱位信息、价格信息，为您提供最精准、最合理的全球国际机票及差旅产品。
+                </p>
+                <ul>
+                	<li class="li0"><span><img src="/newasf/Public/images/mljj02.jpg" alt="广州客服中心图1" />广州客服中心图1</span></li>
+                    <li class="li1"><span><img src="/newasf/Public/images/mljj03.jpg" alt="广州客服中心图2" />广州客服中心图2</span></li>
+                    <li class="li0"><span><img src="/newasf/Public/images/mljj01.jpg" alt="广州总部前台图" />广州总部前台图</span></li>
+                    <li class="li1"><span><img src="/newasf/Public/images/mljj04.jpg" alt="广州总部员工休息室图" />广州总部员工休息室</span></li>
+                </ul>
+                <p>公司拥有一批专业的销售及管理人才，运用现代科学的管理模式，不断提升服务质量和管理水平，一直以来本着<a class="a0">“诚信经营、服务至上”</a>的经营理念为国内外的众多知名企业及单位、个人、提供全方位优质的服务，赢得了广大顾客、同行及各级主管部门的一致好评。取得了良好的社会效益及经济效益。</p>
+                <p>在建立规范化、系统化有效管理机制的同时,积极拓宽业务范围，加快公司内部改革，全面提升员工素质教育，努力为顾客创造价值,力争为广大的旅客提供更方便、更快捷、更贴心的服务,实现公司跨越式发展，为促进社会和谐、经济发展做出应有的贡献。</p>
+                <ul>
+                    <li class="li0"><span><img src="/newasf/Public/images/mljj08.jpg" alt="上海办事处办公环境图1" />上海办事处办公环境图1</span></li>
+                    <li class="li1"><span><img src="/newasf/Public/images/mljj09.jpg" alt="上海办事处办公环境图2" />上海办事处办公环境图2</span></li>
+                </ul>
+                <ul>
+                	<li class="li2"><span><img src="/newasf/Public/images/mljj05.jpg" alt="北京办事处办公环境图" />北京办事处办公环境图</span></li>
+                    <li class="li3">
+                    	<span><img src="/newasf/Public/images/mljj06.jpg" alt="深圳集体照图" />深圳公司集体照图</span>
+                        <span><img src="/newasf/Public/images/mljj07.jpg" alt="深圳公司办公环境图" />深圳公司办公环境图</span>
+                    </li>
+                </ul>
+                <h3 class="h3"><a class="ln"></a></h3>
+                <img src="/newasf/Public/images/introduction_111.jpg" width="707" height="276"  alt="公司理念" class="linian" />
+                <h3 class="h3"><a class="gh"></a></h3>
+                <img src="/newasf/Public/images/mljj_23.jpg" alt="公司远景规划" class="end" />
+                <p class="p0"><label>广州美乐商务服务有限公司</label>将力争在未来3-5年内，打造成为<label>以国际机票预订作为核心</label>业务，涵盖国内<label>机票预订、酒店预订、套票业务、境外自助游</label>等全方位业务的国内一流商旅服务企业。以回馈社会、广大顾客和员工，<label>不断创造和提升社会价值和经济效益。</label></p>
+            </div>
+        </div>
+    </div>
+ <div id="footer">
+    	<div class="wd960">
+            <div id="ft_link">
+                <ul>
+                    <li><a href="/newasf/about" target="_blank">关于爱尚飞</a> |</li>
+                    <li><a href="/newasf/Adviser" target="_blank">专业顾问</a> |</li>
+                    <li><a href="/newasf/about/service" target="_blank">会员服务</a> |</li>
+                    <li><a href="/newasf/about/privacy" target="_blank">隐私保护</a> |</li>
+                    <li><a href="/newasf/about/job" target="_blank">人才招聘</a> |</li>
+                    <li><a href="http://www.cata.org.cn/clientWeb/frm_Single_Search.aspx?name=%u5E7F%u5DDE%u7F8E%u4E50%u5546%u52A1%u670D%u52A1%u6709%u9650%u516C%u53F8&type=agentname&leixing=&chengshi=&chengqu=" target="_blank">中国航空运输协会</a> |</li>
+                    <li><a href="/newasf/Public/images/zz_08.jpg" target="_blank">企业营业执照</a> |</li>
+                    <li><a href="/newasf/Public/images/ylzg.jpg" target="_blank">民航客运一类代理</a></li>
+                </ul>
+            </div>
+                        <div id="ft_copyright">Copyright © 2009-2013 爱尚飞国际机票网 广州美乐商务服务有限公司. All Rights Reserved
+                <img src="/newasf/Public/images/ft_icp.jpg" alt="icp" />
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备11009654号-21</a>
+            </div>
+            <div id="ft_icons">
+                <a class="a0" href="#" target="_blank"></a>
+                <a class="a1" href="#" target="_blank"></a>
+                <a class="a2" href="#" target="_blank"></a>
+                <a class="a3" href="http://trust.360.cn/search.php" target="_blank"></a>
+                <a class="a4" href="#" target="_blank"></a>
+                <a class="a5" href="http://www.gzaic.gov.cn/GZCX/WebUI/credit/qiyeInfo.htm#" target="_blank"></a>
+                <a class="a6" href="http://net.china.com.cn/index.htm" target="_blank"></a>
+                <a class="a7" href="http://www.cyberpolice.cn/wfjb/" target="_blank"></a>
+            </div>
+
+
+        <div style="display:none;">
+                <script type="text/javascript">
+        var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fd4cf44a2f93f50230dbcc266a1e41306' type='text/javascript'%3E%3C/script%3E"));
+            </script>
+
+        </div>
+     <script type="text/javascript">
+         var _gaq = _gaq || [];
+         _gaq.push(['_setAccount', 'UA-35556838-1']);
+         _gaq.push(['_setDomainName', 'aishangfei.net']);
+         _gaq.push(['_setLocalRemoteServerMode']);
+         _gaq.push(['_trackPageview']);
+
+         (function() {
+             var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+             ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+         })();
+     </script>
+     <!-- Google Code for &#20877;&#33829;&#38144;&#26631;&#35760; -->
+     <!-- Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. For instructions on adding this tag and more information on the above requirements, read the setup guide: google.com/ads/remarketingsetup -->
+
+     <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script>
+     <noscript>
+         <div style="display:inline;">
+             <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/990797250/?value=0&amp;label=-y_RCK7_9gMQwru52AM&amp;guid=ON&amp;script=0"/>
+         </div>
+     </noscript>
+
+
+     <div style="display:none">
+         <script language="javascript" type="text/javascript" src="http://js.users.51.la/5149478.js"></script>
+         <noscript>
+             <a href="http://www.51.la/?5149478" target="_blank"><img alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/5149478.asp" style="border:none" /></a>
+         </noscript>
+
+     </div>
+
+                             <script type="text/javascript" src="/newasf/kf/leftKf"></script>
+                            
+     <script type="text/javascript">
+         /* <![CDATA[ */
+         var google_conversion_id = 990797250;
+         var google_conversion_label = "-y_RCK7_9gMQwru52AM";
+         var google_custom_params = window.google_tag_params;
+         var google_remarketing_only = true;
+         /* ]]> */
+     </script>
+    	</div>        
+	</div>
+
+     <script type="text/javascript">
+         var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+         document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F9bb60244498ccc09dd9a81c6428d1e9f' type='text/javascript'%3E%3C/script%3E"));
+     </script>
+
+ <!-- WPA Button Begin 统计分析代码-->
+ <script charset="utf-8" type="text/javascript" src="http://wpa.b.qq.com/cgi/wpa.php?key=XzkzODAwOTkwMl85Njg2NV80MDA2MDg1MTg4Xw"></script>
+ <!-- WPA Button End -->
+
+ <script type="text/javascript">
+     $(function(){
+         kfurl="http://www17.53kf.com/webCompany.php?"+$("#ivt_script").attr("src").match(/arg=.*/gim);
+     });
+ </script>
+
+ 
+    <style type="text/css">
+    #line_query_qq{width:140px;height:248px;background:url(/newasf/Public/images/line_query_qq.gif) no-repeat;position:absolute;top:170px;right:0;}
+	#line_query_qq dt{height:18px;}
+	#line_query_qq dt span{float:right;width:18px;height:18px;line-height:60px;cursor:pointer;overflow:hidden;}
+	#line_query_qq dd{height:115px;}
+	#line_query_qq dd.kf a{width:140px;height:115px;line-height:300px;display:block;overflow:hidden;}
+	#line_query_qq dd span{display:block;margin-top:80px;height:22px;text-align:center;}
+    </style>
+    <script type="text/javascript">
+	$(function(){
+		$(window).scroll(function(){
+			var top=$(this).scrollTop()+170+'px';
+			$('#line_query_qq').css('top',top);
+			});
+		$('#line_query_qq span').click(function(){
+			$('#line_query_qq').hide();
+			});
+	});
+    </script>
+ 
+</body>
+</html>

@@ -89,7 +89,7 @@ function flightQueryBox(txt){
 		});
 	
 	//调用弹窗
-	var time=7;	
+	var time=3;
 	var finterval=setInterval(function(){
             time--;
             if(time <= 0) {

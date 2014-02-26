@@ -5,7 +5,7 @@ class AilehuiAction extends IniAction {
         $this->display();
     }
 
-    function zqgq(){
+    function myprivilege(){
         $this->title='';
         $this->display();
     }

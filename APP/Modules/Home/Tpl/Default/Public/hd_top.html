@@ -1,0 +1,55 @@
+<script type="text/javascript">
+    var BaseInfo = {
+        'path':"{:U('/')}"
+    };
+
+    function open_kf(){
+    <?php if($userinfo): ?>
+        window.open('http://wpa.qq.com/msgrd?v=3&uin={$userinfo.user.qq|trim}&site=qq&menu=yes');
+    <?php else: ?>
+        setIsinvited();hz6d_cus_web_msg_open();
+    <?php endif;?>
+    }
+</script>
+
+    <div id="hd_logo">
+        <div class="wd980">
+            <a href="{:U('/')}" class="left"><img src="__PUBLIC__/images/logo.gif" alt="logo" class="logo" /></a>
+            <div class="right"><a href="{:U('/zt/airchina_sales')}" target="_blank"><img src="__PUBLIC__/images/Zt/airchina_sales/ad_578_80.jpg" alt="中国国际航空" /></a></div>
+        </div>
+    </div>
+    <div id="hd_nav">
+        <div class="wd980 relative">
+            <div id="index_ticket_query">
+                <h2>您的国际票务<strong>私人管家</strong></h2>
+                <include file="Public:searchform" />
+          </div>
+            <ul class="home_nav pl270">
+                <li><a class="active" href="{:U('/')}">首页</a></li>
+                <li><a <?php if(MODULE_NAME=='Iflight') echo "class='active'"; ?> href="{:U('/iflight')}">国际机票</a></li>
+                <li><a <?php if(MODULE_NAME=='About' and ACTION_NAME=='service') echo "class='active'"; ?> href="{:U('/about/service')}">会员服务</a></li>
+                <li><a <?php if(MODULE_NAME=='Jifen') echo "class='active'"; ?> href="{:U('/jifen')}">积fun商城</a></li>
+                <li><a <?php if(MODULE_NAME=='Adviser') echo "class='active'"; ?> href="<if condition="$userinfo">{:U('/Adviser/review')}_{$userinfo.user.id}<else/>{:U('/adviser')}</if>">专业顾问</a></li>
+                <li><a <?php if(MODULE_NAME=='Activity') echo "class='active'"; ?> href="{:U('/activity')}" class="new">活动频道<span><img src="__PUBLIC__/images/top_nav_new.gif" alt="new"/></span></a></li>
+            </ul>
+        </div>
+	</div>
+    
+	<script type="text/javascript" src="__PUBLIC__/js/jquery.fullScreenAds.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		//使用全屏轮换广告
+		$('#index_slide_ad').fullScreenAds({fadeTime:1000,showtime:4000,mainWidth:980});
+		//首页国际机票查询的不透明度设置
+		$('#index_ticket_query').css("opacity",0.9);
+	});
+	</script>
+    <div id="index_slide_ad">
+    	<ul>
+        	<li img-data="__PUBLIC__/images/fsad6.jpg"><a href="{:U('/zt/hnair_sales')}" target="_blank"></a></li>
+        	<li img-data="__PUBLIC__/images/fsad5.jpg"><a href="{:U('/zt/virgin_atlantic_sales')}" target="_blank"></a></li>
+			<li img-data="__PUBLIC__/images/fsad4.jpg"><a href="{:U('/zt/flysas_sales')}" target="_blank"></a></li>
+            <li img-data="__PUBLIC__/images/fsad1.jpg"><a href="{:U('/zt/dijialaixi')}" target="_blank"></a></li>
+		</ul>
+        <div id="slide_ad_nav"><a class="active">1</a><a>2</a><a>3</a><a>4</a></div>
+    </div>

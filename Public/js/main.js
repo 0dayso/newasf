@@ -50,6 +50,7 @@ function bindOverMylogin(){
 	$(document).unbind("mouseover",bindOverMylogin);
 }
 
+
 /**
  * 通用AJAX提交
  * @param  {string} url    表单提交地址

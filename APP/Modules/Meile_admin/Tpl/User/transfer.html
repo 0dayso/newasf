@@ -1,25 +1,26 @@
 <div class="pageContent">
-	<form method="post" action="__URL__/update/navTabId/__MODULE__" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone)">
+	<form method="post" action="__ACTION__" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone)">
 		<input type="hidden" name="user_id" value="<?php echo $_SESSION[C('USER_AUTH_KEY')] ?>"/>
 		<input type="hidden" name="id" value="{$vo.id}" />
 		<div class="pageFormContent" layoutH="58">
 
-			<div><img class="avatarImg" src="__PUBLIC__/uploads/{$vo.avatar}" lookup="img.fileName" alt='头像' width="120" style="float:right"/></div>
 			<p>
-				<label>用户名：</label>
-				<input type="text" class="required"   name="username" value="{$vo.username}">
+				<label>分配规则：</label>
+				<input  type="radio"  name="auto" value="1" checked/>自动分配
+                <input  type="radio"  name="auto" value="0">手动指定分配
 			</p>
-			<p>
-                <label>胜意帐号：</label>
-                <input type="text" class=""   maxlength="20" name="asms_user_id" value="{$vo.asms_user_id}" />(业务必填)
+            <p>
+                <label>指定分配：</label>
+                <input type="text"  value="{$vo['user']['name']}" class="text"  lookup="org.name"  readonly="readonly" name="user_name" />
+                <a class="btnLook" href="__GROUP__/User/userData" lookupGroup="org" width="650" height="300" title="查找带回">查找带回</a>
+                <input type="hidden"  value="" class="text" lookup="org.id"  readonly="readonly" name="to_user_id" />(分配给另一个帐号)
             </p>
 
-
             <div class="unit">
-                <label>说明:</label>
-                <textarea class="input" type="text" cols="57" rows="3" name="signature">{$vo.signature}</textarea>
+                <label>验证码</label>
+                <input type="text" class="required" name="verify">
+                <img src="__GROUP__/Public/verify/" BORDER="0" ALT="click" id="verifyImg" onClick="fleshVerify()" style="cursor:pointer" align="absmiddle">
             </div>
-
 
 		</div>
 		<div class="formBar">

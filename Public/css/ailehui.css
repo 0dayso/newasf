@@ -1,32 +1,137 @@
 @charset "utf-8";
+/*头部*/
 #logo_txt{float:left;height:42px;line-height:42px;padding-left:10px;margin-top:28px;font-size:30px;font-family:"微软雅黑","黑体","宋体";border-left:1px solid #e0e0e0;color:#333;}
-
 #alh_nav{background-color:#eb5628;height:40px;line-height:40px;font-family:"微软雅黑";overflow:visible;}
 #alh_nav .nav li{float:left;padding:0px 15px;}
 #alh_nav .nav li a{color:#fff;font-size:18px;float:left;padding:0px 35px;}
 #alh_nav .nav li a.active{background-color:#db4414;}
 
-
-.wd1080{width:1080px;margin:0 auto;font:"微软雅黑", "黑体", "宋体";}
-.wd980{width:980px;margin:0 auto;}
-.wd700{width:700px;margin-top:10px;}
-.wd270{width:270px;margin-top:10px;}
-.wd650{float:left;width:650px;}
-.wd320{float:left;width:320px;margin-right:10px;}
+/*主体*/
+h2,h3{font-family:"微软雅黑","黑体","宋体";}
+.wd980{width:980px;margin:0 auto;color:#666;}
+.wd700{width:700px;}
+.wd270{width:270px;}
 .mt10{margin-top:10px;}
-.txt_center{text-align:center;}
-.hd_nav{width:500px;height:24px;margin-top:64px;color:#ccc;text-align:right;}
-.hd_nav a{font-size:14px;font-weight:bold;padding:0 10px;color:#333;}
-#top_img0{height:306px;background:url(../images/activity/top_img_bg0.jpg) no-repeat center top;}
-#top_img1{height:306px;background:url(../images/activity/top_img_bg1.jpg) no-repeat center top;}
-#top_img3{height:306px;background:url(../images/activity/top_img_bg3.gif) no-repeat center top;}
-#top_img4{height:293px;background:url(../images/activity/top_img_bg4.gif) no-repeat center top;}
-#top_img5{height:293px;background:url(../images/activity/top_img_bg5.gif) no-repeat center top;}
-#top_nav{height:45px; background-color:#1276db;}
-#top_nav li{float:left;}
-#top_nav li a{line-height:45px;padding:0 50px;display:inline-block;font-size:18px;font-weight:bold;color:#FFF;}
-#top_nav li a.active{ background-color:#0056ac;}
+.h1_tit_nav{padding-left:0!important;}
+.icon{float:left;display:inline-block;background:url(../images/Ailehui/ailehui_icon.png) no-repeat;}
+.i0,.i7,.i8{width:28px;height:28px;margin-right:10px;}
+.i0{background-position:0 0;}
+.i7{background-position:-105px -110px;}
+.i8{background-position:-150px -110px;}
+.i1,.i2,.i3,.i4,.i5,.i6{width:45px;height:45px;}
+.i1{background-position:-50px 0;}
+.i2{background-position:-95px 0;}
+.i3{background-position:-140px 0;}
+.i4{background-position:-50px -45px;}
+.i5{background-position:-95px -45px;}
+.i6{background-position:-140px -45px;}
+.alh_box{border:1px solid #e5e5e5;margin-top:10px;}
+.alh_box h2{line-height:28px;padding:5px 0 5px 20px;background-color:#ededed;border-bottom:1px solid #e5e5e5;font-size:16px;font-weight:bold;}
+.alh_box .notlogin span{display:block;width:162px;margin:0 auto;}
+.alh_box .link,.alh_box .bdsharebuttonbox{padding:0 41px;}
+.alh_box .notlogin p{height:30px;line-height:30px;text-align:center;}
+.alh_box .login .info{width:175px;height:145px;padding-left:10px;margin-top:25px;}
 
-.act_box{border:1px solid #efefef;margin-bottom:10px;}
-.act_box h3{height:39px;line-height:39px;font-size:16px;font-weight:bold;color:#333;padding-left:15px;border-bottom:1px solid #efefef;background-color:#fcfcfc;}
-.act_box h3 .right a{font-size:12px;font-weight:normal;color:#333;margin-right:10px;}
+
+#member_ad{height:270px;margin-top:10px;}
+#member{width:188px;height:268px;border:1px solid #e5e5e5;background-color:#f4f4f4;}
+#member h2{padding:10px 10px 0px 10px;height:28px;line-height:28px;font-size:16px;font-weight:bold;}
+.notlogin,.login{padding:0 12px;}
+.notlogin p{height:58px;line-height:24px;padding:6px 0;}
+.notlogin .a0,.notlogin .a1{display:block;line-height:30px;text-align:center;font-size:14px;font-weight:bold;color:#FFF;margin-top:12px;}
+.notlogin .a0{background-color:#f15656;}
+.notlogin .a1{background-color:#35a7d7;}
+.notlogin .link{line-height:40px;border-bottom:1px dashed #b7b7b7;}
+.notlogin .link a{color:#666;}
+
+.login .info{margin-top:6px;height:125px;}
+.login .info .left{width:76px;text-align:center;line-height:28px;margin-top:6px;}
+.login .info .right{width:80px;}
+.login .info .right li{line-height:27px;}
+.login .info .right strong{color:#ff5918;}
+.login .info .right span{display:inline-block;padding-left:22px;background:url(../images/Ailehui/ailehui_icon.png) no-repeat 0 -177px;}
+.login .info a{color:#0066cc;}
+#member .login dl{height:45px;}
+#member .login dt{line-height:24px;color:#999;padding-bottom:4px;}
+#member .login dd{float:left;width:14px;height:14px;margin-right:6px;background:url(../images/Ailehui/privilege_14.png) no-repeat;}
+#member .login dd.p1{background-position:0 0;}
+#member .login dd.p2{background-position:-14px 0;}
+#member .login dd.p3{background-position:-28px 0;}
+#member .login dd.p4{background-position:0 -14px;}
+#member .login dd.p5{background-position:-14px -14px;}
+#member .login dd.p6{background-position:-28px -14px;}
+#member .login dd.p7{background-position:0 -28px;}
+#member .login dd.p8{background-position:-14px -28px;}
+#member .login dd.p9{background-position:-28px -28px;}
+#member .login dd.p10{background-position:0 -42px;}
+#member .login dd.p11{background-position:-14px -42px;}
+#member .login dd.p12{background-position:-28px -42px;}
+#member .login dd.p13{background-position:0 -56px;}
+#member .login dd.p14{background-position:-14px -56px;}
+#member .login dd.p15{background-position:-28px -56px;}
+#member .login dd.p16{background-position:0 -70px;}
+#member .login dd.p17{background-position:-14px -70px;}
+#member .login dd.p18{background-position:-28px -70px;}
+
+/*会员活动精选&国际机票精选*/
+.choiceness,#travel_pictures{margin-top:20px;color:#333;}
+.choiceness h2,#travel_pictures h2{height:42px;line-height:42px;padding-left:10px;border-bottom:2px solid #cdcdcd;font-size:16px;}
+.choiceness h2 span,#travel_pictures h2 span{float:left;border-left:4px solid #9b9b9b;height:20px;margin-top:11px;}
+.choiceness h2 b,#travel_pictures h2 b{padding-left:10px;font-size:22px;}
+.choiceness dl{height:249px;border-left:1px solid #e0e0e0;border-bottom:1px solid #e0e0e0;}
+.choiceness dd,.choiceness dt{float:left;height:249px;border-right:1px solid #e0e0e0;}
+.choiceness dd{width:249px;}
+.choiceness dt{width:208px;padding:0 10px;}
+.choiceness h3{font-size:18px;line-height:24px;margin-top:18px;padding-left:15px;}
+.choiceness li{margin-top:18px;font-family:"微软雅黑","黑体","宋体";}
+.choiceness li a{display:block;height:45px;line-height:45px;padding-left:5px;background-color:#f4f4f4;font-size:16px;color:#666;}
+/*游记精选&美图推荐*/
+#travel_pictures{padding-bottom:20px;}
+#travel_pictures h2 a{float:right;color:#333;font-family:"宋体";padding-right:10px;}
+#travel,#pictures{float:left;border-bottom:1px solid #e0e0e0;}
+#travel{width:608px;}
+#tra_list{height:426px;border-left:1px solid #e0e0e0;padding:10px;}
+#tra_list dl{height:50px;padding:10px;border-bottom:1px dashed #e0e0e0;}
+#tra_list dt{float:left;widht:50px;margin-right:17px;}
+#tra_list dt img{width:50px;height:50px;border-radius:25px;-moz-border-radius:25px; /* Old Firefox */}
+#tra_list dd{float:left;width:500px;height:25px;line-height:25px;color:#666;}
+#tra_list dd a{color:#0066cc;}
+#tra_list dd span,#tra_list dd ul{float:right;}
+#tra_list dd ul{width:195px;}
+#tra_list dd li{float:left;width:40px;padding-left:25px;background:url(../images/Ailehui/ailehui_icon.png) no-repeat;}
+#tra_list dd li.t1{background-position:0 -100px;}
+#tra_list dd li.t2{background-position:0 -125px;}
+#tra_list dd li.t3{background-position:0 -150px;}
+#pictures{width:372px;}
+#pictures ul{width:360px;height:446px;border-left:1px solid #e0e0e0;border-right:1px solid #e0e0e0;padding-left:10px;}
+#pictures ul li{float:left;width:170px;height:135px;margin:10px 10px 0 0;}
+
+/*我的特权*/
+#priv52{padding:20px 0 20px 15px;}
+#priv52 li{float:left;width:70px;padding-right:14px;}
+#priv52 li a{display:block;width:70px;height:90px;line-height:26px;text-align:center;color:#333;}
+#priv52 li a:hover{color:#ff5918;}
+#priv52 li a span{display:block;width:52px;height:52px;margin:0 auto;background:url(../images/Ailehui/privilege_52.png) no-repeat;}
+#priv52 li a span.p1{background-position:0 0;}
+#priv52 li a span.p2{background-position:-52px 0;}
+#priv52 li a span.p3{background-position:-104px 0;}
+#priv52 li a span.p4{background-position:0 -52px;}
+#priv52 li a span.p5{background-position:-52px -52px;}
+#priv52 li a span.p6{background-position:-104px -52px;}
+#priv52 li a span.p7{background-position:0 -104px;}
+#priv52 li a span.p8{background-position:-52px -104px;}
+#priv52 li a span.p9{background-position:-104px -104px;}
+#priv52 li a span.p10{background-position:0 -156px;}
+#priv52 li a span.p11{background-position:-52px -156px;}
+#priv52 li a span.p12{background-position:-104px -156px;}
+#priv52 li a span.p13{background-position:0 -208px;}
+#priv52 li a span.p14{background-position:-52px -208px;}
+#priv52 li a span.p15{background-position:-104px -208px;}
+#priv52 li a span.p16{background-position:0 -260px;}
+#priv52 li a span.p17{background-position:-52px -260px;}
+#priv52 li a span.p18{background-position:-104px -260px;}
+
+#upgrade_list{padding:10px;}
+#upgrade_list li{padding-left:16px;line-height:25px;background:url(../images/Ailehui/ailehui_icon.png) no-repeat -190px -150px;}
+#upgrade_list li span{float:right;padding-right:10px;}
+#upgrade_list li em{font-style:normal;color:#e56700;}

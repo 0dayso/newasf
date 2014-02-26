@@ -16,7 +16,7 @@ class UserAction extends CommonAction {
 
         }
 
-        if(!isset($_POST['status'])){
+        if(!isset($_POST['status']) && !isset($_GET['status'])){
             $map['status'] = 1;
             $_REQUEST['status']=1;
         }
@@ -172,6 +172,8 @@ class UserAction extends CommonAction {
     //重置密码
     public function resetPwd()
     {
+        if(C('VERIFY_CODE') && I('verify','','md5') != $_SESSION['verify'])
+        $this->error('验证码错误！');
     	$id  =  $_POST['id'];
         $password = $_POST['password'];
         if(''== trim($password)) {
@@ -260,10 +262,12 @@ class UserAction extends CommonAction {
         if(I('so')){
             $where['name'] = array('like',"%".I('so')."%");
             $where['username']  = array('like',"%".I('so')."%");
+            $where['email']  = array('like',I('so'));
             $where['public_mobile']  = array('like',"%".I('so')."%");
             $where['_logic'] = 'or';
             $map['_complex'] = $where;
         }
+        $this->map=$map;
         $this->map['id'] = array('egt',2);
         $this->map['status'] = 1;
         $access=D('Access');
@@ -280,27 +284,61 @@ class UserAction extends CommonAction {
      */
     function transfer(){
         $UserAdmin=D('UserAdmin');
-        $rs= $UserAdmin->getDepartmentUid(I('id'));
-      //  dump($rs);
         $memberDB=D("Member");
-        $where['user_id']=I('id');
-
-        $arr=$memberDB->field('id,user_id,invite_id')->where($where)->select();
-
-        $array= list_to_tree($arr,0,'id','invite_id');
-        foreach($array as $val){
-            $a[]=tree_to_list($val, $child = '_child');
+        $userDB=D('User');
+        $urs= $userDB->find(I('id'));
+        if(IS_POST){
+            if(C('VERIFY_CODE') && I('verify','','md5') != $_SESSION['verify'])
+            $this->error('验证码错误！');
+            //指定业务员
+            $where['user_id']=I('id');
+           if(!I('auto') && I('to_user_id')){
+               $wh['user_id']=I('id');
+               $data['user_id']=I('to_user_id');
+               $memberDB->where($wh)->save($data);
+               $this->success('成功');
+           }else{//自动分配
+               $arr=$memberDB->field('id,invite_id')->where($where)->select();
+                //转
+               $array= list_to_tree($arr,0,'id','invite_id');
+               $this->log['old']=$array;
+               foreach($array as $val){
+                    if(is_array($val['_child'])){
+                        $da['id']=$val['id'];
+                        $da['invite_id']=$val['invite_id'];
+                        $a[]=$da;
+                        $a[]=tree_to_list($val['_child'], $child = '_child');
+                    }else{
+                       $a[]=$val;
+                    }
+                }
+                foreach($a as $key=>$val){
+                   if(is_array($val) && isset($val['id'])){
+                       $arrs[]=$val['id'];
+                   }else{
+                       $temp=array();
+                       foreach($val as $k=>$v){
+                           $temp[]=$v['id'];
+                       }
+                       $arrs[]=implode(',',$temp);
+                   }
+                }
+                foreach($arrs as $key=>$val){
+                    $wh['id']=array('in',$val);
+                    $data=array();
+                    $data['user_id']=$userDB->autoUserid($urs['company_id'],$urs['department_id']);
+                    $ar[]=$memberDB->where($wh)->save($data);
+                }
+               if(!empty($ar)) $this->success('成功');
+           }
+            //记录行为
+            action_log('admin_transfer', 'member', $id, getUid(),$this);
+            $this->error('失败');
+        }else{
+            $this->vo=$urs;
+            $this->display();
         }
-        print_r($a);
-        $where['invite_id']=array('gt',1);
-        $ar=$memberDB->where($where)->count();
-      //  dump($ar);
-      //  print_r($array);
-
-        $this->display();
     }
-
-
 
 
 }

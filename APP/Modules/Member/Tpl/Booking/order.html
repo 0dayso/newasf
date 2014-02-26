@@ -24,9 +24,9 @@
                         </dd>
 						<dd><strong>机票类型：</strong>直接出票</dd>
 						<dd><strong>票面价格：</strong><b>{$info.xsj}</b></dd>
-						<dd><strong>现金券使用：</strong><b>0</b></dd>
+						<dd><strong>现金券使用：</strong><b>{$info.xjj}</b></dd>
 						<dd class="cope">
-							<div><strong>应付金额：</strong><b>{$info.xj}</b> <span>（票价<b>{$info.xsj}</b>+税费<b>{$info.sf}</b>+机建<b>{$info.jj}</b>+保险现金券<b>0</b>）</span> </div>
+							<div><strong>应付金额：</strong><b>{$info['xj']-$info['xjj']}</b> <span>（票价<b>{$info.xsj}</b>+税费<b>{$info.sf}</b>+机建<b>{$info.jj}</b>+保险 - 现金券<b>{$info.xjj}</b>)</span> </div>
                     		<div><em>温馨提示：</em>机票价格实时变动，建议您尽快付款，如有疑问请联系您的专职旅行顾问或致电400-608-5188。</div>
 						</dd>
 						<dd><strong>下单时间：</strong>{$info.dprq}</dd>

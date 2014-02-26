@@ -49,12 +49,12 @@
 	<table class="table" width="100%" layoutH="115">
 		<thead>
 		<tr>
-			<th width="60" orderField="id" <if condition="$_REQUEST._order eq 'id'">class="{$_REQUEST._sort}"</if>>编号</th>
+			<th width="20" orderField="id" <if condition="$_REQUEST._order eq 'id'">class="{$_REQUEST._sort}"</if>>编号</th>
 	        <th width="100">行为标识</th>
-           <th  width="100">行为名称</th>
+            <th  width="100">行为名称</th>
             <th width="60" orderField="user_id" <if condition="$_REQUEST._order eq 'user_id'">class="{$_REQUEST._sort}"</if>>执行者</th>
             <th width="100" orderField="create_time" <if condition="$_REQUEST._order eq 'create_time'">class="{$_REQUEST._sort}"</if>>执行时间</th>
-			<th>日志</th>
+			<th width="200">日志</th>
              <th width="80">操作</th>
 		</tr>
 		</thead>
@@ -65,9 +65,8 @@
 				<td>{$vo.action.name}</td>
                 <td>{$vo.action.title}</td>
                 <td>{$vo.user_id}</td>
-
-                <td>{$vo['create_time']|date="Y-m-d",###}</td>
-                <td>{$vo.remark}</td>
+                <td>{$vo['create_time']|date="Y-m-d H:i:s",###}</td>
+                <td title="{$vo.remark}">{$vo.remark|msubstr=###,0,50}</td>
                 <td><a href="__URL__/logView/id/{$vo['id']}" target="dialog" rel="view" >查看</a></td>
 			</tr>
 		</volist>

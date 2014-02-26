@@ -54,13 +54,11 @@ class AssetaccountAction extends IniAction {
 			if($page1<=1){$page1=1;}
 		$cash=$AsmsOrder->field('ddbh,xjj,hc,ddzt,lx,zf_fkf,update_time')->where($w)->limit(($page1-1)*$num.','.$num)->select();		
 		foreach($cash as $key=>$val){
-			if($val['xjj'] == 0){//判断是否有现金券消费				
 				if(is_array($val)){
                 	$val = $AsmsOrder->format($val);
 				}	
-				$val['hc_n']=implode('-',D("City")->getCity(str_split($val['hc'],3)));				
-				$cash[$key]=$val;					
-			}
+				$val['hc_n']=implode('-',D("City")->getCity(str_split($val['hc'],3)));
+				$cash[$key]=$val;
 			$cash[$key]['update_time']=date("Y-m-d",$cash[$key]['update_time']);//时间戳格式化
 		} 
 				

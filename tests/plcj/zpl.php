@@ -12,7 +12,7 @@
 	$page=$_GET['p']?$_GET['p']:0;
 	$num=3000;
 	$start=$num*$page;
-	$sql="select * from pl_temp_20131116 limit $start,$num";
+	$sql="select * from pl_temp_20131231 limit $start,$num";
 	echo $sql;
 	
 	$rs=mysql_query($sql) or die(mysql_error());
@@ -29,7 +29,7 @@
 			$from_iata=$row2['from_iata'];
 		}
 		//$sql2="select `id`,username,name,entry_time from asf_user3 where  status=1 and name!='' and avatar!='' and view=1 and qq!=''";
-		$sql3="select `id`,username,name from asf_user3 where status=1 and public_mobile!=''  and avatar!='' and view=1 order by rand() limit 1";
+		$sql3="select `id`,username,name from asf_user where status=1 and public_mobile!=''  and avatar!='' and view=1 order by rand() limit 1";
 		$rs3=mysql_query($sql3) or die(mysql_error());
 		while($row3=mysql_fetch_assoc($rs3)){  
 			$user=$row3['id'];
@@ -38,7 +38,7 @@
 		$row['contents']=str_replace('同程','爱尚飞',$row['contents']);
 		
 	
-		$time=rand(strtotime("2013-12-1"),strtotime("2014-01-10"));
+		$time=rand(strtotime("2013-12-01"),strtotime("2014-02-10"));
 		$val.="('$row[name]',$user,'$from','$from_iata','$to','$to_iata','$row[total]','$row[server]','$row[speed]','$row[price]','$row[contents]',$time),";
 	}
 	$val=trim($val,',');

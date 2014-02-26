@@ -374,7 +374,7 @@ class Image {
         session($verifyName, md5($randval));
         setcookie($verifyName,$randval);
         $width = ($length * 10 + 10) > $width ? $length * 10 + 10 : $width;
-        if ($type != 'gif' && function_exists('imagecreatetruecolor')) {
+        if ($type != 'gif' && function_exists('imagecreatetruecolor')){
             $im = imagecreatetruecolor($width, $height);
         } else {
             $im = imagecreate($width, $height);

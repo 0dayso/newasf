@@ -3,15 +3,40 @@
 class PayAction extends IniAction {
 
     function index(){
-        D("AsmsOrder")->editOrder();
+       /*$json= '{"out_trade_no":"201402251722011468","trade_no":"2014022564883210","total_fee":"0.03","trade_status":"TRADE_SUCCESS","notify_id":"RqPnCoPT3K9%2Fvwbh3I74nZE3ICVzfQQEk8hsEqTU2gVCFmROk%2BHdu0B0RGx8nPi750Ax","notify_time":"2014-02-25 17:23:57","buyer_email":"1000@yin.cc"}';
+        $post=(array)json_decode($json);
+        $post= http_build_query($post);
+      //  dump($post);exit;
+        $url="http://localhost/newasf/member/pay/returnurl?$post";
+       $rs= curl_post($url,$post,COOKIE_FILE,0);
+        print_R($rs);*/
+    //    echo ASMSUID; dump(ASMSUID);
+        $data['ddbh']='6565656565651402212';
+        $data['ddbz']='test';
+        $data['cjr_info']=array(1=>array('cjr_xsj'=>'100'));
+     //   D("AsmsOrder")->editOrder($data);
         echo "支付";
+    }
+
+    /*
+     *支付表单认证  防止数据修改
+     */
+    function pay_auth(){
+        $pay_auth=session('pay_auth');
+        if(I('order_no')!=$pay_auth['order_pay_id'] || I('order_price')!=$pay_auth['total_price'] || I('order_id_arr')!=$pay_auth['order_id_arr']){
+            $this->error('非法操作 请重新刷新支付页面');
+        }
+        session('pay_auth',null);
     }
     /*
      *财付通支付
      */
+
+
     function tenPay(){
         if(!empty($_POST)){
-            if(!I('order_no')) $this->error('非法操作');
+            //支付表单认证
+            $this->pay_auth();
             //创建支付单
             $PayOrder=D('PayOrder');
 
@@ -31,6 +56,7 @@ class PayAction extends IniAction {
             //----------------------------------------
             //设置支付参数
             //----------------------------------------
+
             $reqHandler->setParameter("partner", $partner);
             $reqHandler->setParameter("out_trade_no", $_POST['order_no']);
             $reqHandler->setParameter("total_fee",$_POST['order_price']*100);  //总金额
@@ -77,8 +103,9 @@ class PayAction extends IniAction {
             }
             $data['payUrl']=$tenpayUrl;
             $data['remark']=I('remarkexplain');
+            $data['order_info']=json_decode(session('order_info'));
             $PayOrder->create($data,1);
-            if(!$PayOrder->add()) $this->error('订单写入失败');
+            if(!$PayOrder->add()) $this->error('订单创建失败');
             //echo  $tenpayUrl;
             //转向支付页面
             //记录行为
@@ -137,14 +164,12 @@ class PayAction extends IniAction {
                     $data['data_json']=json_encode($_REQUEST);
 
                     $PayOrder->update($data);
-                    $order_id_arr=explode(',',$rs['order_id_arr']);
-                    foreach($order_id_arr as $val){
-                        $orderDB = D('AsmsOrder');
+                    $order_info=object_to_array(json_decode($rs['order_info']));
+                    $orderDB = D('AsmsOrder');
+                    foreach($order_info as $val){
                         $orderDB->setField('zf_fkf','');
-                        $ors= $orderDB->field('ysje')->find($val);
-                        $rr= $orderDB->orderPay($val,ASMSUID,$ors['ysje'],$out_trade_no,2,$rs['remark']);
+                        $orderDB->orderPay($val['ddbh'],ASMSUID,$val['yfje'],$val['xjj'],$out_trade_no,$rs['remark']);
                     }
-
                     //------------------------------
                     //处理业务完毕
                     //------------------------------
@@ -163,6 +188,7 @@ class PayAction extends IniAction {
                     $PayOrder=D('PayOrder');
 
                     $rs= $PayOrder->find($out_trade_no);
+
                     if($rs['order_price']!=$total_fee/100){
                         $this->error('支付失败');
                     }
@@ -174,12 +200,11 @@ class PayAction extends IniAction {
                     $data['status']=1;
                     $data['data_json']=json_encode($_REQUEST);
                     $PayOrder->update($data);
-                    $order_id_arr=explode(',',$rs['order_id_arr']);
-                    foreach($order_id_arr as $val){
-                        $orderDB = D('AsmsOrder');
+                    $order_info=object_to_array(json_decode($rs['order_info']));
+                    $orderDB = D('AsmsOrder');
+                    foreach($order_info as $val){
                         $orderDB->setField('zf_fkf','');
-                        $ors= $orderDB->field('ysje')->find($val);
-                        $rr= $orderDB->orderPay($val,ASMSUID,$ors['ysje'],$out_trade_no,$rs['remark']);
+                        $rr= $orderDB->orderPay($val['ddbh'],ASMSUID,$val['yfje'],$val['xjj'],$out_trade_no,$rs['remark']);
                     }
                     //------------------------------
                     //处理业务完毕
@@ -259,9 +284,6 @@ class PayAction extends IniAction {
                         //------------------------------
                         $PayOrder=D('PayOrder');
                         $rs= $PayOrder->find($out_trade_no);
-                        if($rs['order_price']!=$total_fee/100){
-                            $this->error('支付失败');
-                        }
 
                         $data['id']=$out_trade_no;
                         $data['trade_mode']=1;
@@ -269,14 +291,20 @@ class PayAction extends IniAction {
                         $data['order_price']=$total_fee/100;
                         $data['status']=1;
                         $data['data_json']=json_encode($_REQUEST);
+                        if($rs){
+                            if($rs['order_price']!=$total_fee/100){
+                                $this->error('支付失败');
+                            }
+                            $PayOrder->update($data);
+                        }else{
+                            $PayOrder->add($data);
+                        }
 
-                        $PayOrder->update($data);
-                        $order_id_arr=explode(',',$rs['order_id_arr']);
+                        $order_info=object_to_array(json_decode($rs['order_info']));
                         $orderDB = D('AsmsOrder');
-                        foreach($order_id_arr as $val){
+                        foreach($order_info as $val){
                             $orderDB->setField('zf_fkf','');
-                            $ors= $orderDB->field('ysje')->find($val);
-                            $rr= $orderDB->orderPay($val,ASMSUID,$ors['ysje'],$out_trade_no,2,$rs['remark']);
+                            $rr= $orderDB->orderPay($val['ddbh'],ASMSUID,$val['yfje'],$val['xjj'],$out_trade_no,$rs['remark']);
                         }
 
                         //------------------------------
@@ -325,8 +353,10 @@ class PayAction extends IniAction {
     }
 		//入口
 	 public function alipay(){		
-		 if(!empty($_POST)){			
-		  	if(!I('order_no')) $this->error('非法操作');			
+		 if(!empty($_POST)){
+             //支付表单认证
+            $this->pay_auth();
+
 			$alipay_config['partner']		= C('ALIPAY_PARTNER');
 			$alipay_config['key']			= C('ALIPAY_KEY');
 			$alipay_config['sign_type']     = strtoupper('MD5');
@@ -337,7 +367,7 @@ class PayAction extends IniAction {
 			/**************************请求参数**************************/
 			$payment_type = "1"; //支付类型 //必填，不能修改
 			$notify_url = C('ALIPAY_NOTIFY_URL'); //服务器异步通知页面路径
-			$return_url = C('ALIPAY_RETURN_URL'); //页面跳转同步通知页面路径			
+			$return_url =  $return_url=U('/Member/Pay/returnurl','','','',true); //页面跳转同步通知页面路径
 			$seller_email = C('seller_email');//卖家支付宝帐户必填			
 			$out_trade_no = $_POST['order_no'];//商户订单号 通过支付页面的表单进行传递，注意要唯一！
 			$subject = $_POST['product_name'];  //订单名称 //必填 通过支付页面的表单进行传递
@@ -397,8 +427,8 @@ class PayAction extends IniAction {
 			$data['data_json']=0;
             $data['remark']=$_POST['remarkexplain'];//简要说明			
 			$data['create_time']=time();
-			$data['update_time']=time();			
-					
+			$data['update_time']=time();
+            $data['order_info']=json_encode(session('order_info'));
             if($PayOrder->create($data)){
                 if(!$PayOrder->add()){
                     $this->error('订单写入失败');
@@ -484,6 +514,7 @@ class PayAction extends IniAction {
 			$verify_result = $alipayNotify->verifyReturn();
 			
 			if($verify_result) {
+        //    if(1) {
 				//验证成功
 				//获取支付宝的通知返回参数，可参考技术文档中页面跳转同步通知参数列表
 				$out_trade_no   = $_GET['out_trade_no'];      //商户订单号
@@ -515,7 +546,7 @@ class PayAction extends IniAction {
 		 }else {
 			//验证失败
 			//如要调试，请看alipay_notify.php页面的verifyReturn函数			
-			$this->error('支付失败',U('/Member/booking'));
+			$this->error('验证失败',U('/Member/booking'));
 		}
 	}
 }

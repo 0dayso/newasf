@@ -15,9 +15,7 @@ class IniAction extends PublicAction{
 						$this->userInfo=$userInfo;
                         define('ASMSUID',$userInfo['asms']['hyid']);//加入asms id
                         D('Member')->updateLogin();//更新登陆
-					}else{
-                        cookie('uid',null);  cookie('salt',null);
-                    }
+					}
 				}else{
                     cookie('uid',null);  cookie('salt',null);
                 }

@@ -35,8 +35,8 @@
                             <td class="first"><input name="ddbh[]" type="checkbox" value="{$vo.ddbh}" checked="checked"/>{$vo.ddbh}</td>
                             <td class="link alignL"><a href="{:U('/member/booking/order/ddbh/'.$vo['ddbh'])}">{$vo.hc_n} {$vo.lx_n}</a></td>
                             <td class="price">￥{$vo.xj}</td>
-                            <td>无</td>
-                            <td class="price">￥<span>{$vo.xj}</span></td>
+                            <td><if condition="$vo['xjj'] gt 0">￥{$vo.xjj}<else/>无</if></td>
+                            <td class="price">￥<span>{$vo['yfje']}</span></td>
                             <td>{$vo.dprq}</td>
 						  <td class="blue">待支付</td>
                             <td class="link"><a href="{:U('/member/booking/order/ddbh/'.$vo['ddbh'])}">查看</a>　<a class="cancel">取消</a></td>
@@ -65,8 +65,8 @@
                             <td class="first">{$vo.ddbh}</td>
                             <td class="link alignL"><a href="{:U('/member/booking/order/ddbh/'.$vo['ddbh'])}">{$vo.hc_n} {$vo.lx_n}</a></td>
                             <td class="price">￥{$vo.xj}</td>
-                            <td>无</td>
-                            <td class="price">￥{$vo.xj}</td>
+                            <td><if condition="$vo['xjj'] gt 0">￥{$vo.xjj}<else/>无</if></td>
+                            <td class="price">￥{$vo['yfje']}</td>
                             <td>{$vo.dprq}</td>
 						  <td class="blue">{$vo.zf_zt}</td>
                             <td class="link"><a href="{:U('/member/booking/order/ddbh/'.$vo['ddbh'])}">查看</a></td>
@@ -94,7 +94,7 @@
                             <td class="link alignL"><a href="{:U('/member/booking/order/ddbh/'.$vo['ddbh'])}">{$vo.hc_n} {$vo.lx_n}</a></td>
                             <td class="price">￥{$vo.xj}</td>
                             <td>无</td>
-                            <td class="price">￥{$vo.xj}</td>
+                            <td class="price">￥{$vo['yfje']}</td>
                             <td>{$vo.dprq}</td>
 						  <td class="blue">已取消</td>
                             <td class="link"><a href="{:U('/member/booking/order/ddbh/'.$vo['ddbh'])}">查看</a></td>

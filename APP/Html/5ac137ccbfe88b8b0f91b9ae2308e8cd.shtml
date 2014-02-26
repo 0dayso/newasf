@@ -1,0 +1,805 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>国际机票 - 爱尚飞国际机票网</title>
+    <link rel="stylesheet" href="/newasf/Public/css/main.css" type="text/css" />
+    <script type="text/javascript" src="/newasf/Public/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="/newasf/Public/js/main.js"></script>
+    <script type="text/javascript" src="/newasf/Public/js/layer/layer.min.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+    var BaseInfo = {
+        'path':"/newasf/"
+    };
+
+    function open_kf(){
+            window.open('http://wpa.qq.com/msgrd?v=3&uin=2355356102&site=qq&menu=yes');
+        }
+</script>
+<div id="hd_top">
+        <div class="wd960">
+			<span class="left">您好,
+				<a title="进入会员中心" href="/newasf/Member/index">admintest</a>
+					普通会员  <a href="/newasf/member/out">退出</a>
+				</span>
+
+			            <span class="right">
+             <a id="myAisf_w" href="/newasf/member">我的爱尚飞</a>
+                 <ul id="myAisf_u">
+                     <li><a href="/newasf/member/booking">我的订单</a></li>
+                     <li><a href="/newasf/member/information">个人资料</a></li>
+                     <li><a  target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2355356102&site=qq&menu=yes">咨询我的顾问</a></li>
+                     <li><a href="/newasf/member/editpwd">修改密码</a></li>
+                 </ul>
+                 <a id="myAisf_t"></a>                <a class="spr gz"></a><a href="http://e.weibo.com/aishangfei2012?ref=http%3A%2F%2Fweibo.com%2Fu%2F2014524587%3Fwvr%3D5%26" class="ml0" target="_blank">关注我们</a><a class="spr wx"></a><a href="javascript:;" class="ml0" id="weixin_me">微信我们</a><!--<a href="/newasf/iflight/verify" class="ts">机票验真</a>--><a href="/newasf/help" class="bz">帮助中心</a><a class="spr dh"></a></span>
+        </div>
+    </div>
+    <div id="hd_logo">
+        <div class="wd960">
+            <a href="/newasf/" class="left"><img src="/newasf/Public/images/logo.gif" alt="logo" class="logo" /></a>
+            <div class="right"><a href="/newasf/zt/airchina_sales" target="_blank"><img src="/newasf/Public/images/Zt/airchina_sales/ad_578_80.jpg" alt="中国国际航空" /></a></div>
+        </div>
+    </div>
+    <div id="hd_nav">
+        <div class="wd960">
+            <ul class="nav">
+                <li><a href="/newasf/">首页</a></li>
+                <li><a class='active' href="/newasf/iflight">国际机票</a></li>
+                <li><a  href="/newasf/about/service">会员服务</a></li>
+                <li><a  href="/newasf/jifen">积fun商城</a></li>
+                <li><a  href="/newasf/Adviser/review_51">专业顾问</a></li>
+                <li><a  href="/newasf/activity" class="new">活动频道<span><img src="/newasf/Public/images/top_nav_new.gif" alt="new"/></span></a></li>
+            </ul>
+        </div>
+	</div>
+<!--<script type="text/javascript" src="/newasf/Public/js/index.js"></script>!-->
+
+<link rel="stylesheet" href="/newasf/Public/css/interticket.css" type="text/css" />
+<script type="text/javascript" src="/newasf/Public/js/chaxun.js"></script>
+<script type="text/javascript" src="/newasf/Public/js/hotcitypop/popcitylist.js"></script>
+<script type="text/javascript" src="/newasf/Public/js/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" language="javascript" src="/newasf/Public/js/hotcitypop/searchconditions.js"></script>
+<script type="text/javascript" language="javascript" src="/newasf/Public/js/hotcitypop/paramfarmat.js"></script>
+    <div id="cont">
+        <div class="wd1000 mt10 interTic">
+        	<h1 class="h1_tit_nav">你当前所在位置：<a href="/newasf/" class="sy">首页</a> > <a class="cur">国际机票</a></h1>
+			<div class="left" id="interTicL" style="overflow:visible;">
+				<div id="jp_chaxun">
+					<h2><label>国际机票查询</label></h2>
+					<h3 class="mt10 right">
+						<a href="javascript:;" class="active">1.机票查询</a>
+						<a href="javascript:;">2.选择航班</a>
+						<a href="javascript:;">3.预订机票</a>
+						<a href="javascript:;">4.核对信息</a>
+						<a href="javascript:;">5.完成</a>
+					</h3>
+					<h4 class="clear"></h4>
+					<form action="http://flights.aishangfei.net" name="form" id="chaxun_form" autocomplete="off"  onSubmit="searChAagin();return false;">
+						<ul id="xingcheng_ul">
+							<li id="radio_sel">
+								<span>查询类型：</span>
+                                <input type="radio" name="journey" value="2"/><label>单程</label>
+                                <input type="radio" name="journey"  value="1" checked="checked" /><label>往返</label>
+                                <input type="radio" name="journey"  value="3"/><label>多程</label>
+							</li>
+							<li class="left">
+								<span>出发城市</span>
+								<input type="text" class="text city" name="origincode" value="城市名"/>
+							</li>
+							<li>
+								<span>到达城市</span>
+								<input type="text" class="text city" name="desinationcode" value="城市名"/>
+							</li>
+							<li class="left">
+								<span>出发日期</span>
+								<input type="text" class="text date" name="originDate" id="originDate" value="出发时间" />
+							</li>
+							<li >
+								<span>返回日期</span>
+								<input type="text" class="text date"  name="returnDate" id="returnDate" value="返回时间" />
+							</li>
+						</ul>
+                        <input type="submit" value="搜索" class="right spr3 submit" />
+					</form>
+				</div>
+
+                <div id="iflightAd">
+                <ul>
+                  <li><a href="/newasf/zt/virgin_atlantic_sales" target="_blank"><img src="/newasf/Public/images/Zt/virgin_atlantic_sales/ad_689_93.jpg" /></a></li>
+                  <li><a href="/newasf/zt/cathaypacific_sales2" target="_blank"><img src="/newasf/Public/images/Zt/cathaypacific_sales2/ad_689_93.jpg" /></a></li>
+                </ul>
+                <ol>
+                  <li><a href="javascript:;" class="active">1</a></li>
+                  <li><a href="javascript:;">2</a></li>
+                </ol>
+                </div>
+                
+				               <div id="index_special_tic">
+					<div id="st_head">
+                    	<h2>爱尚飞服务时间：<span>9:00-20:00(周一至周五)</span>，<span>9:00-18:00(周六日)</span></h2>
+                        <div id="st_departcity">
+                        	<a class="bln active" dc="gz">广州出发</a>
+                            <a dc="bj">北京出发</a>
+                            <a dc="sh">上海出发</a>
+                            <a dc="xg">香港出发</a>
+                            <a dc="qt">其他城市出发</a>
+                        </div>
+                    </div>
+                    <div id="st_main">
+                    	<div id="st_destination">
+                        <a href="javascript:;" onclick="gettj('美洲',this)" class="active" >美洲</a><a href="javascript:;" onclick="gettj('欧洲',this)"  >欧洲</a><a href="javascript:;" onclick="gettj('大洋洲',this)"  >大洋洲</a><a href="javascript:;" onclick="gettj('亚洲',this)"  >亚洲</a><a href="javascript:;" onclick="gettj('非洲及中东',this)"  >非洲及中东</a><a href="javascript:;" onclick="gettj('留学生',this)"  class="bbn">留学生</a>                        </div>
+                        <div id="st_list">
+                    	<p id="loadWaitImg" ><img src="/newasf/Public/images/loading_animation.gif" width="37" height="37"/></p>
+                        <ul id='fromgz' >
+                            <li>
+                                    <span class="span0 "><a class="a0">广州</a><a class="spr3 rec"></a><a class="a1">多伦多</a></span>
+                                    <span class="span1"><a class="zz">&nbsp;</a></span>
+                                    <span class="span2"><a class="time">2014-12-31</a><a>截止</a></span>
+                                    <span class="span3"><a class="sign"><img src="/newasf/Public/images/df_10.gif" alt="sign" /></a><a>海南航空</a></span>
+                                    <span class="span4"><a>往返</a><a class="jg">￥5600</a></span>
+                                    <span class="end span5"><a class="spr3 yd" href="javascript:;" onclick="open_kf()" >预订</a></span>
+                                    <!--WHF新增的showAdImg-->
+                                <!--     -->
+                                </li><li>
+                                    <span class="span0 "><a class="a0">广州</a><a class="spr3 rec"></a><a class="a1">圣保罗</a></span>
+                                    <span class="span1"><a class="zz">&nbsp;</a></span>
+                                    <span class="span2"><a class="time">2014-03-31</a><a>截止</a></span>
+                                    <span class="span3"><a class="sign"><img src="/newasf/Public/images/df_10.gif" alt="sign" /></a><a>国航</a></span>
+                                    <span class="span4"><a>往返</a><a class="jg">￥8750</a></span>
+                                    <span class="end span5"><a class="spr3 yd" href="javascript:;" onclick="open_kf()" >预订</a></span>
+                                    <!--WHF新增的showAdImg-->
+                                <!--     -->
+                                </li><li>
+                                    <span class="span0 "><a class="a0">广州</a><a class="spr3 rec"></a><a class="a1">纽约</a></span>
+                                    <span class="span1"><a class="zz">&nbsp;</a></span>
+                                    <span class="span2"><a class="time">2014-03-31</a><a>截止</a></span>
+                                    <span class="span3"><a class="sign"><img src="/newasf/Public/images/df_10.gif" alt="sign" /></a><a>中国国际航空</a></span>
+                                    <span class="span4"><a>往返</a><a class="jg">￥3210</a></span>
+                                    <span class="end span5"><a class="spr3 yd" href="javascript:;" onclick="open_kf()" >预订</a></span>
+                                    <!--WHF新增的showAdImg-->
+                                <!--     -->
+                                </li><li>
+                                    <span class="span0 "><a class="a0">广州</a><a class="spr3 rec"></a><a class="a1">旧金山</a></span>
+                                    <span class="span1"><a class="zz">&nbsp;</a></span>
+                                    <span class="span2"><a class="time">2014-03-31</a><a>截止</a></span>
+                                    <span class="span3"><a class="sign"><img src="/newasf/Public/images/df_10.gif" alt="sign" /></a><a>中国国际航空</a></span>
+                                    <span class="span4"><a>往返</a><a class="jg">￥2600</a></span>
+                                    <span class="end span5"><a class="spr3 yd" href="javascript:;" onclick="open_kf()" >预订</a></span>
+                                    <!--WHF新增的showAdImg-->
+                                <!--     -->
+                                </li><li>
+                                    <span class="span0 "><a class="a0">广州</a><a class="spr3 rec"></a><a class="a1">纽约</a></span>
+                                    <span class="span1"><a class="zz">&nbsp;</a></span>
+                                    <span class="span2"><a class="time">2014-03-31</a><a>截止</a></span>
+                                    <span class="span3"><a class="sign"><img src="/newasf/Public/images/df_10.gif" alt="sign" /></a><a>中国国际航空</a></span>
+                                    <span class="span4"><a>往返</a><a class="jg">￥2880</a></span>
+                                    <span class="end span5"><a class="spr3 yd" href="javascript:;" onclick="open_kf()" >预订</a></span>
+                                    <!--WHF新增的showAdImg-->
+                                <!--     -->
+                                </li><li>
+                                    <span class="span0 "><a class="a0">广州</a><a class="spr3 rec"></a><a class="a1">洛杉矶</a></span>
+                                    <span class="span1"><a class="zz">&nbsp;</a></span>
+                                    <span class="span2"><a class="time">2014-03-31</a><a>截止</a></span>
+                                    <span class="span3"><a class="sign"><img src="/newasf/Public/images/df_10.gif" alt="sign" /></a><a>中国国际航空</a></span>
+                                    <span class="span4"><a>往返</a><a class="jg">￥2360</a></span>
+                                    <span class="end span5"><a class="spr3 yd" href="javascript:;" onclick="open_kf()" >预订</a></span>
+                                    <!--WHF新增的showAdImg-->
+                                <!--     -->
+                                </li><li>
+                                    <span class="span0 "><a class="a0">广州</a><a class="spr3 rec"></a><a class="a1">温哥华</a></span>
+                                    <span class="span1"><a class="zz">&nbsp;</a></span>
+                                    <span class="span2"><a class="time">2014-12-31</a><a>截止</a></span>
+                                    <span class="span3"><a class="sign"><img src="/newasf/Public/images/df_10.gif" alt="sign" /></a><a>中国国际航空</a></span>
+                                    <span class="span4"><a>往返</a><a class="jg">￥4400</a></span>
+                                    <span class="end span5"><a class="spr3 yd" href="javascript:;" onclick="open_kf()" >预订</a></span>
+                                    <!--WHF新增的showAdImg-->
+                                <!--     -->
+                                </li><li>
+                                    <span class="span0 "><a class="a0">广州</a><a class="spr3 rec"></a><a class="a1">塞班岛</a></span>
+                                    <span class="span1"><a class="zz">&nbsp;</a></span>
+                                    <span class="span2"><a class="time">2014-03-31</a><a>截止</a></span>
+                                    <span class="span3"><a class="sign"><img src="/newasf/Public/images/df_10.gif" alt="sign" /></a><a>韩亚航空</a></span>
+                                    <span class="span4"><a>往返</a><a class="jg">￥3820</a></span>
+                                    <span class="end span5"><a class="spr3 yd" href="javascript:;" onclick="open_kf()" >预订</a></span>
+                                    <!--WHF新增的showAdImg-->
+                                <!--     -->
+                                </li><li>
+                                    <span class="span0 "><a class="a0">广州</a><a class="spr3 rec"></a><a class="a1">芝加哥</a></span>
+                                    <span class="span1"><a class="zz">&nbsp;</a></span>
+                                    <span class="span2"><a class="time">2014-06-30</a><a>截止</a></span>
+                                    <span class="span3"><a class="sign"><img src="/newasf/Public/images/df_10.gif" alt="sign" /></a><a>国泰航空</a></span>
+                                    <span class="span4"><a>往返</a><a class="jg">￥3650</a></span>
+                                    <span class="end span5"><a class="spr3 yd" href="javascript:;" onclick="open_kf()" >预订</a></span>
+                                    <!--WHF新增的showAdImg-->
+                                <!--     -->
+                                </li>                            </ul><ul id='fromqt' style="display:none">
+                            <li>
+                                    <span class="span0 "><a class="a0">大连</a><a class="spr3 rec"></a><a class="a1">西雅图</a></span>
+                                    <span class="span1"><a class="zz">&nbsp;</a></span>
+                                    <span class="span2"><a class="time">2014-12-31</a><a>截止</a></span>
+                                    <span class="span3"><a class="sign"><img src="/newasf/Public/images/df_10.gif" alt="sign" /></a><a>海南航空</a></span>
+                                    <span class="span4"><a>往返</a><a class="jg">￥4600</a></span>
+                                    <span class="end span5"><a class="spr3 yd" href="javascript:;" onclick="open_kf()" >预订</a></span>
+                                    <!--WHF新增的showAdImg-->
+                                <!--     -->
+                                </li><li>
+                                    <span class="span0 "><a class="a0">大连</a><a class="spr3 rec"></a><a class="a1">西雅图</a></span>
+                                    <span class="span1"><a class="zz">&nbsp;</a></span>
+                                    <span class="span2"><a class="time">2014-12-31</a><a>截止</a></span>
+                                    <span class="span3"><a class="sign"><img src="/newasf/Public/images/df_10.gif" alt="sign" /></a><a>海南航空</a></span>
+                                    <span class="span4"><a>往返</a><a class="jg">￥4600</a></span>
+                                    <span class="end span5"><a class="spr3 yd" href="javascript:;" onclick="open_kf()" >预订</a></span>
+                                    <!--WHF新增的showAdImg-->
+                                <!--     -->
+                                </li><li>
+                                    <span class="span0 "><a class="a0">杭州</a><a class="spr3 rec"></a><a class="a1">旧金山</a></span>
+                                    <span class="span1"><a class="zz">&nbsp;</a></span>
+                                    <span class="span2"><a class="time">2014-04-30</a><a>截止</a></span>
+                                    <span class="span3"><a class="sign"><img src="/newasf/Public/images/df_10.gif" alt="sign" /></a><a>国泰航空</a></span>
+                                    <span class="span4"><a>往返</a><a class="jg">￥3060</a></span>
+                                    <span class="end span5"><a class="spr3 yd" href="javascript:;" onclick="open_kf()" >预订</a></span>
+                                    <!--WHF新增的showAdImg-->
+                                <!--     -->
+                                </li><li>
+                                    <span class="span0 "><a class="a0">杭州</a><a class="spr3 rec"></a><a class="a1">旧金山</a></span>
+                                    <span class="span1"><a class="zz">&nbsp;</a></span>
+                                    <span class="span2"><a class="time">2014-03-31</a><a>截止</a></span>
+                                    <span class="span3"><a class="sign"><img src="/newasf/Public/images/df_10.gif" alt="sign" /></a><a>中国国际航空</a></span>
+                                    <span class="span4"><a>往返</a><a class="jg">￥2350</a></span>
+                                    <span class="end span5"><a class="spr3 yd" href="javascript:;" onclick="open_kf()" >预订</a></span>
+                                    <!--WHF新增的showAdImg-->
+                                <!--     -->
+                                </li><li>
+                                    <span class="span0 "><a class="a0">杭州</a><a class="spr3 rec"></a><a class="a1">纽约</a></span>
+                                    <span class="span1"><a class="zz">&nbsp;</a></span>
+                                    <span class="span2"><a class="time">2014-03-31</a><a>截止</a></span>
+                                    <span class="span3"><a class="sign"><img src="/newasf/Public/images/df_10.gif" alt="sign" /></a><a>中国国际航空</a></span>
+                                    <span class="span4"><a>往返</a><a class="jg">￥2950</a></span>
+                                    <span class="end span5"><a class="spr3 yd" href="javascript:;" onclick="open_kf()" >预订</a></span>
+                                    <!--WHF新增的showAdImg-->
+                                <!--     -->
+                                </li><li>
+                                    <span class="span0 "><a class="a0">成都</a><a class="spr3 rec"></a><a class="a1">温哥华</a></span>
+                                    <span class="span1"><a class="zz">&nbsp;</a></span>
+                                    <span class="span2"><a class="time">2014-03-28</a><a>截止</a></span>
+                                    <span class="span3"><a class="sign"><img src="/newasf/Public/images/df_10.gif" alt="sign" /></a><a>四川航空</a></span>
+                                    <span class="span4"><a>往返</a><a class="jg">￥4870</a></span>
+                                    <span class="end span5"><a class="spr3 yd" href="javascript:;" onclick="open_kf()" >预订</a></span>
+                                    <!--WHF新增的showAdImg-->
+                                <!--     -->
+                                </li><li>
+                                    <span class="span0 "><a class="a0">成都</a><a class="spr3 rec"></a><a class="a1">旧金山</a></span>
+                                    <span class="span1"><a class="zz">&nbsp;</a></span>
+                                    <span class="span2"><a class="time">2014-03-31</a><a>截止</a></span>
+                                    <span class="span3"><a class="sign"><img src="/newasf/Public/images/df_10.gif" alt="sign" /></a><a>金日空</a></span>
+                                    <span class="span4"><a>往返</a><a class="jg">￥5880</a></span>
+                                    <span class="end span5"><a class="spr3 yd" href="javascript:;" onclick="open_kf()" >预订</a></span>
+                                    <!--WHF新增的showAdImg-->
+                                <!--     -->
+                                </li><li>
+                                    <span class="span0 "><a class="a0">成都</a><a class="spr3 rec"></a><a class="a1">洛杉矶</a></span>
+                                    <span class="span1"><a class="zz">&nbsp;</a></span>
+                                    <span class="span2"><a class="time">2014-03-31</a><a>截止</a></span>
+                                    <span class="span3"><a class="sign"><img src="/newasf/Public/images/df_10.gif" alt="sign" /></a><a>金日空</a></span>
+                                    <span class="span4"><a>往返</a><a class="jg">￥5890</a></span>
+                                    <span class="end span5"><a class="spr3 yd" href="javascript:;" onclick="open_kf()" >预订</a></span>
+                                    <!--WHF新增的showAdImg-->
+                                <!--     -->
+                                </li><li>
+                                    <span class="span0 "><a class="a0">成都</a><a class="spr3 rec"></a><a class="a1">纽约</a></span>
+                                    <span class="span1"><a class="zz">&nbsp;</a></span>
+                                    <span class="span2"><a class="time">2014-03-31</a><a>截止</a></span>
+                                    <span class="span3"><a class="sign"><img src="/newasf/Public/images/df_10.gif" alt="sign" /></a><a>金日空</a></span>
+                                    <span class="span4"><a>往返</a><a class="jg">￥6850</a></span>
+                                    <span class="end span5"><a class="spr3 yd" href="javascript:;" onclick="open_kf()" >预订</a></span>
+                                    <!--WHF新增的showAdImg-->
+                                <!--     -->
+                                </li><li>
+                                    <span class="span0 "><a class="a0">成都</a><a class="spr3 rec"></a><a class="a1">夏威夷</a></span>
+                                    <span class="span1"><a class="zz">&nbsp;</a></span>
+                                    <span class="span2"><a class="time">2014-03-31</a><a>截止</a></span>
+                                    <span class="span3"><a class="sign"><img src="/newasf/Public/images/df_10.gif" alt="sign" /></a><a>金日空</a></span>
+                                    <span class="span4"><a>往返</a><a class="jg">￥6300</a></span>
+                                    <span class="end span5"><a class="spr3 yd" href="javascript:;" onclick="open_kf()" >预订</a></span>
+                                    <!--WHF新增的showAdImg-->
+                                <!--     -->
+                                </li>                            </ul><ul id='fromxg' style="display:none">
+                            <li>
+                                    <span class="span0 "><a class="a0">香港</a><a class="spr3 rec"></a><a class="a1">纽约</a></span>
+                                    <span class="span1"><a class="zz">&nbsp;</a></span>
+                                    <span class="span2"><a class="time">2014-03-31</a><a>截止</a></span>
+                                    <span class="span3"><a class="sign"><img src="/newasf/Public/images/df_10.gif" alt="sign" /></a><a>长荣航空</a></span>
+                                    <span class="span4"><a>往返</a><a class="jg">￥4400</a></span>
+                                    <span class="end span5"><a class="spr3 yd" href="javascript:;" onclick="open_kf()" >预订</a></span>
+                                    <!--WHF新增的showAdImg-->
+                                <!--     -->
+                                </li><li>
+                                    <span class="span0 "><a class="a0">香港</a><a class="spr3 rec"></a><a class="a1">旧金山</a></span>
+                                    <span class="span1"><a class="zz">&nbsp;</a></span>
+                                    <span class="span2"><a class="time">2014-06-30</a><a>截止</a></span>
+                                    <span class="span3"><a class="sign"><img src="/newasf/Public/images/df_10.gif" alt="sign" /></a><a>国泰航空</a></span>
+                                    <span class="span4"><a>往返</a><a class="jg">￥4120</a></span>
+                                    <span class="end span5"><a class="spr3 yd" href="javascript:;" onclick="open_kf()" >预订</a></span>
+                                    <!--WHF新增的showAdImg-->
+                                <!--     -->
+                                </li><li>
+                                    <span class="span0 "><a class="a0">香港</a><a class="spr3 rec"></a><a class="a1">芝加哥</a></span>
+                                    <span class="span1"><a class="zz">&nbsp;</a></span>
+                                    <span class="span2"><a class="time">2014-06-30</a><a>截止</a></span>
+                                    <span class="span3"><a class="sign"><img src="/newasf/Public/images/df_10.gif" alt="sign" /></a><a>国泰航空</a></span>
+                                    <span class="span4"><a>往返</a><a class="jg">￥5200</a></span>
+                                    <span class="end span5"><a class="spr3 yd" href="javascript:;" onclick="open_kf()" >预订</a></span>
+                                    <!--WHF新增的showAdImg-->
+                                <!--     -->
+                                </li><li>
+                                    <span class="span0 "><a class="a0">香港</a><a class="spr3 rec"></a><a class="a1">多伦多</a></span>
+                                    <span class="span1"><a class="zz">&nbsp;</a></span>
+                                    <span class="span2"><a class="time">2014-03-31</a><a>截止</a></span>
+                                    <span class="span3"><a class="sign"><img src="/newasf/Public/images/df_10.gif" alt="sign" /></a><a>国泰航空</a></span>
+                                    <span class="span4"><a>往返</a><a class="jg">￥6350</a></span>
+                                    <span class="end span5"><a class="spr3 yd" href="javascript:;" onclick="open_kf()" >预订</a></span>
+                                    <!--WHF新增的showAdImg-->
+                                <!--     -->
+                                </li><li>
+                                    <span class="span0 "><a class="a0">香港</a><a class="spr3 rec"></a><a class="a1">纽约</a></span>
+                                    <span class="span1"><a class="zz">&nbsp;</a></span>
+                                    <span class="span2"><a class="time">2014-03-31</a><a>截止</a></span>
+                                    <span class="span3"><a class="sign"><img src="/newasf/Public/images/df_10.gif" alt="sign" /></a><a>长荣航空</a></span>
+                                    <span class="span4"><a>往返</a><a class="jg">￥4400</a></span>
+                                    <span class="end span5"><a class="spr3 yd" href="javascript:;" onclick="open_kf()" >预订</a></span>
+                                    <!--WHF新增的showAdImg-->
+                                <!--     -->
+                                </li><li>
+                                    <span class="span0 "><a class="a0">香港</a><a class="spr3 rec"></a><a class="a1">夏威夷</a></span>
+                                    <span class="span1"><a class="zz">&nbsp;</a></span>
+                                    <span class="span2"><a class="time">2014-12-31</a><a>截止</a></span>
+                                    <span class="span3"><a class="sign"><img src="/newasf/Public/images/df_10.gif" alt="sign" /></a><a>中华航空</a></span>
+                                    <span class="span4"><a>往返</a><a class="jg">￥3520</a></span>
+                                    <span class="end span5"><a class="spr3 yd" href="javascript:;" onclick="open_kf()" >预订</a></span>
+                                    <!--WHF新增的showAdImg-->
+                                <!--     -->
+                                </li><li>
+                                    <span class="span0 "><a class="a0">香港</a><a class="spr3 rec"></a><a class="a1">温哥华</a></span>
+                                    <span class="span1"><a class="zz">&nbsp;</a></span>
+                                    <span class="span2"><a class="time">2014-12-31</a><a>截止</a></span>
+                                    <span class="span3"><a class="sign"><img src="/newasf/Public/images/df_10.gif" alt="sign" /></a><a>中华航空</a></span>
+                                    <span class="span4"><a>往返</a><a class="jg">￥3520</a></span>
+                                    <span class="end span5"><a class="spr3 yd" href="javascript:;" onclick="open_kf()" >预订</a></span>
+                                    <!--WHF新增的showAdImg-->
+                                <!--     -->
+                                </li>                            </ul><ul id='frombj' style="display:none">
+                            <li>
+                                    <span class="span0 "><a class="a0">北京</a><a class="spr3 rec"></a><a class="a1">夏威夷</a></span>
+                                    <span class="span1"><a class="zz">&nbsp;</a></span>
+                                    <span class="span2"><a class="time">2014-03-24</a><a>截止</a></span>
+                                    <span class="span3"><a class="sign"><img src="/newasf/Public/images/df_10.gif" alt="sign" /></a><a>日本航空</a></span>
+                                    <span class="span4"><a>往返</a><a class="jg">￥4580</a></span>
+                                    <span class="end span5"><a class="spr3 yd" href="javascript:;" onclick="open_kf()" >预订</a></span>
+                                    <!--WHF新增的showAdImg-->
+                                <!--     -->
+                                </li><li>
+                                    <span class="span0 "><a class="a0">北京</a><a class="spr3 rec"></a><a class="a1">波士顿</a></span>
+                                    <span class="span1"><a class="zz">&nbsp;</a></span>
+                                    <span class="span2"><a class="time">2014-12-01</a><a>截止</a></span>
+                                    <span class="span3"><a class="sign"><img src="/newasf/Public/images/df_10.gif" alt="sign" /></a><a>海南航空</a></span>
+                                    <span class="span4"><a>往返</a><a class="jg">￥3900</a></span>
+                                    <span class="end span5"><a class="spr3 yd" href="javascript:;" onclick="open_kf()" >预订</a></span>
+                                    <!--WHF新增的showAdImg-->
+                                <!--     -->
+                                </li><li>
+                                    <span class="span0 "><a class="a0">北京</a><a class="spr3 rec"></a><a class="a1">温哥华</a></span>
+                                    <span class="span1"><a class="zz">&nbsp;</a></span>
+                                    <span class="span2"><a class="time">2014-12-20</a><a>截止</a></span>
+                                    <span class="span3"><a class="sign"><img src="/newasf/Public/images/df_10.gif" alt="sign" /></a><a>中国国际航空</a></span>
+                                    <span class="span4"><a>往返</a><a class="jg">￥3280</a></span>
+                                    <span class="end span5"><a class="spr3 yd" href="javascript:;" onclick="open_kf()" >预订</a></span>
+                                    <!--WHF新增的showAdImg-->
+                                <!--     -->
+                                </li><li>
+                                    <span class="span0 "><a class="a0">北京</a><a class="spr3 rec"></a><a class="a1">旧金山</a></span>
+                                    <span class="span1"><a class="zz">&nbsp;</a></span>
+                                    <span class="span2"><a class="time">2014-12-31</a><a>截止</a></span>
+                                    <span class="span3"><a class="sign"><img src="/newasf/Public/images/df_10.gif" alt="sign" /></a><a>中国国际航空</a></span>
+                                    <span class="span4"><a>往返</a><a class="jg">￥5210</a></span>
+                                    <span class="end span5"><a class="spr3 yd" href="javascript:;" onclick="open_kf()" >预订</a></span>
+                                    <!--WHF新增的showAdImg-->
+                                <!--     -->
+                                </li><li>
+                                    <span class="span0 "><a class="a0">北京</a><a class="spr3 rec"></a><a class="a1">芝加哥</a></span>
+                                    <span class="span1"><a class="zz">&nbsp;</a></span>
+                                    <span class="span2"><a class="time">2014-03-31</a><a>截止</a></span>
+                                    <span class="span3"><a class="sign"><img src="/newasf/Public/images/df_10.gif" alt="sign" /></a><a>美国航空</a></span>
+                                    <span class="span4"><a>往返</a><a class="jg">￥3500</a></span>
+                                    <span class="end span5"><a class="spr3 yd" href="javascript:;" onclick="open_kf()" >预订</a></span>
+                                    <!--WHF新增的showAdImg-->
+                                <!--     -->
+                                </li><li>
+                                    <span class="span0 "><a class="a0">北京</a><a class="spr3 rec"></a><a class="a1">旧金山</a></span>
+                                    <span class="span1"><a class="zz">&nbsp;</a></span>
+                                    <span class="span2"><a class="time">2014-04-30</a><a>截止</a></span>
+                                    <span class="span3"><a class="sign"><img src="/newasf/Public/images/df_10.gif" alt="sign" /></a><a>美联航</a></span>
+                                    <span class="span4"><a>往返</a><a class="jg">￥4020</a></span>
+                                    <span class="end span5"><a class="spr3 yd" href="javascript:;" onclick="open_kf()" >预订</a></span>
+                                    <!--WHF新增的showAdImg-->
+                                <!--     -->
+                                </li><li>
+                                    <span class="span0 "><a class="a0">北京</a><a class="spr3 rec"></a><a class="a1">底特律</a></span>
+                                    <span class="span1"><a class="zz">&nbsp;</a></span>
+                                    <span class="span2"><a class="time">2014-03-31</a><a>截止</a></span>
+                                    <span class="span3"><a class="sign"><img src="/newasf/Public/images/df_10.gif" alt="sign" /></a><a>达美航空</a></span>
+                                    <span class="span4"><a>往返</a><a class="jg">￥4720</a></span>
+                                    <span class="end span5"><a class="spr3 yd" href="javascript:;" onclick="open_kf()" >预订</a></span>
+                                    <!--WHF新增的showAdImg-->
+                                <!--     -->
+                                </li><li>
+                                    <span class="span0 "><a class="a0">北京</a><a class="spr3 rec"></a><a class="a1">西雅图</a></span>
+                                    <span class="span1"><a class="zz">&nbsp;</a></span>
+                                    <span class="span2"><a class="time">2014-03-31</a><a>截止</a></span>
+                                    <span class="span3"><a class="sign"><img src="/newasf/Public/images/df_10.gif" alt="sign" /></a><a>达美航空</a></span>
+                                    <span class="span4"><a>往返</a><a class="jg">￥2510</a></span>
+                                    <span class="end span5"><a class="spr3 yd" href="javascript:;" onclick="open_kf()" >预订</a></span>
+                                    <!--WHF新增的showAdImg-->
+                                <!--     -->
+                                </li><li>
+                                    <span class="span0 "><a class="a0">北京</a><a class="spr3 rec"></a><a class="a1">纽约</a></span>
+                                    <span class="span1"><a class="zz">&nbsp;</a></span>
+                                    <span class="span2"><a class="time">2014-03-31</a><a>截止</a></span>
+                                    <span class="span3"><a class="sign"><img src="/newasf/Public/images/df_10.gif" alt="sign" /></a><a>美国航空</a></span>
+                                    <span class="span4"><a>往返</a><a class="jg">￥3200</a></span>
+                                    <span class="end span5"><a class="spr3 yd" href="javascript:;" onclick="open_kf()" >预订</a></span>
+                                    <!--WHF新增的showAdImg-->
+                                <!--     -->
+                                </li>                            </ul><ul id='fromsh' style="display:none">
+                            <li>
+                                    <span class="span0 "><a class="a0">上海</a><a class="spr3 rec"></a><a class="a1">芝加哥</a></span>
+                                    <span class="span1"><a class="zz">&nbsp;</a></span>
+                                    <span class="span2"><a class="time">2014-12-31</a><a>截止</a></span>
+                                    <span class="span3"><a class="sign"><img src="/newasf/Public/images/df_10.gif" alt="sign" /></a><a>国泰航空</a></span>
+                                    <span class="span4"><a>往返</a><a class="jg">￥3970</a></span>
+                                    <span class="end span5"><a class="spr3 yd" href="javascript:;" onclick="open_kf()" >预订</a></span>
+                                    <!--WHF新增的showAdImg-->
+                                <!--     -->
+                                </li><li>
+                                    <span class="span0 "><a class="a0">上海</a><a class="spr3 rec"></a><a class="a1">洛杉矶</a></span>
+                                    <span class="span1"><a class="zz">&nbsp;</a></span>
+                                    <span class="span2"><a class="time">2014-03-31</a><a>截止</a></span>
+                                    <span class="span3"><a class="sign"><img src="/newasf/Public/images/df_10.gif" alt="sign" /></a><a>港龙航空</a></span>
+                                    <span class="span4"><a>往返</a><a class="jg">￥2000</a></span>
+                                    <span class="end span5"><a class="spr3 yd" href="javascript:;" onclick="open_kf()" >预订</a></span>
+                                    <!--WHF新增的showAdImg-->
+                                <!--     -->
+                                </li><li>
+                                    <span class="span0 "><a class="a0">上海</a><a class="spr3 rec"></a><a class="a1">夏威夷</a></span>
+                                    <span class="span1"><a class="zz">&nbsp;</a></span>
+                                    <span class="span2"><a class="time">2014-03-31</a><a>截止</a></span>
+                                    <span class="span3"><a class="sign"><img src="/newasf/Public/images/df_10.gif" alt="sign" /></a><a>中国东方航空</a></span>
+                                    <span class="span4"><a>往返</a><a class="jg">￥2560</a></span>
+                                    <span class="end span5"><a class="spr3 yd" href="javascript:;" onclick="open_kf()" >预订</a></span>
+                                    <!--WHF新增的showAdImg-->
+                                <!--     -->
+                                </li><li>
+                                    <span class="span0 "><a class="a0">上海</a><a class="spr3 rec"></a><a class="a1">芝加哥</a></span>
+                                    <span class="span1"><a class="zz">&nbsp;</a></span>
+                                    <span class="span2"><a class="time">2014-03-31</a><a>截止</a></span>
+                                    <span class="span3"><a class="sign"><img src="/newasf/Public/images/df_10.gif" alt="sign" /></a><a>海南航空</a></span>
+                                    <span class="span4"><a>往返</a><a class="jg">￥2570</a></span>
+                                    <span class="end span5"><a class="spr3 yd" href="javascript:;" onclick="open_kf()" >预订</a></span>
+                                    <!--WHF新增的showAdImg-->
+                                <!--     -->
+                                </li><li>
+                                    <span class="span0 "><a class="a0">上海</a><a class="spr3 rec"></a><a class="a1">温哥华</a></span>
+                                    <span class="span1"><a class="zz">&nbsp;</a></span>
+                                    <span class="span2"><a class="time">2014-03-31</a><a>截止</a></span>
+                                    <span class="span3"><a class="sign"><img src="/newasf/Public/images/df_10.gif" alt="sign" /></a><a>达美航空</a></span>
+                                    <span class="span4"><a>往返</a><a class="jg">￥2860</a></span>
+                                    <span class="end span5"><a class="spr3 yd" href="javascript:;" onclick="open_kf()" >预订</a></span>
+                                    <!--WHF新增的showAdImg-->
+                                <!--     -->
+                                </li><li>
+                                    <span class="span0 "><a class="a0">上海</a><a class="spr3 rec"></a><a class="a1">纽约</a></span>
+                                    <span class="span1"><a class="zz">&nbsp;</a></span>
+                                    <span class="span2"><a class="time">2014-03-31</a><a>截止</a></span>
+                                    <span class="span3"><a class="sign"><img src="/newasf/Public/images/df_10.gif" alt="sign" /></a><a>港龙航空</a></span>
+                                    <span class="span4"><a>往返</a><a class="jg">￥2900</a></span>
+                                    <span class="end span5"><a class="spr3 yd" href="javascript:;" onclick="open_kf()" >预订</a></span>
+                                    <!--WHF新增的showAdImg-->
+                                <!--     -->
+                                </li><li>
+                                    <span class="span0 "><a class="a0">上海</a><a class="spr3 rec"></a><a class="a1">旧金山</a></span>
+                                    <span class="span1"><a class="zz">&nbsp;</a></span>
+                                    <span class="span2"><a class="time">2014-03-31</a><a>截止</a></span>
+                                    <span class="span3"><a class="sign"><img src="/newasf/Public/images/df_10.gif" alt="sign" /></a><a>中国国际航空</a></span>
+                                    <span class="span4"><a>往返</a><a class="jg">￥2570</a></span>
+                                    <span class="end span5"><a class="spr3 yd" href="javascript:;" onclick="open_kf()" >预订</a></span>
+                                    <!--WHF新增的showAdImg-->
+                                <!--     -->
+                                </li>                            </ul>                    </div><!--st_list END-->
+                    </div>
+               </div><!--特价机票 END-->
+        <script type="text/javascript">
+            function gettj(dq,t){
+				$("#loadWaitImg").show();
+                var send=encodeURI('dq='+dq+'&callback=?');
+                $.getJSON("/newasf/common/cheap",send,function(data){
+					$("#loadWaitImg").hide();
+                    var html='';
+					var data2=data.code;
+                    $.each(data2, function(i,item){
+						if(i!=$("#st_departcity a.active").attr('dc')){
+                            var  st ='style="display:none"';
+                        }
+                        html +='<ul id="from'+i+'" '+st+'>';
+                        $.each(item,function(i,items){
+                            html+='<li>';
+                           var link=items.img?'link1':'';
+                            html+='<span class="span0 '+link+'" ><a class="a0">'+items.from_city+'</a><a class="spr3 rec"></a><a class="a1">'+items.to_city+'</a></span>';
+                            html+= '<span class="span1"><a class="zz">&nbsp;</a></span>';
+                            html+='<span class="span2"><a class="time">'+items.time+'</a><a>截止</a></span>';
+                            html+= '<span class="span3"><a class="sign"><img src="/newasf/Public/images/df_10.gif" alt="sign" /></a><a>'+items.air+'</a></span>';
+                            var wfType=items.type?items.type:'往返';
+                            html+= '<span class="span4"><a>'+wfType+'</a><a class="jg">￥'+items.price+'</a></span>';
+                            html+= '<span class="end span5"><a class="spr3 yd" href="javascript:;" onclick="open_kf()">预订</a></span>';
+							/*WHF新增的showAdImg*/
+                            if(items.img){
+						//	html+= ' <span data="/newasf/Public/uploads/cheap/'+items.img+'" class="showadimg"><img src="/newasf/Public/images/loading_animation.gif"/></span>';
+                            }
+                            html+= ' </li>';
+                        })
+                        html+= '</ul>';
+                    });
+                    $('#st_list').html($("#loadWaitImg")[0].outerHTML+html );
+
+					//WHF增加的JS用于AJAX取回内容后重新显示showAdImg
+					showAdImg();
+
+                })
+            }
+
+
+			$('#st_departcity a').bind('click',function(){
+				var from='#from'+$(this).attr('dc');
+                $(this).addClass("active").siblings().removeClass("active");
+				$(from).show().siblings().hide();
+            })
+            $('#st_destination a').bind('click',function(){
+                $(this).addClass("active").siblings().removeClass("active");
+            })
+			
+
+			//WHF增加的JS用于显示showAdImg
+			showAdImg();
+			
+			function showAdImg(){
+				$('#special_tic li .span0').mouseover(function(){
+					//选取showadimg
+					var showadimg=$(this).siblings('.showadimg');
+					//取得showadimg中的data属性值
+					var imgdata=showadimg.attr("data");
+					//取得当前元素的到TOP的长度，取得BODY的高度
+					var Y = $(this).offset().top,H = $('body').height();
+					if((H-Y) < 400){
+						//向上显示showadimg并设置真正的地
+						showadimg.css('top','-376px').show().find('img').attr('src',imgdata);
+						}else{
+							//向下显示showadimg并设置真正的地
+							showadimg.show().find('img').attr('src',imgdata);
+							};
+					}).mouseout(function(){
+					//隐藏showadimg
+					$(this).siblings('.showadimg').hide();
+					});
+				}
+
+        </script>
+                
+                <!--航空公司特惠-->
+                               <div class="box_l" id="index_preferential">
+                     <h2>航空公司特惠</h2>
+                     <div class="pre_box">
+                         <ul class="type_img">
+                            <li><a href="javascript:;" onclick="open_kf();"><img src="/newasf/Public/images/preferential_img_i1.jpg" /></a><span>[国泰航空]<a href="javascript:;" onclick="open_kf();">北京往返巴黎</a><br/><strong>3350元起</strong></span></li>
+                            <li><a href="javascript:;" onclick="open_kf();"><img src="/newasf/Public/images/preferential_img_i2.jpg" /></a><span>[法荷航空]<a href="javascript:;" onclick="open_kf();">上海往返伦敦</a><br/><strong>2600元起</strong></span></li>
+                            <li><a href="javascript:;" onclick="open_kf();"><img src="/newasf/Public/images/preferential_img_i3.jpg" /></a><span>[中国国航]<a href="javascript:;" onclick="open_kf();">广州往返洛杉矶</a><br/><strong>4850元起</strong></span></li>
+                         </ul>
+                         <ul class="type_txt">
+                            <li><span>[法荷航空]</span><a href="javascript:;" onclick="open_kf();">上海往返巴黎</a><strong>3800元起</strong></li>
+                            <li><span>[国泰航空]</span><a href="javascript:;" onclick="open_kf();">北京往返法兰克福</a><strong>3330元起</strong></li>
+                            <li><span>[荷兰航空]</span><a href="javascript:;" onclick="open_kf();">上海往返阿姆斯特丹</a><strong>3800元起</strong></li>
+                            <li><span>[澳洲航空]</span><a href="javascript:;" onclick="open_kf();">香港往返悉尼</a><strong>3320元起</strong></li>
+                            <li><span>[土耳其航空]</span><a href="javascript:;" onclick="open_kf();">广州往返休斯敦</a><strong>5700元起</strong></li>
+                            <li><span>[中华航空]</span><a href="javascript:;" onclick="open_kf();">香港往返东京</a><strong>2750元起</strong></li>
+                            <li><span>[海南航空]</span><a href="javascript:;" onclick="open_kf();">北京往返西雅图</a><strong>4880元起</strong></li>
+                            <li><span>[维珍航空]</span><a href="javascript:;" onclick="open_kf();">香港往返曼彻斯特</a><strong>3180元起</strong></li>
+                            <li><span>[全日空]</span><a href="javascript:;" onclick="open_kf();">杭州往返东京</a><strong>2630元起</strong></li>
+                            <li><span>[中国国航]</span><a href="javascript:;" onclick="open_kf();">广州往返首尔</a><strong>2050元起</strong></li>
+                         </ul>
+                  </div>
+               </div>
+                
+			</div>
+			<div class="right" id="interTicR">
+            <!--<div id="renzheng_lan_s">
+                	<ul>
+                    	<li><label class="lb0"></label><span><a class="a0" href="/newasf/about/qualifications#guoji" target="_blank">100%国际航协认证</a><a class="a1">国际航协一类代理，第一手价格，最便宜有保证</a></span></li>
+                        <li><label class="lb1"></label><span><a class="a0" href="/newasf/about/qualifications#minhang" target="_blank">100%中航协认证</a><a class="a1">爱尚飞国际机票网100%获得中国航空运输协会资格认证</a></span></li>
+                    </ul>
+                </div>-->
+             <div id="renzheng_lan_s">
+                	<ul>
+                    	<li><label class="lb0"></label><span>100%国际航协认证,<br/>第一手真实价格</span></li>
+                        <li><label class="lb1"></label><span>100%中国航协认证,<br/>资质保证，订票无忧</span></li>
+                    </ul>
+                </div>
+				<div id="hot_recom">
+					<h2>热门推荐</h2>
+					<ul>
+                        <li><label></label>
+                            <a href='/newasf/News/info/9.html'>“爱尚飞.伴你放飞梦想”微电影大赛启动</a>
+                           <span class="hot"></span>                        </li><li><label></label>
+                            <a href='/newasf/News/info/8.html'>留学生机票实惠季活动隆重上线</a>
+                           <span class="hot"></span>                        </li><li><label></label>
+                            <a href='/newasf/News/info/19.html'>航空业持续盈利，前景大好</a>
+                                                   </li><li><label></label>
+                            <a href='/newasf/News/info/18.html'>十一小长假爱尚飞推出特价机票</a>
+                                                   </li><li><label></label>
+                            <a href='/newasf/News/info/17.html'>英国签证改革，手续复杂</a>
+                                                   </li>                        <li><label></label><a href="/newasf/pages/guandao.html" target="_blank">6个精选城市享受美联航商务头等舱往返专享价</a></li>
+                        <li><label></label><a href="/newasf/pages/HaiHang.html" target="_blank">全新北京往返芝加哥直飞航线9月启航</a></li>
+					</ul>
+				</div>
+                
+                <div id="chest_link">
+	<h2 class="titbk"><span class="left">国际旅行百宝箱</span></h2>
+    <dl>
+		<dd class="a0"><a href="/newasf/member/login" target="_blank">我的机票</a></dd>
+		<dd class="a1"><a href="/newasf/iflight/orderflight" target="_blank">低价预约</a></dd>
+		<dd class="a2"><a href="/newasf/help/members#help_ul3" target="_blank">订票攻略</a></dd>
+	</dl>
+	<ul class="conbk">
+		<li><label class="spr2 a0"></label><a rel="nofollow" href="http://www.tianqi.com/worldcity.html" target="_blank">天气预报</a></li>
+		<li><label class="spr2 a1"></label><a rel="nofollow" href="http://time.123cha.com/" target="_blank">国际时差</a></li>
+		<li><label class="spr2 a2"></label><a rel="nofollow" href="http://qq.ip138.com/hl.asp" target="_blank">汇率查询</a></li>
+		<li><label class="spr2 a3"></label><a rel="nofollow" href="http://baike.baidu.com/view/1618627.htm" target="_blank">旅游签证</a></li>
+		<li><label class="spr2 a4"></label><a rel="nofollow" href="http://ditu.google.cn/" target="_blank">电子地图</a></li>
+		<li><label class="spr2 a5"></label><a rel="nofollow" href="http://www.travelsky.com/newsky/index.html" target="_blank">机票真伪</a></li>
+	</ul>
+</div> <!--百宝箱-->
+                
+				<div id="ser_com" class="mt10">
+					<h2></h2>
+					<ul>
+						<li><label class="lb0"></label><a>注册会员，首次成功订票即返50元</a></li>
+						<li><label class="lb1"></label><a>专业顾问一对一全方位贴心服务</a></li>
+						<li><label class="lb2"></label><a>实时提供特价及廉价航空机票信息</a></li>
+						<li><label class="lb3"></label><a>5分钟，完成实时查询预订全过程</a></li>
+						<li><label class="lb4"></label><a>保证网络订单响应速度少于15分钟</a></li>
+						<li><label class="lb5"></label><a>下单成功，即获得真实有效占位</a></li>
+						<li><label class="lb6"></label><a>承诺24小时内，出具电子客票</a></li>
+						<li><label class="lb7"></label><a>100%支持，客票航空公司验真</a></li>
+					</ul>
+				</div>
+			</div>
+        </div>
+    </div>
+   <div id="footer">
+    	<div class="wd960">
+            <div id="ft_link">
+                <ul>
+                    <li><a href="/newasf/about" target="_blank">关于爱尚飞</a> |</li>
+                    <li><a href="/newasf/Adviser" target="_blank">专业顾问</a> |</li>
+                    <li><a href="/newasf/about/service" target="_blank">会员服务</a> |</li>
+                    <li><a href="/newasf/about/privacy" target="_blank">隐私保护</a> |</li>
+                    <li><a href="/newasf/about/job" target="_blank">人才招聘</a> |</li>
+                    <li><a href="http://www.cata.org.cn/clientWeb/frm_Single_Search.aspx?name=%u5E7F%u5DDE%u7F8E%u4E50%u5546%u52A1%u670D%u52A1%u6709%u9650%u516C%u53F8&type=agentname&leixing=&chengshi=&chengqu=" target="_blank">中国航空运输协会</a> |</li>
+                    <li><a href="/newasf/Public/images/zz_08.jpg" target="_blank">企业营业执照</a> |</li>
+                    <li><a href="/newasf/Public/images/ylzg.jpg" target="_blank">民航客运一类代理</a></li>
+                </ul>
+            </div>
+                        <div id="ft_copyright">Copyright © 2009-2013 爱尚飞国际机票网 广州美乐商务服务有限公司. All Rights Reserved
+                <img src="/newasf/Public/images/ft_icp.jpg" alt="icp" />
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备11009654号-21</a>
+            </div>
+            <div id="ft_icons">
+                <a class="a0" href="#" target="_blank"></a>
+                <a class="a1" href="#" target="_blank"></a>
+                <a class="a2" href="#" target="_blank"></a>
+                <a class="a3" href="http://trust.360.cn/search.php" target="_blank"></a>
+                <a class="a4" href="#" target="_blank"></a>
+                <a class="a5" href="http://www.gzaic.gov.cn/GZCX/WebUI/credit/qiyeInfo.htm#" target="_blank"></a>
+                <a class="a6" href="http://net.china.com.cn/index.htm" target="_blank"></a>
+                <a class="a7" href="http://www.cyberpolice.cn/wfjb/" target="_blank"></a>
+            </div>
+
+
+        <div style="display:none;">
+                <script type="text/javascript">
+        var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fd4cf44a2f93f50230dbcc266a1e41306' type='text/javascript'%3E%3C/script%3E"));
+            </script>
+
+        </div>
+     <script type="text/javascript">
+         var _gaq = _gaq || [];
+         _gaq.push(['_setAccount', 'UA-35556838-1']);
+         _gaq.push(['_setDomainName', 'aishangfei.net']);
+         _gaq.push(['_setLocalRemoteServerMode']);
+         _gaq.push(['_trackPageview']);
+
+         (function() {
+             var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+             ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+         })();
+     </script>
+     <!-- Google Code for &#20877;&#33829;&#38144;&#26631;&#35760; -->
+     <!-- Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. For instructions on adding this tag and more information on the above requirements, read the setup guide: google.com/ads/remarketingsetup -->
+
+     <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script>
+     <noscript>
+         <div style="display:inline;">
+             <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/990797250/?value=0&amp;label=-y_RCK7_9gMQwru52AM&amp;guid=ON&amp;script=0"/>
+         </div>
+     </noscript>
+
+
+     <div style="display:none">
+         <script language="javascript" type="text/javascript" src="http://js.users.51.la/5149478.js"></script>
+         <noscript>
+             <a href="http://www.51.la/?5149478" target="_blank"><img alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/5149478.asp" style="border:none" /></a>
+         </noscript>
+
+     </div>
+
+                             <script type="text/javascript" src="/newasf/kf/leftKf"></script>
+                            
+     <script type="text/javascript">
+         /* <![CDATA[ */
+         var google_conversion_id = 990797250;
+         var google_conversion_label = "-y_RCK7_9gMQwru52AM";
+         var google_custom_params = window.google_tag_params;
+         var google_remarketing_only = true;
+         /* ]]> */
+     </script>
+    	</div>        
+	</div>
+
+     <script type="text/javascript">
+         var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+         document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F9bb60244498ccc09dd9a81c6428d1e9f' type='text/javascript'%3E%3C/script%3E"));
+     </script>
+
+ <!-- WPA Button Begin 统计分析代码-->
+ <script charset="utf-8" type="text/javascript" src="http://wpa.b.qq.com/cgi/wpa.php?key=XzkzODAwOTkwMl85Njg2NV80MDA2MDg1MTg4Xw"></script>
+ <!-- WPA Button End -->
+
+ <script type="text/javascript">
+     $(function(){
+         kfurl="http://www17.53kf.com/webCompany.php?"+$("#ivt_script").attr("src").match(/arg=.*/gim);
+     });
+ </script>
+
+ 
+    <style type="text/css">
+    #line_query_qq{width:140px;height:248px;background:url(/newasf/Public/images/line_query_qq.gif) no-repeat;position:absolute;top:170px;right:0;}
+	#line_query_qq dt{height:18px;}
+	#line_query_qq dt span{float:right;width:18px;height:18px;line-height:60px;cursor:pointer;overflow:hidden;}
+	#line_query_qq dd{height:115px;}
+	#line_query_qq dd.kf a{width:140px;height:115px;line-height:300px;display:block;overflow:hidden;}
+	#line_query_qq dd span{display:block;margin-top:80px;height:22px;text-align:center;}
+    </style>
+    <script type="text/javascript">
+	$(function(){
+		$(window).scroll(function(){
+			var top=$(this).scrollTop()+170+'px';
+			$('#line_query_qq').css('top',top);
+			});
+		$('#line_query_qq span').click(function(){
+			$('#line_query_qq').hide();
+			});
+	});
+    </script>
+ 
+</body>
+</html>

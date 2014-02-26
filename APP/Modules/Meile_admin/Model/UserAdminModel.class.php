@@ -233,11 +233,14 @@ class UserAdminModel extends RelationModel{
 * 获取当前用户部门的成员id
 */
     function getDepartmentUid($uid,$orderBy='rand()',$cl=1,$limit = null){
-        $Department_id = $this->where("id=$uid")->getfield('department_id');
-        if(!$Department_id){
+        $rs = $this->field('company_id,department_id')->find($uid);;
+        if(!$rs){
             return false;
         }
-        $where['department_id']=$Department_id;
+        $where['department_id']=$rs['department_id'];
+        $where['company_id']=$rs['company_id'];
+        $where['status']=1;
+        $where['view']=1;
         $cl &&  $where['id']=array('neq',$uid);
         $rs=$this->field('id')->where($where)->order($orderBy)->limit($limit)->select();
         if(empty($rs)) return false;

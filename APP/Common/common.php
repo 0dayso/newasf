@@ -527,11 +527,14 @@ function sec2time($sec,$show='i'){
 function action_log($action = null, $model = null, $record_id = null, $user_id = null,$md=null){
 
     //参数检查
-    if(empty($action) || empty($model) || empty($record_id)){
+    if(empty($action) || empty($model)){
         return '参数不能为空';
     }
+    if(empty($record_id)){
+        $record_id=get_client_ip();
+    }
     if(empty($user_id)){
-        $user_id = is_login();
+        $user_id = get_client_ip();
     }
 
     //查询行为,判断是否执行
@@ -557,6 +560,7 @@ function action_log($action = null, $model = null, $record_id = null, $user_id =
             $log['time']    =   NOW_TIME;
             $log['url']   =   $_SERVER['REQUEST_URI'];
             $log['post']   =  http_build_query($_POST);
+            $log['this']   =  http_build_query($md);
             $log['data']    =   array('user'=>$user_id,'model'=>$model,'record'=>$record_id,'time'=>NOW_TIME);
             foreach ($match[1] as $value){
                 $param = explode('|', $value);
@@ -575,6 +579,7 @@ function action_log($action = null, $model = null, $record_id = null, $user_id =
         $data['remark']     =   '操作url：'.$_SERVER['REQUEST_URI'] ;
     }
     $data['request'] = 'url：'.$_SERVER['REQUEST_URI']." | post:".http_build_query($_POST);
+    $data['remark']=$data['remark'];
 
     M('ActionLog')->add($data);
 
@@ -687,7 +692,7 @@ function execute_action($rules = false, $action_id = null, $user_id = null){
 //函数功能：根据支付接口传回的数据判断该订单是否已经支付成功；
 //返回值：如果订单已经成功支付，返回true，否则返回false；
 function checkorderstatus($ordid){
-    $Ord=M('Payorder');
+    $Ord=D('PayOrder');
     $ordstatus=$Ord->where('id='.$ordid)->getField('status');
     if($ordstatus==1){
         return true;
@@ -699,23 +704,90 @@ function checkorderstatus($ordid){
 //处理订单函数
 //更新订单状态，写入订单支付后返回的数据
 function orderhandle($parameter){
-    $ordid=$parameter['out_trade_no'];        
+    $ordid=$parameter['out_trade_no'];
+    $data['id']=$ordid;
     $data['update_time']   =time();
 	$data['data_json']=json_encode($parameter);
-    $data['status']             =1;
-    $Ord=M('Payorder');
-    $Ord->where('id='.$ordid)->save($data);
+    $data['status']       =1;
+    $PayOrder=D('PayOrder');
+    $rs= $PayOrder->find($ordid);
+    if($rs){
+        $PayOrder->where('id='.$ordid)->save($data);
+    }else{
+        $PayOrder->add($data);
+    }
+    $order_info=object_to_array(json_decode($rs['order_info']));
+    $orderDB = D('AsmsOrder');
+    foreach($order_info as $val){
+        $orderDB->setField('zf_fkf','');
+        $orderDB->orderPay($val['ddbh'],ASMSUID,$val['yfje'],$val['xjj'],$ordid,1,$rs['remark']);
+    }
+}
 
-	$PayOrder=D('PayOrder');
-	$rs= $PayOrder->find($ordid);
-	$order_id_arr=explode(',',$rs['order_id_arr']);
-	foreach($order_id_arr as $val){
-		$orderDB = D('AsmsOrder');
-		$orderDB->setField('zf_fkf','');
-		$ors= $orderDB->field('ysje')->find($val);
-		$orderDB->orderPay($val,ASMSUID,$ors['ysje'],$ordid,1,$rs['remark']);
-	}	
-} 
+/**
+ *	多维数组 合并
+ *	支持 参数 和 array_merge 一样  2个参数以上 后面覆盖前面的
+ *	返回值 数组
+ **/
+function array_merge_multi() {
+    $args = func_get_args();
+
+    if ( !isset( $args[0] ) && !array_key_exists( 0, $args ) ) {
+        return array();
+    }
+
+    $arr = array();
+    foreach ( $args as $key => $value ) {
+        if ( is_array( $value ) ) {
+            foreach ( $value as $k => $v ) {
+                if ( is_array( $v ) ) {
+                    if ( !isset( $arr[$k] ) && !array_key_exists( $k, $arr ) ) {
+                        $arr[$k] = array();
+                    }
+                    $arr[$k] = array_merge_multi( $arr[$k], $v );
+                } else {
+                    $arr[$k] = $v;
+                }
+            }
+        }
+    }
+    return $arr;
+}
+
+function keywords($rfr=null){
+    $rfr = $rfr?$rfr:$_SERVER['HTTP_REFERER'];
+//if(!$rfr) $rfr='http://'.$_SERVER['HTTP_HOST'];
+    if($rfr)
+    {
+        $p=parse_url($rfr);
+        parse_str($p['query'],$pa);
+        $p['host']=strtolower($p['host']);
+        $arr_sd_key=array(
+            'baidu.com'=>'word',
+            'google.com'=>'q',
+            'sina.com.cn'=>'word',
+            'sohu.com'=>'word',
+            'msn.com'=>'q',
+            'bing.com'=>'q',
+            '360.com'=>'q',
+            'so.com'=>'q',
+            '163.com'=>'q',
+            'yahoo.com'=>'p'
+        );
+        $keyword='';
+        $sengine=$p['host'];
+        foreach($arr_sd_key as $se=>$kwd)
+        {
+            if(strpos($p['host'],$se)!==false)
+            {
+                $keyword=$pa[$kwd];
+                $sengine=$se;
+                break;
+            }
+        }
+        $sql="insert into visit_log(domain,key_word,ct)";
+    }
+}
 
 
 ?>

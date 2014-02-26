@@ -1,79 +1,170 @@
 <style type="text/css">
-.border_div{border:1px solid #999; font-size:12px;}
+.border_div{border:1px solid #999; font-size:12px; margin-right:10px;}
 .border_div span{font-weight:bold; clear:both;}
 .border_bottom{border-bottom:1px solid #CCC; padding-top:3px; padding-bottom:3px;padding-left:20px;}
-.border_div input{ border:1px solid #999; color:#666; height:15px; margin-top:2px; margin-left:5px; margin-right:5px;float:none;}
+.border_div input{ border:1px solid #999; color:#666;margin-top:2px; margin-left:5px; margin-right:5px;float:none;}
+.in{width:100px; margin:0 auto; padding:0px;}
+ul,li{margin:0 auto; padding:0px;list-style:none;}
+td{width:110px; text-align:center; font-size:14px; font-weight:bold;}
+table{border:1px solid #CCC; background:#0CF; margin-left:5px;}
+input{text-align:center;}
 </style>
+<script type="text/javascript" src="__PUBLIC__/js/member.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/hotcitypop/popcitylist.js"></script>
+  
 <div class="border_div">
-<form action="__URL__/order_edit" method="post">   
-    <div class="border_bottom"><span>订单ID号:</span><input name="ddbh" type="text" value="" /></div>
-    
-	<div class="border_bottom"><span>航程信息:</span>
-    	<div style="margin-left:90px; margin-top:-15px;">        	
-                去程&nbsp;&nbsp;&nbsp;<input type="text" style="width:80px;" name="num1" value=""/> &nbsp;&nbsp;&nbsp;
-                <input type="text" style="width:170px;" name="from_city1" value=""/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                日期：<input type="text" style="width:100px;" class="date textInput valid"  name="date1" value="">
-				<br/>
-                返程&nbsp;&nbsp;&nbsp;<input type="text" style="width:80px;" name="num1" value=""/> &nbsp;&nbsp;&nbsp;
-                <input type="text" style="width:170px;" name="from_city1" value=""/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                日期：<input type="text" style="width:100px;" class="date textInput valid"  name="date1" value="">
+    <form action="__URL__/order_add/navTabId/__MODULE__-index"  method="post" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone)"> 
+        <div class="border_bottom"><span>会员ID号:</span><input name="hyid" type="text" value="" /><span style="color:#CCC;">（必填，只能是数字）</span></div>
+        <div class="border_bottom chaxun"><span>航程信息:</span> 
+        	<ul  id="type" style="margin-left:70px; margin-top:-15px;">
+                <li>
+                    <input type="radio" id="t1"  value="1"  name="t"  onClick="type1()"/>单程
+                    <input type="radio" id="t2"  value="2"  name="t"  onClick="type2()"/>往返
+                    <input type="radio" id="t2"  value="3"  name="t"  onClick="type3()"/>多程
+                </li>
+            </ul>
+            <ul  style=" display:none; margin-left:80px;" id="t11">
+                <li> 
+                   <input type="text"  name="hbh1"   value=""  placeholder="航班号" />
+                   <input type="text"  name="cw1"    value=""  placeholder="舱位" />  
+                   <input type="text"  name="fjjx1"  value=""  placeholder="机型" />         
+                   <input type="text"  name="from1"  value=""  placeholder="出发城市" />
+                   <input type="text"  name="to1"    value=""  placeholder="到达城市"/>
+                   <input type="text"  name="date1"  value=""  placeholder="出发日期"/>
+                   <input type="text"  name="time1"  value=""  placeholder="出发时间"/>          
+                </li>
+            </ul>
+            <ul  style="display:none;margin-left:80px;" id="t22">            
+                <li>        	
+                   <span>去程</span>
+                   <input type="text"  name="hbh2"   value=""  placeholder="航班号" />
+                   <input type="text"  name="cw2"    value=""  placeholder="舱位" />
+                   <input type="text"  name="fjjx2"  value=""  placeholder="机型" />           
+                   <input type="text"  name="from2"  value=""  placeholder="出发城市" />
+                   <input type="text"  name="to2"    value=""  placeholder="到达城市"/>
+                   <input type="text"  name="date2"  value=""  placeholder="出发日期"/>
+                   <input type="text"  name="time2"  value=""  placeholder="出发时间"/>       
+                    <br/>
+                    <span>返程</span>
+                   <input type="text"  name="hbh3"   value=""  placeholder="航班号" />
+                   <input type="text"  name="cw3"    value=""  placeholder="舱位" />
+                   <input type="text"  name="fjjx3"  value=""  placeholder="机型" />           
+                   <input type="text"  name="from3"  value=""  placeholder="返程城市" />
+                   <input type="text"  name="to3"    value=""  placeholder="到达城市"/>
+                   <input type="text"  name="date3"  value=""  placeholder="返回日期"/>
+                   <input type="text"  name="time3"  value=""  placeholder="出发时间"/>     
+                </li> 
+            </ul>
+            <ul style="display:none;" id="t33">           
+                <li style="margin-left:80px;">        	
+                   <span>去程</span>
+                   <input type="text"  name="hcdata[hbh][4]"   value=""  placeholder="航班号"  size="15"/>
+                   <input type="text"  name="hcdata[cw][4]"    value=""  placeholder="舱位"    size="15"/>
+                   <input type="text"  name="hcdata[fjjx][4]"  value=""  placeholder="机型"    size="15"/>           
+                   <input type="text"  name="hcdata[from][4]"  value=""  placeholder="出发城市" size="15"/>
+                   <input type="text"  name="hcdata[to][4]"    value=""  placeholder="到达城市" size="15"/>
+                   <input type="text"  name="hcdata[date][4]"  value=""  placeholder="出发日期" size="15"/>
+                   <input type="text"  name="hcdata[time][4]"  value=""  placeholder="出发时间" size="15"/>    
+                    <li style="float:right; margin-top:-15px; margin-right:180px; color:#09F"><a id="hctype" num="4">添加航程</a></li>
+               </li>
+           </ul>  
+        </div>        
+       
+        <div class="border_bottom">
+             <span>票面总价：</span><input type="text" name="xsj" value=""/>
+             <span>总税费：</span><input type="text" name="sf" value=""/>
+             <span>总保险费：</span><input type="text" name="taxa"value=""/>
+             <span>总机建费：</span><input type="text" name="jsf"value=""/>
         </div>
-	</div>   
-    
-	<div class="border_bottom">
-    	 <span>票面价格：</span><input type="text" name="xsj" style="width:80px;" value=""/>
-    	 <span>税费：</span><input type="text" name="sf" style="width:80px;" value=""/>
-         <span>保险：</span><input type="text" name="taxa" style="width:80px;" value=""/>
-	</div>
-    
-	<div class="border_bottom"><span>现金券使用：</span>无</div>
-    
-	<div class="border_bottom"><span>应付金额：</span> <input type="text" style="width:80px;" name="ysje" value=""/>
-	</div>
-    
-	<div class="border_bottom"><span>出票时间：</span><input type="text" size="10"  class="date textInput valid"  name="cpsj" value="">
-	</div>    
-     
-    <div class="border_bottom"><span>乘客信息：</span>
-    	<input type="text" size="2" value="" style="clear:both;">成人&nbsp;&nbsp;/&nbsp;&nbsp;
-        <input type="text" size="2" value="" style="clear:both;">儿童&nbsp;&nbsp;/&nbsp;&nbsp;
-        <input type="text" size="2" value="" style="clear:both;">婴儿
-		<br/><br/>
-    	<table border="0" cellpadding="0" cellspacing="0" class="border_div">
-        	<thead>
-                <tr style="background:#0CF; text-align:center;">
-                    <td>姓名</td>
-                    <td>乘客类型</td>
-                    <td>证件号码</td>
-                    <td>票价</td>
-                    <td>机建/参考税</td>
-                    <td>现金券</td>
-                    <td>结算价</td>
-                </tr>
-            </thead>
-            <tbody>
-                    <tr>
-                        <td><input type="text" name="cjr_cjrxm" value=""/></td>
-                        <td><input type="text" name="cjr_cjrlx"  value=""/></td>
-                        <td><input type="text" name="cjr_clkid" value=""/></td>
-                        <td><input type="text" name="cjr_xsj" value=""/></td>
-                        <td><input type="text" name="cjr_jsf" value=""/></td>
-                        <td>无</td>
-                        <td><input type="text" name="passenger_jiesuan" value=""/></td>
-                    </tr>           	
-            </tbody>
-        </table>
-	</div>
-
-	<div class="border_bottom"><span>联系人信息：</span>
-    	 姓名<input type="text" name="nklxr" value=""/>         
-         手机号<input type="text" name="lxdh" value=""/>
-         邮箱<input type="text" name="email" value=""/>
-	</div>
-
-	<div style="margin-left:20px; margin-bottom:2px; margin-top:2px;">
-    <input type="submit" value="确认提交" style=" background-color:#09F; color:#FFF; border:0; font-size:16px; height:20px;"/> 
-    <a href="__URL__/index"><input type="button" value="返回" style=" border:0; background:#999; color:#FFF; font-weight:bold;font-size:16px; height:20px;"/></a> 
-    </div>
-</form>
+        
+        <div class="border_bottom"><span>现金券使用：</span>无</div>        
+        <div class="border_bottom"><span>应付金额：</span> <input type="text" style="width:80px;" name="ysje" value=""/></div>        
+        <div class="border_bottom"><span>出票时间：</span><input type="text" size="10"  class="date textInput "  name="cpsj" value=""></div>    
+         
+        <div class="border_bottom"><span>乘客信息：</span>
+            <input type="text" size="2" value="" name="athud" style="clear:both;">成人/
+            <input type="text" size="2" value="" name="chilren" style="clear:both;">儿童/
+            <input type="text" size="2" value="" name="baby" style="clear:both;">婴儿
+            <br/><br/>
+            <div id="passenger">            	
+               <ul class="bt">
+                 <li><table><tr><td>姓名</td><td>乘客类型</td><td>证件号码</td><td>票价</td><td>机建费</td><td>税费</td><td>保险</td><td>现金券</td><td>结算价</td></tr></table></li>
+                 <li style="float:right; margin-top:-15px; margin-right:170px;"><a id="addpapers" num="1">添加乘客</a></li>                      
+                </ul>
+            </div>            
+        </div>
+        
+        <div class="border_bottom"><span>联系人信息：</span>
+             姓名<input type="text" name="nklxr" value=""/>手机号<input type="text" name="lxdh" value=""/>邮箱<input type="text" name="email" value=""/>
+        </div>
+        <div style="margin-left:20px; margin-bottom:2px; margin-top:2px;">
+            <input type="submit" value="确认提交" style=" background-color:#09F; color:#FFF; border:0; font-size:16px; height:20px;"/>     
+        </div>
+    </form>
 </div>
+
+<script type="text/javascript">
+	$(function(){		
+		//添加乘客
+		$('#addpapers').click(function(){
+			var num=parseInt($(this).attr('num')) + 1;
+			var html='';
+			html += '<li>';
+			html +='<input type="text" name="info[cjr_cjrxm]['+num+']" class="in" value=""/>';//姓名
+			html +='<input type="text" name="info[cjr_lx]['+num+']" class="in" value=""/>';//乘客类型
+			html +='<input type="text" name="info[cjr_clkid]['+num+']" class="in" value=""/>';//证件号
+			html +='<input type="text" name="info[cjr_xsj]['+num+']" class="in" value=""/>';//票价
+			html +='<input type="text" name="info[cjr_jsf]['+num+']" class="in" value=""/>';//机建费
+			html +='<input type="text" name="info[cjr_tax]['+num+']" class="in" value="" />';//税费
+			html +='<input type="text" name="info[cjr_bx]['+num+']" class="in" value="" />';//保险
+			html +='<input  value="无" class="in"/>';//现金券
+			html +='<input type="text" name="" class="in"/>';//结算价
+			html += '<a class="del">删除</a>';
+			html += '</li>';
+			$(this).parent().before(html);
+			$(this).attr("num",num);
+			//重载删除
+			$("#passenger .del").bind("click",function(){$(this).parent().remove();});				
+			});				
+		//删除
+		$("#passenger .del").bind("click",function(){$(this).parent().remove();});			
+		});
+	
+		function type1(){
+		  document.getElementById("t11").style.display = "block";
+		  document.getElementById("t22").style.display = "none";
+		  document.getElementById("t33").style.display = "none";
+		}
+		function type2(){  
+		  document.getElementById("t11").style.display = "none";
+		  document.getElementById("t22").style.display = "block";
+		  document.getElementById("t33").style.display = "none";
+		}
+		function type3(){  
+		  document.getElementById("t11").style.display = "none";
+		  document.getElementById("t22").style.display = "none";
+		  document.getElementById("t33").style.display = "block";
+		}
+
+		$(function(){		
+			//添加航程
+			$('#hctype').click(function(){
+				var num=parseInt($(this).attr('num')) + 1;
+				var html='';
+				html +='<li style="margin-left:80px;"id="t33">';
+				html +='<span>去程</span>';
+				html +='<input type="text"  name="hcdata[hbh]['+num+']"   value=""  placeholder="航班号"  size="14" />';
+				html +='<input type="text"  name="hcdata[cw]['+num+']"    value=""  placeholder="舱位"    size="14" />';
+				html +='<input type="text"  name="hcdata[fjjx]['+num+']"  value=""  placeholder="机型"    size="14" />';
+				html +='<input type="text"  name="hcdata[from]['+num+']"  value=""  placeholder="出发城市" size="14" />';
+				html +='<input type="text"  name="hcdata[to]['+num+']"    value=""  placeholder="到达城市" size="14" />';
+				html +='<input type="text"  name="hcdata[date]['+num+']"  value=""  placeholder="出发日期" size="14" />';
+				html +='<input type="text"  name="hcdata[time]['+num+']"  value=""  placeholder="出发时间" size="14"/>';
+<!--				html += '<a class="hcdel">删除</a>';-->
+				html +='</li>';
+				$(this).parent().before(html);
+				$(this).attr("num",num);
+				$("#hctype .hcdel").bind("click",function(){$(this).parent().remove();});
+			});
+		});
+</script>

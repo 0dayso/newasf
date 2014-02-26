@@ -25,6 +25,28 @@ class BookingAction extends IniAction {
             }
         }
 
+        //给 第一个 未支付的订单 使用现金劵
+        if($this->common['pending_count']>0){
+            $wh['member_id']=getUid();
+            $wh['type2']=2;
+            $xjj=D('Points')->where($wh)->limit(1)->getField('points');
+            if($xjj>1){ //有现金劵
+                $where_xjj['ddzt']=array('not in',array('7','8'));
+                $where_xjj['zf_fkf']=0;//未支付
+            //    $where_xjj['xjj']=array('lt',1);
+                $where_xjj['hyid']=ASMSUID;
+                $order_id=$orderDB->where($where_xjj)->limit(1)->order('ddbh')->getField('ddbh');
+                if($order_id){ //有符合的订单
+                    $order_rs= $orderDB->format($orderDB->getOrderInfo($order_id));
+                    if($order_rs['xsj']>$xjj && $order_rs['xjj']<1){
+                        $dataUp['ddbh']=$order_rs['ddbh'];
+                        $dataUp['xjj']=$xjj;
+                        $orderDB->save($dataUp);
+                    }
+                }
+            }
+        }
+
         $pending=array();
         $where['ddzt']=array('in',array('7','8'));
         $list['cancel']=$orderDB->where($where)->select();
@@ -34,6 +56,7 @@ class BookingAction extends IniAction {
         $where['zf_fkf']=0;//未支付
         $list['pending']=$orderDB->where($where)->limit($pagesize)->select();
 
+
         $where['zf_fkf']=1; //已支付
         $list['process']=$orderDB->where($where)->limit($pagesize)->select();
 
@@ -41,20 +64,27 @@ class BookingAction extends IniAction {
             if(is_array($val))
                  $val = $orderDB->format($val);
             foreach($val as $k=>$v){
+                if($key=='process'){
+                    $v['xj']=$v['xj']+$v['xjj'];
+                }else if( $key=='cancel'){
+                    $v['yfje']=$v['xj'];
+                }else{
+                    $v['yfje']=$v['xj']-$v['xjj'];
+                }
+
                 $v['hc']=str_split($v['hc'],3);
                 $v['hc_a'] = D("City")->getCity( $v['hc']);
                 $v['hc_n']=implode('-',$v['hc_a']);
                 $list[$key][$k]=$v;
             }
         }
-
+        //待支付笔数
         $pending['count']=count($list['pending']);
         foreach($list['pending'] as $val){
-            $pending['price']+=$val['xj'];
+            $pending['price']+=$val['yfje'];
         }
         $this->pending=$pending;
         $this->list=$list;
-     //  print_R($this->list);
 		$this->display();
     }
 
@@ -109,7 +139,6 @@ class BookingAction extends IniAction {
 	
 	//订单在线支付
 	function onlinepay(){
-     //  dump( D("AsmsOrder")->orderPay(I("ddbh"),ASMSUID,'0.1',"201402211139551579"));
         if(!I("ddbh")) $this->error('请选择要支付的订单');
 
         $orderDB=D("AsmsOrder");
@@ -125,23 +154,34 @@ class BookingAction extends IniAction {
   //$rs= $orderDB->orderPayList($ddbh);
   
 		$res=$orderDB ->where($wh)->select();
-		$rs['list']=$res;		
+		$rs['list']=$res;
 		foreach($res as $key=>$val){
-			$rs['total_price'] += $val['xj'];
-		
-		} 
-		
+			$rs['total_price'] += $val['xj']-$val['xjj'];
+
+            $v['ddbh']= $val['ddbh'];
+            $v['yfje']=$val['xj']-$val['xjj'];
+            $v['xjj']=$val['xjj'];
+            $order_info[$key]=$v;
+		}
+        //支付 认证
+        $pay_auth['order_pay_id']=$this->order_pay_id;
+        $pay_auth['order_id_arr']=$this->order_id_arr;
+        $pay_auth['total_price']=$rs['total_price'];
+        session('pay_auth',$pay_auth);
+        session('order_info',$order_info);
+
         $this->pay_total_price=$rs['total_price'];//总价格
         $this->pay_count=count($ddbh); //总个数
 		
         $pay_list=$orderDB->format($rs['list']); //格式化
         foreach($pay_list as $k=>$v){
+            $v['yfje']=$v['xj']-$v['xjj'];
             $v['hc']=str_split($v['hc'],3);
             $v['hc_a'] = D("City")->getCity($v['hc']);
             $v['hc_n']=implode('-',$v['hc_a']);
             $pay_list[$k]=$v;
         }
-
+      //  dump($pay_list);
         //行程
         foreach($pay_list as $key=>$val){
             $route[]=$val['hc_n'];
@@ -151,7 +191,7 @@ class BookingAction extends IniAction {
         $this->pay_list=$pay_list;
         $PayOrderDB=D('PayOrder');
         $where['member_id']=getUid();
-        $list=$PayOrderDB->where($where)->limit(15)->select();
+        $list=$PayOrderDB->where($where)->limit(20)->order('create_time desc')->select();
         $this->list = $PayOrderDB->format($list);
 		
 		$this->title="订单在线支付";

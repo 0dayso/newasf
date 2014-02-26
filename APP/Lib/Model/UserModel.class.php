@@ -174,8 +174,11 @@ class UserModel extends RelationModel{
     }
 
     //随机分配客服
-    function AutoUserid(){
-         return  $this->where("company_id=1 and status=1 and view=1 and avatar!=''")->order('rand()')->getField('id');
+    function autoUserid($company_id=1,$department_id=0){
+        $department=$department_id?" and department_id=".$department_id:'';
+        $where="company_id=$company_id $department and status=1 and view=1 and avatar!=''";
+        return  $this->where($where)->order('rand()')->getField('id');
+
     }
 
 

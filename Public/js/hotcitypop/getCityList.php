@@ -1,5 +1,5 @@
 <?php
-$url="http://flights.aishangfei.net/AutoComplete/s.htm?k=".$_REQUEST['k'];
+$url="http://autocomplete.ufeifan.com/AutoComplete/s.htm?lan=cn&k=".$_REQUEST['k'];
 $html=file_get_contents($url);  
 echo $html;
 ?>

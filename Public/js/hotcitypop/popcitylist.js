@@ -1,5 +1,8 @@
 (function(){//匿名函数包装
-var locPath=getJsPath();
+    if(typeof(Variables)!='undefined'){
+
+    }else{}
+var locPath=typeof(Public)!='undefined'?Public+'/js/hotcitypop/':getJsPath();
 function popCityList(dom,s){
     var e=window.event||arguments.callee.caller.arguments[0];
     EX.stop(e);

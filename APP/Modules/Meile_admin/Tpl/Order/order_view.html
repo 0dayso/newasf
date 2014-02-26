@@ -5,16 +5,21 @@
 </style>
 <div class="border_div">
     <div class="border_bottom"><span>订单ID号:</span>{$list.ddbh}&nbsp;&nbsp;&nbsp;{$list['zf_status']}</div>  
-      
+    <div class="border_bottom"><span>会员ID号:</span>{$list.hyid}</div>  
 	<div class="border_bottom"><span>航程信息:</span>
     	<div style="margin-left:90px; margin-top:-12px;">
-        	<if condition="$list['hc_d'] eq 1">
-                单程：{$list['hd_info'][0]->hbh} {$list['hc_n']}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日期：{$list['hd_info'][0]->cfsj}
+        	<if condition="$list['lx'] eq 1">
+                单程：{$list['hd_info'][0]->hbh} {$list['hc_n']}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;出发日期：{$list['hd_info'][0]->hd_cfsj}
             </if>            
-            <if condition="$list['hc_d'] eq 2">
-                去程：{$list['hd_info'][0]->hbh} {$list['hc_n1']}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日期：{$list['hd_info'][0]->cfsj}
+            <if condition="$list['lx'] eq 2">
+                去程：{$list['hd_info'][0]->hbh} {$list['hc_n1']}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;出发日期：{$list['hd_info'][0]->hd_cfsj}
                 <br/><br/>          
-                返程：{$list['hd_info'][0]->hbh} {$list['hc_n2']}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日期：{$list['hd_info'][1]->cfsj}
+                返程：{$list['hd_info'][1]->hbh} {$list['hc_n2']}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;返回日期：{$list['hd_info'][1]->hd_cfsj}
+            </if>
+            <if condition="$list['lx'] eq 3">
+            	<volist name="list['hd_info']" id="vo">
+                
+                </volist>
             </if>
         </div>
 	</div> 

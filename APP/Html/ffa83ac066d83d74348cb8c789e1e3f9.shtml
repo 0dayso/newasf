@@ -1,0 +1,704 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>支付方式 - 帮助中心 - 爱尚飞国际机票网</title>
+    <link rel="stylesheet" href="/newasf/Public/css/main.css" type="text/css" />
+    <script type="text/javascript" src="/newasf/Public/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="/newasf/Public/js/main.js"></script>
+    <script type="text/javascript" src="/newasf/Public/js/layer/layer.min.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+    var BaseInfo = {
+        'path':"/newasf/"
+    };
+
+    function open_kf(){
+            setIsinvited();hz6d_cus_web_msg_open();
+        }
+</script>
+<div id="hd_top">
+        <div class="wd960">
+							<span class="left">您好，欢迎光临爱尚飞国际机票网<a href="/newasf/member/login">登录</a><a href="/newasf/member/register">注册</a></span>            <span class="right">
+                             <a class="spr gz"></a><a href="http://e.weibo.com/aishangfei2012?ref=http%3A%2F%2Fweibo.com%2Fu%2F2014524587%3Fwvr%3D5%26" class="ml0" target="_blank">关注我们</a><a class="spr wx"></a><a href="javascript:;" class="ml0" id="weixin_me">微信我们</a><!--<a href="/newasf/iflight/verify" class="ts">机票验真</a>--><a href="/newasf/help" class="bz">帮助中心</a><a class="spr dh"></a></span>
+        </div>
+    </div>
+    <div id="hd_logo">
+        <div class="wd960">
+            <a href="/newasf/" class="left"><img src="/newasf/Public/images/logo.gif" alt="logo" class="logo" /></a>
+            <div class="right"><a href="/newasf/zt/airchina_sales" target="_blank"><img src="/newasf/Public/images/Zt/airchina_sales/ad_578_80.jpg" alt="中国国际航空" /></a></div>
+        </div>
+    </div>
+    <div id="hd_nav">
+        <div class="wd960">
+            <ul class="nav">
+                <li><a href="/newasf/">首页</a></li>
+                <li><a  href="/newasf/iflight">国际机票</a></li>
+                <li><a  href="/newasf/about/service">会员服务</a></li>
+                <li><a  href="/newasf/jifen">积fun商城</a></li>
+                <li><a  href="/newasf/adviser">专业顾问</a></li>
+                <li><a  href="/newasf/activity" class="new">活动频道<span><img src="/newasf/Public/images/top_nav_new.gif" alt="new"/></span></a></li>
+            </ul>
+        </div>
+	</div>
+    <script type="text/javascript">
+    //<![CDATA[
+        $(function(){
+            $("#changeCitySel a").each(function(i){
+                $(this).click(function(){
+                    if($(this).hasClass("active")) return;
+                    $(this).siblings().removeClass("active");
+                    $(this).addClass("active");
+                    $("#payTabelCity table").hide();
+                    $("#payTabelCity table").eq(i).show();
+                    $("#payTabelPublic table").hide();
+                    $("#payTabelPublic table").eq(i).show();
+                });
+            });
+        });
+    //]]>
+    </script>
+    <div id="cont">
+        <div class="wd960 mt10 bgWhite">
+        	<h1 class="h1_tit_nav">你当前所在位置：<a href="/" class="sy">首页</a> > <a class="cur">帮助中心</a></h1>
+
+            <div class="left ml10 mt10" id="helpCenterL">
+    <ul id="help_ul">
+        <li class="tit0 ">会员服务</li>
+        <li><a href="/newasf/help/members#help_ul0">会员注册</a></li>
+        <li><a href="/newasf/help/members#help_ul1">会员等级</a></li>
+        <li><a href="/newasf/help/members#help_ul2">机票预订</a></li>
+        <li><a href="/newasf/help/members#help_ul3">账户安全</a></li>
+        <li class="end"><a href="/newasf/help/members#help_ul4">资料修改</a></li>
+        <li class="tit0 ">资产账户</li>
+        <li><a href="/newasf/help/assetaccount#help_ul0">现金券</a></li>
+        <li><a href="/newasf/help/assetaccount#help_ul1">会员积fun</a></li>
+        <li class="end"><a href="/newasf/help/assetaccount#help_ul2">爱钻奖励</a></li>
+        <li class="tit0 active">支付方式</li>
+        <li><a href="/newasf/help/pay#help_ul0">转账支付</a></li>
+        <li><a href="/newasf/help/pay#help_ul1">在线支付</a></li>
+        <li><a href="/newasf/help/pay#help_ul2">刷卡支付</a></li>
+        <li><a href="/newasf/help/pay#help_ul3">现金支付</a></li>
+    </ul>
+</div>
+
+            <div class="left mt10 ml20" id="helpCenterR">
+            	<a name="help_ul0"></a>
+            	<ul class="zf">
+                    <h2 class="tit">转账支付</h2>
+                    <li class="ft14">尚飞国际机票网为客户提供多个银行的转行支付服务，客户在预订机票时，可以进行选择</li>
+                    <li class="clc">注意事项：</li>
+                    <li>
+                        1、请您汇款后立即和我司操作员联系核实您的款项，以免耽误您的出票时间。<br />
+                        2、对公帐号到帐比较慢，如非公对公支付，建议使用私人帐号，即时到帐。<br />
+                        3、汇款后请将汇款凭证传真至我司，务必在汇款凭证上写明您的联系方式。<br />
+                        4、如果您不方便传真，请电话联系我司操作员，确认款项到帐后即可出票。<br />
+                        5、用户所有的款项请按照以下帐号进行汇付，务必仔细核对帐号，谨防假冒。<br />
+                        6、可以使用支付宝进行中介服务，收到票后再付款，详情请咨询我司操作员。<br />
+                    </li>
+                    <li class="clb">对于一些特殊的情况，例如我们要求客户即时支付款项，公司财务可以马上查询，经过和财务出纳沟通，可以通知客户将少量款项汇到以下帐户：</li>
+
+                    <li class="sel_city" id="changeCitySel"><a href="javascript:;" class="active">广州</a><a href="javascript:;">深圳</a><a href="javascript:;">上海</a><a href="javascript:;">北京</a></li>
+                    <li class="clc">私人账户</li>
+                    <li class="table" id="payTabelCity">
+                      <table width="700" border="0">
+                        <tr>
+                          <td width="310" rowspan="5"><a class="sp a0"></a></td>
+                          <td height="32">中国银行（人民币帐户）</td>
+                        </tr>
+                        <tr>
+                          <td height="32">户名：徐雷风</td>
+                        </tr>
+                        <tr>
+                          <td height="32">卡号：6013 8219 00052 794588</td>
+                        </tr>
+                        <tr>
+                          <td height="32">账号：4761011 0188 1119 850</td>
+                        </tr>
+                        <tr>
+                          <td height="32">开户地：中国银行广州白云支行</td>
+                        </tr>
+                        <tr>
+                          <td width="310" rowspan="4"><a class="sp a1"></a></td>
+                          <td height="32">招商银行（人民币账户）</td>
+                        </tr>
+                        <tr>
+                          <td height="32">户名：徐雷风</td>
+                        </tr>
+                        <tr>
+                          <td height="32">卡号：6226 0902 0088 5321</td>
+                        </tr>
+                        <tr>
+                          <td height="32">开户地：招商银行广州机场路支行</td>
+                        </tr>
+                        <tr>
+                          <td width="310" rowspan="4"><a class="sp a2"></a></td>
+                          <td height="32">农业银行（人民币账户）</td>
+                        </tr>
+                        <tr>
+                          <td height="32">户名：徐雷风</td>
+                        </tr>
+                        <tr>
+                          <td height="32">卡号：6228 4800 8274 2833 419</td>
+                        </tr>
+                        <tr>
+                          <td height="32">开户地：中国农业银行广州市景泰支行</td>
+                        </tr>
+                        <tr>
+                          <td width="310" rowspan="4"><a class="sp a3"></a></td>
+                          <td height="32">交通银行（人民币账户）</td>
+                        </tr>
+                        <tr>
+                          <td height="32">户名：徐雷风</td>
+                        </tr>
+                        <tr>
+                          <td height="32">卡号：622260 071000 5731056</td>
+                        </tr>
+                        <tr>
+                          <td height="32">开户地：交通银行广州市白云支行</td>
+                        </tr>
+                        <tr>
+                        <tr>
+                          <td width="310" rowspan="4"><a class="sp a4"></a></td>
+                          <td height="32">建设银行（人民币账户 ）</td>
+                        </tr>
+                        <tr>
+                          <td height="32">户名：徐雷风</td>
+                        </tr>
+                        <tr>
+                          <td height="32">卡号: 6227 0033 2701 0021 175</td>
+                        </tr>
+                        <tr>
+                          <td height="32">开户地：中国建设银行广州市景泰支行</td>
+                        </tr>
+                        <tr>
+                          <td width="310" rowspan="4"><a class="sp a5"></a></td>
+                          <td height="32">工商银行（人民币账户）金卡</td>
+                        </tr>
+                        <tr>
+                          <td height="32">户名：徐雷风</td>
+                        </tr>
+                        <tr>
+                          <td height="32">卡号：622208 360200 2006176</td>
+                        </tr>
+                        <tr>
+                          <td height="32">开户地：工商银行广州市机场支行</td>
+                        </tr>
+
+                        <tr>
+                          <td width="310" rowspan="5"><a class="sp a6"></a></td>
+                          <td height="32">广州农村商业银行 </td>
+                        </tr>
+                        <tr>
+                          <td height="32">户名：徐雷风</td>
+                        </tr>
+                        <tr>
+                          <td height="32">卡号：622439 690002 371144</td>
+                        </tr>
+                        <tr>
+                          <td height="32">账号：0571 2100 0000 00319</td>
+                        </tr>
+                        <tr>
+                          <td height="32">开户机构：广源支行</td>
+                        </tr>
+
+
+                        <tr>
+                          <td width="310" rowspan="4"><a class="sp a10"></a></td>
+                          <td height="32">中信银行</td>
+                        </tr>
+                        <tr>
+                          <td height="32">户名：徐雷风</td>
+                        </tr>
+                        <tr>
+                          <td height="32">卡号：6226 9009 0629 7193</td>
+                        </tr>
+                        <tr>
+                          <td height="32">开户机构：中信银行广州机场路支行</td>
+                        </tr>
+
+                      </table>
+                      <table width="700" border="0" style="display:none;">
+                        <tr>
+                          <td width="310" rowspan="4"><a class="sp a1"></a></td>
+                          <td height="32">招商银行 （人民币账户）</td>
+                        </tr>
+                        <tr>
+                          <td height="32">户名：徐南凤</td>
+                        </tr>
+                        <tr>
+                          <td height="32">卡号：6225 8878 6263 2995</td>
+                        </tr>
+                        <tr>
+                          <td height="32">开户行：招商银行深圳联通支行</td>
+                        </tr>
+                        <tr>
+                          <td width="310" rowspan="4"><a class="sp a4"></a></td>
+                          <td height="32">建设银行（人民币账户）</td>
+                        </tr>
+                        <tr>
+                          <td height="32">户名：徐南凤</td>
+                        </tr>
+                        <tr>
+                          <td height="32">卡号：6217 0072  0000 2791 617</td>
+                        </tr>
+                        <tr>
+                          <td height="32">开户行：建设银行深圳国会大厦支行</td>
+                        </tr>
+                        <tr>
+                          <td width="310" rowspan="4"><a class="sp a5"></a></td>
+                          <td height="32">工商银行（人民币账户）</td>
+                        </tr>
+                        <tr>
+                          <td height="32">户名：徐南凤</td>
+                        </tr>
+                        <tr>
+                          <td height="32">卡号：6222 0240 0004 2324 372</td>
+                        </tr>
+                        <tr>
+                          <td height="32">开户行：工商银行深圳免税大厦支行</td>
+                        </tr>
+                        <tr>
+                          <td width="310" rowspan="4"><a class="sp a0"></a></td>
+                          <td height="32">中国银行（人民币账户）</td>
+                        </tr>
+                        <tr>
+                          <td height="32">户名：徐南凤</td>
+                        </tr>
+                        <tr>
+                          <td height="32">卡号：6216 6120 0000 1296 546</td>
+                        </tr>
+                        <tr>
+                          <td height="32">开户行：中国银行时代金融中心支行</td>
+                        </tr>
+                        <tr>
+                          <td width="310" rowspan="4"><a class="sp a2"></a></td>
+                          <td height="32">农业银行（人民币账户）</td>
+                        </tr>
+                        <tr>
+                          <td height="32">户名：徐南凤</td>
+                        </tr>
+                        <tr>
+                          <td height="32">卡号：6228 4801 2075 8108 910</td>
+                        </tr>
+                        <tr>
+                          <td height="32">开户行：农业银行深圳免税大厦支行</td>
+                        </tr>
+
+                        <tr>
+                          <td width="310" rowspan="4"><a class="sp a9"></a></td>
+                          <td height="32">中国民生银行（人民币账户）</td>
+                        </tr>
+                        <tr>
+                          <td height="32">户名：徐南凤</td>
+                        </tr>
+                        <tr>
+                          <td height="32">卡号：6226  1706 0060 9495</td>
+                        </tr>
+                        <tr>
+                          <td height="32">开户行：中国民生银行深圳浜海支行</td>
+                        </tr>
+                      </table>  
+                      <table width="700" border="0" style="display:none;">
+                        <tr>
+                          <td width="310" height="98" rowspan="4"><a class="sp a0"></a></td>
+                          <td height="32">中国银行（人民币帐户）</td>
+                        </tr>
+                        <tr>
+                          <td height="32">户名：徐光松</td>
+                        </tr>
+                        <tr>
+                          <td height="32">卡号：621661 0800001538488</td>
+                        </tr>
+                        <tr>
+                          <td height="32">开户行：中国银行上海市康定支行</td>
+                        </tr>
+                        <tr>
+                          <td width="310" height="98" rowspan="4"><a class="sp a2"></a></td>
+                          <td height="32">农业银行（人民币帐户）</td>
+                        </tr>
+                        <tr>
+                          <td height="32">户名：徐光松</td>
+                        </tr>
+                        <tr>
+                          <td height="32">新账号为：622848 0031529698214</td>
+                        </tr>
+                        <tr>
+                          <td height="32">开户行：农行上海江宁支行</td>
+                        </tr>
+                        <tr>
+                          <td width="310" height="98" rowspan="4"><a class="sp a4"></a></td>
+                          <td height="32">建设银行（人民币账户 ）</td>
+                        </tr>
+                        <tr>
+                          <td height="32">户名：徐光松</td>
+                        </tr>
+                        <tr>
+                          <td height="32">卡号:  6227 0012 1691 0037 617</td>
+                        </tr>
+                        <tr>
+                          <td height="32">开户行：建设银行上海国际丽都支行</td>
+                        </tr>
+                        <tr>
+                          <td width="310" height="98" rowspan="4"><a class="sp a5"></a></td>
+                          <td height="32">工商银行（人民币账户）</td>
+                        </tr>
+                        <tr>
+                          <td height="32">户名：徐光松</td>
+                        </tr>
+                        <tr>
+                          <td height="32">卡号：622202 1001083166154</td>
+                        </tr>
+                        <tr>
+                          <td height="32">开户行：工商银行江宁路第二支行</td>
+                        </tr>
+                        <tr>
+                          <td width="310" height="98" rowspan="4"><a class="sp a1"></a></td>
+                          <td height="32">招商银行（人民币账户）</td>
+                        </tr>
+                        <tr>
+                          <td height="32">户名：徐光松</td>
+                        </tr>
+                        <tr>
+                          <td height="32">卡号：6225 8821 3149 4178</td>
+                        </tr>
+                        <tr>
+                          <td height="32">开户行：上海分行泰兴支行</td>
+                        </tr>
+                        <tr>
+                          <td width="310" height="98" rowspan="4"><a class="sp a3"></a></td>
+                          <td height="32">交通银行（人民币账户）</td>
+                        </tr>
+                        <tr>
+                          <td height="32">户名：徐光松</td>
+                        </tr>
+                        <tr>
+                          <td height="32">卡号： 622260 0110038726 738</td>
+                        </tr>
+                        <tr>
+                          <td height="32">开户行：交通银行上海市分行</td>
+                        </tr>
+                      </table>
+                      <table width="700" border="0" style="display:none;">
+
+                        <tr>
+                          <td width="310" height="98" rowspan="4"><a class="sp a4"></a></td>
+                          <td height="32">中国银行（人民币帐户）</td>
+                        </tr>
+                        <tr>
+                          <td height="32">户名：徐光松</td>
+                        </tr>
+                        <tr>
+                          <td height="32">卡号：6227 0000 1578 0168 614</td>
+                        </tr>
+                        <tr>
+                          <td height="32">开户行：北京东三环百环支行</td>
+                        </tr>
+                        <tr>
+                          <td width="310" height="98" rowspan="4"><a class="sp a11"></a></td>
+                          <td height="32">北京银行</td>
+                        </tr>
+                        <tr>
+                          <td height="32">户名：徐光松</td>
+                        </tr>
+                        <tr>
+                          <td height="32">卡号：6210 3050 0150 7389</td>
+                        </tr>
+                        <tr>
+                          <td height="32">开户行：北京现代城支行</td>
+                        </tr>
+                        <tr>
+                          <td width="310" height="98" rowspan="4"><a class="sp a5"></a></td>
+                          <td height="32">工商银行（人民币账户）</td>
+                        </tr>
+                        <tr>
+                          <td height="32">户名：徐光松</td>
+                        </tr>
+                        <tr>
+                          <td height="32">卡号：6222 0202 0011 6813 730</td>
+                        </tr>
+                        <tr>
+                          <td height="32">开户行：北京现代城支行</td>
+                        </tr>
+                          <tr>
+                                <td colspan="2" height="32">温馨提示：如果找不到北京现代城支行的话, 请汇到北京现代城支行的上一级北京商务中心区支行</td>
+                          </tr>
+                        <tr>
+                          <td width="310" height="98" rowspan="4"><a class="sp a1"></a></td>
+                          <td height="32">招商银行（人民币账户）</td>
+                        </tr>
+                        <tr>
+                          <td height="32">户名：徐光松</td>
+                        </tr>
+                        <tr>
+                          <td height="32">卡号：6225 8801 4781 0858</td>
+                        </tr>
+                        <tr>
+                          <td height="32">开户行：北京万达广场支行</td>
+                        </tr>
+                        <tr>
+                          <td width="310" height="98" rowspan="4"><a class="sp a3"></a></td>
+                          <td height="32">交通银行（人民币账户）</td>
+                        </tr>
+                        <tr>
+                          <td height="32">户名：徐光松</td>
+                        </tr>
+                        <tr>
+                          <td height="32">卡号： 6222 6009 1006 7407 898</td>
+                        </tr>
+                        <tr>
+                          <td height="32">开户行：北京建国路支行</td>
+                        </tr>
+                        <tr>
+                          <td width="310" height="98" rowspan="4"><a class="sp a2"></a></td>
+                          <td height="32">农业银行（人民币账户 ）</td>
+                        </tr>
+                        <tr>
+                          <td height="32">户名：徐光松</td>
+                        </tr>
+                        <tr>
+                          <td height="32">卡号：6228 4800 1093 7731 015</td>
+                        </tr>
+                        <tr>
+                          <td height="32">开户行：北京现代城支行</td>
+                        </tr>
+                      </table>
+                    </li>
+                    <li class="clc">对公账号：</li>
+                    <li class="table" id="payTabelPublic">
+                      <table width="700" border="0">
+                        <tr>
+                          <td width="310" height="98" rowspan="3"><a class="sp a0"></a></td>
+                          <td height="32">户名：广州美乐商务服务有限公司</td>
+                        </tr>
+                        <tr>
+                          <td height="32">卡号：6522 5775 5426</td>
+                        </tr>
+                        <tr>
+                          <td height="32">开户地：中国银行广州广园中路支行</td>
+                        </tr>
+                        
+                        <tr>
+                          <td width="310" height="98" rowspan="3"><a class="sp a9"></a></td>
+                          <td height="32">户名：广州美乐商务服务有限公司</td>
+                        </tr>
+                        <tr>
+                          <td height="32">卡号：601029869</td>
+                        </tr>
+                        <tr>
+                          <td height="32">开户地：中国民生银行广州白云支行</td>
+                        </tr>
+                        
+                      </table>
+                      <table width="700" border="0" style="display:none;">
+                        <tr>
+                          <td width="310" height="98" rowspan="4"><a class="sp a4"></a></td>
+                          <td height="32">建设银行（人民币账户）</td>
+                        </tr>
+                        <tr>
+                          <td height="32">户名：深圳爱尚飞航空服务有限公司</td>
+                        </tr>
+                        <tr>
+                          <td height="32">卡号：44201602000052516567</td>
+                        </tr>
+                        <tr>
+                          <td height="32">开户行：中国建设银行凤凰支行</td>
+                        </tr>
+                      </table>
+                      <table width="700" border="0" style="display:none;">
+                      
+                      </table>
+                      <table width="700" border="0" style="display:none;">
+                      
+                      </table>
+                    </li>
+            	</ul>
+                <a name="help_ul1"></a>
+                <ul class="zf">
+                    <h2 class="tit">在线支付</h2>
+                    <li class="ft14">爱尚飞国际机票网支持绝大多数银行借记卡及信用卡，即时到账，准确快捷，推荐您在支付时使用</li>
+                    <li class="table">
+                    
+                      <table width="700" border="0">
+                        <tr>
+                              <td width="310" height="98"><a href="/newasf/alipay" class="help_alipay"></a></td>
+                              <td height="98" class="red"><a  href="/newasf/alipay">支付宝在线支付</a></td>
+                        </tr>
+                        <tr>
+                          <td width="310" height="98"><a href="/pay" class="sp a7"></a></td>
+                          <td height="98" class="red"><a  href="/pay">财付通在线支付</a></td>
+                        </tr>
+                        <tr>
+                          <td width="310" height="98"><a href="/yeepay"class="sp a8"></a></td>
+                          <td height="98" class="red"><a  href="/yeepay">易宝ePOS支付</a></td>
+                        </tr>
+                      </table>
+                    </li>
+                </ul>
+                <a name="help_ul2"></a>
+                <ul class="zf">
+                    <h2 class="tit">刷卡支付</h2>
+                    <li class="ft14">客户如不选择在线支付及转账汇款，也可以通过刷卡方式进行支付；请在刷卡前与爱尚飞网确认收取的手续费用
+具体金额</li>
+                    <li class="table">
+                    
+                      <table width="700" border="0" style="text-align:center;">
+                        <tr>
+                          <td height="32" colspan="2">银联刷卡（所有银联卡）</td>
+                          <td width="218" height="32">手续费0.8%</td>
+                        </tr>
+                        <tr>
+                          <td width="120" rowspan="4">信用卡报<br />卡号刷卡</td>
+                          <td width="340" height="65">工行、中行、民生、上海、建行、深发、深圳平安、<br />
+                          浦发、广发、华厦、兴业</td>
+                          <td height="65">手续费0.8%</td>
+                        </tr>
+                        <tr>
+                          <td width="340" height="32">招行</td>
+                          <td height="32">手续费1.2%</td>
+                        </tr>
+                      </table>
+                    </li>
+                </ul>
+                <a name="help_ul3"></a>
+                <ul class="zf">
+                    <h2 class="tit">现金支付</h2>
+                    <li class="ft14">客户在爱尚飞国际机票网预订机票时，可选择现金支付方式。现金支付主要包括两种方式。</li>
+                    <li class="clc">一.货到付款</li>
+                    <li>您通过爱尚飞国际机票网预订成功后，我们将产品（电子票、行程单、入住凭证）送达后，在您验证无误后支付现金。</li>
+                    <li class="clc">二.上门取票</li>
+                    <li>在爱尚飞国际机票网成功预订机票后，旅客可亲临本公司取票，在验证无误后支付现金。</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+ <div id="footer">
+    	<div class="wd960">
+            <div id="ft_link">
+                <ul>
+                    <li><a href="/newasf/about" target="_blank">关于爱尚飞</a> |</li>
+                    <li><a href="/newasf/Adviser" target="_blank">专业顾问</a> |</li>
+                    <li><a href="/newasf/about/service" target="_blank">会员服务</a> |</li>
+                    <li><a href="/newasf/about/privacy" target="_blank">隐私保护</a> |</li>
+                    <li><a href="/newasf/about/job" target="_blank">人才招聘</a> |</li>
+                    <li><a href="http://www.cata.org.cn/clientWeb/frm_Single_Search.aspx?name=%u5E7F%u5DDE%u7F8E%u4E50%u5546%u52A1%u670D%u52A1%u6709%u9650%u516C%u53F8&type=agentname&leixing=&chengshi=&chengqu=" target="_blank">中国航空运输协会</a> |</li>
+                    <li><a href="/newasf/Public/images/zz_08.jpg" target="_blank">企业营业执照</a> |</li>
+                    <li><a href="/newasf/Public/images/ylzg.jpg" target="_blank">民航客运一类代理</a></li>
+                </ul>
+            </div>
+                        <div id="ft_copyright">Copyright © 2009-2013 爱尚飞国际机票网 广州美乐商务服务有限公司. All Rights Reserved
+                <img src="/newasf/Public/images/ft_icp.jpg" alt="icp" />
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备11009654号-21</a>
+            </div>
+            <div id="ft_icons">
+                <a class="a0" href="#" target="_blank"></a>
+                <a class="a1" href="#" target="_blank"></a>
+                <a class="a2" href="#" target="_blank"></a>
+                <a class="a3" href="http://trust.360.cn/search.php" target="_blank"></a>
+                <a class="a4" href="#" target="_blank"></a>
+                <a class="a5" href="http://www.gzaic.gov.cn/GZCX/WebUI/credit/qiyeInfo.htm#" target="_blank"></a>
+                <a class="a6" href="http://net.china.com.cn/index.htm" target="_blank"></a>
+                <a class="a7" href="http://www.cyberpolice.cn/wfjb/" target="_blank"></a>
+            </div>
+
+
+        <div style="display:none;">
+                <script type="text/javascript">
+        var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fd4cf44a2f93f50230dbcc266a1e41306' type='text/javascript'%3E%3C/script%3E"));
+            </script>
+
+        </div>
+     <script type="text/javascript">
+         var _gaq = _gaq || [];
+         _gaq.push(['_setAccount', 'UA-35556838-1']);
+         _gaq.push(['_setDomainName', 'aishangfei.net']);
+         _gaq.push(['_setLocalRemoteServerMode']);
+         _gaq.push(['_trackPageview']);
+
+         (function() {
+             var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+             ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+         })();
+     </script>
+     <!-- Google Code for &#20877;&#33829;&#38144;&#26631;&#35760; -->
+     <!-- Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. For instructions on adding this tag and more information on the above requirements, read the setup guide: google.com/ads/remarketingsetup -->
+
+     <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script>
+     <noscript>
+         <div style="display:inline;">
+             <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/990797250/?value=0&amp;label=-y_RCK7_9gMQwru52AM&amp;guid=ON&amp;script=0"/>
+         </div>
+     </noscript>
+
+
+     <div style="display:none">
+         <script language="javascript" type="text/javascript" src="http://js.users.51.la/5149478.js"></script>
+         <noscript>
+             <a href="http://www.51.la/?5149478" target="_blank"><img alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/5149478.asp" style="border:none" /></a>
+         </noscript>
+
+     </div>
+
+                              <script language="JavaScript" src="/newasf/iflight/sidebar"></script>
+                                                      <script id="kf53" language="JavaScript" src ="http://chat.53kf.com/kf.php?arg=meile10&style=2"></script>
+                                                    
+     <script type="text/javascript">
+         /* <![CDATA[ */
+         var google_conversion_id = 990797250;
+         var google_conversion_label = "-y_RCK7_9gMQwru52AM";
+         var google_custom_params = window.google_tag_params;
+         var google_remarketing_only = true;
+         /* ]]> */
+     </script>
+    	</div>        
+	</div>
+
+     <script type="text/javascript">
+         var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+         document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F9bb60244498ccc09dd9a81c6428d1e9f' type='text/javascript'%3E%3C/script%3E"));
+     </script>
+
+ <!-- WPA Button Begin 统计分析代码-->
+ <script charset="utf-8" type="text/javascript" src="http://wpa.b.qq.com/cgi/wpa.php?key=XzkzODAwOTkwMl85Njg2NV80MDA2MDg1MTg4Xw"></script>
+ <!-- WPA Button End -->
+
+ <script type="text/javascript">
+     $(function(){
+         kfurl="http://www17.53kf.com/webCompany.php?"+$("#ivt_script").attr("src").match(/arg=.*/gim);
+     });
+ </script>
+
+ 	<!--在线查询和QQ咨询-->
+    <div id="line_query_qq">
+    	<dl>
+       	  <dt><span>关闭</span></dt>
+          <dd class="kf"><a href="javascript:;" onclick="open_kf()">在线查询</a></dd>
+          <dd><span><script charset="utf-8" type="text/javascript" src="http://wpa.b.qq.com/cgi/wpa.php?key=XzkzODAwOTkwMl85Njg3Ml80MDA2MDg1MTg4Xw"></script></span></dd>
+        </dl>
+    </div>
+  
+    <style type="text/css">
+    #line_query_qq{width:140px;height:248px;background:url(/newasf/Public/images/line_query_qq.gif) no-repeat;position:absolute;top:170px;right:0;}
+	#line_query_qq dt{height:18px;}
+	#line_query_qq dt span{float:right;width:18px;height:18px;line-height:60px;cursor:pointer;overflow:hidden;}
+	#line_query_qq dd{height:115px;}
+	#line_query_qq dd.kf a{width:140px;height:115px;line-height:300px;display:block;overflow:hidden;}
+	#line_query_qq dd span{display:block;margin-top:80px;height:22px;text-align:center;}
+    </style>
+    <script type="text/javascript">
+	$(function(){
+		$(window).scroll(function(){
+			var top=$(this).scrollTop()+170+'px';
+			$('#line_query_qq').css('top',top);
+			});
+		$('#line_query_qq span').click(function(){
+			$('#line_query_qq').hide();
+			});
+	});
+    </script>
+ 
+</body>
+</html>

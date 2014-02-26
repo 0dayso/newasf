@@ -503,6 +503,7 @@ label.kfpj a.a0{background-position:0 -200px}
 #helpCenterR table{overflow:visible;}
 #helpCenterR table tr td{border:1px solid #eeeeee;color:#333;}
 #helpCenterR td{padding-left:30px;}
+#helpCenterR .help_alipay{background:url(../images/help_alipay.gif) no-repeat 0 0;display:block;width:232px;height:73px;}
 #helpCenterR a.sp{background:url(../images/help_zh.gif) no-repeat 0 0;display:block;}
 #helpCenterR a.a0{width:120px;height:36px;}
 #helpCenterR a.a1{background-position:0 -36px;width:122px;height:36px;}
@@ -771,7 +772,7 @@ label.kfpj a.a0{background-position:0 -200px}
 /*我的专业顾问*/
 #proAdvisorL{margin-left:10px;width:700px;}
 #proAdvisorL h2{background:url(../images/proAdvisor.gif) no-repeat 0 0;width:700px;height:126px;}
-#advisor_prompt{border:1px solid #b4dff5;margin-top:5px;background:#fff url(../images/advisor_prompt_bg.gif) repeat-x 0 0;padding:10px 0px;height:100%;}
+#advisor_prompt{border:1px solid #b4dff5;margin-top:5px;background:#fff url(../images/advisor_prompt_bg.gif) repeat-x 0 0;padding:10px 10px;height:100%;}
 #advisor_prompt h3{margin-left:10px;color:red;font-weight:bold;float:left;vertical-align:middle;margin-top:5px;}
 #advisor_prompt h3 a{float:left;background:url(../images/s_small_tb.gif) no-repeat -207px -27px;width:15px;height:15px;margin-right:5px;}
 #advisor_prompt ul{*float:left;}
