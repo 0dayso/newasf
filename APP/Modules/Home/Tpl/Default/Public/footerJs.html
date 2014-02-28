@@ -1,0 +1,33 @@
+<?php
+	 if($_SERVER['HTTP_HOST']=='www.aishangfei.cn'){
+?>
+    <script language="javascript" type="text/javascript" src="http://js.users.51.la/15783772.js"></script>
+    <noscript><a href="http://www.51.la/?15783772" target="_blank"><img alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/15783772.asp" style="border:none" /></a></noscript>
+        <?php if(MODULE_NAME != "Jifen" && MODULE_NAME != "Member"){ ?>
+        <script type='text/javascript' src='http://chat.53kf.com/kf.php?arg=meile10&style=1'></script>
+        <?php } ?>
+    <?php }else{
+             if($userinfo){ ?>
+        <script type="text/javascript" src="{:U('/api/kf/leftKf')}"></script>
+        <?php }elseif(MODULE_NAME != "Jifen" && MODULE_NAME != "Member" ){ ?>
+        <script language="JavaScript" src="{:U('/iflight/sidebar')}"></script>
+        <?php  if(MODULE_NAME == 'Zt' || MODULE_NAME == 'Help'){ ?>
+        <script id="kf53" language="JavaScript" src ="http://chat.53kf.com/kf.php?arg=meile10&style=2"></script>
+        <?php  }else{ ?>
+        <script id="kf53" language="JavaScript" src ="http://chat.53kf.com/kf.php?arg=meile10&style=1"></script>
+        <?php } ?>
+    <?php }elseif(ACTION_NAME == 'register'|| ACTION_NAME == 'login'){ ?>
+        <script id="kf53" language="JavaScript" src ="http://chat.53kf.com/kf.php?arg=meile10&style=2"></script>
+    <?php } ?>
+<?php }?>
+
+<?php if(!$userinfo && MODULE_NAME != "Jifen" && MODULE_NAME != "Member"): ?>
+<!--在线查询和QQ咨询-->
+<div id="line_query_qq">
+    <dl>
+        <dt><span>关闭</span></dt>
+        <dd class="kf"><a href="javascript:;" onclick="open_kf()">在线查询</a></dd>
+        <dd><span><script charset="utf-8" type="text/javascript" src="http://wpa.b.qq.com/cgi/wpa.php?key=XzkzODAwOTkwMl85Njg3Ml80MDA2MDg1MTg4Xw"></script></span></dd>
+    </dl>
+</div>
+<?php endif; ?>

@@ -2,26 +2,38 @@
 .border_div{border:1px solid #999; font-size:12px;}
 .border_div span{font-weight:bold;}
 .border_bottom{border-bottom:1px solid #CCC;padding-left:20px; margin-top:5px; margin-bottom:5px;padding-bottom:5px;}
+.border_bottom table{width:700px;}
+.border_bottom table thead tr{background:#0CF;}
+.border_bottom table thead tr td{font-weight:bold;}
 </style>
 <div class="border_div">
     <div class="border_bottom"><span>订单ID号:</span>{$list.ddbh}&nbsp;&nbsp;&nbsp;{$list['zf_status']}</div>  
-    <div class="border_bottom"><span>会员ID号:</span>{$list.hyid}</div>  
+    <div class="border_bottom"><span>会员ID号:</span>{$list.hyid}</div>      
 	<div class="border_bottom"><span>航程信息:</span>
-    	<div style="margin-left:90px; margin-top:-12px;">
-        	<if condition="$list['lx'] eq 1">
-                单程：{$list['hd_info'][0]->hbh} {$list['hc_n']}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;出发日期：{$list['hd_info'][0]->hd_cfsj}
-            </if>            
-            <if condition="$list['lx'] eq 2">
-                去程：{$list['hd_info'][0]->hbh} {$list['hc_n1']}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;出发日期：{$list['hd_info'][0]->hd_cfsj}
-                <br/><br/>          
-                返程：{$list['hd_info'][1]->hbh} {$list['hc_n2']}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;返回日期：{$list['hd_info'][1]->hd_cfsj}
-            </if>
-            <if condition="$list['lx'] eq 3">
-            	<volist name="list['hd_info']" id="vo">
-                
+        <div style="margin-left:20px; margin-top:8px;">
+        	<table border="1 #666" cellpadding="0" cellspacing="0">
+            	<thead>
+                    <tr>
+                        <td>航程</td>
+                        <td>出发时间</td>
+                        <td>航班号</td>
+                        <td>舱位</td>
+                        <td>机型</td>
+                    </tr>
+                </thead>
+                 <volist name="hdinfo" id="vo">
+                 <tbody>
+                    <tr>
+                        <td>{$vo.hc}</td>
+                        <td>{$vo.cfsj}</td>
+                        <td>{$vo.hbh}</td>
+                        <td>{$vo.cw}</td>
+                        <td>{$vo.jx}</td>            
+                    </tr>
+                </tbody>
                 </volist>
-            </if>
-        </div>
+            </table>
+        </div> 
 	</div> 
          
 	<div class="border_bottom"><span>票面价格：</span><empty name="list['xsj']">0<else/>{$list.xsj}</empty></div>

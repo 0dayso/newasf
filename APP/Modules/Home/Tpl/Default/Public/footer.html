@@ -7,7 +7,7 @@
                     <li><a href="{:U('/about/service')}" target="_blank">会员服务</a> |</li>
                     <li><a href="{:U('/about/privacy')}" target="_blank">隐私保护</a> |</li>
                     <li><a href="{:U('/about/job')}" target="_blank">人才招聘</a> |</li>
-                    <li><a href="http://www.cata.org.cn/clientWeb/frm_Single_Search.aspx?name=%u5E7F%u5DDE%u7F8E%u4E50%u5546%u52A1%u670D%u52A1%u6709%u9650%u516C%u53F8&type=agentname&leixing=&chengshi=&chengqu=" target="_blank">中国航空运输协会</a> |</li>
+                    <li><a href="http://www.cata.org.cn/ZGRZ/ZZCX/" target="_blank">中国航空运输协会</a> |</li>
                     <li><a href="__PUBLIC__/images/zz_08.jpg" target="_blank">企业营业执照</a> |</li>
                     <li><a href="__PUBLIC__/images/ylzg.jpg" target="_blank">民航客运一类代理</a></li>
                 </ul>
@@ -37,7 +37,7 @@
                 <a class="a7" href="http://www.cyberpolice.cn/wfjb/" target="_blank"></a>
             </div>
 
-
+        <script type="text/javascript" src="{:U('/Public/footerJs')}"></script>
         <div style="display:none;">
                 <script type="text/javascript">
         var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
@@ -77,28 +77,6 @@
 
      </div>
 
-           <?php
-	        	if($_SERVER['HTTP_HOST']=='www.aishangfei.cn'){
-	       ?>
-            <script language="javascript" type="text/javascript" src="http://js.users.51.la/15783772.js"></script>
-            <noscript><a href="http://www.51.la/?15783772" target="_blank"><img alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/15783772.asp" style="border:none" /></a></noscript>
-                <?php if(MODULE_NAME != "Jifen" && MODULE_NAME != "Member"){ ?>
-                   <script type='text/javascript' src='http://chat.53kf.com/kf.php?arg=yunai&style=1'></script>
-                <?php } ?>
-            <?php }else{
-                if($userinfo){ ?>
-                  <script type="text/javascript" src="{:U('api/kf/leftKf')}"></script>
-                <?php  }elseif(MODULE_NAME != "Jifen" && MODULE_NAME != "Member" ){ ?>
-                   <script language="JavaScript" src="{:U('/iflight/sidebar')}"></script>
-                        <?php  if(MODULE_NAME == 'Zt' || MODULE_NAME == 'Help'){ ?>
-                              <script id="kf53" language="JavaScript" src ="http://chat.53kf.com/kf.php?arg=meile10&style=2"></script>
-                        <?php }else{ ?>
-                         <script id="kf53" language="JavaScript" src ="http://chat.53kf.com/kf.php?arg=meile10&style=1"></script>
-                        <?php } ?>
-                <?php  }elseif(ACTION_NAME == 'register'|| ACTION_NAME == 'login'){ ?>
-                      <script id="kf53" language="JavaScript" src ="http://chat.53kf.com/kf.php?arg=meile10&style=2"></script>
-                <?php } ?>
-            <?php }?>
 
      <script type="text/javascript">
          /* <![CDATA[ */
@@ -126,16 +104,6 @@
      });
  </script>
 
- <?php if(!$userinfo && MODULE_NAME != "Jifen" && MODULE_NAME != "Member"): ?>
-	<!--在线查询和QQ咨询-->
-    <div id="line_query_qq">
-    	<dl>
-       	  <dt><span>关闭</span></dt>
-          <dd class="kf"><a href="javascript:;" onclick="open_kf()">在线查询</a></dd>
-          <dd><span><script charset="utf-8" type="text/javascript" src="http://wpa.b.qq.com/cgi/wpa.php?key=XzkzODAwOTkwMl85Njg3Ml80MDA2MDg1MTg4Xw"></script></span></dd>
-        </dl>
-    </div>
-  <?php endif; ?>
 
     <style type="text/css">
     #line_query_qq{width:140px;height:248px;background:url(__PUBLIC__/images/line_query_qq.gif) no-repeat;position:absolute;top:170px;right:0;}

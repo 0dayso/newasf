@@ -13,16 +13,9 @@
     var BaseInfo = {
         'path':"/newasf/"
     };
-
-    function open_kf(){
-            setIsinvited();hz6d_cus_web_msg_open();
-        }
 </script>
 <div id="hd_top">
-        <div class="wd960">
-							<span class="left">您好，欢迎光临爱尚飞国际机票网<a href="/newasf/member/login">登录</a><a href="/newasf/member/register">注册</a></span>            <span class="right">
-                             <a class="spr gz"></a><a href="http://e.weibo.com/aishangfei2012?ref=http%3A%2F%2Fweibo.com%2Fu%2F2014524587%3Fwvr%3D5%26" class="ml0" target="_blank">关注我们</a><a class="spr wx"></a><a href="javascript:;" class="ml0" id="weixin_me">微信我们</a><!--<a href="/newasf/iflight/verify" class="ts">机票验真</a>--><a href="/newasf/help" class="bz">帮助中心</a><a class="spr dh"></a></span>
-        </div>
+        <div class="wd960"> <script type="text/javascript"  src="/newasf/Public/topMenu"></script></div>
     </div>
     <div id="hd_logo">
         <div class="wd960">
@@ -37,7 +30,7 @@
                 <li><a  href="/newasf/iflight">国际机票</a></li>
                 <li><a  href="/newasf/about/service">会员服务</a></li>
                 <li><a  href="/newasf/jifen">积fun商城</a></li>
-                <li><a  href="/newasf/adviser">专业顾问</a></li>
+                <li><a  href="/newasf/Adviser/review_51">专业顾问</a></li>
                 <li><a  href="/newasf/activity" class="new">活动频道<span><img src="/newasf/Public/images/top_nav_new.gif" alt="new"/></span></a></li>
             </ul>
         </div>
@@ -526,12 +519,12 @@
                               <td height="98" class="red"><a  href="/newasf/alipay">支付宝在线支付</a></td>
                         </tr>
                         <tr>
-                          <td width="310" height="98"><a href="/pay" class="sp a7"></a></td>
-                          <td height="98" class="red"><a  href="/pay">财付通在线支付</a></td>
+                          <td width="310" height="98"><a href="/newasf/pay" class="sp a7"></a></td>
+                          <td height="98" class="red"><a  href="/newasf/pay">财付通在线支付</a></td>
                         </tr>
                         <tr>
-                          <td width="310" height="98"><a href="/yeepay"class="sp a8"></a></td>
-                          <td height="98" class="red"><a  href="/yeepay">易宝ePOS支付</a></td>
+                          <td width="310" height="98"><a href="/newasf/yeepay"class="sp a8"></a></td>
+                          <td height="98" class="red"><a  href="/newasf/yeepay">易宝ePOS支付</a></td>
                         </tr>
                       </table>
                     </li>
@@ -582,7 +575,7 @@
                     <li><a href="/newasf/about/service" target="_blank">会员服务</a> |</li>
                     <li><a href="/newasf/about/privacy" target="_blank">隐私保护</a> |</li>
                     <li><a href="/newasf/about/job" target="_blank">人才招聘</a> |</li>
-                    <li><a href="http://www.cata.org.cn/clientWeb/frm_Single_Search.aspx?name=%u5E7F%u5DDE%u7F8E%u4E50%u5546%u52A1%u670D%u52A1%u6709%u9650%u516C%u53F8&type=agentname&leixing=&chengshi=&chengqu=" target="_blank">中国航空运输协会</a> |</li>
+                    <li><a href="http://www.cata.org.cn/ZGRZ/ZZCX/" target="_blank">中国航空运输协会</a> |</li>
                     <li><a href="/newasf/Public/images/zz_08.jpg" target="_blank">企业营业执照</a> |</li>
                     <li><a href="/newasf/Public/images/ylzg.jpg" target="_blank">民航客运一类代理</a></li>
                 </ul>
@@ -642,9 +635,8 @@
 
      </div>
 
-                              <script language="JavaScript" src="/newasf/iflight/sidebar"></script>
-                                                      <script id="kf53" language="JavaScript" src ="http://chat.53kf.com/kf.php?arg=meile10&style=2"></script>
-                                                    
+                             <script type="text/javascript" src="/newasf/kf/leftKf"></script>
+                            
      <script type="text/javascript">
          /* <![CDATA[ */
          var google_conversion_id = 990797250;
@@ -671,15 +663,7 @@
      });
  </script>
 
- 	<!--在线查询和QQ咨询-->
-    <div id="line_query_qq">
-    	<dl>
-       	  <dt><span>关闭</span></dt>
-          <dd class="kf"><a href="javascript:;" onclick="open_kf()">在线查询</a></dd>
-          <dd><span><script charset="utf-8" type="text/javascript" src="http://wpa.b.qq.com/cgi/wpa.php?key=XzkzODAwOTkwMl85Njg3Ml80MDA2MDg1MTg4Xw"></script></span></dd>
-        </dl>
-    </div>
-  
+ 
     <style type="text/css">
     #line_query_qq{width:140px;height:248px;background:url(/newasf/Public/images/line_query_qq.gif) no-repeat;position:absolute;top:170px;right:0;}
 	#line_query_qq dt{height:18px;}

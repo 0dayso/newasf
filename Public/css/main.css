@@ -468,7 +468,7 @@ label.kfpj a.a0{background-position:0 -200px}
 #news_dt li a{float:left;}
 #news_dt li a.lt{color:#333333;width:600px;overflow:hidden;margin-right:10px;background:url(../images/li_dot1.gif) no-repeat 0 center;padding-left:10px;}
 #news_dt li a.lt:hover{color:#f60;}
-
+#news_dt .content img{max-width: 700px;}
 /*合作伙伴*/
 #partner h2{font-weight:bold;font-size:14px;color:#000;padding-top:5px;}
 #partner *{margin-bottom:10px;}

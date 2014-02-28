@@ -802,7 +802,7 @@ class SettingAction extends IniAction {
 				$data['first_choice']=1;	
 			}			
 			$passenger->create($data);
-			$passenger->add();//添加数据
+			//$passenger->add();//添加数据
 			
 			if(!empty($_POST['data'])){
 				foreach($_POST['data']['t_id'] as $key=>$val){
@@ -828,10 +828,8 @@ class SettingAction extends IniAction {
 			foreach($arr as $k=>$v){
 				$document->add($v);//添加数据
 			}
-			$this->success('添加成功',U('/Member/Setting/passengerlist'));
+				$this->success('添加成功',U('/Member/Setting/passengerlist'));
 		}
-		//print_r($arr);
-		//print_r($_POST);
 		$this->title="增加常用旅客";
 		$this->display();
     }
@@ -953,4 +951,21 @@ class SettingAction extends IniAction {
 			$this->error('该邮箱已注册过'); 				
 		}	
 	}
+
+
+
+	//注册后为会员设置客服
+    function setKf(){
+        if(getUid()){
+            $uid=D('Member')->where(array('id'=>getUid()))->getField('user_id');
+            if($uid){ //如果已设置了客服 返回false
+                $this->error('客服已设置');
+            }
+            $rs=D('User')->assignUserid();
+            if($rs){
+                $this->success('完成',U('/index'));
+            }
+        }
+    }
 }
+

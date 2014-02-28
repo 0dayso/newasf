@@ -82,16 +82,49 @@
                 </div>
 				<div id="hot_recom">
 					<h2>热门推荐</h2>
+				<!--
 					<ul>
-                        <volist name="push['list']" id="vo">
+							<volist name="push['list']" id="vo">
+							<li><label></label>
+								<a href='{:U("/News/info/$vo[id]","","html")}'>{$vo.title}</a>
+							   <if condition="$vo[is_push] neq 0"> <span class="hot"></span></if>
+							</li>
+							</volist>
+							<li><label></label><a href="{:U('/pages/guandao','','html')}" target="_blank">6个精选城市享受美联航商务头等舱往返专享价</a></li>
+							<li><label></label><a href="{:U('/pages/HaiHang','','html')}" target="_blank">全新北京往返芝加哥直飞航线9月启航</a></li>
+						</ul>
+					-->
+						<ul>
+
                         <li><label></label>
-                            <a href='{:U("/News/info/$vo[id]","","html")}'>{$vo.title}</a>
-                           <if condition="$vo[is_push] neq 0"> <span class="hot"></span></if>
-                        </li>
-                        </volist>
-                        <li><label></label><a href="{:U('/pages/guandao','','html')}" target="_blank">6个精选城市享受美联航商务头等舱往返专享价</a></li>
-                        <li><label></label><a href="{:U('/pages/HaiHang','','html')}" target="_blank">全新北京往返芝加哥直飞航线9月启航</a></li>
+
+                            <a href='/News/info/126.html'>爱尚飞与您相约圣诞元旦双节狂欢</a>
+
+                           <span class="hot"></span>                        </li><li><label></label>
+
+                            <a href='/News/info/328.html'>日本航空公司宣布“梦想”客机再抛锚</a>
+
+                                                   </li><li><label></label>
+
+                            <a href='/News/info/281.html'>辽宁省首家“航空特色校”落户沈阳三台子五校</a>
+
+                                                   </li><li><label></label>
+
+                            <a href='/News/info/198.html'>穗港往返北美超值精选</a>
+
+                                                   </li><li><label></label>
+
+                            <a href='/News/info/197.html'>京沪往返欧洲低价推荐</a>
+
+                                                   </li>                        <li><label></label><a href="/pages/guandao.html" target="_blank">6个精选城市享受美联航商务头等舱往返专享价</a></li>
+
+                        <li><label></label><a href="/pages/HaiHang.html" target="_blank">全新北京往返芝加哥直飞航线9月启航</a></li>
+
 					</ul>
+
+					
+					
+					
 				</div>
                 
                 <include file="Public:gallery" /> <!--百宝箱-->

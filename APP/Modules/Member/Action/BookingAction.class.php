@@ -65,6 +65,7 @@ class BookingAction extends IniAction {
                  $val = $orderDB->format($val);
             foreach($val as $k=>$v){
                 if($key=='process'){
+                    $v['yfje']=$v['xj'];
                     $v['xj']=$v['xj']+$v['xjj'];
                 }else if( $key=='cancel'){
                     $v['yfje']=$v['xj'];

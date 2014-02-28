@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>404 错误 - 爱尚飞国际机票网</title>
+    <title>会员服务 - 爱尚飞国际机票网</title>
     <link rel="stylesheet" href="/newasf/Public/css/main.css" type="text/css" />
     <script type="text/javascript" src="/newasf/Public/js/jquery-1.8.3.min.js"></script>
     <script type="text/javascript" src="/newasf/Public/js/main.js"></script>
@@ -13,16 +13,9 @@
     var BaseInfo = {
         'path':"/newasf/"
     };
-
-    function open_kf(){
-            setIsinvited();hz6d_cus_web_msg_open();
-        }
 </script>
 <div id="hd_top">
-        <div class="wd960">
-							<span class="left">您好，欢迎光临爱尚飞国际机票网<a href="/newasf/member/login">登录</a><a href="/newasf/member/register">注册</a></span>            <span class="right">
-                             <a class="spr gz"></a><a href="http://e.weibo.com/aishangfei2012?ref=http%3A%2F%2Fweibo.com%2Fu%2F2014524587%3Fwvr%3D5%26" class="ml0" target="_blank">关注我们</a><a class="spr wx"></a><a href="javascript:;" class="ml0" id="weixin_me">微信我们</a><!--<a href="/newasf/iflight/verify" class="ts">机票验真</a>--><a href="/newasf/help" class="bz">帮助中心</a><a class="spr dh"></a></span>
-        </div>
+        <div class="wd960"> <script type="text/javascript"  src="/newasf/Public/topMenu"></script></div>
     </div>
     <div id="hd_logo">
         <div class="wd960">
@@ -35,91 +28,80 @@
             <ul class="nav">
                 <li><a href="/newasf/">首页</a></li>
                 <li><a  href="/newasf/iflight">国际机票</a></li>
-                <li><a  href="/newasf/about/service">会员服务</a></li>
+                <li><a class='active' href="/newasf/about/service">会员服务</a></li>
                 <li><a  href="/newasf/jifen">积fun商城</a></li>
-                <li><a  href="/newasf/adviser">专业顾问</a></li>
+                <li><a  href="/newasf/Adviser/review_20">专业顾问</a></li>
                 <li><a  href="/newasf/activity" class="new">活动频道<span><img src="/newasf/Public/images/top_nav_new.gif" alt="new"/></span></a></li>
             </ul>
         </div>
 	</div>
-<style type="text/css">
-    input{font-size: 12px;}
-    td{font-size: 12px;}
-    .p2{font-size: 12px;}
-    .p6{font-size: 12px; color: #1b6ad8;}
-    a{color: #1b6ad8text-decoration: none;}
-    a:hover{color: red;}
-</style>
-
-<body oncontextmenu="return true" onselectstart="return true">
-<p align="center">
-</p>
-<p align="center">
-</p>
-<table cellspacing="0" cellpadding="0" width="540" align="center" border="0" style="margin-top: 50px;">
-    <tbody>
-    <tr>
-        <td valign="top" height="270">
-            <div align="center">
-
-                <img height="211" src="/newasf/Public/img/404/error.gif" width="329"><br>
-                <br>
-                <table cellspacing="0" cellpadding="0" width="80%" border="0">
-                    <tbody>
-                    <tr>
-                        <td>
-                            <font class="p2">&nbsp;&nbsp;&nbsp; <font color="#ff0000">
-                                <img height="13" src="/newasf/Public/img/404/error_emessage.gif" width="12">&nbsp;无法访问本页的原因是：</font>
-                            </font>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td height="8">
-                        </td>
-                    <tr>
-                        <td>
-                            <div style="position: relative; margin-left: 120px">
-                                <font color="#000000"><br/><div id="error_pro">您所请求的页面不存在</div></font><br/>
-                                <br/>
-                                </div>
-                            <br />
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td height="5">
-        </td>
-    <tr>
-        <td align="middle">
-            <center>
-                <table cellspacing="0" cellpadding="0" width="480" border="0"  style="margin-bottom: 10px;">
-                    <tbody>
-                    <tr>
-                        <td width="6">
-                            <img height="26" src="/newasf/Public/img/404/error_left.gif" width="7">
-                        </td>
-                        <td background="/newasf/Public/img/404/error_bg.gif">
-                            <div align="center">
-                                <font class="p6"><a href="/newasf/">返回首页</a> | <a href="javascript:history.go(-1)">返回上页</a>
-                                </font>
-                            </div>
-                        </td>
-                        <td width="7">
-                            <img src="/newasf/Public/img/404/error_right.gif">
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </center>
-        </td>
-    </tr>
-    </tbody>
-</table>
-
+<style type="text/css">#kfivtwin{display:none!important;/*隐藏53客服*/}</style>
+    <div id="cont">
+        <div class="wd960 mt10 bgWhite" id="memService">
+        	<h1 class="h1_tit_nav">你当前所在位置：<a href="/newasf/" class="sy">首页</a> > <a class="cur">会员服务</a></h1>
+            <h2>爱尚飞国际机票网为广大用户提供优质、专业、便捷、实惠的全面会员服务，包括：</h2>
+            <ul>
+            	<li>
+                	<span class="img img0"></span>
+                    <span class="rt">
+                    	<a href="/newasf/member/register" class="button">免费注册会员</a>
+                        <a class="tit">注册成功后赠送50元代金券</a>
+                        <a>为感谢广大会员客户对爱尚飞国际机票网的信任和支持，每位新注册会员可获赠50元代金券，用于购买机票时使用。</a>
+                        <a class="ts">(温馨提示：在出票前请向您的旅行顾问提出使用该代金券）</a>
+                    </span>
+                </li>
+                <li>
+                	<span class="img img1"></span>
+                    <span class="rt">
+                        <a class="tit">涵盖全球153家航空公司预订业务</a>
+                        <a>爱尚飞国际机票网目前的业务范围已覆盖全球153家国际航空公司的国际航班票务查询和预定，拥有强大的航线资讯，协助出行旅客做出购买时机判断，每周特价分销，为旅客把握最低价出行机会。</a>
+                    </span>
+                </li>
+                <li>
+                	<span class="img img2"></span>
+                    <span class="rt">
+                        <a class="tit">专业旅行顾问为您提供一对一咨询服务</a>
+                        <a>通过爱尚飞国际机票网进行国际机票的查询和预定，全程有专业旅行顾问为您提供一对一咨询服务，为您解疑答惑，伴随您查询和预定的每一步，为您的订票出行节省大量的精力和时间，让旅客体验无微不至的优质服务。</a>
+                    </span>
+                </li>
+                <li>
+                	<span class="img img3"></span>
+                    <span class="rt">
+                        <a class="tit">高性价比票价及优质票务服务</a>
+                        <a>爱尚飞国际机票网专业从事全球153家国际航空公司的国际机票直销业务，并与数十家航空公司有着长期稳定的业务合作关系，无论是价格还是服务上都具备不可比拟的竞争优势，可为广大客户提供高性价比的票价和质优的服务。</a>
+                    </span>
+                </li>
+                <li>
+                	<span class="img img4"></span>
+                    <span class="rt">
+                        <a class="tit">便捷的票务在线预订功能</a>
+                        <a>爱尚飞国际机票网具备全面的软硬件设施，拥用ABACUS、ETERM、AMADEUS等世界著名航空公司分销系统，为旅客提供全面、准确、及时的航班信息及订座服务，提供网上航班查询及票务预定服务，无论何时何地，机票轻松搞定，让您的出行更便捷。</a>
+                    </span>
+                </li>
+                <li>
+                	<span class="img img5"></span>
+                    <span class="rt">
+                        <a class="tit">100%先出票,验票后再付款</a>
+                        <a>您可以在爱尚飞国际机票网专职客服顾问的帮助下进行在线下单，我们保证100%出票；在电子客票出票后，您可以先检验票是否真实有效，并确定行程没有问题吗，最后一步再付款。</a>
+                    </span>
+                </li>
+                <li>
+                	<span class="img img6"></span>
+                    <span class="rt">
+                        <a class="tit">会员成功预订及评价送积fun，兑换丰厚礼品</a>
+                        <a>您在成为爱尚飞国际机票网的尊贵会员后,每次成功预订及对我们的服务和乘机感受进行评价,都可以获赠相应的积fun,积fun可以兑换丰厚礼品。</a>
+                    </span>
+                </li>
+                <li>
+                	<span class="img img7"></span>
+                    <span class="rt">
+                        <a class="tit">免费送票上门服务(限北京、上海、广州、深圳)</a>
+                        <a>爱尚飞国际机票网为广大旅客提供免费送票上门服务(限北京、上海、广州、深圳)，随着电子机票的普及，旅客将可获得多种取票方式。对于以上一线城市外的客户我们采取邮寄或快递的方式为您送达机票。</a>
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </div>
  <div id="footer">
     	<div class="wd960">
             <div id="ft_link">
@@ -129,7 +111,7 @@
                     <li><a href="/newasf/about/service" target="_blank">会员服务</a> |</li>
                     <li><a href="/newasf/about/privacy" target="_blank">隐私保护</a> |</li>
                     <li><a href="/newasf/about/job" target="_blank">人才招聘</a> |</li>
-                    <li><a href="http://www.cata.org.cn/clientWeb/frm_Single_Search.aspx?name=%u5E7F%u5DDE%u7F8E%u4E50%u5546%u52A1%u670D%u52A1%u6709%u9650%u516C%u53F8&type=agentname&leixing=&chengshi=&chengqu=" target="_blank">中国航空运输协会</a> |</li>
+                    <li><a href="http://www.cata.org.cn/ZGRZ/ZZCX/" target="_blank">中国航空运输协会</a> |</li>
                     <li><a href="/newasf/Public/images/zz_08.jpg" target="_blank">企业营业执照</a> |</li>
                     <li><a href="/newasf/Public/images/ylzg.jpg" target="_blank">民航客运一类代理</a></li>
                 </ul>
@@ -149,7 +131,7 @@
                 <a class="a7" href="http://www.cyberpolice.cn/wfjb/" target="_blank"></a>
             </div>
 
-
+        <script type="text/javascript" src="/newasf/Public/footerJs"></script>
         <div style="display:none;">
                 <script type="text/javascript">
         var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
@@ -189,9 +171,7 @@
 
      </div>
 
-                              <script language="JavaScript" src="/newasf/iflight/sidebar"></script>
-                                                 <script id="kf53" language="JavaScript" src ="http://chat.53kf.com/kf.php?arg=meile10&style=1"></script>
-                                                    
+
      <script type="text/javascript">
          /* <![CDATA[ */
          var google_conversion_id = 990797250;
@@ -218,15 +198,7 @@
      });
  </script>
 
- 	<!--在线查询和QQ咨询-->
-    <div id="line_query_qq">
-    	<dl>
-       	  <dt><span>关闭</span></dt>
-          <dd class="kf"><a href="javascript:;" onclick="open_kf()">在线查询</a></dd>
-          <dd><span><script charset="utf-8" type="text/javascript" src="http://wpa.b.qq.com/cgi/wpa.php?key=XzkzODAwOTkwMl85Njg3Ml80MDA2MDg1MTg4Xw"></script></span></dd>
-        </dl>
-    </div>
-  
+
     <style type="text/css">
     #line_query_qq{width:140px;height:248px;background:url(/newasf/Public/images/line_query_qq.gif) no-repeat;position:absolute;top:170px;right:0;}
 	#line_query_qq dt{height:18px;}

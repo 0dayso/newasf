@@ -1,78 +1,42 @@
-<script  src="__PUBLIC__/dwz/js/modify.js"></script>
-<style type="text/css">
-    .pageFormContent p{width: 300px}
-</style>
-<div class="pageContent">
-    <form method="post" action="__URL__/insert/navTabId/__MODULE__-index" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone)">
-        <input type="hidden" name="user_id" value="<?php echo $_SESSION[C('USER_AUTH_KEY')] ?>"/>
-        <input type="hidden" name="id" value="{$vo.id}" />
-        <div class="pageFormContent" layoutH="58">
-            <!--
-            <div class="unit">
-                <label>重置密码：</label>
-                <input type="text" name="resetPwd" > <INPUT type="button" value="重置密码" onclick="resetPwd()" class="submit" style="height:25px">
-            </div>
-            -->
-            <p>
-                <label>帐号:</label>
-                <input type="text"  name="username" value="{$vo['username']}" class="text"  />
-            </p>
-            <p>
-                <label>密码:</label>
-                <input type="text"  value="{$vo['password']}" class="text"  />
-            </p>
-            <p>
-                <label>姓名:</label><input type="text"  value="{$vo['name']}" class="text" name="name" />
-            </p>
-            <p>
-                <label>手机:</label><input type="text"  value="{$vo['mobile']}" name="mobile" class="text" />
-            </p>
-            <p>
-                <label>性别:</label>
-                <select name="sex" class="sex">
-                    <option value="0" selected="selected">先生</option>
-                    <option value="1"  <if condition="$vo.sex eq 1">selected="selected"</if>>女士</option>
-                </select>
-            </p>
-            <p>
-                <label>电话:</label><input type="text"  value="{$vo['telephone']}" class="text" name="telephone" />
-            </p>
-            <p>
-                <label>电子邮件:</label><input type="text"  value="{$vo['email']}" class="text" name="email" />
-            </p>
-            <p>
-                <label>邮编:</label><input type="text"  value="{$vo['zip_code']}" class="text" name="zip_code" />
-            </p>
-            <p>
-                <label>推荐人id:</label><input type="text"  value="{$vo['invite_id']}" class="text" name="invite_id" />
-            </p>
-            <p>
-                <label>会员积分:</label><input type="text"  value="{$vo['points']}" class="text"  name="points"/>
-            </p>
-            <p  id="addcodePCT" val="{$vo.province},{$vo.city}">
-                <label>所在地:</label>
-                <select name="province" value="{$vo['province']}"  class="province" id="province_sel">
-                    <option value="">- -</option>
-                </select>
-                <select name="city"  value="{$vo['city']}" class="city" id="city_sel">
-                    <option value="">- -</option>
-                </select>
-            </p>
-            <div class="unit">
-                <label>详细地址:</label>
-                <input type="text" size="38" value="{$vo['address']}" class="text" name="address" />
-            </div>
-            <p>
-                <label>会员返利:</label><input type="text"  value="{$vo['rebate']}" class="text" name="rebate" />
-            </p>
-            <p>
-                <label>专职客服:</label>
-                <input type="text"  value="{$vo['user']['name']}" class="text"  lookup="org.name"  readonly="readonly" name="user_name" />
-                <a class="btnLook" href="__GROUP__/User/userData" lookupGroup="org" width="650" height="300" title="查找带回">查找带回</a>
-                <input type="hidden"  value="{$vo['user']['id']}" class="text" lookup="org.id"  readonly="readonly" name="user_id" />
-            </p>
 
-        </div>
+<!--<script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>-->
+<script type="text/javascript" src="__PUBLIC__/js/member.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/modify.js"></script>
+
+<style type="text/css">
+.add{margin-left:10px;}
+.add span{font-weight:bold;}
+.mar_left{margin-left:25px;}
+.add input{float:none;}
+.add ul li{margin-bottom:5px;}
+</style>
+
+<div class="add">
+    <form method="post" action="__URL__/add/navTabId/__MODULE__-index" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone)">
+        <ul>
+            <li><span>手机号码：</span> <input type="text"       value="" class="text"  name="mobile" /><span style="color:#CCC;">(请输入会员手机号码)</span></li>
+            <li><span class="mar_left">密码：</span>    <input  type="text"  value="123456"  class="text"  name="password"/></li>
+            <li><span>确认密码：</span>    <input type="text"   value="123456"  class="text"  name="password2"/></li>
+            <li><span class="mar_left">账号：</span>    <input type="text"       value=""  class="text"  name="" /><span style="color:#CCC;">（即胜意系统中客户的会员号，建议填写）</span></li>
+            <li><span class="mar_left">姓名：</span>    <input type="text"       value=""  class="text"  name="name" /></li>
+            <li><span class="mar_left">昵称：</span>    <input type="text"       value=""  class="text"  name="nickname" /></li></li>
+            <li><span class="mar_left">性别：</span>    <select name="sex" class="sex"><option value="0">男</option><option value="1">女</option></select></li>
+            <li><span class="mar_left">生日：</span>
+                <select name="year" id="idYear" on=""><option value="0">请选择年份</option></select>
+                <select name="month" id="idMonth"  on=""><option value="0">请选择月份</option></select>
+                <select name="day" id="idDay" on=""><option value="0">请选择日期</option></select>
+            </li>
+            <li><span class="mar_left">职业：</span>
+                <select name="profession">
+                    <option value="0">请选择职业</option><option value="1">白领</option><option value="2">教师</option><option value="3">学生</option>
+                    <option value="4">公务员</option><option value="5">老板</option<option value="6">自由职业者</option><option value="7">其它</option>
+                </select>
+            </li>
+            <li id="addcodePCT" val="{$userInfo.province},{$userInfo.city}"><span>常用出发城市：</span>
+                <select name="province" value=""  class="province" id="province_sel"><option value="">- -</option></select>省
+                <select name="city"  value="" class="city" id="city_sel"><option value="">- -</option></select>市
+            </li>             
+        </ul>    
         <div class="formBar">
             <ul>
                 <li><div class="buttonActive"><div class="buttonContent"><button type="submit">Submit</button></div></div></li>
@@ -80,6 +44,10 @@
             </ul>
         </div>
     </form>
-
 </div>
+<script type="text/javascript">
+	$(function(){
+		optionDate("#idYear","#idMonth","#idDay");
+		});
+</script>
 

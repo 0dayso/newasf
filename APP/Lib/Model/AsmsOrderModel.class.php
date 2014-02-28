@@ -516,7 +516,12 @@ class AsmsOrderModel extends RelationModel{
         $data=curl_post($url,$post,COOKIE_FILE);
 
         if(strpos($data,'正在处理')){
+            $data['ddbh']=$ddbh;
+            $data['zf_fkf']=1;
+            $this->save($data);
             $xjj && D('Points')->cutPoints(getUid(),$xjj,"订单:$ddbh 消费",2);
+            $rs=$this->field('xsj')->find($ddbh);
+            D('Points')->addPoints(getUid(),$rs['xsj'],"支付订单:$ddbh ");
             return true;
         }else{
             return false;

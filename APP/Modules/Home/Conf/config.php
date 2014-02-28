@@ -7,11 +7,18 @@ return array(
 
     'HTML_CACHE_ON'=>true, // 开启静态缓存
     'HTML_FILE_SUFFIX'  =>  '.shtml', // 设置静态缓存后缀为.shtml
+    'HTML_CACHE_TIME' =>60,
     'HTML_CACHE_RULES'=> array(
-    //    'ActionName(小写)'            => array('静态规则', '静态缓存有效期', '附加规则'),
-    //    'ModuleName(小写)'            => array('静态规则', '静态缓存有效期', '附加规则'),
-    //    'ModuleName(小写):ActionName(小写)' => array('静态规则', '静态缓存有效期', '附加规则'),
-        '*'=>array('{$_SERVER.REQUEST_URI|md5}'),
-        //…更多操作的静态规则
-    )
+        'Index:index'         => array('{$_SERVER.HTTP_HOST}_{:group}_{:module}_{:action}'),
+        'Activity:'           => array('{$_SERVER.HTTP_HOST}_{:group}_{:module}_{:action}'),
+        'Jifen:'            => array('{$_SERVER.HTTP_HOST}_{:group}_{:module}_{:action}_{$_SERVER.REQUEST_URI|md5}'),
+        'News'        => array('{$_SERVER.HTTP_HOST}_{:group}_{:module}_{:action}_{$_SERVER.REQUEST_URI|md5}'),
+        'Adviser:reviewList'            => array('{$_SERVER.HTTP_HOST}_{:group}_{:module}_{:action}_{id}_{p}',3600),
+        'Airline:pl'            => array('{$_SERVER.HTTP_HOST}_{:group}_{:module}_{:action}_{from}_{to}_{p}',3600),
+        'help:'            => array('{$_SERVER.HTTP_HOST}_{:group}_{:module}_{:action}'),
+        'about:'            => array('{$_SERVER.HTTP_HOST}_{:group}_{:module}_{:action}'),
+
+        // '*'=>array('{$_SERVER.REQUEST_URI|md5}'),
+    ),
+
 );

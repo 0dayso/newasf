@@ -7,7 +7,7 @@
                 <li><a href="{:U('/about/service')}" target="_blank">会员服务</a> |</li>
                 <li><a href="{:U('/about/privacy')}" target="_blank">隐私保护</a> |</li>
                 <li><a href="{:U('/about/job')}" target="_blank">人才招聘</a> |</li>
-                <li><a href="http://www.cata.org.cn/clientWeb/frm_Single_Search.aspx?name=%u5E7F%u5DDE%u7F8E%u4E50%u5546%u52A1%u670D%u52A1%u6709%u9650%u516C%u53F8&type=agentname&leixing=&chengshi=&chengqu=" target="_blank">中国航空运输协会</a> |</li>
+                <li><a href="http://www.cata.org.cn/ZGRZ/ZZCX/" target="_blank">中国航空运输协会</a> |</li>
                 <li><a href="__PUBLIC__/images/zz_08.jpg" target="_blank">企业营业执照</a> |</li>
                 <li><a href="__PUBLIC__/images/ylzg.jpg" target="_blank">民航客运一类代理</a></li>
             </ul>
@@ -59,29 +59,14 @@
             </div>
         </noscript>
 
-
         <div style="display:none">
             <script language="javascript" type="text/javascript" src="http://js.users.51.la/5149478.js"></script>
             <noscript>
                 <a href="http://www.51.la/?5149478" target="_blank"><img alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/5149478.asp" style="border:none" /></a>
             </noscript>
-
         </div>
 
-
-        <?php if($userinfo){ ?>
-        <script type="text/javascript" src="{:U('api/kf/leftKf')}"></script>
-        <?php  }elseif(MODULE_NAME != "Jifen" && MODULE_NAME != "Member" ){ ?>
-        <script language="JavaScript" src="{:U('/iflight/sidebar')}"></script>
-        <?php  if(MODULE_NAME == 'Zt'){ ?>
-        <script id="kf53" language="JavaScript" src ="http://chat.53kf.com/kf.php?arg=meile13&style=2"></script>
-        <?php }else{ ?>
-        <script id="kf53" language="JavaScript" src ="http://chat.53kf.com/kf.php?arg=meile13&style=1"></script>
-        <?php }?>
-        <?php  }elseif(ACTION_NAME == 'register'){ ?>
-        <script id="kf53" language="JavaScript" src ="http://chat.53kf.com/kf.php?arg=meile13&style=2"></script>
-        <?php }?>
-
+        <script type="text/javascript" src="{:U('/Public/footerJs')}"></script>
         <script type="text/javascript">
             /* <![CDATA[ */
             var google_conversion_id = 990797250;

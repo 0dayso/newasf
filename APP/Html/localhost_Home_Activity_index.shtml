@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>主题活动 - 爱尚飞国际机票网</title>
+    <title>活动频道 - 爱尚飞国际机票网</title>
     <link rel="stylesheet" href="/newasf/Public/css/main.css" type="text/css" />
     <link rel="stylesheet" href="/newasf/Public/css/activity.css" type="text/css" />
     <script type="text/javascript" src="/newasf/Public/js/jquery-1.8.3.min.js"></script>
@@ -12,43 +12,23 @@
     <style type="text/css">#kfivtwin{display:none!important;/*隐藏53客服*/}</style>
 </head>
 <body>
-<script type="text/javascript">
-    function open_kf(){
-            window.open('http://wpa.qq.com/msgrd?v=3&uin=2355356102&site=qq&menu=yes');
-        }
-</script>
 <div id="hd_top">
-        <div class="wd960">
-			<span class="left">您好,
-				<a title="进入会员中心" href="/newasf/Member/index">admintest</a>
-					普通会员  <a href="/newasf/member/out">退出</a>
-				</span>
-
-			            <span class="right">
-             <a id="myAisf_w" href="/newasf/member">我的爱尚飞</a>
-                 <ul id="myAisf_u">
-                     <li><a href="/newasf/member/booking">我的订单</a></li>
-                     <li><a href="/newasf/member/information">个人资料</a></li>
-                     <li><a  target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2355356102&site=qq&menu=yes">咨询我的顾问</a></li>
-                     <li><a href="/newasf/member/editpwd">修改密码</a></li>
-                 </ul>
-                 <a id="myAisf_t"></a>                <a class="spr gz"></a><a href="http://e.weibo.com/aishangfei2012?ref=http%3A%2F%2Fweibo.com%2Fu%2F2014524587%3Fwvr%3D5%26" class="ml0" target="_blank">关注我们</a><a class="spr wx"></a><a href="javascript:;" class="ml0" id="weixin_me">微信我们</a><!--<a href="/newasf/iflight/verify" class="ts">机票验真</a>--><a href="/newasf/help" class="bz">帮助中心</a><a class="spr dh"></a></span>
-        </div>
+        <div class="wd960"><script type="text/javascript"  src="/newasf/Public/topMenu"></script></div>
     </div>
     <div id="hd_logo">
         <div class="wd960">
             <a href="/newasf/" class="left"><img src="/newasf/Public/images/logo.gif" alt="logo" class="logo" /></a>
-            <div class="right hd_nav"><a href="/newasf/">首页</a>|<a href="/newasf/iflight">国际机票</a>|<a href="/newasf/about/service">会员服务</a>|<a href="/newasf/jifen">积fun商城</a>|<a href="/newasf/Adviser/review_51">专业顾问</a></div>
+            <div class="right hd_nav"><a href="/newasf/">首页</a>|<a href="/newasf/iflight">国际机票</a>|<a href="/newasf/about/service">会员服务</a>|<a href="/newasf/jifen">积fun商城</a>|<a href="/newasf/Adviser/review_20">专业顾问</a></div>
         </div>
     </div>
-        <div id="top_img1">
-      <div class="wd1080"><img src="/newasf/Public/images/activity/top_img1.jpg" /></div>
+        <div id="top_img0">
+      <div class="wd1080"><img src="/newasf/Public/images/activity/top_img0.jpg" /></div>
     </div>
         <div id="top_nav">
         <div class="wd960">
             <ul>
-                <li><a  href="/newasf/activity">活动首页</a></li>
-                <li><a class='active' href="/newasf/activity/theme">主题活动</a></li>
+                <li><a class='active' href="/newasf/activity">活动首页</a></li>
+                <li><a  href="/newasf/activity/theme">主题活动</a></li>
                 <li><a  href="/newasf/activity/trademark">品牌专区</a></li>
                 <li><a  href="/newasf/activity/sale">特价汇</a></li>
                 <li><a href="/newasf/member/login" target="_blank">我的爱尚飞</a></li>
@@ -56,15 +36,15 @@
         </div>
 	</div>
 
-<div class="wd980 mt10">
-<!--最新活动-->
+<div class="wd980">
+<div class="wd700 left">
 <div class="act_box">
-<h3 class="txt_center">最新活动</h3>
-<div id="themeAd">
+<h3>主题活动推荐</h3>
+<div id="actAd">
 <ul>
- <li><a href="/newasf/zt/thtjbjbm" target="_blank"><img src="/newasf/Public/images/activity/theme_ad1.jpg" /></a></li>
- <li><a href="/newasf/zt/chaoditejia" target="_blank"><img src="/newasf/Public/images/activity/theme_ad2.jpg" /></a></li>
- <li><a href="/newasf/zt/dijialaixi" target="_blank"><img src="/newasf/Public/images/activity/theme_ad3.jpg" /></a></li>
+ <li><a href="/newasf/zt/united_sales2" target="_blank"><img src="/newasf/Public/images/Zt/united_sales2/ad_680_340.jpg" alt="美联航-穗港赴北美畅游超值精选" /></a></li>
+ <li><a href="/newasf/zt/dijialaixi" target="_blank"><img src="/newasf/Public/images/slide_img9.jpg" /></a></li>
+ <li><a href="/newasf/zt/thtjbjbm" target="_blank"><img src="/newasf/Public/images/activity/ib_ad0.jpg" /></a></li>
 </ul>
 <ol>
  <li><a href="javascript:;" class="active">1</a></li>
@@ -73,49 +53,92 @@
 </ol>
 </div>
 </div>
-<!--最新活动 END-->
-
-<!--最新活动-->
 <div class="act_box">
-<h3 class="txt_center">往期活动</h3>
-<ul id="newest_act">
-<li><a href="/newasf/zt/njcg" target="_blank"><img src="/newasf/Public/images/activity/ad1.jpg" /></a></li>
-<li><a href="/newasf/zt/gqcf" target="_blank"><img src="/newasf/Public/images/activity/ad2.jpg" /></a></li>
-<li><a href="/newasf/zt/lxs" target="_blank"><img src="/newasf/Public/images/activity/ad3.jpg" /></a></li>
-<li><a href="/newasf/zt/sdyd2013" target="_blank"><img src="/newasf/Public/images/zt/sdyd2013/ad_335_160.jpg" /></a></li>
-</ul>
+<h3><span class="right"><a href="/newasf/activity/theme" target="_blank">更多》</a></span>热门活动</h3>
+<dl id="hot_act">
+<dt class="m10"><a href="/newasf/zt/airchina_sales" target="_blank"><img src="/newasf/Public/images/zt/airchina_sales/ad_335_160.jpg" /></a></dt>
+<dd>
+<h4>魅力欧洲之旅 新春大放价</h4>
+<p>正值新春旅行之际，爱尚飞与中国国航联手大放价，为即将踏上欧洲途中的您，提供最快捷最实惠的机票服务。往返价1930元起，魅力欧洲之旅，你心动了吗？<a href="/newasf/zt/airchina_sales" target="_blank">查看详情》</a></p>
+<span>关注指数：<em>★★★★★</em></span>
+<!-- Baidu Button BEGIN -->
+<div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare" data="{'url':'http://www.aishangfei.com/zt/airchina_sales','text':'正值新春旅行之际，爱尚飞与中国国航联手大放价，为即将踏上欧洲途中的您，提供最快捷最实惠的机票服务。往返价1930元起，魅力欧洲之旅，你心动了吗？','pic':'http://www.aishangfei.com/Public/images/zt/airchina_sales/ad_335_160.jpg'}">
+<span class="bds_more">分享到：</span>
+<a class="bds_qzone"></a>
+<a class="bds_tsina"></a>
+<a class="bds_tqq"></a>
+<a class="bds_renren"></a>
+<a class="bds_t163"></a>
 </div>
-<!--最新活动 END-->
-
-<div class="wd980">
-<div class="wd320">
-<!--为什么选择爱尚飞-->
-<div class="act_box">
-<h3>为什么选择爱尚飞?</h3>
-<ul id="select_asf">
-<li><strong>全天服务</strong><br/>24小时业务热线服务</li>
-<li><strong>个性定制</strong><br/>专业顾问量身定制行程</li>
-<li><strong>购票无忧</strong><br/>保证先出票,验票后付款</li>
-<li><strong>尊享特权</strong><br/>尊享代金券等多项特权</li>
-</ul>
+<!-- Baidu Button END -->
+</dd>
+<dd class="m10">
+<h4>香港出游澳洲 惊喜大回馈</h4>
+<p>爱尚飞新春大回馈，现与维珍航空联手推出“香港出游澳洲，惊喜大回馈”的活动，往返2400元起，底价回馈，惊喜连连，等您来体验！<a href="/newasf/zt/virgin_atlantic_sales" target="_blank">查看详情》</a></p>
+<span>关注指数：<em>★★★★</em></span>
+<!-- Baidu Button BEGIN -->
+<div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare" data="{'url':'http://www.aishangfei.com/zt/virgin_atlantic_sales','text':'应广大旅客寻求超低价机票的需求，爱尚飞与美联航再次合作，将底价进行到底。为旅客提供从广州、香港往返北美的超值机票，惊喜价格，等您来发现！','pic':'http://www.aishangfei.com/Public/images/zt/virgin_atlantic_sales/ad_335_160.jpg'}">
+<span class="bds_more">分享到：</span>
+<a class="bds_qzone"></a>
+<a class="bds_tsina"></a>
+<a class="bds_tqq"></a>
+<a class="bds_renren"></a>
+<a class="bds_t163"></a>
 </div>
-<!--为什么选择爱尚飞 END-->
+<!-- Baidu Button END -->
+</dd>
+<dt><a href="/newasf/zt/virgin_atlantic_sales" target="_blank"><img src="/newasf/Public/images/zt/virgin_atlantic_sales/ad_335_160.jpg" /></a></dt>
+<dt class="m10"><a href="/newasf/zt/flysas_sales" target="_blank"><img src="/newasf/Public/images/activity/ad7.jpg" /></a></dt>
+<dd>
+<h4>京沪往返欧洲低价推荐</h4>
+<p>为了给旅客提供更加快捷的旅行，爱尚飞与北欧航空强强联手，推出“京沪惠，游欧洲”的超低价活动，京沪往返欧洲3600元起，游客正在火热抢票中。<a href="/newasf/zt/flysas_sales" target="_blank">查看详情》</a></p>
+<span>关注指数：<em>★★★★★</em></span>
+<!-- Baidu Button BEGIN -->
+<div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare" data="{'url':'http://www.aishangfei.com/zt/flysas_sales','text':'为了给旅客提供更加快捷的旅行，爱尚飞与北欧航空强强联手，推出“京沪惠，游欧洲”的超低价活动，京沪往返欧洲3600元起，游客正在火热抢票中。’,'pic':'http://www.aishangfei.com/Public/images/activity/ad7.jpg'}">
+<span class="bds_more">分享到：</span>
+<a class="bds_qzone"></a>
+<a class="bds_tsina"></a>
+<a class="bds_tqq"></a>
+<a class="bds_renren"></a>
+<a class="bds_t163"></a>
 </div>
-
-<div class="wd650">
-<!--关注我们-->
-<div class="act_box">
-<h3>关注我们</h3>
-<dl id="theme_atte">
-<dt><img src="/newasf/Public/images/weixin_ewm.gif" />加爱尚飞微信号<em>aishangfeiweixin</em>为好友或直接扫描左侧二维码，可了解更多活动及优惠信息</dt>
-<dd><span>@ 爱尚飞国际机票网</span>加关注爱尚飞官方微博,了解最新特价资讯,参加活动赢大奖</dd>
+<!-- Baidu Button END -->
+</dd>
 </dl>
 </div>
-<!--关注我们 END-->
 </div>
+
+<div class="wd270 right">
+<div class="act_box" id="act_info">
+<h3><span><strong>活动</strong>资讯</span></h3>
+<ul>
+<li><a href='/newasf/News/info/9.html' title="“爱尚飞.伴你放飞梦想”微电影大赛启动" target="_blank"><span></span> “爱尚飞.伴你放飞梦想”微电影大&hellip;</a>
+    <span class="hot"></span></li><li><a href='/newasf/News/info/8.html' title="留学生机票实惠季活动隆重上线" target="_blank"><span></span> 留学生机票实惠季活动隆重上线</a>
+    <span class="hot"></span></li><li><a href='/newasf/News/info/19.html' title="航空业持续盈利，前景大好" target="_blank"><span></span> 航空业持续盈利，前景大好</a>
+    </li><li><a href='/newasf/News/info/18.html' title="十一小长假爱尚飞推出特价机票" target="_blank"><span></span> 十一小长假爱尚飞推出特价机票</a>
+    </li></ul>
+</div>
+
+<div id="r_ad"><a href="/newasf/zt/wdyindex" target="_blank"><img src="/newasf/Public/images/activity/r_ad.jpg" /></a></div>
+
+<div class="act_box">
+<h3>关注我们</h3>
+<div id="attention"><img src="/newasf/Public/images/weixin_ewm.gif" />加爱尚飞微信号<br/><em>aishangfeiweixin</em>为好友或直接扫描左侧二维码，可了解更多活动及优惠信息<span>@ 爱尚飞国际机票网</span></div>
+</div>
+
+<div class="act_box">
+<h3>我们的合作伙伴</h3>
+<a href="/newasf/about/partner" target="_blank"><img src="/newasf/Public/images/activity/partner.jpg" /></a>
 </div>
 
 </div>
+</div>
+
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6671062" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
  <div id="footer">
     	<div class="wd960">
             <div id="ft_link">
@@ -125,7 +148,7 @@
                     <li><a href="/newasf/about/service" target="_blank">会员服务</a> |</li>
                     <li><a href="/newasf/about/privacy" target="_blank">隐私保护</a> |</li>
                     <li><a href="/newasf/about/job" target="_blank">人才招聘</a> |</li>
-                    <li><a href="http://www.cata.org.cn/clientWeb/frm_Single_Search.aspx?name=%u5E7F%u5DDE%u7F8E%u4E50%u5546%u52A1%u670D%u52A1%u6709%u9650%u516C%u53F8&type=agentname&leixing=&chengshi=&chengqu=" target="_blank">中国航空运输协会</a> |</li>
+                    <li><a href="http://www.cata.org.cn/ZGRZ/ZZCX/" target="_blank">中国航空运输协会</a> |</li>
                     <li><a href="/newasf/Public/images/zz_08.jpg" target="_blank">企业营业执照</a> |</li>
                     <li><a href="/newasf/Public/images/ylzg.jpg" target="_blank">民航客运一类代理</a></li>
                 </ul>
@@ -145,7 +168,7 @@
                 <a class="a7" href="http://www.cyberpolice.cn/wfjb/" target="_blank"></a>
             </div>
 
-
+        <script type="text/javascript" src="/newasf/Public/footerJs"></script>
         <div style="display:none;">
                 <script type="text/javascript">
         var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
@@ -185,8 +208,7 @@
 
      </div>
 
-                             <script type="text/javascript" src="/newasf/kf/leftKf"></script>
-                            
+
      <script type="text/javascript">
          /* <![CDATA[ */
          var google_conversion_id = 990797250;
@@ -213,7 +235,7 @@
      });
  </script>
 
- 
+
     <style type="text/css">
     #line_query_qq{width:140px;height:248px;background:url(/newasf/Public/images/line_query_qq.gif) no-repeat;position:absolute;top:170px;right:0;}
 	#line_query_qq dt{height:18px;}

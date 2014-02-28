@@ -27,12 +27,16 @@
 <div class="pageContent">
     <div class="panelBar">
         <ul class="toolBar">
-            <li><a class="add" href="__URL__/add" target="dialog"  rel="add" mask="true"><span>新增</span></a></li>
-            <li><a class="delete" href="__URL__/foreverdelete/id/{sid_user}/navTabId/__MODULE__-index" target="ajaxTodo" title="你确定要删除吗？" warn="请选择用户"><span>删除</span></a></li>
-            <li><a class="edit" href="__URL__/edit/id/{sid_user}" target="dialog" width="650" mask="true" warn="请选择"><span>编辑</span></a></li>
-             <li><a class="edit" href="__URL__/points/id/{sid_user}" target="dialog" mask="true" warn="请选择"><span>积分管理</span></a></li>
-            <li class="line">line</li>
-            <li><a class="icon" href="__URL__/password/id/{sid_user}" target="dialog" mask="true" warn="请选择用户"><span>修改密码</span></a></li>
+            <li><a class="add" href="__URL__/add" target="dialog" height="350" rel="add" mask="true"><span>新增</span></a></li>
+            <if condition="$L_xz eq 1"><!---国际商旅部功能限制--->
+            	<li></li>
+            <else/>
+                <li><a class="delete" href="__URL__/foreverdelete/id/{sid_user}/navTabId/__MODULE__-index" target="ajaxTodo" title="你确定要删除吗？" warn="请选择用户"><span>删除</span></a></li>
+                <li><a class="edit" href="__URL__/edit/id/{sid_user}" target="dialog" width="650" mask="true" warn="请选择"><span>编辑</span></a></li>
+                 <li><a class="edit" href="__URL__/points/id/{sid_user}" target="dialog" mask="true" warn="请选择"><span>积分管理</span></a></li>
+                <li class="line">line</li>
+                <li><a class="icon" href="__URL__/password/id/{sid_user}" target="dialog" mask="true" warn="请选择用户"><span>修改密码</span></a></li>
+            </if>
         </ul>
     </div>
 <style type="text/css">
@@ -59,7 +63,7 @@ th{
             <th width="60">爱钻</th>
             <th width="70">待支付订单</th>
             <th width="80">人工添加订单</th>
-            <th width="40">操作</th>
+            <if condition="$can_bj eq 1"><th></th><else/><th width="40">操作</th></if>
         </tr>
         </thead>
         <tbody>
@@ -76,18 +80,23 @@ th{
                 <td>{$vo['status']}</td>
                 <td <eq name="vo.user.status" value="0">class="bg_red"</eq>>{$vo.user.name}</td>
                 <td>{$vo.source}</td>
-                <td>是</td>
+                <if condition="$vo['source'] eq 1"><td>否</td><else/><td>是</td></td></if>
                 <td>{$vo.jifen}</td>
                 <td>{$vo.aizuan}</td>
                 <td>
                 	<if condition="$vo['totel_zf'] eq 0">
-                    	（<span style=" color:#F00;">0</span>）
+                    	（<span style=" color:#F00;">0</span>）             
                      <else/>
-                     	（<span style=" color:#F00;">{$vo.totel_zf}</span>）<a href="__URL__/order_view/id/{$arrId}" style="color:#06F;" target="dialog" rel="edit">查看</a>
+                     	（<span style=" color:#F00;">{$vo.totel_zf}</span>）
+                        <a href="{:U('/Meile_admin/Order/index')}" target="navTab" rel="Order-index" style="color:#06F;">查看</a>
                      </if>
                 </td>
-                <td><a href="__URL__/order_add"  style="color:#06F;" width="1300" height="500" target="dialog" rel="edit">添加</a></td>
-                <td><a href="__URL__/edit/id/{$vo.id}" width="600" height="550" target="dialog" rel="edit">[编辑]</a></td>
+                <td><a href="__URL__/order_add"  style="color:#06F;" width="1200" height="400" target="dialog" rel="edit">添加</a></td>
+				  <if condition="($can_bj eq 1) OR ($vo['source'] eq 1)"><!---国际客服部/商旅部功能限制--->
+						<td></td>		
+				  <else/>
+						<td><a href="__URL__/edit/id/{$vo.id}" width="600"  width="700" height="550" target="dialog" rel="edit">[编辑]</a></td>
+				  </if>
             </tr>
         </volist>
         </tbody>

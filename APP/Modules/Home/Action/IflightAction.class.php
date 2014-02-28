@@ -114,6 +114,13 @@ class IflightAction extends IniAction {
 	
 	//国际机票查询
 	function flightquery(){
+        if(!$_GET['s_sengine'] && isset($_SESSION['s_sengine'])){
+             $s_keyword=get_encoding($_SESSION['s_keyword']);
+             $request_url = isset($_SERVER['QUERY_STRING']) ? "?s_sengine={$_SESSION['s_sengine']}&s_keyword=$s_keyword&".$_SERVER['QUERY_STRING'] : '';//判断地址后面部分
+        //    $request_url = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI']."&s_sengine={$_SESSION['s_sengine']}&s_keyword={$_SESSION['s_keyword']}" : '';//判断地址后面部分
+            header('HTTP/1.1 301 Moved Permanently');//发出301头部
+            header('Location: '.U($_SERVER['PATH_INFO']).$request_url);//跳转到我的新域名地址
+        }
 		$this->title="国际机票查询";
         $originCode=substr(I("originCode"),0,3);
         $originName=D("City")->getCityName($originCode);

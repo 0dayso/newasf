@@ -5,6 +5,7 @@
 	.lib_Menubox li.hover{padding:0px;background:#fff;width:116px;color:#739242;height:25px;line-height:25px;}
 	.lib_Contentbox{clear:both;margin-top:0px; height:181px; text-align:center;padding-top:8px;}
 	td{text-align:center!important;}
+
 </style>
 <form id="pagerForm" action="__URL__" method="post">
     <input type="hidden" name="pageNum" value="{$_REQUEST['pageNum']|default=1}"/>
@@ -47,22 +48,24 @@
         <table class="table" width="100%" layoutH="115">
             <thead>
                 <tr>
-                    <th width="200" style="text-align:center;">订单ID</th>
-                    <th width="200"  style="text-align:center;">航班航程</th>
+                	<th width="80" style="text-align:center;">会员ID</th>
+                    <th width="100" style="text-align:center;">订单ID</th>
+                    <th width="240"  style="text-align:center;">航班航程</th>
                     <th width="60"  style="text-align:center;">价格（含税）</th>
                     <th width="40"  style="text-align:center;">现金券</th>
                     <th width="60"  style="text-align:center;">应付价格</th>
-                    <th width="100"  style="text-align:center;">下单时间</th>
+                    <th width="60"  style="text-align:center;">下单时间</th>
                     <th width="60"  style="text-align:center;">订单来源</th>
                     <th width="60"  style="text-align:center;" >订单状态</th>
-                    <th width="100"  style="text-align:center;">操作</th>  
+                    <th width="120"  style="text-align:center;">操作</th>  
                 </tr>
             </thead>
             <tbody>
                 <volist name="no_zf" id="vo">                      
                     <tr target="sid_user" rel="">
+                    	<td>{$vo.hyid}</td>
                         <td>{$vo.ddbh}</td>
-                        <td>{$vo.hc_n}&nbsp;&nbsp;&nbsp;{$vo.jp_type}</td>
+                        <td>{$vo.hc_n}&nbsp;&nbsp;&nbsp;<span style="color:#09F;">（{$vo.jp_type}）</span></td>
                         <td>￥{$vo.xsj}</td>
                         <td>无</td>
                         <td>￥{$vo.ysje}</td>
@@ -70,94 +73,129 @@
                         <td>客服提交</td>
                         <td>待付款</td>
                         <td>
-                        <a href="__URL__/order_view/id/{$vo.ddbh}" target="dialog" rel="edit" style="color:#0CF;" width="800" height="450" >查看</a>
+                        <a href="__URL__/order_view/id/{$vo.ddbh}" target="dialog" rel="edit" width="800" height="450"style="color:#0CF;">查看</a>
                         &nbsp;&nbsp;&nbsp;
-                        <a href="__URL__/order_edit/id/{$vo.ddbh}" target="dialog" rel="edit" style="color:#0CF;"  width="1300" height="500">编辑</a></td>
+                        <a href="__URL__/order_edit/id/{$vo.ddbh}" target="dialog" rel="edit" style="color:#0CF;"  width="1150" height="450">编辑</a>
+                        &nbsp;&nbsp;&nbsp;
+                        <a href="__URL__/order_cancel/id/{$vo.ddbh}" target="dialog" rel="edit" style="color:#0CF;"  width="360" height="150">取消订单</a></td>
                     </tr> 
                 </volist>  
             </tbody>
-        </table>
-    </div>
+        </table>                     
+        <div class="panelBar">
+            <div class="pages">
+                <span>显示</span>
+                <select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
+                    <option value="10" <eq name="numPerPage" value="10">selected=selected</eq>>10</option>
+                    <option value="20" <eq name="numPerPage" value="20">selected=selected</eq>>20</option>
+                    <option value="30" <eq name="numPerPage" value="30">selected=selected</eq>>30</option>
+                    <option value="50" <eq name="numPerPage" value="50">selected=selected</eq>>50</option>
+                    <option value="100" <eq name="numPerPage" value="100">selected=selected</eq>>100</option>
+                </select>
+                <span>共{$totalCount}条</span>
+            </div>
+            <div class="pagination" targetType="navTab" totalCount="{$totalCount}" numPerPage="{$numPerPage}" pageNumShown="10" currentPage="{$currentPage}"></div>
+        </div> 
+    </div><!-----待支付订单---->
+    
     <div  id="con_one_2">             
         <table class="table" width="100%" layoutH="115"   style="display:none;">
             <thead>                  
-                <tr>                            
-                    <th width="200" style="text-align:center;">订单ID</th>
-                    <th width="200"  style="text-align:center;">航班航程</th>
+                <tr> 
+                	<th width="80" style="text-align:center;">会员ID</th>                           
+                    <th width="100" style="text-align:center;">订单ID</th>
+                    <th width="240"  style="text-align:center;">航班航程</th>
                     <th width="60"  style="text-align:center;">价格（含税）</th>
                     <th width="40"  style="text-align:center;">现金券</th>
                     <th width="60"  style="text-align:center;">应付价格</th>
-                    <th width="100"  style="text-align:center;">下单时间</th>
+                    <th width="80"  style="text-align:center;">下单时间</th>
                     <th width="60"  style="text-align:center;">订单来源</th>
                     <th width="60"  style="text-align:center;" >订单状态</th>
-                    <th width="100"  style="text-align:center;">操作</th>                       
+                    <th width="80"  style="text-align:center;">操作</th>                       
                 </tr>
             </thead>
             <tbody> 
                 <volist name="yes_zf" id="vo">                       
                     <tr target="sid_user" rel="">
+                    	<td>{$vo.hyid}</td>
                         <td>{$vo.ddbh}</td>
-                        <td>{$vo.hc_n}  {$vo.jp_type}</td>
+                        <td>{$vo.hc_n}&nbsp;&nbsp;&nbsp;<span style="color:#09F;">（{$vo.jp_type}）</span></td>
                         <td>￥{$vo.xsj}</td>
                         <td>无</td>
                         <td>￥{$vo.ysje}</td>
                         <td>{$vo.dprq}</td>
                         <td>客服提交</td>
                         <td>已付款</td>
-                         <td><a href="__URL__/order_view/id/{$vo.ddbh}" target="dialog" rel="edit" style="color:#0CF;" width="970px" height="430px">查看</a></td>
+                         <td><a href="__URL__/order_view/id/{$vo.ddbh}" target="dialog" rel="edit" style="color:#0CF;" width="970" height="430">查看</a></td>
                     </tr>
                 </volist>                        
             </tbody>
-        </table> 
-    </div><!---已支付订单 end--->           
+        </table>
+         <div class="panelBar">
+            <div class="pages">
+                <span>显示</span>
+                <select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
+                    <option value="10" <eq name="numPerPage" value="10">selected=selected</eq>>10</option>
+                    <option value="20" <eq name="numPerPage" value="20">selected=selected</eq>>20</option>
+                    <option value="30" <eq name="numPerPage" value="30">selected=selected</eq>>30</option>
+                    <option value="50" <eq name="numPerPage" value="50">selected=selected</eq>>50</option>
+                    <option value="100" <eq name="numPerPage" value="100">selected=selected</eq>>100</option>
+                </select>
+                <span>共{$totalCount}条</span>
+            </div>
+            <div class="pagination" targetType="navTab" totalCount="{$totalCount}" numPerPage="{$numPerPage}" pageNumShown="10" currentPage="{$currentPage}"></div>
+        </div> 
+    </div><!---已支付订单 end---> 
+              
     <div id="con_one_3">           		
         <table class="table" width="100%" layoutH="115"   style="display:none;">
             <thead>
-                <tr>                            
-                    <th width="200" style="text-align:center;">订单ID</th>
-                    <th width="200"  style="text-align:center;">航班航程</th>
+                <tr>          
+                	<th width="80" style="text-align:center;">会员ID</th>                  
+                    <th width="100" style="text-align:center;">订单ID</th>
+                    <th width="240"  style="text-align:center;">航班航程</th>
                     <th width="60"  style="text-align:center;">价格（含税）</th>
                     <th width="40"  style="text-align:center;">现金券</th>
                     <th width="60"  style="text-align:center;">应付价格</th>
-                    <th width="100"  style="text-align:center;">下单时间</th>
+                    <th width="80"  style="text-align:center;">下单时间</th>
                     <th width="60"  style="text-align:center;">订单来源</th>
                     <th width="60"  style="text-align:center;" >订单状态</th>
-                    <th width="100"  style="text-align:center;">操作</th>                        
+                    <th width="80"  style="text-align:center;">操作</th>                        
                 </tr>
             </thead>
             <tbody>                       
                 <volist name="no_no" id="vo">                       
                     <tr target="sid_user" rel="">
+                   		<td>{$vo.hyid}</td>
                         <td>{$vo.ddbh}</td>
-                        <td>{$vo.hc_n}  {$vo.jp_type}</td>
+                        <td>{$vo.hc_n}&nbsp;&nbsp;&nbsp;<span style="color:#09F;">（{$vo.jp_type}）</span></td>
                         <td>￥{$vo.xsj}</td>
                         <td>无</td>
                         <td>￥{$vo.ysje}</td>
                         <td>{$vo.dprq}</td>
                         <td>客服提交</td>
                         <td>已取消</td>
-                         <td><a href="__URL__/order_view/id/{$vo.ddbh}" target="dialog" rel="edit" style="color:#0CF;" width="970px" height="430px">查看</a></td>
+                         <td><a href="__URL__/order_view/id/{$vo.ddbh}" target="dialog" rel="edit" style="color:#0CF;" width="970" height="430">查看</a></td>
                     </tr>
                 </volist>                        
             </tbody>
-        </table>
+        </table>                     
+        <div class="panelBar">
+            <div class="pages">
+                <span>显示</span>
+                <select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
+                    <option value="10" <eq name="numPerPage" value="10">selected=selected</eq>>10</option>
+                    <option value="20" <eq name="numPerPage" value="20">selected=selected</eq>>20</option>
+                    <option value="30" <eq name="numPerPage" value="30">selected=selected</eq>>30</option>
+                    <option value="50" <eq name="numPerPage" value="50">selected=selected</eq>>50</option>
+                    <option value="100" <eq name="numPerPage" value="100">selected=selected</eq>>100</option>
+                </select>
+                <span>共{$totalCount}条</span>
+            </div>
+            <div class="pagination" targetType="navTab" totalCount="{$totalCount}" numPerPage="{$numPerPage}" pageNumShown="10" currentPage="{$currentPage}"></div>
+        </div> 
     </div><!---已取消订单 end--->
-             
-    <div class="panelBar">
-        <div class="pages">
-            <span>显示</span>
-            <select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
-                <option value="10" <eq name="numPerPage" value="10">selected=selected</eq>>10</option>
-                <option value="20" <eq name="numPerPage" value="20">selected=selected</eq>>20</option>
-                <option value="30" <eq name="numPerPage" value="30">selected=selected</eq>>30</option>
-                <option value="50" <eq name="numPerPage" value="50">selected=selected</eq>>50</option>
-                <option value="100" <eq name="numPerPage" value="100">selected=selected</eq>>100</option>
-            </select>
-            <span>共{$totalCount}条</span>
-        </div>
-        <div class="pagination" targetType="navTab" totalCount="{$totalCount}" numPerPage="{$numPerPage}" pageNumShown="10" currentPage="{$currentPage}"></div>
-    </div> 
-</div>
+</div><!---pageContent end-->
 
 <script>
 <!--

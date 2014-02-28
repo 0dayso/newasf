@@ -1,10 +1,20 @@
-<include file="common" />        
-        <div class="mall_r">
-            <!--礼品内容页-->
-            <div id="prodetial">
+<include file="Public:header" />
+<link rel="stylesheet" href="__PUBLIC__/css/mall.css" type="text/css" />
+    <div id="cont">
+        <div class="wd960 mt10 bgWhite about_asf">
+            <h1 class="h1_tit_nav">你当前所在位置：<a href="{:U('/')}" class="sy">首页</a> >
+                <a href="{:U('/jifen/index')}" class="cur">积fun商城</a>
+                <foreach name="path" item="v">
+                    > <a href="{:U('/jifen/category','cid='.$v[cid])}" class="cur">{$v.name}</a>
+                </foreach>
+           > <a class="cur">产品详情</a></h1>
+        	<div id="mall">
+                <include file="left" />
+                <div id="prodetial">
                     <div class="pro_inf">
                         <div class="pro_pic">
                             <div class="pro"><img src="__PUBLIC__/uploads/mall/{$info.img}" width="288" height="288" alt="{$info.title}" /></div>
+
                                 <!-- Baidu Button BEGIN -->
                                     <div id="bdshare" class="share bdshare_t bds_tools get-codes-bdshare">
                                         <a class="bds_qzone"></a>
@@ -26,9 +36,10 @@
                             <form action="{:U('/Member/Assetaccount/gift')}">
                             <ul>
                               <h2>{$info.title}</h2>
-                              <li class="wd">{$info.description|msubstr=0,80}</li>
-                              <li class="m"><span class="sp0">兑换方式：</span><span><if condition="$info.type eq 0">积fun<else />爱钻</if>兑换</span></li>
-                              <li class="m"><span class="sp0">总兑换数：</span><span>{$info.amount}</span></li>
+                              <li class="wd">{$v.description}</li>
+                              <li class="m"><span class="sp0">兑换方式：</span><span>积fun兑换</span></li>
+                                <li class="m"><span class="sp0">剩余库存数：</span><span>{$info.amount}件</span></li>
+                                <li class="m"><span class="sp0">兑换数：</span><span>{$info.sales}</span></li>
                               <li class="m"><span class="sp0">所需积fun：</span><span><label class="red">{$info.jifen}</label>分</span></li>
                               <li class="num"><span class="sp0">兑换数量：</span>
                                   <span class="numPos">
@@ -47,26 +58,29 @@
                     </div>
                     <div class="goods_js" id="goods_d_qh"><a class="active" value="0">礼品详情</a><a value="1">兑换须知</a></div>
                     <div id="lipin_xq">
-                        {$info.description}
+                    	<h2 class="h0"></h2>
                         {$info.content}
+                      <!--  <h2 class="h1"></h2>
+                       -->
+
                     </div>
                     <div class="clear" id="duihuan">
                  		<h2>兑换规则：</h2>
                     	<div class="gz">
-                        	<span><label>兑换方法：</label><a>礼品兑换只接受网上提交，暂不接受电话或上门等其他方式兑换；</a></span>
-        					<span><label>配送范围：</label><a>礼品的发送仅限于中国大陆地区，同时请用中文填写；</a></span>
-        					<span><label>配送方式：</label><a>礼品以快递形式发送；</a></span>
-        					<span><label>配送费用：</label><a>兑换的礼品提供免费送货服务，客户不需额外支付配送费用；</a></span>
-          					<span><label>发送时间：</label><a>礼品在提交兑换后一周内送出，如遇到节假日或缺货情况，配送将相应延期。奖品自发送之日起，一周后仍未收到，请及时联系您的专职客服客服顾问。快件查询信息有效期为奖品发出后90天内，逾期将不再查询；</a></span>
-        					<span><label>取消和更改：</label><a>奖品兑换一经处理，将不再接受取消或更改；</a></span>
+                        	<span><label>兑换方法：</label><a>礼品兑换只接受网上提交，暂不接受电话或上门等其他方式兑换。</a></span>
+        					<span><label>配送范围：</label><a>礼品的发送仅限于中国大陆地区，同时请用中文填写。</a></span>
+        					<span><label>配送方式：</label><a>礼品以快递形式发送。</a></span>
+        					<span><label>配送费用：</label><a>兑换的礼品不提供免费送货服务。</a></span>
+          					<span><label>发送时间：</label><a>礼品在提交兑换后一周内送出，如遇到节假日或缺货情况，配送将相应延期。奖品自发送之日起，一周后仍未收到，请及时联系您的专职客服客服顾问。快件查询信息有效期为奖品发出后90天内，逾期将不再查询。</a></span>
+        					<span><label>取消和更改：</label><a>奖品兑换一经处理，将不再接受取消或更改。</a></span>
         					<span><label>其他说明：</label><a>爱尚飞国际机票网仅提供奖品兑换信息，奖品采购、配送等业务将由与爱尚飞合作的供应商负责提供。</a></span>
                         </div>
  						<h2>注意事项：</h2>
                         <div class="gz">
-                            1．“配送信息”中需用中文完整填写真实有效的地址、邮编、收件人、联系电话和email地址；如为外籍人士请填写有效证件上<br/>　　的完整姓名；如姓名，地址等信息不全，爱尚飞将自动取消您的兑换；<br />
-                            2．如因地址不详或者配送信息错误等原因导致礼品无法送达，重新配送的费用需您自理；<br />
-                            3．礼品仅供参考，具体奖品以收到的实物为准，颜色随机发放不可指定；<br />
-                            4．如礼品无质量问题，将不予退换；<br />
+                            1．“配送信息”中需用中文完整填写真实有效的地址、邮编、收件人、联系电话和email地址；如为外籍人士请填写有效证件上的完整姓名；如姓名，地址等信息不全，爱尚飞将自动取消您的兑换。<br />
+                            2．如因地址不详或者配送信息错误等原因导致礼品无法送达，重新配送的费用需您自理。<br />
+                            3．礼品仅供参考，具体奖品以收到的实物为准，颜色随机发放不可指定。<br />
+                            4．如礼品无质量问题，将不予退换。<br />
                             5．任何礼品均不接受上门查看礼品实物。<br />
                         </div>
                		</div>
@@ -86,7 +100,8 @@
 						}
 					</script>
              	</div>
-            <!--礼品内容页 END-->
+             </div>
         </div>
     </div>
 <include file="Public:footer" />
+

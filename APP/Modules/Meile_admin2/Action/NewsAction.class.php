@@ -3,7 +3,7 @@
 class NewsAction extends IniAction {
 
     public function index(){
-        $M = M("mews");
+        $M = M("News");
         $count = $M->count();
         import("ORG.Util.Page");       //载入分页类
         $page = new Page($count, 20);

@@ -754,40 +754,5 @@ function array_merge_multi() {
     return $arr;
 }
 
-function keywords($rfr=null){
-    $rfr = $rfr?$rfr:$_SERVER['HTTP_REFERER'];
-//if(!$rfr) $rfr='http://'.$_SERVER['HTTP_HOST'];
-    if($rfr)
-    {
-        $p=parse_url($rfr);
-        parse_str($p['query'],$pa);
-        $p['host']=strtolower($p['host']);
-        $arr_sd_key=array(
-            'baidu.com'=>'word',
-            'google.com'=>'q',
-            'sina.com.cn'=>'word',
-            'sohu.com'=>'word',
-            'msn.com'=>'q',
-            'bing.com'=>'q',
-            '360.com'=>'q',
-            'so.com'=>'q',
-            '163.com'=>'q',
-            'yahoo.com'=>'p'
-        );
-        $keyword='';
-        $sengine=$p['host'];
-        foreach($arr_sd_key as $se=>$kwd)
-        {
-            if(strpos($p['host'],$se)!==false)
-            {
-                $keyword=$pa[$kwd];
-                $sengine=$se;
-                break;
-            }
-        }
-        $sql="insert into visit_log(domain,key_word,ct)";
-    }
-}
-
 
 ?>

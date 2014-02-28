@@ -1,5 +1,5 @@
 <?php
-class IniAction extends PublicAction{
+class IniAction extends Action{
 	private $userinfo; //用户信息
     public function _initialize(){
         if($_SERVER['HTTP_HOST']=='sl.aishangfei.com'){ //为不同部门启用不同域名 不同主题
@@ -37,12 +37,13 @@ class IniAction extends PublicAction{
             cookie('ts_refer','mobile');
         }
 
-       // $this->restrict();//未登录不能访问
 
         //当没有对应客服,跳到客服选择页
         if($this->userinfo && !$this->userinfo['user_id'] && MODULE_NAME!='Index'){
-            if(MODULE_NAME!='Adviser' && ACTION_NAME!='set_kf'){
-                redirect(U('/Index'));
+            if(MODULE_NAME!='Adviser'){
+                if(ACTION_NAME!='setkf'){
+                    redirect(U('/Index'));
+                }
             }
         }
 
@@ -53,25 +54,6 @@ class IniAction extends PublicAction{
         }
 	}
 
-    //未登录不能访问
-	function restrict(){
-		$array=array('register','login','getpassword');//不需要登陆可访问的function
-		if(MODULE_NAME == "Member"){
-			if(!in_array(ACTION_NAME,$array)){
-				if(!session('uid')){
-                    $u=isset($_GET["u"])?$_GET["u"]:get_cur_url(1);
-				//	$this->redirect('member/login',"u='$cururl'");
-                    redirect(U('member/login')."/?u=$u");
-					exit;
-				}
-			}else{
-				if(session('uid')){
-					$this->success("你已经登陆",U('member/index'));
-					exit;
-				}
-			}
-		}
-	}
 
     //积分测边栏数据
     function jifen(){	
@@ -106,10 +88,13 @@ class IniAction extends PublicAction{
 		if($this->azpoints <= 0){
 			$this->azpoints = 0;
 		}
+
+        $category2=M('mall_category')->order('sort desc')->select();
+        $category_left=list_to_tree($category2,55);    
+        $this->assign('category_left',$category_left);
+        $wh['status']=1;
+        $this->sales=$mall->where($wh)->order("sales desc ")->limit("10")->select();
 		
-		//print_r($_SESSION['uid']);
-		//print_r($this->jfpoints);
-		//print_r($this->azpoints);
     }
 }	
 ?>

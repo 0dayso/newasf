@@ -2,121 +2,119 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>国际机票 - 爱尚飞国际机票网</title>
+    <title>爱尚飞国际机票官网_爱尚飞让你爱上飞</title>
+    <meta name="keywords" content="爱尚飞国际机票,国际机票查询,打折机票,特价机票,机票预订" />
+    <mete name="description" content="爱尚飞国际机票网为广大空中乘客提供全球218国家,4000个城市的国际航班信息查询，国际航班和国际机票预订服务。" />
     <link rel="stylesheet" href="/newasf/Public/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="/newasf/Public/css/index.css" type="text/css" />
     <script type="text/javascript" src="/newasf/Public/js/jquery-1.8.3.min.js"></script>
     <script type="text/javascript" src="/newasf/Public/js/main.js"></script>
-    <script type="text/javascript" src="/newasf/Public/js/layer/layer.min.js"></script>
+    <script type="text/javascript" src="/newasf/Public/js/index.js"></script>
+    <link rel="stylesheet" href="/newasf/Public/css/register.css" type="text/css" />
+
 </head>
 <body>
 <script type="text/javascript">
     var BaseInfo = {
         'path':"/newasf/"
     };
-
-    function open_kf(){
-            window.open('http://wpa.qq.com/msgrd?v=3&uin=2355356102&site=qq&menu=yes');
-        }
 </script>
 <div id="hd_top">
-        <div class="wd960">
-			<span class="left">您好,
-				<a title="进入会员中心" href="/newasf/Member/index">admintest</a>
-					普通会员  <a href="/newasf/member/out">退出</a>
-				</span>
-
-			            <span class="right">
-             <a id="myAisf_w" href="/newasf/member">我的爱尚飞</a>
-                 <ul id="myAisf_u">
-                     <li><a href="/newasf/member/booking">我的订单</a></li>
-                     <li><a href="/newasf/member/information">个人资料</a></li>
-                     <li><a  target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2355356102&site=qq&menu=yes">咨询我的顾问</a></li>
-                     <li><a href="/newasf/member/editpwd">修改密码</a></li>
-                 </ul>
-                 <a id="myAisf_t"></a>                <a class="spr gz"></a><a href="http://e.weibo.com/aishangfei2012?ref=http%3A%2F%2Fweibo.com%2Fu%2F2014524587%3Fwvr%3D5%26" class="ml0" target="_blank">关注我们</a><a class="spr wx"></a><a href="javascript:;" class="ml0" id="weixin_me">微信我们</a><!--<a href="/newasf/iflight/verify" class="ts">机票验真</a>--><a href="/newasf/help" class="bz">帮助中心</a><a class="spr dh"></a></span>
-        </div>
+        <div class="wd980"><script type="text/javascript"  src="/newasf/Public/topMenu"></script></div>
     </div>
     <div id="hd_logo">
-        <div class="wd960">
+        <div class="wd980">
             <a href="/newasf/" class="left"><img src="/newasf/Public/images/logo.gif" alt="logo" class="logo" /></a>
             <div class="right"><a href="/newasf/zt/airchina_sales" target="_blank"><img src="/newasf/Public/images/Zt/airchina_sales/ad_578_80.jpg" alt="中国国际航空" /></a></div>
         </div>
     </div>
     <div id="hd_nav">
-        <div class="wd960">
-            <ul class="nav">
-                <li><a href="/newasf/">首页</a></li>
-                <li><a class='active' href="/newasf/iflight">国际机票</a></li>
+        <div class="wd980 relative">
+            <div id="index_ticket_query">
+                <h2>您的国际票务<strong>私人管家</strong></h2>
+                <script type="text/javascript" src="/newasf/Public/js/hotcitypop/popcitylist.js"></script>
+<script type="text/javascript" src="/newasf/Public/js/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" language="javascript" src="/newasf/Public/js/hotcitypop/searchconditions.js"></script>
+<script type="text/javascript" language="javascript" src="/newasf/Public/js/hotcitypop/paramfarmat.js"></script>
+<div class="chaxun">
+    <form action="/newasf/iflight/flightquery" name="form0" id="chaxun_form" autocomplete="off" onsubmit="return false;">
+        <ul>
+            <li id="radio_sel">
+                <input type="radio" name="journey" class="journey2" value="2" /><label>单程</label>
+                <input type="radio" name="journey" class="journey1" value="1" checked="checked" /><label>往返</label>
+                <input type="radio" name="journey" class="journey3" value="3" /><label>多程</label>
+            </li>
+            <li>
+                <span>出发城市</span>
+                <input type="text" class="text city" name="origincode"  value=""  state="1" class="text city"/>
+            </li>
+            <li>
+                <span>到达城市</span>
+                <input type="text" class="text city" name="desinationcode"  value="" state="1" class="text city"/>
+            </li>
+            <li>
+                <span>出发日期</span>
+                <input type="text" class="text date" name="originDate" id="originDate"  value="" placeholder="出发时间" state="1" />
+            </li>
+            <li>
+                <span>返回日期</span>
+                <input type="text" class="text date" name="returnDate" id="returnDate"  value=""  placeholder="返回日期" state="1"/>
+            </li>
+            <li class="center submit" id="submit_sousuo">
+                <input type="submit" value="查询" class="spr sub" />
+            </li>
+        </ul>
+    </form>
+    <p class="tishi">如有更多需求，请直接联系<a href="javascript:;" onclick="open_kf()">专业顾问</a></p>
+</div>
+          </div>
+            <ul class="home_nav pl270">
+                <li><a class="active" href="/newasf/">首页</a></li>
+                <li><a  href="/newasf/iflight">国际机票</a></li>
                 <li><a  href="/newasf/about/service">会员服务</a></li>
                 <li><a  href="/newasf/jifen">积fun商城</a></li>
-                <li><a  href="/newasf/Adviser/review_51">专业顾问</a></li>
+                <li><a  href="/newasf/Adviser/review_20">专业顾问</a></li>
                 <li><a  href="/newasf/activity" class="new">活动频道<span><img src="/newasf/Public/images/top_nav_new.gif" alt="new"/></span></a></li>
             </ul>
         </div>
 	</div>
-<!--<script type="text/javascript" src="/newasf/Public/js/index.js"></script>!-->
+    
+	<script type="text/javascript" src="/newasf/Public/js/jquery.fullScreenAds.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		//使用全屏轮换广告
+		$('#index_slide_ad').fullScreenAds({fadeTime:1000,showtime:4000,mainWidth:980});
+		//首页国际机票查询的不透明度设置
+		$('#index_ticket_query').css("opacity",0.9);
+	});
+	</script>
+    <div id="index_slide_ad">
+    	<ul>
+        	<li img-data="/newasf/Public/images/fsad6.jpg"><a href="/newasf/zt/hnair_sales" target="_blank"></a></li>
+        	<li img-data="/newasf/Public/images/fsad5.jpg"><a href="/newasf/zt/virgin_atlantic_sales" target="_blank"></a></li>
+			<li img-data="/newasf/Public/images/fsad4.jpg"><a href="/newasf/zt/flysas_sales" target="_blank"></a></li>
+            <li img-data="/newasf/Public/images/fsad1.jpg"><a href="/newasf/zt/dijialaixi" target="_blank"></a></li>
+		</ul>
+        <div id="slide_ad_nav"><a class="active">1</a><a>2</a><a>3</a><a>4</a></div>
+    </div>
 
-<link rel="stylesheet" href="/newasf/Public/css/interticket.css" type="text/css" />
-<script type="text/javascript" src="/newasf/Public/js/chaxun.js"></script>
-<script type="text/javascript" src="/newasf/Public/js/hotcitypop/popcitylist.js"></script>
-<script type="text/javascript" src="/newasf/Public/js/My97DatePicker/WdatePicker.js"></script>
-<script type="text/javascript" language="javascript" src="/newasf/Public/js/hotcitypop/searchconditions.js"></script>
-<script type="text/javascript" language="javascript" src="/newasf/Public/js/hotcitypop/paramfarmat.js"></script>
+
+    <div id="renzheng_lan" class="wd980">
+    <h2>选择爱尚飞的理由</h2>
+       <ul>
+          <li class="lb0"><label></label><span>100%国际航协认证,<br/>第一手真实价格</span></li>
+          <li class="lb1"><label></label><span>100%中国航协认证,<br/>资质保证，订票无忧</span></li>
+          <li class="lb2"><label></label><span>100%出票,不加收费,<br/>先验票 后付款</span></li>
+          <li class="lb3"><label></label><span>实时推出特价及提<br/>供专业旅行顾问服务</span></li>
+        </ul>
+     </div>
+     
     <div id="cont">
-        <div class="wd1000 mt10 interTic">
-        	<h1 class="h1_tit_nav">你当前所在位置：<a href="/newasf/" class="sy">首页</a> > <a class="cur">国际机票</a></h1>
-			<div class="left" id="interTicL" style="overflow:visible;">
-				<div id="jp_chaxun">
-					<h2><label>国际机票查询</label></h2>
-					<h3 class="mt10 right">
-						<a href="javascript:;" class="active">1.机票查询</a>
-						<a href="javascript:;">2.选择航班</a>
-						<a href="javascript:;">3.预订机票</a>
-						<a href="javascript:;">4.核对信息</a>
-						<a href="javascript:;">5.完成</a>
-					</h3>
-					<h4 class="clear"></h4>
-					<form action="http://flights.aishangfei.net" name="form" id="chaxun_form" autocomplete="off"  onSubmit="searChAagin();return false;">
-						<ul id="xingcheng_ul">
-							<li id="radio_sel">
-								<span>查询类型：</span>
-                                <input type="radio" name="journey" value="2"/><label>单程</label>
-                                <input type="radio" name="journey"  value="1" checked="checked" /><label>往返</label>
-                                <input type="radio" name="journey"  value="3"/><label>多程</label>
-							</li>
-							<li class="left">
-								<span>出发城市</span>
-								<input type="text" class="text city" name="origincode" value="城市名"/>
-							</li>
-							<li>
-								<span>到达城市</span>
-								<input type="text" class="text city" name="desinationcode" value="城市名"/>
-							</li>
-							<li class="left">
-								<span>出发日期</span>
-								<input type="text" class="text date" name="originDate" id="originDate" value="出发时间" />
-							</li>
-							<li >
-								<span>返回日期</span>
-								<input type="text" class="text date"  name="returnDate" id="returnDate" value="返回时间" />
-							</li>
-						</ul>
-                        <input type="submit" value="搜索" class="right spr3 submit" />
-					</form>
-				</div>
-
-                <div id="iflightAd">
-                <ul>
-                  <li><a href="/newasf/zt/virgin_atlantic_sales" target="_blank"><img src="/newasf/Public/images/Zt/virgin_atlantic_sales/ad_689_93.jpg" /></a></li>
-                  <li><a href="/newasf/zt/cathaypacific_sales2" target="_blank"><img src="/newasf/Public/images/Zt/cathaypacific_sales2/ad_689_93.jpg" /></a></li>
-                </ul>
-                <ol>
-                  <li><a href="javascript:;" class="active">1</a></li>
-                  <li><a href="javascript:;">2</a></li>
-                </ol>
-                </div>
-                
-				               <div id="index_special_tic">
+        <div class="wd980 contMain">
+            <!--首页左边栏-->
+            <div class="left contlt">
+               <!--特价机票-->
+                              <div id="index_special_tic">
 					<div id="st_head">
                     	<h2>爱尚飞服务时间：<span>9:00-20:00(周一至周五)</span>，<span>9:00-18:00(周六日)</span></h2>
                         <div id="st_departcity">
@@ -593,9 +591,9 @@
 				}
 
         </script>
-                
-                <!--航空公司特惠-->
-                               <div class="box_l" id="index_preferential">
+               
+               <!--航空公司特惠-->
+                              <div class="box_l" id="index_preferential">
                      <h2>航空公司特惠</h2>
                      <div class="pre_box">
                          <ul class="type_img">
@@ -617,73 +615,193 @@
                          </ul>
                   </div>
                </div>
+               
+               <!--会员活动精选(Member Activities)&新鲜事(fangle)-->
+               <div id="ma_fab">
+					<div id="fangle">
+                    	<dl>
+                       	  <dt>新鲜事</dt>
+                            <dd><span>rrr</span>参加了<a href="/newasf/zt/cathaypacific_sales">  国泰航空出发美澳温情特选 活动</a><em>52分钟前</em></dd><dd><span>136wupst415</span>参加了<a href="/newasf/zt/cathaypacific_sales">  国泰航空出发美澳温情特选 活动</a><em>29分钟前</em></dd><dd><span>138zqhso960</span>参加了<a href="/newasf/zt/njcg">年假出国特价机票精选 活动</a><em>31分钟前</em></dd><dd><span>159hvupt766</span>参加了<a href="/newasf/zt/gqcf">  国际机票预订金秋惠 活动</a><em>35分钟前</em></dd><dd><span>13526lpzpsx</span>参加了<a href="/newasf/zt/njcg">年假出国特价机票精选 活动</a><em>51分钟前</em></dd>                        </dl>
+                    </div>
+					<div id="mem_act">
+                    	<div class="box_l">
+                    		<h2>会员活动精选</h2>
+                            <ul>
+                            	<li><a href="/newasf/zt/lxs" target="_blank"><img src="/newasf/Public/images/mem_act01.jpg" /></a></li>
+                                <li><a href="/newasf/zt/thtjbjbm" target="_blank"><img src="/newasf/Public/images/mem_act02.jpg" /></a></li>
+                                <li><a href="/newasf/zt/chaoditejia" target="_blank"><img src="/newasf/Public/images/mem_act03.jpg" /></a></li>
+                                <li><a href="/newasf/zt/gqcf" target="_blank"><img src="/newasf/Public/images/mem_act04.jpg" /></a></li>
+                            </ul>
+                        </div>
+                    </div>
+					
+               </div>
+               
+            </div><!--首页左边栏 END-->
+            
+            
+            <div class="right contrt">
+            	<!--他们正在查...-->
+                <div class="box_r">
+                    <h2><strong>他们正在查...</strong></h2>
+                    <ul id="find_flight">
+                        <li><span>2014-03-12</span><a href="/newasf/iflight/flightquery/?flightType=1&tickType=ADT&personNum=1&childNum=0&directFlightsOnly=2&originCode=SIA_0&desinationCode=NYC_0&originDate=2014-03-12&origin_name=%E8%A5%BF%E5%AE%89%28SIA%29&desination_name=%E7%BA%BD%E7%BA%A6%28NYC%29&returnDate=2014-03-21" title="西安 至 纽约">西安-纽约</a><strong>往返</strong><em>15分钟前</em></li><li><span>2014-03-12</span><a href="/newasf/iflight/flightquery/?flightType=1&tickType=ADT&personNum=1&childNum=0&directFlightsOnly=2&originCode=SIA_0&desinationCode=NYC_0&originDate=2014-03-12&origin_name=%E8%A5%BF%E5%AE%89%28SIA%29&desination_name=%E7%BA%BD%E7%BA%A6%28NYC%29&returnDate=2014-03-21" title="西安 至 纽约">西安-纽约</a><strong>往返</strong><em>15分钟前</em></li><li><span>2014-03-10</span><a href="/newasf/iflight/flightquery/?flightType=1&tickType=ADT&personNum=1&childNum=0&directFlightsOnly=2&originCode=SIA_0&desinationCode=BKK_0&originDate=2014-03-10&origin_name=%E8%A5%BF%E5%AE%89%28SIA%29&desination_name=%E6%9B%BC%E8%B0%B7%28BKK%29&returnDate=2014-03-17" title="西安 至 曼谷">西安-曼谷</a><strong>往返</strong><em>16分钟前</em></li><li><span>2014-03-10</span><a href="/newasf/iflight/flightquery/?flightType=1&tickType=ADT&personNum=1&childNum=0&directFlightsOnly=2&originCode=SIA_0&desinationCode=BKK_0&originDate=2014-03-10&origin_name=%E8%A5%BF%E5%AE%89%28SIA%29&desination_name=%E6%9B%BC%E8%B0%B7%28BKK%29&returnDate=2014-03-17" title="西安 至 曼谷">西安-曼谷</a><strong>往返</strong><em>16分钟前</em></li><li><span>2014-03-11</span><a href="/newasf/iflight/flightquery/?flightType=1&tickType=ADT&personNum=1&childNum=0&directFlightsOnly=2&originCode=CAN_0&desinationCode=NYC_0&originDate=2014-03-11&origin_name=%E5%B9%BF%E5%B7%9E%28CAN%29&desination_name=%E7%BA%BD%E7%BA%A6%28NYC%29&returnDate=2014-03-20" title="广州 至 纽约">广州-纽约</a><strong>往返</strong><em>17分钟前</em></li>                    </ul>
+                </div><!--他们正在查 END-->
                 
-			</div>
-			<div class="right" id="interTicR">
-            <!--<div id="renzheng_lan_s">
-                	<ul>
-                    	<li><label class="lb0"></label><span><a class="a0" href="/newasf/about/qualifications#guoji" target="_blank">100%国际航协认证</a><a class="a1">国际航协一类代理，第一手价格，最便宜有保证</a></span></li>
-                        <li><label class="lb1"></label><span><a class="a0" href="/newasf/about/qualifications#minhang" target="_blank">100%中航协认证</a><a class="a1">爱尚飞国际机票网100%获得中国航空运输协会资格认证</a></span></li>
+                <!--我们的十大优势-->
+                <div class="box_r">
+                    <h2>我们的十大优势</h2>
+                    <ul id="service">
+                    	<li><a href="/newasf/about/toubu#step1" target="_blank" class="spr1 a0"><label>信息真实</label></a></li>
+                        <li><a href="/newasf/about/toubu#step2" target="_blank" class="spr1 a1"><label>机票专营</label></a></li>
+                        <li><a href="/newasf/about/toubu#step3" target="_blank" class="spr1 a2"><label>专业顾问</label></a></li>
+                        <li><a href="/newasf/about/toubu#step4" target="_blank" class="spr1 a3"><label>航协认证</label></a></li>
+                        <li><a href="/newasf/about/toubu#step5" target="_blank" class="spr1 a4"><label>百度认证</label></a></li>
+                        <li><a href="/newasf/about/toubu#step6" target="_blank" class="spr1 a5"><label>资质公开</label></a></li>
+                        <li><a href="/newasf/about/toubu#step7" target="_blank" class="spr1 a6"><label>出票保证</label></a></li>
+                        <li><a href="/newasf/about/toubu#step8" target="_blank" class="spr1 a7"><label>全天服务</label></a></li>
+                        <li><a href="/newasf/about/toubu#step9" target="_blank" class="spr1 a8"><label>免费送票</label></a></li>
+                        <li><a href="/newasf/about/toubu#step10" target="_blank" class="spr1 a9"><label>支付灵活</label></a></li>
                     </ul>
-                </div>-->
-             <div id="renzheng_lan_s">
-                	<ul>
-                    	<li><label class="lb0"></label><span>100%国际航协认证,<br/>第一手真实价格</span></li>
-                        <li><label class="lb1"></label><span>100%中国航协认证,<br/>资质保证，订票无忧</span></li>
-                    </ul>
+                </div><!--我们的十大优势 END-->
+                
+                <div id="web_link">
+                <a href="/newasf/zt/ethiopian_sales" target="_blank"><img src="/newasf/Public/images/zt/ethiopian_sales/ethiopian_iad.jpg" alt="jingxuan" /></a>
                 </div>
-				<div id="hot_recom">
-					<h2>热门推荐</h2>
-					<ul>
-                        <li><label></label>
-                            <a href='/newasf/News/info/9.html'>“爱尚飞.伴你放飞梦想”微电影大赛启动</a>
-                           <span class="hot"></span>                        </li><li><label></label>
-                            <a href='/newasf/News/info/8.html'>留学生机票实惠季活动隆重上线</a>
-                           <span class="hot"></span>                        </li><li><label></label>
-                            <a href='/newasf/News/info/19.html'>航空业持续盈利，前景大好</a>
-                                                   </li><li><label></label>
-                            <a href='/newasf/News/info/18.html'>十一小长假爱尚飞推出特价机票</a>
-                                                   </li><li><label></label>
-                            <a href='/newasf/News/info/17.html'>英国签证改革，手续复杂</a>
-                                                   </li>                        <li><label></label><a href="/newasf/pages/guandao.html" target="_blank">6个精选城市享受美联航商务头等舱往返专享价</a></li>
-                        <li><label></label><a href="/newasf/pages/HaiHang.html" target="_blank">全新北京往返芝加哥直飞航线9月启航</a></li>
-					</ul>
-				</div>
                 
-                <div id="chest_link">
-	<h2 class="titbk"><span class="left">国际旅行百宝箱</span></h2>
-    <dl>
-		<dd class="a0"><a href="/newasf/member/login" target="_blank">我的机票</a></dd>
-		<dd class="a1"><a href="/newasf/iflight/orderflight" target="_blank">低价预约</a></dd>
-		<dd class="a2"><a href="/newasf/help/members#help_ul3" target="_blank">订票攻略</a></dd>
-	</dl>
-	<ul class="conbk">
-		<li><label class="spr2 a0"></label><a rel="nofollow" href="http://www.tianqi.com/worldcity.html" target="_blank">天气预报</a></li>
-		<li><label class="spr2 a1"></label><a rel="nofollow" href="http://time.123cha.com/" target="_blank">国际时差</a></li>
-		<li><label class="spr2 a2"></label><a rel="nofollow" href="http://qq.ip138.com/hl.asp" target="_blank">汇率查询</a></li>
-		<li><label class="spr2 a3"></label><a rel="nofollow" href="http://baike.baidu.com/view/1618627.htm" target="_blank">旅游签证</a></li>
-		<li><label class="spr2 a4"></label><a rel="nofollow" href="http://ditu.google.cn/" target="_blank">电子地图</a></li>
-		<li><label class="spr2 a5"></label><a rel="nofollow" href="http://www.travelsky.com/newsky/index.html" target="_blank">机票真伪</a></li>
-	</ul>
-</div> <!--百宝箱-->
+                <!--机票工具箱-->
+                <div class="box_r" id="chest_link">
+                    <h2>机票工具箱</h2>
+                    <dl>
+                        <dd class="a0"><a href="/newasf/member/login" target="_blank">我的机票</a></dd>
+                        <dd class="a1"><a href="/newasf/iflight/orderflight" target="_blank">低价预约</a></dd>
+                        <dd class="a2"><a href="/newasf/help/members#help_ul3" target="_blank">订票攻略</a></dd>
+                    </dl>
+                    <ul>
+		                <li><label class="spr2 a0"></label><a rel="nofollow" href="http://www.tianqi.com/worldcity.html" target="_blank">天气预报</a></li>
+		                <li><label class="spr2 a1"></label><a rel="nofollow" href="http://time.123cha.com/" target="_blank">国际时差</a></li>
+		                <li><label class="spr2 a2"></label><a rel="nofollow" href="http://qq.ip138.com/hl.asp" target="_blank">汇率查询</a></li>
+		                <li><label class="spr2 a3"></label><a rel="nofollow" href="http://baike.baidu.com/view/1618627.htm" target="_blank">旅游签证</a></li>
+		                <li><label class="spr2 a4"></label><a rel="nofollow" href="http://ditu.google.cn/" target="_blank">电子地图</a></li>
+		                <li><label class="spr2 a5"></label><a rel="nofollow" href="http://www.travelsky.com/newsky/index.html" target="_blank">机票真伪</a></li>
+	                </ul>
+                </div><!--机票工具箱 END-->
                 
-				<div id="ser_com" class="mt10">
-					<h2></h2>
-					<ul>
-						<li><label class="lb0"></label><a>注册会员，首次成功订票即返50元</a></li>
-						<li><label class="lb1"></label><a>专业顾问一对一全方位贴心服务</a></li>
-						<li><label class="lb2"></label><a>实时提供特价及廉价航空机票信息</a></li>
-						<li><label class="lb3"></label><a>5分钟，完成实时查询预订全过程</a></li>
-						<li><label class="lb4"></label><a>保证网络订单响应速度少于15分钟</a></li>
-						<li><label class="lb5"></label><a>下单成功，即获得真实有效占位</a></li>
-						<li><label class="lb6"></label><a>承诺24小时内，出具电子客票</a></li>
-						<li><label class="lb7"></label><a>100%支持，客票航空公司验真</a></li>
-					</ul>
-				</div>
-			</div>
+                <!--客户评价-->
+                <div class="box_r" id="index_evaluate_list">
+                        <h2><span class="left">客户评价</span><span class="right"><a>客户满意度：</a><label>99.6%</label></span></h2>
+                        <div id="page_nav"><dl><dt>&lt;</dt><dd>&gt;</dd></dl><em>1</em>/3</div>
+                        <div id="evaluate">
+                                                            <ul class="active" >                           		<li>
+                               		<span class="title"><a class="spr3 assgd"></a><div><label>13624wku 点评了</label><a href="/newasf/airline/pl/from/SHA/to/AKL" target="_blank" class="travel">上海→奥克兰</a></div></span>
+                               		<span class="intro">爱尚飞网服务态度好，出票速度迅速</span>
+                          		</li>
+                                                                                           		<li>
+                               		<span class="title"><a class="spr3 assgd"></a><div><label>eddiewan 点评了</label><a href="/newasf/airline/pl/from/BJS/to/GDN" target="_blank" class="travel">北京→格但斯克</a></div></span>
+                               		<span class="intro">一如既往的快捷周到服务，以后还要选择爱尚飞网</span>
+                          		</li>
+                                                                                           		<li>
+                               		<span class="title"><a class="spr3 assgd"></a><div><label>136tupxt 点评了</label><a href="/newasf/airline/pl/from/BJS/to/OSA" target="_blank" class="travel">北京→大阪</a></div></span>
+                               		<span class="intro">此次航班很开心和顺利，服务都很好！下次继续爱尚飞网定</span>
+                          		</li>
+                                </ul>                                <ul  >                           		<li>
+                               		<span class="title"><a class="spr3 assgd"></a><div><label>yester 点评了</label><a href="/newasf/airline/pl/from/CAN/to/OSA" target="_blank" class="travel">广州→大阪</a></div></span>
+                               		<span class="intro">一如既往的快捷周到服务，以后还要选择爱尚飞网</span>
+                          		</li>
+                                                                                           		<li>
+                               		<span class="title"><a class="spr3 assgd"></a><div><label>159lvmnv 点评了</label><a href="/newasf/airline/pl/from/SHA/to/CHC" target="_blank" class="travel">上海→基督城</a></div></span>
+                               		<span class="intro">就那么回事啦，中国人人都知道，很少准点的，这是中国特色</span>
+                          		</li>
+                                                                                           		<li>
+                               		<span class="title"><a class="spr3 assgd"></a><div><label>13924taf 点评了</label><a href="/newasf/airline/pl/from/BJS/to/PHX" target="_blank" class="travel">北京→凤凰城</a></div></span>
+                               		<span class="intro">一如既往的快捷周到服务，以后还要选择爱尚飞网</span>
+                          		</li>
+                                </ul>                                <ul  >                           		<li>
+                               		<span class="title"><a class="spr3 assgd"></a><div><label>13366jpf 点评了</label><a href="/newasf/airline/pl/from/SHA/to/PHX" target="_blank" class="travel">上海→凤凰城</a></div></span>
+                               		<span class="intro">第一次坐飞机，本来有点紧张！没有想象的那么夸张</span>
+                          		</li>
+                                                                                           		<li>
+                               		<span class="title"><a class="spr3 assgd"></a><div><label>6DBD765D 点评了</label><a href="/newasf/airline/pl/from/SHA/to/AUH" target="_blank" class="travel">上海→阿布扎比</a></div></span>
+                               		<span class="intro">服务不错,要是免费邮寄行程单更好了,全五星吧</span>
+                          		</li>
+                                                                                           		<li>
+                               		<span class="title"><a class="spr3 assgd"></a><div><label>AFE4F15D 点评了</label><a href="/newasf/airline/pl/from/SHA/to/ALG" target="_blank" class="travel">上海→阿尔及尔</a></div></span>
+                               		<span class="intro">不错~~很好~~现在一直在爱尚飞上订票~~很方便~~</span>
+                          		</li>
+                                </ul>                         </div>
+                </div><!--客户评价 END-->
+                <script type="text/javascript">
+                	$(function(){
+							$('#page_nav dt').click(function(){
+									evalPage(-1);
+								});
+							$('#page_nav dd').click(function(){
+									evalPage(1);
+								});
+							function evalPage(numder){
+									var page=parseInt($('#page_nav em').text());
+									if(page+numder==0){
+											page=3;
+										}else if(page+numder>=4){
+												page=1;
+											}else{
+													page=page+numder;
+												}
+									$('#page_nav em').text(page);
+									$('#evaluate ul').eq(page-1).addClass('active').siblings().removeClass('active');
+								}
+						});
+                </script>
+
+            </div>
+            
+        </div>
+        
+        
+        
+        <div class="wd980 infobt">
+                <dl>
+                	<dt>爱尚飞介绍</dt>
+                    <dd><a href="/newasf/about" target="_blank">公司简介</a></dd>
+                    <dd><a href="/newasf/about/qualifications" target="_blank">荣誉资质</a></dd>
+                    <dd><a href="/newasf/about/events" target="_blank">发展历程  </a></dd>
+                    <dd><a href="/newasf/about/contact" target="_blank">联系我们</a></dd>
+                </dl>
+                <dl>
+                	<dt>会员帮助</dt>
+                    <dd><a href="/newasf/help/members#help_ul0" target="_blank">会员注册</a></dd>
+                    <dd><a href="/newasf/help/members#help_ul1" target="_blank">会员积分</a></dd>
+                    <dd><a href="/newasf/help/members#help_ul2" target="_blank">密码修改</a></dd>
+                    <dd><a href="/newasf/member/information" target="_blank">资料修改 </a></dd>
+                </dl>
+                <dl>
+                	<dt>支付方式</dt>
+                    <dd><a href="/newasf/help/pay#help_ul0" target="_blank">转账支付</a></dd>
+                    <dd><a href="/newasf/help/pay#help_ul1" target="_blank">在线支付</a></dd>
+                    <dd><a href="/newasf/help/pay#help_ul2" target="_blank">刷卡支付</a></dd>
+                    <dd><a href="/newasf/help/pay#help_ul3" target="_blank">现金支付</a></dd>
+                </dl>
+            <div class="blk">
+            	<a class="spr bki"></a>
+            </div>
         </div>
     </div>
-   <div id="footer">
+    <script type="text/javascript" src="/newasf/Public/setKf"></script>
+    <!-- 投诉建议&国际机票咨询预订流程 首页右漂 -->
+    <div id="comp_zxyd">
+      <!--<div class="verify"><a target="_blank" href="/newasf/iflight/verify">机票验真</a></div>-->
+      <div class="comp"><a href="/newasf/complaint">投诉建议</a></div>
+      <div class="zxyd"><a href="/newasf/Process/zxyd">咨询预订<br/>流程</a></div>
+    </div>   
+<!--    <script type="text/javascript">
+    $(function(){
+		$(window).scroll(function(){
+			var top=$(this).scrollTop()+440+'px';
+			$('#comp_zxyd').css('top',top);
+			});
+		});
+    </script>-->
+    <div id="footer">
     	<div class="wd960">
             <div id="ft_link">
                 <ul>
@@ -692,7 +810,7 @@
                     <li><a href="/newasf/about/service" target="_blank">会员服务</a> |</li>
                     <li><a href="/newasf/about/privacy" target="_blank">隐私保护</a> |</li>
                     <li><a href="/newasf/about/job" target="_blank">人才招聘</a> |</li>
-                    <li><a href="http://www.cata.org.cn/clientWeb/frm_Single_Search.aspx?name=%u5E7F%u5DDE%u7F8E%u4E50%u5546%u52A1%u670D%u52A1%u6709%u9650%u516C%u53F8&type=agentname&leixing=&chengshi=&chengqu=" target="_blank">中国航空运输协会</a> |</li>
+                    <li><a href="http://www.cata.org.cn/ZGRZ/ZZCX/" target="_blank">中国航空运输协会</a> |</li>
                     <li><a href="/newasf/Public/images/zz_08.jpg" target="_blank">企业营业执照</a> |</li>
                     <li><a href="/newasf/Public/images/ylzg.jpg" target="_blank">民航客运一类代理</a></li>
                 </ul>
@@ -712,7 +830,7 @@
                 <a class="a7" href="http://www.cyberpolice.cn/wfjb/" target="_blank"></a>
             </div>
 
-
+        <script type="text/javascript" src="/newasf/Public/footerJs"></script>
         <div style="display:none;">
                 <script type="text/javascript">
         var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
@@ -752,8 +870,7 @@
 
      </div>
 
-                             <script type="text/javascript" src="/newasf/kf/leftKf"></script>
-                            
+
      <script type="text/javascript">
          /* <![CDATA[ */
          var google_conversion_id = 990797250;
@@ -780,7 +897,7 @@
      });
  </script>
 
- 
+
     <style type="text/css">
     #line_query_qq{width:140px;height:248px;background:url(/newasf/Public/images/line_query_qq.gif) no-repeat;position:absolute;top:170px;right:0;}
 	#line_query_qq dt{height:18px;}

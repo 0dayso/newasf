@@ -37,7 +37,7 @@ class IniAction extends PublicAction{
 
         //当没有对应客服,跳到客服选择页
         if($this->userInfo && !$this->userInfo['user_id'] && MODULE_NAME!='Index'){
-            if(MODULE_NAME!='Adviser' && ACTION_NAME!='set_kf'){
+            if(MODULE_NAME!='Adviser' && ACTION_NAME!='setKf'){
                 D('User')->assignUserid();
             }
         }

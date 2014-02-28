@@ -316,7 +316,7 @@ class AssetaccountAction extends IniAction {
 				if(isset($_GET['num']) && I('num')<1){
                     $this->error("收藏失败,商品数量不能小于1");                    
 				}
-			    $collect->addCollect()?$this->success("添加成功",U('/Member/Assetaccount/gift')):$this->error("添加失败");			
+			    $collect->addCollect()?$this->success("收藏成功",U('/Member/Assetaccount/gift')):$this->error("收藏失败");			
 			}
 		}		 
 		 

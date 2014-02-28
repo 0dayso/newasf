@@ -1,0 +1,12 @@
+<?php if($userinfo){ ?>
+<script type="text/javascript" src="{:U('/api/kf/leftKf')}"></script>
+<?php  }elseif(MODULE_NAME != "Jifen" && MODULE_NAME != "Member" ){ ?>
+<script language="JavaScript" src="{:U('/iflight/sidebar')}"></script>
+<?php  if(MODULE_NAME == 'Zt'){ ?>
+<script id="kf53" language="JavaScript" src ="http://chat.53kf.com/kf.php?arg=meile13&style=2"></script>
+<?php }else{ ?>
+<script id="kf53" language="JavaScript" src ="http://chat.53kf.com/kf.php?arg=meile13&style=1"></script>
+<?php }?>
+<?php  }elseif(ACTION_NAME == 'register'){ ?>
+<script id="kf53" language="JavaScript" src ="http://chat.53kf.com/kf.php?arg=meile13&style=2"></script>
+<?php }?>

@@ -8,6 +8,11 @@ define('APP_PATH', './APP/');
 define('APP_DEBUG',TRUE);
 define("WEB_ROOT", dirname(__FILE__) . "/");
 define("COOKIE_FILE", WEB_ROOT.APP_NAME."/cookie_#");
+
+//非框架 初始化程序
+if(file_exists('./init.php')){
+    require( "./init.php");
+}
 // 加载框架入口文件
 require( "./ThinkPHP/ThinkPHP.php");
 

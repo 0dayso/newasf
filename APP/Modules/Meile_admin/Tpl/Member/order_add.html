@@ -1,3 +1,20 @@
+<!---------------
+/****
+**
+**添加订单
+**
+**
+****/
+---------->
+<script>
+    $(function(){
+		$(".city").live('click',function(){			
+			popCityList($(this)[0]);						 
+		})
+    })
+</script>
+
+
 <style type="text/css">
 .border_div{border:1px solid #999; font-size:12px; margin-right:10px;}
 .border_div span{font-weight:bold; clear:both;}
@@ -13,8 +30,9 @@ input{text-align:center;}
 <script type="text/javascript" src="__PUBLIC__/js/hotcitypop/popcitylist.js"></script>
   
 <div class="border_div">
-    <form action="__URL__/order_add/navTabId/__MODULE__-index"  method="post" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone)"> 
-        <div class="border_bottom"><span>会员ID号:</span><input name="hyid" type="text" value="" /><span style="color:#CCC;">（必填，只能是数字）</span></div>
+    <form action="__URL__/order_add/navTabId/__MODULE__-index"  method="post" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone)">
+    	<div class="border_bottom"><span>订单ID号:</span>{$ddbh}<span style="color:#CCC;">（系统自动生成）</span></div> 
+        <div class="border_bottom"><span>会员ID号:</span><input name="hyid" type="text" value="" /><span style="color:#CCC;"></span></div>
         <div class="border_bottom chaxun"><span>航程信息:</span> 
         	<ul  id="type" style="margin-left:70px; margin-top:-15px;">
                 <li>
@@ -28,8 +46,8 @@ input{text-align:center;}
                    <input type="text"  name="hbh1"   value=""  placeholder="航班号" />
                    <input type="text"  name="cw1"    value=""  placeholder="舱位" />  
                    <input type="text"  name="fjjx1"  value=""  placeholder="机型" />         
-                   <input type="text"  name="from1"  value=""  placeholder="出发城市" />
-                   <input type="text"  name="to1"    value=""  placeholder="到达城市"/>
+                   <input type="text"  name="from1"  value=""  placeholder="出发城市" class="text city" state="1"/>
+                   <input type="text"  name="to1"    value=""  placeholder="到达城市" class="text city" state="1"/>
                    <input type="text"  name="date1"  value=""  placeholder="出发日期"/>
                    <input type="text"  name="time1"  value=""  placeholder="出发时间"/>          
                 </li>
@@ -40,8 +58,8 @@ input{text-align:center;}
                    <input type="text"  name="hbh2"   value=""  placeholder="航班号" />
                    <input type="text"  name="cw2"    value=""  placeholder="舱位" />
                    <input type="text"  name="fjjx2"  value=""  placeholder="机型" />           
-                   <input type="text"  name="from2"  value=""  placeholder="出发城市" />
-                   <input type="text"  name="to2"    value=""  placeholder="到达城市"/>
+                   <input type="text"  name="from2"  value=""  placeholder="出发城市" class="text city" state="1"/>
+                   <input type="text"  name="to2"    value=""  placeholder="到达城市" class="text city" state="1"/>
                    <input type="text"  name="date2"  value=""  placeholder="出发日期"/>
                    <input type="text"  name="time2"  value=""  placeholder="出发时间"/>       
                     <br/>
@@ -49,8 +67,8 @@ input{text-align:center;}
                    <input type="text"  name="hbh3"   value=""  placeholder="航班号" />
                    <input type="text"  name="cw3"    value=""  placeholder="舱位" />
                    <input type="text"  name="fjjx3"  value=""  placeholder="机型" />           
-                   <input type="text"  name="from3"  value=""  placeholder="返程城市" />
-                   <input type="text"  name="to3"    value=""  placeholder="到达城市"/>
+                   <input type="text"  name="from3"  value=""  placeholder="返程城市" class="text city" state="1"/>
+                   <input type="text"  name="to3"    value=""  placeholder="到达城市" class="text city" state="1"/>
                    <input type="text"  name="date3"  value=""  placeholder="返回日期"/>
                    <input type="text"  name="time3"  value=""  placeholder="出发时间"/>     
                 </li> 
@@ -61,11 +79,11 @@ input{text-align:center;}
                    <input type="text"  name="hcdata[hbh][4]"   value=""  placeholder="航班号"  size="15"/>
                    <input type="text"  name="hcdata[cw][4]"    value=""  placeholder="舱位"    size="15"/>
                    <input type="text"  name="hcdata[fjjx][4]"  value=""  placeholder="机型"    size="15"/>           
-                   <input type="text"  name="hcdata[from][4]"  value=""  placeholder="出发城市" size="15"/>
-                   <input type="text"  name="hcdata[to][4]"    value=""  placeholder="到达城市" size="15"/>
+                   <input type="text"  name="hcdata[from][4]"  value=""  placeholder="出发城市" size="15" class="text city" state="1"/>
+                   <input type="text"  name="hcdata[to][4]"    value=""  placeholder="到达城市" size="15" class="text city" state="1"/>
                    <input type="text"  name="hcdata[date][4]"  value=""  placeholder="出发日期" size="15"/>
                    <input type="text"  name="hcdata[time][4]"  value=""  placeholder="出发时间" size="15"/>    
-                    <li style="float:right; margin-top:-15px; margin-right:180px; color:#09F"><a id="hctype" num="4">添加航程</a></li>
+                    <li style="float:right; margin-top:-15px; margin-right:150px; color:#09F"><a id="hctype" num="4">添加航程</a></li>
                </li>
            </ul>  
         </div>        
@@ -77,19 +95,25 @@ input{text-align:center;}
              <span>总机建费：</span><input type="text" name="jsf"value=""/>
         </div>
         
-        <div class="border_bottom"><span>现金券使用：</span>无</div>        
-        <div class="border_bottom"><span>应付金额：</span> <input type="text" style="width:80px;" name="ysje" value=""/></div>        
-        <div class="border_bottom"><span>出票时间：</span><input type="text" size="10"  class="date textInput "  name="cpsj" value=""></div>    
+        <!--<div class="border_bottom"><span>现金券使用：</span>无</div>   -->     
+        <div class="border_bottom"><span>应付金额：</span> <input type="text" style="width:80px;" name="ysje" value=""/></div>
+        <div class="border_bottom"><span>支付状态：</span> 
+        	<select name="zf_fkf">
+            	<option value="0">未支付</option>
+                <option value="1">已支付</option>
+            </select>
+        </div>         
+        <div class="border_bottom"><span>出票时间：</span><input type="text" size="10"  class="date textInput "  name="cpsj" value=""><input type="text"  name="cpsj_p"  value=""  placeholder="时间，如12：00：00" size="20"/></div>    
          
         <div class="border_bottom"><span>乘客信息：</span>
-            <input type="text" size="2" value="" name="athud" style="clear:both;">成人/
-            <input type="text" size="2" value="" name="chilren" style="clear:both;">儿童/
-            <input type="text" size="2" value="" name="baby" style="clear:both;">婴儿
+            <input type="text" size="2" value="" name="athud" style="clear:both;">个成人/
+            <input type="text" size="2" value="" name="chilren" style="clear:both;">个儿童/
+            <input type="text" size="2" value="" name="baby" style="clear:both;">个婴儿
             <br/><br/>
             <div id="passenger">            	
                <ul class="bt">
                  <li><table><tr><td>姓名</td><td>乘客类型</td><td>证件号码</td><td>票价</td><td>机建费</td><td>税费</td><td>保险</td><td>现金券</td><td>结算价</td></tr></table></li>
-                 <li style="float:right; margin-top:-15px; margin-right:170px;"><a id="addpapers" num="1">添加乘客</a></li>                      
+                 <li style="float:right; margin-top:-15px; margin-right:60px;"><a id="addpapers" num="1">添加乘客</a></li>                      
                 </ul>
             </div>            
         </div>
@@ -103,6 +127,7 @@ input{text-align:center;}
     </form>
 </div>
 
+        	
 <script type="text/javascript">
 	$(function(){		
 		//添加乘客
@@ -111,7 +136,8 @@ input{text-align:center;}
 			var html='';
 			html += '<li>';
 			html +='<input type="text" name="info[cjr_cjrxm]['+num+']" class="in" value=""/>';//姓名
-			html +='<input type="text" name="info[cjr_lx]['+num+']" class="in" value=""/>';//乘客类型
+			<!--html +='<input type="text" name="info[cjr_lx]['+num+']" class="in" value=""/>';//乘客类型-->
+			html +='<select name="info[cjr_lx]['+num+']" style="width:108px;"><option value="1">成人</option><option value="2">儿童</option><option value="3">婴儿</option></select>';
 			html +='<input type="text" name="info[cjr_clkid]['+num+']" class="in" value=""/>';//证件号
 			html +='<input type="text" name="info[cjr_xsj]['+num+']" class="in" value=""/>';//票价
 			html +='<input type="text" name="info[cjr_jsf]['+num+']" class="in" value=""/>';//机建费
@@ -156,8 +182,8 @@ input{text-align:center;}
 				html +='<input type="text"  name="hcdata[hbh]['+num+']"   value=""  placeholder="航班号"  size="14" />';
 				html +='<input type="text"  name="hcdata[cw]['+num+']"    value=""  placeholder="舱位"    size="14" />';
 				html +='<input type="text"  name="hcdata[fjjx]['+num+']"  value=""  placeholder="机型"    size="14" />';
-				html +='<input type="text"  name="hcdata[from]['+num+']"  value=""  placeholder="出发城市" size="14" />';
-				html +='<input type="text"  name="hcdata[to]['+num+']"    value=""  placeholder="到达城市" size="14" />';
+				html +='<input type="text"  name="hcdata[from]['+num+']"  value=""  placeholder="出发城市" size="14" class="text city" state="1"/>';
+				html +='<input type="text"  name="hcdata[to]['+num+']"    value=""  placeholder="到达城市" size="14" class="text city" state="1"/>';
 				html +='<input type="text"  name="hcdata[date]['+num+']"  value=""  placeholder="出发日期" size="14" />';
 				html +='<input type="text"  name="hcdata[time]['+num+']"  value=""  placeholder="出发时间" size="14"/>';
 <!--				html += '<a class="hcdel">删除</a>';-->

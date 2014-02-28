@@ -1,58 +1,127 @@
-<include file="common" />         
-        <div class="mall_r">
-        	<!--广告-->
-        	<div id="mall_ad">
-            	<ul>
-					<li><a href="{:U('zt/dijialaixi')}" target="_blank"><img src="__PUBLIC__/images/slide_img9.jpg" /></a></li>
-                    <li><a href="{:U('zt/sdyd2013')}" target="_blank"><img src="__PUBLIC__/images/slide_img8.jpg" /></a></li>
-                    <li><a href="{:U('zt/njcg')}" target="_blank"><img src="__PUBLIC__/images/slide_img7.jpg" /></a></li>
-                    <li><a href="{:U('zt/sdyd2013')}" target="_blank"><img src="__PUBLIC__/images/slide_img8.jpg" /></a></li>
-				</ul>
-				<ol>
-                	<li><a href="javascript:;" class="active">积fun商城大促</a></li>
-                    <li><a href="javascript:;">积fun商城大促</a></li>
-                    <li><a href="javascript:;">积fun商城大促</a></li>
-                    <li><a href="javascript:;">积fun商城大促</a></li>
-				</ol>
-            </div><!--广告 END-->                       
-            <!--分类列表--> 
-                    <empty name="one">
-                       <volist name="clist1" id="vo">                        
-                         <div class="class_list" >                	
-                        <h2 ><span></span>{$vo.name}</h2>
-                          <ul>
-                            <volist name="vo.list" id="vo1">
-                                <li >
-                                   <a href="{:U('jifen/info','id='.$vo1['id'])}">
-                                   		<img src="__PUBLIC__/uploads/mall/m_{$vo1.img}" title="{$vo1.title|msubstr=0,12}"/></a>
-                                    <h3><a href="{:U('jifen/info','id='.$vo1['id'])}" title="{$vo.title}">{$vo1.title|msubstr=0,12}</a></h3>
-                                  <if condition="$arr[0] eq '积分礼品'"><p>所需积fun：<em>{$vo1.jifen}</em></p><else/><p>所需爱钻：<b>{$vo1.jifen}</b></p></if>
-                                    <a href="{:U('/Member/Assetaccount/gift')}?num=1&act=add&id={$vo1[id]}" class="shopping">加入购物车</a>
-                                    <a href="{:U('/Member/Assetaccount/gift')}?act=sc&id={$vo1[id]}" class="collect">收藏</a>
-                                </li>                                 
-                           </volist>                                                                     
-                        </ul> 
-                         </div>                     
-                    </volist> 
-                  </empty>          			
+<include file="Public:header" />
+<link rel="stylesheet" href="__PUBLIC__/css/mall.css" type="text/css" />
+    <div id="cont">
+        <div class="wd960 mt10 bgWhite about_asf">
+        	<h1 class="h1_tit_nav">你当前所在位置：<a href="/" class="sy">首页</a> > <a class="sy" href="#">家居生活</a> > <a class="cur">吸尘器</a></h1>
+         <div id="mall">
+             <include file="Public:left" />
+           <div class="ctright">
+            <div class="banner"><a href="#"><img alt="" src="__PUBLIC__/images/banner_03.jpg" width="734" height="198" /></a></div>
+            <div  class="pro_list">
+              <h2>家居生活 - <label>吸尘器</label></h2>
+              <dl>
+                  <h3><a href="#">飞科 FS323 电动剃须刀</a></h3>
+                  <dt><a href="#"><img src="__PUBLIC__/images/sb_03.jpg" width="129" height="130" /></a></dt>
+                  <dd class="bt">双环极速贴面刀网，三头独立浮动弹出式修剪刀，时尚外观设计，8小时充电可连续剃须60分钟</dd>
+                  <dd>积fun：<span class="span0">28070</span></dd>
+                  <dd><input name="" class="gwc_bt"  value="放入购物车" type="button" /><input name="" class="sc_bt" value="收藏"  type="button" /></dd>
+               </dl>
+              <dl>
+                  <h3><a href="#">飞科 FS323 电动剃须刀</a></h3>
+                  <dt><a href="#"><a href="#"><img src="__PUBLIC__/images/sb_03.jpg" width="129" height="130" /></a></a></dt>
+                  <dd class="bt">双环极速贴面刀网，三头独立浮动弹出式修剪刀，时尚外观设计，8小时充电可连续剃须60分钟</dd>
+                  <dd>积fun：<span class="span0">28070</span></dd>
+                  <dd><input name="" class="gwc_bt"  value="放入购物车" type="button" /><input name="" class="sc_bt" value="收藏"  type="button" /></dd>
+               </dl>
+              <dl>
+                  <h3><a href="#">飞科 FS323 电动剃须刀</a></h3>
+                  <dt><a href="#"><img src="__PUBLIC__/images/sb_03.jpg" width="129" height="130" /></a></dt>
+                  <dd class="bt">双环极速贴面刀网，三头独立浮动弹出式修剪刀，时尚外观设计，8小时充电可连续剃须60分钟</dd>
+                  <dd>积fun：<span class="span0">28070</span></dd>
+                  <dd><input name="" class="gwc_bt"  value="放入购物车" type="button" /><input name="" class="sc_bt" value="收藏"  type="button" /></dd>
+               </dl>
+              <dl>
+                  <h3><a href="#">飞科 FS323 电动剃须刀</a></h3>
+                  <dt><a href="#"><img src="__PUBLIC__/images/sb_03.jpg" width="129" height="130" /></a></dt>
+                  <dd class="bt">双环极速贴面刀网，三头独立浮动弹出式修剪刀，时尚外观设计，8小时充电可连续剃须60分钟</dd>
+                  <dd>积fun：<span class="span0">28070</span></dd>
+                  <dd><input name="" class="gwc_bt"  value="放入购物车" type="button" /><input name="" class="sc_bt" value="收藏"  type="button" /></dd>
+               </dl>
+              <dl>
+                  <h3><a href="#">飞科 FS323 电动剃须刀</a></h3>
+                  <dt><a href="#"><img src="__PUBLIC__/images/sb_03.jpg" width="129" height="130" /></a></dt>
+                  <dd class="bt">双环极速贴面刀网，三头独立浮动弹出式修剪刀，时尚外观设计，8小时充电可连续剃须60分钟</dd>
+                  <dd>积fun：<span class="span0">28070</span></dd>
+                  <dd><input name="" class="gwc_bt"  value="放入购物车" type="button" /><input name="" class="sc_bt" value="收藏"  type="button" /></dd>
+               </dl>
+              <dl>
+                  <h3><a href="#">飞科 FS323 电动剃须刀</a></h3>
+                  <dt><a href="#"><img src="__PUBLIC__/images/sb_03.jpg" width="129" height="130" /></a></dt>
+                  <dd class="bt">双环极速贴面刀网，三头独立浮动弹出式修剪刀，时尚外观设计，8小时充电可连续剃须60分钟</dd>
+                  <dd>积fun：<span class="span0">28070</span></dd>
+                  <dd><input name="" class="gwc_bt"  value="放入购物车" type="button" /><input name="" class="sc_bt" value="收藏"  type="button" /></dd>
+               </dl>
+              <dl>
+                  <h3><a href="#">飞科 FS323 电动剃须刀</a></h3>
+                  <dt><a href="#"><img src="__PUBLIC__/images/sb_03.jpg" width="129" height="130" /></a></dt>
+                  <dd class="bt">双环极速贴面刀网，三头独立浮动弹出式修剪刀，时尚外观设计，8小时充电可连续剃须60分钟</dd>
+                  <dd>积fun：<span class="span0">28070</span></dd>
+                  <dd><input name="" class="gwc_bt"  value="放入购物车" type="button" /><input name="" class="sc_bt" value="收藏"  type="button" /></dd>
+               </dl>
+              <dl>
+                  <h3><a href="#">飞科 FS323 电动剃须刀</a></h3>
+                  <dt><a href="#"><img src="__PUBLIC__/images/sb_03.jpg" width="129" height="130" /></a></dt>
+                  <dd class="bt">双环极速贴面刀网，三头独立浮动弹出式修剪刀，时尚外观设计，8小时充电可连续剃须60分钟</dd>
+                  <dd>积fun：<span class="span0">28070</span></dd>
+                  <dd><input name="" class="gwc_bt"  value="放入购物车" type="button" /><input name="" class="sc_bt" value="收藏"  type="button" /></dd>
+               </dl>
+              <dl>
+                  <h3><a href="#">飞科 FS323 电动剃须刀</a></h3>
+                  <dt><a href="#"><img src="__PUBLIC__/images/sb_03.jpg" width="129" height="130" /></a></dt>
+                  <dd class="bt">双环极速贴面刀网，三头独立浮动弹出式修剪刀，时尚外观设计，8小时充电可连续剃须60分钟</dd>
+                  <dd>积fun：<span class="span0">28070</span></dd>
+                  <dd><input name="" class="gwc_bt"  value="放入购物车" type="button" /><input name="" class="sc_bt" value="收藏"  type="button" /></dd>
+               </dl>
+              <dl>
+                  <h3><a href="#">飞科 FS323 电动剃须刀</a></h3>
+                  <dt><a href="#"><img src="__PUBLIC__/images/sb_03.jpg" width="129" height="130" /></a></dt>
+                  <dd class="bt">双环极速贴面刀网，三头独立浮动弹出式修剪刀，时尚外观设计，8小时充电可连续剃须60分钟</dd>
+                  <dd>积fun：<span class="span0">28070</span></dd>
+                  <dd><input name="" class="gwc_bt"  value="放入购物车" type="button" /><input name="" class="sc_bt" value="收藏"  type="button" /></dd>
+               </dl>
+              <dl>
+                  <h3><a href="#">飞科 FS323 电动剃须刀</a></h3>
+                  <dt><a href="#"><img src="__PUBLIC__/images/sb_03.jpg" width="129" height="130" /></a></dt>
+                  <dd class="bt">双环极速贴面刀网，三头独立浮动弹出式修剪刀，时尚外观设计，8小时充电可连续剃须60分钟</dd>
+                  <dd>积fun：<span class="span0">28070</span></dd>
+                  <dd><input name="" class="gwc_bt"  value="放入购物车" type="button" /><input name="" class="sc_bt" value="收藏"  type="button" /></dd>
+               </dl>
+              <dl>
+                  <h3><a href="#">飞科 FS323 电动剃须刀</a></h3>
+                  <dt><a href="#"><img src="__PUBLIC__/images/sb_03.jpg" width="129" height="130" /></a></dt>
+                  <dd class="bt">双环极速贴面刀网，三头独立浮动弹出式修剪刀，时尚外观设计，8小时充电可连续剃须60分钟</dd>
+                  <dd>积fun：<span class="span0">28070</span></dd>
+                  <dd><input name="" class="gwc_bt"  value="放入购物车" type="button" /><input name="" class="sc_bt" value="收藏"  type="button" /></dd>
+               </dl>
+               <p class="pagingBar">
+                    <span class="cur">
+                        <a href="javascript:;" class="prev not">上一页</a>
+                        <a href="javascript:;" class="active">1</a>
+                        <a href="javascript:;">2</a>
+                        <a href="javascript:;">3</a>
+                        <a href="javascript:;">4</a>
+                        <a href="javascript:;">5</a>
+                        <label>…</label>
+                        <a href="javascript:;" class="next">下一页</a>
+                    </span>
+                    <span>
+                        <a>共<label>100</label>页 到第</a>
+                        <input type="text" value="1" class="num" />
+                        <a>页</a>
+                        <input type="button" value="确定" />
+                    </span>
+                </p>
+          </div>
+          
                
-         	 <notempty name="one">
-                <div class="class_list" > 
-                <h2 ><span></span>{$path[2]['name']}</h2>
-                    <ul><!--16个-->
-                        <volist name="clist1" id="vo1"> 
-                            <li>
-                               <a href="{:U('jifen/info','id='.$vo1['id'])}"><img src="__PUBLIC__/uploads/mall/m_{$vo1.img}" title="{$vo1.title|msubstr=0,12}"/></a>
-                                <h3><a href="{:U('jifen/info','id='.$vo1['id'])}" title="{$vo.title}">{$vo1.title|msubstr=0,13}</a></h3>
-                                <if condition="$arr[0] eq '积分礼品'"><p>所需积fun：<em>{$vo1.jifen}</em></p><else/><p>所需爱钻：<b>{$vo1.jifen}</b></p></if>
-                                <a href="{:U('/Member/Assetaccount/gift')}?num=1&act=add&id={$vo1[id]}" class="shopping">加入购物车</a>
-                                <a href="{:U('/Member/Assetaccount/gift')}?act=sc&id={$vo1[id]}" class="collect">收藏</a>
-                            </li>   
-                       </volist>                                            
-                    </ul>                     
-                </div> 
-             </notempty>
-            <!--分类列表 END-->
+           </div>   
+            
+            
+            
+         </div>   
+            
         </div>
     </div>
+
+
 <include file="Public:footer" />

@@ -27,6 +27,7 @@
                                 <td>[ <a href="__URL__/edit?id={$vo.id}">编辑 </a> ] [ <a link="{:U('News/del/',array('id'=>$vo['id']))}" href="javascript:void(0)" name="{$vo.title}" class="del">删除 </a> ]</td>
                             </tr>
                         </volist>
+                        <tr><td colspan='5' align="center" id="page">{$page}</td></tr>
                     </table>
                 </div>
             </div>

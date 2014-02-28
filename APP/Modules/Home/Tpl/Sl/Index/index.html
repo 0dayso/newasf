@@ -186,9 +186,7 @@
             </div>
         </div>
     </div>
-    <if condition="$userinfo and !$userinfo['user_id']">
-        <include file="Member:set_kf" />
-    </if>
+    <script type="text/javascript" src="{:U('/Public/setKf')}"></script>
     <!-- 投诉建议&国际机票咨询预订流程 首页右漂 -->
     <div id="comp_zxyd">
       <!--<div class="verify"><a target="_blank" href="{:U('/iflight/verify')}">机票验真</a></div>-->
