@@ -1,0 +1,95 @@
+<include file="public:header" />
+<style type="text/css">#kfivtwin{display:none!important;/*隐藏53客服*/}</style>
+<link rel="stylesheet" href="__PUBLIC__/css/interticket.css" type="text/css" />
+<link rel="stylesheet" href="__PUBLIC__/css/index.css" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/js/index.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/flightquery.js"></script>
+    <div id="cont">
+        <div class="wd1000 mt10 interTic">
+        	<h1 class="h1_tit_nav">你当前所在位置：<a href="{:U('/')}" class="sy">首页</a> > <a class="cur">国际机票</a></h1>
+            <div class="left" id="fquery_l">
+            <div id="ticket_Query">
+                	<div class="covr_c"></div>
+                    <div class="cont_c">
+                    	<div class="cont_c_b">
+                        	<h1 class="spr htop"></h1>
+                            <include file="Public:searchform" />
+                        </div>
+                    </div>
+                    <div class="covr_c"></div>
+                </div>
+                <include file="Public:gallery" /><!--百宝箱-->
+			</div>
+			<div class="right" id="fquery_r" style="overflow:visible;">
+				<div id="fquery">
+					<h2><label>国际机票查询</label></h2>
+                    
+				  <div id="load">
+                    <h3>正在为您实时搜索：</h3>
+                    <p class="f_txt">从<strong>{$_GET['origin_name']}</strong>到<strong>{$_GET['desination_name']}</strong>的 往返 航班</p>
+                    <p>出发时间：{$_GET['originDate']}</p>
+                    <p>返回时间：{$_GET['returnDate']}</p>
+                    <div><img src="__PUBLIC__/images/f_loading.gif" width="180" height="8" /><span></span></div>
+                  </div>
+                  
+                  <div id="consultancy">
+                  <div class="warn">温馨提示：感谢您对爱尚飞的信任和支持，我们已接收您的查询和请求并为您转接专业旅行顾问选择爱尚飞，放心选择！</div>
+                  <div id="cons_select">
+                      <label><input type="radio" name="cons" value="1" checked="checked"/>咨询专业旅行顾问<span><b>7</b>秒</span></label>
+                    <label><input type="radio" name="cons" value="2" />快速下单<em>（1分钟轻松完成低价预约）</em></label>
+                  </div>
+                 <div id="fquery_form">
+                 <form action="{:U('/iflight/sidebar')}" method="post" id="flightquery_form">
+                 <ul>
+            <li id="radio_sel2">
+                <input type="radio" name="journey"  value="1" checked="checked" /><label>&nbsp;往返&nbsp;&nbsp;</label>
+                <input type="radio" name="journey" value="2"/><label>&nbsp;单程&nbsp;</label>
+            </li>
+            <li>
+                <input type="text" class="text city" name="from_city"  value="{$_GET['origin_name']}" state="1"/>
+            </li>
+            <li>
+                <input type="text" class="text city" name="to_city"  value="{$_GET['desination_name']}" state="1"/>
+            </li>
+            <li>
+                <input type="text" class="text date" name="origin_date" id="originDate2"  value="{$_GET['originDate']}" state="1" />
+            </li>
+            <li>
+                <input type="text" class="text date" name="return_date" id="returnDate2"  value="{$_GET['returnDate']}"  state="1"/>
+            </li>
+            <li>
+                <input type="text" class="text" name="name" id="name" required value="您的姓名"/>
+            </li>
+            <li>
+                <input type="text" class="text" name="phone" id="phone" maxlength="11" required value="您的手机号" />
+            </li>
+             <li>
+                 <input type="text" class="text" name="qq" id="qq"  value="您的QQ号"/>
+             </li>
+            <li class="submit">
+                <input type="submit" value="立即提交" />
+            </li>
+        </ul>
+                 <a href="{:U('/iflight/demand')}" target="_blank">提交详细需求</a>
+                 </form>
+                 </div><!--fquery_form-->
+
+                
+                <div id="renzheng">
+					<h2>选择爱尚飞的理由</h2>
+					<ul>
+						<li class="lb0"><label></label><span>100%国际航协资质，订票无忧</span></li>
+						<li class="lb1"><label></label><span>百家航空公司联盟，第一手低价</span></li>
+          				<li class="lb2"><label></label><span>100%真实出票，可先验票，再付款</span></li>
+          				<li class="lb3"><label></label><span>优越售后服务，退改签毫无障碍</span></li>
+					</ul>
+				</div>
+                  
+                  </div>
+                  
+				</div>
+			</div>
+			
+        </div>
+    </div>
+  <include file="public:footer" />

@@ -1,0 +1,124 @@
+<include file="Public:header" />
+<style type="text/css">#kfivtwin{display:none!important;/*隐藏53客服*/}</style>
+<div id="cont">
+    <div class="wd1000 mt10 bgWhite">
+        <h1 class="h1_tit_nav">你当前所在位置：<a href="{:U('/')}" class="sy">首页</a> > <a class="cur">专业顾问</a></h1>
+        <div class="left mt10" id="proAdvisorL">
+            <h2></h2>
+            <div id="advisor_prompt">
+                <h3><a></a>温馨提示：</h3>
+                <ul>
+                    <li><a>1.如果您还未成为本网站会员，请注册成为本站会员，由系统分配的专业旅行顾问为您服务。或根据所在地域直接选择：广州/深圳/上海/北京 的任一专业差旅顾问为您服务</a></li>
+                    <li><a>2.如果您已成为本网站会员，请立即登录，并联系您的专属旅行顾问为您提供服务。</a></li>
+                    <li class="not"><a>3. 您在每次成功预订机票后，可以对本次预订服务进行评价；评价生效后,您将获赠500积分，积分可兑换丰厚礼品哦！</a></li>
+                    <li class="not submit"><a <if condition="$userinfo['name']">href="{:U('/Adviser')}/{$userinfo.user.id}/review" <else /> href="{:U('/member/login')}"</if> target="_blank" class="pj">立即评价</a></li>
+                </ul>
+            </div>
+            <div id="advisor_list">
+                <h3>
+                    <script type="text/javascript">
+                        $(function(){
+							$("#ksval").focus(function(){
+								if($(this).val() == "请输入顾问姓名、手机或电话（不含区号）"){
+								$(this).val("");
+								}
+								});
+							$("#ksval").blur(function(){
+								if($(this).val() == ""){
+									$(this).val("请输入顾问姓名、手机或电话（不含区号）")
+									}
+								});
+							
+                            $("#ksval").keydown(function(e){
+                                if(e.keyCode == 13) {
+                                    ksearch();
+									
+                                }
+                            });
+                        })
+
+                        function ksearch(){
+							if($('#ksval').val() == "请输入顾问姓名、手机或电话（不含区号）"){
+								alert('请输入查找顾问的内容！');
+								}else{
+								location.href="{:U('/adviser')}?search="+$('#ksval').val();
+								}
+                        };
+                    </script>
+                    <span class="right"><a>快速查找顾问</a>
+                        <!--<input type="text" id="ksval" value="{$_GET['search']}"/>-->
+                        <empty name="_GET['search']">
+                            <input type="text" id="ksval" value="请输入顾问姓名、手机或电话（不含区号）"/>
+                            <else/>
+                            <input type="text" id="ksval" value="{$_GET['search']}"/>
+                        </empty>
+                        <a href="javascript:;" onclick="ksearch()" class="sousuo">搜索</a>
+                    </span>
+                    <span class="left">
+                    <empty name="_GET['search']">
+                    <foreach name="companylist" key='k' item="v">
+                        <a href='{:U("/adviser","company=$v[id]")}'  <if condition=" I('company')==$v['id'] or  ($k==0 and !I('company'))"> class="active"</if> >{$v.name|msubstr=0,2}</a>
+                     </foreach>
+                     <else />
+                        <a> 搜索结果</a>
+                     </empty>
+                     </span>
+                    </h3>
+
+                <ul><!--这里列出6g个li-->
+
+                    <volist name="userlist" id="v" mod="2" >
+                        <eq name="mod" value="0"> <li> </eq>
+                        	<span class="wd span<eq name='mod' value='1'>1</eq>"></eq>
+                            	<span class="imgs"><img src='__PUBLIC__/uploads<if condition="$v['avatar']">{$v.avatar}<else/>/avatar/default.gif</if>' alt="jy" /></span>
+                                <span class="infos">
+
+                                	<a style="display: inline;" href="{:U('/Adviser/review')}_{$v.id}" class="name">{$v.name}</a>
+                                     <a style="display: inline;" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={$v.qq|trim}&site=qq&menu=yes"><img src="http://wpa.qq.com/pa?p=2:{$v.qq|trim}:47" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
+                                    <a>手机号码：<label>{$v.public_mobile}</label></a>
+                                    <a>电话号码：<label>{$v.telephone}</label></a>
+
+                                </span>
+                                <span class="kfpj"><label>服务评价：</label>
+                                    <label class="kfpj" title="五颗星"><a class="a<?php echo round($server[$v['id']]*2); ?>"></a><?php echo $server[$v['id']]; ?></label><label class="aa"><a href="{:U('/Adviser/review')}_{$v.id}">查看所有评价</a></label></span>
+
+                            </span>
+                        <eq name="mod" value="1"> </li> </eq>
+                        </volist>
+                </ul>
+                <p class="pagingBar">
+                    	<span class="cur">
+                    		{$page}
+                        </span>
+
+                </p>
+            </div>
+        </div>
+        <div class="right mt10" id="proAdvisorR">
+            <div id="evaluate_list">
+
+                <include file="Public:evaluate" />
+
+            </div>
+            <div id="near_order" class="proa">
+                <h2 class="titbk"><a class="spr3 tj"></a><span class="left">最近订单</span></h2>
+                <ul>
+                    <foreach name='order' item='v'>
+                    <li>
+                            <span class="sp1">
+                            	<span class="info">
+                                    <label class="lb0">旅行顾问【<a href="{:U('/Adviser/review')}_{$v.user.id}">{$v.user.name}</a>】</label>为会员【<if condition="$v['membername']">{$v['membername']}<else/>游客</if>】预订了<label class="lb1">
+                                    <a href="{:U('airline/pl/','from='.$v['from_iata'].'&to='.$v['to_iata'])}">{$v.from} → {$v.to}</a></label>的机票
+                                </span>
+                                <br/>
+                                <a class="order"><label>订单号：</label><label>{$v.order_id}<label></a>
+                            </span>
+                    </li>
+                    </foreach>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<include file="Public:footer" />

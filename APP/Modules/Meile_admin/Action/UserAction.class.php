@@ -2,6 +2,7 @@
 // 后台用户模块
 class UserAction extends CommonAction {
 	function index(){
+        $map=D("UserAdmin")->userLevelWhere('id');
         if(I('so')){
             if(strstr(I('so'),':')){
                 $so=explode(':',I('so'));
@@ -13,15 +14,14 @@ class UserAction extends CommonAction {
                 $where['_logic'] = 'or';
                 $map['_complex'] = $where;
             }
-
         }
 
         if(!isset($_POST['status']) && !isset($_GET['status'])){
             $map['status'] = 1;
             $_REQUEST['status']=1;
         }
+        if(!isset($map['id']))  $map['id'] = array('egt',2);
 
-        $map['id'] = array('egt',2);
         $this->map = $map;
         $access=D('Access');
         $info['companyOption']=$access->getOption('company',array('id'=>I('company_id')));
@@ -326,7 +326,7 @@ class UserAction extends CommonAction {
                 foreach($arrs as $key=>$val){
                     $wh['id']=array('in',$val);
                     $data=array();
-                    $data['user_id']=$userDB->autoUserid($urs['company_id'],$urs['department_id']);
+                    $data['user_id']=$userDB->autoUserid($urs['company_id'],$urs['department_id'],I('id'));
                     $ar[]=$memberDB->where($wh)->save($data);
                 }
                if(!empty($ar)) $this->success('成功');

@@ -1,0 +1,523 @@
+<include file="public:header" />
+<script type="text/javascript" >
+$(function(){
+	//导航条JS效果
+	$(document).scroll(function(){
+		h = $(this).scrollTop()-530 + 'px';
+		$('#go').css('top',h);
+		});
+	
+	//预订的JS效果
+	$('.block li').mouseover(function(){
+		$(this).children('.bside').css('display','block');
+		}).mouseout(function(){
+			$(this).children('.bside').css('display','none');
+		}).click(function(){
+			open_kf();
+		});
+	});
+</script>
+<style type="text/css">
+body,ul,li,dl,dt,dd,h3{margin:0px;padding:0px;color:#333;font-size:12px;}
+#body{background: url(__PUBLIC__/images/Zt/lxs/lxs_bg.jpg) repeat-x center top;}
+.middle,#box{overflow:visible;}
+.middle{width:960px;margin:0 auto 60px auto;}
+#box{position:relative;}
+#go{height:390px;width:35px;background:url(__PUBLIC__/images/Zt/lxs/go.png);position:absolute;left:-60px;top:-530px;}
+#go a{font-size:16px;font-weight:bold;display:block;color:#FFF;text-decoration:none;}
+#go a:hover{color: #ffde00;}
+#go dt{height: 57px;overflow: hidden;}
+#go dt a{line-height: 1000px;}
+#go dd{height: 76px;text-align:center;}
+#go dd a{height: 60px;padding-top:16px;}
+
+.box{background-color:#ebfaff;}
+.box h3{height: 70px;}
+.box ul.block{width:944px;padding:16px 0 0 16px;}
+.box ul.block li{float:left;height:175px;width:220px;margin:0 16px 16px 0;position:relative;cursor:pointer;}
+.box ul.block li .aside{padding:0 14px;width:192px;height:175px;background:url(__PUBLIC__/images/img/fltbg.gif) 0 0 no-repeat; position:absolute;z-index:26;}
+.box ul.block li .aside h4{margin:0;padding:1px 0 0 0;font-size:26px;font-family:Microsoft YaHei;font-weight:normal;height:40px;line-height:40px;}
+.box ul.block li .aside p.p1{height:41px;line-height:41px;color:#fff;overflow:hidden}
+.box ul.block li .aside p.p1 span{ float:left; margin-right:2px; font-size:40px; font-family:Arial; word-wrap:break-word; word-break:break-all}
+.box ul.block li .aside p.p1 span.sp1{ padding-top:2px; *padding-top:4px; width:20px; height:39px; *height:37px; line-height:16px; font-size:16px; font-family:Microsoft YaHei}
+.box ul.block li .aside p.p1 span.sp2{ margin-right:0; padding-top:2px; width:10px; height:39px; line-height:18px; font-size:16px; font-family:Microsoft YaHei}
+.box ul.block li .aside p.p1 em{ float:left; width:12px; font-size:12px; line-height:53px; font-style:normal; font-family:Microsoft YaHei}
+.box ul.block li .aside p.p2{ height:26px; line-height:26px; font-size:16px; font-family:Microsoft YaHei}
+.box ul.block li .aside p.p3{ font-size:12px; height:42px; line-height:14px; color:#858585}
+.box ul.block li .aside p.hs{ padding:4px 16px 0 0; *padding-top:5px; text-align:right; width:177px; font-size:12px}
+.box ul.block li .aside p.hs span{ display:inline-block; padding-left:18px; height:16px; line-height:16px}
+/*航空的logo*/
+.box ul.block li .aside p.guohang span{ background:url(__PUBLIC__/images/img/guohang.gif) 0 0 no-repeat}
+.box ul.block li .aside p.alianqiu span{ background:url(__PUBLIC__/images/img/alianqiu.gif) 0 0 no-repeat}
+.box ul.block li .aside p.aodaliya span{ background:url(__PUBLIC__/images/img/aodaliya.gif) 0 0 no-repeat}
+.box ul.block li .aside p.dahan span{ background:url(__PUBLIC__/images/img/dahan.gif) 0 0 no-repeat}
+.box ul.block li .aside p.damei span{ background:url(__PUBLIC__/images/img/damei.gif) 0 0 no-repeat}
+.box ul.block li .aside p.aomen1 span{ background:url(__PUBLIC__/images/img/aomen1.gif) 0 0 no-repeat}
+.box ul.block li .aside p.xiamen span{padding-left:40px;background:url(__PUBLIC__/images/img/xiamen.gif) 0 0 no-repeat}
+.box ul.block li .aside p.taiguohangkong span{ background:url(__PUBLIC__/images/img/taiguohangkong.gif) 0 0 no-repeat}
+.box ul.block li .aside p.dongfang span{ background:url(__PUBLIC__/images/img/dongfang.gif) 0 0 no-repeat}
+.box ul.block li .aside p.riben span{padding-left:30px;background:url(__PUBLIC__/images/img/riben.gif) 0 0 no-repeat}
+.box ul.block li .aside p.yingguo span{padding-left:40px;background:url(__PUBLIC__/images/img/yingguo.gif) 0 0 no-repeat}
+.box ul.block li .aside p.faguohangkong span{padding-left:25px;background:url(__PUBLIC__/images/img/faguohangkong.gif) 0 0 no-repeat}
+.box ul.block li .aside p.fenlan span{padding-left:65px; background:url(__PUBLIC__/images/img/fenlan.gif) 0 0 no-repeat}
+.box ul.block li .aside p.helanhuangjia span{background:url(__PUBLIC__/images/img/helanhuangjia.gif) 0 0 no-repeat}
+.box ul.block li .aside p.eluosi span{padding-left:30px; background:url(__PUBLIC__/images/img/eluosi.gif) 0 0 no-repeat}
+.box ul.block li .aside p.hansha span{background:url(__PUBLIC__/images/img/hansha.gif) 0 0 no-repeat}
+.box ul.block li .aside p.ruishi span{background:url(__PUBLIC__/images/img/ruishi.gif) 0 0 no-repeat}
+.box ul.block li .aside p.hatihade span{padding-left:25px; background:url(__PUBLIC__/images/img/hatihade.gif) 0 0 no-repeat}
+.box ul.block li .aside p.aa span{padding-left:20px;  background:url(__PUBLIC__/images/img/aa.gif) 0 0 no-repeat}
+.box ul.block li .aside p.sichuanhangkong span{ background:url(__PUBLIC__/images/img/sichuanhangkong.gif) 0 0 no-repeat}
+.box ul.block li .aside p.faguohanggkong span{ padding-left:24px; background:url(http://pages.ctrip.com/commerce/flightSource/airlineImg/faguohanggkong.gif) 0 0 no-repeat}
+.box ul.block li .aside p.feilvbin span{ padding-left:30px; background:url(__PUBLIC__/images/img/feilvbin.gif) 0 0 no-repeat}
+.box ul.block li .aside p.guohangg span{ background:url(__PUBLIC__/images/img/guohangg.gif) 0 0 no-repeat}
+.box ul.block li .aside p.guotai span{ padding-left:28px; background:url(__PUBLIC__/images/img/guotai.gif) 0 0 no-repeat}
+.box ul.block li .aside p.hanya span{ background:url(__PUBLIC__/images/img/hanya.gif) 0 0 no-repeat}
+.box ul.block li .aside p.jixiang span{ background:url(__PUBLIC__/images/img/jixiang.gif) 0 0 no-repeat}
+.box ul.block li .aside p.malaixiya span{padding-left:20px;  background:url(__PUBLIC__/images/img/malaixiya.gif) 0 0 no-repeat}
+.box ul.block li .aside p.maoliqiusi span{ padding-left:61px; background:url(__PUBLIC__/images/img/maoliqiusi.gif) 0 0 no-repeat}
+.box ul.block li .aside p.nanhang span{ padding-left:27px; background:url(__PUBLIC__/images/img/nanhang.gif) 0 0 no-repeat}
+.box ul.block li .aside p.quanrikong span{padding-left:64px; background:url(__PUBLIC__/images/img/quanrikong.gif) 0 0 no-repeat}
+.box ul.block li .aside p.shanghang span{padding-left:25px; background:url(__PUBLIC__/images/img/shanghang.gif) 0 0 no-repeat}
+.box ul.block li .aside p.sichuanhangkong span{ background:url(__PUBLIC__/images/img/sichuanhangkong.gif) 0 0 no-repeat}
+.box ul.block li .aside p.sililanka span{padding-left:24px; background:url(__PUBLIC__/images/img/sililanka.gif) 0 0 no-repeat}
+.box ul.block li .aside p.tuerqi span{ background:url(__PUBLIC__/images/img/tuerqi.gif) 0 0 no-repeat}
+.box ul.block li .aside p.hainan span{ background:url(__PUBLIC__/images/img/hainan.gif) 0 0 no-repeat}
+.box ul.block li .aside p.xianggangkuaiyun span{padding-left:25px; background:url(__PUBLIC__/images/img/xianggangkuaiyun.gif) 0 0 no-repeat}
+.box ul.block li .aside p.wenlaihangkong span{padding-left:25px; background:url(__PUBLIC__/images/img/wenlaihangkong.gif) 0 0 no-repeat}
+.box ul.block li .aside p.xianggang span{ background:url(__PUBLIC__/images/img/xianggang.gif) 0 0 no-repeat}
+.box ul.block li .aside p.xinjiapo span{ background:url(__PUBLIC__/images/img/xinjiapo.gif) 0 0 no-repeat}
+.box ul.block li .aside p.yinniyinghang span{ padding-left:30px; background:url(__PUBLIC__/images/img/yinniyinghang.gif) 0 0 no-repeat}
+.box ul.block li .aside p.meiguohangg span{padding-left:20px;  background:url(__PUBLIC__/images/img/aa.gif) 0 0 no-repeat}
+.box ul.block li .aside p.ganglong span{padding-left:19px;  background:url(__PUBLIC__/images/img/ganglonghangkong.gif) 0 0 no-repeat}
+.box ul.block li .aside p.meiguolianhe span{padding-left:19px;  background:url(__PUBLIC__/images/img/meiguolianhe.gif) 0 0 no-repeat}
+.aside p.aisaiebiya span{ background:url(__PUBLIC__/images/img/aisaiebiya.gif) 0 0 no-repeat}
+
+/*bside的CSS*/
+.box ul.block li .bside{ padding:0 25px; width:170px; height:175px; font-size:12px; line-height:18px; color:#fff; background-color: #43baff;; position:absolute; z-index:27; display:none}
+.box ul.block li .bside p{ display:table-cell; height:1.14em; font-size:166px; vertical-align:middle}
+.box ul.block li .bside p span{ display:inline-block; font-size:12px; font-style:normal; vertical-align:middle}
+.box ul.block li .bside p em{ display:inline-block; padding-left:20px; width:157px; font-size:24px; line-height:60px; font-family:Microsoft YaHei; font-style:normal; background:url(images/fltarr.gif) 120px 20px  no-repeat;}
+
+/*List*/
+.box ul.list{padding:15px 0;}
+.box ul.list li{float:left;line-height:19px;height:19px;width:464px;padding-left:16px;margin-bottom:9px;}
+.box ul.list li span{float:left;}
+.box ul.list li .qd{width:37px;padding-left:8px;background:url(__PUBLIC__/images/Zt/lxs/qd.gif) no-repeat left center;}
+.box ul.list li .zd1,.box ul.list li .zd2{width:75px;padding-left:20px;}
+.box ul.list li .zd1{background:url(__PUBLIC__/images/Zt/lxs/zd1.gif) no-repeat 3px center;}
+.box ul.list li .zd2{background:url(__PUBLIC__/images/Zt/lxs/zd2.gif) no-repeat left center;}
+.box ul.list li .time{width:100px;}
+.box ul.list li .hk{width:60px;}
+.box ul.list li .wf{width:30px;}
+.box ul.list li .price{width:70px;}
+.box ul.list li .price em{font-style:normal;margin-right:5px;color:#F00;}
+.box ul.list li .yd{width:50px;}
+</style>
+
+<div id="body">
+<div class="middle">
+<div id="top"><img src="__PUBLIC__/images/Zt/lxs/lxs_top.jpg"></div>
+<div id="box">
+<dl id="go">
+<dt><a href="#">Go</a></dt>
+<dd><a href="#Europe">欧</br>洲</a></dd>
+<dd><a href="#America">美</br>洲</a></dd>
+<dd><a href="#Australia">澳</br>洲</a></dd>
+<dd><a href="#Asia">亚</br>洲</a></dd>
+</dl>
+<!--欧洲-->
+<div class="box">
+<h3><a name="Europe"></a><img src="__PUBLIC__/images/Zt/lxs/lxs_h1.gif"></h3>
+<ul class="block">
+<li>
+  <div class="aside">
+    <h4>曼彻斯特</h4>
+    <p class="p1 cf"><span class="sp1">单程</span><span class="sp2">&yen;</span><span>2,240</span><em>起</em></p>
+    <p class="p2">从北京</p>
+    <p class="p3"><strong>旅行有效期</strong><br />
+      2013-7-20至2013-12-31</p>
+    <p class="hs fenlan"><span>芬兰航空</span></p>
+  </div>
+  <div class="bside">
+    <p> <span> <strong>出票有效期</strong>：提前7天出票，截止至2013-12-24<br />
+      <strong>备注</strong>：12-34岁需要提供学生签证或入学通知书，ISIC国际学生卡持有者（赫尔辛基转机，机场有中文标识） <em>立即预订</em> </span> </p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>都柏林</h4>
+    <p class="p1 cf"><span class="sp1">单程</span><span class="sp2">&yen;</span><span>3,090</span><em>起</em></p>
+    <p class="p2">从上海</p>
+    <p class="p3"><strong>旅行有效期</strong><br />
+      2013-5-29至2013-12-30</p>
+    <p class="hs hansha"><span>汉莎航空</span></p>
+  </div>
+  <div class="bside">
+    <p> <span> <strong>出票有效期</strong>：截止至2013-12-30<br />
+      <strong>备注</strong>：适用于18-28周岁的留学生，需提供录取通知书的复印件（慕尼黑或法兰克福转机） <em>立即预订</em> </span> </p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>慕尼黑</h4>
+    <p class="p1 cf"><span class="sp1">单程</span><span class="sp2">&yen;</span><span>3,090</span><em>起</em></p>
+    <p class="p2">从上海</p>
+    <p class="p3"><strong>旅行有效期</strong><br />
+      2013-5-29至2013-12-30</p>
+    <p class="hs hansha"><span>汉莎航空</span></p>
+  </div>
+  <div class="bside">
+    <p> <span> <strong>出票有效期</strong>：截止至2013-12-30<br />
+      <strong>备注</strong>：适用于18-28周岁的留学生，需提供录取通知书的复印件 <em>立即预订</em> </span> </p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>米兰</h4>
+    <p class="p1 cf"><span class="sp1">单程</span><span class="sp2">&yen;</span><span>3,090</span><em>起</em></p>
+    <p class="p2">从上海</p>
+    <p class="p3"><strong>旅行有效期</strong><br />
+      2013-5-29至2013-12-30</p>
+    <p class="hs hansha"><span>汉莎航空</span></p>
+  </div>
+  <div class="bside">
+    <p> <span> <strong>出票有效期</strong>：截止至2013-12-30<br />
+      <strong>备注</strong>：适用于18-28周岁的留学生，需提供录取通知书的复印件（慕尼黑或法兰克福转机） <em>立即预订</em> </span> </p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>法兰克福</h4>
+    <p class="p1 cf"><span class="sp1">单程</span><span class="sp2">&yen;</span><span>3,800</span><em>起</em></p>
+    <p class="p2">从上海</p>
+    <p class="p3"><strong>旅行有效期</strong><br />
+      2013-7-18至2013-12-30</p>
+    <p class="hs tuerqi"><span>土耳其航空</span></p>
+  </div>
+  <div class="bside">
+    <p> <span> <strong>出票有效期</strong>：截止至2013-12-30<br />
+      <strong>备注</strong>：适用于13-29周岁的留学生，需提供护照、学生证或入学通知书复印件（伊斯坦布尔转机） <em>立即预订</em> </span> </p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>里昂</h4>
+    <p class="p1 cf"><span class="sp1">单程</span><span class="sp2">&yen;</span><span>3,800</span><em>起</em></p>
+    <p class="p2">从上海</p>
+    <p class="p3"><strong>旅行有效期</strong><br />
+      2013-7-18至2013-12-30</p>
+    <p class="hs tuerqi"><span>土耳其航空</span></p>
+  </div>
+  <div class="bside">
+    <p> <span> <strong>出票有效期</strong>：截止至2013-12-30<br />
+      <strong>备注</strong>：适用于13-29周岁的留学生，需提供护照、学生证或入学通知书复印件（伊斯坦布尔转机） <em>立即预订</em> </span> </p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>伦敦</h4>
+    <p class="p1 cf"><span class="sp1">单程</span><span class="sp2">&yen;</span><span>4,620</span><em>起</em></p>
+    <p class="p2">从上海</p>
+    <p class="p3"><strong>旅行有效期</strong><br />
+      2013-8-21至2013-10-4</p>
+    <p class="hs weizhen"><span>维珍航空</span></p>
+  </div>
+  <div class="bside">
+    <p> <span> <strong>出票有效期</strong>：截止至2013-10-4<br />
+      <strong>备注</strong>：需提供留学生签证、护照、学生证或入学通知书复印件 <em>立即预订</em> </span> </p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>阿伯丁</h4>
+    <p class="p1 cf"><span class="sp1">单程</span><span class="sp2">&yen;</span><span>4,620</span><em>起</em></p>
+    <p class="p2">从上海</p>
+    <p class="p3"><strong>旅行有效期</strong><br />
+      2013-8-21至2013-10-4</p>
+    <p class="hs weizhen"><span>维珍航空</span></p>
+  </div>
+  <div class="bside">
+    <p> <span> <strong>出票有效期</strong>：截止至2013-10-4<br />
+      <strong>备注</strong>：需提供留学生签证、护照、学生证或入学通知书复印件（伦敦转机） <em>立即预订</em> </span> </p>
+  </div>
+</li>
+</ul>
+
+<ul class="list">
+<li><span class="qd">北京</span><span class="zd1">斯德哥尔摩</span><span class="time">2013-12-24截止</span><span class="hk">芬兰航空</span><span class="wf">单程</span><span class="price"><em>￥1940</em>起</span><span class="yd"><img src="__PUBLIC__/images/Zt/lxs/yd.jpg"></span></li>
+<li><span class="qd">北京</span><span class="zd2">斯德哥尔摩</span><span class="time">2013-12-24截止</span><span class="hk">芬兰航空</span><span class="wf">单程</span><span class="price"><em>￥1940</em>起</span><span class="yd"><img src="__PUBLIC__/images/Zt/lxs/yd.jpg"></span></li>
+<li><span class="qd">北京</span><span class="zd1">斯德哥尔摩</span><span class="time">2013-12-24截止</span><span class="hk">芬兰航空</span><span class="wf">单程</span><span class="price"><em>￥1940</em>起</span><span class="yd"><img src="__PUBLIC__/images/Zt/lxs/yd.jpg"></span></li>
+<li><span class="qd">北京</span><span class="zd2">斯德哥尔摩</span><span class="time">2013-12-24截止</span><span class="hk">芬兰航空</span><span class="wf">单程</span><span class="price"><em>￥1940</em>起</span><span class="yd"><img src="__PUBLIC__/images/Zt/lxs/yd.jpg"></span></li>
+</ul>
+</div>
+
+<!--美洲-->
+<div class="box">
+<h3><a name="America"></a><img src="__PUBLIC__/images/Zt/lxs/lxs_h2.gif"></h3>
+<ul class="block">
+<li>
+  <div class="aside">
+    <h4>旧金山</h4>
+    <p class="p1 cf"><span class="sp1">单程</span><span class="sp2">&yen;</span><span>6,200</span><em>起</em></p>
+    <p class="p2">从北京</p>
+    <p class="p3"><strong>旅行有效期</strong><br />
+      2013-7-13至2013-9-5</p>
+    <p class="hs guotai"><span>国泰航空</span></p>
+  </div>
+  <div class="bside">
+    <p> <span> <strong>出票有效期</strong>：截止至2013-9-5<br />
+      <strong>备注</strong>：留学生需提供护照及留学签证复印件；留学生票面显示2件，每件23公斤，提前三个工作日（周一至周五9:00-17:00）出票可额外申请一件，四位数航班除外（香港转机） <em style="font-size:14px; padding:0; text-align:center;line-height:30px; background-image:none;">立即预订></em> </span> </p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>纽约</h4>
+    <p class="p1 cf"><span class="sp1">单程</span><span class="sp2">&yen;</span><span>7,350</span><em>起</em></p>
+    <p class="p2">从北京</p>
+    <p class="p3"><strong>旅行有效期</strong><br />
+      2013-7-13至2013-9-5</p>
+    <p class="hs guotai"><span>国泰航空</span></p>
+  </div>
+  <div class="bside">
+    <p> <span> <strong>出票有效期</strong>：截止至2013-9-5<br />
+      <strong>备注</strong>：留学生需提供护照及留学签证复印件；留学生票面显示2件，每件23公斤，提前三个工作日（周一至周五9:00-17:00）出票可额外申请一件，四位数航班除外（香港转机） <em style="font-size:14px; padding:0; text-align:center;line-height:30px; background-image:none;">立即预订></em> </span> </p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>洛杉矶</h4>
+    <p class="p1 cf"><span class="sp1">单程</span><span class="sp2">&yen;</span><span>3,840</span><em>起</em></p>
+    <p class="p2">从上海</p>
+    <p class="p3"><strong>旅行有效期</strong><br />
+      2013-9-13至2013-9-25</p>
+    <p class="hs aa"><span>美国航空</span></p>
+  </div>
+  <div class="bside">
+    <p> <span> <strong>出票有效期</strong>：截止至2013-9-25<br />
+      <strong>备注</strong>：需提供F1/F2/J1/J2类型的学生签证及学生证或入学通知书复印件 <em>立即预订</em> </span> </p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>芝加哥</h4>
+    <p class="p1 cf"><span class="sp1">单程</span><span class="sp2">&yen;</span><span>4,840</span><em>起</em></p>
+    <p class="p2">从上海</p>
+    <p class="p3"><strong>旅行有效期</strong><br />
+      2013-9-13至2013-9-25</p>
+    <p class="hs aa"><span>美国航空</span></p>
+  </div>
+  <div class="bside">
+    <p> <span> <strong>出票有效期</strong>：截止至2013-9-25<br />
+      <strong>备注</strong>：需提供F1/F2/J1/J2类型的学生签证及学生证或入学通知书复印件 <em>立即预订</em> </span> </p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>纽约</h4>
+    <p class="p1 cf"><span class="sp1">单程</span><span class="sp2">&yen;</span><span>4,360</span><em>起</em></p>
+    <p class="p2">从成都</p>
+    <p class="p3"><strong>旅行有效期</strong><br />
+      2013-9-1至2013-9-25，2013-10-4至2014-1-27</p>
+    <p class="hs ganglonghangkong"><span>港龙国泰航空</span></p>
+  </div>
+  <div class="bside">
+    <p> <span> <strong>出票有效期</strong>：截止至2014-1-27<br />
+      <strong>备注</strong>：香港转机，仅适用于持有美国留学签证的中国学生 <em>立即预订</em> </span> </p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>芝加哥</h4>
+    <p class="p1 cf"><span class="sp1">单程</span><span class="sp2">&yen;</span><span>3,960</span><em>起</em></p>
+    <p class="p2">从成都</p>
+    <p class="p3"><strong>旅行有效期</strong><br />
+      2013-9-1至2013-9-25，2013-10-4至2014-1-27</p>
+    <p class="hs ganglonghangkong"><span>港龙国泰航空</span></p>
+  </div>
+  <div class="bside">
+    <p> <span> <strong>出票有效期</strong>：截止至2014-1-27<br />
+      <strong>备注</strong>：香港转机，仅适用于持有美国留学签证的中国学生 <em>立即预订</em> </span> </p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>多伦多</h4>
+    <p class="p1 cf"><span class="sp1">单程</span><span class="sp2">&yen;</span><span>4,700</span><em>起</em></p>
+    <p class="p2">从成都</p>
+    <p class="p3"><strong>旅行有效期</strong><br />
+      2013-9-1至2013-9-25，2013-10-4至2014-1-27</p>
+    <p class="hs ganglonghangkong"><span>港龙国泰航空</span></p>
+  </div>
+  <div class="bside">
+    <p> <span> <strong>出票有效期</strong>：截止至2014-1-27<br />
+      <strong>备注</strong>：香港转机，仅适用于持有加拿大留学签证的中国学生 <em>立即预订</em> </span> </p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>温哥华</h4>
+    <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>6,030</span><em>起</em></p>
+    <p class="p2">从成都</p>
+    <p class="p3"><strong>旅行有效期</strong><br />
+      2013-9-8至2013-10-20</p>
+    <p class="hs sichuanhangkong"><span>四川航空</span></p>
+  </div>
+  <div class="bside">
+    <p> <span> <strong>出票有效期</strong>：截止至2013-10-20<br />
+      <strong>备注</strong>：停留有效期：0-6个月（经停沈阳） <em>立即预订</em> </span> </p>
+  </div>
+</li>
+</ul>
+
+<ul class="list">
+<li><span class="qd">北京</span><span class="zd1">斯德哥尔摩</span><span class="time">2013-12-24截止</span><span class="hk">芬兰航空</span><span class="wf">单程</span><span class="price"><em>￥1940</em>起</span><span class="yd"><img src="__PUBLIC__/images/Zt/lxs/yd.jpg"></span></li>
+<li><span class="qd">北京</span><span class="zd2">斯德哥尔摩</span><span class="time">2013-12-24截止</span><span class="hk">芬兰航空</span><span class="wf">单程</span><span class="price"><em>￥1940</em>起</span><span class="yd"><img src="__PUBLIC__/images/Zt/lxs/yd.jpg"></span></li>
+<li><span class="qd">北京</span><span class="zd1">斯德哥尔摩</span><span class="time">2013-12-24截止</span><span class="hk">芬兰航空</span><span class="wf">单程</span><span class="price"><em>￥1940</em>起</span><span class="yd"><img src="__PUBLIC__/images/Zt/lxs/yd.jpg"></span></li>
+<li><span class="qd">北京</span><span class="zd2">斯德哥尔摩</span><span class="time">2013-12-24截止</span><span class="hk">芬兰航空</span><span class="wf">单程</span><span class="price"><em>￥1940</em>起</span><span class="yd"><img src="__PUBLIC__/images/Zt/lxs/yd.jpg"></span></li>
+</ul>
+</div>
+
+<!--澳洲-->
+<div class="box">
+<h3><a name="Australia"></a><img src="__PUBLIC__/images/Zt/lxs/lxs_h3.gif"></h3>
+<ul class="block">
+<li>
+  <div class="aside">
+    <h4>墨尔本</h4>
+    <p class="p1 cf"><span class="sp1">单程</span><span class="sp2">&yen;</span><span>3,440</span><em>起</em></p>
+    <p class="p2">从杭州</p>
+    <p class="p3"><strong>旅行有效期</strong><br />
+      2013-10-21至2014-1-27</p>
+    <p class="hs guotai"><span>国泰航空</span></p>
+  </div>
+  <div class="bside">
+    <p> <span> <strong>出票有效期</strong>：截止至2014-1-27<br />
+      <strong>备注</strong>：需提供中国籍留学生护照和签证复印件，可享有额外免费20KG托运行李的优惠(每人每票计算)，须提前三个工作日申请（香港转机） <em>立即预订</em> </span> </p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>悉尼</h4>
+    <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>4,150</span><em>起</em></p>
+    <p class="p2">从广州</p>
+    <p class="p3"><strong>旅行有效期</strong><br />
+      2013-5-1至2013-9-22，2013-10-4至2014-1-20</p>
+    <p class="hs xinjiapo"><span>新加坡航空</span></p>
+  </div>
+  <div class="bside">
+    <p> <span> <strong>出票有效期</strong>：截止至2013-12-31<br />
+      <strong>备注</strong>：停留有效期：0-12个月（新加坡转机），留学生需提供护照、学生签证或入学通知书复印件，移民需提供移民护照和签证复印件 <em>立即预订</em> </span> </p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>墨尔本</h4>
+    <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>4,150</span><em>起</em></p>
+    <p class="p2">从广州</p>
+    <p class="p3"><strong>旅行有效期</strong><br />
+      2013-5-1至2013-9-22，2013-10-4至2014-1-20</p>
+    <p class="hs xinjiapo"><span>新加坡航空</span></p>
+  </div>
+  <div class="bside">
+    <p> <span> <strong>出票有效期</strong>：截止至2013-12-31<br />
+      <strong>备注</strong>：停留有效期：0-12个月（新加坡转机），留学生需提供护照、学生签证或入学通知书复印件，移民需提供移民护照和签证复印件 <em>立即预订</em> </span> </p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>悉尼</h4>
+    <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>4,650</span><em>起</em></p>
+    <p class="p2">从上海</p>
+    <p class="p3"><strong>旅行有效期</strong><br />
+      2013-8-19至2013-9-19</p>
+    <p class="hs aozhou"><span>澳洲航空</span></p>
+  </div>
+  <div class="bside">
+    <p> <span> <strong>出票有效期</strong>：提前7天出票，截止至2013-9-12<br />
+      <strong>备注</strong>：停留有效期：0-12个月，适用于中国籍留学生，需提供护照和学生签证复印件 <em>立即预订</em> </span> </p>
+  </div>
+</li>
+</ul>
+
+<ul class="list">
+<li><span class="qd">北京</span><span class="zd1">斯德哥尔摩</span><span class="time">2013-12-24截止</span><span class="hk">芬兰航空</span><span class="wf">单程</span><span class="price"><em>￥1940</em>起</span><span class="yd"><img src="__PUBLIC__/images/Zt/lxs/yd.jpg"></span></li>
+<li><span class="qd">北京</span><span class="zd2">斯德哥尔摩</span><span class="time">2013-12-24截止</span><span class="hk">芬兰航空</span><span class="wf">单程</span><span class="price"><em>￥1940</em>起</span><span class="yd"><img src="__PUBLIC__/images/Zt/lxs/yd.jpg"></span></li>
+<li><span class="qd">北京</span><span class="zd1">斯德哥尔摩</span><span class="time">2013-12-24截止</span><span class="hk">芬兰航空</span><span class="wf">单程</span><span class="price"><em>￥1940</em>起</span><span class="yd"><img src="__PUBLIC__/images/Zt/lxs/yd.jpg"></span></li>
+<li><span class="qd">北京</span><span class="zd2">斯德哥尔摩</span><span class="time">2013-12-24截止</span><span class="hk">芬兰航空</span><span class="wf">单程</span><span class="price"><em>￥1940</em>起</span><span class="yd"><img src="__PUBLIC__/images/Zt/lxs/yd.jpg"></span></li>
+</ul>
+</div>
+
+<!--亚洲-->
+<div class="box">
+<h3><a name="Asia"></a><img src="__PUBLIC__/images/Zt/lxs/lxs_h4.gif"></h3>
+<ul class="block">
+<li>
+  <div class="aside">
+    <h4>香港</h4>
+    <p class="p1 cf"><span class="sp1">单程</span><span class="sp2">&yen;</span><span>1,140</span><em>起</em></p>
+    <p class="p2">从杭州</p>
+    <p class="p3"><strong>旅行有效期</strong><br />
+      2013-7-3至2014-6-30</p>
+    <p class="hs ganglonghangkong"><span>港龙航空</span></p>
+  </div>
+  <div class="bside">
+    <p> <span> <strong>出票有效期</strong>：截止至2014-3-31<br />
+      <strong>备注</strong>：仅限KA621/KA637；需提供香港留学签证或入学通知书或学生证复印件，可享有额外免费10KG（每人每票计算）托运行李的优惠，须提前三个工作日申请 <em>立即预订</em></span></p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>雅加达</h4>
+    <p class="p1 cf"><span class="sp1">单程</span><span class="sp2">&yen;</span><span>2,750</span><em>起</em></p>
+    <p class="p2">从上海</p>
+    <p class="p3"><strong>旅行有效期</strong><br />
+      2013-4-1至2013-9-29</p>
+    <p class="hs yinniyinghang"><span>印尼鹰航</span></p>
+  </div>
+  <div class="bside">
+    <p> <span> <strong>出票有效期</strong>：截止至2013-9-29<br />
+      <strong>备注</strong>：需提供留学生护照、签证、学生证或入学通知书复印件 <em>立即预订</em></span></p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>东京</h4>
+    <p class="p1 cf"><span class="sp1">单程</span><span class="sp2">&yen;</span><span>2,240</span><em>起</em></p>
+    <p class="p2">从广州</p>
+    <p class="p3"><strong>旅行有效期</strong><br />
+      2013-8-12至2013-9-27</p>
+    <p class="hs nanhang"><span>南航</span></p>
+  </div>
+  <div class="bside">
+    <p> <span> <strong>出票有效期</strong>：提前7天出票，截止至2013-9-20<br />
+      <strong>备注</strong>：留学生持G-VISA签证需提供签证复印件；持F-VISA签证需提供学生签证复印件及学生证的复印件；持X-VISA签证需提供签证复印件和居住证复印件行李：3件，每件23公斤。 <em style="font-size:14px; padding:0; text-align:center;line-height:30px; background-image:none;">立即预订></em></span></p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>新加坡</h4>
+    <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>1,340</span><em>起</em></p>
+    <p class="p2">从厦门</p>
+    <p class="p3"><strong>旅行有效期</strong><br />
+      2013-7-1至2013-9-22，2013-10-4至2014-1-22</p>
+    <p class="hs shengan"><span>新加坡胜安航空</span></p>
+  </div>
+  <div class="bside">
+    <p> <span> <strong>出票有效期</strong>：截止至2013-10-31<br />
+      <strong>备注</strong>：停留有效期：0-12个月，适用于中国籍留学生，需提供留学生签证、护照、学生证或入学通知书复印件 <em>立即预订</em></span></p>
+  </div>
+</li>
+</ul>
+
+<ul class="list">
+<li><span class="qd">北京</span><span class="zd1">斯德哥尔摩</span><span class="time">2013-12-24截止</span><span class="hk">芬兰航空</span><span class="wf">单程</span><span class="price"><em>￥1940</em>起</span><span class="yd"><img src="__PUBLIC__/images/Zt/lxs/yd.jpg"></span></li>
+<li><span class="qd">北京</span><span class="zd2">斯德哥尔摩</span><span class="time">2013-12-24截止</span><span class="hk">芬兰航空</span><span class="wf">单程</span><span class="price"><em>￥1940</em>起</span><span class="yd"><img src="__PUBLIC__/images/Zt/lxs/yd.jpg"></span></li>
+<li><span class="qd">北京</span><span class="zd1">斯德哥尔摩</span><span class="time">2013-12-24截止</span><span class="hk">芬兰航空</span><span class="wf">单程</span><span class="price"><em>￥1940</em>起</span><span class="yd"><img src="__PUBLIC__/images/Zt/lxs/yd.jpg"></span></li>
+<li><span class="qd">北京</span><span class="zd2">斯德哥尔摩</span><span class="time">2013-12-24截止</span><span class="hk">芬兰航空</span><span class="wf">单程</span><span class="price"><em>￥1940</em>起</span><span class="yd"><img src="__PUBLIC__/images/Zt/lxs/yd.jpg"></span></li>
+</ul>
+</div>
+</div>
+
+</div>
+</div>
+<include file="public:footer" />

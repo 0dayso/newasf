@@ -1,0 +1,33 @@
+<div class="pageContent">
+		<div class="pageFormContent" layoutH="58">
+			<p>
+				<label>行为标识：</label>
+				<input type="text" class="required"   name="name" value="{$vo.action.name}">（英文字母）
+			</p>
+			<p>
+                <label>行为名称：</label>
+                <input type="text" class="required"  name="title" value="{$vo.action.title}" />
+            </p>
+			<p>
+				<label>时间：</label>
+                <input type="text" class="required"  name="" value="{$vo.create_time|time_format=###}" />
+			</p>
+            <div class="unit">
+                <label>日志：</label>
+                <textarea name="remark" cols="57">{$vo.remark}</textarea>
+             </div>
+            <div class="unit">
+                <label>请求：</label>
+                <textarea name="rule" cols="57">{$vo.request}</textarea>
+            </div>
+
+
+		</div>
+		<div class="formBar">
+			<ul>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">Cancel</button></div></div></li>
+			</ul>
+		</div>
+	
+</div>
+

@@ -40,14 +40,14 @@
     <div class="lib_Menubox lib_tabborder">
         <ul>
            <li id="one1" onclick="setTab('one',1,3)" class="hover">待支付订单</li>
-           <li id="one2" onclick="setTab('one',2,3)" >已支付订单</li>
+           <li id="one2" onclick="setTab('one',2,3)" >已付款订单</li>
            <li id="one3" onclick="setTab('one',3,3)">已取消订单</li>
         </ul>
     </div>
     <div id="con_one_1">
         <table class="table" width="100%" layoutH="115">
             <thead>
-                <tr>
+                <tr>              
                 	<th width="80" style="text-align:center;">会员ID</th>
                     <th width="100" style="text-align:center;">订单ID</th>
                     <th width="240"  style="text-align:center;">航班航程</th>
@@ -62,7 +62,7 @@
             </thead>
             <tbody>
                 <volist name="no_zf" id="vo">                      
-                    <tr target="sid_user" rel="">
+                    <tr target="sid_user" rel="">                   
                     	<td>{$vo.hyid}</td>
                         <td>{$vo.ddbh}</td>
                         <td>{$vo.hc_n}&nbsp;&nbsp;&nbsp;<span style="color:#09F;">（{$vo.jp_type}）</span></td>
@@ -75,9 +75,14 @@
                         <td>
                         <a href="__URL__/order_view/id/{$vo.ddbh}" target="dialog" rel="edit" width="800" height="450"style="color:#0CF;">查看</a>
                         &nbsp;&nbsp;&nbsp;
-                        <a href="__URL__/order_edit/id/{$vo.ddbh}" target="dialog" rel="edit" style="color:#0CF;"  width="1150" height="450">编辑</a>
-                        &nbsp;&nbsp;&nbsp;
-                        <a href="__URL__/order_cancel/id/{$vo.ddbh}" target="dialog" rel="edit" style="color:#0CF;"  width="360" height="150">取消订单</a></td>
+                        <if condition="$user_type eq 'can'">
+                        	<a style="color:#ccc;">编辑</a>&nbsp;&nbsp;&nbsp;<a style="color:#ccc;">取消订单</a>
+                        <else/>
+                            <a href="__URL__/order_edit/id/{$vo.ddbh}" target="dialog" rel="edit" style="color:#0CF;"  width="1150" height="450">编辑</a>
+                            &nbsp;&nbsp;&nbsp;
+                            <a href="__URL__/order_cancel/id/{$vo.ddbh}" target="dialog" rel="edit" style="color:#0CF;"  width="360" height="150">取消订单</a>
+                        </if>
+                        </td>
                     </tr> 
                 </volist>  
             </tbody>
@@ -92,9 +97,9 @@
                     <option value="50" <eq name="numPerPage" value="50">selected=selected</eq>>50</option>
                     <option value="100" <eq name="numPerPage" value="100">selected=selected</eq>>100</option>
                 </select>
-                <span>共{$totalCount}条</span>
+                <span>共{$totalCount11}条</span>
             </div>
-            <div class="pagination" targetType="navTab" totalCount="{$totalCount}" numPerPage="{$numPerPage}" pageNumShown="10" currentPage="{$currentPage}"></div>
+            <div class="pagination" targetType="navTab" totalCount="{$totalCount22}" numPerPage="{$numPerPage}" pageNumShown="10" currentPage="{$currentPage}"></div>
         </div> 
     </div><!-----待支付订单---->
     
@@ -102,8 +107,8 @@
         <table class="table" width="100%" layoutH="115"   style="display:none;">
             <thead>                  
                 <tr> 
-                	<th width="80" style="text-align:center;">会员ID</th>                           
-                    <th width="100" style="text-align:center;">订单ID</th>
+                	<th width="120" style="text-align:center;">会员ID</th>                           
+                    <th width="120" style="text-align:center;">订单ID</th>
                     <th width="240"  style="text-align:center;">航班航程</th>
                     <th width="60"  style="text-align:center;">价格（含税）</th>
                     <th width="40"  style="text-align:center;">现金券</th>
@@ -111,7 +116,7 @@
                     <th width="80"  style="text-align:center;">下单时间</th>
                     <th width="60"  style="text-align:center;">订单来源</th>
                     <th width="60"  style="text-align:center;" >订单状态</th>
-                    <th width="80"  style="text-align:center;">操作</th>                       
+                    <th width="60"  style="text-align:center;">操作</th>                       
                 </tr>
             </thead>
             <tbody> 
@@ -141,9 +146,9 @@
                     <option value="50" <eq name="numPerPage" value="50">selected=selected</eq>>50</option>
                     <option value="100" <eq name="numPerPage" value="100">selected=selected</eq>>100</option>
                 </select>
-                <span>共{$totalCount}条</span>
+                <span>共{$totalCount22}条</span>
             </div>
-            <div class="pagination" targetType="navTab" totalCount="{$totalCount}" numPerPage="{$numPerPage}" pageNumShown="10" currentPage="{$currentPage}"></div>
+            <div class="pagination" targetType="navTab" totalCount="{$totalCount22}" numPerPage="{$numPerPage}" pageNumShown="10" currentPage="{$currentPage}"></div>
         </div> 
     </div><!---已支付订单 end---> 
               
@@ -151,8 +156,8 @@
         <table class="table" width="100%" layoutH="115"   style="display:none;">
             <thead>
                 <tr>          
-                	<th width="80" style="text-align:center;">会员ID</th>                  
-                    <th width="100" style="text-align:center;">订单ID</th>
+                	<th width="120" style="text-align:center;">会员ID</th>                           
+                    <th width="120" style="text-align:center;">订单ID</th>
                     <th width="240"  style="text-align:center;">航班航程</th>
                     <th width="60"  style="text-align:center;">价格（含税）</th>
                     <th width="40"  style="text-align:center;">现金券</th>
@@ -160,7 +165,7 @@
                     <th width="80"  style="text-align:center;">下单时间</th>
                     <th width="60"  style="text-align:center;">订单来源</th>
                     <th width="60"  style="text-align:center;" >订单状态</th>
-                    <th width="80"  style="text-align:center;">操作</th>                        
+                    <th width="80"  style="text-align:center;">操作</th>                  
                 </tr>
             </thead>
             <tbody>                       
@@ -190,9 +195,9 @@
                     <option value="50" <eq name="numPerPage" value="50">selected=selected</eq>>50</option>
                     <option value="100" <eq name="numPerPage" value="100">selected=selected</eq>>100</option>
                 </select>
-                <span>共{$totalCount}条</span>
+                <span>共{$totalCount33}条</span>
             </div>
-            <div class="pagination" targetType="navTab" totalCount="{$totalCount}" numPerPage="{$numPerPage}" pageNumShown="10" currentPage="{$currentPage}"></div>
+            <div class="pagination" targetType="navTab" totalCount="{$totalCount33}" numPerPage="{$numPerPage}" pageNumShown="10" currentPage="{$currentPage}"></div>
         </div> 
     </div><!---已取消订单 end--->
 </div><!---pageContent end-->

@@ -3,7 +3,8 @@
 class IndexAction extends IniAction {
 	
     public function index(){
-        $this->display();
+
+     $this->display();
     }
 	
 	

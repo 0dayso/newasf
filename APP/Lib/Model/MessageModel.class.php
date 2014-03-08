@@ -3,6 +3,12 @@ class MessageModel extends RelationModel{
     public $data=array();
     Public $u_error;
 
+    protected $_auto = array (
+        array('create_time','time',1,'function'),
+        array('update_time','time',2,'function'),
+        array('create_user_id','getUid',1,'function'),
+        array('update_update','getUid',2,'function'),
+    );
     //发送系统消息
     //@tpl 模板名
     //@data array 模板变量替换
@@ -17,7 +23,7 @@ class MessageModel extends RelationModel{
 
         if(!$content){
             $this->data['date_time']=date('Y-m-d');
-            $content=M('message_sys_tpl')->where("name='$tpl'")->getField('contents');
+            $content=M('message_tpl')->where("name='$tpl'")->getField('contents');
             foreach($this->data as $k=>$v){
                 $content=str_replace('{$'. $k.'}',$v,$content);
             }
@@ -93,6 +99,14 @@ class MessageModel extends RelationModel{
     function message_action($act,$data=array()){
         if(!empty($data))
            $this->data=$data;
+        $where['name']=$act;
+        $where['status']=1;
+        $mseTpl=D('MessageTpl')->where($where)->select();
+        foreach($mseTpl as $val){
+            echo $val;
+        }
+        dump($mseTpl);
+        exit;
         switch($act){
             case 'reg_verify_phone': //注册验证手机号
                 return $this->message_sms('','reg_verify_phone',$data);

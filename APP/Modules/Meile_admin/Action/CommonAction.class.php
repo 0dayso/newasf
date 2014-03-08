@@ -281,7 +281,6 @@ class CommonAction extends Action {
 		//B('FilterString');
         $name= isset($this->actionName)?$this->actionName:$this->getActionName();
 		$model = CM( $name );
-        $_POST['create_time']=strtotime($_POST['create_time']);
 		if (false === $model->create ()) {
 			$this->error ( $model->getError () );
 		}

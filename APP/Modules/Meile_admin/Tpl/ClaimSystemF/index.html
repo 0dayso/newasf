@@ -50,7 +50,7 @@
                 <td>{$vo.company.name}</td>
                 <td>{$vo['username']}</td>
 				<td>{$vo['remark']}</td>
-                <td>{$vo['create_time']|date="Y-m-d",###}</td>
+                <td>{$vo['create_time']|date="Y-m-d H:i:s",###}</td>
 				<td><empty name="vo['update_time']">{$vo['create_time']|date="Y-m-d",###}<else/>{$vo['update_time']|date="Y-m-d",###}</empty></td>
                 <td>
                  <notempty name="vo['record']">审核中<else/>审核完成</notempty>

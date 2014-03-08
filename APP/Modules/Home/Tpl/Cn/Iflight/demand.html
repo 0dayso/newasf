@@ -1,0 +1,124 @@
+<include file="public:header" />
+<link rel="stylesheet" href="__PUBLIC__/css/interticket.css" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/js/demand.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/hotcitypop/popcitylist.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" language="javascript" src="__PUBLIC__/js/hotcitypop/searchconditions.js"></script>
+<script type="text/javascript" language="javascript" src="__PUBLIC__/js/hotcitypop/paramfarmat.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/css/demand.css" type="text/css" />
+    <div id="cont">
+        <div class="wd1000 mt10 interTic">
+        	<h1 class="h1_tit_nav">你当前所在位置：<a href="{:U('/')}" class="sy">首页</a> > <a href="{:U('/iflight')}" class="sy">国际机票</a> > <a class="cur">国际航班机票需求单</a></h1>
+			<div class="left" id="interTicL">
+            <div id="dem_form">
+            <h2><strong>国际航班机票需求单</strong></h2>
+            <p>温馨提示：如有疑问，您可参考<a href="{:U('/iflight/demandTemplates')}" target="_blank">需求单范本</a><br/>
+            我们将尽快与您联系，敬请留意。（为避免影响您的休息，我们会在9:00-21:00联系您）</p>
+            </div>
+            <form action="" method="post" id="demand_form">
+            <div id="hc_xinxi">
+            <h3>航程信息</h3>
+            <div class="m_auto">
+            <ul no="1">
+            <li>
+            <span>出发城市1：</span><input type="text" class="text city" name="from_city[]" value="城市名"/>
+			</li>
+            <li>
+            <span>到达城市1：</span><input type="text" class="text city" name="to_city[]" value="城市名"/>
+            </li>
+            <li>
+            <span>出发日期1：</span><input type="text" class="text2 date" name="originDate[]" value="出发时间" />
+			</li>
+            </ul>
+            <ul no="2">
+            <li>
+            <span>出发城市2：</span><input type="text" class="text city" name="from_city[]" value="城市名"/>
+			</li>
+            <li>
+            <span>到达城市2：</span><input type="text" class="text city" name="to_city[]" value="城市名"/>
+            </li>
+            <li>
+            <span>出发日期2：</span><input type="text" class="text2 date" name="originDate[]" value="出发时间" />
+			</li>
+            </ul>
+            <ul no="3">
+            <li>
+            <span>出发城市3：</span><input type="text" class="text city" name="from_city[]" value="城市名"/>
+			</li>
+            <li>
+            <span>到达城市3：</span><input type="text" class="text city" name="to_city[]" value="城市名"/>
+            </li>
+            <li>
+            <span>出发日期3：</span><input type="text" class="text2 date" name="originDate[]" value="出发时间" />
+			</li>
+            <li><a href="javascript:;" class="df_del"><em>X</em>删除</a></li>
+            </ul>
+            <h4 id="df_add">添加航程</h4>
+            
+            <dl>
+            <dd>
+            <span class="title1"><em>*</em>乘客人数：</span>
+            <span class="no">成人<input name="adult" type="text" />人 </span>
+            <span class="no">儿童（2-12岁）<input name="child" type="text" />人</span>
+            <span class="no">婴儿（2岁以下）<input name="baby" type="text" />人</span>
+            </dd>
+            <dd>
+            <span class="title1"><em>*</em>乘客类型：</span>
+            <span><input name="type" type="radio" value="0" />普通</span>
+            <span><input name="type" type="radio" value="1" />学生</span>
+            <span><input name="type" type="radio" value="2" />新移民</span>
+            <span><input name="type" type="radio" value="3" />劳务</span>
+            </dd>
+            <dd>
+            <span class="title1"><em>*</em>舱位等级：</span>
+            <span><input name="grade" type="radio" value="0" />经济舱</span>
+            <span><input name="grade" type="radio" value="1" />超经济舱</span>
+            <span><input name="grade" type="radio" value="2" />公务舱</span>
+            <span><input name="grade" type="radio" value="3" />头等舱</span>
+            </dd>
+            <dd>
+            <span>首选航空公司：<input name="preferred" type="text" class="lxrxx"/></span>
+            </dd>
+            </dl>
+            </div>
+            </div>
+            
+            <div id="lxr_xinxi">
+            <h3>联系人信息</h3>
+            <div class="m_auto">
+            <dl>
+            <dd>
+            <span class="title2"><em>*</em>联系人姓名：</span>
+            <span><input name="name" type="text" /></span>
+            </dd>
+            <dd>
+            <span class="title2"><em>*</em>手机号码：</span>
+            <span><input name="phone" type="text" id="phone" value="11位数字" /></span>
+            </dd>
+            <dd>
+            <span class="title2">联系电话：</span>
+            <span><input type="text" value="区号" name="area" class="w50" id="area"/>-<input name="phone_no" type="text" id="phone_no" value="电话号码" />-<input name="ext" type="text" class="w60" id="ext" value="分机号"/></span>
+            </dd>
+            <dd>
+            <span class="title2">Email：</span>
+            <span><input name="" type="text" /></span>
+            </dd>
+            <dt><input type="submit" value="提交需求单" /></dt>
+            </dl>
+            </div>
+            </div>
+            </form>
+            </div>
+            
+			<div class="right" id="interTicR">
+            <div id="df_list">
+            <dl class="bor">
+            <dt><span>0分钟前</span><span>用户<label>xxx656</label>提交了</span></dt>
+            <dd><span><label>北京</label>到</span><span><label>贝尔法斯特</label>的机票需求单</span></dd>
+            </dl>
+
+            </div>
+            </div>
+        </div>
+    </div>
+  <include file="public:footer" />

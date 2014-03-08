@@ -3,27 +3,34 @@
 class BookingAction extends IniAction {
 
     //订票中心
-	function index(){
-		$this->title="订票中心";
-        $orderDB=D("AsmsOrder");        
-		
+	function index(){		
+        $orderDB=D("AsmsOrder");
 		$where['hyid']=ASMSUID;
 	//	$where['hyid']=0;
 
         //取消订单
-        if($_GET['act']=='cancel' && I('id')){
+        if($_GET['act']=='cancel' && I('id')){			
             $id=I('id');
             $where['ddbh']=array('in',$id);
             if($orderDB->where($where)->count()){
-                $rs=$orderDB->orderCancelAll($id);
+				$order_logo=$orderDB->where($where)->select();				
+				foreach($order_logo as $k=>$v){//判断订单是来自胜意还是后台录入
+					if($v['order_logo'] == 0){
+						 $rs=$orderDB->orderCancelAll($v['ddbh']);
+					}else{
+						$ddbh=$v['ddbh'];
+						$rs=$orderDB->where($ddbh)->setField('ddzt',7);
+					}
+				}	
                 if($rs){
                     $this->success("成功","?update=1");
-                }
-                $this->error("失败");
+                }else{
+                	$this->error("失败");
+				}
             }else{
                 $this->success("操作已完成");
             }
-        }
+        }		
 
         //给 第一个 未支付的订单 使用现金劵
         if($this->common['pending_count']>0){
@@ -32,8 +39,7 @@ class BookingAction extends IniAction {
             $xjj=D('Points')->where($wh)->limit(1)->getField('points');
             if($xjj>1){ //有现金劵
                 $where_xjj['ddzt']=array('not in',array('7','8'));
-                $where_xjj['zf_fkf']=0;//未支付
-            //    $where_xjj['xjj']=array('lt',1);
+                $where_xjj['zf_fkf']=0;//未支付          
                 $where_xjj['hyid']=ASMSUID;
                 $order_id=$orderDB->where($where_xjj)->limit(1)->order('ddbh')->getField('ddbh');
                 if($order_id){ //有符合的订单
@@ -86,6 +92,7 @@ class BookingAction extends IniAction {
         }
         $this->pending=$pending;
         $this->list=$list;
+		$this->title="订票中心";
 		$this->display();
     }
 
@@ -133,7 +140,6 @@ class BookingAction extends IniAction {
         if($info['zf_fkf']==0 && !in_array($info['ddzt'],array('7','8'))){
             $this->is_pending=1; //需支付
         }
-     //   dump($info);
         $this->info=$info;
 		$this->display();
     }
@@ -141,7 +147,6 @@ class BookingAction extends IniAction {
 	//订单在线支付
 	function onlinepay(){
         if(!I("ddbh")) $this->error('请选择要支付的订单');
-
         $orderDB=D("AsmsOrder");
         if(!is_array(I("ddbh"))){
 			$ddbh=explode (",",I("ddbh"));		
@@ -152,7 +157,6 @@ class BookingAction extends IniAction {
 		$wh['ddbh']=array('in',$ddbh);
         $this->order_pay_id=date("YmdHis").rand(1000,2000);
         $this->order_id_arr=implode(',',$ddbh);
-  //$rs= $orderDB->orderPayList($ddbh);
   
 		$res=$orderDB ->where($wh)->select();
 		$rs['list']=$res;

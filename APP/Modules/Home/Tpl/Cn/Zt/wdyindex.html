@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>活动首页 爱尚飞-微电影大赛</title>
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+$(function(){
+    var username="{$userinfo.username}";
+	//投票功能
+	$('.but').click(function(){
+            alert('投票已结束');return;
+            var em=$(this).siblings().find('em');
+            var vcrid=$(this).attr('vcrid');
+            var url="{:U('/Zt/wdyVote')}";
+            $.getJSON(url,{id:vcrid},function(data){
+                if(data.status==1){
+                    em.text(data.info);
+                }else{
+                    if(data.url){
+                        popups();
+                    }else{
+                        alert(data.info);
+                    }
+                }
+
+            });
+	});
+		
+	//#footer不透明度设置
+	$('#footer').css('opacity','0.20');
+	
+	//弹窗
+	function popups(){
+		$('#tier').show();
+		$('#popups').show();
+		};
+	$('#regcon a').click(function(){
+		$('#popups').hide();
+		$('#tier').hide();
+		});
+	$(window).scroll(function(){
+		var top  = $(this).scrollTop()+200 + 'px';
+		var left = ($(this).width()-411)/2 + 'px';
+		$('#popups').css({top:top,left:left});
+		$('#tier').css({width:$('body').width(),height:$('body').height(),opacity:0.20});
+	});
+	
+	});
+</script>
+<style type="text/css">
+body,ul,li,img,p,h2,h3,h4,h5,dl,dt,dd{margin:0;padding:0;}
+body{width:auto;color:#333333;font-size:12px;}
+ul,li{list-style-type:none;}
+a{color:#333333;text-decoration:none;}
+a:hover{color:#aaaaaa;}
+h3,h4{font-weight: bold;color: #FFF;}
+img{border-width: 0px;}
+.m{margin:0 auto;}
+.left{float:left;}
+.right{float:right;}
+#top{width:100%;height:570px;background:url(__PUBLIC__/images/Zt/wdy/bg1.jpg) no-repeat center top;}
+#head{width: 1240px;}
+#lgog_nav{width:960px;height:53px;}
+#lgog_nav span{margin-top: 20px;}
+#logo{padding:9px 0 0 20px;}
+#h_nav{height:20px;margin-top:16px;padding-left:30px;background:url(__PUBLIC__/images/Zt/wdy/icon.png) no-repeat 5px -5px;}
+#h_nav li{float:left;width:55px;margin-top:3px;line-height:14px;text-align:center;}
+#h_nav li.bor_r{border-right: 1px solid #777777;}
+#content{width:auto;height:auto;background:url(__PUBLIC__/images/Zt/wdy/bg2.jpg) no-repeat center top;}
+#con_box{width:960px;}
+#con_box #nav{width:945px;padding-left:15px;background-color: #ffa43a;height: 56px;}
+#con_box #nav a{float:left;font-size: 24px;font-family: "微软雅黑", "黑体", "宋体";color: #FFF;padding:0 10px;margin:8px 15px 8px 0;line-height: 40px;height: 40px;display:block;}
+#con_box #nav a.on,#con_box #nav a:hover{background-color: #e27a00;}
+#con_box .box{background-color: #fffcf5;padding: 15px;width: 930px;}
+#con_box .on{display: block;}
+/*活动首页*/
+#con_box .box h3{font-size: 24px;height:37px;line-height:37px;padding-left:40px;background:url(__PUBLIC__/images/Zt/wdy/h3Bg.png) no-repeat;}
+#works{width: 920px;padding:15px 5px;}
+#works dt,#works dd{float: left;width: 215px;background-color:#f5f5f5;margin-bottom:15px;}
+#works dd{margin-right:20px;}
+#works h5{font-size:14px;line-height: 35px;text-align: center;}
+#works ul{height: 27px;padding:0 8px 8px 8px;}
+#works ul li{line-height:27px;}
+#works ul em{font-style: normal;color: #F00;}
+#works .but{width: 71px;height: 27px;background: url(__PUBLIC__/images/Zt/wdy/icon.png) no-repeat -5px -65px;cursor: pointer;color:#FFF;text-align: center;}
+#footer{width:960px;height:150px;padding-top:15px;}
+#footer p{color: #FFF;text-align:center;background-color: #000;line-height: 33px;}
+/*弹窗*/
+#tier,#popups{position:absolute;display:none;z-index:10000!important;}
+#tier{background-color:#000;}
+#popups{width:411px;height:134px;background:url(__PUBLIC__/images/Zt/wdy/popups.png) repeat-x;}
+#popups h5,#popups #regcon a{color: #FFF;}
+#popups h5{height:30px;line-height:30px;padding-left:18px;font-size:14px;}
+#popups #regcon{padding:24px 0 12px 0;text-align:center;}
+#popups #regcon a{display:inline-block;width:108px;line-height:28px;margin:0 15px;}
+#popups #regcon a#reg{background-color:#3f98e4;}
+#popups #regcon a#con{background-color:#9d9d9d;}
+#popups span{line-height:40px;padding-right:15px;}
+#popups span a{color:#0066cc;}
+</style>
+</head>
+
+<body>
+<div id="tier"></div>
+<div id="popups">
+<h5><strong>请先注册成为爱尚飞国际机票网会员，再进行投票</strong></h5>
+<div id="regcon"><a href="{:U('/member/register')}" target="_blank" id="reg">立即注册</a>&nbsp;<a href="javascript:;" id="con">取消</a></div>
+<span class="right"><a href="{:U('/about/service')}" target="_blank">了解会员服务</a></span>
+</div>
+
+<div id="top">
+    <div id="head" class="m">
+        <include file="wdy_top" />
+        <div><img src="__PUBLIC__/images/Zt/wdy/topImg1.jpg"><img src="__PUBLIC__/images/Zt/wdy/topImg2.jpg"></div>
+    </div>
+</div>
+
+<div id="content">
+<div id="con_box" class="m">
+<div id="nav">
+<a href="{:U('/zt/wdyindex#link')}" class="on">活动首页</a>
+<a href="{:U('/zt/wdyrule#link')}">活动规则</a>
+<a href="{:U('/zt/wdyreview#link')}">往届作品回顾</a>
+<a href="{:U('/zt/wdyresult#link')}">获奖作品</a>
+<a name="link" id="link">&nbsp;</a>
+</div>
+
+<!--活动首页-->
+<div class="box on" style="height:1330px;">
+<img src="__PUBLIC__/images/Zt/wdy/boxImg1.gif">
+<h3>微电影作品投票</h3>
+<dl id="works">
+    <volist name="list" id="vo" mod="4">
+    <if condition="$mod eq 3"><dt> <else/><dd></if>
+    <a href="{:U('Zt/wdyvcr','id='.$vo['id'])}" target="_blank">
+        <img name="" src="__PUBLIC__/uploads/video/m_{$vo.thumbnail}" width="215" height="122" alt="" style="background-color: #e2e2e2" /></a>
+    <h5><a href="{:U('Zt/wdyvcr','id='.$vo['id'])}" target="_blank">{$vo.title}</a></h5>
+    <ul>
+    <li class="left"><em>{$vo.vote_num}</em>人投票{$vo.real}</li>
+    <li class="right but" vcrid="{$vo['id']}">投票已结束</li>
+    </ul>
+        <if condition="$mod eq 4"> </dt><else/></dd></if>
+    </volist>
+</dl>
+</div>
+
+</div>
+
+<div id="footer" class="m">
+<p>Copyright © 2009-2013 爱尚飞国际机票网 广州美乐商务服务有限公司</p>
+</div>
+</div>
+
+</body>
+</html>

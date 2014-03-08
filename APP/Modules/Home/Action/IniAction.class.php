@@ -2,13 +2,21 @@
 class IniAction extends Action{
 	private $userinfo; //用户信息
     public function _initialize(){
-        if($_SERVER['HTTP_HOST']=='sl.aishangfei.com'){ //为不同部门启用不同域名 不同主题
+        if($_SERVER['HTTP_HOST']=='aishangfei.cn' || $_SERVER['HTTP_HOST']=='www.aishangfei.cn'){
+            $_GET['t']='Cn';
+        }elseif($_SERVER['HTTP_HOST']=='sl.aishangfei.com'){ //为不同部门启用不同域名 不同主题
             $_GET['t']='Sl';         //主题
             $_GET['department']=10; //自动分配客服用
         }else{
+            $_GET['t']='Default';
             $_GET['department']=9; //自动分配客服用
-            if(MODULE_NAME=='Adviser' || $_GET['company']>1){
-                unset($_GET['department']);
+            if(MODULE_NAME=='Adviser'){
+                if($_GET['company']>1){
+                    unset($_GET['department']);
+                }
+                if(!IS_AJAX ){
+                    unset($_GET['department']);
+                }
             }
         }
         $member=D('Member');
@@ -37,6 +45,7 @@ class IniAction extends Action{
             cookie('ts_refer','mobile');
         }
 
+       // $this->restrict();//未登录不能访问
 
         //当没有对应客服,跳到客服选择页
         if($this->userinfo && !$this->userinfo['user_id'] && MODULE_NAME!='Index'){
@@ -54,6 +63,25 @@ class IniAction extends Action{
         }
 	}
 
+    //未登录不能访问
+	function restrict(){
+		$array=array('register','login','getpassword');//不需要登陆可访问的function
+		if(MODULE_NAME == "Member"){
+			if(!in_array(ACTION_NAME,$array)){
+				if(!session('uid')){
+                    $u=isset($_GET["u"])?$_GET["u"]:get_cur_url(1);
+				//	$this->redirect('member/login',"u='$cururl'");
+                    redirect(U('member/login')."/?u=$u");
+					exit;
+				}
+			}else{
+				if(session('uid')){
+					$this->success("你已经登陆",U('member/index'));
+					exit;
+				}
+			}
+		}
+	}
 
     //积分测边栏数据
     function jifen(){	
@@ -62,18 +90,18 @@ class IniAction extends Action{
 		import('@.ORG.Category');
         $cat = new Category('mall_category', array('cid','pid','name'));
         $this->path=$cat->getPath($cid);			
-        $this->category=M('mall_category')->select();			
+        $this->category=M('mall_category')->cache(true)->select();
         $clist=list_to_tree($this->category); 	
 		$this->assign('clist',$clist);
 	
 		//积分兑换排行榜		
 		$where['status']=1;
 		$where['type']=0;
-		$this->jifen=$mall->field('id,title,img,jifen')->where($where)->order("sales DESC")->limit(5)->select();
+		$this->jifen=$mall->cache(true)->field('id,title,img,jifen')->where($where)->order("sales DESC")->limit(5)->select();
 		//爱钻兑换排行榜
 		$where['status']=1;
 		$where['type']=1;
-		$this->aizuan=$mall->field('id,title,img,jifen')->where($where)->order("sales DESC")->limit(5)->select();
+		$this->aizuan=$mall->cache(true)->field('id,title,img,jifen')->where($where)->order("sales DESC")->limit(5)->select();
 		
 		//用户信息
 		$points=D('Points');
@@ -89,11 +117,11 @@ class IniAction extends Action{
 			$this->azpoints = 0;
 		}
 
-        $category2=M('mall_category')->order('sort desc')->select();
+        $category2=M('mall_category')->cache(true)->order('sort desc')->select();
         $category_left=list_to_tree($category2,55);    
         $this->assign('category_left',$category_left);
         $wh['status']=1;
-        $this->sales=$mall->where($wh)->order("sales desc ")->limit("10")->select();
+        $this->sales=$mall->cache(true)->where($wh)->order("sales desc ")->limit("10")->select();
 		
     }
 }	

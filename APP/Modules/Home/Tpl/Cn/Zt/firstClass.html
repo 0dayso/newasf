@@ -1,0 +1,274 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>头等舱/商务舱预订专区-爱尚飞</title>
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/layer/layer.min.js"></script>
+<style type="text/css">
+#kfivtwin{display:none!important;/*隐藏53客服*/}
+body,ul,li,img,p,h2,h3,h4,h5,dl,dt,dd{margin:0;padding:0;}
+body{width:auto;color:#333333;font-size:12px;}
+ul,li{list-style-type:none;}
+a{color:#333333;text-decoration:none;}
+h3,h4{font-weight: bold;color: #FFF;}
+img{border-width: 0px;}
+.m{margin:0 auto;}
+.left{float:left;}
+.right{float:right;}
+#top{width:100%;height:920px;}
+#head{width:960px;height:66px;padding:20px 0 14px 0;}
+#logo,#h_nav{float:left;height:66px;}
+#logo{width:270px;}
+#h_nav{width:690px;}
+#login{height:30px;line-height:30px;}
+#login ul{height:20px;margin-top:10px;padding-left:30px;background:url(__PUBLIC__/images/Zt/firstClass/icon.png) no-repeat 5px -5px;}
+#login li{float:left;width:55px;margin-top:3px;line-height:14px;text-align:center;}
+#login li.bor_r{border-right: 1px solid #777777;}
+#h_txt{height:26px;line-height:26px;margin-top:10px;}
+#h_txt span,#h_txt div{float:left;width:50%;font-family:"微软雅黑", "黑体", "宋体";}
+#h_txt span{font-size:22px;font-weight:bold;}
+#h_txt div{font-size:16px;text-align:right;}
+#h_txt div strong{font-size:26px;color:#ff6600;}
+#topad{width:100%;height:820px;background:url(__PUBLIC__/images/Zt/firstClass/topad_bg2.jpg) repeat-x center center;}
+.topad{width:100%;height:820px;background:url(__PUBLIC__/images/Zt/firstClass/topad_bg.jpg) no-repeat center center;}
+#topad .ad{width:960px;height:570px;}
+#map{width:952px;height:242px;background:#7b3e07;padding:4px;}
+#map h2{line-height:40px;padding-left:10px;font-size:20px;color:#FFF;}
+#map ul{width:948px;height:202px;padding:0 2px;background:#fff6df;}
+#map ul li{float:left;}
+#map ul li a{display:block;width:158px;height:57px;padding-top:145px;background:url(__PUBLIC__/images/Zt/firstClass/map_bg.gif) no-repeat;font-size:14px;font-weight:bold;text-align:center;line-height:35px;}
+#map ul li a:hover{color:#7b3e07;}
+#map ul li a.a1{background-position:0 0;}
+#map ul li a.a2{background-position:-158px 0;}
+#map ul li a.a3{background-position:-316px 0;}
+#map ul li a.a4{background-position:-474px 0;}
+#map ul li a.a5{background-position:-632px 0;}
+#map ul li a.a6{background-position:-790px 0;}
+#map ul li a:hover.a1{background-position:0 -202px;}
+#map ul li a:hover.a2{background-position:-158px -202px;}
+#map ul li a:hover.a3{background-position:-316px -202px;}
+#map ul li a:hover.a4{background-position:-474px -202px;}
+#map ul li a:hover.a5{background-position:-632px -202px;}
+#map ul li a:hover.a6{background-position:-790px -202px;}
+
+#content{width:auto;height:auto;background:#351405;padding-top:15px;}
+#cabin{width:960px;height:526px; background:url(__PUBLIC__/images/Zt/firstClass/cabin_bg.gif) no-repeat;}
+.cabin{float:left;width:415px;}
+.p1{padding:0 45px 0 20px;}
+.p2{padding:0 20px 0 45px;}
+.cabin h2{height:65px;line-height:65px;padding:25px 0 0 115px;font-size:20px;color:#7b3e07;}
+.cabin h2 strong{font-size:24px;}
+.cabin h2 a{display:inline-block;float:right;font-size:12px;padding-right:10px;background:url(__PUBLIC__/images/Zt/firstClass/icon.png) no-repeat right -92px;}
+.cabin dt,.cabin dd{height:30px;line-height:30px;margin-top:3px;}
+.cabin dd{background:#f4dfbd;}
+.cabin span{float:left;}
+.cabin span.s1{width:115px;padding-left:10px;}
+.cabin span.s2{width:150px;}
+.cabin span.s3{width:80px;color:#d51a2b;font-weight:bold;}
+.cabin span.s4 a{width:54px;height:23px;line-height:23px;margin-top:3px;text-align:center;color:#FFF; background:url(__PUBLIC__/images/Zt/firstClass/icon.png) no-repeat 0 -50px;cursor:pointer;}
+.cabin span.s4 a:hover{ background-position:0 -170px;}
+.cabin span a{display:inline-block;}
+.cabin .icon{background:url(__PUBLIC__/images/Zt/firstClass/icon.png) no-repeat 0 -90px;width:8px;height:9px;margin:0 6px;}
+#ad,#advantage{width:960px;margin-top:20px;}
+#ad{position:relative;height:362px;}
+#ad dl{width:960px;position:absolute;top:0;left:0;z-index:100;}
+#ad dt,#ad dd{display:inline-block;width:65px;height:362px;background:url(__PUBLIC__/images/Zt/firstClass/previous_next.png) no-repeat;cursor:pointer;}
+#ad dt{float:right;background-position:right center;margin-right:35px;}
+#ad dd{float:left;background-position:left center;margin-left:35px;}
+#ad ul{position:absolute;top:0;left:0;}
+#ad ul li{display:none;}
+#ad ul li.on{display:block;}
+#advantage{background:#7b3e07;}
+#advantage h2{height:45px;line-height:45px;font-size:20px;font-weight:bold;color:#FFF;text-indent:20px;}
+#advantage ul{height:107px;background:url(__PUBLIC__/images/Zt/firstClass/advantage_bg.jpg) no-repeat;}
+#advantage li{float:left;width:10%;text-align:center;}
+#advantage li a{display:block;padding-top:70px;font-size:14px;font-weight:bold;}
+#advantage li a:hover{color:#a64f00;}
+#footer{width:960px;height:150px;padding-top:15px;}
+#footer p{color:#FFF;text-align:center;background-color:#412214;line-height: 33px;}
+#kf_box{width:141px;height:233px;background:url(__PUBLIC__/images/Zt/firstClass/kf_bg.jpg) no-repeat;position:absolute;top:300px;right:0;}
+#kf_box a{cursor:pointer;}
+#kf_box .close{padding:5px;height:13px;text-align:right;}
+#kf_box dl{padding:110px 8px 0 8px;}
+#kf_box dl a{display:block;width:58px;height:23px;line-height:23px;font-size:14px;font-weight:bold;color:#FFF;background:url(__PUBLIC__/images/Zt/firstClass/kf_bg.gif) no-repeat;text-align:center;}
+#kf_box dt,#kf_box dd{float:left;margin-top:8px;}
+#kf_box dt{margin-right:9px;}
+</style>
+</head>
+
+<body>
+	<div id="top">
+    	<div id="head" class="m">
+        	<div id="logo"><a href="{:U('/')}" target="_blank"><img src="__PUBLIC__/images/logo.gif"></a></div>
+            <div id="h_nav">
+            	<div id="login">
+                <if condition="$userinfo">
+                	<span class="right">您好,
+						<a title="进入会员中心" href="{:U('/Member/index')}"><if condition="$userinfo['name']">{$userinfo.name}<else/>{$userinfo.username}</if></a>
+					普通会员  <a href="{:U('/member/out')}">退出</a>
+					</span>
+                <else/>
+            		<ul class="right">
+                		<li class="bor_r"><a href="{:U('/member/login')}" target="_blank">登录</a></li>
+            			<li><a href="{:U('/member/register')}" target="_blank">注册</a></li>
+                	</ul>
+                </if>
+                </div>
+                <div id="h_txt"><span>头等舱 / 商务舱预订专区</span><div>全国预订服务专线：<strong>400-608-5188</strong></div></div>
+            </div>
+        </div>
+        <div id="topad">
+        	<div class="topad">
+        		<div class="ad m"><img src="__PUBLIC__/images/Zt/firstClass/topad.jpg"></div>
+            	<div id="map" class="m">
+            		<h2>选择您的目的地</h2>
+                	<ul>
+                		<li><a href="javascript:;" class="a1">欧洲</a></li>
+                    	<li><a href="javascript:;" class="a2">北美洲</a></li>
+                    	<li><a href="javascript:;" class="a3">大洋洲</a></li>
+                    	<li><a href="javascript:;" class="a4">&nbsp;&nbsp;亚洲</a></li>
+                    	<li><a href="javascript:;" class="a5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;非洲</a></li>
+                    	<li><a href="javascript:;" class="a6">&nbsp;&nbsp;&nbsp;&nbsp;南美洲</a></li>
+                	</ul>
+            	</div>
+            </div>
+        </div>
+    </div>
+
+	<div id="content">
+		<div id="cabin" class="m">
+        	<div class="cabin p1">
+            	<h2><a href="javascript:;">更多特价</a><strong>头等舱</strong>超值推荐</h2>
+                <dl>
+                	<dt><span class="s1"><a>北京</a><a class="icon"></a><a>巴黎</a></span><span class="s2">2014-03-31&nbsp;&nbsp;截止&nbsp;&nbsp;往返</span><span class="s3">￥59860</span><span class="s4"><a>预订</a></span></dt>
+                    <dd><span class="s1"><a>北京</a><a class="icon"></a><a>罗马</a></span><span class="s2">2014-03-31&nbsp;&nbsp;截止&nbsp;&nbsp;往返</span><span class="s3">￥59860</span><span class="s4"><a>预订</a></span></dd>
+                    <dt><span class="s1"><a>北京</a><a class="icon"></a><a>阿姆斯特丹</a></span><span class="s2">2014-03-31&nbsp;&nbsp;截止&nbsp;&nbsp;往返</span><span class="s3">￥59860</span><span class="s4"><a>预订</a></span></dt>
+                    <dd><span class="s1"><a>上海</a><a class="icon"></a><a>马德里</a></span><span class="s2">2014-03-31&nbsp;&nbsp;截止&nbsp;&nbsp;往返</span><span class="s3">￥59860</span><span class="s4"><a>预订</a></span></dd>
+                    <dt><span class="s1"><a>上海</a><a class="icon"></a><a>法兰克福</a></span><span class="s2">2014-03-31&nbsp;&nbsp;截止&nbsp;&nbsp;往返</span><span class="s3">￥59860</span><span class="s4"><a>预订</a></span></dt>
+                    <dd><span class="s1"><a>上海</a><a class="icon"></a><a>米兰</a></span><span class="s2">2014-03-31&nbsp;&nbsp;截止&nbsp;&nbsp;往返</span><span class="s3">￥59860</span><span class="s4"><a>预订</a></span></dd>
+                    <dt><span class="s1"><a>香港</a><a class="icon"></a><a>悉尼</a></span><span class="s2">2014-06-30&nbsp;&nbsp;截止&nbsp;&nbsp;往返</span><span class="s3">￥34920</span><span class="s4"><a>预订</a></span></dt>
+                    <dd><span class="s1"><a>香港</a><a class="icon"></a><a>墨尔本</a></span><span class="s2">2014-06-30&nbsp;&nbsp;截止&nbsp;&nbsp;往返</span><span class="s3">￥34920</span><span class="s4"><a>预订</a></span></dd>
+                    <dt><span class="s1"><a>香港</a><a class="icon"></a><a>阿德莱德</a></span><span class="s2">2014-06-30&nbsp;&nbsp;截止&nbsp;&nbsp;往返</span><span class="s3">￥34920</span><span class="s4"><a>预订</a></span></dt>
+                    <dd><span class="s1"><a>厦门</a><a class="icon"></a><a>巴黎</a></span><span class="s2">2014-03-31&nbsp;&nbsp;截止&nbsp;&nbsp;往返</span><span class="s3">￥68410</span><span class="s4"><a>预订</a></span></dd>
+                    <dt><span class="s1"><a>厦门</a><a class="icon"></a><a>洛杉矶</a></span><span class="s2">2014-03-31&nbsp;&nbsp;截止&nbsp;&nbsp;往返</span><span class="s3">￥68410</span><span class="s4"><a>预订</a></span></dt>
+                    <dd><span class="s1"><a>成都</a><a class="icon"></a><a>苏黎世</a></span><span class="s2">2014-03-31&nbsp;&nbsp;截止&nbsp;&nbsp;往返</span><span class="s3">￥59860</span><span class="s4"><a>预订</a></span></dd>
+                </dl>
+            </div>
+            <div class="cabin p2">
+            	<h2><a href="javascript:;">更多特价</a><strong>头等舱</strong>超值推荐</h2>
+                <dl>
+                	<dt><span class="s1"><a>北京</a><a class="icon"></a><a>伦敦</a></span><span class="s2">2014-03-31&nbsp;&nbsp;截止&nbsp;&nbsp;往返</span><span class="s3">￥20800</span><span class="s4"><a>预订</a></span></dt>
+                    <dd><span class="s1"><a>北京</a><a class="icon"></a><a>奥克兰</a></span><span class="s2">2014-12-10&nbsp;&nbsp;截止&nbsp;&nbsp;往返</span><span class="s3">￥19600</span><span class="s4"><a>预订</a></span></dd>
+                    <dt><span class="s1"><a>上海</a><a class="icon"></a><a>洛杉矶</a></span><span class="s2">2014-12-03&nbsp;&nbsp;截止&nbsp;&nbsp;往返</span><span class="s3">￥28540</span><span class="s4"><a>预订</a></span></dt>
+                    <dd><span class="s1"><a>上海</a><a class="icon"></a><a>芝加哥</a></span><span class="s2">2014-12-03&nbsp;&nbsp;截止&nbsp;&nbsp;往返</span><span class="s3">￥36560</span><span class="s4"><a>预订</a></span></dd>
+                    <dt><span class="s1"><a>上海</a><a class="icon"></a><a>温哥华</a></span><span class="s2">2014-12-03&nbsp;&nbsp;截止&nbsp;&nbsp;往返</span><span class="s3">￥21840</span><span class="s4"><a>预订</a></span></dt>
+                    <dd><span class="s1"><a>上海</a><a class="icon"></a><a>多伦多</a></span><span class="s2">2014-12-03&nbsp;&nbsp;截止&nbsp;&nbsp;往返</span><span class="s3">￥28870</span><span class="s4"><a>预订</a></span></dd>
+                    <dt><span class="s1"><a>香港</a><a class="icon"></a><a>莫斯科</a></span><span class="s2">2014-12-31&nbsp;&nbsp;截止&nbsp;&nbsp;往返</span><span class="s3">￥24280</span><span class="s4"><a>预订</a></span></dt>
+                    <dd><span class="s1"><a>香港</a><a class="icon"></a><a>阿姆斯特丹</a></span><span class="s2">2014-12-31&nbsp;&nbsp;截止&nbsp;&nbsp;往返</span><span class="s3">￥33420</span><span class="s4"><a>预订</a></span></dd>
+                    <dt><span class="s1"><a>香港</a><a class="icon"></a><a>伦敦</a></span><span class="s2">2014-12-31&nbsp;&nbsp;截止&nbsp;&nbsp;往返</span><span class="s3">￥43680</span><span class="s4"><a>预订</a></span></dt>
+                    <dd><span class="s1"><a>广州</a><a class="icon"></a><a>悉尼</a></span><span class="s2">2014-12-31&nbsp;&nbsp;截止&nbsp;&nbsp;往返</span><span class="s3">￥15630</span><span class="s4"><a>预订</a></span></dd>
+                    <dt><span class="s1"><a>广州</a><a class="icon"></a><a>米兰</a></span><span class="s2">2014-06-30&nbsp;&nbsp;截止&nbsp;&nbsp;往返</span><span class="s3">￥18200</span><span class="s4"><a>预订</a></span></dt>
+                    <dd><span class="s1"><a>广州</a><a class="icon"></a><a>迪拜</a></span><span class="s2">2014-12-31&nbsp;&nbsp;截止&nbsp;&nbsp;往返</span><span class="s3">￥9690</span><span class="s4"><a>预订</a></span></dd>
+                </dl>
+            </div>
+        </div>
+        <div id="ad" class="m">
+        	<dl>
+            	<dt>&nbsp;</dt>
+                <dd>&nbsp;</dd>
+            </dl>
+        	<ul eq="0">
+            	<li class="on"><img src="__PUBLIC__/images/Zt/firstClass/ad1.jpg"></li>
+                <li><img src="__PUBLIC__/images/Zt/firstClass/ad2.jpg"></li>
+                <li><img src="__PUBLIC__/images/Zt/firstClass/ad3.jpg"></li>
+                <li><img src="__PUBLIC__/images/Zt/firstClass/ad4.jpg"></li>
+                <li><img src="__PUBLIC__/images/Zt/firstClass/ad5.jpg"></li>
+            </ul>
+        </div>
+        <div id="advantage" class="m">
+        	<h2>选择爱尚飞，安心选择！</h2>
+            <ul>
+            	<li><a href="{:U('/about/toubu#step1')}" target="_blank">信息真实</a></li>
+                <li><a href="{:U('/about/toubu#step2')}" target="_blank">机票专营</a></li>
+                <li><a href="{:U('/about/toubu#step3')}" target="_blank">专业顾问</a></li>
+                <li><a href="{:U('/about/toubu#step4')}" target="_blank">航协认定</a></li>
+                <li><a href="{:U('/about/toubu#step5')}" target="_blank">百度认证</a></li>
+                <li><a href="{:U('/about/toubu#step6')}" target="_blank">资质公开</a></li>
+                <li><a href="{:U('/about/toubu#step7')}" target="_blank">出票保证</a></li>
+                <li><a href="{:U('/about/toubu#step8')}" target="_blank">全天服务</a></li>
+                <li><a href="{:U('/about/toubu#step9')}" target="_blank">免费送票</a></li>
+                <li><a href="{:U('/about/toubu#step10')}" target="_blank">支付灵活</a></li>
+            </ul>
+        </div>
+		<div id="footer" class="m">
+			<p>Copyright © 2009-2013 爱尚飞国际机票网 广州美乐商务服务有限公司</p>
+		</div>
+	</div>
+    
+    <div id="kf_box">
+    	<div class="close"><a><img src="__PUBLIC__/images/Zt/firstClass/kf_close.jpg"></a></div>
+        <dl>
+        	<dt><a>美洲线</a></dt>
+            <dd><a>欧洲线</a></dd>
+            <dt><a>大洋线</a></dt>
+            <dd><a>亚洲线</a></dd>
+            <dt><a>中东线</a></dt>
+            <dd><a>非洲线</a></dd>
+        </dl>
+    </div>
+    
+<script id="kf53" language="JavaScript" src ="http://chat.53kf.com/kf.php?arg=meile10&style=1"></script>
+<script type="text/javascript">
+$(function(){
+	//调用53kf
+	var BaseInfo = {'path':"{:U('/')}"};
+    function open_kf(){
+    <?php if($userinfo): ?>
+        window.open('http://wpa.qq.com/msgrd?v=3&uin={$userinfo.user.qq|trim}&site=qq&menu=yes');
+    <?php else: ?>
+        setIsinvited();hz6d_cus_web_msg_open();
+    <?php endif;?>
+    }
+	var kfurl="http://www17.53kf.com/webCompany.php?"+$("#ivt_script").attr("src").match(/arg=.*/gim);
+	$('.s4 a').click(function(){
+		open_kf();
+		});
+	$('#map a').click(function(){
+		open_kf();
+		});
+	$('#cabin h2 a').click(function(){
+		open_kf();
+		});
+		
+	//切换广告图
+	$("#ad dt").click(function(){
+		var i=parseInt($("#ad ul").attr('eq'))+1;
+		if(i>=5){i=0;}
+		$("#ad ul").attr('eq',i);
+		$("#ad li").eq(i).addClass('on').siblings().removeClass('on');
+		});
+	$("#ad dd").click(function(){
+		var i=parseInt($("#ad ul").attr('eq'))-1;
+		if(i<0){i=5;}
+		$("#ad ul").attr('eq',i);
+		$("#ad li").eq(i).addClass('on').siblings().removeClass('on');
+		});
+	
+	//kf_box
+	$(window).scroll(function(){
+		var top=$(this).scrollTop()+300+'px';
+		$('#kf_box').css('top',top);
+		});
+	$('#kf_box .close a').click(function(){
+		$('#kf_box').hide();
+		});
+	$('#kf_box dl a').click(function(){
+		open_kf();
+		});
+
+	});
+</script>
+
+</body>
+</html>

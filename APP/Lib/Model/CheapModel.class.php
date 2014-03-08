@@ -4,10 +4,10 @@ class CheapModel extends Model{
     function getList($zhou='美洲',$rowNum=10){
         $zhou=I('dq')?I('dq'):$zhou;
         $where['zhou']=$zhou;
-        $data['zhou']=$this->field('zhou')->group('zhou')->order('sort')->select();
+        $data['zhou']=$this->cache(true)->field('zhou')->group('zhou')->order('sort')->select();
 
       //  print_R($data);
-        $rs=$this->where($where)->select();
+        $rs=$this->cache(true)->where($where)->select();
         $arr=array();
         foreach($rs as $k=>$v){
             //解析多种形式的日期格式
@@ -144,10 +144,6 @@ class CheapModel extends Model{
         }
     }
 
-    function delete(){
-
-    }
-		
 
 		
 		

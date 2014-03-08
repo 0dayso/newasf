@@ -1,26 +1,30 @@
 
 <div class="accordion" fillSpace="sideBar">
-<volist name="groups" id="group">
-    <notempty name="menu[$group['id']]">
-	<div class="accordionHeader">
-		<h2><span>Folder</span>{$group.title}</h2>
-	</div>
-
-	<div class="accordionContent">
-		<ul class="tree treeFolder">
-			<volist id="item" name="menu[$group['id']]" >
-                    <eq name="item.level" value="3">
-                        <li>
-                            <a href="__GROUP__/{$list[$item['pid']]['name']}/{$item['name']}" target="navTab" rel="{$list[$item['pid']]['name']}-{$item['name']}">{$item['title']}</a></li>
-                        <else/>
-                        <li><a href="__GROUP__/{$item['name']}" target="navTab" rel="{$item['name']}-index">{$item['title']}</a></li>
-                    </eq>
-			</volist>
-		</ul>
-
-	</div>
-    </notempty>
-</volist>
+    <volist name="groups" id="group">
+        <notempty name="menu[$group['id']]">
+            <div class="accordionHeader"><h2><span>Folder</span>{$group.title}</h2></div>        
+            <div class="accordionContent">
+                <ul class="tree treeFolder">
+                    <volist id="item" name="menu[$group['id']]" >                   
+                            <eq name="item.level" value="3">
+                                <li <eq name="i" value="1"> class="first"</eq>>
+                                    <a href="__GROUP__/{$list[$item['pid']]['name']}/{$item['name']}" target="navTab" 
+                                     rel="{$list[$item['pid']]['name']}-{$item['name']}">{$item['title']}</a>
+                                 </li>
+                             <else/>
+                                <li <eq name="i" value="1"> class="first"</eq>><a href="__GROUP__/{$item['name']}" target="navTab" rel="{$item['name']}-index">{$item['title']}</a></li>
+                            </eq>
+                    </volist>
+                </ul>
+            </div>
+        </notempty>
+    </volist>
+    <script>
+        function clickfirst(){
+         //   $('.first a').first().click();
+        }
+        setTimeout(clickfirst,50);
+    </script>
 </div>
 
 

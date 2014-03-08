@@ -1,0 +1,41 @@
+<include file="public:header" />
+<link rel="stylesheet" href="__PUBLIC__/css/interticket.css" type="text/css" />
+    <div id="cont">
+        <div class="wd1000 mt10 interTic">
+        	<h1 class="h1_tit_nav">你当前所在位置：<a href="{:U('/')}" class="sy">首页</a> > <a href="{:U('/Tools/AirportService')}" class="sy">机场服务</a> > <a href="{:U('/Tools/AirportService')}" class="sy">国内机场</a> > <a class="cur">北京首都国际机场</a></h1>
+			<div class="left" id="interTicL">
+            	<div id="servcont">
+                	<h2 class="title">北京首都国际机场</h2>
+                    <div class="tab"><a class="on">机场简介</a><a>机场交通</a><a>机场电话</a><a>机场大巴</a></div>
+                    <div class="sc_box on">机场简介</div>
+                    <div class="sc_box">机场交通</div>
+                    <div class="sc_box">机场电话</div>
+                    <div class="sc_box">机场大巴</div>
+                </div>
+			</div>
+			<div class="right" id="interTicR">
+            	<div class="flowpath"><a href="#"><img src="__PUBLIC__/images/tools/flowpath.gif" /></a></div>
+                <div class="weather"><img src="__PUBLIC__/images/tools/weather.gif" /></div>
+                <div id="hot_airp" class="tools_box">
+                	<h2><a href="{:U('/Tools/AirportService')}">更多机场》</a>热门机场</h2>
+                    <ul>
+                    	<li>><a href="#">上海浦东机场</a></li>
+                        <li>><a href="#">上海浦东机场</a></li>
+                        <li>><a href="#">上海浦东机场</a></li>
+                        <li>><a href="#">上海浦东机场</a></li>
+                    </ul>
+                </div>
+			</div>
+        </div>
+    </div>
+  <include file="public:footer" />
+  
+<script type="text/javascript">
+$(function(){
+	$("#servcont .tab a").click(function(){
+		var i=$(this).index();
+		$(this).addClass("on").siblings().removeClass("on");
+		$("#servcont .sc_box").eq(i).addClass("on").siblings().removeClass("on");
+		});
+	});
+</script>

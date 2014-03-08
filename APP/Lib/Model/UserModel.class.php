@@ -145,9 +145,9 @@ class UserModel extends RelationModel{
             $mrs= $member_db->query($sql);//得出符合条件的最后分配的 user_id
 
             $auto_user=isset($mrs[0]['auto_user'])?$mrs[0]['auto_user']:0;
-            $user_id=$this->where("status=1 and view=1 and id>$auto_user ".$map)->getField('id');
+            $user_id=$this->where("status=1 and view=1 and avatar!='' and id>$auto_user ".$map)->getField('id');
             if(empty($user_id)){
-                $user_id=$this->where("status=1 and view=1 ".$map)->order('id')->getField('id');//第一个
+                $user_id=$this->where("status=1 and view=1 and avatar!='' ".$map)->order('id')->getField('id');//第一个
             }
          //   echo $user_id;
             $auto=1;
@@ -174,9 +174,9 @@ class UserModel extends RelationModel{
     }
 
     //随机分配客服
-    function autoUserid($company_id=1,$department_id=0){
+    function autoUserid($company_id=1,$department_id=0,$exclude=0){
         $department=$department_id?" and department_id=".$department_id:'';
-        $where="company_id=$company_id $department and status=1 and view=1 and avatar!=''";
+        $where="company_id=$company_id $department and id!=$exclude and status=1 and view=1 and avatar!=''";
         return  $this->where($where)->order('rand()')->getField('id');
 
     }

@@ -98,6 +98,7 @@ class IniAction extends PublicAction{
             $wh['to_id']=getUid();			
 			$wh['id_read']=0;//0表示未读
             $common['message_count']=$messageDB->where($wh)->count();
+
             $this->common=$common;//公共数据
         }
     }

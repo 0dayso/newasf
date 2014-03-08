@@ -177,20 +177,23 @@ class UserAdminModel extends RelationModel{
     }
 
     //随机分配客服
-    function AutoUserid(){
-         return  $this->where("company_id=1 and status=1 and view=1 and avatar!=''")->order('rand()')->getField('id');
+    function autoUserid($company_id=1,$department_id=0,$exclude=0){
+        $department=$department_id?" and department_id=".$department_id:'';
+        $where="company_id=$company_id $department and id!=$exclude and status=1 and view=1 and avatar!=''";
+        return  $this->where($where)->order('rand()')->getField('id');
+
     }
 
     //用户权限级别条件
-    function userLevelWhere($uid){
-        $uid=$uid?$uid:getUid();
+    function userLevelWhere($key='user_id'){
+        $uid=getUid();
         //管理员
         if($uid==C('ADMIN_ID')){
             return;
         }
         $rs=$this->field('id,name,role_level,company_id,department_id')->find($uid);
         if($rs['role_level']==0){
-            $map['user_id']=$uid;
+            $map[$key]=$uid;
         }elseif($rs['role_level']==1){
             $where['company_id']=$rs['company_id'];
             $where['department_id']=$rs['department_id'];
@@ -198,7 +201,7 @@ class UserAdminModel extends RelationModel{
             foreach($user_id_arr as $val){
                $arr[]= $val['id'];
             }
-            $map['user_id'] = array('in',$arr);
+            $map[$key] = array('in',$arr);
         }elseif($rs['role_level']==2){
 
         }

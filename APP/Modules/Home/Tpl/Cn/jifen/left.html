@@ -1,0 +1,26 @@
+<div class="sideleft">
+    <div class="classify_list">
+        <div class="allproduct"><img alt="全部商品分类" src="__PUBLIC__/images/navtop.jpg" width="196" height="36" /></div>
+        <foreach name="category_left" item="v">
+            <ul>
+                <h4><a href="{:U('/jifen/category','cid='.$v['cid'])}">{$v.name}</a></h4>
+                <li>
+                    <foreach name="v._child" item="vv">
+                        <a href="{:U('/jifen/category','cid='.$vv['cid'])}">{$vv.name}</a>
+                    </foreach>
+                </li>
+            </ul>
+        </foreach>
+    </div>
+    <div class="ph_jf">
+        <h4><span style="float:left"><img src="__PUBLIC__/images/jf_ph.jpg" width="11" height="31" /></span>兑换排行榜</h4>
+        <volist name="sales" id="vo" >
+        <dl>
+            <dt><a class="ph ph{$i}"></a><img src="__PUBLIC__/uploads/mall/s_{$vo.img}" width="52" height="52" /></dt>
+            <dd><a href="{:U('/jifen/info','id='.$vo['id'])}">{$vo.title}</a></dd>
+            <dd>积fun：<span class="span0">{$vo.jifen}</span></dd>
+        </dl>
+        </volist>
+
+    </div>
+</div>

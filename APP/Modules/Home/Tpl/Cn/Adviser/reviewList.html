@@ -1,0 +1,109 @@
+<include file="Public:header" />
+    <div id="cont">
+        <div class="wd1000 mt10 bgWhite">
+        	<h1 class="h1_tit_nav">你当前所在位置：<a href="{:U('/')}" class="sy">首页</a> > <a class="cur">顾问评价</a></h1>
+            <div class="left mt10 ml10" id="evaluate_alt">
+            	<div class="kefu">
+                    <dl class="kefu">
+                        <dt><img src="__PUBLIC__/uploads/{$user.avatar}" alt="{$user.name}" /></dt>
+                        <dd><dl>
+                            <dd><span class="sp0"><label class="nm">{$user.name}</label></span><span class="sp1"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={$user.qq|trim}&site=qq&menu=yes"><img src="http://wpa.qq.com/pa?p=2:{$user.qq|trim}:47" alt="点击这里给我发消息" title="点击这里给我发消息"/></a></span></dd>
+                            <dd><span class="sp0"><label>手机号码：</label><label class="ht">{$user.public_mobile}</label></span><span class="sp1"><label>电话号码：</label><label class="ht">{$user.telephone}</label></span></dd>
+                            <dd><span class="sp0 kfpj"><label>服务评价：</label>
+                                <label class="ht kfpj" title="五颗星"><a class="a{$server*2|round=###}"></a>{$server}</label></span><span class="sp1 pj"><a class="pj hp"></a><a>好评（<label>{$pl.hao}</label>）</a><a class="pj zp"></a><a>中评（<label>{$pl.zhong}</label>）</a><a class="pj cp"></a><a>差评（<label>{$pl.cha}</label>）</a></span></dd>
+                        </dl></dd>
+                    </dl>
+                </div>
+                <div class="mt10 pjlb">
+                	<h2>查看{$user.name}的客户评价：</h2>
+                    <ul><!--这里列十个li-->
+
+                        <foreach name="list" item="v">
+                        <li>
+                        	<span class="rec"><a class="tb"></a><a>{$v.name}</a>
+                                <a href="{:U('airline/pl/','from='.$v['from_iata'].'&to='.$v['to_iata'])}" class="re">{$v.from_city}→{$v.to_city}</a><a class="tm">{$v.create_time|date="Y-m-d",###}</a></span>
+                            <span class='pj'><label>总体评价：</label>
+                                <label class="kfpj" title="很好">
+                                    <label class="lb{$v['total']}"></label>
+                                </label><label>服务 <a>
+                                    <?php if($v['server'] > 4 ){
+                                    echo '很好';
+                                    }elseif($v['server'] > 3){
+                                    echo '较好';
+                                    }elseif($v['server'] > 2){
+                                    echo '一般';
+                                    }elseif($v['server'] > 1){
+                                    echo '较差';
+                                    }elseif($v['server'] == 1){
+                                    echo '很差';
+                                    }
+                                    ?>
+                                </a>
+                                </label>
+
+                                <label>出票 <a>
+                                    <?php if($v['speed'] > 4 ){
+                                    echo '很快';
+                                    }elseif($v['speed'] > 3){
+                                    echo '比较快';
+                                    }elseif($v['speed'] > 2){
+                                    echo '一般';
+                                    }elseif($v['speed'] > 1){
+                                    echo '比较慢';
+                                    }elseif($v['speed'] == 1){
+                                    echo '非常慢';
+                                    }
+                                    ?>
+                                    </a>
+
+                                </label><label>价格 <a>
+                                    <?php if($v['price'] > 4 ){
+                                    echo '很实惠';
+                                    }elseif($v['price'] > 3){
+                                    echo '较实惠';
+                                    }elseif($v['price'] > 2){
+                                    echo '一般';
+                                    }elseif($v['price'] > 1){
+                                    echo '较高';
+                                    }elseif($v['price'] == 1){
+                                    echo '很高';
+                                    }
+                                    ?>
+
+                                </a></label></span>
+                            <span class="ct">{$v.contents}</span>
+                        </li>
+                         </foreach>
+
+                    </ul>
+                    <p class="pagingBar">
+                    	<span class="cur">
+                    		{$page}
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <div class="right mt10 mr10" id="evaluate_art">
+            	<h2 class="tp"><a <if condition="$userinfo">href="{:U('/Member/Appcenter/evaluate')}" <else /> href="{:U('/member/login')}"</if>>我已订票成功，立即评价</a></h2>
+                <div id="near_order" class="proa">
+                    <h2 class="titbk"><a class="spr3 tj"></a><span class="left">最近订单</span></h2>
+                    <ul>
+                        <foreach name='order' item='v'>
+                            <li>
+                            <span class="sp1">
+                            	<span class="info">
+                                    <label class="lb0">旅行顾问【<a  href="{:U('/Adviser/review')}_{$v.user.id}">{$v.user.name}</a>】
+                                    </label>为会员【<if condition="$v['membername']">{$v['membername']}<else/>游客</if>】
+                                    预订了<label class="lb1"><a href="{:U('airline/pl/','from='.$v['from_iata'].'&to='.$v['to_iata'])}">{$v.from}  → {$v.to}</a></label>的机票
+                                </span>
+                                <br/>
+                                <a class="order"><label>订单号：</label><label>{$v.order_id}<label></a>
+                            </span>
+                            </li>
+                        </foreach>
+                    </ul>
+                </div>
+           	</div>
+        </div>
+    </div>
+<include file="Public:footer" />

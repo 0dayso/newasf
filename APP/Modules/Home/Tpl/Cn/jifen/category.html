@@ -1,0 +1,51 @@
+<include file="Public:header" />
+<link rel="stylesheet" href="__PUBLIC__/css/mall.css" type="text/css" />
+    <div id="cont">
+        <div class="wd960 mt10 bgWhite about_asf">
+        	<h1 class="h1_tit_nav">你当前所在位置：<a href="{:U('/')}" class="sy">首页</a> >
+                <a href="{:U('/jifen/index')}" class="cur">积fun商城</a>
+                <foreach name="path" item="v">
+                    > <a href="{:U('/jifen/category','cid='.$v[cid])}" class="cur">{$v.name}</a>
+                </foreach>
+            </h1>
+         <div id="mall">
+             <include file="left" />
+           <div class="ctright">
+            <div class="banner"><a href="#"><img alt="" src="__PUBLIC__/images/banner_03.jpg" width="734" height="198" /></a></div>
+            <div  class="pro_list">
+              <h2>{$path[0][name]}</h2>
+              <foreach name="list" item="v">
+              <dl>
+                  <h3><a title="{$v.title}" href="{:U('/jifen/info','id='.$v['id'])}">{$v.title}</a></h3>
+                  <dt><a title="{$v.title}" href="{:U('/jifen/info','id='.$v['id'])}"><img src="__PUBLIC__/uploads/mall/m_{$v.img}" width="129" height="130" /></a></dt>
+                  <dd class="bt">
+                      <p>库存数：{$v.amount}件</p>
+                      <p>已兑换：{$v.sales}件</p>
+
+                  </dd>
+                  <dd>积fun：<span class="span0">{$v.jifen}</span></dd>
+                  <dd><input  onclick="javascript:location.href='{:U('/member/lipin/cart/')}?act=add&id={$v['id']}'" name="" class="gwc_bt"  value="放入购物车" type="button" />
+                      <input  onclick="javascript:location.href='{:U('/member/lipin/collect/')}?act=add&id={$v['id']}'" name="" class="sc_bt" value="收藏"   type="button" /></dd>
+               </dl>
+               </foreach>
+
+                <p class="pagingBar">
+                    	<span class="cur">
+                    		{$page}
+                        </span>
+
+                </p>
+          </div>
+          
+               
+           </div>   
+            
+            
+            
+         </div>   
+            
+        </div>
+    </div>
+
+
+<include file="Public:footer" />

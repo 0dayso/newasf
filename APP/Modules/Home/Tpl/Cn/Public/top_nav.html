@@ -1,0 +1,26 @@
+<script type="text/javascript">
+    var BaseInfo = {
+        'path':"{:U('/')}"
+    };
+</script>
+<div id="hd_top">
+        <div class="wd960"> <script type="text/javascript"  src="{:U('/Public/topMenu')}"></script></div>
+    </div>
+    <div id="hd_logo">
+        <div class="wd960">
+            <a href="{:U('/')}" class="left"><img src="__PUBLIC__/images/logo.gif" alt="logo" class="logo" /></a>
+            <div class="right"><a href="{:U('/zt/airchina_sales')}" target="_blank"><img src="__PUBLIC__/images/Zt/airchina_sales/ad_578_80.jpg" alt="中国国际航空" /></a></div>
+        </div>
+    </div>
+    <div id="hd_nav">
+        <div class="wd960">
+            <ul class="nav">
+                <li><a href="{:U('/')}">首页</a></li>
+                <li><a <?php if(MODULE_NAME=='Iflight') echo "class='active'"; ?> href="{:U('/iflight')}">国际机票</a></li>
+                <li><a <?php if(MODULE_NAME=='About' and ACTION_NAME=='service') echo "class='active'"; ?> href="{:U('/about/service')}">会员服务</a></li>
+                <li><a <?php if(MODULE_NAME=='Jifen') echo "class='active'"; ?> href="{:U('/jifen')}">积fun商城</a></li>
+                <li><a <?php if(MODULE_NAME=='Adviser') echo "class='active'"; ?> href="<if condition="$userinfo">{:U('/Adviser/review')}_{$userinfo.user.id}<else/>{:U('/adviser')}</if>">专业顾问</a></li>
+                <li><a <?php if(MODULE_NAME=='Activity') echo "class='active'"; ?> href="{:U('/activity')}" class="new">活动频道<span><img src="__PUBLIC__/images/top_nav_new.gif" alt="new"/></span></a></li>
+            </ul>
+        </div>
+	</div>

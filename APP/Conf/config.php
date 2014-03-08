@@ -4,10 +4,8 @@ $config=array(
     'APP_GROUP_MODE'    =>  1,
     'APP_GROUP_PATH'    =>  'Modules',
 
-    'TMPL_TEMPLATE_SUFFIX'  => '.html',     // 默认模板文件后缀
-    'TMPL_ACTION_ERROR' => 'Public:success',  //提示页面
-    'TMPL_ACTION_SUCCESS' => 'Public:success',  //提示页面
-
+//    'SESSION_PREFIX'        => 'aishangfei', // session 前缀
+//    'COOKIE_PREFIX'         => 'aishangfei',      // Cookie前缀 避免冲突
 
  //  'COOKIE_DOMAIN'         => ".aishangfei.com",      // Cookie有效域名
 
@@ -38,6 +36,13 @@ $config=array(
     'DB_PORT'			=>	'3306',
     'DB_PREFIX'			=>	'asf_',
 
+ //   'DATA_CACHE_TYPE' => 'Memcache',
+    'DATA_CACHE_TIME' =>60,
+    'MEMCACHE_HOST' => 'tcp://192.168.4.127:11223',
+
+    'DB_SQL_BUILD_CACHE' => true,
+    'DB_SQL_BUILD_QUEUE' => 'Memcache',
+    'DB_SQL_BUILD_LENGTH' => 20, // SQL缓存的队列长度
 
     /* URL设置 */
     'URL_CASE_INSENSITIVE'  => true,   // 默认false 表示URL区分大小写 true则表示不区分大小写
@@ -60,6 +65,18 @@ $config=array(
         '/^api\/footer_js/i'=>'Api/Block/footerJs',
         '/^api\/tjjp/i'=>'Api/Block/tjjp',
     ),
+
+/*    'SHOW_RUN_TIME'    => true, // 运行时间显示
+    'SHOW_ADV_TIME'    => true, // 显示详细的运行时间
+    'SHOW_DB_TIMES'    => true, // 显示数据库查询和写入次数
+    'SHOW_CACHE_TIMES' => true, // 显示缓存操作次数
+    'SHOW_USE_MEM'     => true, // 显示内存开销
+    'SHOW_LOAD_FILE'   => true, // 显示加载文件数
+    'SHOW_FUN_TIMES'   => true, // 显示函数调用次数*/
+
+    'TMPL_TEMPLATE_SUFFIX'  => '.html',     // 默认模板文件后缀
+    'TMPL_ACTION_ERROR' => 'Public:success',  //提示页面
+    'TMPL_ACTION_SUCCESS' => 'Public:success',  //提示页面
 
     'LOG_RECORD' => true, // 开启日志记录
     'LOG_LEVEL'  =>'EMERG,ALERT', // 只记录EMERG ALERT CRIT ERR 错误

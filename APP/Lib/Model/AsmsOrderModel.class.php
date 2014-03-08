@@ -37,99 +37,104 @@ class AsmsOrderModel extends RelationModel{
 
 
     //Order 获取订单信息
-    function getOrderInfo($ddbh,$update=0){
+    function getOrderInfo($ddbh,$update=0){	
         if(empty($ddbh)) return false;
         if(is_array($ddbh)){
             $ddbh=$ddbh['ddbh'];
         }
         $orderRs=$this->find($ddbh);
+		
         if(!C('ASMS_ONLINE')) return $orderRs; //没连asms 直接返回缓存数据
         //缓存更新
         if(!$update && isset($orderRs['info_update_time']) && $orderRs['info_update_time']>(time()-C('CACHE_TIME'))){
             return $orderRs;
         }
+		
+		if($orderRs['order_logo'] == 1){//订单来自后台录入		
+			$rs=$this->find($ddbh);
+			 foreach($orderRs as $key=>$val){
+			 	$rs['hd_info']=json_decode($val['hd_info']);
+			 	$rs['cjr_info']=json_decode($val['cjr_info']);
+			 }
+			 return $rs;			
+		}else{//订单来自胜意
+			$this->check_login();
+			$url= C('ASMS_HOST')."/asms/ydzx/ddgl/kh_khdd_xq.shtml?ddbh=".$ddbh;
+			$data=curl_post($url,'',COOKIE_FILE,0);
+			if(!$data){return -1;}
+			$preg="/<div class=\"nav_junior_con\".*?>(.*?)<script.*?<tr id=\"hctr0\">(.*?)<\/table>.*?<tbody id=\"tb\">(.*?)<\/tbody>/si";
+	
+			preg_match($preg,$data,$info);
+	
+			if(empty($info[0])){
+				$this->error="GETORDERINFO 未找到";
+				return false;
+			}
+			$data1=$info[1];
+			$data2=$info[2];
+			$data3=$info[3];//从html页面上取需要的
+	
+			$preg1="/<input .*?name=\"(.*?)\" .*?value=\"(.*?)\".*?>/";
+			preg_match_all($preg1,$data1,$info1);
+	
+			foreach($info1 as $key=>$val){
+				foreach($val as $k=>$v){
+					if($key==0) continue;
+					if($key==1)
+						$kk[$k]=$v;
+					if($key==2)
+						$arr[$kk[$k]]=$v;
+				}
+			}
+			$arr['hyid']=$arr['ct_hyid'];
+			$preg="/<td.*?>(.*?)<\/td>.*?<td.*?>(.*?)<\/td>.*?<input .*?value=\"(.*?)\"\/>.*?<input .*?value=\"(.*?)\"\/>.*?<input .*?value=\"(.*?)\"\/>.*?<input .*?value=\"(.*?)\"\/>.*?<input .*?value=\"(.*?)\"\/>.*?<input .*?value=\"(.*?)\"\/>.*?<input .*?value=\"(.*?)\"\/>.*?<input .*?value=\"(.*?)\"\/>.*?<input .*?value=\"(.*?)\"\/>.*?<input .*?value=\"(.*?)\"\/>.*?<input .*?value=\"(.*?)\"\/>.*?<input .*?value=\"(.*?)\"\/>.*?<input .*?value=\"(.*?)\"\/>.*?<td.*?>(.*?)<\/td>.*?<td.*?>(.*?)<\/td>.*?<\/tr>/si";
+	
+			preg_match_all($preg,$data2,$info2);
+		  //  print_R($info2);
+			$preg2="/<input .*?name=\"(.*?)\" .*?value=\"(.*?)\".*?>/";
+			preg_match_all($preg2,$data3,$info3);
+			$hdArr=array('','hbh','hc','hd_id','hd_hbh','hd_cfcity','hd_ddcity','hd_cfsj','hd_cfsj_p','hd_bzbz','hd_bzbz_p','hd_cw','hd_fjjx','hd_hzl','hd_cityname','hd_ddcityname','cfsj','ddsj');
+			foreach($info2 as $key=>$val){
+				foreach($val as $k=>$v){
+					if($key==0) continue;
+					$arr1[$k][$hdArr[$key]]=$v;
+				}
+			}
+	
+			$index=0;
+			foreach($info3 as $key=>$val){
+				foreach($val as $k=>$v){
+					if($key==0) continue;
+					if($v=='cjr_index'){
+						$index=$info3[2][$k];
+					}
+					if($key==1){
+					   $kk[$k]=$v;
+					   $arr2[$index][$v]=$info3[2][$k];
+					}
+				}
+			}
+			unset($data);
+			$data=$arr;
+			$data['ddbh']=$ddbh;
+			$data['info_update_time']=time();
+			$data['hd_info']=json_encode($arr1);
+			$data['cjr_info']=json_encode($arr2);
+			if($orderRs){ //存在则保存
+				$save=$this->create($data);
+				$this->save($save);
+			}else{
+				$this->create($data);
+				$this->add();
+			}
+			$arr['hd']=$arr1;
+			$arr['cjr']=$arr2;
+			$rs=$this->find($ddbh);
+			$rs['hd_info']=$arr1;
+			$rs['cjr_info']=$arr2;
+			return $rs;
 
-        $this->check_login();
-        $url= C('ASMS_HOST')."/asms/ydzx/ddgl/kh_khdd_xq.shtml?ddbh=".$ddbh;
-     //   echo $url;
-        $data=curl_post($url,'',COOKIE_FILE,0);
-        if(!$data){return -1;}
-        $preg="/<div class=\"nav_junior_con\".*?>(.*?)<script.*?<tr id=\"hctr0\">(.*?)<\/table>.*?<tbody id=\"tb\">(.*?)<\/tbody>/si";
-
-        preg_match($preg,$data,$info);
-
-        if(empty($info[0])){
-            $this->error="GETORDERINFO 未找到";
-            return false;
-        }
-        $data1=$info[1];
-        $data2=$info[2];
-        $data3=$info[3];//从html页面上取需要的
-    //    print_r($data1);
-
-        $preg1="/<input .*?name=\"(.*?)\" .*?value=\"(.*?)\".*?>/";
-        preg_match_all($preg1,$data1,$info1);
-
-        foreach($info1 as $key=>$val){
-            foreach($val as $k=>$v){
-                if($key==0) continue;
-                if($key==1)
-                    $kk[$k]=$v;
-                if($key==2)
-                    $arr[$kk[$k]]=$v;
-            }
-        }
-        $arr['hyid']=$arr['ct_hyid'];
-        $preg="/<td.*?>(.*?)<\/td>.*?<td.*?>(.*?)<\/td>.*?<input .*?value=\"(.*?)\"\/>.*?<input .*?value=\"(.*?)\"\/>.*?<input .*?value=\"(.*?)\"\/>.*?<input .*?value=\"(.*?)\"\/>.*?<input .*?value=\"(.*?)\"\/>.*?<input .*?value=\"(.*?)\"\/>.*?<input .*?value=\"(.*?)\"\/>.*?<input .*?value=\"(.*?)\"\/>.*?<input .*?value=\"(.*?)\"\/>.*?<input .*?value=\"(.*?)\"\/>.*?<input .*?value=\"(.*?)\"\/>.*?<input .*?value=\"(.*?)\"\/>.*?<input .*?value=\"(.*?)\"\/>.*?<td.*?>(.*?)<\/td>.*?<td.*?>(.*?)<\/td>.*?<\/tr>/si";
-
-        preg_match_all($preg,$data2,$info2);
-      //  print_R($info2);
-        $preg2="/<input .*?name=\"(.*?)\" .*?value=\"(.*?)\".*?>/";
-        preg_match_all($preg2,$data3,$info3);
-        $hdArr=array('','hbh','hc','hd_id','hd_hbh','hd_cfcity','hd_ddcity','hd_cfsj','hd_cfsj_p','hd_bzbz','hd_bzbz_p','hd_cw','hd_fjjx','hd_hzl','hd_cityname','hd_ddcityname','cfsj','ddsj');
-        foreach($info2 as $key=>$val){
-            foreach($val as $k=>$v){
-                if($key==0) continue;
-                $arr1[$k][$hdArr[$key]]=$v;
-            }
-        }
-
-     //   print_r($arr1);
-     //   exit;
-        $index=0;
-        foreach($info3 as $key=>$val){
-            foreach($val as $k=>$v){
-                if($key==0) continue;
-                if($v=='cjr_index'){
-                    $index=$info3[2][$k];
-                }
-                if($key==1){
-                   $kk[$k]=$v;
-                   $arr2[$index][$v]=$info3[2][$k];
-                }
-            }
-        }
-        unset($data);
-        $data=$arr;
-        $data['ddbh']=$ddbh;
-        $data['info_update_time']=time();
-        $data['hd_info']=json_encode($arr1);
-        $data['cjr_info']=json_encode($arr2);
-     //   $rs=$this->find($ddbh);
-        if($orderRs){ //存在则保存
-            $save=$this->create($data);
-            $this->save($save);
-        }else{
-            $this->create($data);
-            $this->add();
-        }
-    //    echo ($this->getDbError());
-        $arr['hd']=$arr1;
-        $arr['cjr']=$arr2;
-        $rs=$this->find($ddbh);
-        $rs['hd_info']=$arr1;
-        $rs['cjr_info']=$arr2;
-        return $rs;
+		}
     }
 
     /*
@@ -147,53 +152,47 @@ class AsmsOrderModel extends RelationModel{
      * zkfx 客户类型
      *
      */
-    function orderFindAll($data,$is_info=0){
+    function orderFindAll($data,$is_info=0){	
         if(is_array($data)){
-            $arr_post=$data;
+            $arr_post=$data;		
         }else{
             $this->error='第一参数只能是数组';
             return false;
         }
+		
         $hyid=$data['khid'];
         $page_r=I('numPerPage')?I('numPerPage'):100;
         $page_p=I('pageNum')?I('pageNum'):1;
         $start=$page_r*$page_p-$page_r;
         $page_start=$start;
-
+		
         $arr_post['ksrq']=isset($data['ksrq'])?$data['ksrq']:"2013-09-01"; //开始日期
         $arr_post['jsrq']=isset($data['jsrq'])?$data['jsrq']:date("Y-m-d",time()); //结束日期
         $arr_post['old_ssddlx']=1;
         $arr_post['ssddlx']=1;
         $arr_post['checkdate']=2; //预定日期
         $arr_post['pnr_hcglgj']=isset($data['pnr_hcglgj'])?$data['pnr_hcglgj']:0; //国际
-        $this->check_login();
+        $this->check_login();	
         $url=C('ASMS_HOST')."/asms/ydzx/ddgl/kh_khdd_ddgl.shtml?cs=5&count=$page_r&start=$page_start&";
-
         $str= http_build_query($arr_post);
-     //   echo $url.$str;
-        $data=curl_post($url,$str,COOKIE_FILE);
-        if(!$data){return -1;}
+        $data=curl_post($url,$str,COOKIE_FILE);		
+        if(!$data){return -1;}		
         if(empty($data)){
             $this->error="连接失败";
             return false;
         }
-
-        $data_preg="/<form name=\"batchForm\" .*?>(.*?)<\/form>/s";
-       // print_r($data);
+        $data_preg='/<form name=\"batchForm\" .*?>(.*?)<\/form>/s';       
         preg_match($data_preg,$data,$data2);
-        //print_r($data[1]);
+				
         //正则匹配数据
         //                                                                                      1  确定出票时间                   2订票员                     预订时间 3               4订单状态              5订单类型          6退改           7 采购状态       8   供应状态                 9 当前营业部                            10   订票营业部                                11  pnr.                              12    PNR 状态  .                     13 大编码          14 客户类型           15 会员卡号 /单位编号       16 客户名称         17 类型          18 航程          19航班号.           20舱 位           21起飞时间          22乘机人                 23人数              24采购价            25  账单价           26留款            27 加价 /让利           28销售价           29机建                30税费            31小计            32保险                            33接车                                34其他                35应收金额               36支付          37已付金额            38支付科目            39 OFFICE            40电子邮件         41可用积分        42旅客联系人        43联系电话             44配送方式 .      45配送时间             46订票公司          47 新PNR             48客户订单号     49 订单编号         50 订单来源
         $preg="/<tr class=.*?>.*?<td>.*?<\/td>\s<td>.*?<\/td>\s<td>.*?delRecord\(\'\d+\',\'\d+\',\'(\d+)\'.*?\).*?<\/td>\s<td>.*?<\/td>\s<td>(.*?)<\/td>\s<td>.*?<span .*?>(.*?)<\/span>.*?<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>.*?<span .*?>(.*?)<\/span>.*?<\/td>\s<td>.*?<span .*?>(.*?)<\/span>.*?<\/td>\s<td.*?>.*?<font .*?>(.*?)<\/font>.*?<\/td>\s<td.*?>.*?<font.*?>(.*?)<\/font>.*?<\/td>\s<td>(.*?)<\/td>\s<td><font.*?>(.*?)<\/font><\/td>\s<td>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td>(.*?)<\/td>\s<td(.*?)<\/td>\s<td>(.*?)<\/td>\s<td>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?><font .*?>(.*?)<\/font><\/td>\s<td.*?><font .*?>(.*?)<\/font><\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td(.*?)<\/td>\s<td(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>.*?<\/tr>/si";
 
-        preg_match_all($preg,$data2[1],$info);
-        if(empty($info[0])){
+        preg_match_all($preg,$data2[0],$info);				
+        if(empty($info[0])){		
             $this->error=" memberFindAll 未找到";
             return false;
         }
-
-     //   print_r($info);exit;
-
          $pregs="/<table .*?class=\"turnPlan\">.*?<tr>.*?<b>(\d+)<\/b>.*?<input .*?value=\'(\d+)\'>.*?<\/table>/si";
           preg_match($pregs,$data2[1],$infos);
         if(!empty($infos[0])){
@@ -203,7 +202,7 @@ class AsmsOrderModel extends RelationModel{
             $_GET['totalPages']=Ceil($infos[1]/$page_r);
         }
         //设置 key值
-        $kayName=array('','version','cpsj','userid','dprq','ddzt','ddlx','gt','cgzt','gyzt','yyb','dpyyb','pnr','pnr_zt','hkgs_pnr','zkfx','hykh','xm','lx','hc','hbh','cw','qfsj','cjr','rs','cgj','zdj','lk','jjrl','xsj','jj','sf','xj','bx','jc','qt','ysje','zf_fkf','yf','zf_fkkm','office','email','kyjf','nklxr','lxdh','ps_lx','tyqsj','dpgs','xpnr','khddh','ddbh','ddly');        //  print_r($info);
+        $kayName=array('','version','cpsj','userid','dprq','ddzt','ddlx','gt','cgzt','gyzt','yyb','dpyyb','pnr','pnr_zt','hkgs_pnr','zkfx','hykh','xm','lx','hc','hbh','cw','qfsj','cjr','rs','cgj','zdj','lk','jjrl','xsj','jj','sf','xj','bx','jc','qt','ysje','zf_fkf','yf','zf_fkkm','office','email','kyjf','nklxr','lxdh','ps_lx','tyqsj','dpgs','xpnr','khddh','ddbh','ddly');        
 
 
         //格式化数组
@@ -245,8 +244,7 @@ class AsmsOrderModel extends RelationModel{
             }
         }
 
-     //   print_R($kayName);
-      //  print_r($arr);
+
         //更新保存到数据库
         foreach($arr as $key=>$val){
             if($is_info){ //详细
@@ -266,7 +264,9 @@ class AsmsOrderModel extends RelationModel{
             }
         }
         return $arr;
+		
     }
+	
 
 
     /**
@@ -311,6 +311,7 @@ class AsmsOrderModel extends RelationModel{
         $rs= $this->orderFindAll($where);
         if($rs){
             return $rs;
+			
         }else{
             return false;
         }
@@ -617,6 +618,128 @@ class AsmsOrderModel extends RelationModel{
         return $array;
     }
 
+
+
+
+	//取后台用户订单-国际客服部
+	function userOrder($userid){
+		$page_r=I('numPerPage')?I('numPerPage'):100;
+        $page_p=I('pageNum')?I('pageNum'):1;
+        $start=$page_r*$page_p-$page_r;
+        $page_start=$start;	
+		
+		$arr_post['userid']=$userid;
+        $arr_post['ksrq']="2013-09-01"; //开始日期
+        $arr_post['jsrq']=date("Y-m-d",time()); //结束日期
+        $arr_post['old_ssddlx']=1;
+        $arr_post['ssddlx']=1;
+        $arr_post['checkdate']=2; //预定日期
+        $arr_post['pnr_hcglgj']=0; //国际
+        $this->check_login();	
+        $url=C('ASMS_HOST')."/asms/ydzx/ddgl/kh_khdd_ddgl.shtml?cs=5&count=$page_r&start=$page_start&";
+        $str= http_build_query($arr_post);
+        $data=curl_post($url,$str,COOKIE_FILE);		
+        if(!$data){return -1;}		
+        if(empty($data)){
+            $this->error="连接失败";
+            return false;
+        }
+        $data_preg='/<form name=\"batchForm\" action=\".*?\" method=\"post\">.*<\/form>/s';       
+        preg_match($data_preg,$data,$data2);		
+		
+        //正则匹配数据    
+        $preg="/<tr class=.*?>.*?<td>.*?<\/td>\s<td>.*?<\/td>\s<td>.*?delRecord\(\'\d+\',\'\d+\',\'(\d+)\'.*?\).*?<\/td>\s<td>.*?<\/td>\s<td>(.*?)<\/td>\s<td>.*?<span .*?>(.*?)<\/span>.*?<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>.*?<span .*?>(.*?)<\/span>.*?<\/td>\s<td>.*?<span .*?>(.*?)<\/span>.*?<\/td>\s<td.*?>.*?<font .*?>(.*?)<\/font>.*?<\/td>\s<td.*?>.*?<font.*?>(.*?)<\/font>.*?<\/td>\s<td>(.*?)<\/td>\s<td><font.*?>(.*?)<\/font><\/td>\s<td>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td>(.*?)<\/td>\s<td(.*?)<\/td>\s<td>(.*?)<\/td>\s<td>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?><font .*?>(.*?)<\/font><\/td>\s<td.*?><font .*?>(.*?)<\/font><\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td(.*?)<\/td>\s<td(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>\s<td.*?>(.*?)<\/td>.*?<\/tr>/si";
+
+        preg_match_all($preg,$data2[0],$info);	
+        if(empty($info[0])){		
+            $this->error=" memberFindAll 未找到";
+            return false;
+        }
+        $pregs="/<table .*?class=\"turnPlan\">.*?<tr>.*?<b>(\d+)<\/b>.*?<input .*?value=\'(\d+)\'>.*?<\/table>/si";
+        preg_match($pregs,$data2[0],$infos);
+		
+
+		
+        if(!empty($infos[0])){
+            $_GET['totalCount']=$infos[1];
+            $_GET['pageNum']=$infos[2];
+            $_GET['numPerPage']=$page_r;
+            $_GET['totalPages']=Ceil($infos[1]/$page_r);
+        }
+		
+        //设置 key值
+        $kayName=array('','version','cpsj','userid','dprq','ddzt','ddlx','gt','cgzt','gyzt','yyb','dpyyb','pnr','pnr_zt','hkgs_pnr','zkfx','hykh','xm','lx','hc','hbh','cw','qfsj','cjr','rs','cgj','zdj','lk','jjrl','xsj','jj','sf','xj','bx','jc','qt','ysje','zf_fkf','yf','zf_fkkm','office','email','kyjf','nklxr','lxdh','ps_lx','tyqsj','dpgs','xpnr','khddh','ddbh','ddly'); 
+
+        //格式化数组
+        foreach($info as $key=>$val){
+            foreach($val as $k=>$v){
+                if($key==0) continue;
+                if(in_array($key,array('19','23','43','44'))){
+                    if(strstr($v,'title')){
+                        preg_match("/title=\"(.*?)\"/",$v,$vf);
+                        $v=$vf[1];
+                    }else{
+                        $v=strip_tags($v);
+                        $v=str_replace('>','',$v);
+                    }
+                }
+                if($key==7){
+                    $v='';
+                }
+                if($key==2 || $key==5 || $key==7){
+                    $v=strip_tags($v); //去html
+                }
+                if($key==5){ //订单状态
+                   foreach($this->status as $kk=>$kv){
+                       if($v==$kv){ $v=$kk;break;}
+                   }
+                }
+                if($key==18){//类型
+                    foreach($this->lx as $kk=>$vv){
+                        if($vv==$v){
+                            $v=$kk;
+                            break;
+                        }
+                    }
+                }
+                if($key==37){
+                    $v=$v=='未付'?0:1; //付款类型
+                }
+                $arr[$k][$kayName[$key]]=$v;
+            }
+        }
+
+		
+		foreach($arr as $k=>$v){
+			unset($arr[$k]['version']);//版本
+			unset($arr[$k]['gt']);
+			unset($arr[$k]['cgzt']);
+			unset($arr[$k]['gyzt']);
+			unset($arr[$k]['hkgs_pnr']);
+			unset($arr[$k]['ps_lx']);//配送类型
+			unset($arr[$k]['tyqsj']);
+			unset($arr[$k]['dpgs']);
+			unset($arr[$k]['xpnr']);
+			unset($arr[$k]['ddly']);			
+			unset($arr[$k]['zf_fkkm']);
+			unset($arr[$k]['jc']);
+			unset($arr[$k]['qt']);
+			unset($arr[$k]['kyjf']);
+			unset($arr[$k]['userid']);
+			unset($arr[$k]['ddlx']);//订单类型 普通订单
+			unset($arr[$k]['pnr']);
+			unset($arr[$k]['pnr_zt']);//pnr状态
+			unset($arr[$k]['yyb']);//当前营业部
+			unset($arr[$k]['dpyyb']);//订票营业部
+			unset($arr[$k]['cgj']);
+			unset($arr[$k]['zdj']);
+			unset($arr[$k]['lk']);
+			unset($arr[$k]['jjrl']);
+			unset($arr[$k]['yf']);
+			unset($arr[$k]['zkfx']);//客户类型 自有
+		}
+        return $arr;
+	}
 		
 }
 

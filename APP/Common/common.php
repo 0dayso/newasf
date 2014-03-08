@@ -530,6 +530,7 @@ function action_log($action = null, $model = null, $record_id = null, $user_id =
     if(empty($action) || empty($model)){
         return '参数不能为空';
     }
+
     if(empty($record_id)){
         $record_id=get_client_ip();
     }

@@ -21,7 +21,13 @@ class CityModel extends RelationModel{
             $show = trim($show,',');
             $sql = trim($sql,',');
             $sql2="select $show from $sql where 1=1 $where";
-            $rs= $this->query($sql2);
+            $md5=md5($sql2);
+            if(S($md5)){
+                $rs= S($md5);
+            }else{
+                $rs= $this->query($sql2);
+                S($md5,$rs);
+            }
         //    $arr=isset($rs[0])?$rs[0]:'';
            if(empty($rs)){
                foreach($data as $key=>$val){
@@ -42,11 +48,11 @@ class CityModel extends RelationModel{
     public function getCityName($iata){
         $iata=trim(str_replace('<br>','',$iata));
     	$where="iata='$iata'";
-        $city=$this->where($where)->getField('name');
+        $city=$this->cache(true)->where($where)->getField('name');
         $DB_PREFIX=C('DB_PREFIX');
     	if(!$city) # 如果无结果则表示该iata可能是机场的三字码
     	{
-            $airport=D('Airport')->join("$DB_PREFIX"."city on ".$DB_PREFIX."airport.city_iata=".$DB_PREFIX."city.iata")->where("$DB_PREFIX"."airport.iata='$iata'")->getField($DB_PREFIX."city.name");
+            $airport=D('Airport')->cache(true)->join("$DB_PREFIX"."city on ".$DB_PREFIX."airport.city_iata=".$DB_PREFIX."city.iata")->where("$DB_PREFIX"."airport.iata='$iata'")->getField($DB_PREFIX."city.name");
     		if($airport){
                 return $airport;
             }else
@@ -65,14 +71,14 @@ class CityModel extends RelationModel{
             $where['name']=$iata;
         }
 
-        $city=$this->where($where)->getField('iata');
+        $city=$this->cache(true)->where($where)->getField('iata');
         $DB_PREFIX=C('DB_PREFIX');
         if(!$city) # 如果无结果则表示该iata可能是机场的三字码
         {
             if($rs){
-            $airport=D('Airport')->join("$DB_PREFIX"."city on ".$DB_PREFIX."airport.city_iata=".$DB_PREFIX."city.iata")->where("$DB_PREFIX"."airport.iata='$iata'")->getField($DB_PREFIX."city.iata");
+            $airport=D('Airport')->cache(true)->join("$DB_PREFIX"."city on ".$DB_PREFIX."airport.city_iata=".$DB_PREFIX."city.iata")->where("$DB_PREFIX"."airport.iata='$iata'")->getField($DB_PREFIX."city.iata");
             }else{
-                $airport=D('Airport')->join("$DB_PREFIX"."city on ".$DB_PREFIX."airport.city_iata=".$DB_PREFIX."city.iata")->where("$DB_PREFIX"."airport.name='$iata'")->getField($DB_PREFIX."city.iata");
+                $airport=D('Airport')->cache(true)->join("$DB_PREFIX"."city on ".$DB_PREFIX."airport.city_iata=".$DB_PREFIX."city.iata")->where("$DB_PREFIX"."airport.name='$iata'")->getField($DB_PREFIX."city.iata");
             }
             if($airport){
                 return $airport;
@@ -91,8 +97,8 @@ class CityModel extends RelationModel{
 		$iata=trim(str_replace('<br>','',$iata));
 	
 		$where="iata='$iata'";
-        $city=$this->where($where)->find();
-        $airport=D('Airport')->relation(true)->where($where)->find();
+        $city=$this->cache(true)->where($where)->find();
+        $airport=D('Airport')->cache(true)->relation(true)->where($where)->find();
 
         if(!$city) # 如果无结果则表示该iata可能是机场的三字码
         {

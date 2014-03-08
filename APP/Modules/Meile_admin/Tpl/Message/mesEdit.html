@@ -1,0 +1,43 @@
+<div class="pageContent">
+	<form method="post" action="__URL__/update/navTabId/__MODULE__-index" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone)">
+		<input type="hidden" name="user_id" value="<?php echo $_SESSION[C('USER_AUTH_KEY')] ?>"/>
+		<input type="hidden" name="id" value="{$vo.id}" />
+		<div class="pageFormContent" layoutH="58">
+            <p>
+                <label>发送时间：</label>
+                <input type="text"  name="create_time" value="{$vo.create_time}">（英文字母）
+            </p>
+            <p>
+                <label>标题：</label>
+                <input type="text" class="required"   name="title" value="{$vo.title}">（英文字母）
+            </p>
+            <div class="unit">
+                <label>发送人：</label>
+                <input name="from_id"  value="{$vo.from_id}">
+            </div>
+            <div class="unit">
+                <label>收件人：</label>
+                <input name="to_id"  value="{$vo.to_id}">
+            </div>
+            <p>
+                <label>类型：</label>
+                <select name="type">
+                    <option value="1"<eq name="vo.type" value="1">selected</eq>>短信</option>
+                    <option value="2"<eq name="vo.type" value="2">selected</eq>>站内信</option>
+                </select>
+            </p>
+            <div class="unit">
+                <label>内容：</label>
+                <textarea name="contents" cols="57" rows="5" >{$vo.contents}</textarea>
+            </div>
+		</div>
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">Submit</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">Cancel</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+	
+</div>
+

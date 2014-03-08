@@ -1,0 +1,35 @@
+<script type="text/javascript" src="__PUBLIC__/js/hotcitypop/popcitylist.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" language="javascript" src="__PUBLIC__/js/hotcitypop/searchconditions.js"></script>
+<script type="text/javascript" language="javascript" src="__PUBLIC__/js/hotcitypop/paramfarmat.js"></script>
+<div class="chaxun">
+    <form action="{:U('/iflight/flightquery')}" name="form0" id="chaxun_form" autocomplete="off" onsubmit="return false;">
+        <ul>
+            <li id="radio_sel">
+                <input type="radio" name="journey" class="journey2" value="2" /><label>单程</label>
+                <input type="radio" name="journey" class="journey1" value="1" checked="checked" /><label>往返</label>
+                <input type="radio" name="journey" class="journey3" value="3" /><label>多程</label>
+            </li>
+            <li>
+                <span>出发城市</span>
+                <input type="text" class="text city" name="origincode"  value="{$_GET['origin_name']}"  state="1" class="text city"/>
+            </li>
+            <li>
+                <span>到达城市</span>
+                <input type="text" class="text city" name="desinationcode"  value="{$_GET['desination_name']}" state="1" class="text city"/>
+            </li>
+            <li>
+                <span>出发日期</span>
+                <input type="text" class="text date" name="originDate" id="originDate"  value="{$_GET['originDate']}" placeholder="出发时间" state="1" />
+            </li>
+            <li>
+                <span>返回日期</span>
+                <input type="text" class="text date" name="returnDate" id="returnDate"  value="{$_GET['returnDate']}"  placeholder="返回日期" state="1"/>
+            </li>
+            <li class="center submit" id="submit_sousuo">
+                <input type="submit" value="查询" class="spr sub" />
+            </li>
+        </ul>
+    </form>
+    <p class="tishi">如有更多需求，请直接联系<a href="javascript:;" onclick="open_kf()">专业顾问</a></p>
+</div>

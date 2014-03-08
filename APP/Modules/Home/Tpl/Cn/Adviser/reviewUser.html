@@ -1,0 +1,114 @@
+<include file="Public:header" />
+    <div id="cont">
+        <div class="wd1000 mt10 bgWhite">
+        	<h1 class="h1_tit_nav">你当前所在位置：<a href="{:U('/')}" class="sy">首页</a> > <a class="cur">我要评价</a></h1>
+            <div class="left mt10 ml10" id="evaluate_lt">
+                <h2>请对客服专员{$user.name}为您提供的预订服务进行评价<a>（评价生效后可获赠积分<label class="red">500</label>积分）</a></h2>
+                <form action="" name="form" method="post">
+                    <ul>
+                        <li><span class="sp0"><label>*</label>总体评价：</span>
+                        	<span class="pj" id="pj_grade">
+                            	<input type="hidden" value="0" name="grade" />
+                            	<a href="javascript:;" value="0"></a>
+                                <a href="javascript:;" value="1"></a>
+                                <a href="javascript:;" value="2"></a>
+                                <a href="javascript:;" value="3"></a>
+                                <a href="javascript:;" value="4"></a>
+                                <label></label>
+                            </span>
+                            <script type="text/javascript">
+								//<![CDATA[
+                            	var gd=document.getElementById("pj_grade");
+								var gda=gd.getElementsByTagName("a");
+								var arrPJ=["很差","较差","一般","较好","很好"];
+								var input=gd.getElementsByTagName("input")[0];
+								var label=gd.getElementsByTagName("label")[0];
+								for(var i=0;i<gda.length;i++){
+									gda[i].onclick=function(e){
+										var selValue=Number(this.getAttribute("value"));
+										for(var j=0;j<gda.length;j++){
+											if(j<=selValue)gda[j].className="active";	
+											else gda[j].className="";
+										}
+										label.innerHTML=arrPJ[selValue];
+										input.value=(selValue+1);
+									}
+									gda[i].onmouseover=function(e){
+										var selValue=Number(this.getAttribute("value"));
+										for(var j=0;j<gda.length;j++){
+											if(j<=selValue)gda[j].className="active";	
+											else gda[j].className="";
+										}
+										label.innerHTML=arrPJ[selValue];
+									}
+									gda[i].onmouseout=function(e){
+										var value=Number(input.value);
+										for(var j=0;j<gda.length;j++){
+											if(j<value)gda[j].className="active";	
+											else gda[j].className="";
+										}
+										if(value-1<0){label.innerHTML="";}
+										else {label.innerHTML=arrPJ[value-1];}
+									}
+								}
+								//]]>
+
+
+
+                            </script>
+                        </li>
+                        <li>
+                        	<span class="sp0"><label>*</label>顾问服务：</span>
+                            <span>
+                            	<a><input type="radio" name="manner" value="1" /><label>很差</label></a>
+                                <a><input type="radio" name="manner" value="2" /><label>较差</label></a>
+                                <a><input type="radio" name="manner" value="3" /><label>一般</label></a>
+                                <a><input type="radio" name="manner" value="4" /><label>较好</label></a>
+                                <a><input type="radio" name="manner" value="5" /><label>很好</label></a>
+                            </span>
+                        </li>
+                        <li>
+                        	<span class="sp0"><label>*</label>出票速度：</span>
+                            <span>
+                            	<a><input type="radio" name="specialty" value="1" /><label>非常慢</label></a>
+                                <a><input type="radio" name="specialty" value="2" /><label>比较慢</label></a>
+                                <a><input type="radio" name="specialty" value="3" /><label>一般</label></a>
+                                <a><input type="radio" name="specialty" value="4" /><label>比较快</label></a>
+                                <a><input type="radio" name="specialty" value="5" /><label>很快</label></a>
+                            </span>
+                        </li>
+                        <li>
+                        	<span class="sp0"><label>*</label>机票价格：</span>
+                            <span>
+                            	<a><input type="radio" name="price" value="1" /><label>很高</label></a>
+                                <a><input type="radio" name="price" value="2" /><label>较高</label></a>
+                                <a><input type="radio" name="price" value="3" /><label>一般</label></a>
+                                <a><input type="radio" name="price" value="4" /><label>较实惠</label></a>
+                                <a><input type="radio" name="price" value="5" /><label>很实惠</label></a>
+                            </span>
+                        </li>
+                        <li>
+                        	<span class="sp0"><label>*</label>评价内容：</span>
+                            <span><textarea name="contents"></textarea></span>
+                        </li>
+                        <li><span class="sp0">&nbsp;</span><span><input type="submit" class="button" value="提交评价"  /></span></li>
+                    </ul>
+                </form>
+            </div>
+            <div class="right mt10 mr10" id="evaluate_rt">
+            	<div class="mb10 kf" style="height:auto">
+                    <span class="imgs"><img src="__PUBLIC__/uploads/{$user.avatar}" alt="jy" /></span>
+                    <span class="infos">
+                        <a>您的客服顾问：<label class="name">{$user.name}</label></a>
+                        <a>手机号码：<label>{$user.public_mobile}</label></a>
+                        <a>电话号码：<label>{$user.telephone}</label></a>
+                        <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={$user.qq}&site=qq&menu=yes"><img src="http://wpa.qq.com/pa?p=2:{$user.qq|trim}:47" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
+                    </span>
+                </div>
+            	<div id="evaluate_list">
+                    <include file="Public:evaluate" />
+                </div>
+           	</div>
+        </div>
+    </div>
+<include file="Public:footer" />

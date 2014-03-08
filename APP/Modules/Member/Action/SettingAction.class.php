@@ -967,5 +967,18 @@ class SettingAction extends IniAction {
             }
         }
     }
+
+    function verifyMobile(){
+        if(IS_AJAX){
+            $phone=$this->userInfo['mobile'];
+            import('ORG.Util.String');
+            $auth_str=String::randString(6,1);  //生成6位数的认证码
+            session('auth_reg_mobile', $phone);
+            session('auth_reg_str',$auth_str);
+            $data['mobile']=$phone;
+            $data['yzm']=$auth_str;
+            $rs=D('Message')->message_action('verifyMobile',$data);
+        }
+    }
 }
 

@@ -1,0 +1,13 @@
+#hd_top a.dh {
+background: url(../images/contact_ph.gif) no-repeat 0px 0;
+height: 13px;
+width: 100px;
+padding-right: 10px;
+margin-top: 8px;
+}
+#cont .infobt div {
+float: left;
+width: 285px;
+height: 144px;
+background: url(../images/infobt_tel.gif) no-repeat center center;
+}

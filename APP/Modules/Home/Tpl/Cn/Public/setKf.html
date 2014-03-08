@@ -1,0 +1,38 @@
+<!--注册完成-选择顾问-开始-->
+<if condition="$userinfo and !$userinfo['user_id']">
+    <div id="mask_layer" style=" z-index:100!important;"></div>
+    <div id="advisor_select">
+        <h2><span class="as_l"></span><span class="as_m">选择我的旅行顾问</span><span class="as_r"></span></h2>
+        <div id="as_box">
+            <ul id="radio">
+                <li><input name="select" type="radio" value="0" checked="checked" />选择系统为我分配的旅行顾问</li>
+                <li><input name="select" type="radio" value="1" />选择我认识或咨询过的旅行顾问</li>
+            </ul>
+            <div id="as_list">
+                <h3><span class="left">
+          <a href="javascript:;" company="1" class="active" >广州</a>
+          <a href="javascript:;" company="2" >上海</a>
+          <a href="javascript:;" company="3" >北京</a>
+          <a href="javascript:;" company="4" >深圳</a>
+          </span>
+          <span class="right">
+          <a>快速查找顾问</a>
+          <input type="text" id="ksval" value="请输入顾问姓名"/>
+          <a href="javascript:;" id="sousuo">搜索</a></span></h3>
+                <div id="list_box">
+                    <p id="as_loadWaitImg" ><img src="__PUBLIC__/images/loading_animation.gif" width="37" height="37"/></p>
+                    <ul></ul>
+                </div>
+            </div>
+            <div id="as_submit">确定</div>
+        </div>
+    </div>
+    <script type="text/javascript" >
+        var getURL = "{:U('/adviser')}";
+        var getImgURL = "__PUBLIC__/uploads";
+        var getPostURL = "{:U('/Member/Setting/setKf')}"
+        var getIndexURL = "{:U('/')}"
+    </script>
+    <script type="text/javascript" src="__PUBLIC__/js/advisor_select.js"></script>
+</if>
+<!--注册完成-选择顾问-结束-->

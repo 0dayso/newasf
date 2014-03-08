@@ -69,7 +69,7 @@ class BookingModel extends RelationModel{
                 $order[$k]['to_iata']=$citydb->getCityIata($iata[count($iata)-1]['ArrivalAirport']);
                 $order[$k]['order_id']=$v['order_id'];
             }
-            S('near_order_'.$num,$order,20);
+            S('near_order_'.$num,$order,600);
         }else{
             $order=S('near_order_'.$num); //读取缓存
         }

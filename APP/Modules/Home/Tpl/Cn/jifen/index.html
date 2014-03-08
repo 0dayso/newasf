@@ -1,0 +1,43 @@
+<include file="Public:header" />
+<link rel="stylesheet" href="__PUBLIC__/css/mall.css" type="text/css" />
+    <div id="cont">
+        <div class="wd960 mt10 bgWhite about_asf">
+        	<h1 class="h1_tit_nav">你当前所在位置：<a href="/" class="sy">首页</a> > <a class="cur">积fun商城</a></h1>
+         <div id="mall">
+
+          <include file="left" />
+            
+           <div class="ctright">
+            <div class="banner"><a href="{:U('/help/members')}#help_ul1"><img alt="" src="__PUBLIC__/images/banner_03.jpg" width="734" height="198" /></a></div>
+            <div class="nm_pro">
+            <div class="hotcg">
+             <h2 class="hot"><span style="color:#f60;">热兑</span>专区</h2>
+                <volist name="sales" id="vv" >
+                    <if condition="$i lt 5">
+                    <dl>
+                        <dt><a title="{$vv.title}" href="{:U('/jifen/info','id='.$vv[id])}"><img src="__PUBLIC__/uploads/mall/m_{$vv.img}" width="146" height="146" /></a></dt>
+                        <dd><a title="{$vv.title}" href="{:U('/jifen/info','id='.$vv[id])}">{$vv.title}</a><br/>积fun：<span class="span0">{$vv.jifen}</span></dd>
+                    </dl>
+                    </if>
+                </volist>
+
+            <foreach name="list" key="k" item="v">
+                    <if condition="$v[cid] eq $info[cid]"></if>
+            <div class="hotcg">
+             <h2><a class="sp ju"></a><a href="{:U('/jifen/category','cid='.$k)}">{$clist[$k]['name']}</a></h2>
+                <foreach name="v" key="kk" item="vv">
+                <dl>
+                    <dt><a title="{$vv.title}" href="{:U('/jifen/info','id='.$vv[id])}"><img src="__PUBLIC__/uploads/mall/m_{$vv.img}" width="146" height="146" /></a></dt>
+                    <dd><a title="{$vv.title}" href="{:U('/jifen/info','id='.$vv[id])}">{$vv.title}</a><br/>积fun：<span class="span0">{$vv.jifen}</span></dd>
+                </dl>
+                </foreach>
+            </div>
+             </foreach>
+
+            </div>
+           </div>
+           </div>
+         </div> 
+        </div>
+    </div>
+<include file="Public:footer" />

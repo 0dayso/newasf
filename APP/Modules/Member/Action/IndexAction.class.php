@@ -7,17 +7,10 @@ class IndexAction extends IniAction {
 		$points=D('Points');		
 		
 		//账户安全等级
-		$mail=D(CheckEmail);
+		$mail=D('CheckEmail');
 		$where['member_id']=$userInfo['id'];
-		$mail=$mail->where($where)->select();
-		if(!empty($mail)){
-			foreach($mail as $key=>$val){
-				$userInfo['check_email']=$val['is_check'];
-			}
-		}else{
-			$userInfo['check_email']=0;
-		}
-		
+        $where['email']=$userInfo['email'];
+        $this->check_email=$mail->where($where)->getField('is_check');
 		//现金券总数
 		$wh['member_id']=$userInfo['id'];
 		$wh['type2']=2;
@@ -65,7 +58,4 @@ class IndexAction extends IniAction {
 		$this->title="会员中心";
 		$this->display();
         }
-
-	
-	
 }

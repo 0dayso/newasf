@@ -75,23 +75,23 @@ th{
                 <td>{$vo.mobile}</td>
                 <td>{$vo['email']}</td>
                 <td>{$vo['create_time']|date="Y-m-d",###}</td>
-                <td>{$vo['last_login_time']|date="Y-m-d H:i",###}</td>
+                <td><empty name="vo.last_login_time">{$vo['create_time']|date="Y-m-d H:i",###}<else/>{$vo['last_login_time']|date="Y-m-d H:i",###}</empty></td>
                 <td>{$vo['login_count']}</td>
                 <td>{$vo['status']}</td>
                 <td <eq name="vo.user.status" value="0">class="bg_red"</eq>>{$vo.user.name}</td>
-                <td>{$vo.source}</td>
+                <td><if condition="($vo['source'] eq 1) or($vo['source'] eq 'pc')">pc<else/>{$vo.source}</if></td>
                 <if condition="$vo['source'] eq 1"><td>否</td><else/><td>是</td></td></if>
                 <td>{$vo.jifen}</td>
                 <td>{$vo.aizuan}</td>
                 <td>
                 	<if condition="$vo['totel_zf'] eq 0">
-                    	（<span style=" color:#F00;">0</span>）             
+                    	（<span style=" color:#F00;">0</span>）
                      <else/>
                      	（<span style=" color:#F00;">{$vo.totel_zf}</span>）
                         <a href="{:U('/Meile_admin/Order/index')}" target="navTab" rel="Order-index" style="color:#06F;">查看</a>
                      </if>
                 </td>
-                <td><a href="__URL__/order_add"  style="color:#06F;" width="1200" height="400" target="dialog" rel="edit">添加</a></td>
+                <td><a href="__URL__/order_add?id={$vo.asms_member_id}"  style="color:#06F;" width="1200" height="400" target="dialog" rel="edit">添加</a></td>
 				  <if condition="($can_bj eq 1) OR ($vo['source'] eq 1)"><!---国际客服部/商旅部功能限制--->
 						<td></td>		
 				  <else/>

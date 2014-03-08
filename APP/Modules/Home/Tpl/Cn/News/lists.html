@@ -1,0 +1,25 @@
+<include file="Public:header" />
+    <div id="cont">
+        <div class="wd960 mt10 bgWhite about_asf">
+            <div class="h1_tit_nav">你当前所在位置：<a href="/" class="sy">首页</a>
+                <foreach name="path" item="v">
+                    > <a href="{:U('/news/'.$v[alias])}" class="cur">{$v.name}</a>
+                </foreach>
+            </div>
+            <include file="About:left" />
+            <div class="list_right_gy" id="news_dt">
+            	<h2 class="tit">{$info.name}</h2>
+            	<ul><!--这里列出10条-->
+                    <volist name="list" id="vo">
+                    <li><a href='{:U("/News/info/$vo[id]","","html")}' class="lt">{$vo.title}</a><a>{$vo.published|date='Y-m-d',###}</a></li>
+                     </volist>
+                </ul>
+                <p class="pagingBar">
+                    	<span class="cur">
+                    		{$page}
+                        </span>
+                </p>
+            </div>
+        </div>
+    </div>
+<include file="Public:footer" />

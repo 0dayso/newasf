@@ -24,8 +24,13 @@
                	  <ul>
                     	<li>
                         	<div class="verify right">
-                                <b class="a0"></b><a class="mr20" href="{:U('/Member/Setting/securitycenter')}">手机已验证</a>
-                                <if condition="$userInfo['check_email'] eq 0">
+                                <if condition="$userInfo['verify_mobile'] eq 0">
+                                    <b class="a1"></b><a class="mr20" href="{:U('/Member/Setting/securitycenter')}">手机未验证</a>
+                                <else/>
+                                    <b class="a0"></b><a class="mr20" href="{:U('/Member/Setting/securitycenter')}">手机已验证</a>
+                                </if>
+
+                                <if condition="$check_email neq 1">
                                		<b class="a3"></b><a href="{:U('/Member/Setting/securitycenter')}">邮箱未验证</a>
                                 <else/>
                                 	<b class="a4"></b><a href="{:U('/Member/Setting/securitycenter')}">邮箱已验证</a>

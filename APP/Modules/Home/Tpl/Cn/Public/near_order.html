@@ -1,0 +1,37 @@
+<div id="near_order">
+    <h2 class="titbk"><a class="spr3 tj"></a><span class="left">最近订单</span></h2>
+    <ul>
+        <foreach name='order' item='v'>
+            <li>
+                <span class="sp0"><a href="{:U('/Adviser/review')}_{$v.user.id}"><img style="width:48px;height:48px" src='__PUBLIC__/uploads<if condition="$v[user][avatar]">{$v[user][avatar]}<else/>avatar/default.gif</if>' alt="gw" /></a></span>
+                            <span class="sp1">
+                            	<span class="info">
+                                    <label class="lb0">旅行顾问【<a  href="{:U('/Adviser/review')}_{$v.user.id}">{$v.user.name}</a>】</label>
+                                    为<if condition="$v['membername']">会员【{$v['membername']}】<else/>【游客】</if>
+                                    预订了 {$v['airline_name']} 承运的<label class="lb1">
+                                    <a href="{:U('airline/pl/','from='.$v['from_iata'].'&to='.$v['to_iata'])}">{$v.from} - {$v.to}</a></label> 的国际机票
+                                </span>
+                                <br/><br/>
+                                <a class="order"><label>订单号：</label><label>{$v.order_id}</label></a>
+                            </span>
+            </li>
+        </foreach>
+    </ul>
+</div>
+<script type="text/javascript">
+    $(function() {
+        var $swap = $('#near_order ul');  //滚动区域
+        var movetotop;  //滚动的变量
+        $swap.hover(function() {
+            clearInterval(movetotop);  //鼠标进入指定的区域停止动画
+        },function() {
+            movetotop=setInterval(function() {  //定义一个滚动时间间隔的方法
+                var li_height = $swap.find('li').innerHeight();
+                $swap.find('li:first').animate({marginTop:-li_height + 'px'},300,function() {
+                    $swap.find('li:first').css('marginTop',0).appendTo($swap);  //获取到li的高度，向上滚动一个高度，并且用回调函数把css样式调回到原始的初始状态
+                });
+            },3000);  //滚动的时间间隔
+        }).trigger('mouseleave');  //模拟鼠标离开时的时间，让此动画一开始就执行。
+    });
+</script>
+

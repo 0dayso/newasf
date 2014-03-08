@@ -427,10 +427,10 @@ class AsmsMemberModel extends RelationModel{
 
         if($rs=$this->memberFind($name,'','',0)){
             $this->error="会员名已存在";//会员注册名
-            return $rs['wyid'];
+            return $rs['hyid'];
         }elseif($rs=$this->memberFind('',$name,'',0)){
             $this->error="会员号已存在";//会员会员卡号
-            return $rs['wyid'];
+            return $rs['hyid'];
         }elseif($rs=$this->memberFind('','',$name,0)){
             $this->error="手机号已存在";//手机号已存在
             return $rs['hyid'];
@@ -447,7 +447,7 @@ class AsmsMemberModel extends RelationModel{
     function checkPhone($hone){
         if($rs=$this->memberFind('','',$hone,0)){
             $this->error="手机号已存在";//手机号已存在
-            return $rs['wyid'];
+            return $rs['hyid'];
         }else{
             return true;
         }
@@ -657,7 +657,8 @@ class AsmsMemberModel extends RelationModel{
 
          curl_post(C('ASMS_HOST').'/asms/member/t_member_save.shtml',$post,COOKIE_FILE);
       //  print_r($rs);
-        if($rs=$this->checkMember($data['hyzcm'])!==false && is_numeric($rs)){
+		$rs=$this->checkMember($data['hyzcm']);
+        if($rs!==false && is_string($rs)){
            //注册成功
             return $rs;
         }else{

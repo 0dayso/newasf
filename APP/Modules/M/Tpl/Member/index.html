@@ -72,12 +72,12 @@
        <li><span>用&nbsp;户&nbsp;名：</span> {$userinfo.username}</li>
        <li><a href="{:U('/Member/information')}"><span>会员级别：</span>普通会员</a></li>
       </ul>
-      <div class="link"><span>账户安全：</span>中&nbsp;&nbsp;[<a href="{:U('/Member/editPwd')}">修改密码</a>]</div>
+      <div class="link"><span>账户安全：</span>{$Safety_level}&nbsp;&nbsp;[<a href="{:U('/Member/editPwd')}">修改密码</a>]</div>
       <dl class="list">
-      	<dd><span>预付款余额：</span>xxxx元</dd>
-        <dd><a href="#">如何使用？</a><span>现金券：</span><em>xxxx</em>元</dd>
-        <dd><a href="#">积fun规则</a><span>积fun：</span>3000</dd>
-        <dd><a href="#">如何获取</a><span>爱钻：</span><b>x2</b></dd>
+      	<dd><span>预付款余额：</span>0元</dd>
+        <dd><a href="#">如何使用？</a><span>现金券：</span><em>{$overage}</em>元</dd>
+        <dd><a href="#">积fun规则</a><span>积fun：</span>{$totlejf}</dd>
+        <dd><a href="#">如何获取</a><span>爱钻：</span><b>x{$totleaz}</b></dd>
       </dl>
     </div>
 

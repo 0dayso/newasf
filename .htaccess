@@ -2,11 +2,13 @@
    RewriteEngine on
    RewriteCond %{HTTP_HOST} ^www.aishangfei.net$ [NC]
    RewriteRule ^(.*)$ http://www.aishangfei.com/$1 [L,R=301]
+
+   RewriteCond %{HTTP_HOST} ^aishangfei.cn$ [NC]
+   RewriteRule ^(.*)$ http://www.aishangfei.cn/$1 [L,R=301]
    
    RewriteCond %{HTTP_HOST} ^m.aishangfei.net$ [NC]
    RewriteRule ^(.*)$ http://m.aishangfei.com/$1 [L,R=301]
-   
-   
+
    RewriteCond %{REQUEST_FILENAME} !-d
    RewriteCond %{REQUEST_FILENAME} !-f
    RewriteRule ^(.*)$ index.php/$1 [QSA,PT,L]

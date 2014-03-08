@@ -21,7 +21,17 @@
                 </div>
                 <ul>
                 	<li class="yes"><span><a href="{:U('/Member/Setting/password')}">修改密码</a></span><strong>登录密码</strong> |<em>互联网账户存在被盗风险，建议您定期更改密码以保护账户安全</em></li>
-                  	<li class="yes"><span><a href="{:U('/Member/Setting/replacephone')}">更换手机号</a></span><strong>手机验证</strong> | 手机<a>{$userInfo.mobile|msubstr=0,3}****{$userInfo.mobile|msubstr=7,10}</a>已通过验证</li>
+                    <if condition="$userInfo['verify_mobile'] eq 0">
+                        <li class="no">
+                            <span><a class="verify_mobile">立即验证</a></span>
+                            <strong>手机验证</strong> | 手机<a>{$userInfo.mobile|msubstr=0,3}****{$userInfo.mobile|msubstr=7,10}</a>未通过验证
+                        </li>
+                    <else/>
+                        <li class="yes">
+                            <span><a href="{:U('/Member/Setting/replacephone')}">修改</a></span>
+                            <strong>手机验证</strong> | 手机<a>{$userInfo.mobile|msubstr=0,3}****{$userInfo.mobile|msubstr=7,10}</a>已通过验证
+                        </li>
+                    </if>
                     
                     <empty name="userInfo['email']"><!--没有邮箱-->
                         <li class="no">
@@ -45,6 +55,98 @@
             </div>
         </div>
     </div>
-    
+    <script>
+        $(function(){
+        $(".verify_mobile").click(function(){
+           var  value= {$userInfo.mobile};
+            var cdiv=$("<div class='cover_" +"pop_yzk'>");
+            var div=$("<div class='phone_pop_yzk'>");
+            var html='<h2 class="h1"><span>认证手机号</span><a class="close" title="关闭"></a></h2><h3>爱尚飞国际机票已向您的手机发送校验码,请在下方输入校验码,完成验证。</h3><ul><li><span class="sp0">手机号：</span><span class="phone">'+value+'</span></li><li><span class="sp0"><label class="red">*</label>校验码：</span><span><input class="text" type="text"/></span></li></ul><h4 class="hr"></h4><div class="fs"><label class="fslb">1分钟内没收到校验码？</label><a href="javascript:;" class="active">重发认证码短信（60s）</a></div><div class="sub"><a class="sub" href="javascript:;">下一步</a></div>';
+            div.html(html);
+            div.css({left:($(window).width()-440)/2+"px",top:"150px"});
+            div.appendTo($("body"));
+            cdiv.appendTo($("body"));
+            div.find(".close").click(function(){div.remove();cdiv.remove();});
+            phone_ajax(value,-1);
+            var t=60;
+            var a=div.find("div.fs a")[0];
+            changeHtml(a,t);
+            $(a).click(function(){
+                if(a.className!="fsa"){return;}
+                phone_ajax(value,-1);
+                a.className="active";
+                changeHtml(a,t);
+                return false;
+            });
+            div.find("div.sub .sub").click(function(){
+                phone_ajax(-1,div.find(".text").val(),function(){
+                    div.remove();cdiv.remove();
+                    $('#reg_ph').parent().attr("val",value);
+                    pro.html("<img src='"+js_path+"alterRight.gif' />");
+                    $this.submit();
+                });
+            });
+        });
+        function changeProv(n){
+            var city=$("#city_sel");
+            $.ajax({
+                url:js_path+"cityList.xml",
+                dataType:"xml",
+                success:function(msg){
+                    var loc=$(msg).find("Location");
+                    var opt="";
+                    var citys=loc.find("CountryRegion").eq(0).find("State").eq(n).find("City");
+                    for(var i=0;i<citys.length;i++){
+                        var name=citys.eq(i).attr("Name");
+                        opt=opt+"<option value="+i+">"+name+"</option>";
+                    }
+                    city.html(opt);
+                },
+                error:function(){}
+            });
+        }
+        function getJsPath(){
+            var result="";
+            var es =document.getElementsByTagName("script");
+            for (var i = 0; i < es.length; i++)
+            {
+                var path=es[i].src;
+                if (path.indexOf("register.js")!=-1)
+                {
+                    result = path.substring(0,path.lastIndexOf("/") + 1);
+                }
+            }
+            return result;
+        }
+
+        //ajax手机发送验证码
+        function phone_ajax(phone,num,fn){ //phone是手机号,num是认证码,fn是回调函数
+            var data=phone==-1?"num="+num:"phone="+phone;
+            $.ajax({
+                url:'',//这里是发送url
+                data:data,
+                success:function(msg){
+                    if(msg==1){
+                        if(fn&&typeof fn==="function")fn();//自己定义正确返回
+                    }else{
+                        if(phone==-1){alert("验证码不正确，请检查！");}
+                        else{
+                            //if(fn&&typeof fn==="function")alert("发送验证码失败，请重试！");
+                        }
+                    }
+                },
+                error:function(){alert("网络出错，请重试!");}
+            });
+        }
+        //倒数60秒
+        var changeHtml=function(o,t){
+            o.innerHTML="重发验证码短信("+(--t)+"s)";
+            var timer=setTimeout(function(){
+                if(t==0){o.className="fsa";o.innerHTML="重发验证码短信";clearTimeout(timer);return;}
+                changeHtml(o,t);
+            },1000);
+        }
+        })
+    </script>
     
 <include file="public:footer" />

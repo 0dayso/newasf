@@ -27,9 +27,9 @@ global $objReader;
 			$files="$directory/$file";
 			$basename=basename($files,".$file_type");
 			echo "读取".$files."  - ";
-			$sql="select count(*) as count from nh_xls where file_name='$basename'";
-			$rs=mysql_query($sql);
-			$rs=mysql_fetch_assoc($rs);
+		//	$sql="select count(*) as count from nh_xls where file_name='$basename'";
+		//	$rs=mysql_query($sql);
+		//	$rs=mysql_fetch_assoc($rs);
 			if($rs['count']){
 				$error= "文件名：".$basename." 在数据库中已存在<br/>";
 				echo $error;
@@ -66,7 +66,7 @@ global $objReader;
 			$sql = "INSERT INTO msg_sms VALUES $sql_val";
 			
 			echo $sql;
-			$rs=mysql_query($sql) or die(mysql_error());
+		//	$rs=mysql_query($sql) or die(mysql_error());
 			if($rs){
 				echo "文件".$files." 信息已写入数据库<br>";
 			}else{

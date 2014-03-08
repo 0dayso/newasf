@@ -57,6 +57,20 @@ class ActionsAction extends CommonAction{
     }
 
    function actionLog(){
+       if(I('so')){
+           if(strstr(I('so'),':')){
+               $so=explode(':',I('so'));
+               $map[$so[0]]=$so[1];
+           }else{
+               $where['remark']  = array('like',"%".I('so')."%");
+               $where['user_id']  = array('like',"%".I('so')."%");
+               $where['action_id']  = array('like',"%".I('so')."%");
+               $where['request']  = array('like',"%".I('so')."%");
+               $where['_logic'] = 'or';
+               $map['_complex'] = $where;
+           }
+       }
+        $this->map=$map;
         $this->meta_title = '用户行为';
         $this->relation=true;
         $this->order="id desc";

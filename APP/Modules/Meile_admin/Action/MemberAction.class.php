@@ -24,9 +24,9 @@ class MemberAction extends CommonAction {
         $this->map=$map;
         $this->order='id desc';
         $this->relation = true;
-        parent::index(D("Member"));
+        parent::index(D("Member"));	
 		
-		$info=$this->list;
+		$info=$this->list;		
 		foreach($info as $key=>$val){
 			$points=D('Points'); 
 			$wh['member_id']=$val['id'];
@@ -52,6 +52,7 @@ class MemberAction extends CommonAction {
 			$orderDB=D('AsmsOrder');
 			$where['hyid']=$val['id'];
 			$where['zf_fkf']=0;
+			$where['ddzt']=array('not in','7,8'); 
 			$where['user_id']=getUid();
 			$totel_zf=$orderDB->where($where)->select();
 			$info[$key]['totel_zf']=count($totel_zf);//待支付订单数
@@ -73,8 +74,7 @@ class MemberAction extends CommonAction {
 		if(substr($userInfo['username'],0,1) == 'L'){
 			$this->L_xz=1;
 		}		
-		
-				
+					
 		$this->assign('arrId',$arrId);
 		$this->assign('info',$info);
  		$this->display();
@@ -86,29 +86,59 @@ class MemberAction extends CommonAction {
 //        $info['departmentOption']=$access->getOption('department',array('id'=>I('department_id')));
 //        $info['positionOption']=$access->getOption('position',array('id'=>I('position_id')));
 //        $this->vo=$info;
-		if($_POST){
+		if($_POST){			
+			if(empty($_POST['mobile'])){
+				$this->error('手机号码不能为空');
+			}
+			if(empty($_POST['password']) || empty($_POST['password2'])){
+				$this->error('密码不能为空');
+			}
 			if($_POST['password'] !== $_POST['password2']){
 				$this->error('两次密码输入不一致');
 			}
-			$member=D('member');
-			$data['mobile']=$_POST['mobile'];
-			$data['name']=$_POST['name'];
-			$data['nickname']=$_POST['nickname'];
-			$data['sex']=$_POST['sex'];
-			$data['profession']=$_POST['profession'];
-			$data['province']=$_POST['province'];
-			$data['city']=$_POST['city'];
-			$data['birthday']=$_POST['year'].'-'.$_POST['month'].'-'.$_POST['day'];
-			$data['create_time']=time();
-			$data['user_id']=getUId();
-			$salt='meile';
-			$password=$_POST['password'];
-			$data['password']=hashPassword($password,$salt);
-			$data['salt']=$salt;
-			$res=$member->data($data)->add();
-			if($res){
-				$this->success('添加成功');
+			if(empty($_POST['name'])){
+				$this->error('姓名不能为空');
+			}			
+			if(empty($_POST['username'])){
+				$this->error('用户名不能为空');
 			}
+			$member=D('Member');
+			$member->regCheckName($_POST['username']);//检测用户名			
+			
+			//对接胜意
+			$asmsmember=D('AsmsMember');			
+			$memberInfo['mobile']=$_POST['mobile'];
+			$memberInfo['xm']=$_POST['name'];
+			$memberInfo['username']=$_POST['username'];
+			$memberInfo['user_id']=getUId();
+			$asmsmember->relationReg($memberInfo);
+			$res=$asmsmember->checkName($_POST['username']);
+			if($res){
+				//写入数据库
+				$data['asms_member_id']=$res;
+				$member=D('member');
+				$data['mobile']=$_POST['mobile'];//手机号码				
+				$data['salt']='meile';//salt
+				$data['password']=hashPassword($_POST['password'],'meile');//密码
+				$data['username']=$_POST['username'];//账号,用户名
+				$data['name']=$_POST['name'];//姓名
+				$data['nickname']=$_POST['nickname'];//昵称			
+				$data['sex']=$_POST['sex'];//性别
+				$data['birthday']=$_POST['year'].'-'.$_POST['month'].'-'.$_POST['day'];//生日
+				$data['profession']=$_POST['profession'];//职业
+				$data['province']=$_POST['province'];//省
+				$data['city']=$_POST['city'];//市			
+				$data['create_time']=time();//创建时间
+				$data['user_id']=getUId();//后台用户id				
+				if(!$member->create($data)){
+					$this->error($member->getError());
+				}else{
+					$result=$member->add($data);
+					if($result){
+						$this->success('添加成功');
+					}
+				}
+			}			
 		}else{
         	$this->display();
 		}
@@ -241,8 +271,6 @@ class MemberAction extends CommonAction {
         }
         $this->vo=$info;
         $this->display();
-
-
     }
 
     //重置密码
@@ -442,44 +470,64 @@ class MemberAction extends CommonAction {
 	
 	function order_add(){
 		$this->ddbh=time().getUid().rand(1000,9999);
+		$this->hyid=I('id');
+		
 		if($_POST){	
-			if(empty($_POST['hyid'])){				
-				$this->error('会员ID号不能为空,请输入数字');
-			}
-			if(empty($_POST['xsj'])){				
+			if($_POST['xsj'] == ""){				
 				$this->error('票面总价不能为空,请输入数字');
 			}			
-			if(empty($_POST['sf'])){				
+			if($_POST['sf'] == ""){				
 				$this->error('总税费不能为空,请输入数字，如无请填0');
 			}	
-			if(empty($_POST['taxa'])){				
+			if($_POST['taxa']==""){				
 				$this->error('总保险费不能为空,请输入数字，如无请填0');
 			}				
-			if(empty($_POST['jsf'])){				
+			if($_POST['jsf'] == ""){				
 				$this->error('总机建费不能为空,请输入数字，如无请填0');
 			}
-			if(empty($_POST['ysje'])){				
-				$this->error('应付金额不能为空,请输入数字，如无请填0');
-			}
-			if(empty($_POST['ysje'])){				
+			if($_POST['ysje'] == ""){				
 				$this->error('应付金额不能为空,请输入数字，如无请填0');
 			}			
-			if(empty($_POST['athud'])){				
+			if($_POST['athud']== ""){				
 				$this->error('成人数量不能为空,请输入数字，如无请填0');
 			}
-			if(empty($_POST['chilren'])){				
+			if($_POST['chilren']== ""){				
 				$this->error('儿童数量不能为空,请输入数字，如无请填0');
 			}			
-			if(empty($_POST['baby'])){				
+			if($_POST['baby']== ""){				
 				$this->error('婴儿数量不能为空,请输入数字，如无请填0');
-			}			
-			
-			
-			
+			}
+			if($_POST['nklxr']==""){				
+				$this->error('联系人姓名不能为空');
+			}				
+			if($_POST['lxdh']==""){				
+				$this->error('联系人手机号不能为空');
+			}
 			
 			$orderDB=D('AsmsOrder');
 			//航程信息
 			if($_POST['t'] == 1){//单程
+				if(empty($_POST['hbh1'])){				
+					$this->error('航班号不能为空');
+				}				
+				if(empty($_POST['cw1'])){				
+					$this->error('舱位不能为空');
+				}				
+				if(empty($_POST['fjjx1'])){				
+					$this->error('机型不能为空');
+				}	
+				if(empty($_POST['from1'])){				
+					$this->error('出发城市不能为空');
+				}					
+				if(empty($_POST['to1'])){				
+					$this->error('到达城市不能为空');
+				}	
+				if(empty($_POST['date1'])){				
+					$this->error('出发日期不能为空');
+				}	
+				if(empty($_POST['time1'])){				
+					$this->error('出发时间不能为空');
+				}					
 				$from_wz1=stripos($_POST['from1'],'(');
 				$cityname1=substr($_POST['from1'],0,$from_wz1);//出发城市名-中文
 				$hd_cfcity1=substr($_POST['from1'],-4,-1);//出发城市名-三字码
@@ -494,9 +542,12 @@ class MemberAction extends CommonAction {
 					'cw'        =>$_POST['cw1'],				
 					'hd_cfsj'   =>$_POST['date1'],
 					'hd_cfsj_p' =>$_POST['time1'],
-					'cfsj'      =>$_POST['date1'].'&nbsp;'.$_POST['time1'],
+					'cfsj'      =>$_POST['date1'].''.$_POST['time1'],
+					'hc_ddsj'   =>$_POST['ddsj1'],
+					'hc_ddsj_p' =>$_POST['ddsj_p1'],
+					'ddsj'      =>$_POST['ddsj1'].''.$_POST['ddsj_p1'],
 					'hd_fjjx'   =>$_POST['fjjx1'],
-					'hc'        =>$hd_cfcity1.$hd_ddcity1.'$nbsp;$nbsp;'.$cityname1.'-'.$ddcityname1,
+					'hc'        =>$hd_cfcity1.$hd_ddcity1.''.$cityname1.'-'.$ddcityname1,
 					'hd_cfcity' =>$hd_cfcity1,
 					'hd_ddcity' =>$hd_ddcity1,
 					'hd_cityname'=>$cityname1,					
@@ -505,11 +556,33 @@ class MemberAction extends CommonAction {
 				$hb_info=json_encode($hb);
 				$data['lx']=1;//类型-单程
 				$data['hc']=$hd_cfcity1.$hd_ddcity1;//航程
-				$data['hbh']=$_POST['hbh1'];//航班号	
+				$data['hbh']=$_POST['hbh1'];//航班号
+				$data['qfsj']=$_POST['date1'].''.$_POST['time1'];//起飞时间
+				$data['cw']=$_POST['cw1'];//舱位
 			}
 						
 			if($_POST['t'] == 2){//往返
-			
+				if(empty($_POST['hbh2']) || empty($_POST['hbh3'])){				
+					$this->error('航班号不能为空');
+				}				
+				if(empty($_POST['cw2']) || empty($_POST['cw3'])){				
+					$this->error('舱位不能为空');
+				}				
+				if(empty($_POST['fjjx2']) || empty($_POST['fjjx3'])){				
+					$this->error('机型不能为空');
+				}	
+				if(empty($_POST['from2']) || empty($_POST['from3'])){				
+					$this->error('出发城市不能为空');
+				}					
+				if(empty($_POST['to2']) || empty($_POST['to3'])){				
+					$this->error('到达城市不能为空');
+				}	
+				if(empty($_POST['date2']) || empty($_POST['date3'])){				
+					$this->error('出发日期不能为空');
+				}	
+				if(empty($_POST['time2']) || empty($_POST['time3'])){				
+					$this->error('出发时间不能为空');
+				}			
 				$hb=array();
 				//去程
 				$from_wz2=stripos($_POST['from2'],'(');
@@ -525,9 +598,12 @@ class MemberAction extends CommonAction {
 					'cw'        =>$_POST['cw2'],				
 					'hd_cfsj'   =>$_POST['date2'],
 					'hd_cfsj_p' =>$_POST['time2'],
-					'cfsj'      =>$_POST['date2'].'&nbsp;'.$_POST['time2'],
+					'cfsj'      =>$_POST['date2'].''.$_POST['time2'],
+					'hc_ddsj'   =>$_POST['ddsj2'],
+					'hc_ddsj_p' =>$_POST['ddsj_p2'],
+					'ddsj'      =>$_POST['ddsj2'].''.$_POST['ddsj_p2'],					
 					'hd_fjjx'   =>$_POST['fjjx1'],
-					'hc'        =>$hd_cfcity2.$hd_ddcity2.'$nbsp;$nbsp;'.$cityname2.'-'.$ddcityname2,
+					'hc'        =>$hd_cfcity2.$hd_ddcity2.''.$cityname2.'-'.$ddcityname2,
 					'hd_cfcity' =>$hd_cfcity2,
 					'hd_ddcity' =>$hd_ddcity2,
 					'hd_cityname'=>$cityname2,					
@@ -547,9 +623,12 @@ class MemberAction extends CommonAction {
 					'cw'        =>$_POST['cw3'],				
 					'hd_bzbz'   =>$_POST['date3'],
 					'hd_bzbz_p' =>$_POST['time3'],
-					'ddsj'      =>$_POST['date3'].'&nbsp;'.$_POST['time3'],
+					'ddsj'      =>$_POST['date3'].''.$_POST['time3'],
+					'hc_ddsj'   =>$_POST['ddsj3'],
+					'hc_ddsj_p' =>$_POST['ddsj_p3'],
+					'ddsj'      =>$_POST['ddsj3'].''.$_POST['ddsj_p3'],					
 					'hd_fjjx'   =>$_POST['fjjx1'],
-					'hc'        =>$hd_cfcity3.$hd_ddcity3.'$nbsp;$nbsp;'.$cityname3.'-'.$ddcityname3,
+					'hc'        =>$hd_cfcity3.$hd_ddcity3.''.$cityname3.'-'.$ddcityname3,
 					'hd_cfcity' =>$hd_cfcity3,
 					'hd_ddcity' =>$hd_ddcity3,
 					'hd_cityname'=>$cityname3,					
@@ -558,13 +637,36 @@ class MemberAction extends CommonAction {
 				$hb_info=json_encode($hb);
 				$data['lx']=2; //类型-往返
 				$data['hc']=$hd_cfcity2.$hd_ddcity2.$hd_cfcity3.$hd_ddcity3;//航程
-				$data['hbh']=$_POST['hbh2'].'-'.$_POST['hbh3'];//航班号	
+				$data['hbh']=$_POST['hbh2'].'-'.$_POST['hbh3'];//航班号
+				$data['qfsj']=$_POST['date2'].''.$_POST['time2'];//起飞时间
+				$data['cw']=$_POST['cw2'];//舱位
 			}
 			
-			if($_POST['t'] == 3){//多程
+			if($_POST['t'] == 3){//多程			
 				$hb=array();
 				$hcdata=$_POST['hcdata'];
 				foreach($hcdata['hbh'] as $k=>$v){
+					if(empty($hcdata['hbh'][$k])){				
+						$this->error('航班号不能为空');
+					}				
+					if(empty($hcdata['cw'][$k])){				
+						$this->error('舱位不能为空');
+					}				
+					if(empty($hcdata['fjjx'][$k])){				
+						$this->error('机型不能为空');
+					}	
+					if(empty($hcdata['from'][$k])){				
+						$this->error('出发城市不能为空');
+					}					
+					if(empty($hcdata['to'][$k])){				
+						$this->error('到达城市不能为空');
+					}	
+					if(empty($hcdata['date'][$k])){				
+						$this->error('出发日期不能为空');
+					}	
+					if(empty($hcdata['time'][$k])){				
+						$this->error('出发时间不能为空');
+					}					
 					
 					$from_wz=stripos($hcdata['from'][$k],'(');
 					$cityname=substr($hcdata['from'][$k],0,$from_wz);//出发城市名-中文
@@ -579,9 +681,12 @@ class MemberAction extends CommonAction {
 						'cw'        =>$hcdata['cw'][$k],
 						'hd_cfsj'   =>$hcdata['date'][$k],
 						'hd_cfsj_p' =>$hcdata['time'][$k],
-						'cfsj'      =>$hcdata['date'][$k].'&nbsp;'.$hcdata['time'][$k],
+						'cfsj'      =>$hcdata['date'][$k].''.$hcdata['time'][$k],
+						'hc_ddsj'   =>$hcdata['ddsj'][$k],
+						'hc_ddsj_p' =>$hcdata['ddsj_p'][$k],
+						'ddsj'      =>$hcdata['ddsj'][$k].''.$hcdata['ddsj_p'][$k],
 						'hd_fjjx'   =>$hcdata['fjjx'][$k],
-						'hc'        =>$hd_cfcity.$hd_ddcity.'&nbsp;&nbsp;'.$cityname.'-'.$ddcityname,
+						'hc'        =>$hd_cfcity.$hd_ddcity.''.$cityname.'-'.$ddcityname,
 						'hd_cfcity' =>$hd_cfcity,
 						'hd_ddcity' =>$hd_ddcity,					
 						'hd_cityname'=>$cityname,
@@ -592,35 +697,39 @@ class MemberAction extends CommonAction {
 				}
 				$hb_info=json_encode($hb);
 				$data['lx']=3;//类型-多程	
-				
+				$data['qfsj']=$_POST['date3'].''.$_POST['time4'];//起飞时间
+				$data['cw']=$hcdata['cw'][4];//舱位				
 			}
 
 			//乘机人信息
 			$i=0;
 			foreach($_POST['info']['cjr_cjrxm'] as $k=>$v){
+				if($_POST['info']['cjr_cjrxm'][$k]==""){				
+					$this->error('乘机人姓名不能为空');
+				}			
+				if($_POST['info']['cjr_clkid'][$k]==""){				
+					$this->error('证件号码不能为空');
+				}
+				if($_POST['info']['cjr_zjlx'][$k]==""){				
+					$this->error('证件类型不能为空');
+				}	
+				if($_POST['info']['cjr_xsj'][$k]== ""){				
+					$this->error('票价不能为空,请输入数字');
+				}	
 				$i++;
 				$info[$i]=array(
 					'cjr_cjrxm'	=>$_POST['info']['cjr_cjrxm'][$k],//姓名
 					'cjr_lx'	=>$_POST['info']['cjr_lx'][$k],//乘客类型
+					'cjr_zjlx'	=>$_POST['info']['cjr_zjlx'][$k],//证件类型
 					'cjr_clkid'	=>$_POST['info']['cjr_clkid'][$k],//证件号
 					'cjr_xsj'	=>$_POST['info']['cjr_xsj'][$k],//票价
 					'cjr_jsf'	=>$_POST['info']['cjr_jsf'][$k],//机建
 					'cjr_tax'	=>$_POST['info']['cjr_tax'][$k]//税费
-				);			
+				);
 			}
 			$obj=json_encode($info);
-
-
-			//写入数据库
-			$year=substr($_POST['cpsj'],0,4);//取得年份
-			$month=substr($_POST['cpsj'],5,2);//取得月份			
-			$day=substr($_POST['cpsj'],8,2);//取得几号
-			$hour=substr($_POST['cpsj_p'],0,2)?substr($_POST['cpsj_p'],0,2):'00';
-			$min=substr($_POST['cpsj_p'],3,2)?substr($_POST['cpsj_p'],3,2):'00';
-			$second=substr($_POST['cpsj_p'],6,2)?substr($_POST['cpsj_p'],6,2):'00';			
-			$date=$year.$month.$day.$hour.$min.$second;
-			$data['cpsj']=strtotime($date);//出票时间
-
+			
+			//写入数据库			
 			$data['ddbh']=$this->ddbh;//订单号
 			$data['hyid']=$_POST['hyid'];//会员号
 			$data['user_id']=getUid();
@@ -637,9 +746,14 @@ class MemberAction extends CommonAction {
 			$data['xm']=$_POST['nklxr'];//姓名
 			$data['zf_fkf']=$_POST['zf_fkf'];//支付状态
 			$data['ddzt']=0;
+			$data['xj']=$_POST['xsj']+$_POST['sf']+$_POST['taxa']+$_POST['jsf'];//小计			
+			$data['order_logo']=1;	
+			
+			$data['cpsj']=substr($_POST['cpsj'],5).''.$_POST['cpsj_p'];//出票时间
 			$data['dprq']=date('m-d H:i',time());//订票日期
 			$data['update_time']=time();//更新时间
-			$data['info_update_time']=time();//详情更新时间			
+			$data['info_update_time']=time();//详情更新时间
+			
 			$data['hd_info']=$hb_info;//航程信息
 			$data['cjr_info']=$obj;//乘机人信息	
 			

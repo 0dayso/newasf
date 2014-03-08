@@ -1,5 +1,60 @@
 var js_path=getJsPath()+"source/";
 $(function(){
+    $(".submit").click(function(){
+        //验证表单是否正确
+        $this=$("#reg_form");
+        var state=0;
+        var lis=$this.find("ul li");
+        lis.each(function(i){if($(this).attr("val")=="1"){
+            state=1;
+            var pro=$(this).find(".pro");
+            if(pro.html()==""){pro.html("<img src='"+js_path+"alterError.gif' /><a>输入有误</a>");}
+            if(i==3){if($(this).find(".pro input").length>0){state=2;}}
+            return false;
+        }
+        });
+        if(state==1){alert("提交信息不正确，请检查！");return false;}
+        if(state==2){alert("请点击认证手机号！");return false;}
+
+        var re= /^1[3|4|5|8][0-9]\d{4,8}$/;
+        var value=$('#reg_ph').val();
+        var pro=$('#reg_ph').next();
+        if(!re.test(value)){
+            $('#reg_ph').parent().attr("val","1");
+            pro.html("<img src='"+js_path+"alterError.gif' /><a>请填入正确的手机号</a>");
+            return false;
+        }
+
+        var cdiv=$("<div class='cover_" +
+            "pop_yzk'>");
+        var div=$("<div class='phone_pop_yzk'>");
+        var html='<h2 class="h1"><span>认证手机号</span><a class="close" title="关闭"></a></h2><h3>爱尚飞国际机票已向您的手机发送校验码,请在下方输入校验码,完成验证。</h3><ul><li><span class="sp0">手机号：</span><span class="phone">'+value+'</span></li><li><span class="sp0"><label class="red">*</label>校验码：</span><span><input class="text" type="text"/></span></li></ul><h4 class="hr"></h4><div class="fs"><label class="fslb">1分钟内没收到校验码？</label><a href="javascript:;" class="active">重发认证码短信（60s）</a></div><div class="sub"><a class="sub" href="javascript:;">下一步</a></div>';
+        div.html(html);
+        div.css({left:($(window).width()-440)/2+"px",top:"150px"});
+        div.appendTo($("body"));
+        cdiv.appendTo($("body"));
+        div.find(".close").click(function(){div.remove();cdiv.remove();});
+        phone_ajax(value,-1);
+        var t=60;
+        var a=div.find("div.fs a")[0];
+        changeHtml(a,t);
+        $(a).click(function(){
+            if(a.className!="fsa"){return;}
+            phone_ajax(value,-1);
+            a.className="active";
+            changeHtml(a,t);
+            return false;
+        });
+        div.find("div.sub .sub").click(function(){
+            phone_ajax(-1,div.find(".text").val(),function(){
+                div.remove();cdiv.remove();
+                $('#reg_ph').parent().attr("val",value);
+                pro.html("<img src='"+js_path+"alterRight.gif' />");
+                $this.submit();
+            });
+        });
+    });
+
 	$("#qiehuan_qb").click(function(){
 		var $this=$(this);
 		if($(this).hasClass("active")){
@@ -82,7 +137,7 @@ $(function(){
 		else{$(this).parent().removeAttr("val");pro.html("<img src='"+js_path+"alterRight.gif' />");}
 	});
 	//验证手机号
-	$("#reg_ph2").blur(function(){
+	$("#reg_ph").blur(function(){
 		var re= /^1[3|4|5|8][0-9]\d{4,8}$/;
 		var value=$(this).val();
 		var pro=$(this).next();
@@ -100,7 +155,7 @@ $(function(){
 		}
 	});
 
-    $("#reg_ph").blur(function(){
+    $("#reg_ph2").blur(function(){
         var re= /^1[3|4|5|8][0-9]\d{4,8}$/;
         var value=$(this).val();
         var pro=$(this).next();

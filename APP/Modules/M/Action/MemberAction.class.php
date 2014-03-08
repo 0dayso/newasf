@@ -22,13 +22,48 @@ class MemberAction extends IniAction {
             $this->server=$server['server'];
             $this->serverImg=round($this->server*2);
             $this->sysMessageList=D('Message')->sysMessageList();
-
+			
+			
+			//现金券总数
+			$wh['member_id']=getUid();
+			$wh['type2']=2;
+			$this->overage=D('Points')->where($wh)->sum('points');
+			if($this->overage<=0 && $this->overage==''){
+				$this->overage=0;
+			}
+			
+			//积分总数		
+			$wh['type2']=0;	
+			$this->totlejf=D('Points')->where($wh)->sum('points');
+			if($this->totlejf<=0 && $this->totlejf==''){
+				$this->totlejf=0;
+			}
+			//爱钻总数
+			$wh['type2']=1;	
+			$this->totleaz=D('Points')->where($wh)->sum('points');
+			if($this->totleaz<=0 && $this->totleaz==''){
+				$this->totleaz=0;
+			}
+			
+			//账户安全等级
+			$mail=D(CheckEmail);
+			$w['member_id']=getUid();
+			$mail=$mail->where($w)->find();
+			if(!empty($mail)){									
+				if($mail['is_check'] ==1){
+					$this->Safety_level="高";
+				}else{
+					$this->Safety_level="中";
+				}
+			}else{
+				$this->Safety_level="中";
+			}
             $this->display();
         }else{
             $this->redirect('/Member/login');
         }
-
     }
+	
 
     //我的信息
     function information(){
@@ -329,6 +364,7 @@ class MemberAction extends IniAction {
         $this->title="我的积分";
         $this->display();
     }
+	
 	public function bonuspoints(){
         $_GET['type']=1;
         $this->points();

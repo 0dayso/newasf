@@ -1,0 +1,46 @@
+<div class="pageContent">
+	<form method="post" action="__URL__/update/navTabId/__MODULE__-index" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone)">
+		<input type="hidden" name="user_id" value="<?php echo $_SESSION[C('USER_AUTH_KEY')] ?>"/>
+		<input type="hidden" name="id" value="{$vo.id}" />
+		<div class="pageFormContent" layoutH="58">
+
+            <p>
+                <label>模板标识：</label>
+                <input type="text" class="required"   name="name" value="{$vo.name}">（英文字母）
+            </p>
+            <div class="unit">
+                <label>模所属模块：</label>
+                <input name="module"  value="{$vo.module}">
+            </div>
+            <p>
+                <label>类型：</label>
+                <input type="checkbox" name="is_sms"   value="1" <eq name="vo.is_sms" value="1">checked</eq>/>短信
+                <input type="checkbox" name="is_sys"  value="1" <eq name="vo.is_sys" value="1">checked</eq>/>站内信
+            </p>
+            <p>
+                <label>状态：</label>
+                <select name="status">
+                    <option value="0"<eq name="vo.status" value="0">selected</eq>>禁用</option>
+                    <option value="1"<eq name="vo.status" value="1">selected</eq>>启用</option>
+                </select>
+            </p>
+            <div class="unit">
+                <label>描述：</label>
+                <textarea name="remark" cols="57">{$vo.remark}</textarea>
+            </div>
+            <div class="unit">
+                <label>内容：</label>
+                <textarea name="contents" cols="57" rows="5" >{$vo.contents}</textarea>
+            </div>
+
+		</div>
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">Submit</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">Cancel</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+	
+</div>
+

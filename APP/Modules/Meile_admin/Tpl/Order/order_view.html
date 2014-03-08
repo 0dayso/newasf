@@ -3,33 +3,22 @@
 .border_div span{font-weight:bold;}
 .border_bottom{border-bottom:1px solid #CCC;padding-left:20px; margin-top:5px; margin-bottom:5px;padding-bottom:5px;}
 .border_bottom table{width:700px;}
-.border_bottom table thead tr{background:#0CF;}
+.border_bottom table thead tr{background:#0CF; }
 .border_bottom table thead tr td{font-weight:bold;}
+.border_bottom table tr{height:20px;}
 </style>
 <div class="border_div">
     <div class="border_bottom"><span>订单ID号:</span>{$list.ddbh}&nbsp;&nbsp;&nbsp;{$list['zf_status']}</div>  
     <div class="border_bottom"><span>会员ID号:</span>{$list.hyid}</div>      
 	<div class="border_bottom"><span>航程信息:</span>
         <div style="margin-left:20px; margin-top:8px;">
-        	<table border="1 #666" cellpadding="0" cellspacing="0">
+        	<table cellpadding="0" cellspacing="0" border="1">
             	<thead>
-                    <tr>
-                        <td>航程</td>
-                        <td>出发时间</td>
-                        <td>航班号</td>
-                        <td>舱位</td>
-                        <td>机型</td>
-                    </tr>
+                    <tr><td>航程</td><td>航班号</td><td>舱位</td><td>机型</td><td>出发时间</td><td>达到时间</td></tr>
                 </thead>
                  <volist name="hdinfo" id="vo">
                  <tbody>
-                    <tr>
-                        <td>{$vo.hc}</td>
-                        <td>{$vo.cfsj}</td>
-                        <td>{$vo.hbh}</td>
-                        <td>{$vo.cw}</td>
-                        <td>{$vo.jx}</td>            
-                    </tr>
+                    <tr><td>{$vo.hc}</td><td>{$vo.hbh}</td><td>{$vo.cw}</td><td>{$vo.jx}</td><td>{$vo.cfsj}</td><td>{$vo.ddsj}</td></tr>
                 </tbody>
                 </volist>
             </table>
@@ -41,7 +30,7 @@
     <div class="border_bottom"><span>保险：</span><empty name="list['taxa']">0<else/>{$list.taxa}</empty></div>     
 	<div class="border_bottom"><span>现金券使用：</span>无</div>    
 	<div class="border_bottom"><span>应付金额：</span>{$list['ysje']}</div>    
-	<div class="border_bottom"><span>出票时间：</span>{$list['cpsj']|date='Y-m-d H:i:s',###}</div>  
+	<div class="border_bottom"><span>出票时间：</span>{$list['cpsj']}</div>  
        
     <div class="border_bottom"><span>乘客信息：</span>
     	<empty name="men">0<else/>{$men}</empty>成人&nbsp;&nbsp;/&nbsp;&nbsp;
@@ -63,21 +52,21 @@
             <tbody>
             	<volist name="cjr_info" id="vo">
                     <tr>
-                        <td>{$vo->cjr_cjrxm}</td>
-                        <td>{$vo->lx}</td>
-                        <td>{$vo->cjr_clkid}</td>
-                        <td>{$vo->cjr_xsj}</td>
-                        <td>{$vo->cjr_jsf}/{$vo->cjr_tax}</td>
+                        <td>{$vo.cjr_cjrxm}</td>
+                        <td>{$vo.lx}</td>
+                        <td>{$vo.cjr_clkid}</td>
+                        <td>{$vo.cjr_xsj}</td>
+                        <td>{$vo.cjr_jsf}/{$vo.cjr_tax}</td>
                         <td>无</td>
-                        <td>{$vo->cjr_xsj+$vo->cjr_jsf+$vo->cjr_tax}</td>
+                        <td>{$vo.cjr_xsj+$vo.cjr_jsf+$vo.cjr_tax}</td>
                     </tr>
            		</volist>
             </tbody>
         </table>
 	</div>
 	<div class="border_bottom"><span>联系人信息：</span>
-        姓名：{$list['nklxr']}&nbsp;&nbsp;&nbsp;
-        手机号：<empty name="list['lxdh']">这位旅客太大意了，忘了留下手机号码<else/>{$list['lxdh']}</empty>&nbsp;&nbsp;&nbsp; 
-        邮箱：<empty name="list['email']">这位旅客没有留下邮箱<else/>{$list['email']}</empty>
+        姓名：{$list['nklxr']}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        手机号：<empty name="list['lxdh']">无<else/>{$list['lxdh']}</empty>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+        邮箱：<empty name="list['email']">无<else/>{$list['email']}</empty>
     </div>
 </div>

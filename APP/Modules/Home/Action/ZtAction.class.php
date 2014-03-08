@@ -94,6 +94,11 @@ class ZtAction extends IniAction {
         $this->title='海南航空';
         $this->display();
     }
+
+    function asianaAirlines_sales(){
+        $this->title='韩亚航空';
+        $this->display();
+    }
 	
 	
 	

@@ -1,0 +1,28 @@
+<include file="Public:header" />
+<div id="cont">
+    <div class="wd960 mt10 bgWhite" id="complaint">
+        <h1 class="h1_tit_nav">你当前所在位置：<a href="{:U('/')}" class="sy">首页</a> > <a class="cur">投诉建议</a></h1>
+        <div class="left">
+            <h2>欢迎向我们提供您的投诉或建议（"<label class="red">*</label>"为必填项）</h2>
+            <form action="" method="post" name="form" enctype="multipart/form-data">
+                <table>
+                    <tr class="tr0"><td class="td0"><label class="red">*</label>类型：</td><td class="radio"><input type="radio" name="type" value="1" checked="checked" />投诉<input type="radio" name="type" value="2" />建议</td></tr>
+                    <tr><td class="td0"><label class="red">*</label>标题：</td><td><input type="text" name="title" class="text" /></td></tr>
+                    <tr><td class="td0 tdms"><label class="red">*</label>描述：</td><td><textarea name="contents"></textarea></td></tr>
+                    <tr><td></td><td class="file"><a class="file" href="javascript:document.getElementById('scFile').click();">上传截图</a><input type="file" class="file" id="scFile" name="jietu" onchange="javascript:document.getElementById('fileinfo').innerHTML=this.value"/><a id="fileinfo"></a><label class="red">（上传图片限JPG或PNG格式，图片大小不超过1M）</label></td></tr>
+                    <tr><td class="td0"><label class="red">*</label>联系邮箱：</td><td><input type="text" class="text" name="email" /></td></tr>
+                    <tr><td class="td0">联系电话：</td><td><input type="text" class="text" name="mobile" /></td></tr>
+
+                    <tr><td td class="td0"><label class="red">*</label>验证码：</td><td><input type="text" class="text code" name="verify_code" id="reg_ver" style="width:80px;float: left" /><img style="margin-left:10px;float: left" src="{:U('/Common/verify_code')}?w=78&h=28&n=4&t=3"  title="点击刷新" onclick="javascript:this.src=this.src.indexOf('&ss=')!=-1?this.src.substring(0,this.src.indexOf('&ss=')+3)+new Date().getTime():this.src+'&ss='+new Date().getTime()" alt="verification_code" class="code_img" /><label class="pro"></label></td>
+                    </tr>
+
+                    <tr><td></td><td><input type="submit" class="sub" value="提 交"/></td></tr>
+                </table>
+            </form>
+        </div>
+        <div class="right">
+            <h2></h2>
+        </div>
+    </div>
+</div>
+<include file="Public:footer" />

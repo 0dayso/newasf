@@ -1,0 +1,545 @@
+<include file="public:header" />
+<script type="text/javascript">
+$(function(){
+	$('#select a').click(function(){
+		var index=$(this).index();
+		$(this).addClass('on').siblings().removeClass('on');
+		$('.box').eq(index).addClass('on').siblings('.box').removeClass('on');
+		});
+		
+	//预订的JS效果
+	$('.block li').mouseover(function(){
+		$(this).children('.bside').css('display','block');
+		}).mouseout(function(){
+			$(this).children('.bside').css('display','none');
+		}).click(function(){
+			open_kf();
+		});
+	});
+</script>
+<style type="text/css">
+body,ul,li,dl,dt,dd,h3{margin:0px;padding:0px;color:#333;font-size:12px;}
+#body{background-color:#fcf6f8;padding-bottom:20px;}
+#njcg{height:auto;width:960px;margin:0 auto;}
+#box{height:40px;background:url(__PUBLIC__/images/Zt/njcg/title.gif) no-repeat;}
+#box h1,#box span{float:left;font-weight:bold;font-family:"微软雅黑", "黑体", "宋体";}
+#box h1{width:180px;padding-left:20px;line-height:40px;color:#FFF;font-size:18px;}
+#box span{padding-top:7px;line-height:33px;}
+#box span a{display:inline-block;height:33px;padding:0 20px;margin-right:10px;color:#FFF;font-weight:bold;font-size:16px;}
+#box span a:hover,#box span a.on{color:#ff4160;background-color:#FFF;}
+
+.box{background-color:#ffe0e1;display:none;/*padding-bottom:16px;*/}
+.on{display:block;}
+.box ul.block{width:944px;padding:16px 0 0 16px;}
+.box ul.block li{float:left;height:175px;width:220px;margin:0 16px 16px 0;position:relative;cursor:pointer;}
+.box ul.block li .aside{padding:0 14px;width:192px;height:175px;background:url(__PUBLIC__/images/Zt/njcg/fltbg.gif) 0 0 no-repeat; position:absolute;z-index:26;}
+.box ul.block li .aside h4{margin:0;padding:1px 0 0 0;font-size:26px;font-family:Microsoft YaHei;font-weight:normal;height:40px;line-height:40px;}
+.box ul.block li .aside p.p1{height:41px;line-height:41px;color:#fff;overflow:hidden}
+.box ul.block li .aside p.p1 span{ float:left; margin-right:2px; font-size:40px; font-family:Arial; word-wrap:break-word; word-break:break-all}
+.box ul.block li .aside p.p1 span.sp1{ padding-top:2px; *padding-top:4px; width:20px; height:39px; *height:37px; line-height:16px; font-size:16px; font-family:Microsoft YaHei}
+.box ul.block li .aside p.p1 span.sp2{ margin-right:0; padding-top:2px; width:10px; height:39px; line-height:18px; font-size:16px; font-family:Microsoft YaHei}
+.box ul.block li .aside p.p1 em{ float:left; width:12px; font-size:12px; line-height:53px; font-style:normal; font-family:Microsoft YaHei}
+.box ul.block li .aside p.p2{ height:26px; line-height:26px; font-size:16px; font-family:Microsoft YaHei}
+.box ul.block li .aside p.p3{ font-size:12px; height:42px; line-height:14px; color:#858585}
+.box ul.block li .aside p.hs{ padding:4px 16px 0 0; *padding-top:5px; text-align:right; width:177px; font-size:12px}
+.box ul.block li .aside p.hs span{ display:inline-block; padding-left:18px; height:16px; line-height:16px}
+/*航空的logo*/
+/*.box ul.block li .aside p.guohang span{ background:url(__PUBLIC__/images/img/guohang.gif) 0 0 no-repeat}
+.box ul.block li .aside p.alianqiu span{ background:url(__PUBLIC__/images/img/alianqiu.gif) 0 0 no-repeat}
+.box ul.block li .aside p.aodaliya span{ background:url(__PUBLIC__/images/img/aodaliya.gif) 0 0 no-repeat}
+.box ul.block li .aside p.dahan span{ background:url(__PUBLIC__/images/img/dahan.gif) 0 0 no-repeat}
+.box ul.block li .aside p.damei span{ background:url(__PUBLIC__/images/img/damei.gif) 0 0 no-repeat}
+.box ul.block li .aside p.aomen1 span{ background:url(__PUBLIC__/images/img/aomen1.gif) 0 0 no-repeat}
+.box ul.block li .aside p.xiamen span{padding-left:40px;background:url(__PUBLIC__/images/img/xiamen.gif) 0 0 no-repeat}
+.box ul.block li .aside p.taiguohangkong span{ background:url(__PUBLIC__/images/img/taiguohangkong.gif) 0 0 no-repeat}
+.box ul.block li .aside p.dongfang span{ background:url(__PUBLIC__/images/img/dongfang.gif) 0 0 no-repeat}
+.box ul.block li .aside p.riben span{padding-left:30px;background:url(__PUBLIC__/images/img/riben.gif) 0 0 no-repeat}
+.box ul.block li .aside p.yingguo span{padding-left:40px;background:url(__PUBLIC__/images/img/yingguo.gif) 0 0 no-repeat}
+.box ul.block li .aside p.faguohangkong span{padding-left:25px;background:url(__PUBLIC__/images/img/faguohangkong.gif) 0 0 no-repeat}
+.box ul.block li .aside p.fenlan span{padding-left:65px; background:url(__PUBLIC__/images/img/fenlan.gif) 0 0 no-repeat}
+.box ul.block li .aside p.helanhuangjia span{background:url(__PUBLIC__/images/img/helanhuangjia.gif) 0 0 no-repeat}
+.box ul.block li .aside p.eluosi span{padding-left:30px; background:url(__PUBLIC__/images/img/eluosi.gif) 0 0 no-repeat}
+.box ul.block li .aside p.hansha span{background:url(__PUBLIC__/images/img/hansha.gif) 0 0 no-repeat}
+.box ul.block li .aside p.ruishi span{background:url(__PUBLIC__/images/img/ruishi.gif) 0 0 no-repeat}
+.box ul.block li .aside p.hatihade span{padding-left:25px; background:url(__PUBLIC__/images/img/hatihade.gif) 0 0 no-repeat}
+.box ul.block li .aside p.aa span{padding-left:20px;  background:url(__PUBLIC__/images/img/aa.gif) 0 0 no-repeat}
+.box ul.block li .aside p.sichuanhangkong span{ background:url(__PUBLIC__/images/img/sichuanhangkong.gif) 0 0 no-repeat}
+.box ul.block li .aside p.faguohanggkong span{ padding-left:24px; background:url(http://pages.ctrip.com/commerce/flightSource/airlineImg/faguohanggkong.gif) 0 0 no-repeat}
+.box ul.block li .aside p.feilvbin span{ padding-left:30px; background:url(__PUBLIC__/images/img/feilvbin.gif) 0 0 no-repeat}
+.box ul.block li .aside p.guohangg span{ background:url(__PUBLIC__/images/img/guohangg.gif) 0 0 no-repeat}
+.box ul.block li .aside p.guotai span{ padding-left:28px; background:url(__PUBLIC__/images/img/guotai.gif) 0 0 no-repeat}
+.box ul.block li .aside p.hanya span{ background:url(__PUBLIC__/images/img/hanya.gif) 0 0 no-repeat}
+.box ul.block li .aside p.jixiang span{ background:url(__PUBLIC__/images/img/jixiang.gif) 0 0 no-repeat}
+.box ul.block li .aside p.malaixiya span{padding-left:20px;  background:url(__PUBLIC__/images/img/malaixiya.gif) 0 0 no-repeat}
+.box ul.block li .aside p.maoliqiusi span{ padding-left:61px; background:url(__PUBLIC__/images/img/maoliqiusi.gif) 0 0 no-repeat}
+.box ul.block li .aside p.nanhang span{ padding-left:27px; background:url(__PUBLIC__/images/img/nanhang.gif) 0 0 no-repeat}
+.box ul.block li .aside p.quanrikong span{padding-left:64px; background:url(__PUBLIC__/images/img/quanrikong.gif) 0 0 no-repeat}
+.box ul.block li .aside p.shanghang span{padding-left:25px; background:url(__PUBLIC__/images/img/shanghang.gif) 0 0 no-repeat}
+.box ul.block li .aside p.sichuanhangkong span{ background:url(__PUBLIC__/images/img/sichuanhangkong.gif) 0 0 no-repeat}
+.box ul.block li .aside p.sililanka span{padding-left:24px; background:url(__PUBLIC__/images/img/sililanka.gif) 0 0 no-repeat}
+.box ul.block li .aside p.tuerqi span{ background:url(__PUBLIC__/images/img/tuerqi.gif) 0 0 no-repeat}
+.box ul.block li .aside p.hainan span{ background:url(__PUBLIC__/images/img/hainan.gif) 0 0 no-repeat}
+.box ul.block li .aside p.xianggangkuaiyun span{padding-left:25px; background:url(__PUBLIC__/images/img/xianggangkuaiyun.gif) 0 0 no-repeat}
+.box ul.block li .aside p.wenlaihangkong span{padding-left:25px; background:url(__PUBLIC__/images/img/wenlaihangkong.gif) 0 0 no-repeat}
+.box ul.block li .aside p.xianggang span{ background:url(__PUBLIC__/images/img/xianggang.gif) 0 0 no-repeat}
+.box ul.block li .aside p.xinjiapo span{ background:url(__PUBLIC__/images/img/xinjiapo.gif) 0 0 no-repeat}
+.box ul.block li .aside p.yinniyinghang span{ padding-left:30px; background:url(__PUBLIC__/images/img/yinniyinghang.gif) 0 0 no-repeat}
+.box ul.block li .aside p.meiguohangg span{padding-left:20px;  background:url(__PUBLIC__/images/img/aa.gif) 0 0 no-repeat}
+.box ul.block li .aside p.ganglong span{padding-left:19px;  background:url(__PUBLIC__/images/img/ganglonghangkong.gif) 0 0 no-repeat}
+.box ul.block li .aside p.meiguolianhe span{padding-left:19px;  background:url(__PUBLIC__/images/img/meiguolianhe.gif) 0 0 no-repeat}
+.aside p.aisaiebiya span{ background:url(__PUBLIC__/images/img/aisaiebiya.gif) 0 0 no-repeat}*/
+
+/*bside的CSS*/
+.box ul.block li .bside{ padding:0 25px; width:170px; height:175px; font-size:12px; line-height:18px; color:#fff; background-color:#14c7e4;; position:absolute; z-index:27; display:none}
+.box ul.block li .bside p{ display:table-cell; height:1.14em; font-size:166px; vertical-align:middle}
+.box ul.block li .bside p span{ display:inline-block; font-size:12px; font-style:normal; vertical-align:middle}
+.box ul.block li .bside p em{ display:inline-block; padding-left:20px; width:157px; font-size:24px; line-height:60px; font-family:Microsoft YaHei; font-style:normal; background:url(__PUBLIC__/images/Zt/njcg/fltarr.gif) 120px 20px  no-repeat;}
+</style>
+<div id="body">
+<div id="njcg">
+<div id="top"><img src="__PUBLIC__/images/Zt/njcg/top.gif"></div>
+<div id="box">
+<h1>选择您的目的地 ></h1>
+<span id="select">
+<a href="javascript:;" class="on">欧洲</a>
+<a href="javascript:;">北美</a>
+<a href="javascript:;">澳大利亚</a>
+<a href="javascript:;">亚洲</a>
+</span>
+</div>
+<!--欧洲-->
+<div class="box on">
+<ul class="block">
+<li>
+  <div class="aside">
+    <h4>伦敦</h4>
+    <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>1560</span><em>起</em></p>
+    <p class="p2">从杭州</p>
+    <p class="p3"><strong>去程适用日期</strong><br />
+      2013-12-1至2013-12-31</p>
+    <p class="hs"><span>国航</span></p>
+  </div>
+  <div class="bside">
+    <p><span><strong>出票有效期</strong>：提前60天出票，截止至2013-11-1<br />
+      <strong>备注</strong>：停留有效期：5天-3个月（北京转机）<em>立即预订</em></span></p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>伦敦</h4>
+    <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>3050</span><em>起</em></p>
+    <p class="p2">从广州</p>
+    <p class="p3"><strong>去程适用日期</strong><br />
+      2013-10-27至2014-03-31</p>
+    <p class="hs"><span>南航</span></p>
+  </div>
+  <div class="bside">
+    <p><span><strong>出票有效期</strong>：截止至2013-11-7<br />
+      <strong>备注</strong>：停留有效期：7天-1个月<em>立即预订</em></span></p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>伦敦</h4>
+    <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>3380</span><em>起</em></p>
+    <p class="p2">从成都</p>
+    <p class="p3"><strong>去程适用日期</strong><br />
+      2013-10-5至2013-12-31</p>
+    <p class="hs"><span>英国航空</span></p>
+  </div>
+  <div class="bside">
+    <p><span><strong>出票有效期</strong>：提前30天出票，截止至2013-12-1<br />
+      <strong>备注</strong>：停留有效期：3天-2个月<em>立即预订</em></span></p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>巴黎</h4>
+    <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>2380</span><em>起</em></p>
+    <p class="p2">从广州</p>
+    <p class="p3"><strong>去程适用日期</strong><br />
+      2013-11-12至2013-11-13    ，2013-11-18至2013-11-23，2013-11-26至2013-11-28</p>
+    <p class="hs"><span>南航</span></p>
+  </div>
+  <div class="bside">
+    <p><span><strong>出票有效期</strong>：截止至2013-10-30<br />
+      <strong>备注</strong>：停留有效期：3天-3个月，回程不适用2013-12-6至2014-1-14<em>立即预订</em></span></p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>洛杉矶</h4>
+    <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">¥</span><span>3690</span><em>起</em></p>
+    <p class="p2">从成都</p>
+    <p class="p3"><strong>去程适用日期</strong><br>
+      2013-10-4至2013-12-31</p>
+    <p class="hs"><span>东航</span></p>
+  </div>
+  <div class="bside">
+    <p><span><strong>出票有效期</strong>：截止至2013-12-31<br>
+      <strong>备注</strong>：停留有效期：5天-3个月（上海转机）<em>立即预订</em></span></p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>巴黎</h4>
+    <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">¥</span><span>3370</span><em>起</em></p>
+    <p class="p2">从成都</p>
+    <p class="p3"><strong>去程适用日期</strong><br>
+      2013-10-1至2013-12-31</p>
+    <p class="hs"><span>国航</span></p>
+  </div>
+  <div class="bside">
+    <p><span><strong>出票有效期</strong>：提前3天出票，截止至2013-12-28<br>
+      <strong>备注</strong>：停留有效期：6天-3个月（北京转机）<em>立即预订</em></span></p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>布拉格</h4>
+    <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>3300</span><em>起</em></p>
+    <p class="p2">从上海</p>
+    <p class="p3"><strong>去程适用日期</strong><br />
+      2013-8-14至2014-7-31</p>
+    <p class="hs"><span>俄罗斯航空</span></p>
+  </div>
+  <div class="bside">
+    <p><span><strong>出票有效期</strong>：截止至2014-5-31<br />
+      <strong>备注</strong>：停留有效期：2天（或过周日）-175天（莫斯科转机）<em>立即预订</em></span></p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>布达佩斯</h4>
+    <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>3910</span><em>起</em></p>
+    <p class="p2">从上海</p>
+    <p class="p3"><strong>去程适用日期</strong><br />
+      2013-10-6至2014-1-24</p>
+    <p class="hs"><span>土耳其航空</span></p>
+  </div>
+  <div class="bside">
+    <p><span><strong>出票有效期</strong>：截止至2014-1-24<br />
+      <strong>备注</strong>：停留有效期：3天（或过周日）-12个月（伊斯坦布尔转机）<em>立即预订</em></span></p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>莫斯科</h4>
+    <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>1980</span><em>起</em></p>
+    <p class="p2">从广州</p>
+    <p class="p3"><strong>去程适用日期</strong><br />
+      2013-11-1至2013-11-1，2013-11-27至2013-11-27，2013-12-6至2013-12-29</p>
+    <p class="hs"><span>南航</span></p>
+  </div>
+  <div class="bside">
+    <p><span><strong>出票有效期</strong>：截止至2013-10-30<br />
+      <strong>备注</strong>：停留有效期：3天-3个月，回程不适用2013-11-1至2013-11-5，2013-11-7至2013-11-16，2013-11-18至2013-11-30，2013-12-9至2014-1-5<em>立即预订</em></span></p>
+  </div>
+</li>
+</ul>
+</div>
+
+
+<!--北美-->
+<div class="box">
+<ul class="block">
+<li>
+  <div class="aside">
+    <h4>洛杉矶</h4>
+    <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>2900</span><em>起</em></p>
+    <p class="p2">从广州</p>
+    <p class="p3"><strong>去程适用日期</strong><br />
+      2013-11-1至2013-12-31</p>
+    <p class="hs"><span>国航</span></p>
+  </div>
+  <div class="bside">
+    <p><span><strong>出票有效期</strong>：截止至2013-12-31<br />
+      <strong>备注</strong>：停留有效期：5天-6个月（北京转机）<em>立即预订</em></span></p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>洛杉矶</h4>
+    <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>3690</span><em>起</em></p>
+    <p class="p2">从成都</p>
+    <p class="p3"><strong>去程适用日期</strong><br />
+      2013-10-4至2013-12-31</p>
+    <p class="hs"><span>东航</span></p>
+  </div>
+  <div class="bside">
+    <p><span><strong>出票有效期</strong>：截止至2013-12-31<br />
+      <strong>备注</strong>：停留有效期：5天-3个月（上海转机）<em>立即预订</em></span></p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>旧金山</h4>
+    <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>3700</span><em>起</em></p>
+    <p class="p2">从北京</p>
+    <p class="p3"><strong>去程适用日期</strong><br />
+      2013-10-1至2013-12-31</p>
+    <p class="hs"><span>达美航空</span></p>
+  </div>
+  <div class="bside">
+    <p><span><strong>出票有效期</strong>：截止至2013-10-31<br />
+      <strong>备注</strong>：停留有效期：5天-1个月（西雅图转机），去程和回程仅限周一至周四<em>立即预订</em></span></p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>西雅图</h4>
+    <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>3800</span><em>起</em></p>
+    <p class="p2">从北京</p>
+    <p class="p3"><strong>去程适用日期</strong><br />
+      2013-10-1至2013-12-31</p>
+    <p class="hs"><span>达美航空</span></p>
+  </div>
+  <div class="bside">
+    <p><span><strong>出票有效期</strong>：截止至2013-10-31<br />
+      <strong>备注</strong>：停留有效期：5天-1个月，去程和回程仅限周一至周四<em>立即预订</em></span></p>
+  </div>
+</li>
+</ul>
+</div>
+
+
+<!--澳大利亚-->
+<div class="box">
+<ul class="block">
+<li>
+  <div class="aside">
+    <h4>墨尔本</h4>
+    <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">¥</span><span>2940</span><em>起</em></p>
+    <p class="p2">从成都</p>
+    <p class="p3"><strong>去程适用日期</strong><br>
+      2013-7-31至2013-12-31</p>
+    <p class="hs"><span>四川航空</span></p>
+  </div>
+  <div class="bside">
+    <p><span><strong>出票有效期</strong>：截止至2013-12-31<br>
+      <strong>备注</strong>：停留有效期：0-3个月<em>立即预订</em></span></p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>悉尼</h4>
+    <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>2180</span><em>起</em></p>
+    <p class="p2">从广州</p>
+    <p class="p3"><strong>去程适用日期</strong><br />
+      2013-10-30至2013-10-31，2013-11-4至2013-11-7，2013-11-10至2013-12-19</p>
+    <p class="hs"><span>南航</span></p>
+  </div>
+  <div class="bside">
+    <p><span><strong>出票有效期</strong>：截止至2013-10-30<br />
+      <strong>备注</strong>：停留有效期：3天-3个月，回程不适用2013-11-15至2013-11-17，2013-11-21至2014-1-20<em>立即预订</em></span></p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>墨尔本</h4>
+    <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>2180</span><em>起</em></p>
+    <p class="p2">从广州</p>
+    <p class="p3"><strong>去程适用日期</strong><br />
+      2013-10-27至2013-12-31</p>
+    <p class="hs"><span>南航</span></p>
+  </div>
+  <div class="bside">
+    <p><span><strong>出票有效期</strong>：截止至2013-10-30<br />
+      <strong>备注</strong>：停留有效期：3天-3个月，回程不适用2013-11-15至2014-1-20<em>立即预订</em></span></p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>阿德莱德</h4>
+    <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>2180</span><em>起</em></p>
+    <p class="p2">从广州</p>
+    <p class="p3"><strong>去程适用日期</strong><br />
+      2013-10-27至2013-12-31</p>
+    <p class="hs"><span>南航</span></p>
+  </div>
+  <div class="bside">
+    <p><span><strong>出票有效期</strong>：截止至2013-10-30<br />
+      <strong>备注</strong>：停留有效期：3天-3个月，回程不适用2013-11-15至2014-1-20<em>立即预订</em></span></p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>珀斯</h4>
+    <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">&yen;</span><span>2180</span><em>起</em></p>
+    <p class="p2">从广州</p>
+    <p class="p3"><strong>去程适用日期</strong><br />
+      2013-10-29至2013-12-24</p>
+    <p class="hs"><span>南航</span></p>
+  </div>
+  <div class="bside">
+    <p><span><strong>出票有效期</strong>：截止至2013-10-30<br />
+      <strong>备注</strong>：停留有效期：3天-3个月，回程不适用2013-11-23至2014-1-20<em>立即预订</em></span></p>
+  </div>
+</li>
+</ul>
+</div>
+
+
+<!--亚洲-->
+<div class="box">
+<ul class="block">
+<li>
+  <div class="aside">
+    <h4>雅加达</h4>
+    <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">¥</span><span>2510</span><em>起</em></p>
+    <p class="p2">从天津</p>
+    <p class="p3"><strong>去程适用日期</strong><br>
+      2013-10-3至2014-1-27，2014-2-15至2014-3-31</p>
+    <p class="hs"><span>韩亚航空</span></p>
+  </div>
+  <div class="bside">
+    <p><span><strong>出票有效期</strong>：截止至2014-3-31<br>
+      <strong>备注</strong>：停留有效期：0-12个月（首尔转机）<em>立即预订</em></span></p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>新加坡</h4>
+    <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">¥</span><span>2040</span><em>起</em></p>
+    <p class="p2">从北京</p>
+    <p class="p3"><strong>去程适用日期</strong><br>
+      2013-9-10至2013-9-27，2013-10-3至2014-1-26</p>
+    <p class="hs"><span>国航</span></p>
+  </div>
+  <div class="bside">
+    <p><span><strong>出票有效期</strong>：提前21天出票，截止至2014-1-5<br>
+      <strong>备注</strong>：停留有效期：0-1个月<em>立即预订</em></span></p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>东京</h4>
+    <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">¥</span><span>1270</span><em>起</em></p>
+    <p class="p2">从北京</p>
+    <p class="p3"><strong>去程适用日期</strong><br>
+      2013-10-5至2013-12-31</p>
+    <p class="hs"><span>国航</span></p>
+  </div>
+  <div class="bside">
+    <p><span><strong>出票有效期</strong>：提前21天出票，截止至2013-12-10<br>
+      <strong>备注</strong>：停留有效期：3天-1个月，去程不适用2013-9-27至2013-10-4<em>立即预订</em></span></p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>大阪</h4>
+    <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">¥</span><span>1850</span><em>起</em></p>
+    <p class="p2">从广州</p>
+    <p class="p3"><strong>去程适用日期</strong><br>
+      2013-10-27至2014-1-2</p>
+    <p class="hs"><span>南航</span></p>
+  </div>
+  <div class="bside">
+    <p><span><strong>出票有效期</strong>：提前21天出票，截止至2013-12-22<br>
+      <strong>备注</strong>：停留有效期：3天-14天<em>立即预订</em></span></p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>首尔</h4>
+    <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">¥</span><span>1080</span><em>起</em></p>
+    <p class="p2">从北京</p>
+    <p class="p3"><strong>去程适用日期</strong><br>
+      2013-10-4至2013-12-31</p>
+    <p class="hs"><span>国航</span></p>
+  </div>
+  <div class="bside">
+    <p><span><strong>出票有效期</strong>：提前21天出票，截止至2013-12-10<br>
+      <strong>备注</strong>：停留有效期：0-1个月<em>立即预订</em></span></p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>首尔</h4>
+    <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">¥</span><span>1620</span><em>起</em></p>
+    <p class="p2">从香港</p>
+    <p class="p3"><strong>去程适用日期</strong><br>
+      2013-9-17至2013-12-22，2013-12-27至2013-12-31</p>
+    <p class="hs"><span>中华航空</span></p>
+  </div>
+  <div class="bside">
+    <p><span><strong>出票有效期</strong>：截止至2013-12-31<br>
+      <strong>备注</strong>：停留有效期：0-7天（台北转机）<em>立即预订</em></span></p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>首尔</h4>
+    <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">¥</span><span>2300</span><em>起</em></p>
+    <p class="p2">从广州</p>
+    <p class="p3"><strong>去程适用日期</strong><br>
+      2013-10-27至2013-12-31</p>
+    <p class="hs"><span>南航</span></p>
+  </div>
+  <div class="bside">
+    <p><span><strong>出票有效期</strong>：提前14天出票，截止至2013-12-17<br>
+      <strong>备注</strong>：停留有效期：0-2个月<em>立即预订</em></span></p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>巴厘岛</h4>
+    <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">¥</span><span>2730</span><em>起</em></p>
+    <p class="p2">从香港</p>
+    <p class="p3"><strong>去程适用日期</strong><br>
+      2013-10-5至2013-11-30</p>
+    <p class="hs"><span>香港航空</span></p>
+  </div>
+  <div class="bside">
+    <p><span><strong>出票有效期</strong>：截止至2013-11-30<br>
+      <strong>备注</strong>：停留有效期：2天-14天<em>立即预订</em></span></p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>曼谷</h4>
+    <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">¥</span><span>790</span><em>起</em></p>
+    <p class="p2">从广州</p>
+    <p class="p3"><strong>去程适用日期</strong><br>
+      2013-10-29至2014-1-21，2014-2-4至2014-4-30</p>
+    <p class="hs"><span>南航</span></p>
+  </div>
+  <div class="bside">
+    <p><span><strong>出票有效期</strong>：截止至2014-4-2<br>
+      <strong>备注</strong>：停留有效期：5天-1个月<em>立即预订</em></span></p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>首尔</h4>
+    <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">¥</span><span>1880</span><em>起</em></p>
+    <p class="p2">从成都</p>
+    <p class="p3"><strong>去程适用日期</strong><br>
+      2013-3-15至2013-12-31</p>
+    <p class="hs"><span>四川航空</span></p>
+  </div>
+  <div class="bside">
+    <p><span><strong>出票有效期</strong>：截止至2013-12-31<br>
+      <strong>备注</strong>：停留有效期：0-1个月<em>立即预订</em></span></p>
+  </div>
+</li>
+<li>
+  <div class="aside">
+    <h4>台北</h4>
+    <p class="p1 cf"><span class="sp1">往返</span><span class="sp2">¥</span><span>1370</span><em>起</em></p>
+    <p class="p2">从上海</p>
+    <p class="p3"><strong>去程适用日期</strong><br>
+      2013-10-27至2013-12-30</p>
+    <p class="hs"><span>南航</span></p>
+  </div>
+  <div class="bside">
+    <p><span><strong>出票有效期</strong>：提前40天出票，截止至2013-11-20<br>
+      <strong>备注</strong>：停留有效期：2天-1个月<em>立即预订</em></span></p>
+  </div>
+</li>
+</ul>
+</div>
+
+</div>
+</div>
+<include file="public:footer" />

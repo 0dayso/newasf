@@ -59,7 +59,7 @@ class EvaluatModel extends RelationModel{
     function latestEvaluat($num){
         if(!S('latest_evaluat_'.$num)){
             $where['status']=1;
-            $where['create_time']=array('ELT',strtotime('-1 day'));
+            $where['create_time']=array('ELT',strtotime(date("Y-m-d H:s",strtotime('-1 day'))));
             $evaluat=$this->where($where)->order("total desc,rand()")->limit($num)->select();//客户评价
             S('latest_evaluat_'.$num,$evaluat,60);
         }else{
@@ -71,8 +71,8 @@ class EvaluatModel extends RelationModel{
     //获取列表
     function getList($where,$limit=10,$order='create_time desc'){
         $where['status']=1;
-        $where['create_time']=array('ELT',strtotime('-1 day'));
-       $rs= $this->where($where)->relation(true)->order($order)->limit($limit)->select();
+        $where['create_time']=array('ELT',strtotime(date("Y-m-d H:s",strtotime('-1 day'))));
+        $rs= $this->cache(true)->where($where)->relation(false)->order($order)->limit($limit)->select();
         foreach($rs as $k=>$v){
             $rs[$k]['time']=date("Y-m-d",$v['create_time']);
         }

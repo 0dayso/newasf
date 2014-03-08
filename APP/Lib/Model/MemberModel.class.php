@@ -139,7 +139,7 @@ class MemberModel extends RelationModel{
 
         $this->rank_id=1;                  //默认为普通用户组
         $this->login_count=1;
-        $this->verify_mobile=I('mobile');
+        $this->verify_mobile=1;
         $this->source=I('source')?I('source'):'pc'; //来路
         $this->invite_id=cookie('invite_id')?cookie('invite_id'):0; //推荐人ID
         $this->user_id=$this->invite_id; //分配客服
